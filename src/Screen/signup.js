@@ -1,5 +1,8 @@
 import axios from 'axios'
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
+import { loginAction } from '../actions/'
 
 const URL = 'http://localhost:3000/'
 
@@ -148,24 +151,21 @@ class Signup extends Component {
         first_name: this.state.first_name,
         family_name: this.state.family_name,
         password: this.state.password,
-        salt: this.state.salt,
-        // sex: this.state.sex,
+        sex: this.state.sex,
         typed_email: this.state.typed_email,
         username: this.state.username
       }
-      console.log(payload)
       axios.post(URL + 'signup', payload)
       .then(({data}) => {
         // console.log(data)
         // localStorage.setItem('token', data)
         if (data.hasOwnProperty('isUsed')) {
-          let msg = ''
-          if (data.isUsed.username) msg += 'Username already taken\n'
-          if (data.isUsed.email) msg += 'Email already used'
-          alert(msg)
+          if (data.isUsed.username) alert('username already used')
+          else if (data.isUsed.email) alert('email already used')
         } else {
-          localStorage.setItem('token', data)
+          localStorage.setItem('token', data.token)
           console.log('>>>Signed up')
+          this.props.loginAction()
           this.props.history.push('/')
           /**
            * Tinggal tambah, kalau udah sukses signup mau ngapain lagi
@@ -241,4 +241,18 @@ class Signup extends Component {
   }
 }
 
-export default Signup
+const mapStateToProps = (state) => {
+  return {
+    isLogin: state.userReducer.isLogin
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginAction: () => dispatch(loginAction())
+  }
+}
+
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(Signup)
+
+export default connectComponent
