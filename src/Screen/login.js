@@ -1,5 +1,8 @@
 import axios from 'axios'
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
+import { loginAction } from '../actions/'
 
 const URL = 'http://localhost:3000/'
 
@@ -20,15 +23,19 @@ class Login extends Component {
       password: this.state.password
     })
     .then(({data}) => {
-      console.log('signed in')
-      /**
-       * balikan dari server harusnya berupa jwttoken.
-       * ambil token, simpen di localstorage
-       */
-      console.log(data)
-      localStorage.setItem('token', data)
-      this.setState({isSignedIn: true})
-      this.loginCheck()
+      if (data.message === 'username not found') {
+        console.log(data)
+        alert(data.message)
+      } else if (data.message === 'password incorrect') {
+        console.log(data)
+        alert(data.message)
+      } else if (data.message === 'login success') {
+        console.log(data)
+        localStorage.setItem('token', data.token)
+        this.props.loginAction()
+        this.setState({isSignedIn: true})
+        this.loginCheck()
+      }
     })
     .catch(e => {
       console.log(e)
@@ -61,28 +68,40 @@ class Login extends Component {
   render () {
     return (
       <div>
-        <h3>Log In</h3>
-        <form onSubmit={(e) => this.logIn(e)}>
-          <label>
-            Username
-            <input type="text" name="username" placeholder="Input Username" onChange={(e) => this.logInInputHandler(e)} />
-          </label>
-          <label>
-            Password
-            <input type="password" name="password" placeholder="Input Password" onChange={(e) => this.logInInputHandler(e)} />
-          </label>
-          <input type="submit" value="Log In" />
-        </form>
-
-        <br/><br/><br/>
-
-        <h3>Log Out</h3>
-        <form onSubmit={(e) => this.logOut(e)}>
-          <input type="submit" value="Log Out" />
+        <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
+          <div className="form-group">
+            <div className="col-sm-4 col-sm-offset-4">
+              <input name="username" required type="text" className="form-control" id="inputUsername" placeholder="username" onChange={ (e) => this.logInInputHandler(e) } />
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="col-sm-4 col-sm-offset-4">
+              <input name="password" required type="password" className="form-control" id="inputPassword" placeholder="password" onChange={ (e) => this.logInInputHandler(e) } />
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="col-sm-4 col-sm-offset-4">
+              <button type="submit" className="btn btn-primary">Login</button>
+            </div>
+          </div>
         </form>
       </div>
     )
   }
 }
 
-export default Login
+const mapStateToProps = (state) => {
+  return {
+    isLogin: state.userReducer.isLogin
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginAction: () => dispatch(loginAction())
+  }
+}
+
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(Login)
+
+export default connectComponent

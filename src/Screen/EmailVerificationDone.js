@@ -5,10 +5,6 @@ import axios from 'axios'
 const BA_API_HOST = 'http://localhost:3000'
 
 class EmailVerificationDone extends React.Component {
-  constructor() {
-    super()
-  }
-
   render() {
     console.log(this.props.location.search.split('=')[1])
     return (

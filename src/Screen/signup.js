@@ -185,46 +185,56 @@ class Signup extends Component {
   }
 
   render () {
-    console.log(this.state)
     return (
       <div>
-        <h3>Sign Up</h3>
-        <form onSubmit={(e) => this.signUp(e)} >
-          <label>
-            First Name
-            <input type="text" name="first_name" placeholder="Input First Name" value={this.state.first_name} onChange={this.signUpInputHandler}/>
-          </label>
-          <br/>
-          <label>
-            Family Name
-            <input type="text" name="family_name" placeholder="Input Last Name" value={this.state.family_name} onChange={this.signUpInputHandler}/>
-          </label>
-          <br/>
-          <label>
-            Username
-            <input type="text" name="username" placeholder="Input Username" value={this.state.username} onChange={this.signUpInputHandler}/>
-          </label>
-          <br/>
-          <label>
-            Password
-            <input type="password" name="password" placeholder="Input Password" value={this.state.password} onChange={this.signUpInputHandler}/>
-          </label>
-          <br/>
-          <label>
-            Sex
+        <form className="form-horizontal" onSubmit={ (e) => this.signUp(e)}>
+
+          <div className="form-group">
+            <div className="col-sm-4 col-sm-offset-4">
+              <input name="first_name" required type="text" className="form-control" id="inputFirstName" placeholder="first name" onChange={ (e) => this.signUpInputHandler(e) } />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <div className="col-sm-4 col-sm-offset-4">
+              <input name="family_name" type="text" className="form-control" id="inputFamilyName" placeholder="family name" onChange={ (e) => this.signUpInputHandler(e) } />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <div className="col-sm-4 col-sm-offset-4">
+              <input name="username" required type="text" className="form-control" id="inputUsername" placeholder="username" onChange={ (e) => this.signUpInputHandler(e) } />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <div className="col-sm-4 col-sm-offset-4">
+              <input name="password" required type="password" className="form-control" id="inputPassword" placeholder="password" onChange={ (e) => this.signUpInputHandler(e) } />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <div className="col-sm-4 col-sm-offset-4">
+            <label className="control-label" htmlFor="sex">Sex:</label>
             <select name="sex" value={this.state.sex} onChange={this.signUpInputHandler}>
-              <option value={null}></option>
-              <option value="F">Female</option>
+              <option value={ null }>Select gender</option>
               <option value="M">Male</option>
+              <option value="F">Female</option>
             </select>
-          </label>
-          <br/>
-          <label>
-            Email
-            <input type="text" name="email" placeholder="Input Email" value={this.state.email} onChange={this.signUpInputHandler}/>
-          </label>
-          <br/>
-          <input type="submit" value="Sign Up" />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <div className="col-sm-4 col-sm-offset-4">
+              <input name="email" required type="email" className="form-control" id="inputEmail" placeholder="email" onChange={ (e) => this.signUpInputHandler(e) } />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <div className="col-sm-4 col-sm-offset-4">
+              <button type="submit" className="btn btn-primary">Register</button>
+            </div>
+          </div>
         </form>
       </div>
     )

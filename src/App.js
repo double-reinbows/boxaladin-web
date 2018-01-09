@@ -12,19 +12,19 @@ import EmailVerificationDone from './Screen/EmailVerificationDone'
 class App extends Component {
   render() {
     return (
-    <Provider store={store}>
-      <Router>
-        <div>
-          <NavBar />
-          <div className="container">
-            <Route exact path="/" component={ Home }/>
-            <Route path="/login" component={ Login }/>
-            <Route path="/signup" component={ Signup }/>
-            <Route path="/emailVerification" component={ EmailVerificationDone }/>
+      <Provider store={store}>
+        <Router>
+          <div>
+            <NavBar />
+            <div className="container">
+              <Route exact path="/" component={ Home }/>
+              <Route path="/login" component={ Login }/>
+              <Route path="/signup" component={ Signup }/>
+              <Route path="/emailVerification" component={ EmailVerificationDone }/>
+            </div>
           </div>
-        </div>
-      </Router>
-    </Provider>
+        </Router>
+      </Provider>
     )
   }
 }

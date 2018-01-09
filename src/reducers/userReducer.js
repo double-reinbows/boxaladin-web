@@ -1,12 +1,14 @@
 const defaultState = {
-  first_name: '',
-  family_name: ''
+  isLogin: false
 }
 
 const userReducer = (state=defaultState, action) => {
   switch (action.type) {
     case 'LOGIN':
-      return {...state, first_name: action.payload.data.data.first_name, family_name: action.payload.data.data.family_name}
+      return {...state, isLogin: true}
+
+    case 'LOGOUT':
+      return {...state, isLogin: false}
 
   default:
     return state

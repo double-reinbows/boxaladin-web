@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import { logoutAction } from '../actions/'
 class NavBar extends React.Component {
   constructor() {
     super()
@@ -9,7 +10,7 @@ class NavBar extends React.Component {
   }
 
   render() {
-    console.log(this);
+    console.log(this.props.isLogin)
     return (
       <nav className="navbar navbar-default">
         <div className="container-fluid">
@@ -67,13 +68,14 @@ class NavBar extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    first_name: state.userReducer.first_name,
-    family_name: state.userReducer.family_name
+    isLogin: state.userReducer.isLogin
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
+  return {
+    logoutAction: () => dispatch(logoutAction())
+  }
 }
 
 const connectComponent = connect(mapStateToProps, mapDispatchToProps)(NavBar)
