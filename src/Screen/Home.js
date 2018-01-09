@@ -6,9 +6,10 @@ import { loginAction } from '../actions/'
 class Home extends Component {
   render () {
     return (
-      <h1>
-        Welcome home.
-      </h1>
+      <div>
+        <h1>Welcome</h1>
+        <h4>This is BoxAladin's home screen.</h4>
+      </div>
     )
   }
 }

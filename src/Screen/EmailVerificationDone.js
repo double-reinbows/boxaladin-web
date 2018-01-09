@@ -10,7 +10,7 @@ class EmailVerificationDone extends React.Component {
     return (
       <div>
         <h1>Congratz, your email is verified.</h1>
-        <h3>Click <Link to="/login">here</Link> to login</h3>
+        { this.showLoginLink() }
       </div>
     )
   }
@@ -27,6 +27,14 @@ class EmailVerificationDone extends React.Component {
     })
     .then(response => console.log(response))
     .catch(err => console.log(err))
+  }
+
+  showLoginLink() {
+    if (localStorage.getItem('token') == null) {
+      return (
+        <h3>Click <Link to="/login">here</Link> to login</h3>
+      )
+    }
   }
 }
 

@@ -21,7 +21,7 @@ class NavBar extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <Link className="navbar-brand" to="/">boxAladin</Link>
+            <Link className="navbar-brand" to="/">Box<b>Aladin</b></Link>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -37,7 +37,7 @@ class NavBar extends React.Component {
     if (localStorage.getItem('token') !== null) {
       return (
         <ul className="nav navbar-nav navbar-right">
-          <li><a href="?#" onClick={ () => localStorage.removeItem('token') }>Logout</a></li>
+          <li><a href="#?" onClick={ () => this.logout() }>Logout</a></li>
         </ul>
       )
     } else {
@@ -50,16 +50,17 @@ class NavBar extends React.Component {
     }
   }
 
-  goToLogin() {
-    this.props.history.push('/login')
+  logout() {
+    localStorage.removeItem('token')
+    this.props.logoutAction()
   }
 
   showMenu() {
     if (localStorage.getItem('token') !== null) {
       return (
         <ul className="nav navbar-nav">
-          <li><a href="?#">Link</a></li>
-          <li><a href="?#">Link</a></li>
+          <li><a href="#?">Link</a></li>
+          <li><a href="#?">Link</a></li>
         </ul>
       )
     }
