@@ -28,6 +28,7 @@ class Login extends Component {
       console.log(data)
       localStorage.setItem('token', data)
       this.setState({isSignedIn: true})
+      this.loginCheck()
     })
     .catch(e => {
       console.log(e)
@@ -45,6 +46,16 @@ class Login extends Component {
      */
     localStorage.removeItem('token')
     this.setState({isSignedIn: false})
+  }
+
+  loginCheck() {
+    if (localStorage.getItem('token') !== null) {
+      this.props.history.push('/')
+    }
+  }
+
+  componentDidMount() {
+    this.loginCheck()
   }
 
   render () {

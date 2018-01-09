@@ -149,7 +149,7 @@ class Signup extends Component {
         family_name: this.state.family_name,
         password: this.state.password,
         salt: this.state.salt,
-        sex: this.state.sex,
+        // sex: this.state.sex,
         typed_email: this.state.typed_email,
         username: this.state.username
       }
@@ -166,6 +166,7 @@ class Signup extends Component {
         } else {
           localStorage.setItem('token', data)
           console.log('>>>Signed up')
+          this.props.history.push('/')
           /**
            * Tinggal tambah, kalau udah sukses signup mau ngapain lagi
            * selain terima token.
@@ -184,6 +185,7 @@ class Signup extends Component {
   }
 
   render () {
+    console.log(this.state)
     return (
       <div>
         <h3>Sign Up</h3>
@@ -215,11 +217,6 @@ class Signup extends Component {
               <option value="F">Female</option>
               <option value="M">Male</option>
             </select>
-          </label>
-          <br/>
-          <label>
-            Salt
-            <input type="text" name="salt" placeholder="Garam sementara" value={this.state.salt} onChange={this.signUpInputHandler}/>
           </label>
           <br/>
           <label>
