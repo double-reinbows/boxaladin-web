@@ -8,6 +8,7 @@ import Login from './Screen/login'
 import Signup from './Screen/signup'
 import NavBar from './Screen/NavBar'
 import EmailVerificationDone from './Screen/EmailVerificationDone'
+import Phone from './Screen/Phone'
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
               <Route path="/login" component={ Login }/>
               <Route path="/signup" component={ Signup }/>
               <Route path="/emailVerification" component={ EmailVerificationDone }/>
+              <Route path="/phone" component={ Phone }/>
             </div>
           </div>
         </Router>

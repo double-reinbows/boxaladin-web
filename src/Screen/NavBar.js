@@ -4,13 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { logoutAction } from '../actions/'
 class NavBar extends React.Component {
-  constructor() {
-    super()
-    this.state = {}
-  }
-
   render() {
-    console.log(this.props.isLogin)
     return (
       <nav className="navbar navbar-default">
         <div className="container-fluid">
@@ -59,7 +53,7 @@ class NavBar extends React.Component {
     if (localStorage.getItem('token') !== null) {
       return (
         <ul className="nav navbar-nav">
-          <li><a href="#?">Link</a></li>
+          <li><Link to="/phone">Phone</Link></li>
           <li><a href="#?">Link</a></li>
         </ul>
       )
