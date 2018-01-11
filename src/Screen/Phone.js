@@ -38,17 +38,19 @@ class Phone extends React.Component {
 			numbers: [],
 			numberId: '',
 			showOtpModal: false,
-			otp: ''
+			otp: '',
+			phonenumber: ''
 		}
 	}
 
 	render() {
+		console.log(this.state.phonenumber);
 		return (
 			<div>
 				<form className="form-horizontal" onSubmit={ (e) => this.handleFormSubmit(e)}>
           <div className="form-group">
             <div className="col-sm-4 col-sm-offset-4">
-              <input name="phonenumber" required type="text" className="form-control" id="inputUsername" placeholder="phone number" onChange={ (e) => this.handleFormInput(e) } />
+              <input name="phonenumber" required type="text" className="form-control" placeholder="(+62) 8xxx xxxx xxx" onChange={ (e) => this.handlePhoneNum(e) } />
             </div>
           </div>
           <div className="form-group">
@@ -97,6 +99,24 @@ class Phone extends React.Component {
 	componentDidMount() {
 		this.loginCheck()
 		this.getPhoneNumbers()
+	}
+
+	handlePhoneNum(e) {
+	  var num = e.target.value.split('')
+	  if (num[0] === '0') {
+	    num.splice(0, 1, '62')
+	    this.setState({[e.target.name]: num.join('')})
+	  } else if (num[0]+num[1]+num[2] === '+62') {
+	    num.splice(0, 3, '62')
+			this.setState({[e.target.name]: num.join('')})
+	  } else if (num[0]+num[1] === '62') {
+			this.setState({[e.target.name]: num.join('')})
+		} else if (num[0] === '8') {
+			this.setState({[e.target.name]: '62' + num.join('')})
+		} else if (num.length === 0) {
+			this.setState({[e.target.name]: num.join('')})
+		}
+		// console.log(e.target.value);
 	}
 
 	showNumbers() {
@@ -179,22 +199,30 @@ class Phone extends React.Component {
 		e.preventDefault()
 		// alert(this.state.phonenumber)
 
-		axios({
-			method: 'POST',
-			url: `http://localhost:3000/phonenumber`,
-			data: {
-				phonenumber: this.state.phonenumber
-			},
-			headers: {
-				token: localStorage.getItem('token')
-			}
-		})
-		.then(response => {
-			if (response.data.message === 'data added') {
-				this.getPhoneNumbers()
-			}
-		})
-		.catch(err => console.log(err))
+		if (this.state.phonenumber[0] + this.state.phonenumber[1] !== '62') {
+			alert('Format nomor HP salah')
+		} else {
+			axios({
+				method: 'POST',
+				url: `http://localhost:3000/phonenumber`,
+				data: {
+					phonenumber: this.state.phonenumber
+				},
+				headers: {
+					token: localStorage.getItem('token')
+				}
+			})
+			.then(response => {
+				if (response.data.message === 'data added') {
+					this.getPhoneNumbers()
+				} else if (response.data.message === 'duplicate number') {
+					alert(response.data.message)
+				} else if (response.data.message === 'already use') {
+					alert(response.data.message)
+				}
+			})
+			.catch(err => console.log(err))
+		}
 	}
 
 	handleFormInput(e) {
