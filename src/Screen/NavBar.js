@@ -31,7 +31,7 @@ class NavBar extends React.Component {
     if (localStorage.getItem('token') !== null) {
       return (
         <ul className="nav navbar-nav navbar-right">
-          <li><a href="#?" onClick={ () => this.logout() }>Logout</a></li>
+          <li><button onClick={ () => this.logout() }>Logout</button></li>
         </ul>
       )
     } else {

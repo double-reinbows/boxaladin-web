@@ -1,5 +1,5 @@
 const defaultState = {
-  isLogin: false
+  isLogin: null
 }
 
 const userReducer = (state=defaultState, action) => {

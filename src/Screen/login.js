@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { loginAction } from '../actions/'
+import { loginAction, logoutAction } from '../actions/'
 
 const URL = 'http://localhost:3000/'
 
@@ -11,8 +11,7 @@ class Login extends Component {
     super(props)
     this.state = {
       password: '',
-      username: '',
-      isSignedIn: false
+      username: ''
     }
   }
 
@@ -33,8 +32,6 @@ class Login extends Component {
         console.log(data)
         localStorage.setItem('token', data.token)
         this.props.loginAction()
-        this.setState({isSignedIn: true})
-        this.loginCheck()
       }
     })
     .catch(e => {
@@ -44,25 +41,6 @@ class Login extends Component {
 
   logInInputHandler(e) {
     this.setState({ [e.target.name]: e.target.value })
-  }
-
-  logOut(e) {
-    e.preventDefault()
-    /**
-     * hapus localstorage yang nyimpen jwttoken
-     */
-    localStorage.removeItem('token')
-    this.setState({isSignedIn: false})
-  }
-
-  loginCheck() {
-    if (localStorage.getItem('token') !== null) {
-      this.props.history.push('/')
-    }
-  }
-
-  componentDidMount() {
-    this.loginCheck()
   }
 
   render () {
@@ -98,7 +76,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginAction: () => dispatch(loginAction())
+    loginAction: () => dispatch(loginAction()),
+    logoutAction: () => dispatch(logoutAction())
   }
 }
 

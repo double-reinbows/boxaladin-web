@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import NavBar from './Screen/NavBar'
@@ -8,21 +8,58 @@ import Login from './Screen/login'
 import Signup from './Screen/signup'
 import EmailVerificationDone from './Screen/EmailVerificationDone'
 import Phone from './Screen/Phone'
+import LandingPage from './Screen/LandingPage'
 
 class RouteList extends React.Component {
 	render() {
-		console.log(this.props);
+		console.log('THIS DI KOMPONEN ROUTES', this);
 		return (
 			<div>
 				<Router>
 					<div>
 						<NavBar />
-							<div className="container">
-							<Route exact path="/" component={ Home }/>
-							<Route path="/login" component={ Login }/>
-							<Route path="/signup" component={ Signup }/>
+						<div className="container">
+							<Route exact path="/" render={() => (
+								localStorage.getItem('token') !== null ? (
+									<Redirect to="/home"/>
+								) : (
+									<LandingPage/>
+								)
+							)}/>
+
+							<Route exact path="/home" render={() => (
+								localStorage.getItem('token') !== null ? (
+									<Home/>
+								) : (
+									<Redirect to="/"/>
+								)
+							)}/>
+
+							<Route exact path="/login" render={() => (
+								localStorage.getItem('token') !== null ? (
+									<Redirect to="/"/>
+								) : (
+									<Login/>
+								)
+							)}/>
+
+							<Route exact path="/signup" render={() => (
+								localStorage.getItem('token') !== null ? (
+									<Redirect to="/"/>
+								) : (
+									<Signup/>
+								)
+							)}/>
+
+							<Route exact path="/phone" render={() => (
+								localStorage.getItem('token') !== null ? (
+									<Phone/>
+								) : (
+									<Redirect to="/"/>
+								)
+							)}/>
+
 							<Route path="/emailVerification" component={ EmailVerificationDone }/>
-							<Route path="/phone" component={ Phone }/>
 						</div>
 					</div>
 				</Router>

@@ -44,7 +44,6 @@ class Phone extends React.Component {
 	}
 
 	render() {
-		console.log(this.state.phonenumber);
 		return (
 			<div>
 				<form className="form-horizontal" onSubmit={ (e) => this.handleFormSubmit(e)}>
@@ -97,7 +96,6 @@ class Phone extends React.Component {
 	}
 
 	componentDidMount() {
-		this.loginCheck()
 		this.getPhoneNumbers()
 	}
 
@@ -227,12 +225,6 @@ class Phone extends React.Component {
 
 	handleFormInput(e) {
     this.setState({ [e.target.name]: e.target.value })
-  }
-
-	loginCheck() {
-    if (localStorage.getItem('token') === null) {
-      this.props.history.push('/')
-    }
   }
 }
 

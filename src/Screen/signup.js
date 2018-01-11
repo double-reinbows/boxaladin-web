@@ -184,16 +184,6 @@ class Signup extends Component {
     this.setState({ [e.target.name]: e.target.value.trim() })
   }
 
-  loginCheck() {
-    if (localStorage.getItem('token') !== null) {
-      this.props.history.push('/')
-    }
-  }
-
-  componentDidMount() {
-    this.loginCheck()
-  }
-
   render () {
     return (
       <div>
