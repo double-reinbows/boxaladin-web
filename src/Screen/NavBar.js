@@ -6,7 +6,7 @@ import { logoutAction } from '../actions/'
 class NavBar extends React.Component {
   render() {
     return (
-      <nav className="navbar navbar-default">
+      <nav className="navbar navbar-default" style= {{ height: '100px' ,paddingTop: '30px', backgroundColor: 'green'}}>
         <div className="container-fluid">
           <div className="navbar-header">
             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -37,8 +37,8 @@ class NavBar extends React.Component {
     } else {
       return (
         <ul className="nav navbar-nav navbar-right">
-          <li><Link to="/signup">Register</Link></li>
-          <li><Link to="/login">Login</Link></li>
+          <li style = {{ fontSize: '30px'}}><Link to="/signup">Register</Link></li>
+          <li style = {{ fontSize: '30px'}}><Link to="/login">Login</Link></li>
         </ul>
       )
     }
