@@ -166,7 +166,6 @@ class Signup extends Component {
           localStorage.setItem('token', data.token)
           console.log('>>>Signed up')
           this.props.loginAction()
-          this.props.history.push('/')
           /**
            * Tinggal tambah, kalau udah sukses signup mau ngapain lagi
            * selain terima token.

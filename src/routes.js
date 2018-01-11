@@ -12,7 +12,6 @@ import LandingPage from './Screen/LandingPage'
 
 class RouteList extends React.Component {
 	render() {
-		console.log('THIS DI KOMPONEN ROUTES', this);
 		return (
 			<div>
 				<Router>
