@@ -4,6 +4,8 @@ import Home from './Screen/Home'
 import Login from './Screen/login'
 import Signup from './Screen/signup'
 
+import Product from './Screen/Product'
+
 class App extends Component {
   render() {
     return (
@@ -12,6 +14,7 @@ class App extends Component {
         <Route exact path="/" component={ Home }/>
         <Route path="/login" component={ Login }/>
         <Route path="/signup" component={ Signup }/>
+        <Route path="/Product" component={ Product }/>
       </div>
     </Router>
     )
