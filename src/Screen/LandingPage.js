@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import logo from '../logo.jpeg'
+import promotion from '../promotion.jpg'
 
 import { loginAction } from '../actions/'
 
@@ -7,8 +9,19 @@ class LandingPage extends Component {
   render () {
     return (
       <div>
-        <h1>Welcome</h1>
-        <h4>This is BoxAladin's Landing Page.</h4>
+        <div style= {{ height: '300px', backgroundColor: 'black', width: '100%'}}>
+           <img  src={logo} width="350"  height="300" alt='logo'/>
+        </div>
+        <div style= {{ height: '80px', backgroundColor: 'green', width: '100%'}} >
+          <div >
+          <a>Home</a>
+          <a>How its works</a>
+          <a>Contact</a>
+          </div>
+        </div>
+        <div style= {{ height: '500px', backgroundColor: 'black', width: '100%'}}>
+           <img  src={promotion} width="800" height="500" alt='logo'/>
+        </div>
       </div>
     )
   }

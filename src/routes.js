@@ -16,8 +16,8 @@ class RouteList extends React.Component {
 			<div>
 				<Router>
 					<div>
-						<NavBar />
-						<div className="container">
+						<NavBar></NavBar>
+
 							<Route exact path="/" render={() => (
 								localStorage.getItem('token') !== null ? (
 									<Redirect to="/home"/>
@@ -59,7 +59,7 @@ class RouteList extends React.Component {
 							)}/>
 
 							<Route path="/emailVerification" component={ EmailVerificationDone }/>
-						</div>
+
 					</div>
 				</Router>
 			</div>

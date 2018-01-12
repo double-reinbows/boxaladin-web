@@ -15,10 +15,10 @@ class NavBar extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <Link className="navbar-brand" to="/">Box<b>Aladin</b></Link>
+            <Link className="navbar-brand" to="/"><a style= {{ color: 'white' }}>Box<b>Aladin</b></a></Link>
           </div>
 
-          <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style = {{ float: 'right', position: 'relative'}}>
             { this.showMenu() }
             { this.showRightButton() }
           </div>
@@ -37,8 +37,8 @@ class NavBar extends React.Component {
     } else {
       return (
         <ul className="nav navbar-nav navbar-right">
-          <li style = {{ fontSize: '30px'}}><Link to="/signup">Register</Link></li>
-          <li style = {{ fontSize: '30px'}}><Link to="/login">Login</Link></li>
+          <li style = {{ fontSize: '30px'}}><Link to="/signup"><a style = {{color:'white'}}>Register</a></Link></li>
+          <li style = {{ fontSize: '30px'}}><Link to="/login"><a style = {{color:'white'}}>Login</a></Link></li>
         </ul>
       )
     }
