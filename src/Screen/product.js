@@ -95,28 +95,28 @@ class Product extends React.Component {
     return (
       <div className="container home">
 
-          <select onChange={this.handleChangeCategory} value={this.state.cbxCategory} disabled={!this.state.isVerified}>
+          <select onChange={this.handleChangeCategory} value={this.state.cbxCategory}>
           <option style={{display: 'none'}} value="0">Pilih</option>      
           {this.state.category.map(d => (
             <option key={d.id} value={d.id}>{d.category}</option> 
             ))}  
           </select>
 
-          <select onChange={this.handleChangeBrand} value={this.state.cbxBrand} disabled={!this.state.isVerified}>
+          <select onChange={this.handleChangeBrand} value={this.state.cbxBrand} >
           <option style={{display: 'none'}} value="0">Pilih</option>      
           {this.state.brand.map(d => (
             <option key={d.id} value={d.id}>{d.brand}</option> 
             ))}  
           </select>
 
-          <select onChange={this.handleChangePrice} value={this.state.cbxPrice} disabled={!this.state.isVerified}>
+          <select onChange={this.handleChangePrice} value={this.state.cbxPrice}>
           <option style={{display: 'none'}} value="0">Pilih</option>      
           {this.state.price.map(d => (
             <option key={d.id} value={d.id}>{d.price}</option> 
             ))}  
           </select>
-          
-        <button onClick={this.handleBuyClick}>Buy</button>
+
+        <button onClick={this.handleBuyClick} disabled={!this.state.isVerified}>Lihat Harga</button>
         <br />  
         <br />        
         <label id="labelVerified" style={{fontSize: '15px'}}>Your Phone Not Verified</label>

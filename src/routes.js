@@ -37,7 +37,7 @@ class RouteList extends React.Component {
 
 							<Route exact path="/product" render={() => (
 								localStorage.getItem('token') !== null ? (
-									<Home/>
+									<Product/>
 								) : (
 									<Product/>
 								)
