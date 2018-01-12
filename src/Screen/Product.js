@@ -1,6 +1,6 @@
 import React from "react";
 
-class Home extends React.Component {
+class Product extends React.Component {
   constructor(props){
     super(props)
     this.state = {
@@ -10,9 +10,11 @@ class Home extends React.Component {
       cbxPrice: '',
       cbxBrand: '',
       cbxCategory: '',
-
+      noHp: '',
+      isVerified: false,
     }
   }
+
   handleChangeCategory = e => {
     this.setState({
       cbxCategory: e.target.value,
@@ -33,10 +35,9 @@ class Home extends React.Component {
 
   handleBuyClick = () => {
     console.log(this.state.cbxCategory, this.state.cbxBrand, this.state.cbxPrice)
-    fetch('http://localhost:8000/api/product', {
+    fetch('http://localhost:3000/api/product', {
       method: 'POST',
       // headers: {
-
       // },
       body: new URLSearchParams({
         categoryid: this.state.cbxCategory,
@@ -52,14 +53,37 @@ class Home extends React.Component {
     })
   }
 
-  // handleBuyClick = () => {
-  //   console.log(this.state.cbxCategory, this.state.cbxBrand, this.state.cbxPrice)
-  // }
+  handleTf = () => {
+    fetch('http://localhost:3000/phonenumbers', {
+      method: 'POST',
+      // headers: {
+
+      // },
+      body: new URLSearchParams({
+        number: this.state.noHp,
+      }),
+    })
+    .then(res => res.json())
+    .then(d => {
+      console.log(d.verified);
+      this.setState({
+        isVerified: d.verified
+      })
+      document.getElementById('labelTrueFalse').textContent = d.verified
+      document.getElementById('labelVerified').textContent = d.hp
+    })
+  }
+
+  handleChange = e => {
+    this.setState({
+      noHp: e.target.value
+    })
+  }
 
   async componentWillMount(){
-    const dCategory = await fetch('http://localhost:8000/api/category').then(d => d.json());
-    const dBrand = await fetch('http://localhost:8000/api/brand').then(d => d.json());
-    const dPrice = await fetch('http://localhost:8000/api/price').then(d => d.json());
+    const dCategory = await fetch('http://localhost:3000/api/category').then(d => d.json());
+    const dBrand = await fetch('http://localhost:3000/api/brand').then(d => d.json());
+    const dPrice = await fetch('http://localhost:3000/api/price').then(d => d.json());
 
     this.setState({
       category: dCategory,
@@ -71,30 +95,42 @@ class Home extends React.Component {
     return (
       <div className="container home">
 
-          <select onChange={this.handleChangeCategory} value={this.state.cbxCategory}>
-          <option style={{display: 'none'}} value="0">Pilih</option>
+          <select onChange={this.handleChangeCategory} value={this.state.cbxCategory} >
+          <option style={{display: 'none'}} value="0">Pilih Category</option>
           {this.state.category.map(d => (
             <option key={d.id} value={d.id}>{d.category}</option>
             ))}
           </select>
 
-          <select onChange={this.handleChangeBrand} value={this.state.cbxBrand}>
-          <option style={{display: 'none'}} value="0">Pilih</option>
+          <select onChange={this.handleChangeBrand} value={this.state.cbxBrand} >
+          <option style={{display: 'none'}} value="0">Pilih Brand</option>
           {this.state.brand.map(d => (
             <option key={d.id} value={d.id}>{d.brand}</option>
             ))}
           </select>
 
-          <select onChange={this.handleChangePrice} value={this.state.cbxPrice}>
-          <option style={{display: 'none'}} value="0">Pilih</option>
+          <select onChange={this.handleChangePrice} value={this.state.cbxPrice} >
+          <option style={{display: 'none'}} value="0">Pilih Nominal</option>
           {this.state.price.map(d => (
             <option key={d.id} value={d.id}>{d.price}</option>
             ))}
           </select>
 
-        <button onClick={this.handleBuyClick}>Buy</button>
+        <button onClick={this.handleBuyClick} disabled={!this.state.isVerified}>Lihat harga</button>
+        <br />
+        <br />
+        <label id="labelVerified" style={{fontSize: '15px'}}>Your Phone Not Verified</label>
+        <br />
+        <input onChange={this.handleChange} value={this.state.noHp} />
+        <button onClick={this.handleTf}>Verifying Phone</button>
+        <br />
+        <br />
+        <label id="labelTrueFalse" style={{fontSize: '20px'}}>label true/false</label>
       </div>
     );
   }
 }
-export default Home
+export default Product
+
+
+// pointerevent

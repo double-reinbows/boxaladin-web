@@ -1,22 +1,15 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Home from './Screen/Home'
-import Login from './Screen/login'
-import Signup from './Screen/signup'
+import React from 'react';
+import { Provider } from 'react-redux'
 
-import Product from './Screen/Product'
+import store from './store/'
+import RouteList from './routes'
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
-    <Router>
-      <div>
-        <Route exact path="/" component={ Home }/>
-        <Route path="/login" component={ Login }/>
-        <Route path="/signup" component={ Signup }/>
-        <Route path="/Product" component={ Product }/>
-      </div>
-    </Router>
+      <Provider store={store}>
+        <RouteList/>
+      </Provider>
     )
   }
 }
