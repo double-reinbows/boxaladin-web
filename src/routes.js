@@ -8,6 +8,7 @@ import Login from './Screen/login'
 import Signup from './Screen/signup'
 import EmailVerificationDone from './Screen/EmailVerificationDone'
 import Phone from './Screen/Phone'
+import Product from './Screen/product'
 import LandingPage from './Screen/LandingPage'
 
 class RouteList extends React.Component {
@@ -31,6 +32,14 @@ class RouteList extends React.Component {
 									<Home/>
 								) : (
 									<Redirect to="/"/>
+								)
+							)}/>
+
+							<Route exact path="/product" render={() => (
+								localStorage.getItem('token') !== null ? (
+									<Home/>
+								) : (
+									<Product/>
 								)
 							)}/>
 
