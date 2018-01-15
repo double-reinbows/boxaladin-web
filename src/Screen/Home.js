@@ -3,12 +3,15 @@ import { connect } from 'react-redux'
 
 import { loginAction } from '../actions/'
 
+import Product from './Product'
+
 class Home extends Component {
   render () {
     return (
       <div>
         <h1>Welcome</h1>
         <h4>This is BoxAladin's Home Screen.</h4>
+        <Product/>
       </div>
     )
   }
