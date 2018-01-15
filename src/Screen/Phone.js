@@ -194,7 +194,7 @@ class Phone extends React.Component {
 		if (dataNumber.verified === false) {
 			return (
 				<div>
-					<button onClick={() => this.insertOtp(dataNumber)} onClick={this.handleTf}>Verify</button>
+					<button onClick={() => this.insertOtp(dataNumber)}>Verify</button>
 				</div>
 			)
 		}
