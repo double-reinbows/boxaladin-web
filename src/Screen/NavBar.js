@@ -6,16 +6,9 @@ import { logoutAction } from '../actions/'
 class NavBar extends React.Component {
   render() {
     return (
-      <nav className="navbar navbar-default" style= {{ height: '100px' ,paddingTop: '30px', backgroundColor: 'green'}}>
+      <nav className="navbar navbar-default" style= {{ height: '100px' ,paddingTop: '30px', backgroundColor: 'green', marginBottom: '0px', borderColor: 'transparent'}}>
         <div className="container-fluid">
           <div className="navbar-header">
-            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-              <span className="sr-only">Toggle navigation</span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-            </button>
-            <Link className="navbar-brand" to="/"><a style= {{ color: 'white' }}>Box<b>Aladin</b></a></Link>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style = {{ float: 'right', position: 'relative'}}>
@@ -36,9 +29,9 @@ class NavBar extends React.Component {
       )
     } else {
       return (
-        <ul className="nav navbar-nav navbar-right">
-          <li style = {{ fontSize: '30px'}}><Link to="/signup"><a style = {{color:'white'}}>Register</a></Link></li>
-          <li style = {{ fontSize: '30px'}}><Link to="/login"><a style = {{color:'white'}}>Login</a></Link></li>
+        <ul className="nav navbar-nav navbar-right" style = {{ color: 'white'}}>
+          <li style = {{ fontSize: '30px'}}><Link to="/signup"><p style = {{ color : 'white'}} >Register</p></Link></li>
+          <li style = {{ fontSize: '30px'}}><Link to="/login"><p style = {{ color : 'white'}} >Login</p></Link></li>
         </ul>
       )
     }

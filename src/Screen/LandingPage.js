@@ -11,18 +11,24 @@ class LandingPage extends Component {
     return (
       <div>
         <div style= {{ height: '300px', backgroundColor: 'black', width: '100%'}}>
-           <img  src={logo} width="350"  height="300" alt='logo'/>
+          <ul>
+            <li><img  src={logo} width="380"  height="330" alt='logo' style={{ position: 'absolute', left: '200px'}}/></li>
+            <li><h1 style= {{ color: 'white', fontWeight: 'bold', position: 'absolute', left: '400px' }}> The more you see it, the cheaper it gets</h1></li>
+          </ul>
         </div>
-        <div style= {{ height: '80px', backgroundColor: 'green', width: '70%', display: 'flex' , alignItems: 'center', justifyContent: 'space-around', fontSize: '50px'}} >
-          <a >Home</a>
-          <a>How its works</a>
-          <a>Contact</a>
-        </div>
+        <nav className="navbar navbar-default" style= {{ height: '100px' ,paddingTop: '30px', backgroundColor: 'green', marginBottom: '0px', borderColor: 'transparent'}}>
+          <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style = {{ float: 'left', position: 'relative'}}>
+            <ul className="nav navbar-nav navbar-right">
+              <li style = {{ fontSize: '30px'}}><p style = {{ color : 'white'}} >Register</p></li>
+              <li style = {{ fontSize: '30px'}}><p style = {{ color : 'white'}} >Login</p></li>
+            </ul>
+          </div>
+        </nav>
         <div style= {{ height: '500px', backgroundColor: 'black', width: '100%'}}>
            <img  src={promotion} width="800" height="500" alt='logo'/>
         </div>
         <div>
-        <img  src={phone} width="350"  height="400" alt='logo' style={{ position: 'absolute', top: '0', right: '100px'}}/>
+        <img  src={phone} width="350"  height="600" alt='logo' style={{ position: 'absolute', top: '300px', right: '100px'}}/>
         </div>
       </div>
     )
