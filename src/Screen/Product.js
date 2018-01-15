@@ -54,8 +54,8 @@ class Product extends Component {
 					<h3>{this.state.productUnlocked.name}</h3>
 					<strike><h3>Rp{this.state.productUnlocked.price}</h3></strike>
 					<h1>Rp{this.state.productUnlocked.aladinPrice}</h1>
-					<button style={{ width: 100 }} onClick={ () => this.closeModalPrice(this.state.productUnlocked.id) }>Close</button>
-					<button style={{ width: 100 }}>Buy</button>
+					<button className="btn btn-default btn-xs" style={{ width: 100 }} onClick={ () => this.closeModalPrice(this.state.productUnlocked.id) }>Close</button>
+					<button className="btn btn-primary btn-xs" style={{ width: 100 }}>Buy</button>
 				</Modal>
 
       </div>
@@ -107,26 +107,21 @@ class Product extends Component {
 
 	showProducts() {
 		return (
-			<table className="table table-striped table-hover ">
-				<thead>
-					<tr>
-						<th>No.</th>
-						<th>Product Name</th>
-						<th>Price</th>
-					</tr>
-				</thead>
-				<tbody>
-					{this.state.products.map((product, idx) => {
-						return (
-							<tr className="active" key={idx}>
-								<td>{idx+1}</td>
-								<td>{product.productName}</td>
-								<td><button onClick={ () => this.watchProductPrice(product.id) }>Unlock</button></td>
-							</tr>
-						)
-					})}
-				</tbody>
-			</table>
+			<div>
+			{this.state.products.map((product, idx) => {
+				return (
+					<div className="panel panel-default">
+						<div className="panel-heading">
+					  	<h3 className="panel-title"><b>{product.productName}</b></h3>
+					  </div>
+						<div className="panel-body">
+							<h4>Rp{product.price} (harga asli)</h4>
+							<button className="btn btn-success btn-xs" onClick={ () => this.watchProductPrice(product.id) }>Unlock</button>
+						</div>
+					</div>
+				)
+			})}
+			</div>
 		)
 
 	}
