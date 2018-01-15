@@ -36,7 +36,7 @@ class LandingPage extends Component {
           </div>
         </div>
         </nav>
-        <div style= {{ height: '480px', backgroundColor: 'black', width: '100%'}}>
+        <div style= {{ height: '480px', backgroundColor: 'black', width: '1000%'}}>
            <img  src={promotion} alt='logo' class='img-responsive'  width="1000"/>
         </div>
         <div className="collapse navbar-collapse">
