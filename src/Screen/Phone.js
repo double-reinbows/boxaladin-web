@@ -39,7 +39,8 @@ class Phone extends React.Component {
 			numberId: '',
 			showOtpModal: false,
 			otp: '',
-			phonenumber: ''
+			phonenumber: '',
+			isVerified: false
 		}
 	}
 
@@ -158,6 +159,26 @@ class Phone extends React.Component {
 
 		this.setState({showOtpModal: false})
 	}
+// --------------------------------------------------------------------
+  // handleTf = () => {
+  //   fetch('http://localhost:3000/phonenumbers', {
+  //     method: 'POST',
+  //     // headers: {
+
+  //     // },
+  //     body: new URLSearchParams({
+  //       number: this.state.noHp,
+  //     }),
+  //   })
+  //   .then(res => res.json())
+  //   .then(d => {
+  //     console.log(d.verified);
+  //     this.setState({
+  //       isVerified: d.verified
+  //     })
+  //   })
+	// }
+// --------------------------------------------------------------------
 
 	insertOtp(data) {
 		this.setState({numberId: data.id})

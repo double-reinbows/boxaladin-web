@@ -54,7 +54,6 @@ class NavBar extends React.Component {
       return (
         <ul className="nav navbar-nav">
           <li><Link to="/phone">Phone</Link></li>
-          <li><Link to="/product">Product</Link></li>
           <li><a href="#?">Link</a></li>
         </ul>
       )
