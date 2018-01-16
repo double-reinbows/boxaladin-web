@@ -71,7 +71,51 @@ class Product extends Component {
 	componentDidMount() {
 		this.fetchBrands()
 		this.fetchCategories()
-		this.fetchProducts()
+		this.fetchProductsWithFilter()
+	}
+
+	fetchProductsWithFilter() {
+		const productsRef = firebase.database().ref().child('products')
+		productsRef.once('value').then(snap => {
+			let dataProducts = []
+			for (var key in snap.val()) {
+				dataProducts.push(snap.val()[key])
+			}
+
+			if (this.state.selectedBrand === 'all' && this.state.selectedCategory === 'all') {
+	      // fetch all products
+				this.setState({ products: dataProducts })
+				console.log('show all products');
+			} else if (this.state.selectedBrand === 'all') {
+				// filter products by category
+				const filtered = dataProducts.filter(product => {
+					return product.categoryId.toString() === this.state.selectedCategory
+				})
+				this.setState({ products: filtered })
+				console.log(filtered);
+				console.log('filter products by category');
+			} else if (this.state.selectedCategory === 'all') {
+				// filter products by brand
+				const filtered = dataProducts.filter(product => {
+					return product.brandId.toString() === this.state.selectedBrand
+				})
+				this.setState({ products: filtered })
+				console.log(filtered);
+				console.log('filter products by brand');
+			} else {
+	      // filter products by category & brand
+				const filteredByBrand = dataProducts.filter(product => {
+					return product.brandId.toString() === this.state.selectedBrand
+				})
+				const filtered = filteredByBrand.filter(product => {
+					return product.categoryId.toString() === this.state.selectedCategory
+				})
+				this.setState({ products: filtered })
+				console.log(filtered);
+				console.log('filter products by brand & category');
+			}
+
+		})
 	}
 
 	filterProducts() {
@@ -153,33 +197,36 @@ class Product extends Component {
 	}
 
 	watchProductPrice(productId) {
-		axios({
-			method: 'POST',
-			url: `http://localhost:3000/unlockPrice`,
-			data: {
-				productId: productId
-			},
-			headers: {
-				token: localStorage.getItem('token')
-			}
-		})
-		.then(({data}) => {
-			// console.log(data);
-			if (data.message === 'success') {
-				const productsRef = firebase.database().ref().child('products')
-				const productRef = productsRef.child(productId)
-				productRef.on('value', snap => {
-					this.setState({productUnlocked: snap.val()})
-					this.setState({showPriceModal: true})
-				})
-			} else if (data.message === 'not enough aladin key') {
-				alert(data.message)
-			} else {
-				console.log(data)
-			}
-		})
-		.catch(err => console.log(err))
-
+		if (localStorage.getItem('token') !== null) {
+			axios({
+				method: 'POST',
+				url: `http://localhost:3000/unlockPrice`,
+				data: {
+					productId: productId
+				},
+				headers: {
+					token: localStorage.getItem('token')
+				}
+			})
+			.then(({data}) => {
+				// console.log(data);
+				if (data.message === 'success') {
+					const productsRef = firebase.database().ref().child('products')
+					const productRef = productsRef.child(productId)
+					productRef.on('value', snap => {
+						this.setState({productUnlocked: snap.val()})
+						this.setState({showPriceModal: true})
+					})
+				} else if (data.message === 'not enough aladin key') {
+					alert(data.message)
+				} else {
+					console.log(data)
+				}
+			})
+			.catch(err => console.log(err))
+		} else {
+			alert('harus login')
+		}
 	}
 
 	showProducts() {
@@ -212,11 +259,11 @@ class Product extends Component {
 					</div>
 
 					<div className="col-sm-2">
-						<button type="button" className="btn btn-primary" onClick={ () => this.filterProducts() }>Filter</button>
+						<button type="button" className="btn btn-primary" onClick={ () => this.fetchProductsWithFilter() }>Filter</button>
 					</div>
 				</div>
 			</form>
-			{this.state.filteredProducts.map((product, idx) => {
+			{this.state.products.map((product, idx) => {
 				return (
 					<div key={idx} className="panel panel-default">
 						<div className="panel-heading">
