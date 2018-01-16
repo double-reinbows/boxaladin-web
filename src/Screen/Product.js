@@ -37,11 +37,14 @@ class Product extends Component {
 		this.state = {
 			products: [],
 			productUnlocked: {},
-			showPriceModal: false
+			showPriceModal: false,
+			categories: [],
+			selectedCategory: 'all'
 		}
 	}
 
   render () {
+		console.log(this.state);
     return (
       <div>
 				<h2>Product List</h2>
@@ -51,7 +54,7 @@ class Product extends Component {
 					isOpen={ this.state.showPriceModal }
 					style={ customStyles }
 				>
-					<h3>{this.state.productUnlocked.name}</h3>
+					<h3>{this.state.productUnlocked.productName}</h3>
 					<strike><h3>Rp{this.state.productUnlocked.price}</h3></strike>
 					<h1>Rp{this.state.productUnlocked.aladinPrice}</h1>
 					<button className="btn btn-default btn-xs" style={{ width: 100 }} onClick={ () => this.closeModalPrice(this.state.productUnlocked.id) }>Close</button>
@@ -71,9 +74,13 @@ class Product extends Component {
 		productsRef.once('value').then(snap => {
 			// console.log(snap.val())
 			let dataProducts = []
-			snap.val().map(dataProduct => {
-				dataProducts.push(dataProduct)
-			})
+			// snap.val().map(dataProduct => (
+			// 	dataProducts.push(dataProduct)
+			// ))
+			for (var key in snap.val()) {
+				dataProducts.push(snap.val()[key])
+				// console.log(snap.val()[key]);
+			}
 			// console.log(dataProducts);
 			this.setState({ products: dataProducts })
 		})
@@ -108,9 +115,26 @@ class Product extends Component {
 	showProducts() {
 		return (
 			<div>
+			<form className="form-horizontal">
+				<div className="form-group">
+					<label htmlFor="select" className="col-sm-1 control-label">Category</label>
+					<div className="col-sm-2">
+						<select className="form-control" id="select">
+							<option value="all">All</option>
+						</select>
+					</div>
+
+					<label htmlFor="select" className="col-sm-1 control-label">Brand</label>
+					<div className="col-sm-2">
+						<select className="form-control" id="select">
+							<option value="all">All</option>
+						</select>
+					</div>
+				</div>
+			</form>
 			{this.state.products.map((product, idx) => {
 				return (
-					<div className="panel panel-default">
+					<div key={idx} className="panel panel-default">
 						<div className="panel-heading">
 					  	<h3 className="panel-title"><b>{product.productName}</b></h3>
 					  </div>
