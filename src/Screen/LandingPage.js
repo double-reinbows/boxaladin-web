@@ -30,6 +30,7 @@ class LandingPage extends Component {
               <li><a href="#">Home</a></li>
               <li><a href="#">How it works</a></li>
               <li><a href="#">Contact us</a></li>
+              <li><a href="#">Contact us</a></li>
             </ul>
           </div>
         </nav>
