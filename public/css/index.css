@@ -14,9 +14,15 @@ body {
 }
 
 .navbar{
-  background-color: orange;
+  background-color: #FF9800;
   margin: 0px;
   padding: 0px;
+  border-radius: 0px;
+  border-color: transparent;
+  height: 60px;
+  paddingTop: 10px;
+  color: white;
+  font-size: 30px;
 }
 
 .banner1{
