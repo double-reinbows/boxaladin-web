@@ -39,11 +39,15 @@ class Product extends Component {
 			productUnlocked: {},
 			showPriceModal: false,
 			categories: [],
-			selectedCategory: 'all'
+			brands: [],
+			selectedCategory: 'all',
+			selectedBrand: 'all',
+			filteredProducts: []
 		}
 	}
 
   render () {
+		console.log(this.state)
     return (
       <div>
 				<h2>Product List</h2>
@@ -65,7 +69,62 @@ class Product extends Component {
   }
 
 	componentDidMount() {
+		this.fetchBrands()
+		this.fetchCategories()
 		this.fetchProducts()
+	}
+
+	filterProducts() {
+		if (this.state.selectedBrand === 'all' && this.state.selectedCategory === 'all') {
+      // fetch all products
+			this.setState({ filteredProducts: this.state.products })
+			console.log('show all products');
+		} else if (this.state.selectedBrand === 'all') {
+			// filter products by category
+			const filtered = this.state.products.filter(product => {
+				return product.categoryId.toString() === this.state.selectedCategory
+			})
+			this.setState({ filteredProducts: filtered })
+			console.log(filtered);
+			console.log('filter products by category');
+		} else if (this.state.selectedCategory === 'all') {
+			// filter products by brand
+			const filtered = this.state.products.filter(product => {
+				return product.brandId.toString() === this.state.selectedBrand
+			})
+			this.setState({ filteredProducts: filtered })
+			console.log(filtered);
+			console.log('filter products by brand');
+		} else {
+      // filter products by category & brand
+			const filteredByBrand = this.state.products.filter(product => {
+				return product.brandId.toString() === this.state.selectedBrand
+			})
+			const filtered = filteredByBrand.filter(product => {
+				return product.categoryId.toString() === this.state.selectedCategory
+			})
+			this.setState({ filteredProducts: filtered })
+			console.log(filtered);
+			console.log('filter products by brand & category');
+		}
+	}
+
+	fetchBrands() {
+		axios({
+			method: 'GET',
+			url: `http://localhost:3000/api/brand`
+		})
+		.then(({data}) => this.setState({ brands: data}))
+		.catch(err => console.log(err))
+	}
+
+	fetchCategories() {
+		axios({
+			method: 'GET',
+			url: `http://localhost:3000/api/category`
+		})
+		.then(({data}) => this.setState({ categories: data }))
+		.catch(err => console.log(err))
 	}
 
 	fetchProducts() {
@@ -82,6 +141,7 @@ class Product extends Component {
 			}
 			// console.log(dataProducts);
 			this.setState({ products: dataProducts })
+			this.setState({ filteredProducts: dataProducts })
 		})
 	}
 
@@ -129,20 +189,34 @@ class Product extends Component {
 				<div className="form-group">
 					<label htmlFor="select" className="col-sm-1 control-label">Category</label>
 					<div className="col-sm-2">
-						<select className="form-control" id="select">
+						<select className="form-control" id="select" onChange={ (e) => this.setState({ selectedCategory: e.target.value }) }>
 							<option value="all">All</option>
+							{this.state.categories.map((category, idx) => {
+								return (
+									<option key={idx} value={category.id}>{category.categoryName}</option>
+								)
+							})}
 						</select>
 					</div>
 
 					<label htmlFor="select" className="col-sm-1 control-label">Brand</label>
 					<div className="col-sm-2">
-						<select className="form-control" id="select">
+						<select className="form-control" id="select" onChange={ (e) => this.setState({ selectedBrand: e.target.value }) }>
 							<option value="all">All</option>
+							{this.state.brands.map((brand, idx) => {
+								return (
+									<option key={idx} value={brand.id}>{brand.brandName}</option>
+								)
+							})}
 						</select>
+					</div>
+
+					<div className="col-sm-2">
+						<button type="button" className="btn btn-primary" onClick={ () => this.filterProducts() }>Filter</button>
 					</div>
 				</div>
 			</form>
-			{this.state.products.map((product, idx) => {
+			{this.state.filteredProducts.map((product, idx) => {
 				return (
 					<div key={idx} className="panel panel-default">
 						<div className="panel-heading">
