@@ -7,52 +7,33 @@ class Product extends React.Component {
     this.state = {
       category: [],
       brand:[],
-      price: [],
-      cbxPrice: '',
+      product: [],
+      cbxProduct: '',
       cbxBrand: '',
       cbxCategory: '',
       isVerified: false,
-      z: '',
     }
   }
 
-  componentDidMount() {
-
-    console.log(this.state.primaryPhone)
-
-    // fetch('http://localhost:3000/phonenumbers', {
-    //   method: 'POST',
-    //   body: new URLSearchParams({
-    //     number: '628121377713',
-    //   }),
-    // })
-    // .then(res => res.json())
-    // .then(d => {
-    //   console.log(d.verified);
-    //   this.setState({
-    //     isVerified: d.verified
-    //   })
-    //   document.getElementById('labelTrueFalse').textContent = d.verified
-    //   document.getElementById('labelVerified').textContent = d.hp
-    // })
-  }
-
   async componentWillMount(){
-
+    let getPhone = null
     const dCategory = await fetch('http://localhost:3000/api/category').then(d => d.json());
     const dBrand = await fetch('http://localhost:3000/api/brand').then(d => d.json());
-    const dPrice = await fetch('http://localhost:3000/api/price').then(d => d.json());
+    const dProduct = await fetch('http://localhost:3000/api/product').then(d => d.json());
 
     const userInfo = jwt.decode(localStorage.getItem('token'));
-    const getPhone = await fetch(`http://localhost:3000/getPhone/${userInfo.id}`).then(d => d.json());
-
+    if (userInfo) {
+      getPhone = await fetch(`http://localhost:3000/getPhone/${userInfo.id}`).then(d => d.json());
+    }
+    console.log(getPhone)
+    
     this.setState({
-      category: dCategory,
+      category: dCategory,  
       brand: dBrand,
-      price: dPrice,
+      product: dProduct,
     })
 
-    fetch('http://localhost:3000/verifyNumber', {
+    if (getPhone) {fetch('http://localhost:3000/verifyNumber', {
       method: 'POST',
       body: new URLSearchParams({
         number: getPhone.number,
@@ -64,9 +45,7 @@ class Product extends React.Component {
         isVerified: d.verified
       })
       document.getElementById('labelVerified').textContent = d.hp
-    })
-
-
+    })}
   }
 
   handleChangeCategory = e => {
@@ -81,20 +60,20 @@ class Product extends React.Component {
     })
   }
 
-  handleChangePrice = e => {
+  handleChangeproduct = e => {
     this.setState({
-      cbxPrice: e.target.value
+      cbxProduct: e.target.value
     })
   }
 
   handleBuyClick = () => {
-    console.log(this.state.cbxCategory, this.state.cbxBrand, this.state.cbxPrice)
+    console.log(this.state.cbxCategory, this.state.cbxBrand, this.state.cbxProduct)
     fetch('http://localhost:3000/api/product', {
       method: 'POST',
       body: new URLSearchParams({
         categoryid: this.state.cbxCategory,
         brandid: this.state.cbxBrand,
-        priceid: this.state.cbxPrice,
+        productid: this.state.cbxProduct,
       }),
     })
     .then(res => res.json())
@@ -131,7 +110,7 @@ class Product extends React.Component {
   // }
 
   render() {
-    const enableBuy = (!!this.state.cbxPrice && !!this.state.cbxCategory && !!this.state.cbxBrand) && this.state.isVerified
+    const enableBuy = (!!this.state.cbxProduct && !!this.state.cbxCategory && !!this.state.cbxBrand) && this.state.isVerified
     console.log(enableBuy)
     return (
       <div className="container home">
@@ -139,20 +118,20 @@ class Product extends React.Component {
           <select onChange={this.handleChangeCategory} value={this.state.cbxCategory}>
           <option style={{display: 'none'}} value="0">Pilih</option>      
           {this.state.category.map(d => (
-            <option key={d.id} value={d.id}>{d.category}</option> 
+            <option key={d.id} value={d.id}>{d.categoryName}</option> 
             ))}  
           </select>
 
           <select onChange={this.handleChangeBrand} value={this.state.cbxBrand} >
           <option style={{display: 'none'}} value="0">Pilih</option>      
           {this.state.brand.map(d => (
-            <option key={d.id} value={d.id}>{d.brand}</option> 
+            <option key={d.id} value={d.id}>{d.brandName}</option> 
             ))}  
           </select>
 
-          <select onChange={this.handleChangePrice} value={this.state.cbxPrice}>
+          <select onChange={this.handleChangeproduct} value={this.state.cbxProduct}>
           <option style={{display: 'none'}} value="0">Pilih</option>      
-          {this.state.price.map(d => (
+          {this.state.product.map(d => (
             <option key={d.id} value={d.id}>{d.price}</option> 
             ))}  
           </select>
