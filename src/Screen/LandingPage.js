@@ -24,10 +24,10 @@ class LandingPage extends Component {
           </div>
         </div>
 
-        <nav class="navbar navbar-default navbar-collapse">
+        <nav class="navbar navbar-default navbar-collapse navv">
           <div class="container-fluid">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">Home</a></li>
               <li><a href="#">How it works</a></li>
               <li><a href="#">Contact us</a></li>
             </ul>
