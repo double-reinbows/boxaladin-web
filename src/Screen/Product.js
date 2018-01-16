@@ -44,7 +44,6 @@ class Product extends Component {
 	}
 
   render () {
-		console.log(this.state);
     return (
       <div>
 				<h2>Product List</h2>
@@ -104,12 +103,23 @@ class Product extends Component {
 				token: localStorage.getItem('token')
 			}
 		})
-		const productsRef = firebase.database().ref().child('products')
-		const productRef = productsRef.child(productId)
-		productRef.on('value', snap => {
-			this.setState({productUnlocked: snap.val()})
-			this.setState({showPriceModal: true})
+		.then(({data}) => {
+			// console.log(data);
+			if (data.message === 'success') {
+				const productsRef = firebase.database().ref().child('products')
+				const productRef = productsRef.child(productId)
+				productRef.on('value', snap => {
+					this.setState({productUnlocked: snap.val()})
+					this.setState({showPriceModal: true})
+				})
+			} else if (data.message === 'not enough aladin key') {
+				alert(data.message)
+			} else {
+				console.log(data)
+			}
 		})
+		.catch(err => console.log(err))
+
 	}
 
 	showProducts() {
