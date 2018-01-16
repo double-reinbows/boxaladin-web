@@ -10,7 +10,8 @@ class Signup extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      _formIsValid: false
+      _formIsValid: false,
+      phonenumber: ''
     }
     this.signUpInputHandler = this.signUpInputHandler.bind(this)
   }
@@ -89,6 +90,24 @@ class Signup extends Component {
     }
   }
 
+  handlePhoneNum(e) {
+	  var num = e.target.value.split('')
+	  if (num[0] === '0') {
+	    num.splice(0, 1, '62')
+	    this.setState({[e.target.name]: num.join('')})
+	  } else if (num[0]+num[1]+num[2] === '+62') {
+	    num.splice(0, 3, '62')
+			this.setState({[e.target.name]: num.join('')})
+	  } else if (num[0]+num[1] === '62') {
+			this.setState({[e.target.name]: num.join('')})
+		} else if (num[0] === '8') {
+			this.setState({[e.target.name]: '62' + num.join('')})
+		} else if (num.length === 0) {
+			this.setState({[e.target.name]: num.join('')})
+		}
+		// console.log(e.target.value);
+	}
+
   vPassword() {
     /**
      * Password harus 8 karakter atau lebih, alphanumeric, special characters.
@@ -150,6 +169,7 @@ class Signup extends Component {
         email: this.state.email,
         first_name: this.state.first_name,
         family_name: this.state.family_name,
+        phonenumber: this.state.phonenumber,
         password: this.state.password,
         sex: this.state.sex,
         typed_email: this.state.typed_email,
@@ -184,6 +204,7 @@ class Signup extends Component {
   }
 
   render () {
+    console.log(this.state)
     return (
       <div>
         <form className="form-horizontal" onSubmit={ (e) => this.signUp(e)}>
@@ -203,6 +224,12 @@ class Signup extends Component {
           <div className="form-group">
             <div className="col-sm-4 col-sm-offset-4">
               <input name="username" required type="text" className="form-control" id="inputUsername" placeholder="username" onChange={ (e) => this.signUpInputHandler(e) } />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <div className="col-sm-4 col-sm-offset-4">
+              <input name="phonenumber" required type="integer" className="form-control" id="inputUsername" placeholder="phonenumber" onChange={ (e) => this.handlePhoneNum(e) } />
             </div>
           </div>
 
