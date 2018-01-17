@@ -26,13 +26,7 @@ class RouteList extends React.Component {
 								)
 							)}/>
 
-							<Route exact path="/home" render={() => (
-								localStorage.getItem('token') !== null ? (
-									<Home/>
-								) : (
-									<Redirect to="/"/>
-								)
-							)}/>
+							<Route exact path="/home" component={ Home }/>
 
 							<Route exact path="/login" render={() => (
 								localStorage.getItem('token') !== null ? (

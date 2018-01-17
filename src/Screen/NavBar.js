@@ -6,7 +6,7 @@ import { logoutAction } from '../actions/'
 class NavBar extends React.Component {
   render() {
     return (
-      <nav className="navbar navbar-default"}>
+      <nav className="navbar navbar-default">
         <div className="container-fluid">
           <div className="navbar-header">
             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -15,6 +15,8 @@ class NavBar extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
+
+            <Link className="navbar-brand" to="/home">Box<b>Aladin</b></Link>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style = {{ float: 'right', position: 'relative'}}>
@@ -30,7 +32,7 @@ class NavBar extends React.Component {
     if (localStorage.getItem('token') !== null) {
       return (
         <ul className="nav navbar-nav navbar-right">
-          <li><button onClick={ () => this.logout() }>Logout</button></li>
+          <li><button className="btn btn-danger" onClick={ () => this.logout() }>Logout</button></li>
         </ul>
       )
     } else {
