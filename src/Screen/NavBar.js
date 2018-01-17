@@ -6,7 +6,7 @@ import { logoutAction } from '../actions/'
 class NavBar extends React.Component {
   render() {
     return (
-      <nav className="navbar navbar-default" style= {{ height: '100px' ,paddingTop: '30px', backgroundColor: '#FF9800', marginBottom: '0px', borderColor: 'transparent'}}>
+      <nav className="navbar navbar-default"}>
         <div className="container-fluid">
           <div className="navbar-header">
             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
