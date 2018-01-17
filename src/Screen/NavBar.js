@@ -24,7 +24,7 @@ class NavBar extends React.Component {
             <Link className="navbar-brand" style={{fontSize: '30px', color: 'white'}} to="/home">
               Box<b>Aladin</b>
             </Link>
-            
+
           </div>
 
           <div
@@ -85,7 +85,7 @@ class NavBar extends React.Component {
           </li>
           <li style={{fontSize: '30px'}}>
             <Link to="/product">
-              <p style={{color: 'white'}}>product</p>
+              <p style={{color: 'white'}}>Product</p>
             </Link>
           </li>
         </ul>

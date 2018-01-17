@@ -70,15 +70,8 @@ class RouteList extends React.Component {
             />
 
             <Route
-              exact
-              path="/Product"
-              render={() =>
-                localStorage.getItem('token') !== null ? (
-                  <Product />
-                ) : (
-                  <Redirect to="/" />
-                )
-              }
+              path="/product"
+              component={Product}
             />
             <Route
               path="/emailVerification"
