@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+
 import logo from '../asset/logo.jpeg'
 import promotion from '../asset/promotion.jpg'
 import phone from '../asset/phone.jpeg'
@@ -18,21 +20,20 @@ class LandingPage extends Component {
             <div className="col-sm-2">
               <img  src={logo} width="300"  height="300" alt='logo' className='img-responsive'/>
             </div>
+
             <div className="banner1 col-sm-8">
               <h2>The more you see it, the more cheaper it gets</h2>
             </div>
-            <div className="col-sm-4">
-            </div>
+
           </div>
         </div>
 
-        <nav class="navbar navbar-default navbar-collapse">
-          <div class="container-fluid">
-            <ul class="nav navbar-nav">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">How it works</a></li>
-              <li><a href="#">Contact us</a></li>
-              <li><a href="#">Contact us</a></li>
+        <nav className="navbar navbar-default navbar-collapse">
+          <div className="container-fluid">
+            <ul className="nav navbar-nav banner1">
+              <li className='betweenText'><Link to="/signup"><p style = {{ color : 'white'}}>Home</p></Link></li>
+              <li className='betweenText'><Link to="/signup"><p style = {{ color : 'white'}} >How it works</p></Link></li>
+              <li className='betweenText'><Link to="/signup"><p style = {{ color : 'white'}} >Contact us</p></Link></li>
             </ul>
           </div>
         </nav>
@@ -40,13 +41,13 @@ class LandingPage extends Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-4">
-              <img  src={pulsabanner} alt='logo' class='img-responsive'  width="1000"/>
+              <img  src={pulsabanner} alt='logo' class='stretch'  width="200%"/>
             </div>
           </div>
         </div>
 
         <div className="collapse navbar-collapse">
-          <img  src={iphonex} width="450px"  height="700px" alt='logo'  style={{ position: 'absolute', top: '200px', right: '50px'}}/>
+          <img  src={iphonex} width="450px"  height="700px"  alt='logo'  style={{ position: 'absolute', top: '200px', right: '50px'}}/>
         </div>
 
       </div>

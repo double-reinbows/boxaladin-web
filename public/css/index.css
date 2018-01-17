@@ -5,7 +5,7 @@ body {
 }
 
 .jumbo{
-  background-color: #181818;
+  background-color: #000;
   margin-bottom: 0px;
 }
 
@@ -21,10 +21,23 @@ body {
   border-color: transparent;
   height: 60px;
   paddingTop: 10px;
-  color: white;
   font-size: 30px;
+  color: #fff;
+}
+
+.navbar-default{
+  color: #fff;
+}
+
+.navbar-nav{
+  color: #fff;
 }
 
 .banner1{
   color: #fff;
+}
+
+.betweenText {
+  padding-left: 50px;
+  padding-right: 50px;
 }
