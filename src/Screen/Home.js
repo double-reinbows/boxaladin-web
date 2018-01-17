@@ -1,29 +1,26 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 
-import { loginAction } from '../actions/'
-
-import Product from './Product'
+import {loginAction} from '../actions/'
 
 class Home extends Component {
-  render () {
+  render() {
     return (
       <div>
         <h1>Welcome</h1>
         <h4>This is BoxAladin's Home Screen.</h4>
-        <Product/>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     isLogin: state.userReducer.isLogin
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     loginAction: () => dispatch(loginAction())
   }

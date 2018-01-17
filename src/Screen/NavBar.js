@@ -80,6 +80,9 @@ class NavBar extends React.Component {
           <li>
             <Link to="/phone">Phone</Link>
           </li>
+          <li>
+            <Link to="/product">Product</Link>
+          </li>
         </ul>
       )
     }
