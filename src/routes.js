@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 
 import NavBar from './Screen/NavBar'
 import Home from './Screen/Home'
-import Login from './Screen/login'
+import Login from './Screen/Login'
 import Signup from './Screen/Signup'
 import EmailVerificationDone from './Screen/EmailVerificationDone'
 import Phone from './Screen/Phone'
