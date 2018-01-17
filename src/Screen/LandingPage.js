@@ -55,7 +55,7 @@ class LandingPage extends Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-4">
-              <img src={pulsabanner} alt="logo" class="stretch" width="200%" />
+              <img src={pulsabanner} alt="logo" className="stretch" width="200%" />
             </div>
           </div>
         </div>

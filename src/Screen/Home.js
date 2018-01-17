@@ -6,7 +6,7 @@ import {loginAction} from '../actions/'
 class Home extends Component {
   render() {
     return (
-      <div>
+      <div className="text-center">
         <h1>Welcome</h1>
         <h4>This is BoxAladin's Home Screen.</h4>
       </div>

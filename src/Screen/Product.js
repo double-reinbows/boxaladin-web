@@ -50,7 +50,7 @@ class Product extends Component {
 		console.log(this.state)
     return (
       <div>
-				<h2>Product List</h2>
+				<h2 className="text-center">Product List</h2>
 				{ this.showProducts() }
 
 				<Modal

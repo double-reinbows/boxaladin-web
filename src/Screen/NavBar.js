@@ -21,9 +21,10 @@ class NavBar extends React.Component {
               <span className="icon-bar" />
             </button>
 
-            <Link className="navbar-brand" to="/home">
+            <Link className="navbar-brand" style={{fontSize: '30px', color: 'white'}} to="/home">
               Box<b>Aladin</b>
             </Link>
+            
           </div>
 
           <div
@@ -76,12 +77,16 @@ class NavBar extends React.Component {
   showMenu() {
     if (localStorage.getItem('token') !== null) {
       return (
-        <ul className="nav navbar-nav">
-          <li>
-            <Link to="/phone">Phone</Link>
+        <ul className="nav navbar-nav" style={{color: 'white'}}>
+          <li style={{fontSize: '30px'}}>
+            <Link to="/phone">
+              <p style={{color: 'white'}}>Phone</p>
+            </Link>
           </li>
-          <li>
-            <Link to="/product">Product</Link>
+          <li style={{fontSize: '30px'}}>
+            <Link to="/product">
+              <p style={{color: 'white'}}>product</p>
+            </Link>
           </li>
         </ul>
       )
