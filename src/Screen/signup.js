@@ -1,8 +1,8 @@
 import axios from 'axios'
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 
-import { loginAction } from '../actions/'
+import {loginAction} from '../actions/'
 
 const URL = 'http://localhost:3000/'
 
@@ -10,7 +10,8 @@ class Signup extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      _formIsValid: false
+      _formIsValid: false,
+      phonenumber: ''
     }
     this.signUpInputHandler = this.signUpInputHandler.bind(this)
   }
@@ -36,7 +37,7 @@ class Signup extends Component {
       console.log('dotted gmail')
       this.setState({
         typed_email: obj.email,
-        email: obj.email.replace(pattern, `$1$2@gmail.com`),
+        email: obj.email.replace(pattern, `$1$2@gmail.com`)
       })
     }
   }
@@ -89,6 +90,24 @@ class Signup extends Component {
     }
   }
 
+  handlePhoneNum(e) {
+    var num = e.target.value.split('')
+    if (num[0] === '0') {
+      num.splice(0, 1, '62')
+      this.setState({[e.target.name]: num.join('')})
+    } else if (num[0] + num[1] + num[2] === '+62') {
+      num.splice(0, 3, '62')
+      this.setState({[e.target.name]: num.join('')})
+    } else if (num[0] + num[1] === '62') {
+      this.setState({[e.target.name]: num.join('')})
+    } else if (num[0] === '8') {
+      this.setState({[e.target.name]: '62' + num.join('')})
+    } else if (num.length === 0) {
+      this.setState({[e.target.name]: num.join('')})
+    }
+    // console.log(e.target.value);
+  }
+
   vPassword() {
     /**
      * Password harus 8 karakter atau lebih, alphanumeric, special characters.
@@ -132,7 +151,12 @@ class Signup extends Component {
     await this.vPassword()
     await this.vEmail()
 
-    if (this.state._vFname && this.state._vUsername && this.state._vPassword && this.state._vEmail) {
+    if (
+      this.state._vFname &&
+      this.state._vUsername &&
+      this.state._vPassword &&
+      this.state._vEmail
+    ) {
       this.setState({_formIsValid: true})
     } else {
       this.setState({_formIsValid: false})
@@ -150,88 +174,151 @@ class Signup extends Component {
         email: this.state.email,
         first_name: this.state.first_name,
         family_name: this.state.family_name,
+        phonenumber: this.state.phonenumber,
         password: this.state.password,
         sex: this.state.sex,
         typed_email: this.state.typed_email,
         username: this.state.username
       }
-      axios.post(URL + 'signup', payload)
-      .then(({data}) => {
-        // console.log(data)
-        // localStorage.setItem('token', data)
-        if (data.hasOwnProperty('isUsed')) {
-          if (data.isUsed.username) alert('username already used')
-          else if (data.isUsed.email) alert('email already used')
-        } else {
-          localStorage.setItem('token', data.token)
-          console.log('>>>Signed up')
-          this.props.loginAction()
-          /**
-           * Tinggal tambah, kalau udah sukses signup mau ngapain lagi
-           * selain terima token.
-           * Redirect ke home misalnya? Atau dilempar lagi ke halaman login?
-           */
-        }
-      })
-      .catch(e => {
-        console.log(e)
-      })
+      axios
+        .post(URL + 'signup', payload)
+        .then(({data}) => {
+          // console.log(data)
+          // localStorage.setItem('token', data)
+          if (data.hasOwnProperty('isUsed')) {
+            if (data.isUsed.username) alert('username already used')
+            else if (data.isUsed.email) alert('email already used')
+          } else {
+            localStorage.setItem('token', data.token)
+            console.log('>>>Signed up')
+            this.props.loginAction()
+            /**
+             * Tinggal tambah, kalau udah sukses signup mau ngapain lagi
+             * selain terima token.
+             * Redirect ke home misalnya? Atau dilempar lagi ke halaman login?
+             */
+          }
+        })
+        .catch(e => {
+          console.log(e)
+        })
     }
   }
 
   signUpInputHandler(e) {
-    this.setState({ [e.target.name]: e.target.value.trim() })
+    this.setState({[e.target.name]: e.target.value.trim()})
   }
 
-  render () {
+  render() {
+    console.log(this.state)
     return (
       <div>
-        <form className="form-horizontal" onSubmit={ (e) => this.signUp(e)}>
-
+        <form className="form-horizontal" onSubmit={e => this.signUp(e)}>
           <div className="form-group">
             <div className="col-sm-4 col-sm-offset-4">
-              <input name="first_name" required type="text" className="form-control" id="inputFirstName" placeholder="first name" onChange={ (e) => this.signUpInputHandler(e) } />
+              <input
+                name="first_name"
+                required
+                type="text"
+                className="form-control"
+                id="inputFirstName"
+                placeholder="first name"
+                onChange={e => this.signUpInputHandler(e)}
+              />
             </div>
           </div>
 
           <div className="form-group">
             <div className="col-sm-4 col-sm-offset-4">
-              <input name="family_name" type="text" className="form-control" id="inputFamilyName" placeholder="family name" onChange={ (e) => this.signUpInputHandler(e) } />
+              <input
+                name="family_name"
+                type="text"
+                className="form-control"
+                id="inputFamilyName"
+                placeholder="family name"
+                onChange={e => this.signUpInputHandler(e)}
+              />
             </div>
           </div>
 
           <div className="form-group">
             <div className="col-sm-4 col-sm-offset-4">
-              <input name="username" required type="text" className="form-control" id="inputUsername" placeholder="username" onChange={ (e) => this.signUpInputHandler(e) } />
+              <input
+                name="phonenumber"
+                required
+                type="integer"
+                className="form-control"
+                id="inputUsername"
+                placeholder="phonenumber"
+                onChange={e => this.handlePhoneNum(e)}
+              />
             </div>
           </div>
 
           <div className="form-group">
             <div className="col-sm-4 col-sm-offset-4">
-              <input name="password" required type="password" className="form-control" id="inputPassword" placeholder="password" onChange={ (e) => this.signUpInputHandler(e) } />
+              <input
+                name="username"
+                required
+                type="text"
+                className="form-control"
+                id="inputUsername"
+                placeholder="username"
+                onChange={e => this.signUpInputHandler(e)}
+              />
             </div>
           </div>
 
           <div className="form-group">
             <div className="col-sm-4 col-sm-offset-4">
-            <label className="control-label" htmlFor="sex">Sex:</label>
-            <select name="sex" value={this.state.sex} onChange={this.signUpInputHandler}>
-              <option value={ null }>Select gender</option>
-              <option value="M">Male</option>
-              <option value="F">Female</option>
-            </select>
+              <input
+                name="password"
+                required
+                type="password"
+                className="form-control"
+                id="inputPassword"
+                placeholder="password"
+                onChange={e => this.signUpInputHandler(e)}
+              />
             </div>
           </div>
 
           <div className="form-group">
             <div className="col-sm-4 col-sm-offset-4">
-              <input name="email" required type="email" className="form-control" id="inputEmail" placeholder="email" onChange={ (e) => this.signUpInputHandler(e) } />
+              <label className="control-label" htmlFor="sex">
+                Sex:
+              </label>
+              <select
+                name="sex"
+                value={this.state.sex}
+                onChange={this.signUpInputHandler}
+              >
+                <option value={null}>Select gender</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+              </select>
             </div>
           </div>
 
           <div className="form-group">
             <div className="col-sm-4 col-sm-offset-4">
-              <button type="submit" className="btn btn-primary">Register</button>
+              <input
+                name="email"
+                required
+                type="email"
+                className="form-control"
+                id="inputEmail"
+                placeholder="email"
+                onChange={e => this.signUpInputHandler(e)}
+              />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <div className="col-sm-4 col-sm-offset-4">
+              <button type="submit" className="btn btn-primary">
+                Register
+              </button>
             </div>
           </div>
         </form>
@@ -240,13 +327,13 @@ class Signup extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     isLogin: state.userReducer.isLogin
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     loginAction: () => dispatch(loginAction())
   }

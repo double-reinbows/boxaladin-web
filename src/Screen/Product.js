@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import * as firebase from 'firebase'
 import Modal from 'react-modal'
 import axios from 'axios'
+import jwt from 'jsonwebtoken'
+
 
 Modal.setAppElement('#root');
 
@@ -42,15 +44,32 @@ class Product extends Component {
 			brands: [],
 			selectedCategory: 'all',
 			selectedBrand: 'all',
+			isVerified: false,
 			filteredProducts: []
 		}
 	}
+
+cekEmail(){
+	if (localStorage.getItem("token")){
+		const userInfo = jwt.decode(localStorage.getItem('token'));
+		console.log(userInfo)
+		if (userInfo.emailVerificationStatus === true) {
+			this.setState({
+				isVerified: true
+			})
+		} else {
+			this.setState({
+				isVerified: false
+			})
+		}
+	}
+}
 
   render () {
 		console.log(this.state)
     return (
       <div>
-				<h2>Product List</h2>
+				<h2 className="text-center">Product List</h2>
 				{ this.showProducts() }
 
 				<Modal
@@ -72,7 +91,10 @@ class Product extends Component {
 		this.fetchBrands()
 		this.fetchCategories()
 		this.fetchProductsWithFilter()
+		this.cekEmail()
 	}
+
+
 
 	fetchProductsWithFilter() {
 		const productsRef = firebase.database().ref().child('products')
@@ -271,7 +293,7 @@ class Product extends Component {
 					  </div>
 						<div className="panel-body">
 							<h4>Rp{product.price} (harga asli)</h4>
-							<button className="btn btn-success btn-xs" onClick={ () => this.watchProductPrice(product.id) }>Unlock</button>
+							<button className="btn btn-success btn-xs" onClick={ () => this.watchProductPrice(product.id)} disabled={!this.state.isVerified} >Unlock</button>
 						</div>
 					</div>
 				)
