@@ -209,7 +209,7 @@ class Signup extends Component {
     this.setState({[e.target.name]: e.target.value.trim()})
   }
 
-  render() {
+  render () {
     console.log(this.state)
     return (
       <div>
@@ -244,20 +244,6 @@ class Signup extends Component {
           <div className="form-group">
             <div className="col-sm-4 col-sm-offset-4">
               <input
-                name="phonenumber"
-                required
-                type="integer"
-                className="form-control"
-                id="inputUsername"
-                placeholder="phonenumber"
-                onChange={e => this.handlePhoneNum(e)}
-              />
-            </div>
-          </div>
-
-          <div className="form-group">
-            <div className="col-sm-4 col-sm-offset-4">
-              <input
                 name="username"
                 required
                 type="text"
@@ -271,15 +257,13 @@ class Signup extends Component {
 
           <div className="form-group">
             <div className="col-sm-4 col-sm-offset-4">
-              <input
-                name="password"
-                required
-                type="password"
-                className="form-control"
-                id="inputPassword"
-                placeholder="password"
-                onChange={e => this.signUpInputHandler(e)}
-              />
+              <input name="phonenumber" required type="integer" className="form-control" id="inputUsername" placeholder="phonenumber" onChange={ (e) => this.handlePhoneNum(e) } />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <div className="col-sm-4 col-sm-offset-4">
+              <input name="password" required type="password" className="form-control" id="inputPassword" placeholder="password" onChange={ (e) => this.signUpInputHandler(e) } />
             </div>
           </div>
 
