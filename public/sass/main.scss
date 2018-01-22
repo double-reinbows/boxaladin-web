@@ -1,3 +1,9 @@
-@import "base";
-@import "layout";
-@import "components";
+@import "abstracts/variables";
+
+@import "base/base";
+
+@import "components/components";
+
+@import "layout/layout";
+
+@import "pages/home";

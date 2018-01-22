@@ -220,7 +220,7 @@ class Signup extends Component {
                 name="first_name"
                 required
                 type="text"
-                className="form-control"
+                className="form__input"
                 id="inputFirstName"
                 placeholder="first name"
                 onChange={e => this.signUpInputHandler(e)}

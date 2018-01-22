@@ -3,6 +3,8 @@ import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import NavBar from './screen/NavBar'
+import NewNavBar from './screen/NewNavBar'
+
 import Home from './screen/Home'
 import Login from './screen/Login'
 import Signup from './screen/Signup'
@@ -10,6 +12,8 @@ import EmailVerificationDone from './screen/EmailVerificationDone'
 import Phone from './screen/Phone'
 import Product from './screen/Product'
 import LandingPage from './screen/LandingPage'
+import LandingPage2 from './screen/LandingPage2'
+
 
 class RouteList extends React.Component {
   render() {
@@ -32,6 +36,18 @@ class RouteList extends React.Component {
             />
 
             <Route exact path="/home" component={Home} />
+
+            <Route
+              exact
+              path="/landingpage2"
+              render={() =>
+                localStorage.getItem('token') !== null ? (
+                  <Redirect to="/" />
+                ) : (
+                  <LandingPage2 />
+                )
+              }
+            />
 
             <Route
               exact
