@@ -38,7 +38,11 @@ class User extends React.Component {
 		this.state = {
 			phoneModal: false,
 			OTP: null,
-			numberId: null
+			numberId: null,
+			addPhoneModal: false,
+			numberToSend: null,
+			changePhoneModal: false,
+			idPhoneToChange: null
 		}
 	}
 
@@ -49,6 +53,8 @@ class User extends React.Component {
 			<div>
 				{ this.showDataUser() }
 				{ this.showPhoneModal() }
+				{ this.showAddPhoneModal() }
+				{ this.showAChangePhoneModal() }
 			</div>
 		)
 	}
@@ -81,6 +87,70 @@ class User extends React.Component {
       }
 		})
 		.catch(err => console.log(err))
+	}
+
+	showAChangePhoneModal() {
+		return (
+			<Modal
+				isOpen={this.state.changePhoneModal}
+				style={ customStyles }
+			>
+				<form className="form-horizontal" onSubmit={ (e) => this.submitChangePhone(e) }>
+					<div className="form-group">
+						<div className="col-sm-12">
+							<input name="numberToSend" required autoFocus type="text" maxLength={14} className="form-control" placeholder="Phone Number" onChange={ (e) => this.handlePhoneNum(e) } />
+						</div>
+					</div>
+					<div className="form-group">
+						<div className="col-sm-12 col-sm-offset-3">
+							<button type="button" className="btn btn-xs btn-default" onClick={ () => this.setState({ changePhoneModal: false }) }>Cancel</button>
+							<button style={{ marginLeft: 5 }} type="submit" className="btn btn-xs btn-primary">Change</button>
+						</div>
+					</div>
+				</form>
+			</Modal>
+		)
+	}
+
+	showAddPhoneModal() {
+		return (
+			<Modal
+				isOpen={this.state.addPhoneModal}
+				style={ customStyles }
+			>
+				<form className="form-horizontal" onSubmit={ (e) => this.submitPhone(e) }>
+					<div className="form-group">
+						<div className="col-sm-12">
+							<input name="numberToSend" required autoFocus type="text" maxLength={14} className="form-control" placeholder="Phone Number" onChange={ (e) => this.handlePhoneNum(e) } />
+						</div>
+					</div>
+					<div className="form-group">
+						<div className="col-sm-12 col-sm-offset-3">
+							<button type="button" className="btn btn-xs btn-default" onClick={ () => this.setState({ addPhoneModal: false }) }>Cancel</button>
+							<button style={{ marginLeft: 5 }} type="submit" className="btn btn-xs btn-primary">Confirm</button>
+						</div>
+					</div>
+				</form>
+			</Modal>
+		)
+	}
+
+	handlePhoneNum(e) {
+	  var num = e.target.value.split('')
+	  if (num[0] === '0') {
+	    num.splice(0, 1, '62')
+	    this.setState({numberToSend: num.join('')})
+	  } else if (num[0]+num[1]+num[2] === '+62') {
+	    num.splice(0, 3, '62')
+			this.setState({numberToSend: num.join('')})
+	  } else if (num[0]+num[1] === '62') {
+			this.setState({numberToSend: num.join('')})
+		} else if (num[0] === '8') {
+			this.setState({numberToSend: '62' + num.join('')})
+		} else if (num.length === 0) {
+			this.setState({numberToSend: num.join('')})
+		}
+		// console.log(e.target.value);
 	}
 
 	showPhoneModal() {
@@ -126,24 +196,113 @@ class User extends React.Component {
 	showPhoneNumbers() {
 		return (
 			<div>
-				{this.props.phoneNumbers !== null ? (
-						this.props.phoneNumbers.map((phone, idx) => {
-							return (
-								<h4 key={idx}>{phone.number} {phone.verified === false ? <button onClick={ () => this.requestOTP(phone) } className="btn btn-xs btn-success" type="button">verify</button> : <i style={{ color: "green" }}>verified</i>}</h4>
-							)
-						})
-				) : (
-          null
-				)}
+				<h4>phones: </h4>
+				<ul>
+					{this.props.phoneNumbers !== null ? (
+							this.props.phoneNumbers.map((phone, idx) => {
+								return (
+									<li key={idx}>{phone.number} {phone.verified === false ? <span><button onClick={ () => this.requestOTP(phone) } className="btn btn-xs btn-success" type="button">verify</button> <button type="button" className="btn btn-xs btn-default" onClick={() => this.changePhone(phone)}>change</button> <button type="button" className="btn btn-xs btn-danger" onClick={() => this.removePhone(phone)}>remove</button></span> : <span><i style={{ color: "green" }}>verified</i> <button type="button" className="btn btn-xs btn-danger" onClick={() => this.removePhone(phone)}>remove</button></span>}</li>
+								)
+							})
+					) : (
+	          null
+					)}
+				</ul>
+				<a onClick={() => this.addPhone()}>Add</a>
 			</div>
 		)
+	}
+
+	submitPhone(e) {
+		e.preventDefault()
+		// alert(this.state.numberToSend)
+
+		if (this.state.numberToSend[0] + this.state.numberToSend[1] !== '62') {
+			alert('Format nomor HP salah')
+		} else {
+			axios({
+				method: 'POST',
+				url: `http://localhost:3000/phonenumber`,
+				data: {
+					phonenumber: this.state.numberToSend
+				},
+				headers: {
+					token: localStorage.getItem('token')
+				}
+			})
+			.then(response => {
+				if (response.data.message === 'data added') {
+					this.props.getPhoneNumbers()
+					this.setState({addPhoneModal: false})
+				} else if (response.data.message === 'duplicate number') {
+					alert(response.data.message)
+				} else if (response.data.message === 'already use') {
+					alert(response.data.message)
+				}
+			})
+			.catch(err => console.log(err))
+		}
+	}
+
+	addPhone() {
+		this.setState({addPhoneModal: true})
+	}
+
+	changePhone(phone) {
+		this.setState({idPhoneToChange: phone.id})
+		this.setState({changePhoneModal: true})
+	}
+
+	submitChangePhone(e) {
+		e.preventDefault()
+		// console.log('Submit change phone!');
+
+		if (this.state.numberToSend[0] + this.state.numberToSend[1] !== '62') {
+			alert('Format nomor HP salah')
+		} else {
+			axios({
+				method: 'PUT',
+				url: `http://localhost:3000/phone/${this.state.idPhoneToChange}`,
+				data: {
+					phonenumber: this.state.numberToSend
+				},
+				headers: {
+					token: localStorage.getItem('token')
+				}
+			})
+			.then(response => {
+				if (response.data.message === 'data changed') {
+					this.props.getPhoneNumbers()
+					this.setState({changePhoneModal: false})
+				} else if (response.data.message === 'duplicate number') {
+					alert(response.data.message)
+				} else if (response.data.message === 'already use') {
+					alert(response.data.message)
+				}
+			})
+			.catch(err => console.log(err))
+		}
+	}
+
+	removePhone(phone) {
+		// alert('Remove phone here!')
+		axios({
+			method: 'DELETE',
+			url: `http://localhost:3000/phone/${phone.id}`
+		})
+		.then(({data}) => {
+			console.log('Data remove phone:', data)
+			this.props.getPhoneNumbers()
+		})
+		.catch(err => console.log(err))
 	}
 
 	showDataUser() {
 		return (
 			<div>
 				<h3>{this.props.dataUser !== null ? this.props.dataUser.first_name : null} {this.props.dataUser !== null ? this.props.dataUser.family_name : null}</h3>
-				<h4>{this.props.dataUser !== null ? this.props.dataUser.email : null}</h4>
+				<h4>username: {this.props.dataUser !== null ? this.props.dataUser.username : null}</h4>
+				<h4>email: {this.props.dataUser !== null ? this.props.dataUser.email : null}</h4>
 				{ this.showPhoneNumbers() }
 			</div>
 		)
