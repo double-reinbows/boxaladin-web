@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 
 import NavBar from './screen/NavBar'
 import NewNavBar from './screen/NewNavBar'
+import NewNavBar2 from './screen/NewNavBar2'
 
 import Home from './screen/Home'
 import Login from './screen/Login'
@@ -21,7 +22,7 @@ class RouteList extends React.Component {
       <div>
         <Router>
           <div>
-            <NavBar />
+            <NewNavBar2 />
 
             <Route
               exact

@@ -1,15 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import logo from '../asset/logo.jpeg'
 
 import {logoutAction} from '../actions/'
 class NavBar extends React.Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <Link className="navbar-brand" style={{color: 'yellow'}} to="/home">
-          Box<b>Aladin</b>
-        </Link>
+        <img src={logo} alt="logo boxaladin" className="logo navbar-brand" to="/home"/>
 
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
