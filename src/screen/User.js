@@ -84,6 +84,8 @@ class User extends React.Component {
 				alert(data.message)
 				this.props.getPhoneNumbers()
 				this.setState({phoneModal: false})
+				this.setState({numberId: null})
+				this.setState({OTP: null})
       }
 		})
 		.catch(err => console.log(err))
