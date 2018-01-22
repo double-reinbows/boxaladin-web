@@ -1,8 +1,9 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import jwt from 'jsonwebtoken'
 
-import { loginAction, logoutAction } from '../actions/'
+import { loginAction, logoutAction, getPhoneNumbers } from '../actions/'
 
 const URL = 'http://localhost:3000/'
 
@@ -30,8 +31,12 @@ class Login extends Component {
         alert(data.message)
       } else if (data.message === 'login success') {
         console.log(data)
-        localStorage.setItem('token', data.token)
-        this.props.loginAction()
+        localStorage.setItem('token', localStorage.getItem('token') || data.token)
+
+        const decoded = jwt.verify(data.token, 'satekambing')
+        console.log('Data decoded:', decoded);
+        this.props.loginAction(decoded)
+        this.props.getPhoneNumbers()
       }
     })
     .catch(e => {
@@ -44,6 +49,7 @@ class Login extends Component {
   }
 
   render () {
+    console.log('Props:', this.props);
     return (
       <div>
         <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
@@ -76,8 +82,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginAction: () => dispatch(loginAction()),
-    logoutAction: () => dispatch(logoutAction())
+    loginAction: (payload) => dispatch(loginAction(payload)),
+    logoutAction: () => dispatch(logoutAction()),
+    getPhoneNumbers: () => dispatch(getPhoneNumbers())
   }
 }
 

@@ -79,13 +79,13 @@ class NavBar extends React.Component {
       return (
         <ul className="nav navbar-nav" style={{color: 'white'}}>
           <li style={{fontSize: '30px'}}>
-            <Link to="/phone">
-              <p style={{color: 'white'}}>Phone</p>
+            <Link to="/product">
+              <p style={{color: 'white'}}>Product</p>
             </Link>
           </li>
           <li style={{fontSize: '30px'}}>
-            <Link to="/product">
-              <p style={{color: 'white'}}>Product</p>
+            <Link to="/me">
+              <p style={{color: 'white'}}>Me</p>
             </Link>
           </li>
         </ul>
