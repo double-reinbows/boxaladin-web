@@ -2,14 +2,14 @@ import React from 'react'
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import NavBar from './Screen/NavBar'
-import Home from './Screen/Home'
-import Login from './Screen/login'
-import Signup from './Screen/signup'
-import EmailVerificationDone from './Screen/EmailVerificationDone'
-import Phone from './Screen/Phone'
-import Product from './Screen/Product'
-import LandingPage from './Screen/LandingPage'
+import NavBar from './screen/NavBar'
+import Home from './screen/Home'
+import Login from './screen/Login'
+import Signup from './screen/Signup'
+import EmailVerificationDone from './screen/EmailVerificationDone'
+import Phone from './screen/Phone'
+import Product from './screen/Product'
+import LandingPage from './screen/LandingPage'
 
 class RouteList extends React.Component {
   render() {
