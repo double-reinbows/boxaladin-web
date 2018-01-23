@@ -4,7 +4,7 @@ import * as firebase from 'firebase'
 import Modal from 'react-modal'
 import axios from 'axios'
 import jwt from 'jsonwebtoken'
-import { getProducts } from '../actions/productAction'
+import { getProducts, getFilteredProducts } from '../actions/productAction'
 import { getCategories } from '../actions/categoryAction'
 import { getBrands } from '../actions/brandAction'
 
@@ -100,49 +100,49 @@ cekEmail(){
 		this.props.getBrands()
 	}
 
-	fetchProductsWithFilter() {
-		// const productsRef = firebase.database().ref().child('products')
-		// productsRef.once('value').then(snap => {
-		// 	let dataProducts = []
-		// 	for (var key in snap.val()) {
-		// 		dataProducts.push(snap.val()[key])
-		// 	}
-
-			if (this.state.selectedBrand === 'all' && this.state.selectedCategory === 'all') {
-	      // fetch all products
-				this.setState({ products: this.props.products })
-				console.log('show all products');
-			} else if (this.state.selectedBrand === 'all') {
-				// filter products by category
-				const filtered = this.props.products.filter(product => {
-					return product.categoryId.toString() === this.state.selectedCategory
-				})
-				this.setState({ products: filtered })
-				console.log(filtered);
-				console.log('filter products by category');
-			} else if (this.state.selectedCategory === 'all') {
-				// filter products by brand
-				const filtered = this.props.products.filter(product => {
-					return product.brandId.toString() === this.state.selectedBrand
-				})
-				this.setState({ products: filtered })
-				console.log(filtered);
-				console.log('filter products by brand');
-			} else {
-	      // filter products by category & brand
-				const filteredByBrand = this.props.products.filter(product => {
-					return product.brandId.toString() === this.state.selectedBrand
-				})
-				const filtered = filteredByBrand.filter(product => {
-					return product.categoryId.toString() === this.state.selectedCategory
-				})
-				this.setState({ products: filtered })
-				console.log(filtered);
-				console.log('filter products by brand & category');
-			}
-
-		// })
-	}
+	// fetchProductsWithFilter() {
+	// 	// const productsRef = firebase.database().ref().child('products')
+	// 	// productsRef.once('value').then(snap => {
+	// 	// 	let dataProducts = []
+	// 	// 	for (var key in snap.val()) {
+	// 	// 		dataProducts.push(snap.val()[key])
+	// 	// 	}
+  //
+	// 		if (this.state.selectedBrand === 'all' && this.state.selectedCategory === 'all') {
+	//       // fetch all products
+	// 			this.setState({ products: this.props.products })
+	// 			console.log('show all products');
+	// 		} else if (this.state.selectedBrand === 'all') {
+	// 			// filter products by category
+	// 			const filtered = this.props.products.filter(product => {
+	// 				return product.categoryId.toString() === this.state.selectedCategory
+	// 			})
+	// 			this.setState({ products: filtered })
+	// 			console.log(filtered);
+	// 			console.log('filter products by category');
+	// 		} else if (this.state.selectedCategory === 'all') {
+	// 			// filter products by brand
+	// 			const filtered = this.props.products.filter(product => {
+	// 				return product.brandId.toString() === this.state.selectedBrand
+	// 			})
+	// 			this.setState({ products: filtered })
+	// 			console.log(filtered);
+	// 			console.log('filter products by brand');
+	// 		} else {
+	//       // filter products by category & brand
+	// 			const filteredByBrand = this.props.products.filter(product => {
+	// 				return product.brandId.toString() === this.state.selectedBrand
+	// 			})
+	// 			const filtered = filteredByBrand.filter(product => {
+	// 				return product.categoryId.toString() === this.state.selectedCategory
+	// 			})
+	// 			this.setState({ products: filtered })
+	// 			console.log(filtered);
+	// 			console.log('filter products by brand & category');
+	// 		}
+  //
+	// 	// })
+	// }
 
 	filterProducts() {
 		if (this.state.selectedBrand === 'all' && this.state.selectedCategory === 'all') {
@@ -297,7 +297,7 @@ cekEmail(){
 					  </div>
 						<div className="panel-body">
 							<h4>Rp{product.price} (harga asli)</h4>
-							<button className="btn btn-success btn-xs" onClick={ () => this.watchProductPrice(product.id)} disabled={!this.state.isVerified} >Unlock</button>
+							<button className="btn btn-success btn-xs" onClick={ () => this.watchProductPrice(product.id)} >Unlock</button>
 						</div>
 					</div>
 				)
@@ -313,7 +313,8 @@ const mapStateToProps = (state) => {
     isLogin: state.userReducer.isLogin,
 		products: state.productReducer.products,
 		categories: state.categoryReducer.categories,
-		brands: state.brandReducer.brands
+		brands: state.brandReducer.brands,
+		filteredProducts: state.productReducer.filteredProducts
   }
 }
 
@@ -321,7 +322,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
 		getProducts: () => dispatch(getProducts()),
 		getCategories: () => dispatch(getCategories()),
-		getBrands: () => dispatch(getBrands())
+		getBrands: () => dispatch(getBrands()),
+		getFilteredProducts: (brand, category) => dispatch(getFilteredProducts(brand, category))
 	}
 }
 
