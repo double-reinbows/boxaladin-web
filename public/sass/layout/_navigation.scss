@@ -1,10 +1,16 @@
 .container {
-    max-width: 120rem;
-    margin: 8rem auto;
+    max-width: 50rem;
+    min-width: 25rem;
+
+    min-height: 50rem;
+    min-height: 10rem;
+
+    padding: 10rem;
+
+    margin: 1rem;
     background-color: var(--color-grey-light-1);
     box-shadow: var(--shadow-dark);
 
-    min-height: 50rem;
 
     @media only screen and (max-width: $bp-largest) {
         margin: 0;

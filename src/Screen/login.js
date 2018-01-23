@@ -45,14 +45,15 @@ class Login extends Component {
 
   render () {
     return (
-      <div>
+      <div className="container">
         <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
           <div className="form-group">
-            <div className="col-sm-4 col-sm-offset-4">
-              <input name="username" required type="text" className="form-control" id="inputUsername" placeholder="username" onChange={ (e) => this.logInInputHandler(e) } />
-            </div>
+            <label>Email address</label>
+            <input type="username" name="username" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email or username" onChange={ (e) => this.logInInputHandler(e) }/>
+            <small id="emailHelp" className="form-text text-muted">We'll never share your email or username with anyone else.</small>
           </div>
           <div className="form-group">
+          <small id="emailHelp" className="form-text text-muted">Password</small>
             <div className="col-sm-4 col-sm-offset-4">
               <input name="password" required type="password" className="form-control" id="inputPassword" placeholder="password" onChange={ (e) => this.logInInputHandler(e) } />
             </div>
