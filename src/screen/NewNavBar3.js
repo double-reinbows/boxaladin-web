@@ -43,6 +43,7 @@ class NavBar extends React.Component {
           src={logo}
           alt="logo"
           className="logo"
+          href="/home"
         />
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

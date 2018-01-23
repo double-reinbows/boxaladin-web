@@ -41,7 +41,13 @@ body {
   margin-left: 2rem; }
 
 .logoz {
-  background-color: var(--color-primary-2); }
+  background-color: var(--color-primary-2);
+  margin: 0rem;
+  padding: 0rem; }
+
+.jumbo {
+  background-color: #000;
+  margin: 0rem; }
 
 .search {
   flex: 0 0 40%;
