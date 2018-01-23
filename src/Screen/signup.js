@@ -212,21 +212,12 @@ class Signup extends Component {
   render() {
     console.log(this.state)
     return (
-      <div className="container text-align">
-      <label class="form-check-label" for="exampleCheck1">Daftar Disini</label>
+      <div className="container">
         <form className="form-horizontal" onSubmit={e => this.signUp(e)}>
+
           <div className="form-group">
-            <div className="col-sm-4 col-sm-offset-4">
-              <input
-                name="first_name"
-                required
-                type="text"
-                className="form-control"
-                id="inputFirstName"
-                placeholder="first name"
-                onChange={e => this.signUpInputHandler(e)}
-              />
-            </div>
+            <label>First Name</label>
+            <input name="first_name" type="text" className="form-control" id="inputFirstName" aria-describedby="firstnamelHelp" placeholder="Enter your first name here" onChange={e => this.signUpInputHandler(e)}/>
           </div>
 
           <div className="form-group">

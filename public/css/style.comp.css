@@ -422,6 +422,7 @@ body {
     animation: pulsate 1s infinite; }
 
 .container {
+  max-width: 50rem;
   min-width: 25rem;
   min-height: 50rem;
   min-height: 10rem;

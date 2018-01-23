@@ -49,19 +49,15 @@ class Login extends Component {
         <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
           <div className="form-group">
             <label>Email address</label>
-            <input type="username" name="username" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email or username" onChange={ (e) => this.logInInputHandler(e) }/>
+            <input name="username" type="username" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email or username here" onChange={ (e) => this.logInInputHandler(e) }/>
             <small id="emailHelp" className="form-text text-muted">We'll never share your email or username with anyone else.</small>
           </div>
           <div className="form-group">
-          <small id="emailHelp" className="form-text text-muted">Password</small>
-            <div className="col-sm-4 col-sm-offset-4">
-              <input name="password" required type="password" className="form-control" id="inputPassword" placeholder="password" onChange={ (e) => this.logInInputHandler(e) } />
-            </div>
+            <label>Password</label>
+            <input name="password" type="password"  className="form-control" id="exampleInputEmail1" aria-describedby="passwordHelp" placeholder="Enter your password" onChange={ (e) => this.logInInputHandler(e) }/>
           </div>
           <div className="form-group">
-            <div className="col-sm-4 col-sm-offset-4">
               <button type="submit" className="btn btn-primary">Login</button>
-            </div>
           </div>
         </form>
       </div>
