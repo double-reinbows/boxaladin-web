@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import logo from '../asset/logo.jpeg'
+import logo from '../asset/Logo/LogoBig.svg'
 
 
 import {logoutAction} from '../actions/'

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import logo from '../asset/logo.jpeg'
+import logo from '../asset/Logo/LogoBig.svg'
 import iphonex from '../asset/iphonex.svg'
 import pulsabanner from '../asset/pulsabanner.png'
 

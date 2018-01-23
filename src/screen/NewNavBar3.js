@@ -19,7 +19,7 @@ import {
 
   import {Link} from 'react-router-dom'
 
-  import logo from '../asset/logo.jpeg'
+  import logo from '../asset/Logo/LogoBig.svg'
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -39,13 +39,14 @@ class NavBar extends React.Component {
     return (
       <div>
         <Navbar color="faded" light expand="md">
-          <NavbarBrand href="/home">Box<b>Aladin</b></NavbarBrand>
+        <img
+          src={logo}
+          alt="logo"
+          className="logo"
+        />
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-
-
-
             </Nav>
             {this.showRightButton()}
           </Collapse>

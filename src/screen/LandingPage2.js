@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import logo from '../asset/logo.jpeg'
+import banner1 from '../asset/LandingPage/banner/001.jpg'
+import banner2 from '../asset/LandingPage/banner/002.jpg'
 import pulsabanner from '../asset/pulsabanner.png'
 
 import {loginAction} from '../actions/'
@@ -15,19 +16,26 @@ class LandingPage extends Component {
           <div className="row">
             <div className="col-sm-6">
               <img
-                src={logo}
-                width="300"
-                height="300"
-                alt="logo"
+                src={banner1}
+                width="50%"
+                height="50%"
+                alt="banner1"
                 className="img-responsive"
               />
             </div>
 
-            <div className="banner1 col-sm-6">
+            <div className="col-sm-6">
+              <img
+                src={banner2}
+                width="50%"
+                height="50%"
+                alt="banner2"
+                className="img-responsive"
+              />
             </div>
           </div>
         </div>
-        <div className="col-sm-12 text-center banner2" >
+        <div className="col-sm-12 text-center banner2 logoz" >
           <h2>Whatever the carrier... we are the cheapest, guaranteed !!!</h2>
         </div>
 

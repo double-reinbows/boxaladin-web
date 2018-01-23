@@ -11,10 +11,11 @@ import Home from './screen/Home'
 import Login from './screen/Login'
 import Signup from './screen/Signup'
 import EmailVerificationDone from './screen/EmailVerificationDone'
-import Phone from './screen/Phone'
+// import Phone from './screen/Phone'
 import Product from './screen/Product'
 import LandingPage from './screen/LandingPage'
 import LandingPage2 from './screen/LandingPage2'
+import User from './screen/User'
 
 
 class RouteList extends React.Component {
@@ -53,7 +54,7 @@ class RouteList extends React.Component {
 
             <Route
               exact
-              path="/login"
+              path="/Login"
               render={() =>
                 localStorage.getItem('token') !== null ? (
                   <Redirect to="/" />
@@ -77,10 +78,10 @@ class RouteList extends React.Component {
 
             <Route
               exact
-              path="/phone"
+              path="/me"
               render={() =>
                 localStorage.getItem('token') !== null ? (
-                  <Phone />
+                  <User />
                 ) : (
                   <Redirect to="/" />
                 )
