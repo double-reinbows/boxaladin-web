@@ -1,70 +1,103 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import React from 'react';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  Nav,
+  NavItem,
+  Button,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem } from 'reactstrap';
 
-import {logoutAction} from '../actions/'
+  import {connect} from 'react-redux'
+
+  import {logoutAction} from '../actions/'
+
+  import logo from '../asset/Logo/LogoBig.svg'
+
 class NavBar extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
   render() {
     return (
-      <nav className="navbar navbar-default">
-        <div className="container-fluid">
-          <div className="navbar-header">
-            <button
-              type="button"
-              className="navbar-toggle collapsed"
-              data-toggle="collapse"
-              data-target="#bs-example-navbar-collapse-1"
-            >
-              <span className="sr-only">Toggle navigation</span>
-              <span className="icon-bar" />
-              <span className="icon-bar" />
-              <span className="icon-bar" />
-            </button>
-
-            <Link className="navbar-brand" style={{fontSize: '30px', color: 'white'}} to="/home">
-              Box<b>Aladin</b>
-            </Link>
-
-          </div>
-
-          <div
-            className="collapse navbar-collapse"
-            id="bs-example-navbar-collapse-1"
-            style={{float: 'right', position: 'relative'}}
-          >
-            {this.showMenu()}
+      <div>
+        <Navbar color="faded" light expand="md">
+        <img
+          src={logo}
+          alt="logo"
+          className="logo"
+          href="/home"
+        />
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+            </Nav>
             {this.showRightButton()}
-          </div>
-        </div>
-      </nav>
-    )
+          </Collapse>
+        </Navbar>
+      </div>
+    );
   }
-
   showRightButton() {
     if (localStorage.getItem('token') !== null) {
       return (
-        <ul className="nav navbar-nav navbar-right">
-          <li>
-            <button className="btn btn-danger" onClick={() => this.logout()}>
-              Logout
-            </button>
-          </li>
-        </ul>
+        <Nav className="navbar header">
+          <NavItem>
+            <NavLink href="/product">PRODUCT</NavLink>
+          </NavItem>
+
+          <UncontrolledDropdown nav inNavbar>
+            <DropdownToggle nav caret>
+              USER
+            </DropdownToggle>
+            <DropdownMenu >
+              <DropdownItem>
+                User Profile
+              </DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem>
+                <Button color="danger" onClick={() => this.logout()}>
+                  Logout
+                </Button>
+              </DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        </Nav>
       )
     } else {
       return (
-        <ul className="nav navbar-nav navbar-right" style={{color: 'white'}}>
-          <li style={{fontSize: '30px'}}>
-            <Link to="/signup">
-              <p style={{color: 'white'}}>Register</p>
-            </Link>
-          </li>
-          <li style={{fontSize: '30px'}}>
-            <Link to="/login">
-              <p style={{color: 'white'}}>Login</p>
-            </Link>
-          </li>
-        </ul>
+        <Nav navbar>
+          <NavItem>
+            <NavLink href="/home">HOME</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/howitworks">HOW ITS WORKS</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/contactus">CONTACT US</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/signup">NOT YET MEMBER</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/login">MEMBER'S AREA</NavLink>
+          </NavItem>
+        </Nav>
+
       )
     }
   }
@@ -74,24 +107,6 @@ class NavBar extends React.Component {
     this.props.logoutAction()
   }
 
-  showMenu() {
-    if (localStorage.getItem('token') !== null) {
-      return (
-        <ul className="nav navbar-nav" style={{color: 'white'}}>
-          <li style={{fontSize: '30px'}}>
-            <Link to="/product">
-              <p style={{color: 'white'}}>Product</p>
-            </Link>
-          </li>
-          <li style={{fontSize: '30px'}}>
-            <Link to="/me">
-              <p style={{color: 'white'}}>Me</p>
-            </Link>
-          </li>
-        </ul>
-      )
-    }
-  }
 }
 
 const mapStateToProps = state => {
