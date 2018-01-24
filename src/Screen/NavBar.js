@@ -35,7 +35,7 @@ class NavBar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="faded" light expand="md">
+        <Navbar color="faded" light expand="md" className="header">
         <img
           src={logo}
           alt="logo"
@@ -55,7 +55,7 @@ class NavBar extends React.Component {
   showRightButton() {
     if (localStorage.getItem('token') !== null) {
       return (
-        <Nav className="navbar header">
+        <Nav navbar>
           <NavItem>
             <NavLink href="/product">PRODUCT</NavLink>
           </NavItem>
@@ -65,6 +65,9 @@ class NavBar extends React.Component {
               USER
             </DropdownToggle>
             <DropdownMenu >
+            <DropdownItem>
+              Hi,
+            </DropdownItem>
               <DropdownItem>
                 User Profile
               </DropdownItem>
@@ -91,10 +94,10 @@ class NavBar extends React.Component {
             <NavLink href="/contactus">CONTACT US</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/signup">NOT YET MEMBER</NavLink>
+            <NavLink href="/signup">DAFTAR</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/login">MEMBER'S AREA</NavLink>
+            <NavLink href="/login">MASUK</NavLink>
           </NavItem>
         </Nav>
 
@@ -112,6 +115,7 @@ class NavBar extends React.Component {
 const mapStateToProps = state => {
   return {
     isLogin: state.userReducer.isLogin
+    // dataUser: state.userReducer.dataUser
   }
 }
 

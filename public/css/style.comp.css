@@ -40,8 +40,29 @@ body {
   height: 3.25rem;
   margin-left: 2rem; }
 
-.Bar-Text {
-  background-color: var(--color-primary-2); }
+.col-sm-6 {
+  padding-right: 0; }
+
+.Bar-Images {
+  width: 100%; }
+
+.Bar-Second {
+  background-color: var(--color-primary-2);
+  height: 10rem;
+  clip-path: polygon(50% 0%, 100% 0, 100% 50%, 50% 100%, 0% 50%, 0 0); }
+
+.Bar-Second-Text {
+  font-size: 4rem;
+  color: var(--color-primary-1); }
+
+.Bar-Third {
+  background-color: var(--color-grey-dark-3);
+  height: 10rem;
+  clip-path: polygon(50% 0%, 100% 0, 100% 50%, 50% 100%, 0% 50%, 0 0); }
+
+.Bar-Third-Img {
+  height: 5rem;
+  margin: 2.5rem; }
 
 .btn-inline {
   border: none;
@@ -218,10 +239,8 @@ body {
     animation: pulsate 1s infinite; }
 
 .container {
-  max-width: 50rem;
-  min-width: 25rem;
-  min-height: 50rem;
-  min-height: 10rem;
+  width: 50rem;
+  height: 50rem;
   padding: 10rem;
   margin: 1rem;
   background-color: var(--color-grey-light-1);

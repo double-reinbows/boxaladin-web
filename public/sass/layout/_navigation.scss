@@ -1,7 +1,7 @@
 .container {
     width: 50rem;
 
-    height: 50rem;
+    min-height: 50rem;
 
     padding: 10rem;
 
@@ -27,10 +27,12 @@
     justify-content: space-between;
     align-items: center;
 
+    margin-right: : 1rem;
+
     @media only screen and (max-width: $bp-smallest) {
         flex-wrap: wrap;
         align-content: space-around;
-        height: 11rem;
+        height: 6rem;
     }
 }
 

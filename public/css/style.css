@@ -240,7 +240,7 @@ body {
 
 .container {
   width: 50rem;
-  height: 50rem;
+  min-height: 50rem;
   padding: 10rem;
   margin: 1rem;
   background-color: var(--color-grey-light-1);
@@ -258,12 +258,13 @@ body {
   border-bottom: var(--line);
   display: flex;
   justify-content: space-between;
-  align-items: center; }
+  align-items: center;
+  margin: 1rem; }
   @media only screen and (max-width: 31.25em) {
     .header {
       flex-wrap: wrap;
       align-content: space-around;
-      height: 11rem; } }
+      height: 6rem; } }
 
 .content {
   display: flex; }
