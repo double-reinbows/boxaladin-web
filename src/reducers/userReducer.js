@@ -1,7 +1,7 @@
 const defaultState = {
   isLogin: null,
   dataUser: null,
-  phoneNumbers: null
+  phoneNumbers: []
 }
 
 const userReducer = (state=defaultState, action) => {

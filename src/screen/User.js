@@ -42,6 +42,7 @@ class User extends React.Component {
 			addPhoneModal: false,
 			numberToSend: null,
 			changePhoneModal: false,
+			changePrimaryPhoneModal: false,
 			idPhoneToChange: null
 		}
 	}
@@ -54,7 +55,8 @@ class User extends React.Component {
 				{ this.showDataUser() }
 				{ this.showPhoneModal() }
 				{ this.showAddPhoneModal() }
-				{ this.showAChangePhoneModal() }
+				{ this.showChangePhoneModal(this.state.numberToSend) }
+				{ this.showChangePrimaryPhone() }
 			</div>
 		)
 	}
@@ -91,7 +93,71 @@ class User extends React.Component {
 		.catch(err => console.log(err))
 	}
 
-	showAChangePhoneModal() {
+	submitChangePrimaryPhone(e) {
+		e.preventDefault()
+		// var numberId = this.state.numberId
+		// this.state.numberId === null ? numberId = this.props.phoneNumbers[0].id : null
+
+		if (this.state.numberId === null) {
+
+			alert('Harus pilih salah satu nomor.')
+
+		} else {
+
+			axios({
+				method: 'POST',
+				url: `http://localhost:3000/changePrimary`,
+				headers: {
+					token: localStorage.getItem('token')
+				},
+				data: {
+					numberId: this.state.numberId
+				}
+			})
+			.then(({data}) => {
+				alert(data.message)
+				this.props.getPhoneNumbers()
+				this.setState({numberId: null})
+				this.setState({changePrimaryPhoneModal: false})
+			})
+			.catch(err => console.log(err))
+
+		}
+	}
+
+	showChangePrimaryPhone() {
+		return (
+			<Modal
+				isOpen={this.state.changePrimaryPhoneModal}
+				style={ customStyles }
+			>
+				<form className="form-horizontal" onSubmit={ (e) => this.submitChangePrimaryPhone(e) }>
+					<div className="form-group">
+						<div className="col-sm-12">
+							<select onChange={ (e) => this.setState({numberId: e.target.value}) }>
+								<option value={null}>--Select Number--</option>
+								{this.props.phoneNumbers.map((phone, idx) => {
+									return (
+										<option key={idx} value={phone.id}>{phone.number}</option>
+									)
+								})}
+							</select>
+						</div>
+					</div>
+
+					<div className="form-group">
+						<div className="col-sm-12 col-sm-offset-3">
+							<button type="button" className="btn btn-xs btn-default" onClick={ () => this.setState({ changePrimaryPhoneModal: false }) }>Cancel</button>
+							<button style={{ marginLeft: 5 }} type="submit" className="btn btn-xs btn-primary">Set</button>
+						</div>
+					</div>
+				</form>
+			</Modal>
+		)
+	}
+
+	showChangePhoneModal(numValue) {
+		// var numValue = this.state.numberToSend
 		return (
 			<Modal
 				isOpen={this.state.changePhoneModal}
@@ -100,7 +166,7 @@ class User extends React.Component {
 				<form className="form-horizontal" onSubmit={ (e) => this.submitChangePhone(e) }>
 					<div className="form-group">
 						<div className="col-sm-12">
-							<input name="numberToSend" required autoFocus type="text" maxLength={14} className="form-control" placeholder="Phone Number" onChange={ (e) => this.handlePhoneNum(e) } />
+							<input value={numValue} name="numberToSend" required autoFocus type="text" maxLength={14} className="form-control" placeholder="Number to change" onChange={ (e) => this.handlePhoneNum(e) } />
 						</div>
 					</div>
 					<div className="form-group">
@@ -203,7 +269,15 @@ class User extends React.Component {
 					{this.props.phoneNumbers !== null ? (
 							this.props.phoneNumbers.map((phone, idx) => {
 								return (
-									<li key={idx}>{phone.number} {phone.verified === false ? <span><button onClick={ () => this.requestOTP(phone) } className="btn btn-xs btn-success" type="button">verify</button> <button type="button" className="btn btn-xs btn-default" onClick={() => this.changePhone(phone)}>change</button> <button type="button" className="btn btn-xs btn-danger" onClick={() => this.removePhone(phone)}>remove</button></span> : <span><i style={{ color: "green" }}>verified</i> <button type="button" className="btn btn-xs btn-danger" onClick={() => this.removePhone(phone)}>remove</button></span>}</li>
+									<li key={idx}>
+										{phone.number}
+										{phone.verified === false ? (
+											<span><button onClick={ () => this.requestOTP(phone) } className="btn btn-xs btn-success" type="button">verify</button> <button type="button" className="btn btn-xs btn-default" onClick={() => this.changePhone(phone)}>change</button> <button type="button" className="btn btn-xs btn-danger" onClick={() => this.removePhone(phone)}>remove</button></span>
+										) : (
+											<span><i style={{ color: "green" }}>verified</i> <button type="button" className="btn btn-xs btn-danger" onClick={() => this.removePhone(phone)}>remove</button></span>
+										)}
+										{phone.primary === true ? "(primary)" : null}
+									</li>
 								)
 							})
 					) : (
@@ -211,6 +285,8 @@ class User extends React.Component {
 					)}
 				</ul>
 				<a onClick={() => this.addPhone()}>Add</a>
+				<br/>
+				<a onClick={() => this.setState({changePrimaryPhoneModal: true})}>Select primary</a>
 			</div>
 		)
 	}
@@ -251,6 +327,7 @@ class User extends React.Component {
 	}
 
 	changePhone(phone) {
+		this.setState({numberToSend: phone.number})
 		this.setState({idPhoneToChange: phone.id})
 		this.setState({changePhoneModal: true})
 	}
@@ -276,6 +353,8 @@ class User extends React.Component {
 				if (response.data.message === 'data changed') {
 					this.props.getPhoneNumbers()
 					this.setState({changePhoneModal: false})
+					this.setState({numberToSend: null})
+					this.setState({idPhoneToChange: null})
 				} else if (response.data.message === 'duplicate number') {
 					alert(response.data.message)
 				} else if (response.data.message === 'already use') {
