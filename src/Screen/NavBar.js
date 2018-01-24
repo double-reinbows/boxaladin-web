@@ -5,12 +5,12 @@ import {
   NavbarToggler,
   Nav,
   NavItem,
-  Button,
   NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem
+} from 'reactstrap';
 
   import {connect} from 'react-redux'
 
@@ -35,7 +35,7 @@ class NavBar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="faded" light expand="md" className="header">
+        <Navbar color="faded" light expand="md" className="headerz">
         <img
           src={logo}
           alt="logo"
@@ -55,12 +55,12 @@ class NavBar extends React.Component {
   showRightButton() {
     if (localStorage.getItem('token') !== null) {
       return (
-        <Nav navbar>
+        <Nav navbar >
           <NavItem>
             <NavLink href="/product">PRODUCT</NavLink>
           </NavItem>
 
-          <UncontrolledDropdown nav inNavbar>
+          <UncontrolledDropdown nav>
             <DropdownToggle nav caret>
               USER
             </DropdownToggle>
@@ -72,10 +72,8 @@ class NavBar extends React.Component {
                 User Profile
               </DropdownItem>
               <DropdownItem divider />
-              <DropdownItem>
-                <Button color="danger" onClick={() => this.logout()}>
-                  Logout
-                </Button>
+              <DropdownItem onClick={() => this.logout()}>
+                Logout
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>

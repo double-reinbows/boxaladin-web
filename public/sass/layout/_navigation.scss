@@ -1,7 +1,9 @@
 .container {
-    width: 50rem;
+    max-width: 50rem;
+    min-width: 25rem;
 
     min-height: 50rem;
+    min-height: 10rem;
 
     padding: 10rem;
 
@@ -17,23 +19,11 @@
     }
 }
 
-.header {
-    font-size: 1.4rem;
-    height: 7rem;
-    background-color: #fff;
+.headerz {
+    background-color: var(--color-primary-1);
     border-bottom: var(--line);
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    margin-right: : 1rem;
-
-    @media only screen and (max-width: $bp-smallest) {
-        flex-wrap: wrap;
-        align-content: space-around;
-        height: 6rem;
-    }
+    font-size: 2rem;
 }
 
 .content {
