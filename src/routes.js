@@ -22,19 +22,8 @@ class RouteList extends React.Component {
           <div>
             <NavBar />
 
-            <Route
-              exact
-              path="/"
-              render={() =>
-                localStorage.getItem('token') !== null ? (
-                  <Redirect to="/home" />
-                ) : (
-                  <LandingPage />
-                )
-              }
-            />
-
             <Route exact path="/home" component={Home} />
+            <Route exact path="/landingpage" component={LandingPage} />
 
             <Route
               exact

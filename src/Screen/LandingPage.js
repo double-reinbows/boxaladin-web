@@ -36,12 +36,32 @@ class LandingPage extends Component {
           <h2 className="Bar-Second-Text">Whatever the carrier... we are the cheapest, guaranteed !!!</h2>
         </div>
         <div className="col-sm-12 text-center Bar-Third" >
-          <img src={LogoTelkomsel} className="Bar-Third-Img" alt="Responsive image" />
-          <img src={LogoIndosat} className="Bar-Third-Img" alt="Responsive image" />
-          <img src={LogoXL} className="Bar-Third-Img" alt="Responsive image" />
-          <img src={LogoTri} className="Bar-Third-Img" alt="Responsive image" />
-          <img src={LogoSmart} className="Bar-Third-Img" alt="Responsive image" />
-          <img src={LogoBolt} className="Bar-Third-Img" alt="Responsive image" />
+          <div className="row">
+            <div className="col-sm-2">
+              <img src={LogoTelkomsel} className="Bar-Third-Img" alt="Logo Telkomsel" />
+            </div>
+
+            <div className="col-sm-2">
+              <img src={LogoIndosat} className="Bar-Third-Img" alt="Logo Indosat" />
+            </div>
+
+            <div className="col-sm-2">
+              <img src={LogoXL} className="Bar-Third-Img" alt="Logo XL" />
+            </div>
+
+            <div className="col-sm-2">
+              <img src={LogoTri} className="Bar-Third-Img" alt="Logo Tri" />
+            </div>
+
+            <div className="col-sm-2">
+              <img src={LogoSmart} className="Bar-Third-Img" alt="Logo Smart" />
+            </div>
+
+            <div className="col-sm-2">
+              <img src={LogoBolt} className="Bar-Third-Img" alt="Logo Bolt" />
+            </div>
+          </div>
+
         </div>
       </div>
     )
