@@ -5,8 +5,6 @@ import {connect} from 'react-redux'
 import NavBar from './screen/Components/NavBar'
 import Footer from './screen/Components/Footer'
 
-
-import Home from './screen/Home'
 import Login from './screen/Login'
 import Signup from './screen/Signup'
 import EmailVerificationDone from './screen/EmailVerificationDone'
@@ -24,15 +22,14 @@ class RouteList extends React.Component {
           <div>
             <NavBar />
 
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/landingpage" component={LandingPage} />
+            <Route exact path="/" component={LandingPage} />
 
             <Route
               exact
               path="/Login"
               render={() =>
                 localStorage.getItem('token') !== null ? (
-                  <Redirect to="/" />
+                  <Redirect to="/landingpage" />
                 ) : (
                   <Login />
                 )
@@ -44,7 +41,7 @@ class RouteList extends React.Component {
               path="/signup"
               render={() =>
                 localStorage.getItem('token') !== null ? (
-                  <Redirect to="/" />
+                  <Redirect to="/landingpage" />
                 ) : (
                   <Signup />
                 )
@@ -58,7 +55,7 @@ class RouteList extends React.Component {
                 localStorage.getItem('token') !== null ? (
                   <User />
                 ) : (
-                  <Redirect to="/" />
+                  <Redirect to="/landingpage" />
                 )
               }
             />
