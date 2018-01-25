@@ -37,8 +37,8 @@ body {
   min-height: 100vh; }
 
 .logo {
-  height: 3.25rem;
-  margin-left: 2rem; }
+  height: 4rem;
+  margin: 2rem; }
 
 .col-sm-6 {
   padding-right: 0; }
@@ -253,14 +253,10 @@ body {
       max-width: 100%;
       width: 100%; } }
 
-.header {
-  font-size: 1.4rem;
-  height: 7.5rem;
-  background-color: #fff;
+.headerz {
+  background-color: var(--color-primary-1);
   border-bottom: var(--line);
-  display: flex;
-  justify-content: space-between;
-  align-items: center; }
+  font-size: 2rem; }
 
 .content {
   display: flex; }
