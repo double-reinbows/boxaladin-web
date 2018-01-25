@@ -238,6 +238,20 @@ body {
     outline: none;
     animation: pulsate 1s infinite; }
 
+.footerz {
+  background-color: var(--color-primary-3);
+  border-bottom: var(--line);
+  font-size: 2rem;
+  color: var(--color-grey-light-1);
+  height: 10rem;
+  position: absolute;
+  bottom: 0; }
+
+.headerz {
+  background-color: var(--color-primary-1);
+  border-bottom: var(--line);
+  font-size: 2rem; }
+
 .container {
   max-width: 50rem;
   min-width: 25rem;
@@ -252,11 +266,6 @@ body {
       margin: 0;
       max-width: 100%;
       width: 100%; } }
-
-.headerz {
-  background-color: var(--color-primary-1);
-  border-bottom: var(--line);
-  font-size: 2rem; }
 
 .content {
   display: flex; }

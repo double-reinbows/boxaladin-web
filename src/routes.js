@@ -2,7 +2,9 @@ import React from 'react'
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import NavBar from './screen/NavBar'
+import NavBar from './screen/Components/NavBar'
+import Footer from './screen/Components/Footer'
+
 
 import Home from './screen/Home'
 import Login from './screen/Login'
@@ -65,10 +67,13 @@ class RouteList extends React.Component {
               path="/product"
               component={Product}
             />
+
             <Route
               path="/emailVerification"
               component={EmailVerificationDone}
             />
+
+            <Footer/>
           </div>
         </Router>
       </div>

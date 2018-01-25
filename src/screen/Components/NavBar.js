@@ -14,9 +14,9 @@ import {
 
   import {connect} from 'react-redux'
 
-  import {logoutAction} from '../actions/'
+  import {logoutAction} from '../../actions/'
 
-  import logo from '../asset/Logo/LogoBig.svg'
+  import logo from '../../asset/Logo/LogoBig.svg'
 
 class NavBar extends React.Component {
   constructor(props) {
