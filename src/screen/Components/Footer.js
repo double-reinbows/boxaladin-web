@@ -1,12 +1,10 @@
 import React from 'react';
 
-import logo from '../../asset/Logo/LogoBig.svg'
-
 export default  class Footer extends React.Component {
 
   render() {
     return (
-      <div className="footerz" >
+      <div className="footerz fixed-bottom" >
         <div className="row text-center">
           <div className="col-sm-4">
             ABOUT US
@@ -17,7 +15,20 @@ export default  class Footer extends React.Component {
           </div>
 
           <div className="col-sm-4">
-            GET IN TOUCH
+            <div className="row">
+              GET IN TOUCH
+            </div>
+            <div className="row">
+              Home
+            </div>
+            <div className="row">
+              Phone
+            </div>
+            <div className="row">
+              Our Social Media
+            </div>
+
+
           </div>
         </div>
       </div>
