@@ -5,12 +5,12 @@ import {connect} from 'react-redux'
 import NavBar from './screen/Components/NavBar'
 import Footer from './screen/Components/Footer'
 
-import Login from './screen/Login'
-import Signup from './screen/Signup'
-import EmailVerificationDone from './screen/EmailVerificationDone'
-// import Phone from './screen/Phone'
-import Product from './screen/Product'
-import LandingPage from './screen/LandingPage'
+import Login from './Screen/login'
+import Signup from './Screen/signup'
+import EmailVerificationDone from './Screen/EmailVerificationDone'
+// import Phone from './Screen/Phone'
+import Product from './Screen/Product'
+import LandingPage from './Screen/LandingPage'
 import User from './screen/User'
 
 

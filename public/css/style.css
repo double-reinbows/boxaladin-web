@@ -52,13 +52,13 @@ body {
   clip-path: polygon(50% 0%, 100% 0, 100% 50%, 50% 100%, 0% 50%, 0 0); }
 
 .Bar-Second-Text {
-  font-size: 4rem;
+  font-size: 25px;
   color: var(--color-primary-1); }
 
 .Bar-Third {
   background-color: var(--color-grey-dark-3);
   height: 10rem;
-  clip-path: polygon(50% 0%, 100% 0, 100% 50%, 50% 100%, 0% 50%, 0 0); }
+}
 
 .Bar-Third-Img {
   height: 5rem;
@@ -82,3 +82,4 @@ body {
   margin: 10rem;
   background-color: var(--color-grey-light-1);
   box-shadow: var(--shadow-dark); }
+

@@ -1,0 +1,33 @@
+.footer{
+  width:100%;
+  color: white;
+  background: black;
+  height: 11rem;
+  font-size: 15px;
+
+}
+
+.logo-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.image-label{
+  margin-top: 300px;
+  width: 310px;  
+  font-size:20px;
+  color: white;
+  background-color: black;
+  opacity: 0.65;
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
