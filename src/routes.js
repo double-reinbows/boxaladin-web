@@ -2,14 +2,20 @@ import React from 'react'
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import NavBar from './Screen/NavBar'
-import Home from './Screen/Home'
-import Login from './Screen/login'
-import Signup from './Screen/signup'
-import EmailVerificationDone from './Screen/EmailVerificationDone'
-import Phone from './Screen/Phone'
-import Product from './Screen/Product'
-import LandingPage from './Screen/LandingPage'
+import NavBar from './screen/components/Navbar'
+import Footer from './screen/components/Footer'
+
+import Login from './screen/Login'
+import Signup from './screen/Signup'
+import EmailVerificationDone from './screen/EmailVerificationDone'
+import Product from './screen/Product'
+import LandingPage from './screen/LandingPage'
+import User from './screen/User'
+import Home from './screen/Home'
+
+
+// import Phone from './screen/Phone'
+
 
 class RouteList extends React.Component {
   render() {
@@ -19,26 +25,15 @@ class RouteList extends React.Component {
           <div>
             <NavBar />
 
-            <Route
-              exact
-              path="/"
-              render={() =>
-                localStorage.getItem('token') !== null ? (
-                  <Redirect to="/home" />
-                ) : (
-                  <LandingPage />
-                )
-              }
-            />
-
+            <Route exact path="/" component={LandingPage} />
             <Route exact path="/home" component={Home} />
 
             <Route
               exact
-              path="/login"
+              path="/Login"
               render={() =>
                 localStorage.getItem('token') !== null ? (
-                  <Redirect to="/" />
+                  <Redirect to="/landingpage" />
                 ) : (
                   <Login />
                 )
@@ -50,7 +45,7 @@ class RouteList extends React.Component {
               path="/signup"
               render={() =>
                 localStorage.getItem('token') !== null ? (
-                  <Redirect to="/" />
+                  <Redirect to="/landingpage" />
                 ) : (
                   <Signup />
                 )
@@ -59,12 +54,12 @@ class RouteList extends React.Component {
 
             <Route
               exact
-              path="/phone"
+              path="/me"
               render={() =>
                 localStorage.getItem('token') !== null ? (
-                  <Phone />
+                  <User />
                 ) : (
-                  <Redirect to="/" />
+                  <Redirect to="/landingpage" />
                 )
               }
             />
@@ -73,10 +68,13 @@ class RouteList extends React.Component {
               path="/product"
               component={Product}
             />
+
             <Route
               path="/emailVerification"
               component={EmailVerificationDone}
             />
+
+            <Footer/>
           </div>
         </Router>
       </div>

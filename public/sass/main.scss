@@ -1,3 +1,14 @@
-@import "base";
-@import "layout";
-@import "components";
+// reuseable components
+@import "components/animations";
+@import "components/base";
+@import "components/components";
+@import "components/form";
+@import "components/typography";
+@import "components/utilities";
+@import "components/variables";
+
+//pages
+@import "pages/container";
+@import "pages/footer";
+@import "pages/landingpage";
+@import "pages/navbar";
