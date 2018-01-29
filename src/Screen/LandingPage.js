@@ -21,30 +21,32 @@ class LandingPage extends Component {
   render() {
     return (
       <div>
-        <div className="row" style={{marginRight:0}}>
-          <div className="col-sm-6" style={{padding:0}}>
-            <img src={banner1} className="img-fluid float-left Bar-Images" alt="banner1" />
+        <div className="row Bar-First">
+          <div className="col-sm-6 Bar-First__col1">
+            <img src={banner1} className="img-fluid Bar-First__banner" alt="banner1" />
           </div>
-          <div className="col-sm-6" style={{padding:0, position:'relative'}}>
-            <img src={banner2} className="img-fluid float-left Bar-Images" alt="banner1" />
-            <div className="image-label">
-              <label className="image-label-text-top">THE MORE YOU SEE IT,</label>
-              <label className="image-label-text-bottom">THE CHEAPER IT GETS ...</label>
+          <div className="col-sm-6 Bar-First__col2">
+            <img src={banner2} className="Bar-First__banner" alt="banner1" />
+            <div className="Bar-First__label">
+              <label className="Bar-First__label__TextTop">THE MORE YOU SEE IT,</label>
+              <label className="Bar-First__label__TextBottom">THE CHEAPER IT GETS ...</label>
             </div>
           </div>
         </div>
 
 
         <div className="text-center Bar-Second" >
-          <h2 className="Bar-Second-Text">Whatever the carrier... we are the cheapest, guaranteed !!!</h2>
+          <h2 className="Bar-Second__Text">Whatever the carrier... we are the cheapest, guaranteed !!!</h2>
         </div>
-        <div className="col-sm-12 text-center logo-container" style={{backgroundColor:"white"}}>
-              <img src={LogoTelkomsel} className="Bar-Third-Img logo" alt="Logo Telkomsel"/>
-              <img src={LogoIndosat} className="Bar-Third-Img logo" alt="Logo Indosat" />
-              <img src={LogoXL} className="Bar-Third-Img logo" alt="Logo XL" />
-              <img src={LogoTri} className="Bar-Third-Img logo" alt="Logo Tri" />
-              <img src={LogoSmart} className="Bar-Third-Img logo" alt="Logo Smart" />
-              <img src={LogoBolt} className="Bar-Third-Img logo" alt="Logo Bolt" />
+        <div className="text-center Bar-Third">
+          <div className="Bar-Third__clip">
+            <img src={LogoTelkomsel} className="Bar-Third__img" alt="Logo Telkomsel"/>
+            <img src={LogoIndosat} className="Bar-Third__img" alt="Logo Indosat" />
+            <img src={LogoXL} className="Bar-Third__img" alt="Logo XL" />
+            <img src={LogoTri} className="Bar-Third__img" alt="Logo Tri" />
+            <img src={LogoSmart} className="Bar-Third__img" alt="Logo Smart" />
+            <img src={LogoBolt} className="Bar-Third__img" alt="Logo Bolt" />
+          </div>
         </div>
       </div>
     )
