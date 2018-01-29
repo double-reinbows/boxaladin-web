@@ -9,6 +9,8 @@
   --color-grey-dark-1: #333;
   --color-grey-dark-2: #777;
   --color-grey-dark-3: #999;
+  --color-container-1: #ffbe76;
+  --color-container-1: #f0932b;
   --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
   --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
   --line: 1px solid var(--color-grey-light-2); }
@@ -74,7 +76,14 @@ body {
 .headerz {
   background-color: var(--color-primary-1);
   border-bottom: var(--line);
+  padding: 2rem;
   font-size: 2rem; }
+
+.headerzz {
+  padding: 2rem; }
+
+.btn-login {
+  padding: right 2rem; }
 
 .container {
   width: 35rem;
@@ -83,8 +92,23 @@ body {
   background-color: var(--color-grey-light-1);
   box-shadow: var(--shadow-dark); }
 
+.container-login {
+  display: flex;
+  justify-content: center; }
+
 .containerrr {
-  width: 50rem;
-  padding: 50rem;
-  margin: 10rem;
-  background-color: var(--color-primary-3); }
+  width: 50%;
+  height: 100rem;
+  padding: 2.5rem;
+  margin: 5rem;
+  position: center; }
+  .containerrr__row1 {
+    background-color: var(--color-container-1);
+    padding: 2rem; }
+  .containerrr__row2 {
+    background-color: var(--color-container-2);
+    padding: 2rem; }
+  .containerrr__form {
+    padding-top: 2rem; }
+  .containerrr__button {
+    background-color: var(--color-primary-3); }

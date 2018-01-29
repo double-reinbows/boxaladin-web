@@ -52,26 +52,48 @@ class Login extends Component {
   render () {
     console.log('Props:', this.props);
     return (
-      <div className="containerz">
+      <div className="container-login">
+
         <div className="containerrr">
-          <div>
-            <img src={IconUser} alt="IconUser" className="IconUser" />
+
+          <div className="containerrr__row1">
+            <div>
+              <img src={IconUser} alt="IconUser" className="containerrr__icon" />
+            </div>
+
+            <div className="containerrr__form">
+              <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
+                <div className="form-group">
+                  <label>Email address</label>
+                  <input name="username" type="username" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email or username here" onChange={ (e) => this.logInInputHandler(e) }/>
+                  <small id="emailHelp" className="form-text text-muted containerrr__small">We'll never share your email or username with anyone else.</small>
+                </div>
+                <div className="form-group">
+                  <label>Password</label>
+                  <input name="password" type="password"  className="form-control" id="exampleInputPassword" aria-describedby="passwordHelp" placeholder="Enter your password" onChange={ (e) => this.logInInputHandler(e) }/>
+                </div>
+              </form>
+            </div>
+
           </div>
-          <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
-            <div className="form-group">
-              <label>Email address</label>
-              <input name="username" type="username" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email or username here" onChange={ (e) => this.logInInputHandler(e) }/>
-              <small id="emailHelp" className="form-text text-muted">We'll never share your email or username with anyone else.</small>
+
+          <div className="containerrr__row2">
+            <div className="containerrr__button">
+              <div className="form-group">
+                  <button type="submit" className="btn btn-primary btn-lg btn-block">Login</button>
+              </div>
+              <div className="form-group">
+                  <button type="submit" className="btn btn-primary btn-lg btn-block">Connect with Social Account</button>
+              </div>
             </div>
-            <div className="form-group">
-              <label>Password</label>
-              <input name="password" type="password"  className="form-control" id="exampleInputPassword" aria-describedby="passwordHelp" placeholder="Enter your password" onChange={ (e) => this.logInInputHandler(e) }/>
-            </div>
-            <div className="form-group">
-                <button type="submit" className="btn btn-primary btn-lg btn-block">Login</button>
-            </div>
-          </form>
+          </div>
+
+          <div className="containerrr__row3">
+            <label className="containerrr__label">Don't have an account? <a href="/signup"> Sign up</a></label>
+          </div>
+
         </div>
+
       </div>
     )
   }

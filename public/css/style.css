@@ -9,6 +9,8 @@
   --color-grey-dark-1: #333;
   --color-grey-dark-2: #777;
   --color-grey-dark-3: #999;
+  --color-container-1: #ffbe76;
+  --color-container-2: #f0932b;
   --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
   --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
   --line: 1px solid var(--color-grey-light-2); }
@@ -90,14 +92,45 @@ body {
   background-color: var(--color-grey-light-1);
   box-shadow: var(--shadow-dark); }
 
-.containerrr {
-  width: 25%;
-  height: 50rem;
-  padding: 2.5rem;
-  margin: 5rem;
-  position: center;
-  background-color: var(--color-primary-2); }
-
-.containerz {
+.container-login {
   display: flex;
   justify-content: center; }
+
+.containerrr {
+  width: 40rem;
+  height: 80rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  position: center;
+  font-size: 2rem; }
+  .containerrr__small {
+    font-size: 1rem; }
+  .containerrr__row1 {
+    background-color: var(--color-container-1);
+    padding: 2rem; }
+  .containerrr__icon {
+    height: 20rem;
+    width: 120px;
+    margin-left: 120px;
+    margin-right: 120px; }
+  .containerrr__form {
+    padding-top: 2rem; }
+  .containerrr__row2 {
+    background-color: var(--color-container-2);
+    margin-top: 0rem; }
+  .containerrr__button {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem; }
+  .containerrr__row3 {
+    background-color: var(--color-container-1);
+    color: var(--color-grey-light-1);
+    display: flex;
+    justify-content: center; }
+  .containerrr__label {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    align-content: center; }
