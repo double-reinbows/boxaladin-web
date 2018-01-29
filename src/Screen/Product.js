@@ -18,34 +18,34 @@ import { getBrands } from '../actions/brandAction'
 
 // Modal.setAppElement('#root');
 
-const customStyles = {
-	overlay : {
-    position          : 'absolute',
-    top               : 0,
-    left              : 0,
-    right             : 0,
-    bottom            : 0,
-    backgroundColor   : 'rgba(255, 255, 255, 0.80)'
-  },
-  content : {
-    // position                   : 'relative',
-    // top                        : '200px',
-    // left                       : '500px',
-    // right                      : '500px',
-    // bottom                     : '200px',
-    // border                     : '1px solid #ccc',
-    // background                 : '#fff',
-    // overflow                   : 'auto',
-    // WebkitOverflowScrolling    : 'touch',
-    // borderRadius               : '4px',
-    // outline                    : 'none',
-    // padding                    : '50px'
-  }
-};
+// const customStyles = {
+// 	overlay : {
+//     position          : 'absolute',
+//     top               : 0,
+//     left              : 0,
+//     right             : 0,
+//     bottom            : 0,
+//     backgroundColor   : 'rgba(255, 255, 255, 0.80)'
+//   },
+//   content : {
+//     // position                   : 'relative',
+//     // top                        : '200px',
+//     // left                       : '500px',
+//     // right                      : '500px',
+//     // bottom                     : '200px',
+//     // border                     : '1px solid #ccc',
+//     // background                 : '#fff',
+//     // overflow                   : 'auto',
+//     // WebkitOverflowScrolling    : 'touch',
+//     // borderRadius               : '4px',
+//     // outline                    : 'none',
+//     // padding                    : '50px'
+//   }
+// };
 
 class Product extends Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
 			products: [],
 			productUnlocked: {},
@@ -57,6 +57,8 @@ class Product extends Component {
 			isVerified: false,
 			filteredProducts: []
 		}
+
+		this.toggleShowPriceModal = this.toggleShowPriceModal.bind(this)
 	}
 
 	cekEmail(){
@@ -84,13 +86,13 @@ class Product extends Component {
 		console.log('Props:', this.props)
     return (
       <div>
-				<h2 className="text-center">Products</h2>
+				{/* <h2 className="text-center">Products</h2> */}
 				<Container>
 					{ this.showProducts() }
 				</Container>
 
 				<Modal isOpen={this.state.showPriceModal}>
-          <ModalHeader toggle={() => this.toggleShowPriceModal()}>{this.state.productUnlocked.productName}</ModalHeader>
+          <ModalHeader toggle={this.toggleShowPriceModal}>{this.state.productUnlocked.productName}</ModalHeader>
           <ModalBody>
 						<strike><h4>Rp{this.state.productUnlocked.price}</h4></strike>
 						<h1>Rp{this.state.productUnlocked.aladinPrice}</h1>
@@ -114,6 +116,7 @@ class Product extends Component {
 		this.props.getProducts()
 		this.props.getCategories()
 		this.props.getBrands()
+		this.props.getFilteredProducts(this.state.selectedBrand, this.state.selectedCategory)
 	}
 
 	// fetchProductsWithFilter() {
@@ -303,14 +306,14 @@ class Product extends Component {
 					</FormGroup>
 
 					<FormGroup>
-						<Button type="Button" color="primary" onClick={ () => this.filterProducts() }>Filter</Button>
+						<Button type="Button" color="primary" onClick={ () => this.props.getFilteredProducts(this.state.selectedBrand, this.state.selectedCategory) }>Filter</Button>
 					</FormGroup>
 
 				</Form>
 
 				{/* Data Products */}
 				<Row>
-					{this.state.products.map((product, idx) => {
+					{this.props.filteredProducts.map((product, idx) => {
 						return (
 							<Col xs="3" key={idx}>
 								<Card>
@@ -355,56 +358,3 @@ const mapDispatchToProps = (dispatch) => {
 const connectComponent = connect(mapStateToProps, mapDispatchToProps)(Product)
 
 export default connectComponent
-
-{/* <div key={idx} className="panel panel-default">
-	<div className="panel-heading">
-		<h3 className="panel-title"><b>{product.productName}</b></h3>
-	</div>
-	<div className="panel-body">
-		<h4>Rp{product.price} (harga asli)</h4>
-		<Button color="success" onClick={ () => this.watchProductPrice(product.id)} >Unlock</Button>
-	</div>
-</div> */}
-
-{/* <form className="form-horizontal">
-	<div className="form-group">
-		<label htmlFor="select" className="col-sm-1 control-label">Category</label>
-		<div className="col-sm-2">
-			<select className="form-control" id="select" onChange={ (e) => this.setState({ selectedCategory: e.target.value }) }>
-				<option value="all">All</option>
-				{this.props.categories.map((category, idx) => {
-					return (
-						<option key={idx} value={category.id}>{category.categoryName}</option>
-					)
-				})}
-			</select>
-		</div>
-
-		<label htmlFor="select" className="col-sm-1 control-label">Brand</label>
-		<div className="col-sm-2">
-			<select className="form-control" id="select" onChange={ (e) => this.setState({ selectedBrand: e.target.value }) }>
-				<option value="all">All</option>
-				{this.props.brands.map((brand, idx) => {
-					return (
-						<option key={idx} value={brand.id}>{brand.brandName}</option>
-					)
-				})}
-			</select>
-		</div>
-
-		<div className="col-sm-2">
-			<Button type="Button" className="btn btn-primary" onClick={ () => this.filterProducts() }>Filter</Button>
-		</div>
-	</div>
-</form> */}
-
-{/* <Modal
-	isOpen={ this.state.showPriceModal }
-	style={ customStyles }
->
-	<h3>{this.state.productUnlocked.productName}</h3>
-	<strike><h3>Rp{this.state.productUnlocked.price}</h3></strike>
-	<h1>Rp{this.state.productUnlocked.aladinPrice}</h1>
-	<Button color="secondary" style={{ width: 100 }} onClick={ () => this.closeModalPrice(this.state.productUnlocked.id) }>Close</Button>
-	<Button color="primary" style={{ width: 100 }}>Buy</Button>
-</Modal> */}
