@@ -2,8 +2,9 @@ import React from 'react'
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import NavBar from './screen/components/Navbar'
-import Footer from './screen/components/Footer'
+//convention pake camelcase
+import NavBar from './screen/Components/NavBar'
+import Footer from './screen/Components/Footer'
 
 import Login from './screen/Login'
 import Signup from './screen/Signup'
