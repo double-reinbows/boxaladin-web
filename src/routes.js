@@ -8,9 +8,9 @@ import Footer from './screen/components/footer'
 import Login from './screen/login'
 import Signup from './screen/signup'
 import EmailVerificationDone from './screen/emailVerificationDone'
-import Product from './screen/product'
+import Product from './screen/Product'
 import LandingPage from './screen/landingPage'
-import User from './screen/user'
+import User from './screen/User'
 import Home from './screen/home'
 
 

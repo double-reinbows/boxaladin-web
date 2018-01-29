@@ -12,6 +12,7 @@ import {
   DropdownItem
 } from 'reactstrap';
 
+  import './index.css'
   import {connect} from 'react-redux'
 
   import {logoutAction} from '../../actions/'
@@ -83,22 +84,21 @@ class NavBar extends React.Component {
       return (
         <Nav navbar>
           <NavItem>
-            <NavLink href="/home">HOME</NavLink>
+            <NavLink className="navbar-list" href="/home">HOME</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/howitworks">HOW ITS WORKS</NavLink>
+            <NavLink className="navbar-list" href="/howitworks">HOW ITS WORKS</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/contactus">CONTACT US</NavLink>
+            <NavLink className="navbar-list contactUs" href="/contactus">CONTACT US</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/signup">DAFTAR</NavLink>
+            <NavLink className="navbar-list" href="/signup">DAFTAR</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/login">MASUK</NavLink>
+            <NavLink className="navbar-list" href="/login">MASUK</NavLink>
           </NavItem>
         </Nav>
-
       )
     }
   }

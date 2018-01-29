@@ -29,8 +29,8 @@ class LandingPage extends Component {
           <div className="col-sm-6" style={{padding:0, position:'relative'}}>
             <img src={banner2} className="img-fluid float-left Bar-Images" alt="banner1" />
             <div className="image-label">
-              <label>THE MORE YOU SEE IT,</label>
-              <label>THE CHEAPER IT GETS ...</label>
+              <label className="image-label-text-top">THE MORE YOU SEE IT,</label>
+              <label className="image-label-text-bottom">THE CHEAPER IT GETS ...</label>
             </div>
           </div>
         </div>
@@ -40,42 +40,13 @@ class LandingPage extends Component {
           <h2 className="Bar-Second-Text">Whatever the carrier... we are the cheapest, guaranteed !!!</h2>
         </div>
         <div className="col-sm-12 text-center logo-container" style={{backgroundColor:"white"}}>
-          {/* <div className="logo-container"> */}
               <img src={LogoTelkomsel} className="Bar-Third-Img logo" alt="Logo Telkomsel"/>
               <img src={LogoIndosat} className="Bar-Third-Img logo" alt="Logo Indosat" />
               <img src={LogoXL} className="Bar-Third-Img logo" alt="Logo XL" />
               <img src={LogoTri} className="Bar-Third-Img logo" alt="Logo Tri" />
               <img src={LogoSmart} className="Bar-Third-Img logo" alt="Logo Smart" />
               <img src={LogoBolt} className="Bar-Third-Img logo" alt="Logo Bolt" />
-          {/* </div> */}
         </div>
-        {/* <div className="col-sm-12 text-center Bar-Third" >
-          <div className="row">
-            <div className="col-sm-2">
-              <img src={LogoTelkomsel} className="Bar-Third-Img" alt="Logo Telkomsel" style={{margin:0}}/>
-            </div>
-
-            <div className="col-sm-2">
-              <img src={LogoIndosat} className="Bar-Third-Img" alt="Logo Indosat" style={{margin:0}}/>
-            </div>
-
-            <div className="col-sm-2">
-              <img src={LogoXL} className="Bar-Third-Img" alt="Logo XL" style={{margin:0}}/>
-            </div>
-
-            <div className="col-sm-2">
-              <img src={LogoTri} className="Bar-Third-Img" alt="Logo Tri" style={{margin:0}}/>
-            </div>
-
-            <div className="col-sm-2">
-              <img src={LogoSmart} className="Bar-Third-Img" alt="Logo Smart"  style={{margin:0}}/>
-            </div>
-
-            <div className="col-sm-2">
-              <img src={LogoBolt} className="Bar-Third-Img" alt="Logo Bolt" style={{margin:0}}/>
-            </div>
-          </div>
-        </div> */}
       </div>
     )
   }

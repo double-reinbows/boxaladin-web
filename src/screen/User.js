@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import jwt from 'jsonwebtoken'
 import Modal from 'react-modal'
 import axios from 'axios'
+import { Button } from 'reactstrap'
 
 import { loginAction, getPhoneNumbers } from '../actions/'
 
@@ -43,7 +44,8 @@ class User extends React.Component {
 			numberToSend: null,
 			changePhoneModal: false,
 			changePrimaryPhoneModal: false,
-			idPhoneToChange: null
+			idPhoneToChange: null,
+			changePrimaryPhoneOTPModal: false
 		}
 	}
 
@@ -57,6 +59,7 @@ class User extends React.Component {
 				{ this.showAddPhoneModal() }
 				{ this.showChangePhoneModal(this.state.numberToSend) }
 				{ this.showChangePrimaryPhone() }
+				{ this.showChangePrimaryPhoneOTP() }
 			</div>
 		)
 	}
@@ -83,14 +86,64 @@ class User extends React.Component {
       	alert(data.message)
       } else if (data.message === 'phone verified') {
 				console.log(data)
-				alert(data.message)
 				this.props.getPhoneNumbers()
 				this.setState({phoneModal: false})
 				this.setState({numberId: null})
 				this.setState({OTP: null})
+				alert(data.message)
       }
 		})
 		.catch(err => console.log(err))
+	}
+
+	finalSubmitChangePrimaryPhone(e) {
+		e.preventDefault()
+		// alert('Final submit!')
+		console.log(`Data buat confirm change primary phone: ID=${this.state.numberId}, OTP=${this.state.OTP}`);
+		
+		axios({
+				method: 'POST',
+				url: `http://localhost:3000/changePrimary`,
+				headers: {
+					token: localStorage.getItem('token')
+				},
+				data: {
+					numberId: this.state.numberId,
+					otp: this.state.OTP
+				}
+			})
+			.then(({data}) => {
+				console.log(data.message)
+				this.props.getPhoneNumbers()
+				alert(data.message)
+				this.setState({numberId: null})
+				this.setState({changePrimaryPhoneOTPModal: false})
+				this.setState({OTP: null})
+			})
+			.catch(err => console.log(err))
+	}
+
+	showChangePrimaryPhoneOTP() {
+		return (
+			<Modal
+				isOpen={this.state.changePrimaryPhoneOTPModal}
+				style={ customStyles }
+			>
+				<form className="form-horizontal" onSubmit={ (e) => this.finalSubmitChangePrimaryPhone(e) }>
+					<div className="form-group">
+						<div className="col-sm-12">
+							<input name="OTP" required autoFocus type="text" maxLength={6} className="form-control" id="inputUsername" placeholder="Masukan 6 digit OTP" onChange={ (e) => this.setState({OTP: e.target.value}) } />
+						</div>
+					</div>
+					<div className="form-group">
+						<div className="col-sm-12 col-sm-offset-3">
+							<Button type="button" color="secondary" onClick={ () => this.setState({ changePrimaryPhoneOTPModal: false }) }>Cancel</Button>
+							<Button style={{ marginLeft: 5 }} type="submit" color="primary">Submit</Button>
+						</div>
+					</div>
+				</form>
+			</Modal>
+		)
 	}
 
 	submitChangePrimaryPhone(e) {
@@ -106,19 +159,18 @@ class User extends React.Component {
 
 			axios({
 				method: 'POST',
-				url: `http://localhost:3000/changePrimary`,
+				url: `http://localhost:3000/smsVerification`,
+				data: {
+					phoneId: this.state.numberId
+				},
 				headers: {
 					token: localStorage.getItem('token')
-				},
-				data: {
-					numberId: this.state.numberId
 				}
 			})
-			.then(({data}) => {
-				alert(data.message)
-				this.props.getPhoneNumbers()
-				this.setState({numberId: null})
+			.then(response => {
 				this.setState({changePrimaryPhoneModal: false})
+				this.setState({changePrimaryPhoneOTPModal: true})
+				console.log('Request OTP sms done!');
 			})
 			.catch(err => console.log(err))
 
@@ -136,7 +188,10 @@ class User extends React.Component {
 						<div className="col-sm-12">
 							<select onChange={ (e) => this.setState({numberId: e.target.value}) }>
 								<option value={null}>--Select Number--</option>
-								{this.props.phoneNumbers.map((phone, idx) => {
+								{this.props.phoneNumbers.filter(phone => {
+									return phone.primary === false && phone.verified === true
+								})
+								.map((phone, idx) => {
 									return (
 										<option key={idx} value={phone.id}>{phone.number}</option>
 									)
@@ -147,8 +202,8 @@ class User extends React.Component {
 
 					<div className="form-group">
 						<div className="col-sm-12 col-sm-offset-3">
-							<button type="button" className="btn btn-xs btn-default" onClick={ () => this.setState({ changePrimaryPhoneModal: false }) }>Cancel</button>
-							<button style={{ marginLeft: 5 }} type="submit" className="btn btn-xs btn-primary">Set</button>
+							<Button type="button" color="secondary" onClick={ () => this.setState({ changePrimaryPhoneModal: false }) }>Cancel</Button>
+							<Button style={{ marginLeft: 5 }} type="submit" color="primary">Set</Button>
 						</div>
 					</div>
 				</form>
@@ -171,8 +226,8 @@ class User extends React.Component {
 					</div>
 					<div className="form-group">
 						<div className="col-sm-12 col-sm-offset-3">
-							<button type="button" className="btn btn-xs btn-default" onClick={ () => this.setState({ changePhoneModal: false }) }>Cancel</button>
-							<button style={{ marginLeft: 5 }} type="submit" className="btn btn-xs btn-primary">Change</button>
+							<Button type="button" color="secondary" onClick={ () => this.setState({ changePhoneModal: false }) }>Cancel</Button>
+							<Button style={{ marginLeft: 5 }} type="submit" color="primary">Change</Button>
 						</div>
 					</div>
 				</form>
@@ -194,8 +249,8 @@ class User extends React.Component {
 					</div>
 					<div className="form-group">
 						<div className="col-sm-12 col-sm-offset-3">
-							<button type="button" className="btn btn-xs btn-default" onClick={ () => this.setState({ addPhoneModal: false }) }>Cancel</button>
-							<button style={{ marginLeft: 5 }} type="submit" className="btn btn-xs btn-primary">Confirm</button>
+							<Button type="button" color="secondary" onClick={ () => this.setState({ addPhoneModal: false }) }>Cancel</Button>
+							<Button style={{ marginLeft: 5 }} type="submit" color="primary">Confirm</Button>
 						</div>
 					</div>
 				</form>
@@ -235,8 +290,8 @@ class User extends React.Component {
 					</div>
 					<div className="form-group">
 						<div className="col-sm-12 col-sm-offset-3">
-							<button type="button" className="btn btn-xs btn-default" onClick={ () => this.setState({ phoneModal: false }) }>Cancel</button>
-							<button style={{ marginLeft: 5 }} type="submit" className="btn btn-xs btn-primary">Confirm</button>
+							<Button type="button" color="secondary" onClick={ () => this.setState({ phoneModal: false }) }>Cancel</Button>
+							<Button style={{ marginLeft: 5 }} type="submit" color="primary">Confirm</Button>
 						</div>
 					</div>
 				</form>
@@ -245,18 +300,25 @@ class User extends React.Component {
 	}
 
 	requestOTP(phone) {
-		this.setState({numberId: phone.id})
+		console.log(phone);
+		
+		// this.setState({numberId: phone.id})
 		this.setState({phoneModal: true})
-
+		
 		axios({
 			method: 'POST',
 			url: `http://localhost:3000/smsVerification`,
 			data: {
 				phoneId: phone.id
+			},
+			headers: {
+				token: localStorage.getItem('token')
 			}
 		})
 		.then(response => {
 			console.log('Request send sms done!');
+			// this.setState({numberId: null})
+			// phone.id = null
 		})
 		.catch(err => console.log(err))
 	}
@@ -272,9 +334,9 @@ class User extends React.Component {
 									<li key={idx}>
 										{phone.number}
 										{phone.verified === false ? (
-											<span><button onClick={ () => this.requestOTP(phone) } className="btn btn-xs btn-success" type="button">verify</button> <button type="button" className="btn btn-xs btn-default" onClick={() => this.changePhone(phone)}>change</button> <button type="button" className="btn btn-xs btn-danger" onClick={() => this.removePhone(phone)}>remove</button></span>
+											<span><Button onClick={ () => this.requestOTP(phone) } color="success" type="button">verify</Button> <Button type="button" color="secondary" onClick={() => this.changePhone(phone)}>change</Button> <Button type="button" color="danger" onClick={() => this.removePhone(phone)}>remove</Button></span>
 										) : (
-											<span><i style={{ color: "green" }}>verified</i> <button type="button" className="btn btn-xs btn-danger" onClick={() => this.removePhone(phone)}>remove</button></span>
+											<span><i style={{ color: "green" }}>verified</i> <Button type="button" color="danger" onClick={() => this.removePhone(phone)}>remove</Button></span>
 										)}
 										{phone.primary === true ? "(primary)" : null}
 									</li>
@@ -284,9 +346,9 @@ class User extends React.Component {
 	          null
 					)}
 				</ul>
-				<a onClick={() => this.addPhone()}>Add</a>
+				<Button color="link" onClick={() => this.addPhone()}>Add</Button>
 				<br/>
-				<a onClick={() => this.setState({changePrimaryPhoneModal: true})}>Select primary</a>
+				<Button color="link" onClick={() => this.setState({changePrimaryPhoneModal: true})}>Select primary</Button>
 			</div>
 		)
 	}
