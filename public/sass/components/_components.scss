@@ -1,0 +1,37 @@
+////////////////////////////////////////
+// LOGO
+.logo {
+    height: 4rem;
+    margin: 2rem;
+
+}
+
+.col-sm-6{
+  padding-right: 0;
+}
+
+.Bar-Images {
+  width: 100%;
+}
+
+.Bar-Second {
+  background-color: var(--color-primary-2);
+  height: 10rem;
+  clip-path: polygon(50% 0%, 100% 0, 100% 50%, 50% 100%, 0% 50%, 0 0);
+}
+
+.Bar-Second-Text {
+  font-size: 4rem;
+  color: var(--color-primary-1);
+}
+
+.Bar-Third {
+  background-color: var(--color-grey-dark-3);
+  height: 10rem;
+  clip-path: polygon(50% 0%, 100% 0, 100% 50%, 50% 100%, 0% 50%, 0 0);
+}
+
+.Bar-Third-Img {
+  height: 5rem;
+  margin: 2.5rem;
+}

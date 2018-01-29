@@ -79,6 +79,7 @@ class Phone extends React.Component {
 					isOpen={ this.state.showOtpModal }
 					style={ customStyles }
 				>
+					<form className="form-horizontal" onSubmit={ (e) => this.submitOtp(e) }>
 						<div className="form-group">
 							<div className="col-sm-12">
 								<input name="otp" required autoFocus type="text" maxLength={6} className="form-control" id="inputUsername" placeholder="Masukan 6 digit OTP" onChange={ (e) => this.handleFormInput(e) } />
@@ -87,9 +88,10 @@ class Phone extends React.Component {
 						<div className="form-group">
 	            <div className="col-sm-12 col-sm-offset-3">
 								<button type="button" className="btn btn-xs btn-default" onClick={ () => this.setState({ showOtpModal: false }) }>Cancel</button>
-	              <button style={{ marginLeft: 5 }} type="button" className="btn btn-xs btn-primary" onClick={ () => this.submitOtp() }>Confirm</button>
+	              <button style={{ marginLeft: 5 }} type="submit" className="btn btn-xs btn-primary">Confirm</button>
 	            </div>
 	          </div>
+					</form>
 				</Modal>
 
 			</div>
@@ -133,8 +135,8 @@ class Phone extends React.Component {
 		)
 	}
 
-	submitOtp() {
-		// e.preventDefault()
+	submitOtp(e) {
+		e.preventDefault()
 
 		axios({
 			method: 'POST',
@@ -156,7 +158,6 @@ class Phone extends React.Component {
       }
 		})
 		.catch(err => console.log(err))
-
 	}
 // --------------------------------------------------------------------
   // handleTf = () => {
@@ -179,11 +180,15 @@ class Phone extends React.Component {
 	// }
 // --------------------------------------------------------------------
 
-	insertOtp(data) {
-		this.setState({numberId: data.id})
+	openOtpModal(dataNumber) {
+		this.setState({numberId: dataNumber.id})
 		this.setState({showOtpModal: true})
+		this.sendSms(dataNumber)
+	}
 
-		axios({
+	sendSms(data) {
+		console.log('Kirim sms!');
+		return axios({
 			method: 'POST',
 			url: `http://localhost:3000/smsVerification`,
 			data: {
@@ -191,7 +196,7 @@ class Phone extends React.Component {
 			}
 		})
 		.then(response => {
-			console.log('Send SMS');
+			console.log('Request send sms done!');
 		})
 		.catch(err => console.log(err))
 	}
@@ -204,7 +209,7 @@ class Phone extends React.Component {
 		if (dataNumber.verified === false) {
 			return (
 				<div>
-					<button type="button" className="btn btn-xs btn-default" onClick={ () => this.insertOtp(dataNumber) }>Verify</button>
+					<button type="button" className="btn btn-xs btn-default" onClick={ () => this.openOtpModal(dataNumber) }>Verify</button>
 				</div>
 			)
 		}

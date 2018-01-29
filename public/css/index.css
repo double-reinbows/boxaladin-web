@@ -9,10 +9,6 @@ body {
   margin-bottom: 0px;
 }
 
-.row{
-  margin-right: 0px;
-}
-
 .navbar{
   background-color: #FF9800;
   margin: 0px;
@@ -25,19 +21,22 @@ body {
   color: #fff;
 }
 
-.navbar-default{
-  color: #fff;
-}
-
-.navbar-nav{
-  color: #fff;
-}
-
 .banner1{
   color: #fff;
 }
 
+.banner2{
+  background-color: #FF9800;
+  margin-bottom: 0px;
+}
+
+.banner3{
+  background-color: #FF7F50;
+  margin-bottom: 0px;
+}
+
 .betweenText {
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  fontSize: 15px;
 }

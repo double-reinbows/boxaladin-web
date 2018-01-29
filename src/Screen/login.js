@@ -1,8 +1,10 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import jwt from 'jsonwebtoken'
+import IconUser from '../asset/Login/user.svg'
 
-import { loginAction, logoutAction } from '../actions/'
+import { loginAction, logoutAction, getPhoneNumbers } from '../actions/'
 
 const URL = 'http://localhost:3000/'
 
@@ -30,8 +32,12 @@ class Login extends Component {
         alert(data.message)
       } else if (data.message === 'login success') {
         console.log(data)
-        localStorage.setItem('token', data.token)
-        this.props.loginAction()
+        localStorage.setItem('token', localStorage.getItem('token') || data.token)
+
+        const decoded = jwt.verify(data.token, 'satekambing')
+        console.log('Data decoded:', decoded);
+        this.props.loginAction(decoded)
+        this.props.getPhoneNumbers()
       }
     })
     .catch(e => {
@@ -46,25 +52,28 @@ class Login extends Component {
   }
 
   render () {
+    console.log('Props:', this.props);
     return (
-      <div>
-        <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
-          <div className="form-group">
-            <div className="col-sm-4 col-sm-offset-4">
-              <input name="username" required type="text" className="form-control" id="inputUsername" placeholder="username" onChange={ (e) => this.logInInputHandler(e) } />
-            </div>
+      <div className="containerz">
+        <div className="containerrr">
+          <div>
+            <img src={IconUser} alt="IconUser" className="IconUser" />
           </div>
-          <div className="form-group">
-            <div className="col-sm-4 col-sm-offset-4">
-              <input name="password" required type="password" className="form-control" id="inputPassword" placeholder="password" onChange={ (e) => this.logInInputHandler(e) } />
+          <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
+            <div className="form-group">
+              <label>Email address</label>
+              <input name="username" type="username" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email or username here" onChange={ (e) => this.logInInputHandler(e) }/>
+              <small id="emailHelp" className="form-text text-muted">We'll never share your email or username with anyone else.</small>
             </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-4 col-sm-offset-4">
-              <button type="submit" className="btn btn-primary">Login</button>
+            <div className="form-group">
+              <label>Password</label>
+              <input name="password" type="password"  className="form-control" id="exampleInputPassword" aria-describedby="passwordHelp" placeholder="Enter your password" onChange={ (e) => this.logInInputHandler(e) }/>
             </div>
-          </div>
-        </form>
+            <div className="form-group">
+                <button type="submit" className="btn btn-primary btn-lg btn-block">Login</button>
+            </div>
+          </form>
+        </div>
       </div>
     )
   }
@@ -78,8 +87,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginAction: () => dispatch(loginAction()),
-    logoutAction: () => dispatch(logoutAction())
+    loginAction: (payload) => dispatch(loginAction(payload)),
+    logoutAction: () => dispatch(logoutAction()),
+    getPhoneNumbers: () => dispatch(getPhoneNumbers())
   }
 }
 
