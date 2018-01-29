@@ -1,0 +1,11 @@
+.footerz{
+  width:100%;
+  color: white;
+  background: black;
+  font-size: 15px;
+  &__body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

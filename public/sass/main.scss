@@ -1,20 +1,14 @@
-@import "abstracts/functions";
-@import "abstracts/mixins";
-@import "abstracts/variables";
-
-@import "base/animations";
-@import "base/base";
-@import "base/typography";
-@import "base/utilities";
-
+// reuseable components
+@import "components/animations";
+@import "components/base";
 @import "components/components";
 @import "components/form";
+@import "components/typography";
+@import "components/utilities";
+@import "components/variables";
 
-
-@import "layout/container";
-@import "layout/header";
-@import "layout/navbar";
-@import "layout/landingpage";
-@import "layout/footer";
-
+//pages
+@import "pages/container";
+@import "pages/footer";
 @import "pages/landingpage";
+@import "pages/navbar";

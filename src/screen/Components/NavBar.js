@@ -35,7 +35,7 @@ class NavBar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="faded" light expand="md" className="headerz">
+        <Navbar color="faded" light expand="md" className="Navbarz">
         <img
           src={logo}
           alt="logo"
@@ -83,19 +83,19 @@ class NavBar extends React.Component {
       return (
         <Nav navbar>
           <NavItem>
-            <NavLink className="navbar-list" href="/home">HOME</NavLink>
+            <NavLink className="Navbarz__List" href="/home">HOME</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink className="navbar-list" href="/howitworks">HOW ITS WORKS</NavLink>
+            <NavLink className="Navbarz__List" href="/howitworks">HOW ITS WORKS</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink className="navbar-list contactUs" href="/contactus">CONTACT US</NavLink>
+            <NavLink className="Navbarz__ContactUs" href="/contactus">CONTACT US</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink className="navbar-list" href="/signup">DAFTAR</NavLink>
+            <NavLink className="Navbarz__List" href="/signup">DAFTAR</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink className="navbar-list" href="/login">MASUK</NavLink>
+            <NavLink className="Navbarz__List" href="/login">MASUK</NavLink>
           </NavItem>
         </Nav>
       )

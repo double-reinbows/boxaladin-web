@@ -1,0 +1,44 @@
+.footer{
+  width:100%;
+  color: white;
+  background: black;
+  font-size: 15px;
+
+}
+
+.logo-container img{
+  margin-right: 8px;
+}
+
+.footer-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.image-label{
+  width: 300px;
+  font-size:25px;
+  color: white;
+  background-color: black;
+  opacity: 0.65;
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  top: 70%;
+  transform:translateY(-50%);
+}
+
+.image-label-text-top{
+  margin-bottom: 10px;
+}
+.image-label-text-bottom{
+  font-weight: bolder;
+}
+
+@media screen and (max-width: 574px) and (min-width: 300px) {
+  .Bar-Second-Text{
+    font-size: 21.7px;
+  }
+}

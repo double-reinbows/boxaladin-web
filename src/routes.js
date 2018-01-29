@@ -2,16 +2,16 @@ import React from 'react'
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import NavBar from './screen/components/navbar'
-import Footer from './screen/components/footer'
+import NavBar from './screen/components/Navbar'
+import Footer from './screen/components/Footer'
 
-import Login from './screen/login'
-import Signup from './screen/signup'
-import EmailVerificationDone from './screen/emailVerificationDone'
+import Login from './screen/Login'
+import Signup from './screen/Signup'
+import EmailVerificationDone from './screen/EmailVerificationDone'
 import Product from './screen/Product'
-import LandingPage from './screen/landingPage'
+import LandingPage from './screen/LandingPage'
 import User from './screen/User'
-import Home from './screen/home'
+import Home from './screen/Home'
 
 
 // import Phone from './screen/Phone'
