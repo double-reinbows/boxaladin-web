@@ -55,12 +55,12 @@ class Login extends Component {
         <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
           <div className="form-group">
             <label>Email address</label>
-            <input name="username" type="username" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email or username here" onChange={ (e) => this.logInInputHandler(e) }/>
+            <input name="username" type="username" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email or username here" onChange={ (e) => this.logInInputHandler(e) }/>
             <small id="emailHelp" className="form-text text-muted">We'll never share your email or username with anyone else.</small>
           </div>
           <div className="form-group">
             <label>Password</label>
-            <input name="password" type="password"  className="form-control" id="exampleInputEmail1" aria-describedby="passwordHelp" placeholder="Enter your password" onChange={ (e) => this.logInInputHandler(e) }/>
+            <input name="password" type="password"  className="form-control" id="exampleInputPassword" aria-describedby="passwordHelp" placeholder="Enter your password" onChange={ (e) => this.logInInputHandler(e) }/>
           </div>
           <div className="form-group">
               <button type="submit" className="btn btn-primary">Login</button>
