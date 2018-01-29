@@ -1,8 +1,14 @@
-.container {
-    width: 50rem;
-    padding: 50rem;
-    margin: 10rem;
+.containerrr {
+    width: 25%;
+    height: 50rem;
+    padding: 2.5rem;
+    margin: 5rem;
+    position: center;
 
-    background-color: var(--color-primary-3);
+    background-color: var(--color-primary-2)
+}
 
+.containerz {
+  display: flex;
+  justify-content: center;
 }

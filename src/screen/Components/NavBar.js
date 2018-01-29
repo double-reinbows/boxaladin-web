@@ -81,8 +81,8 @@ class NavBar extends React.Component {
       )
     } else {
       return (
-        <Nav navbar>
-          <NavItem>
+        <Nav navbar >
+          <NavItem className="headerzz">
             <NavLink href="/home">HOME</NavLink>
           </NavItem>
           <NavItem>

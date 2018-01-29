@@ -82,3 +82,9 @@ body {
   margin: 10rem;
   background-color: var(--color-grey-light-1);
   box-shadow: var(--shadow-dark); }
+
+.containerrr {
+  width: 50rem;
+  padding: 50rem;
+  margin: 10rem;
+  background-color: var(--color-primary-3); }

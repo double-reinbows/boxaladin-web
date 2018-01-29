@@ -52,15 +52,13 @@ body {
   clip-path: polygon(50% 0%, 100% 0, 100% 50%, 50% 100%, 0% 50%, 0 0); }
 
 .Bar-Second-Text {
-  font-size: 24px;
-  color: var(--color-primary-1);
-  /* width: calc(100% - 50px); */
-  margin: auto; }
+  font-size: 4rem;
+  color: var(--color-primary-1); }
 
 .Bar-Third {
   background-color: var(--color-grey-dark-3);
   height: 10rem;
-}
+  clip-path: polygon(50% 0%, 100% 0, 100% 50%, 50% 100%, 0% 50%, 0 0); }
 
 .Bar-Third-Img {
   height: 5rem;
@@ -76,7 +74,14 @@ body {
 .headerz {
   background-color: var(--color-primary-1);
   border-bottom: var(--line);
+  padding: 2rem;
   font-size: 2rem; }
+
+.headerzz {
+  padding: 2rem; }
+
+.btn-login {
+  padding: right 2rem; }
 
 .container {
   width: 35rem;
@@ -85,3 +90,14 @@ body {
   background-color: var(--color-grey-light-1);
   box-shadow: var(--shadow-dark); }
 
+.containerrr {
+  width: 25%;
+  height: 50rem;
+  padding: 2.5rem;
+  margin: 5rem;
+  position: center;
+  background-color: var(--color-primary-2); }
+
+.containerz {
+  display: flex;
+  justify-content: center; }

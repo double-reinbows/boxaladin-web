@@ -2,16 +2,19 @@ import React from 'react'
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import NavBar from './screen/Components/NavBar'
-import Footer from './screen/Components/Footer'
+import NavBar from './screen/components/navbar'
+import Footer from './screen/components/footer'
 
-import Login from './Screen/login'
-import Signup from './Screen/signup'
-import EmailVerificationDone from './Screen/EmailVerificationDone'
-// import Phone from './Screen/Phone'
-import Product from './Screen/Product'
-import LandingPage from './Screen/LandingPage'
-import User from './screen/User'
+import Login from './screen/login'
+import Signup from './screen/signup'
+import EmailVerificationDone from './screen/emailVerificationDone'
+import Product from './screen/product'
+import LandingPage from './screen/landingPage'
+import User from './screen/user'
+import Home from './screen/home'
+
+
+// import Phone from './screen/Phone'
 
 
 class RouteList extends React.Component {
@@ -23,6 +26,7 @@ class RouteList extends React.Component {
             <NavBar />
 
             <Route exact path="/" component={LandingPage} />
+            <Route exact path="/home" component={Home} />
 
             <Route
               exact

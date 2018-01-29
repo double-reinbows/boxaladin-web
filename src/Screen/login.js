@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import jwt from 'jsonwebtoken'
+import IconUser from '../asset/Login/user.svg'
 
 import { loginAction, logoutAction, getPhoneNumbers } from '../actions/'
 
@@ -51,21 +52,26 @@ class Login extends Component {
   render () {
     console.log('Props:', this.props);
     return (
-      <div className="container">
-        <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
-          <div className="form-group">
-            <label>Email address</label>
-            <input name="username" type="username" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email or username here" onChange={ (e) => this.logInInputHandler(e) }/>
-            <small id="emailHelp" className="form-text text-muted">We'll never share your email or username with anyone else.</small>
+      <div className="containerz">
+        <div className="containerrr">
+          <div>
+            <img src={IconUser} alt="IconUser" className="IconUser" />
           </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input name="password" type="password"  className="form-control" id="exampleInputPassword" aria-describedby="passwordHelp" placeholder="Enter your password" onChange={ (e) => this.logInInputHandler(e) }/>
-          </div>
-          <div className="form-group">
-              <button type="submit" className="btn btn-primary">Login</button>
-          </div>
-        </form>
+          <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
+            <div className="form-group">
+              <label>Email address</label>
+              <input name="username" type="username" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email or username here" onChange={ (e) => this.logInInputHandler(e) }/>
+              <small id="emailHelp" className="form-text text-muted">We'll never share your email or username with anyone else.</small>
+            </div>
+            <div className="form-group">
+              <label>Password</label>
+              <input name="password" type="password"  className="form-control" id="exampleInputPassword" aria-describedby="passwordHelp" placeholder="Enter your password" onChange={ (e) => this.logInInputHandler(e) }/>
+            </div>
+            <div className="form-group">
+                <button type="submit" className="btn btn-primary btn-lg btn-block">Login</button>
+            </div>
+          </form>
+        </div>
       </div>
     )
   }

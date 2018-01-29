@@ -212,60 +212,62 @@ class Signup extends Component {
   render() {
     console.log(this.state)
     return (
-      <div className="container">
-        <form className="form-horizontal" onSubmit={e => this.signUp(e)}>
+      <div className="containerz">
+        <div className="containerrr">
+          <form className="form-horizontal" onSubmit={e => this.signUp(e)}>
 
-          <div className="form-group">
-            <label>First Name</label>
-            <input name="first_name" type="text" className="form-control" id="inputFirstName" aria-describedby="firstnamelHelp" placeholder="Enter your first name here" onChange={e => this.signUpInputHandler(e)}/>
-          </div>
-
-          <div className="form-group">
-            <label>Family Name</label>
-            <input name="family_name" type="text" className="form-control" id="inputFamilyName" aria-describedby="familynamelHelp" placeholder="Enter your family name here" onChange={e => this.signUpInputHandler(e)}/>
-          </div>
-
-          <div className="form-group">
-            <label>Phone Number</label>
-            <input name="phonenumber" required type="integer" className="form-control" id="inputPhonenumber" aria-describedby="phonenumberHelp" placeholder="Enter your phonenumber here" onChange={e => this.handlePhoneNum(e)}
-              />
-          </div>
-
-          <div className="form-group">
-            <label>Username</label>
-            <input name="username" required type="text" className="form-control" id="inputUsername" aria-describedby="usernameHelp" placeholder="Enter your username here" onChange={e => this.signUpInputHandler(e)} />
-          </div>
-
-          <div className="form-group">
-            <label>Password</label>
-            <input name="password" required type="password" className="form-control" id="inputPassword" aria-describedby="passwordHelp" placeholder="Enter your password here" onChange={e => this.signUpInputHandler(e)} />
-          </div>
-
-          <div className="form-group">
-            <label className="control-label" htmlFor="sex">
-              Sex:
-            </label>
-            <select
-              name="sex"
-              value={this.state.sex}
-              onChange={this.signUpInputHandler}
-            >
-              <option value={null}>Select gender</option>
-              <option value="M">Male</option>
-              <option value="F">Female</option>
-            </select>
-          </div>
-
-          <div className="form-group">
-            <input name="email" required type="email" className="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter your email here" onChange={e => this.signUpInputHandler(e)} />
-          </div>
-
-          <div className=".center-block ">
-              <button type="submit" className="btn btn-primary">
-                Register
-              </button>
+            <div className="form-group">
+              <label>First Name</label>
+              <input name="first_name" type="text" className="form-control" id="inputFirstName" aria-describedby="firstnamelHelp" placeholder="Enter your first name here" onChange={e => this.signUpInputHandler(e)}/>
             </div>
-        </form>
+
+            <div className="form-group">
+              <label>Family Name</label>
+              <input name="family_name" type="text" className="form-control" id="inputFamilyName" aria-describedby="familynamelHelp" placeholder="Enter your family name here" onChange={e => this.signUpInputHandler(e)}/>
+            </div>
+
+            <div className="form-group">
+              <label>Phone Number</label>
+              <input name="phonenumber" required type="integer" className="form-control" id="inputPhonenumber" aria-describedby="phonenumberHelp" placeholder="Enter your phonenumber here" onChange={e => this.handlePhoneNum(e)}
+                />
+            </div>
+
+            <div className="form-group">
+              <label>Username</label>
+              <input name="username" required type="text" className="form-control" id="inputUsername" aria-describedby="usernameHelp" placeholder="Enter your username here" onChange={e => this.signUpInputHandler(e)} />
+            </div>
+
+            <div className="form-group">
+              <label>Password</label>
+              <input name="password" required type="password" className="form-control" id="inputPassword" aria-describedby="passwordHelp" placeholder="Enter your password here" onChange={e => this.signUpInputHandler(e)} />
+            </div>
+
+            <div className="form-group">
+              <label className="control-label" htmlFor="sex">
+                Sex:
+              </label>
+              <select
+                name="sex"
+                value={this.state.sex}
+                onChange={this.signUpInputHandler}
+              >
+                <option value={null}>Select gender</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <input name="email" required type="email" className="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter your email here" onChange={e => this.signUpInputHandler(e)} />
+            </div>
+
+            <div className=".center-block ">
+                <button type="submit" className="btn btn-primary">
+                  Register
+                </button>
+              </div>
+          </form>
+        </div>
       </div>
     )
   }
