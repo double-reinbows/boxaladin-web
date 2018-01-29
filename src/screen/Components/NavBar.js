@@ -12,7 +12,6 @@ import {
   DropdownItem
 } from 'reactstrap';
 
-  import './index.css'
   import {connect} from 'react-redux'
 
   import {logoutAction} from '../../actions/'

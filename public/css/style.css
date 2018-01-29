@@ -66,25 +66,6 @@ body {
   height: 5rem;
   margin: 2.5rem; }
 
-.footerz {
-  background-color: var(--color-primary-3);
-  color: var(--color-grey-light-1);
-  padding: 2rem;
-  font-size: 2rem;
-  height: 15rem; }
-
-.headerz {
-  background-color: var(--color-primary-1);
-  border-bottom: var(--line);
-  padding: 2rem;
-  font-size: 2rem; }
-
-.headerzz {
-  padding: 2rem; }
-
-.btn-login {
-  padding: right 2rem; }
-
 .container {
   width: 35rem;
   padding: 5rem;
@@ -134,3 +115,82 @@ body {
     padding-top: 2rem;
     padding-bottom: 2rem;
     align-content: center; }
+
+.headerz {
+  background-color: var(--color-primary-1);
+  border-bottom: var(--line);
+  padding: 2rem;
+  font-size: 2rem; }
+
+.headerzz {
+  padding: 2rem; }
+
+.btn-login {
+  padding: right 2rem; }
+
+.navbar-list {
+  color: black;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important; }
+
+.navbar-list:hover {
+  color: white !important;
+  background-color: #e5b721;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important; }
+
+.contactUs {
+  color: black;
+  margin-right: 20px;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important; }
+
+.navbar-list-contactUs:hover {
+  color: white !important;
+  background-color: #e5b721;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important; }
+
+.logo-container img {
+  margin-right: 8px; }
+
+.image-label {
+  width: 300px;
+  font-size: 25px;
+  color: white;
+  background-color: black;
+  opacity: 0.65;
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  top: 70%;
+  transform: translateY(-50%); }
+
+.image-label-text-top {
+  margin-bottom: 10px; }
+
+.image-label-text-bottom {
+  font-weight: bolder; }
+
+@media screen and (max-width: 574px) and (min-width: 300px) {
+  .Bar-Second-Text {
+    font-size: 21.7px; } }
+
+.footerz {
+  background-color: var(--color-primary-3);
+  color: var(--color-grey-light-1);
+  padding: 2rem;
+  font-size: 2rem;
+  height: 15rem; }
+
+.footerr {
+  width: 100%;
+  color: white;
+  background: black;
+  font-size: 15px; }
+
+.footer-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }

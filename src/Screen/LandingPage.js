@@ -13,7 +13,6 @@ import LogoTelkomsel from '../asset/LandingPage/pulsa/Telkomsel.svg'
 import LogoTri from '../asset/LandingPage/pulsa/Tri.svg'
 import LogoXL from '../asset/LandingPage/pulsa/Xl.svg'
 
-import '../index.css'
 import {loginAction} from '../actions/'
 
 
