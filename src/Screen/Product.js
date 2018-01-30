@@ -16,46 +16,18 @@ import { getProducts, getFilteredProducts } from '../actions/productAction'
 import { getCategories } from '../actions/categoryAction'
 import { getBrands } from '../actions/brandAction'
 
-// Modal.setAppElement('#root');
-
-// const customStyles = {
-// 	overlay : {
-//     position          : 'absolute',
-//     top               : 0,
-//     left              : 0,
-//     right             : 0,
-//     bottom            : 0,
-//     backgroundColor   : 'rgba(255, 255, 255, 0.80)'
-//   },
-//   content : {
-//     // position                   : 'relative',
-//     // top                        : '200px',
-//     // left                       : '500px',
-//     // right                      : '500px',
-//     // bottom                     : '200px',
-//     // border                     : '1px solid #ccc',
-//     // background                 : '#fff',
-//     // overflow                   : 'auto',
-//     // WebkitOverflowScrolling    : 'touch',
-//     // borderRadius               : '4px',
-//     // outline                    : 'none',
-//     // padding                    : '50px'
-//   }
-// };
-
 class Product extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			products: [],
 			productUnlocked: {},
 			showPriceModal: false,
-			categories: [],
-			brands: [],
 			selectedCategory: 'all',
 			selectedBrand: 'all',
 			isVerified: false,
-			filteredProducts: []
+			count: 15,
+			initCount: 15,
+			selectedProductId: ''
 		}
 
 		this.toggleShowPriceModal = this.toggleShowPriceModal.bind(this)
@@ -97,6 +69,7 @@ class Product extends Component {
 						<strike><h4>Rp{this.state.productUnlocked.price}</h4></strike>
 						<h1>Rp{this.state.productUnlocked.aladinPrice}</h1>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						<h1>{this.state.count < 10 ? `00:0${this.state.count}` : `00:${this.state.count}`}</h1>
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={() => this.toggleShowPriceModal()}>Cancel</Button>
@@ -109,9 +82,6 @@ class Product extends Component {
   }
 
 	componentDidMount() {
-		// this.fetchBrands()
-		// this.fetchCategories()
-		// this.fetchProductsWithFilter()
 		this.cekEmail()
 		this.props.getProducts()
 		this.props.getCategories()
@@ -119,129 +89,36 @@ class Product extends Component {
 		this.props.getFilteredProducts(this.state.selectedBrand, this.state.selectedCategory)
 	}
 
-	// fetchProductsWithFilter() {
-	// 	// const productsRef = firebase.database().ref().child('products')
-	// 	// productsRef.once('value').then(snap => {
-	// 	// 	let dataProducts = []
-	// 	// 	for (var key in snap.val()) {
-	// 	// 		dataProducts.push(snap.val()[key])
-	// 	// 	}
-  //
-	// 		if (this.state.selectedBrand === 'all' && this.state.selectedCategory === 'all') {
-	//       // fetch all products
-	// 			this.setState({ products: this.props.products })
-	// 			console.log('show all products');
-	// 		} else if (this.state.selectedBrand === 'all') {
-	// 			// filter products by category
-	// 			const filtered = this.props.products.filter(product => {
-	// 				return product.categoryId.toString() === this.state.selectedCategory
-	// 			})
-	// 			this.setState({ products: filtered })
-	// 			console.log(filtered);
-	// 			console.log('filter products by category');
-	// 		} else if (this.state.selectedCategory === 'all') {
-	// 			// filter products by brand
-	// 			const filtered = this.props.products.filter(product => {
-	// 				return product.brandId.toString() === this.state.selectedBrand
-	// 			})
-	// 			this.setState({ products: filtered })
-	// 			console.log(filtered);
-	// 			console.log('filter products by brand');
-	// 		} else {
-	//       // filter products by category & brand
-	// 			const filteredByBrand = this.props.products.filter(product => {
-	// 				return product.brandId.toString() === this.state.selectedBrand
-	// 			})
-	// 			const filtered = filteredByBrand.filter(product => {
-	// 				return product.categoryId.toString() === this.state.selectedCategory
-	// 			})
-	// 			this.setState({ products: filtered })
-	// 			console.log(filtered);
-	// 			console.log('filter products by brand & category');
-	// 		}
-  //
-	// 	// })
+	componentDidUpdate(prevProps, prevState) {
+		this.checkTimer(prevState.count)
+	}
+
+	// closeModalPrice(productId) {
+	// 	const productsRef = firebase.database().ref().child('products')
+	// 	const productRef = productsRef.child(productId)
+	// 	productRef.off()
+	// 	this.setState({showPriceModal: false, productUnlocked: {}})
 	// }
 
-	filterProducts() {
-		if (this.state.selectedBrand === 'all' && this.state.selectedCategory === 'all') {
-			// fetch all products
-			this.setState({ products: this.props.products })
-			console.log('show all products');
-		} else if (this.state.selectedBrand === 'all') {
-			// filter products by category
-			const filtered = this.props.products.filter(product => {
-				return product.categoryId.toString() === this.state.selectedCategory
-			})
-			this.setState({ products: filtered })
-			console.log(filtered);
-			console.log('filter products by category');
-		} else if (this.state.selectedCategory === 'all') {
-			// filter products by brand
-			const filtered = this.props.products.filter(product => {
-				return product.brandId.toString() === this.state.selectedBrand
-			})
-			this.setState({ products: filtered })
-			console.log(filtered);
-			console.log('filter products by brand');
-		} else {
-			// filter products by category & brand
-			const filteredByBrand = this.props.products.filter(product => {
-				return product.brandId.toString() === this.state.selectedBrand
-			})
-			const filtered = filteredByBrand.filter(product => {
-				return product.categoryId.toString() === this.state.selectedCategory
-			})
-			this.setState({ products: filtered })
-			console.log(filtered);
-			console.log('filter products by brand & category');
+	checkTimer(prevCount) {
+		if (this.state.count > 0 && this.state.count !== prevCount && this.state.showPriceModal === true) {
+			this.runTimer()
+		} else if (this.state.count <= 0 && this.state.count !== prevCount && this.state.showPriceModal === true) {
+			this.setState({showPriceModal: false})
+		} else if (this.state.count !== this.state.initCount && this.state.showPriceModal === false) {
+			this.setState({count: this.state.initCount})
 		}
 	}
 
-	// fetchBrands() {
-	// 	axios({
-	// 		method: 'GET',
-	// 		url: `http://localhost:3000/api/brand`
-	// 	})
-	// 	.then(({data}) => this.setState({ brands: data}))
-	// 	.catch(err => console.log(err))
-	// }
-
-	// fetchCategories() {
-	// 	axios({
-	// 		method: 'GET',
-	// 		url: `http://localhost:3000/api/category`
-	// 	})
-	// 	.then(({data}) => this.setState({ categories: data }))
-	// 	.catch(err => console.log(err))
-	// }
-
-	// fetchProducts() {
-	// 	const productsRef = firebase.database().ref().child('products')
-	// 	productsRef.once('value').then(snap => {
-	// 		// console.log(snap.val())
-	// 		let dataProducts = []
-	// 		// snap.val().map(dataProduct => (
-	// 		// 	dataProducts.push(dataProduct)
-	// 		// ))
-	// 		for (var key in snap.val()) {
-	// 			dataProducts.push(snap.val()[key])
-	// 			// console.log(snap.val()[key]);
-	// 		}
-	// 		// console.log(dataProducts);
-	// 		this.setState({ products: dataProducts })
-	// 		this.setState({ filteredProducts: dataProducts })
-	// 	})
-	// }
-
-	closeModalPrice(productId) {
-		const productsRef = firebase.database().ref().child('products')
-		const productRef = productsRef.child(productId)
-		productRef.off()
-		this.setState({showPriceModal: false, productUnlocked: {}})
+	runTimer() {
+		setTimeout(() => {
+			this.setState({count: this.state.count >= 0 ? this.state.count-1 : 0})
+		}, 1000)
 	}
 
 	watchProductPrice(productId) {
+		// this.setState({selectedProductId: productId})
+		
 		if (localStorage.getItem('token') !== null) {
 			axios({
 				method: 'POST',
@@ -259,9 +136,13 @@ class Product extends Component {
 					const productsRef = firebase.database().ref().child('products')
 					const productRef = productsRef.child(productId)
 					productRef.on('value', snap => {
+						this.setState({selectedProductId: productId})
 						this.setState({productUnlocked: snap.val()})
 						this.setState({showPriceModal: true})
 					})
+
+					this.runTimer()					
+
 				} else if (data.message === 'not enough aladin key') {
 					alert(data.message)
 				} else {
