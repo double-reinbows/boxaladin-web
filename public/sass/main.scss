@@ -1,14 +1,17 @@
-// reuseable components
-@import "components/animations";
-@import "components/base";
-@import "components/components";
-@import "components/form";
-@import "components/typography";
-@import "components/utilities";
-@import "components/variables";
+//components
+@import "components/container";
+@import "components/footer";
+@import "components/navbar";
 
 //pages
-@import "pages/container";
-@import "pages/footer";
 @import "pages/landingpage";
-@import "pages/navbar";
+@import "pages/product";
+
+// reuseable components
+@import "reusable/animations";
+@import "reusable/base";
+@import "reusable/components";
+@import "reusable/form";
+@import "reusable/typography";
+@import "reusable/utilities";
+@import "reusable/variables";
