@@ -56,9 +56,9 @@ class Login extends Component {
 
         <div className="containerrr">
 
-          <div className="containerrr__row1">
-            <div>
-              <img src={IconUser} alt="IconUser" className="containerrr__icon" />
+          <div className="containerrr__row1 mx-auto">
+            <div className="containerrr__row1__img ">
+              <img src={IconUser} alt="IconUser" className="containerrr__icon rounded mx-auto d-block" />
             </div>
 
             <div className="containerrr__form">
