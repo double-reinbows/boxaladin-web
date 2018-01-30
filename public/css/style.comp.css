@@ -90,55 +90,34 @@
 .product {
   background-color: var(--color-primary-3); }
 
-.container {
-  width: 35rem;
-  padding: 5rem;
-  margin: 10rem;
-  background-color: var(--color-grey-light-1);
-  box-shadow: var(--shadow-dark); }
-
-.container-login {
-  display: flex;
-  justify-content: center; }
-
-.containerrr {
+.containerSignUp {
   width: 40rem;
   height: 80rem;
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
   font-size: 2rem; }
-  .containerrr__small {
+  .containerSignUp__small {
     font-size: 1rem; }
-  .containerrr__row1 {
+  .containerSignUp__row1 {
     background-color: var(--color-container-1);
     padding: 2rem; }
-  .containerrr__icon {
-    height: 20rem;
+  .containerSignUp__icon {
+    height: 10rem;
     align-items: center; }
-  .containerrr__form {
+  .containerSignUp__form {
     padding-top: 2rem; }
-  .containerrr__formsignup {
-    padding: 20rem; }
-  .containerrr__row2 {
+  .containerSignUp__row2 {
     background-color: var(--color-container-2);
     margin-top: 0rem;
     padding: 2rem; }
-  .containerrr__button {
+  .containerSignUp__row3 {
+    background-color: var(--color-container-1);
+    margin-top: 0rem; }
+  .containerSignUp__button {
     padding-left: 2rem;
     padding-right: 2rem;
     padding-top: 4rem;
     padding-bottom: 4rem; }
-  .containerrr__row3 {
-    background-color: var(--color-container-1);
-    color: var(--color-grey-light-1);
-    display: flex;
-    justify-content: center; }
-  .containerrr__label {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    align-content: center; }
 
 .container {
   width: 35rem;

@@ -52,33 +52,32 @@ class Login extends Component {
   render () {
     console.log('Props:', this.props);
     return (
-      <div className="container-login">
+      <div className="Login">
+        <div className="Login__container">
 
-        <div className="containerrr">
+          <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
 
-          <div className="containerrr__row1 mx-auto">
-            <div className="containerrr__row1__img ">
-              <img src={IconUser} alt="IconUser" className="containerrr__icon rounded mx-auto d-block" />
+          <div className="Login__container__row1 mx-auto">
+            <div className="Login__container__row1">
+              <img src={IconUser} alt="IconUser" className="Login__container__icon rounded mx-auto d-block" />
             </div>
 
-            <div className="containerrr__form">
-              <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
+            <div className="Login__container__form">
                 <div className="form-group">
                   <label>Email address</label>
                   <input name="username" type="username" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email or username here" onChange={ (e) => this.logInInputHandler(e) }/>
-                  <small id="emailHelp" className="form-text text-muted containerrr__small">We'll never share your email or username with anyone else.</small>
+                  <small id="emailHelp" className="form-text text-muted Login__container__small">We'll never share your email or username with anyone else.</small>
                 </div>
                 <div className="form-group">
                   <label>Password</label>
                   <input name="password" type="password"  className="form-control" id="exampleInputPassword" aria-describedby="passwordHelp" placeholder="Enter your password" onChange={ (e) => this.logInInputHandler(e) }/>
                 </div>
-              </form>
             </div>
 
           </div>
 
-          <div className="containerrr__row2">
-            <div className="containerrr__button">
+          <div className="Login__container__row2">
+            <div className="Login__container__button">
               <div className="form-group">
                   <button type="submit" className="btn btn-primary btn-lg btn-block">Login</button>
               </div>
@@ -88,9 +87,11 @@ class Login extends Component {
             </div>
           </div>
 
-          <div className="containerrr__row3">
-            <label className="containerrr__label">Don't have an account? <a href="/signup"> Sign up</a></label>
+          <div className="Login__container__row3">
+            <label className="Login__container__label">Don't have an account? <a href="/signup"> Sign up</a></label>
           </div>
+
+          </form>
 
         </div>
 
