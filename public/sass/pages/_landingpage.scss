@@ -1,6 +1,7 @@
 //isi bar pertama dari bawah navbar
 .Bar-First {
-  margin: 0rem;
+  margin: 0rem !important;
+  padding: 0rem !important;
   &__col1{
     // gak bisa di timpa jadi di kasih !important
     padding: 0rem !important;

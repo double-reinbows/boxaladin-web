@@ -34,7 +34,8 @@
       padding-bottom: 20px !important; }
 
 .Bar-First {
-  margin: 0rem; }
+  margin: 0rem !important;
+  padding: 0rem !important; }
   .Bar-First__col1 {
     padding: 0rem !important; }
   .Bar-First__col2 {

@@ -3,16 +3,16 @@ import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 //convention pake camelcase
-import NavBar from './screen/Components/NavBar'
-import Footer from './screen/Components/Footer'
+import NavBar from './Screen/Components/NavBar'
+import Footer from './Screen/Components/Footer'
 
-import Login from './screen/Login'
-import Signup from './screen/Signup'
-import EmailVerificationDone from './screen/EmailVerificationDone'
-import Product from './screen/Product'
-import LandingPage from './screen/LandingPage'
-import User from './screen/User'
-import Home from './screen/Home'
+import Login from './Screen/Login'
+import Signup from './Screen/Signup'
+import EmailVerificationDone from './Screen/EmailVerificationDone'
+import Product from './Screen/Product'
+import LandingPage from './Screen/LandingPage'
+import User from './Screen/User'
+import Home from './Screen/Home'
 
 
 // import Phone from './screen/Phone'

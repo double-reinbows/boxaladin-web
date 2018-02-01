@@ -35,13 +35,11 @@ class NavBar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="faded" light expand="md" className="Navbarz">
-        <img
-          src={logo}
-          alt="logo"
-          className="logo"
-          href="/home"
-        />
+        <Navbar light expand="md" className="Navbarz">
+          <a href="/home">
+            <img src={logo} alt="logo" className="logo" href="/home"/>
+          </a>
+
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
