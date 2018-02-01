@@ -1,6 +1,7 @@
 const defaultState = {
   products: [],
-  filteredProducts: []
+  filteredProducts: [],
+  // cart: []
 }
 
 const productReducer = (state=defaultState, action) => {
@@ -10,6 +11,9 @@ const productReducer = (state=defaultState, action) => {
 
     case 'GET_FILTERED_PRODUCTS':
       return {...state, filteredProducts: action.payload}
+
+    // case 'UPDATE_CART':
+    //   return {...state, cart: action.payload}
 
   default:
     return state

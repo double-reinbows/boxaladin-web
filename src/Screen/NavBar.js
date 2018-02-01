@@ -11,6 +11,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
+import { Link } from 'react-router-dom'
 
   import {connect} from 'react-redux'
 
@@ -57,8 +58,12 @@ class NavBar extends React.Component {
       return (
         <Nav navbar >
           <NavItem>
-            <NavLink href="/product">PRODUCT</NavLink>
+            <Link to="/product" className="nav-link">PRODUCT</Link>
           </NavItem>
+
+          {/* <NavItem>
+            <Link to="/cart" className="nav-link">CART</Link>
+          </NavItem> */}
 
           <UncontrolledDropdown nav>
             <DropdownToggle nav caret>
@@ -69,7 +74,7 @@ class NavBar extends React.Component {
               Hi,
             </DropdownItem>
               <DropdownItem>
-                User Profile
+                <Link to="/me" className="nav-link">User Profile</Link>
               </DropdownItem>
               <DropdownItem divider />
               <DropdownItem onClick={() => this.logout()}>

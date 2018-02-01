@@ -12,45 +12,29 @@ import {
 	Form, FormGroup, Label, Input
 } from 'reactstrap'
 
-import { getProducts, getFilteredProducts } from '../actions/productAction'
+import { getProducts, getFilteredProducts, addToCart } from '../actions/productAction'
 import { getCategories } from '../actions/categoryAction'
 import { getBrands } from '../actions/brandAction'
+import { getPhoneNumbers } from '../actions/'
 
 class Product extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			productUnlocked: {},
-			showPriceModal: false,
+			isOpenPriceModal: false,
 			selectedCategory: 'all',
 			selectedBrand: 'all',
-			isVerified: false,
+			// isVerified: false,
 			count: 15,
 			initCount: 15,
-			selectedProductId: ''
+			selectedProductId: '',
+			isOpenPhoneModal: false,
+			selectedPhone: ''
 		}
 
-		this.toggleShowPriceModal = this.toggleShowPriceModal.bind(this)
-	}
-
-	cekEmail(){
-		if (localStorage.getItem("token")){
-			const userInfo = jwt.decode(localStorage.getItem('token'));
-			console.log(userInfo)
-			if (userInfo.emailVerificationStatus === true) {
-				this.setState({
-					isVerified: true
-				})
-			} else {
-				this.setState({
-					isVerified: false
-				})
-			}
-		}
-	}
-
-	toggleShowPriceModal() {
-		this.setState({showPriceModal: !this.state.showPriceModal})
+		this.togglePriceModal = this.togglePriceModal.bind(this)
+		this.togglePhoneModal = this.togglePhoneModal.bind(this)
 	}
 
   render () {
@@ -63,49 +47,162 @@ class Product extends Component {
 					{ this.showProducts() }
 				</Container>
 
-				<Modal isOpen={this.state.showPriceModal}>
-          <ModalHeader toggle={this.toggleShowPriceModal}>{this.state.productUnlocked.productName}</ModalHeader>
-          <ModalBody>
-						<strike><h4>Rp{this.state.productUnlocked.price}</h4></strike>
-						<h1>Rp{this.state.productUnlocked.aladinPrice}</h1>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-						<h1>{this.state.count < 10 ? `00:0${this.state.count}` : `00:${this.state.count}`}</h1>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="secondary" onClick={() => this.toggleShowPriceModal()}>Cancel</Button>
-            <Button color="primary" onClick={() => console.log('BUY clicked!')}>Buy</Button>{' '}
-          </ModalFooter>
-        </Modal>
+				{ this.showPriceModal() }
+				{ this.showPhoneModal() }
 
       </div>
     )
   }
 
 	componentDidMount() {
-		this.cekEmail()
+		// this.cekEmail()
 		this.props.getProducts()
 		this.props.getCategories()
 		this.props.getBrands()
 		this.props.getFilteredProducts(this.state.selectedBrand, this.state.selectedCategory)
+		this.props.getPhoneNumbers()
 	}
 
 	componentDidUpdate(prevProps, prevState) {
 		this.checkTimer(prevState.count)
 	}
 
-	// closeModalPrice(productId) {
-	// 	const productsRef = firebase.database().ref().child('products')
-	// 	const productRef = productsRef.child(productId)
-	// 	productRef.off()
-	// 	this.setState({showPriceModal: false, productUnlocked: {}})
+	// addToCart(product) {
+	// 	this.props.addToCart(this.props.cart, product)
+	// 	this.togglePriceModal()
 	// }
 
+	submitTransaction(e) {
+		e.preventDefault()
+
+		axios({
+			method: 'POST',
+			url: `http://localhost:3000/payment`,
+			data: {
+				amount: this.state.productUnlocked.aladinPrice,
+				productId: this.state.productUnlocked.id,
+				phoneNumber: this.state.selectedPhone
+			},
+			headers: {
+				token: localStorage.getItem('token')
+			}
+		})
+		.then(({data}) => {
+			this.setState({
+				selectedProductId: '',
+				productUnlocked: {},
+				selectedPhone: ''
+			})
+			this.togglePhoneModal()
+			console.log('Data dari create transaction:', data)
+			this.props.history.push('/invoice')
+		})
+		.catch(err => console.log(err))
+	}
+
+	togglePhoneModal() {
+		this.setState({isOpenPhoneModal: !this.state.isOpenPhoneModal})
+	}
+
+	showPhoneModal() {
+		return (
+			<Modal isOpen={this.state.isOpenPhoneModal}>
+				<Form onSubmit={(e) => this.submitTransaction(e)}>
+					<ModalHeader toggle={this.togglePhoneModal}>Nomor tujuan</ModalHeader>
+					<ModalBody>
+						{/* Form here */}
+							
+							<FormGroup>
+								<Label for="selectNumber"></Label>
+								<Input onChange={(e) => this.setState({selectedPhone: e.target.value})} type="select" name="selectNumber" id="selectNumber">
+									{this.props.phoneNumbers.map((phone, idx) => {
+										return (
+											<option key={idx} value={phone.number}>{phone.number}</option>
+										)
+									})}
+								</Input>
+							</FormGroup>
+
+							{/* <FormGroup>
+								<Input type="text" name="phone" placeholder="Phone Number" />
+							</FormGroup> */}
+
+					</ModalBody>
+					<ModalFooter>
+						<Button type="submit" color="primary">Confirm</Button>
+						<Button type="button" color="danger" onClick={this.togglePhoneModal}>Cancel</Button>
+					</ModalFooter>
+				</Form>
+			</Modal>
+		)
+	}
+
+	insertPhoneNumber() {
+		this.closeModalPrice(this.state.selectedProductId)
+		this.setState({selectedPhone: this.props.phoneNumbers[0] ? this.props.phoneNumbers[0].number : ''})		
+
+		axios({
+			method: 'PUT',
+			url: `http://localhost:3000/api/product/${this.state.selectedProductId}`
+		})
+		.then(({data}) => {
+			this.togglePhoneModal()
+		})
+		.catch(err => console.log(err))
+	}
+
+	showPriceModal() {
+		return (
+			<Modal isOpen={this.state.isOpenPriceModal}>
+				<ModalHeader toggle={this.togglePriceModal}>{this.state.productUnlocked.productName}</ModalHeader>
+				<ModalBody>
+					<strike><h4>Rp{this.state.productUnlocked.price}</h4></strike>
+					<h1>Rp{this.state.productUnlocked.aladinPrice}</h1>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					<h1>{this.state.count < 10 ? `00:0${this.state.count}` : `00:${this.state.count}`}</h1>
+				</ModalBody>
+				<ModalFooter>
+					<Button color="secondary" onClick={() => this.closeModalPrice(this.state.selectedProductId)}>Cancel</Button>
+					<Button color="primary" onClick={() => this.insertPhoneNumber()}>Buy</Button>
+				</ModalFooter>
+			</Modal>
+		)
+	}
+
+	// cekEmail(){
+	// 	if (localStorage.getItem("token")){
+	// 		const userInfo = jwt.decode(localStorage.getItem('token'));
+	// 		console.log(userInfo)
+	// 		if (userInfo.emailVerificationStatus === true) {
+	// 			this.setState({
+	// 				isVerified: true
+	// 			})
+	// 		} else {
+	// 			this.setState({
+	// 				isVerified: false
+	// 			})
+	// 		}
+	// 	}
+	// }
+
+	togglePriceModal() {
+		this.setState({isOpenPriceModal: !this.state.isOpenPriceModal})
+	}
+
+	closeModalPrice(productId) {
+		const productsRef = firebase.database().ref().child('products')
+		const productRef = productsRef.child(productId)
+		productRef.off()
+
+		this.setState({isOpenPriceModal: false})
+	}
+
 	checkTimer(prevCount) {
-		if (this.state.count > 0 && this.state.count !== prevCount && this.state.showPriceModal === true) {
+		if (this.state.count > 0 && this.state.count !== prevCount && this.state.isOpenPriceModal === true) {
 			this.runTimer()
-		} else if (this.state.count <= 0 && this.state.count !== prevCount && this.state.showPriceModal === true) {
-			this.setState({showPriceModal: false})
-		} else if (this.state.count !== this.state.initCount && this.state.showPriceModal === false) {
+		} else if (this.state.count <= 0 && this.state.count !== prevCount && this.state.isOpenPriceModal === true) {
+			this.setState({isOpenPriceModal: false})
+		} else if (this.state.count !== this.state.initCount && this.state.isOpenPriceModal === false) {
 			this.setState({count: this.state.initCount})
 		}
 	}
@@ -138,7 +235,12 @@ class Product extends Component {
 					productRef.on('value', snap => {
 						this.setState({selectedProductId: productId})
 						this.setState({productUnlocked: snap.val()})
-						this.setState({showPriceModal: true})
+						this.setState({isOpenPriceModal: true})
+
+						if (snap.val().aladinPrice === snap.val().price) {
+							this.closeModalPrice(this.state.selectedProductId)
+						}
+
 					})
 
 					this.runTimer()					
@@ -223,7 +325,9 @@ const mapStateToProps = (state) => {
 		products: state.productReducer.products,
 		categories: state.categoryReducer.categories,
 		brands: state.brandReducer.brands,
-		filteredProducts: state.productReducer.filteredProducts
+		filteredProducts: state.productReducer.filteredProducts,
+		phoneNumbers: state.userReducer.phoneNumbers
+		// cart: state.productReducer.cart
   }
 }
 
@@ -232,7 +336,9 @@ const mapDispatchToProps = (dispatch) => {
 		getProducts: () => dispatch(getProducts()),
 		getCategories: () => dispatch(getCategories()),
 		getBrands: () => dispatch(getBrands()),
-		getFilteredProducts: (brand, category) => dispatch(getFilteredProducts(brand, category))
+		getFilteredProducts: (brand, category) => dispatch(getFilteredProducts(brand, category)),
+		getPhoneNumbers: () => dispatch(getPhoneNumbers())
+		// addToCart: (cart, product) => dispatch(addToCart(cart, product))
 	}
 }
 

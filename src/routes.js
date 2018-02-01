@@ -12,6 +12,8 @@ import EmailVerificationDone from './screen/EmailVerificationDone'
 import Product from './screen/Product'
 import LandingPage from './screen/LandingPage'
 import User from './screen/User'
+import Invoice from './screen/Invoice'
+// import Cart from './screen/Cart'
 
 
 class RouteList extends React.Component {
@@ -76,10 +78,36 @@ class RouteList extends React.Component {
               path="/product"
               component={Product}
             />
+            
             <Route
               path="/emailVerification"
               component={EmailVerificationDone}
             />
+
+            <Route
+              exact
+              path="/invoice"
+              render={() =>
+                localStorage.getItem('token') === null ? (
+                  <Redirect to="/" />
+                ) : (
+                  <Invoice />
+                )
+              }
+            />
+
+            {/* <Route
+              exact
+              path="/cart"
+              render={() =>
+                localStorage.getItem('token') !== null ? (
+                  <Cart />
+                ) : (
+                  <Redirect to="/" />
+                )
+              }
+            /> */}
+
           </div>
         </Router>
       </div>
