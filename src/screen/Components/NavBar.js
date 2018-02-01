@@ -37,7 +37,9 @@ class NavBar extends React.Component {
       <div>
         <Navbar light expand="md" className="Navbarz">
           <a href="/home">
-            <img src={logo} alt="logo" className="logo" href="/home"/>
+            <div className="Navbarz__Link">
+              <img src={logo} alt="logo" className="logo Navbarz__Link__img" href="/home"/>
+            </div>
           </a>
 
           <NavbarToggler onClick={this.toggle} />
