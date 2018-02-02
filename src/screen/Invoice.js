@@ -2,7 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {
   Container,
-  Table
+  Table,
+  Button
 } from 'reactstrap'
 
 import { getUserPendingTransactions, getUserTransactions } from '../actions/transactionAction'
@@ -39,8 +40,8 @@ class Invoice extends React.Component {
             <th>No.</th>
             <th>Barang</th>
             <th>Nominal Transfer</th>
-            <th>Virtual Bank Account</th>
             <th>Status</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -50,25 +51,20 @@ class Invoice extends React.Component {
                 <th scope="row">{idx+1}</th>
                 <td>{data.product.productName}</td>
                 <td>{data.payment.amount}</td>
-                <td>
-                  {/* {data.payment.availableBanks} */}
-                  <ul>
-                    {data.payment.availableBanks ? (
-                      data.payment.availableBanks.map((bank, idx) => {
-                        return (
-                          <li key={idx}>{bank.bank_code}: {bank.bank_account_number}</li>
-                        )
-                      })
-                    ) : null}
-                  </ul>
-                </td>
                 <td>{data.status}</td>
+                <td>{data.status === 'PENDING' ? (
+                  <Button color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button>
+                ) : null}</td>
               </tr>
             )
           })}
         </tbody>
       </Table>
     )
+  }
+
+  showMetodePembayaran(id) {
+    this.props.history.push(`/invoice/${id}`)
   }
 
 }

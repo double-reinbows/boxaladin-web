@@ -13,6 +13,7 @@ import Product from './screen/Product'
 import LandingPage from './screen/LandingPage'
 import User from './screen/User'
 import Invoice from './screen/Invoice'
+import InvoiceDetail from './screen/InvoiceDetail'
 // import Cart from './screen/Cart'
 
 
@@ -84,17 +85,8 @@ class RouteList extends React.Component {
               component={EmailVerificationDone}
             />
 
-            <Route
-              exact
-              path="/invoice"
-              render={() =>
-                localStorage.getItem('token') === null ? (
-                  <Redirect to="/" />
-                ) : (
-                  <Invoice />
-                )
-              }
-            />
+            <Route exact path="/invoice" component={Invoice} />
+            <Route exact path="/invoice/:id" component={InvoiceDetail} />
 
             {/* <Route
               exact

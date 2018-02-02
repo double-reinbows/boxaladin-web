@@ -95,7 +95,7 @@ class Product extends Component {
 			})
 			this.togglePhoneModal()
 			console.log('Data dari create transaction:', data)
-			this.props.history.push('/invoice')
+			this.props.history.push(`/invoice/${data.id}`)
 		})
 		.catch(err => console.log(err))
 	}
