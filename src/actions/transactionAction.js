@@ -1,7 +1,12 @@
 import axios from 'axios'
 
-  export const getUserPendingTransactionAction = (payload) => ({
-    type: 'GET_USER_PENDING_TRANSACTION',
+  export const getUserPendingTransactionsAction = (payload) => ({
+    type: 'GET_USER_PENDING_TRANSACTIONS',
+    payload
+  })
+
+  export const getUserTransactionsAction = (payload) => ({
+    type: 'GET_USER_TRANSACTIONS',
     payload
   })
 
@@ -15,7 +20,23 @@ import axios from 'axios'
         }
       })
       .then(({data}) => {
-        dispatch(getUserPendingTransactionAction(data))
+        dispatch(getUserPendingTransactionsAction(data))
+      })
+      .catch(err => console.log(err))
+    }
+  }
+
+  export const getUserTransactions = () => {
+    return (dispatch) => {
+      axios({
+        method: 'GET',
+        url: `http://localhost:3000/transaction/user`,
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      })
+      .then(({data}) => {
+        dispatch(getUserTransactionsAction(data))
       })
       .catch(err => console.log(err))
     }

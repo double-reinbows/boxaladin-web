@@ -76,6 +76,9 @@ class NavBar extends React.Component {
               <DropdownItem>
                 <Link to="/me" className="nav-link">User Profile</Link>
               </DropdownItem>
+              <DropdownItem>
+                <Link to="/invoice" className="nav-link">Invoice</Link>
+              </DropdownItem>
               <DropdownItem divider />
               <DropdownItem onClick={() => this.logout()}>
                 Logout

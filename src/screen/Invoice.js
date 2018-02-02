@@ -5,7 +5,7 @@ import {
   Table
 } from 'reactstrap'
 
-import { getUserPendingTransactions } from '../actions/transactionAction'
+import { getUserPendingTransactions, getUserTransactions } from '../actions/transactionAction'
 
 class Invoice extends React.Component {
   constructor(props) {
@@ -28,6 +28,7 @@ class Invoice extends React.Component {
 
   componentDidMount() {
     this.props.getUserPendingTransactions()
+    this.props.getUserTransactions()
   }
 
   showInvoice() {
@@ -39,10 +40,11 @@ class Invoice extends React.Component {
             <th>Barang</th>
             <th>Nominal Transfer</th>
             <th>Virtual Bank Account</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          {this.props.userPendingTransactions.map((data, idx) => {
+          {this.props.userTransactions.map((data, idx) => {
             return (
               <tr key={idx}>
                 <th scope="row">{idx+1}</th>
@@ -60,6 +62,7 @@ class Invoice extends React.Component {
                     ) : null}
                   </ul>
                 </td>
+                <td>{data.status}</td>
               </tr>
             )
           })}
@@ -72,13 +75,15 @@ class Invoice extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    userPendingTransactions: state.transactionReducer.userPendingTransactions
+    userPendingTransactions: state.transactionReducer.userPendingTransactions,
+    userTransactions: state.transactionReducer.userTransactions
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUserPendingTransactions: () => dispatch(getUserPendingTransactions())
+    getUserPendingTransactions: () => dispatch(getUserPendingTransactions()),
+    getUserTransactions: () => dispatch(getUserTransactions())
   }
 }
 
