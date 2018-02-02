@@ -3,19 +3,27 @@ import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 //convention pake camelcase
+
+//component page
 import NavBar from './Screen/Components/NavBar'
 import Footer from './Screen/Components/Footer'
 
+//page non login
+import LandingPage from './Screen/LandingPage'
+import AboutUs from './Screen/AboutUs'
+import HowItWorks from './Screen/HowItWorks'
+
+//page login
 import Login from './Screen/Login'
 import Signup from './Screen/Signup'
-import EmailVerificationDone from './Screen/EmailVerificationDone'
-import Product from './Screen/Product'
-import LandingPage from './Screen/LandingPage'
-import User from './Screen/User'
+
+//page after login
 import Home from './Screen/Home'
+import EmailVerificationDone from './Screen/EmailVerificationDone'
+import User from './Screen/User'
 
-
-// import Phone from './screen/Phone'
+//page can access with or without login
+import Product from './Screen/Product'
 
 
 class RouteList extends React.Component {
@@ -27,8 +35,10 @@ class RouteList extends React.Component {
             <NavBar />
 
             <Route exact path="/" component={LandingPage} />
-            <Route exact path="/home" component={Home} />
+            <Route exact path="/aboutus" component={AboutUs} />
+            <Route exact path="/howitworks" component={HowItWorks} />
 
+            <Route exact path="/home" component={Home} />
             <Route
               exact
               path="/Login"

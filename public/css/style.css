@@ -9,18 +9,6 @@
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   grid-gap: 2rem;
   align-items: center; }
-  .navfooter__link:link, .navfooter__link:visited {
-    font-size: 1.4rem;
-    color: #fff;
-    text-decoration: none;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 1.5rem;
-    display: block;
-    transition: all .2s; }
-  .navfooter__link:hover, .navfooter__link:active {
-    background-color: rgba(255, 255, 255, 0.05);
-    transform: translateY(-3px); }
 
 .linkfooter:link, .linkfooter:visited {
   font-size: 1.4rem;
@@ -44,8 +32,6 @@
   margin-left: auto;
   text-align: center;
   width: 70%; }
-  .copyright:hover {
-    color: yellow; }
 
 .Navbarz {
   background-color: var(--color-primary-1);
@@ -208,6 +194,22 @@
       padding-top: 2rem;
       padding-bottom: 2rem;
       align-content: center; }
+
+.AboutUs {
+  height: 100rem;
+  width: 100%;
+  background-color: var(--danger);
+  display: flex;
+  justify-content: center;
+  align-content: center; }
+
+.HowItWorks {
+  height: 100rem;
+  width: 100%;
+  background-color: var(--blue);
+  display: flex;
+  justify-content: center;
+  align-content: center; }
 
 * {
   margin: 0;
