@@ -1,18 +1,48 @@
 .footerz {
-  width: 100%;
-  color: white;
-  background: black;
-  font-size: 15px; }
-  .footerz__body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; }
+  background-color: var(--color-footer);
+  grid-column: full-start / full-end;
+  padding: 8rem; }
+
+.navf {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-gap: 2rem;
+  align-items: center; }
+  .navf__link:link, .navf__link:visited {
+    font-size: 1.4rem;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1.5rem;
+    display: block;
+    transition: all .2s; }
+  .navf__link:hover, .navf__link:active {
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateY(-3px); }
+
+.copyright {
+  font-size: 1.4rem;
+  color: var(--color-footer-text);
+  margin-top: 6rem;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  width: 70%; }
 
 .Navbarz {
   background-color: var(--color-primary-1);
   border-bottom: var(--line);
-  padding: 2rem;
+  padding-top: 0rem !important;
+  padding-bottom: 0rem !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
   font-size: 2rem; }
+  .Navbarz__Link {
+    padding: 5px; }
+    .Navbarz__Link__img {
+      margin: 0px !important; }
   .Navbarz__List {
     color: black;
     padding-top: 20px !important;
@@ -210,6 +240,8 @@ body {
   --color-grey-dark-3: #999;
   --color-container-1: #ffbe76;
   --color-container-2: #f0932b;
+  --color-footer: #101d2c;
+  --color-footer-text: #aaa;
   --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
   --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
   --line: 1px solid var(--color-grey-light-2); }

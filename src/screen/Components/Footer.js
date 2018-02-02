@@ -3,33 +3,16 @@ export default  class Footer extends React.Component {
 
   render() {
     return (
-      <div className="footerz" >
-        <div className="row text-center" style={{marginRight:0,marginLeft:0}}>
-          <div className="col-sm-4 footerz__body">
-            ABOUT US
-          </div>
-
-          <div className="col-sm-4 footerz__body">
-            QUICKLINKS
-          </div>
-
-          <div className="col-sm-4 footerz__body" style={{paddingRight:0}}>
-            <div >
-              GET IN TOUCH
-            </div>
-            <div >
-              Home
-            </div>
-            <div >
-              Phone
-            </div>
-            <div >
-              Our Social Media
-            </div>
-
-
-          </div>
-        </div>
+      <div className="footerz">
+          <ul className="navfooter">
+            <li className="navf__item"><a href="/aboutus" className="linkfooter">About Us</a></li>
+            <li className="navf__item"><a className="linkfooter">Get in touch</a></li>
+            <li className="navf__item"><a className="linkfooter">How it works</a></li>
+            <li className="navf__item"><a className="linkfooter">Contact us</a></li>
+          </ul>
+          <p className="copyright">
+              &copy; Copyright 2017 by BoxAladin.
+          </p>
       </div>
     );
   }
