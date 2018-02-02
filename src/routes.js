@@ -13,7 +13,7 @@ import Product from './screen/Product'
 import LandingPage from './screen/LandingPage'
 import User from './screen/User'
 import Invoice from './screen/Invoice'
-import InvoiceDetail from './screen/InvoiceDetail'
+import Pembayaran from './screen/Pembayaran'
 // import Cart from './screen/Cart'
 
 
@@ -86,7 +86,7 @@ class RouteList extends React.Component {
             />
 
             <Route exact path="/invoice" component={Invoice} />
-            <Route exact path="/invoice/:id" component={InvoiceDetail} />
+            <Route exact path="/payment/:id" component={Pembayaran} />
 
             {/* <Route
               exact

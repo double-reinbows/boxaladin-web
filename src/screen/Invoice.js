@@ -64,7 +64,7 @@ class Invoice extends React.Component {
   }
 
   showMetodePembayaran(id) {
-    this.props.history.push(`/invoice/${id}`)
+    this.props.history.push(`/payment/${id}`)
   }
 
 }
