@@ -55,7 +55,7 @@ class Login extends Component {
       <div className="Login">
         <div className="Login__container">
 
-          <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
+          <form className="form-login" onSubmit={ (e) => this.logIn(e)}>
 
           <div className="Login__container__row1 mx-auto">
             <div className="Login__container__row1">

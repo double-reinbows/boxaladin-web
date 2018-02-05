@@ -196,21 +196,21 @@
       align-content: center; }
 
 .AboutUs {
-  height: 100rem;
+  height: 75rem;
   width: 100%;
   background-color: var(--danger);
   display: flex;
   justify-content: center;
-  align-content: center; }
+  align-items: center; }
 
 .HowItWorks {
-  height: 100rem;
+  height: 75rem;
   width: 100%;
   background-color: var(--blue);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-content: center; }
+  align-items: center;
+  justify-content: center; }
 
 * {
   margin: 0;
