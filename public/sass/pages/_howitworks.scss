@@ -1,9 +1,10 @@
 .HowItWorks{
-  height: 100rem;
+  height: 75rem;
   width: 100%;
   background-color: var(--blue);
 
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-content: center;
 }

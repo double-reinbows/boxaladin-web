@@ -195,11 +195,22 @@
       padding-bottom: 2rem;
       align-content: center; }
 
-.product {
-  background-color: var(--color-primary-3); }
+.AboutUs {
+  height: 100rem;
+  width: 100%;
+  background-color: var(--danger);
+  display: flex;
+  justify-content: center;
+  align-content: center; }
 
-.product {
-  background-color: var(--color-primary-3); }
+.HowItWorks {
+  height: 100rem;
+  width: 100%;
+  background-color: var(--blue);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center; }
 
 * {
   margin: 0;
