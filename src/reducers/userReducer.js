@@ -10,7 +10,7 @@ const userReducer = (state=defaultState, action) => {
       return {...state, isLogin: true, dataUser: action.payload}
 
     case 'LOGOUT':
-      return {...state, isLogin: false, dataUser: null, phoneNumbers: null}
+      return {...state, isLogin: false, dataUser: null, phoneNumbers: []}
 
     case 'GET_PHONE_NUMBERS':
       return {...state, phoneNumbers: action.payload}

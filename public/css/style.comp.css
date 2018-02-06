@@ -213,16 +213,21 @@
   background-color: var(--color-primary-3); }
 
 .HomeContainer {
-  height: 5rem !important;
-  padding: 2rem; }
+  background-color: var(--color-primary-2); }
 
 .TabsHome {
   width: 25% !important;
   text-align: center !important; }
-  .TabsHome__1 {
+  .TabsHome__pane1 {
     padding: 2rem; }
-    .TabsHome__1__font {
-      font-size: 10rem !important; }
+    .TabsHome__pane1__font {
+      font-size: 5rem !important;
+      text-align: center !important; }
+    .TabsHome__pane1__dropdown {
+      display: flex; }
+      .TabsHome__pane1__dropdown__content {
+        flex: 1 1 200px;
+        align-content: center; }
 
 .HomeBanner2 {
   height: 15rem;

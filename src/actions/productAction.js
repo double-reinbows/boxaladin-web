@@ -59,11 +59,16 @@ export const getFilteredProducts = (brand, category) => {
 			}
 			
 		})
-
-		
-
 	}
 }
+
+// export const addToCart = (cart, product) => {
+// 	return (dispatch) => {
+// 		product.qty = 1
+// 		cart.push(product)
+// 		dispatch(updateCartAction(cart))
+// 	}
+// }
 
 export const getProductsAction = (payload) => ({
 	type: 'GET_PRODUCTS',
@@ -74,3 +79,8 @@ export const getFilteredProductsAction = (payload) => ({
 	type: 'GET_FILTERED_PRODUCTS',
 	payload
 })
+
+// export const updateCartAction = (payload) => ({
+// 	type: 'UPDATE_CART',
+// 	payload
+// })

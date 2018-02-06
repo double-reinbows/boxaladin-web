@@ -12,6 +12,7 @@ import Footer from './Screen/Components/Footer'
 import LandingPage from './Screen/LandingPage'
 import AboutUs from './Screen/AboutUs'
 import HowItWorks from './Screen/HowItWorks'
+import Product from './Screen/Product'
 
 //page login
 import Login from './Screen/Login'
@@ -22,8 +23,9 @@ import Home from './Screen/Home'
 import EmailVerificationDone from './Screen/EmailVerificationDone'
 import User from './Screen/User'
 
-//page can access with or without login
-import Product from './Screen/Product'
+//page pembelian
+import Invoice from './Screen/Invoice'
+import Pembayaran from './Screen/Pembayaran'
 
 
 class RouteList extends React.Component {
@@ -83,6 +85,16 @@ class RouteList extends React.Component {
             <Route
               path="/emailVerification"
               component={EmailVerificationDone}
+            />
+
+            <Route
+              path="/payment/:id"
+              component={Pembayaran}
+            />
+
+            <Route
+              path="/invoice"
+              component={Invoice}
             />
 
             <Footer/>
