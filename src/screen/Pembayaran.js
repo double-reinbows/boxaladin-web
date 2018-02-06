@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import {
   Container, TabContent, TabPane, Nav, NavItem, NavLink,
-  Button, Form, FormGroup, Label, Input, FormText
+  Button, Form, FormGroup, Label, Input, FormText,
+  Modal, ModalHeader, ModalBody, ModalFooter
 } from 'reactstrap';
 
 import classnames from 'classnames';
@@ -15,14 +16,17 @@ class InvoiceDetail extends React.Component {
     this.state = {
       invoice: null,
       activeTab: '1',
-      amount: 0,
+      // amount: 0,
       ccNumber: '',
       ccExpiredMonth: '',
       ccExpiredYear: '',
-      cvn: ''
+      cvn: '',
+      isOpen3dsModal: false,
+      payer_auth_url: ''
     }
 
     this.toggle = this.toggle.bind(this);
+    this.toggle3dsModal = this.toggle3dsModal.bind(this)
   }
 
   render() {
@@ -33,6 +37,7 @@ class InvoiceDetail extends React.Component {
       <div>
         <Container>
           { this.showTabs() }
+          { this.show3dsModal() }
         </Container>
       </div>
     )
@@ -42,10 +47,44 @@ class InvoiceDetail extends React.Component {
     this.getInvoiceById()
   }
 
+  submitPaymentWithCC(token) {
+    axios({
+      method: 'POST',
+      url: `http://localhost:3000/creditcard`,
+      data: {
+        tokenId: token,
+        externalId: this.state.invoice.paymentId.toString(),
+        amount: this.state.invoice.aladinPrice,
+        cardCvn: this.state.cvn
+      }
+    })
+    .then(({data}) => {
+      console.log(data)
+    })
+    .catch(err => console.log(err))
+  }
+
+  toggle3dsModal() {
+    this.setState({isOpen3dsModal: !this.state.isOpen3dsModal})
+  }
+
+  show3dsModal() {
+    return (
+      <div>
+        <Modal isOpen={this.state.isOpen3dsModal} toggle={this.toggle3dsModal} className={this.props.className}>
+          <ModalHeader toggle={this.toggle3dsModal}>Modal title</ModalHeader>
+          <ModalBody>
+            <iframe src={this.state.payer_auth_url} />
+          </ModalBody>
+        </Modal>
+      </div>
+    )
+  }
+
   createCCToken() {
     Xendit.setPublishableKey('xnd_public_development_OImFfL0l07evlc5rd+AaEmTDb9L38NJ8lXbg+Rxi/Gbe8LGkBQ93hg==')
     Xendit.card.createToken({
-      amount: this.state.amount,
+      amount: this.state.invoice.aladinPrice,
 			card_number: this.state.ccNumber,
 			card_exp_month: this.state.ccExpiredMonth,
 			card_exp_year: this.state.ccExpiredYear,
@@ -59,21 +98,28 @@ class InvoiceDetail extends React.Component {
     	}
 
     	if (creditCardCharge.status === 'VERIFIED') {
+
         console.log(creditCardCharge.status);
         var token = creditCardCharge.id;
     		console.log(token);
+        this.submitPaymentWithCC(token)
+
     	} else if (creditCardCharge.status === 'IN_REVIEW') {
+
         console.log(creditCardCharge.status);
         console.log(creditCardCharge);
         console.log(creditCardCharge.payer_authentication_url);
-    		// window.open(creditCardCharge.payer_authentication_url, 'sample-inline-frame');
-    		// $('#three-ds-container').show();
-    	} else if (creditCardCharge.status === 'FAILED') {
+        this.setState({payer_auth_url: creditCardCharge.payer_authentication_url})
+        this.toggle3dsModal()
+
+        // console.log(creditCardCharge.status);
+        // var token = creditCardCharge.id;
+    		// console.log(token);
+        // this.submitPaymentWithCC(token)
+
+      } else if (creditCardCharge.status === 'FAILED') {
         console.log(creditCardCharge.status);
-    		// $('#error pre').text(creditCardCharge.failure_reason);
-    		// $('#error').show();
-    		// $form.find('.submit').prop('disabled', false); // Re-enable submission
-    	}
+      }
     }
 
   )}
@@ -121,7 +167,7 @@ class InvoiceDetail extends React.Component {
           <Form>
 
             <FormGroup>
-              <Input type="text" placeholder="amount" onChange={(e) => this.setState({amount: e.target.value})} />
+              <Input type="text" value={this.state.invoice !== null ? this.state.invoice.aladinPrice : ''} disabled />
             </FormGroup>
 
             <FormGroup>
