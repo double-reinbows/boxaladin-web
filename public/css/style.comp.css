@@ -218,16 +218,20 @@
 .TabsHome {
   width: 25% !important;
   text-align: center !important; }
-  .TabsHome__pane1 {
-    padding: 2rem; }
-    .TabsHome__pane1__font {
-      font-size: 5rem !important;
-      text-align: center !important; }
-    .TabsHome__pane1__dropdown {
-      display: flex; }
-      .TabsHome__pane1__dropdown__content {
-        flex: 1 1 200px;
-        align-content: center; }
+
+.TabsPane1 {
+  padding: 2rem; }
+  .TabsPane1__font {
+    font-size: 5rem !important;
+    text-align: center !important; }
+  .TabsPane1__dropdown {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10%;
+    margin-right: 10%; }
+    .TabsPane1__dropdown__content {
+      flex: 1 1 200px;
+      width: 80px; }
 
 .HomeBanner2 {
   height: 15rem;

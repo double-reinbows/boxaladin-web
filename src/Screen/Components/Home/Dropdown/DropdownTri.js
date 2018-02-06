@@ -20,13 +20,13 @@ export default class Example extends React.Component {
   render() {
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle caret>
+        <DropdownToggle caret className="dropz">
           Tri
         </DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem>100</DropdownItem>
-          <DropdownItem>50</DropdownItem>
-          <DropdownItem>25</DropdownItem>
+        <DropdownMenu className="dropz__item">
+          <DropdownItem className="dropz__item">100</DropdownItem>
+          <DropdownItem className="dropz__item">50</DropdownItem>
+          <DropdownItem className="dropz__item">25</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     );

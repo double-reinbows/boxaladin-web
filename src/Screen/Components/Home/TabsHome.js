@@ -66,19 +66,19 @@ export default class Example extends React.Component {
 
           <TabPane tabId="1">
             <div>
-              <Row>
-                <Col sm="12" className="TabsHome__pane1">
-                  <h4 className="TabsHome__pane1__font">PULSA SELULER</h4>
+              <div className="TabsPane1">
 
-                  <div className="TabsHome__pane1__dropdown">
-                    <div className="TabsHome__pane1__dropdown__content"><DropdownTelkomsel/></div>
-                    <div className="TabsHome__pane1__dropdown__content"><DropdownXL/></div>
-                    <div className="TabsHome__pane1__dropdown__content"><DropdownTri/></div>
-                    <div className="TabsHome__pane1__dropdown__content"><DropdownSmartfren/></div>
-                  </div>
+                <div className="TabsPane1__text">
+                  <label className="TabsPane1__label">PULSA SELULER</label>
+                </div>
 
-                </Col>
-              </Row>
+                <div className="TabsPane1__dropdown">
+                  <DropdownTelkomsel className="TabsPane1__dropdown__content"/>
+                  <DropdownXL className="TabsPane1__dropdown__content"/>
+                  <DropdownTri className="TabsPane1__dropdown__content"/>
+                  <DropdownSmartfren className="TabsPane1__dropdown__content"/>
+                </div>
+              </div>
             </div>
           </TabPane>
 

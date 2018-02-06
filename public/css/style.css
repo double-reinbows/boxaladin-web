@@ -218,16 +218,29 @@
 .TabsHome {
   width: 25% !important;
   text-align: center !important; }
-  .TabsHome__pane1 {
-    padding: 2rem; }
-    .TabsHome__pane1__font {
-      font-size: 5rem !important;
-      text-align: center !important; }
-    .TabsHome__pane1__dropdown {
-      display: flex; }
-      .TabsHome__pane1__dropdown__content {
-        flex: 1 1 200px;
-        align-content: center; }
+
+.TabsPane1 {
+  margin: 0rem;
+  padding: 2rem; }
+  .TabsPane1__text {
+    font-size: 5rem !important;
+    text-align: center !important;
+    margin: 0rem; }
+  .TabsPane1__label {
+    margin: 0rem; }
+  .TabsPane1__dropdown {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 1.5rem; }
+    .TabsPane1__dropdown__content {
+      flex: 1 1 200px; }
+
+.dropz {
+  width: 8rem !important; }
+  .dropz__item {
+    min-width: 0rem !important;
+    width: 8rem !important;
+    text-align: center !important; }
 
 .HomeBanner2 {
   height: 15rem;

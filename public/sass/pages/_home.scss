@@ -5,19 +5,38 @@
 .TabsHome{
   width: 25% !important;
   text-align: center !important;
-  &__pane1{
-    padding: 2rem;
-    &__font{
-      font-size: 5rem !important;
-      text-align: center !important;
+}
+
+.TabsPane1{
+  margin: 0rem;
+  padding: 2rem;
+  &__text{
+    font-size: 5rem !important;
+    text-align: center !important;
+    margin: 0rem;
+  }
+
+  &__label{
+    margin: 0rem;
+  }
+
+  &__dropdown{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 1.5rem;
+
+    &__content{
+      flex: 1 1 200px;
     }
-    &__dropdown{
-      display: flex;
-      &__content{
-        flex: 1 1 200px;
-        align-content: center;
-      }
-    }
+  }
+}
+
+.dropz{
+  width: 8rem !important;
+  &__item{
+    min-width: 0rem !important;
+    width: 8rem !important;
+    text-align: center !important;
   }
 }
 
