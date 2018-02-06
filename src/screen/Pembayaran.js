@@ -1,15 +1,25 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { Container, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import {
+  Container, TabContent, TabPane, Nav, NavItem, NavLink,
+  Button, Form, FormGroup, Label, Input, FormText
+} from 'reactstrap';
+
 import classnames from 'classnames';
+import Xendit from 'xendit-js-node'
 
 class InvoiceDetail extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       invoice: null,
-      activeTab: '1'
+      activeTab: '1',
+      amount: 0,
+      ccNumber: '',
+      ccExpiredMonth: '',
+      ccExpiredYear: '',
+      cvn: ''
     }
 
     this.toggle = this.toggle.bind(this);
@@ -18,7 +28,7 @@ class InvoiceDetail extends React.Component {
   render() {
     console.log('Props:', this.props);
     console.log('State:', this.state);
-    
+
     return (
       <div>
         <Container>
@@ -31,6 +41,42 @@ class InvoiceDetail extends React.Component {
   componentDidMount() {
     this.getInvoiceById()
   }
+
+  createCCToken() {
+    Xendit.setPublishableKey('xnd_public_development_OImFfL0l07evlc5rd+AaEmTDb9L38NJ8lXbg+Rxi/Gbe8LGkBQ93hg==')
+    Xendit.card.createToken({
+      amount: this.state.amount,
+			card_number: this.state.ccNumber,
+			card_exp_month: this.state.ccExpiredMonth,
+			card_exp_year: this.state.ccExpiredYear,
+			card_cvn: this.state.cvn,
+			is_multiple_use: false
+    }, (err, creditCardCharge) => {
+    	if (err) {
+    		console.log(err);
+
+    		return;
+    	}
+
+    	if (creditCardCharge.status === 'VERIFIED') {
+        console.log(creditCardCharge.status);
+        var token = creditCardCharge.id;
+    		console.log(token);
+    	} else if (creditCardCharge.status === 'IN_REVIEW') {
+        console.log(creditCardCharge.status);
+        console.log(creditCardCharge);
+        console.log(creditCardCharge.payer_authentication_url);
+    		// window.open(creditCardCharge.payer_authentication_url, 'sample-inline-frame');
+    		// $('#three-ds-container').show();
+    	} else if (creditCardCharge.status === 'FAILED') {
+        console.log(creditCardCharge.status);
+    		// $('#error pre').text(creditCardCharge.failure_reason);
+    		// $('#error').show();
+    		// $form.find('.submit').prop('disabled', false); // Re-enable submission
+    	}
+    }
+
+  )}
 
   showTabs() {
     return (
@@ -71,6 +117,35 @@ class InvoiceDetail extends React.Component {
           </TabPane>
           <TabPane tabId="2">
           <h5>Credit Card</h5>
+
+          <Form>
+
+            <FormGroup>
+              <Input type="text" placeholder="amount" onChange={(e) => this.setState({amount: e.target.value})} />
+            </FormGroup>
+
+            <FormGroup>
+              <Input type="text" placeholder="ccNumber" onChange={(e) => this.setState({ccNumber: e.target.value})} />
+            </FormGroup>
+
+            <FormGroup>
+              <Input type="text" placeholder="ccExpiredMonth" onChange={(e) => this.setState({ccExpiredMonth: e.target.value})} />
+            </FormGroup>
+
+            <FormGroup>
+              <Input type="text" placeholder="ccExpiredYear" onChange={(e) => this.setState({ccExpiredYear: e.target.value})} />
+            </FormGroup>
+
+            <FormGroup>
+              <Input type="text" placeholder="cvn" onChange={(e) => this.setState({cvn: e.target.value})} />
+            </FormGroup>
+
+            <FormGroup>
+              <Button onClick={() => this.createCCToken()}>Submit</Button>
+            </FormGroup>
+
+          </Form>
+
           </TabPane>
         </TabContent>
       </div>
@@ -96,13 +171,13 @@ class InvoiceDetail extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    // 
+    //
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // 
+    //
   }
 }
 

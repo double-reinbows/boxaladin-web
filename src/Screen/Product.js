@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import * as firebase from 'firebase'
 // import Modal from 'react-modal'
 import axios from 'axios'
-import jwt from 'jsonwebtoken'
+// import jwt from 'jsonwebtoken'
 import {
 	Modal, ModalBody, ModalFooter, ModalHeader,
 	Container,
@@ -12,7 +12,7 @@ import {
 	Form, FormGroup, Label, Input
 } from 'reactstrap'
 
-import { getProducts, getFilteredProducts, addToCart } from '../actions/productAction'
+import { getProducts, getFilteredProducts } from '../actions/productAction'
 import { getCategories } from '../actions/categoryAction'
 import { getBrands } from '../actions/brandAction'
 import { getPhoneNumbers } from '../actions/'
@@ -111,7 +111,7 @@ class Product extends Component {
 					<ModalHeader toggle={this.togglePhoneModal}>Nomor tujuan</ModalHeader>
 					<ModalBody>
 						{/* Form here */}
-							
+
 							<FormGroup>
 								<Label for="selectNumber"></Label>
 								<Input onChange={(e) => this.setState({selectedPhone: e.target.value})} type="select" name="selectNumber" id="selectNumber">
@@ -139,7 +139,7 @@ class Product extends Component {
 
 	insertPhoneNumber() {
 		this.closeModalPrice(this.state.selectedProductId)
-		this.setState({selectedPhone: this.props.phoneNumbers[0] ? this.props.phoneNumbers[0].number : ''})		
+		this.setState({selectedPhone: this.props.phoneNumbers[0] ? this.props.phoneNumbers[0].number : ''})
 
 		axios({
 			method: 'PUT',
@@ -215,7 +215,7 @@ class Product extends Component {
 
 	watchProductPrice(productId) {
 		// this.setState({selectedProductId: productId})
-		
+
 		if (localStorage.getItem('token') !== null) {
 			axios({
 				method: 'POST',
@@ -233,17 +233,23 @@ class Product extends Component {
 					const productsRef = firebase.database().ref().child('products')
 					const productRef = productsRef.child(productId)
 					productRef.on('value', snap => {
-						this.setState({selectedProductId: productId})
-						this.setState({productUnlocked: snap.val()})
-						this.setState({isOpenPriceModal: true})
+						this.setState({
+							selectedProductId: productId,
+							isOpenPriceModal: true,
+							productUnlocked: snap.val()
+						})
+						// this.setState({productUnlocked: snap.val()})
+						// this.setState({isOpenPriceModal: true})
 
+            // supaya modal price tertutup ketika harga kembali normal (ada yang beli)
+            //
 						if (snap.val().aladinPrice === snap.val().price) {
 							this.closeModalPrice(this.state.selectedProductId)
 						}
 
 					})
 
-					this.runTimer()					
+					this.runTimer()
 
 				} else if (data.message === 'not enough aladin key') {
 					alert(data.message)

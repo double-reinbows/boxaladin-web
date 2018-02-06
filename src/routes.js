@@ -79,7 +79,7 @@ class RouteList extends React.Component {
               path="/product"
               component={Product}
             />
-            
+
             <Route
               path="/emailVerification"
               component={EmailVerificationDone}
