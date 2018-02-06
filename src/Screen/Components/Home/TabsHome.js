@@ -66,7 +66,7 @@ export default class Example extends React.Component {
 
           <TabPane tabId="1">
             <div>
-              <Row>
+              <Row className="rowz">
                 <Col sm="12" className="TabsHome__pane1">
                   <h4 className="TabsHome__pane1__font">PULSA SELULER</h4>
 

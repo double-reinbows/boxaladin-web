@@ -213,7 +213,8 @@
   background-color: var(--color-primary-3); }
 
 .HomeContainer {
-  background-color: var(--color-primary-2); }
+  background-color: var(--color-primary-2);
+  margin: 0rem !important; }
 
 .TabsHome {
   width: 25% !important;
@@ -252,6 +253,9 @@
     font-size: 1rem;
     padding-right: 2rem;
     padding-left: 2rem; }
+
+.rowz {
+  margin: 0rem !important; }
 
 * {
   margin: 0;
