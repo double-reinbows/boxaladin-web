@@ -5,11 +5,14 @@
 
 //pages
 @import "pages/landingpage";
-@import "pages/product";
 @import "pages/signup";
 @import "pages/login";
 @import "pages/aboutus";
 @import "pages/howitworks";
+
+@import "pages/product";
+@import "pages/home";
+
 
 // reuseable components
 @import "reusable/animations";

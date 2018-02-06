@@ -120,9 +120,6 @@
     height: 5rem;
     margin: 3rem; }
 
-.product {
-  background-color: var(--color-primary-3); }
-
 .Signup {
   display: flex;
   justify-content: center; }
@@ -211,6 +208,50 @@
   flex-direction: column;
   align-items: center;
   justify-content: center; }
+
+.product {
+  background-color: var(--color-primary-3); }
+
+.HomeContainer {
+  background-color: var(--color-primary-2); }
+
+.TabsHome {
+  width: 25% !important;
+  text-align: center !important; }
+  .TabsHome__pane1 {
+    padding: 2rem; }
+    .TabsHome__pane1__font {
+      font-size: 5rem !important;
+      text-align: center !important; }
+    .TabsHome__pane1__dropdown {
+      display: flex; }
+      .TabsHome__pane1__dropdown__content {
+        flex: 1 1 200px;
+        align-content: center; }
+
+.HomeBanner2 {
+  height: 15rem;
+  width: 100%;
+  background-color: var(--orange); }
+  .HomeBanner2__text1 {
+    font-size: 2rem;
+    padding: 2rem; }
+  .HomeBanner2__text2 {
+    font-size: 1rem;
+    padding-right: 2rem;
+    padding-left: 2rem; }
+
+.HomeBanner3 {
+  height: 15rem;
+  width: 100%;
+  background-color: var(--danger); }
+  .HomeBanner3__text1 {
+    font-size: 2rem;
+    padding: 2rem; }
+  .HomeBanner3__text2 {
+    font-size: 1rem;
+    padding-right: 2rem;
+    padding-left: 2rem; }
 
 * {
   margin: 0;

@@ -120,9 +120,6 @@
     height: 5rem;
     margin: 3rem; }
 
-.product {
-  background-color: var(--color-primary-3); }
-
 .Signup {
   display: flex;
   justify-content: center; }
@@ -196,21 +193,60 @@
       align-content: center; }
 
 .AboutUs {
-  height: 100rem;
+  height: 75rem;
   width: 100%;
   background-color: var(--danger);
   display: flex;
   justify-content: center;
-  align-content: center; }
+  align-items: center; }
 
 .HowItWorks {
-  height: 100rem;
+  height: 75rem;
   width: 100%;
   background-color: var(--blue);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-content: center; }
+  align-items: center;
+  justify-content: center; }
+
+.product {
+  background-color: var(--color-primary-3); }
+
+.HomeContainer {
+  height: 5rem !important;
+  padding: 2rem; }
+
+.TabsHome {
+  width: 25% !important;
+  text-align: center !important; }
+  .TabsHome__1 {
+    padding: 2rem; }
+    .TabsHome__1__font {
+      font-size: 10rem !important; }
+
+.HomeBanner2 {
+  height: 15rem;
+  width: 100%;
+  background-color: var(--orange); }
+  .HomeBanner2__text1 {
+    font-size: 2rem;
+    padding: 2rem; }
+  .HomeBanner2__text2 {
+    font-size: 1rem;
+    padding-right: 2rem;
+    padding-left: 2rem; }
+
+.HomeBanner3 {
+  height: 15rem;
+  width: 100%;
+  background-color: var(--danger); }
+  .HomeBanner3__text1 {
+    font-size: 2rem;
+    padding: 2rem; }
+  .HomeBanner3__text2 {
+    font-size: 1rem;
+    padding-right: 2rem;
+    padding-left: 2rem; }
 
 * {
   margin: 0;

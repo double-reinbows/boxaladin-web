@@ -1,0 +1,54 @@
+.HomeContainer{
+  background-color: var(--color-primary-2);
+}
+
+.TabsHome{
+  width: 25% !important;
+  text-align: center !important;
+  &__pane1{
+    padding: 2rem;
+    &__font{
+      font-size: 5rem !important;
+      text-align: center !important;
+    }
+    &__dropdown{
+      display: flex;
+      &__content{
+        flex: 1 1 200px;
+        align-content: center;
+      }
+    }
+  }
+}
+
+.HomeBanner2{
+  height: 15rem;
+  width: 100%;
+  background-color: var(--orange);
+
+  &__text1{
+    font-size: 2rem;
+    padding: 2rem;
+  }
+  &__text2{
+    font-size: 1rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+}
+
+.HomeBanner3{
+  height: 15rem;
+  width: 100%;
+  background-color: var(--danger);
+
+  &__text1{
+    font-size: 2rem;
+    padding: 2rem;
+  }
+  &__text2{
+    font-size: 1rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+}
