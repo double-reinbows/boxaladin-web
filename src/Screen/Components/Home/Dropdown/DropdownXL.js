@@ -1,5 +1,7 @@
 import React from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import LogoXL from '../../../../asset/LandingPage/pulsa/Xl.svg'
+
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -21,7 +23,7 @@ export default class Example extends React.Component {
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
         <DropdownToggle caret className="dropz">
-          XL
+          <img src={LogoXL} className="dropz__img" alt="Logo XL" />
         </DropdownToggle>
         <DropdownMenu className="dropz__item">
           <DropdownItem className="dropz__item">100</DropdownItem>

@@ -253,7 +253,11 @@
       flex: 1 1 200px; }
 
 .dropz {
-  width: 8rem !important; }
+  width: 8rem !important;
+  height: 5rem !important; }
+  .dropz__img {
+    width: 6rem;
+    height: 3rem; }
   .dropz__item {
     min-width: 0rem !important;
     width: 8rem !important;

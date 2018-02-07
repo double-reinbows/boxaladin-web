@@ -27,7 +27,7 @@ export default class Example extends React.Component {
   render() {
     return (
       <div>
-        <Nav className="HomeContainer" tabs>
+        <Nav className="NavTabsHome" tabs>
           <NavItem className="TabsHome">
             <NavLink
               className="TabsHome__link {classnames({ active: this.state.activeTab === '1' })}"

@@ -212,14 +212,14 @@
 .product {
   background-color: var(--color-primary-3); }
 
-.HomeContainer {
-  background-color: var(--color-grey-dark-1);
-  color: white !important;
-  margin: 0rem !important; }
-
 .carouselHome {
   width: 100%;
   height: 25rem; }
+
+.NavTabsHome {
+  background-color: var(--color-grey-dark-1);
+  color: white !important;
+  margin: 0rem !important; }
 
 .TabsHome {
   width: 25% !important;
@@ -253,7 +253,11 @@
       flex: 1 1 200px; }
 
 .dropz {
-  width: 8rem !important; }
+  width: 8rem !important;
+  height: 5rem !important; }
+  .dropz__img {
+    width: 6rem;
+    height: 3rem; }
   .dropz__item {
     min-width: 0rem !important;
     width: 8rem !important;
@@ -266,31 +270,31 @@
     .dropz__item__nominal {
       width: 33.3%; }
 
-.HomeBanner2 {
+.BannerText1 {
   height: 15rem;
   width: 100%;
   margin: 0rem !important;
   background-color: var(--orange); }
-  .HomeBanner2__text1 {
+  .BannerText1__text1 {
     font-size: 2rem;
     padding: 2rem;
     margin: 0rem !important; }
-  .HomeBanner2__text2 {
+  .BannerText1__text2 {
     font-size: 1rem;
     padding-right: 2rem;
     padding-left: 2rem;
     margin: 0rem !important; }
 
-.HomeBanner3 {
+.BannerText2 {
   height: 15rem;
   width: 100%;
   margin: 0rem !important;
   background-color: var(--danger); }
-  .HomeBanner3__text1 {
+  .BannerText2__text1 {
     font-size: 2rem;
     padding: 2rem;
     margin: 0rem !important; }
-  .HomeBanner3__text2 {
+  .BannerText2__text2 {
     font-size: 1rem;
     padding-right: 2rem;
     padding-left: 2rem;

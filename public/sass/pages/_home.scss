@@ -1,12 +1,15 @@
-.HomeContainer{
-  background-color: var(--color-grey-dark-1);
-  color: white !important;
-  margin: 0rem !important;
-}
-
+//for page home component carousel
 .carouselHome{
   width: 100%;
   height: 25rem;
+}
+//////////////////////////////////
+
+//for page home component TabsHome
+.NavTabsHome{
+  background-color: var(--color-grey-dark-1);
+  color: white !important;
+  margin: 0rem !important;
 }
 .TabsHome{
   width: 25% !important;
@@ -27,49 +30,60 @@
   }
 }
 
-.TabsPane1{
-  margin: 0rem;
-  padding: 2rem;
-  &__text{
-    font-size: 5rem !important;
-    text-align: center !important;
+// for component TabsPane1 at TabsHome
+  .TabsPane1{
     margin: 0rem;
-  }
+    padding: 2rem;
+    &__text{
+      font-size: 5rem !important;
+      text-align: center !important;
+      margin: 0rem;
+    }
 
-  &__label{
-    margin: 0rem;
-  }
+    &__label{
+      margin: 0rem;
+    }
 
-  &__dropdown{
-    display: flex;
-    justify-content: space-around;
-    padding-top: 1.5rem;
+    &__dropdown{
+      display: flex;
+      justify-content: space-around;
+      padding-top: 1.5rem;
 
-    &__content{
-      flex: 1 1 200px;
+      &__content{
+        flex: 1 1 200px;
+      }
     }
   }
-}
 
-.dropz{
-  width: 8rem !important;
-  &__item{
-    min-width: 0rem !important;
-    width: 8rem !important;
-    display: flex;
-    flex-direction: column;
-    text-align: center !important;
-    &:hover{
-      color: black !important;
-      background-color: var(--color-primary-2);
+// for component dropdown at TabsPane1
+    .dropz{
+      width: 8rem !important;
+      height: 5rem !important;
+      &__img{
+        width: 6rem;
+        height: 3rem;
+      }
+      &__item{
+        min-width: 0rem !important;
+        width: 8rem !important;
+        display: flex;
+        flex-direction: column;
+        text-align: center !important;
+        &:hover{
+          color: black !important;
+          background-color: var(--color-primary-2);
+        }
+        &__nominal{
+          width: 33.3%;
+        }
+      }
     }
-    &__nominal{
-      width: 33.3%;
-    }
-  }
-}
 
-.HomeBanner2{
+//////////////////////////////////
+
+
+
+.BannerText1{
   height: 15rem;
   width: 100%;
   margin: 0rem !important;
@@ -88,7 +102,7 @@
   }
 }
 
-.HomeBanner3{
+.BannerText2{
   height: 15rem;
   width: 100%;
   margin: 0rem !important;
