@@ -34,36 +34,45 @@
   width: 70%; }
 
 .Navbarz {
-  background-color: var(--color-primary-1);
+  background-color: var(--color-grey-dark-1);
   border-bottom: var(--line);
   padding-top: 0rem !important;
   padding-bottom: 0rem !important;
   padding-left: 1rem !important;
   padding-right: 1rem !important;
-  font-size: 2rem; }
+  font-size: 2rem;
+  border-bottom: 0.5rem solid var(--color-primary-2); }
   .Navbarz__Link {
     padding: 5px; }
     .Navbarz__Link__img {
       margin: 0px !important; }
+  .Navbarz__Right {
+    margin: 0rem !important;
+    padding: 0rem !important; }
+  .Navbarz__Button {
+    padding: 5px !important;
+    margin: 20px !important;
+    justify-content: center; }
+    .Navbarz__Button__img {
+      width: 25px;
+      height: 25px; }
   .Navbarz__List {
-    color: black;
-    padding-top: 20px !important;
-    padding-bottom: 20px !important; }
+    color: var(--color-primary-2) !important;
+    padding-top: 20px !important; }
     .Navbarz__List:hover {
       color: white !important;
       background-color: #e5b721;
-      padding-top: 20px !important;
-      padding-bottom: 20px !important; }
+      height: 100%;
+      width: 100%; }
   .Navbarz__ContactUs {
-    color: black;
+    color: var(--color-primary-2) !important;
     margin-right: 20px;
     padding-top: 20px !important;
     padding-bottom: 20px !important; }
     .Navbarz__ContactUs:hover {
       color: white !important;
       background-color: #e5b721;
-      padding-top: 20px !important;
-      padding-bottom: 20px !important; }
+      height: 100%; }
 
 .Bar-First {
   margin: 0rem !important;
@@ -238,7 +247,8 @@
 
 .TabsPane1 {
   margin: 0rem;
-  padding: 2rem; }
+  padding: 2rem;
+  background-color: var(--color-primary-2); }
   .TabsPane1__text {
     font-size: 5rem !important;
     text-align: center !important;
@@ -248,48 +258,61 @@
   .TabsPane1__dropdown {
     display: flex;
     justify-content: space-around;
-    padding-top: 1.5rem; }
+    padding-top: 1.5rem;
+    margin-bottom: 5rem !important; }
     .TabsPane1__dropdown__content {
       flex: 1 1 200px; }
+  .TabsPane1__button {
+    color: var(--color-primary-2) !important;
+    background-color: var(--color-primary-3) !important; }
 
 .dropz {
   width: 8rem !important;
   height: 5rem !important; }
+  .dropz:hover {
+    color: black !important;
+    background-color: var(--color-primary-2); }
   .dropz__img {
     width: 6rem;
     height: 3rem; }
   .dropz__item {
     min-width: 0rem !important;
     width: 8rem !important;
-    display: flex;
-    flex-direction: column;
     text-align: center !important; }
     .dropz__item:hover {
       color: black !important;
       background-color: var(--color-primary-2); }
-    .dropz__item__nominal {
-      width: 33.3%; }
 
 .BannerText1 {
-  height: 15rem;
+  border-top: 0.25rem solid var(--color-primary-2) !important;
+  height: 20rem;
   width: 100%;
   margin: 0rem !important;
-  background-color: var(--orange); }
+  background-color: var(--color-primary-3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center; }
   .BannerText1__text1 {
     font-size: 2rem;
     padding: 2rem;
-    margin: 0rem !important; }
+    margin: 0rem !important;
+    color: var(--color-primary-2);
+    text-align: center; }
   .BannerText1__text2 {
+    padding: 2rem;
+    margin: 0rem !important;
+    margin: 0rem !important;
     font-size: 1rem;
-    padding-right: 2rem;
-    padding-left: 2rem;
-    margin: 0rem !important; }
+    color: var(--color-primary-1); }
 
 .BannerText2 {
   height: 15rem;
   width: 100%;
   margin: 0rem !important;
-  background-color: var(--danger); }
+  background-color: var(--color-primary-1);
+  color: var(--color-grey-dark-1);
+  text-align: center; }
   .BannerText2__text1 {
     font-size: 2rem;
     padding: 2rem;

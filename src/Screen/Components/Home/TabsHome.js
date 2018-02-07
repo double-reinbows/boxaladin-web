@@ -78,6 +78,11 @@ export default class Example extends React.Component {
                   <DropdownTri className="TabsPane1__dropdown__content"/>
                   <DropdownSmartfren className="TabsPane1__dropdown__content"/>
                 </div>
+
+              </div>
+
+              <div>
+                <button type="button" className="btn btn-lg btn-block TabsPane1__button">LIHAT HARGA</button>
               </div>
             </div>
           </TabPane>

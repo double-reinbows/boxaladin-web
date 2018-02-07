@@ -34,6 +34,7 @@
   .TabsPane1{
     margin: 0rem;
     padding: 2rem;
+    background-color: var(--color-primary-2);
     &__text{
       font-size: 5rem !important;
       text-align: center !important;
@@ -48,17 +49,29 @@
       display: flex;
       justify-content: space-around;
       padding-top: 1.5rem;
+      margin-bottom: 5rem !important;
 
       &__content{
         flex: 1 1 200px;
       }
     }
+
+    &__button{
+      color: var(--color-primary-2) !important;
+      background-color: var(--color-primary-3) !important;
+    }
+
+
   }
 
 // for component dropdown at TabsPane1
     .dropz{
       width: 8rem !important;
       height: 5rem !important;
+      &:hover{
+        color: black !important;
+        background-color: var(--color-primary-2);
+      }
       &__img{
         width: 6rem;
         height: 3rem;
@@ -66,47 +79,52 @@
       &__item{
         min-width: 0rem !important;
         width: 8rem !important;
-        display: flex;
-        flex-direction: column;
         text-align: center !important;
         &:hover{
           color: black !important;
           background-color: var(--color-primary-2);
-        }
-        &__nominal{
-          width: 33.3%;
         }
       }
     }
 
 //////////////////////////////////
 
-
-
+// for page home component banner text kok bisa lebih murah
 .BannerText1{
-  height: 15rem;
+  border-top: 0.25rem solid var(--color-primary-2) !important;
+  height: 20rem;
   width: 100%;
   margin: 0rem !important;
-  background-color: var(--orange);
+  background-color: var(--color-primary-3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 
   &__text1{
     font-size: 2rem;
     padding: 2rem;
     margin: 0rem !important;
+    color: var(--color-primary-2);
+    text-align: center;
   }
   &__text2{
-    font-size: 1rem;
-    padding-right: 2rem;
-    padding-left: 2rem;
+    padding: 2rem;
     margin: 0rem !important;
+    margin: 0rem !important;
+    font-size: 1rem;
+    color: var(--color-primary-1);
   }
 }
 
+// for page home component banner text FAQ
 .BannerText2{
   height: 15rem;
   width: 100%;
   margin: 0rem !important;
-  background-color: var(--danger);
+  background-color: var(--color-primary-1);
+  color: var(--color-grey-dark-1);
+  text-align: center;
 
   &__text1{
     font-size: 2rem;

@@ -9,8 +9,10 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Button
 } from 'reactstrap';
+
 import { Link } from 'react-router-dom'
 
   import {connect} from 'react-redux'
@@ -18,6 +20,8 @@ import { Link } from 'react-router-dom'
   import {logoutAction} from '../../actions/'
 
   import logo from '../../asset/Logo/LogoBig.svg'
+  import IconUser from '../../asset/Login/user.svg'
+
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -89,7 +93,7 @@ class NavBar extends React.Component {
       )
     } else {
       return (
-        <Nav navbar>
+        <Nav navbar className="Navbarz__Right">
           <NavItem>
             <NavLink className="Navbarz__List" href="/home">HOME</NavLink>
           </NavItem>
@@ -103,7 +107,9 @@ class NavBar extends React.Component {
             <NavLink className="Navbarz__List" href="/signup">DAFTAR</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink className="Navbarz__List" href="/login">MASUK</NavLink>
+            <Button className="Navbarz__Button" color="warning" href="/login">
+              MASUK |<img src={IconUser} alt="IconUser" className="Navbarz__Button__img" />
+            </Button>
           </NavItem>
         </Nav>
       )
