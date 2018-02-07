@@ -15,12 +15,12 @@ import {
 
 import { Link } from 'react-router-dom'
 
-  import {connect} from 'react-redux'
+import {connect} from 'react-redux'
 
-  import {logoutAction} from '../../actions/'
+import {logoutAction} from '../../actions/'
 
-  import logo from '../../asset/Logo/LogoBig.svg'
-  import IconUser from '../../asset/Login/user.svg'
+import logo from '../../asset/Logo/LogoBig.svg'
+import IconUser from '../../asset/Login/user.svg'
 
 
 class NavBar extends React.Component {

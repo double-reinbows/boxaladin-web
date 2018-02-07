@@ -32,12 +32,17 @@
   }
 }
 
-.copyright {
-    font-size: 1.4rem;
-    color: var(--color-footer-text);
-    margin-top: 6rem;
-    margin-right: auto;
-    margin-left: auto;
+
+
+.footerz2 {
+    background-color: var(--color-primary-2);
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
-    width: 70%;
+    &__copyright {
+        font-size: 1rem;
+        color: var(--color-footer);
+    }
 }
