@@ -1,10 +1,30 @@
 .HomeContainer{
-  background-color: var(--color-primary-2);
+  background-color: var(--color-grey-dark-1);
+  color: white !important;
+  margin: 0rem !important;
 }
 
+.carouselHome{
+  width: 100%;
+  height: 25rem;
+}
 .TabsHome{
   width: 25% !important;
+  height: 5rem !important;
   text-align: center !important;
+  margin: 0rem !important;
+
+  &__link{
+    height: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    border: 0.25rem solid var(--color-primary-3) !important;
+    &:hover{
+      color: black !important;
+      background-color: var(--color-primary-2);
+    }
+  }
 }
 
 .TabsPane1{
@@ -36,38 +56,53 @@
   &__item{
     min-width: 0rem !important;
     width: 8rem !important;
+    display: flex;
+    flex-direction: column;
     text-align: center !important;
+    &:hover{
+      color: black !important;
+      background-color: var(--color-primary-2);
+    }
+    &__nominal{
+      width: 33.3%;
+    }
   }
 }
 
 .HomeBanner2{
   height: 15rem;
   width: 100%;
+  margin: 0rem !important;
   background-color: var(--orange);
 
   &__text1{
     font-size: 2rem;
     padding: 2rem;
+    margin: 0rem !important;
   }
   &__text2{
     font-size: 1rem;
     padding-right: 2rem;
     padding-left: 2rem;
+    margin: 0rem !important;
   }
 }
 
 .HomeBanner3{
   height: 15rem;
   width: 100%;
+  margin: 0rem !important;
   background-color: var(--danger);
 
   &__text1{
     font-size: 2rem;
     padding: 2rem;
+    margin: 0rem !important;
   }
   &__text2{
     font-size: 1rem;
     padding-right: 2rem;
     padding-left: 2rem;
+    margin: 0rem !important;
   }
 }

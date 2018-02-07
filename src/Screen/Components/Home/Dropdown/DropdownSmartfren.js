@@ -24,7 +24,7 @@ export default class Example extends React.Component {
           Smartfren
         </DropdownToggle>
         <DropdownMenu className="dropz__item">
-          <DropdownItem className="dropz__item">100</DropdownItem>
+          <DropdownItem className="dropz__item__nominal">100</DropdownItem>
           <DropdownItem className="dropz__item">50</DropdownItem>
           <DropdownItem className="dropz__item">25</DropdownItem>
         </DropdownMenu>

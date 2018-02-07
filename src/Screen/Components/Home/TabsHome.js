@@ -1,6 +1,6 @@
 import React from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
-import classnames from 'classnames';
+
 
 import DropdownSmartfren from './Dropdown/DropdownSmartfren';
 import DropdownTelkomsel from './Dropdown/DropdownTelkomsel';
@@ -30,7 +30,7 @@ export default class Example extends React.Component {
         <Nav className="HomeContainer" tabs>
           <NavItem className="TabsHome">
             <NavLink
-              className={classnames({ active: this.state.activeTab === '1' })}
+              className="TabsHome__link {classnames({ active: this.state.activeTab === '1' })}"
               onClick={() => { this.toggle('1'); }}
             >
               Pulsa
@@ -38,7 +38,7 @@ export default class Example extends React.Component {
           </NavItem>
           <NavItem className="TabsHome">
             <NavLink
-              className={classnames({ active: this.state.activeTab === '2' })}
+              className="TabsHome__link {classnames({ active: this.state.activeTab === '2' })}"
               onClick={() => { this.toggle('2'); }}
             >
               Paket Data
@@ -46,7 +46,7 @@ export default class Example extends React.Component {
           </NavItem>
           <NavItem className="TabsHome">
             <NavLink
-              className={classnames({ active: this.state.activeTab === '3' })}
+              className="TabsHome__link {classnames({ active: this.state.activeTab === '3' })}"
               onClick={() => { this.toggle('3'); }}
             >
               E-Voucher
@@ -54,7 +54,7 @@ export default class Example extends React.Component {
           </NavItem>
           <NavItem className="TabsHome">
             <NavLink
-              className={classnames({ active: this.state.activeTab === '4' })}
+              className="TabsHome__link {classnames({ active: this.state.activeTab === '4' })}"
               onClick={() => { this.toggle('4'); }}
             >
               Voucher Game
