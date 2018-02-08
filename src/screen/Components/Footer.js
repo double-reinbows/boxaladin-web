@@ -7,25 +7,27 @@ export default  class Footer extends React.Component {
     return (
       <div>
         <div className="footerz">
-          <ul className="navfooter">
-            <div>
+          <div>
+            <ul className="navfooter">
               <img src={logo} alt="logo" className="logo Navbarz__Link__img" href="/home"/>
-            </div>
-            <div>
-              <col>
-                <li className="navf__item"><a href="/aboutus" className="linkfooter">Get in touch</a></li>
-                <li className="navf__item"><a href="/aboutus" className="linkfooter">How it works</a></li>
-                <li className="navf__item"><a href="/aboutus" className="linkfooter">Contact us</a></li>
-              </col>
-              <col>
-                <li className="navf__item"><a href="/aboutus" className="linkfooter">Sosial media</a></li>
-              </col>
-            </div>
-          </ul>
+              <li className="navf__item">
+                <a href="/aboutus" className="linkfooter">Get in touch</a>
+              </li>
+              <li className="navf__item">
+                <a href="/aboutus" className="linkfooter">How it works</a>
+              </li>
+              <li className="navf__item">
+                <a href="/aboutus" className="linkfooter">Contact us</a>
+              </li>
+              <li className="navf__item">
+                <a href="/aboutus" className="linkfooter">Our Social Media</a>
+              </li>
+            </ul>
+          </div>
+          
         </div>
-
         <div className="footerz2">
-          <p className="copyright">
+          <p>
               &copy; Copyright 2017 by BoxAladin.
           </p>
         </div>

@@ -1,7 +1,7 @@
 .footerz {
     background-color: var(--color-footer);
     grid-column: full-start / full-end;
-    padding: 8rem;
+    padding: 5rem;
 }
 
 .navfooter {
@@ -20,7 +20,7 @@
       text-decoration: none;
       text-transform: uppercase;
       text-align: center;
-      padding: 1.5rem;
+      padding: .25rem;
       display: block;
       transition: all .2s;
   }
@@ -31,18 +31,13 @@
     transform: translateY(-3px);
   }
 }
-
-
-
+.SocialMedia{
+  color: var(--color-primary-1);
+  text-align: center;
+}
 .footerz2 {
+    font-size: 1.4rem;
+    color: var(--color-primary-3);
     background-color: var(--color-primary-2);
-    height: 5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     text-align: center;
-    &__copyright {
-        font-size: 1rem;
-        color: var(--color-footer);
-    }
 }
