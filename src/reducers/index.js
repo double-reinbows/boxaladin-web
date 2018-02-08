@@ -5,13 +5,17 @@ import productReducer from './productReducer'
 import categoryReducer from './categoryReducer'
 import brandReducer from './brandReducer'
 import transactionReducer from './transactionReducer'
+import keyReducer from './keyReducer'
+import topupReducer from './topupReducer'
 
 var Reducer = combineReducers({
   userReducer,
   productReducer,
   categoryReducer,
   brandReducer,
-  transactionReducer
+  transactionReducer,
+  keyReducer,
+  topupReducer
 })
 
 export default Reducer

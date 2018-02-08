@@ -14,6 +14,9 @@ import LandingPage from './Screen/LandingPage'
 import User from './Screen/User'
 import Invoice from './Screen/Invoice'
 import Pembayaran from './Screen/Pembayaran'
+import TopupKey from './Screen/TopupKey'
+import TopupInvoice from './Screen/TopupInvoice'
+import TopupPayment from './Screen/TopupPayment'
 // import Cart from './screen/Cart'
 
 
@@ -87,6 +90,9 @@ class RouteList extends React.Component {
 
             <Route exact path="/invoice" component={Invoice} />
             <Route exact path="/payment/:id" component={Pembayaran} />
+            <Route exact path="/topup" component={TopupKey} />
+            <Route exact path="/topupinvoice" component={TopupInvoice} />
+            <Route exact path="/topupinvoice/:id" component={TopupPayment} />
 
             {/* <Route
               exact
