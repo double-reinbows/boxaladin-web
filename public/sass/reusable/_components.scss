@@ -1,7 +1,48 @@
 ////////////////////////////////////////
 // LOGO
-.logo {
-    height: 4rem;
+.BoxAladinLogo-Big {
+    height: 50px;
+    width: 200px;
     margin: 2rem;
+}
 
+.DropdownUser{
+	height: 50px !important;
+	width: 200px !important;
+  margin: 2rem !important;
+	border-radius: 4px;
+	background-color: #FFCD05 !important;
+
+  &__label {
+  	height: 10px;
+  	width: 150px;
+  	color: #3E3E3E;
+  	font-family: Raleway;
+  	font-size: 22px;
+  	font-weight: 600;
+  	line-height: 11px;
+  	text-align: center;
+
+  }
+  &__item{
+    width: 200px !important;
+    min-width: 0rem !important;
+    background-color: #FFCD05 !important;
+  }
+
+  &__inside{
+    height: 50px !important;
+    min-width: 0rem !important;
+    background-color: #FFCD05 !important;
+    color: #3E3E3E !important;
+    font-family: Raleway;
+  	font-size: 22px;
+  	font-weight: 600;
+    &__link{
+      color: #3E3E3E !important;
+      font-family: Raleway;
+      font-size: 22px;
+      font-weight: 600;
+    }
+  }
 }

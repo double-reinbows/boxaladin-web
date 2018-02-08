@@ -5,7 +5,8 @@ import {connect} from 'react-redux'
 //convention pake camelcase
 
 //component page
-import NavBar from './Screen/Components/NavBar'
+// import NavBar from './Screen/Components/NavBar'
+import Header from './Screen/Components/Header'
 import Footer from './Screen/Components/Footer'
 
 //page non login
@@ -34,7 +35,7 @@ class RouteList extends React.Component {
       <div>
         <Router>
           <div>
-            <NavBar />
+            <Header />
 
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/aboutus" component={AboutUs} />

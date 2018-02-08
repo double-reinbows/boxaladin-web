@@ -5,15 +5,8 @@ import {
   NavbarToggler,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
   Button
 } from 'reactstrap';
-
-import { Link } from 'react-router-dom'
 
 import {connect} from 'react-redux'
 
@@ -21,6 +14,7 @@ import {logoutAction} from '../../actions/'
 
 import logo from '../../asset/Logo/LogoBig.svg'
 import IconUser from '../../asset/Login/user.svg'
+import DropdownUser from './Header/Dropdown/DropdownUser'
 
 
 class NavBar extends React.Component {
@@ -40,11 +34,9 @@ class NavBar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar light expand="md" className="Navbarz">
+        <Navbar light expand="md" className="HeaderTop">
           <a href="/home">
-            <div className="Navbarz__Link">
-              <img src={logo} alt="logo" className="logo Navbarz__Link__img" href="/home"/>
-            </div>
+            <img src={logo} alt="logo" className="BoxAladinLogo-Big" href="/home"/>
           </a>
 
           <NavbarToggler onClick={this.toggle} />
@@ -60,45 +52,32 @@ class NavBar extends React.Component {
   showRightButton() {
     if (localStorage.getItem('token') !== null) {
       return (
-        <Nav navbar >
+        <Nav navbar className="HeaderTop__Right">
+
           <NavItem>
-            <Link to="/product" className="nav-link">PRODUCT</Link>
+            <Button outline color="warning" className="HeaderTop__ButtonTopUP">
+              <label className="HeaderTop__ButtonTopUP__label">Top Up  </label>{' '}
+              <label className="HeaderTop__ButtonTopUP__label__italic">Aladinkey!</label>
+            </Button>
           </NavItem>
 
-          {/* <NavItem>
-            <Link to="/cart" className="nav-link">CART</Link>
-          </NavItem> */}
+          <NavItem>
+            <DropdownUser />
+          </NavItem>
 
-          <UncontrolledDropdown nav>
-            <DropdownToggle nav caret>
-              USER
-            </DropdownToggle>
-            <DropdownMenu >
-            <DropdownItem>
-              Hi,
-            </DropdownItem>
-              <DropdownItem>
-                <Link to="/me" className="nav-link">User Profile</Link>
-              </DropdownItem>
-              <DropdownItem>
-                <Link to="/invoice" className="nav-link">Invoice</Link>
-              </DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem onClick={() => this.logout()}>
-                Logout
-              </DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>
         </Nav>
       )
     } else {
       return (
-        <Nav navbar className="Navbarz__Right">
+        <Nav navbar className="HeaderTop__Right">
+
           <NavItem>
-            <Button className="Navbarz__Button" color="warning" href="/login">
-              MASUK |<img src={IconUser} alt="IconUser" className="Navbarz__Button__img" />
+            <Button outline color="warning" className="HeaderTop__ButtonLogin" href="/login">
+              <label className="HeaderTop__ButtonLogin__label">Login </label>{' '}
+              <img src={IconUser} alt="IconUser" className="HeaderTop__ButtonLogin__icon" />
             </Button>
           </NavItem>
+
         </Nav>
       )
     }
