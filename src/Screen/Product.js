@@ -30,10 +30,11 @@ class Product extends Component {
 			initCount: 15,
 			selectedProductId: '',
 			isOpenPhoneModal: false,
-			selectedPhone: ''
+			selectedPhone: '',
+			watching: 0
 		}
 
-		this.togglePriceModal = this.togglePriceModal.bind(this)
+		// this.togglePriceModal = this.togglePriceModal.bind(this)
 		this.togglePhoneModal = this.togglePhoneModal.bind(this)
 		this.closePhoneModal = this.closePhoneModal.bind(this)
 	}
@@ -167,11 +168,11 @@ class Product extends Component {
 	showPriceModal() {
 		return (
 			<Modal isOpen={this.state.isOpenPriceModal}>
-				<ModalHeader toggle={this.togglePriceModal}>{this.state.productUnlocked.productName}</ModalHeader>
 				<ModalBody>
 					<strike><h4>Rp{this.state.productUnlocked.price}</h4></strike>
 					<h1>Rp{this.state.productUnlocked.aladinPrice}</h1>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					<h3>Watching: {this.state.productUnlocked.watching ? this.state.productUnlocked.watching : null}</h3>
 					<h1>{this.state.count < 10 ? `00:0${this.state.count}` : `00:${this.state.count}`}</h1>
 				</ModalBody>
 				<ModalFooter>
@@ -198,13 +199,20 @@ class Product extends Component {
 	// 	}
 	// }
 
-	togglePriceModal() {
-		this.setState({isOpenPriceModal: !this.state.isOpenPriceModal})
-	}
+	// togglePriceModal() {
+	// 	this.setState({isOpenPriceModal: !this.state.isOpenPriceModal})
+	// }
 
 	closeModalPrice(productId) {
 		const productsRef = firebase.database().ref().child('products')
 		const productRef = productsRef.child(productId)
+
+		productRef.once('value', snap => {
+			productRef.update({
+				watching: snap.val().watching -1
+			})
+		})
+
 		productRef.off()
 
 		this.setState({isOpenPriceModal: false})
@@ -214,7 +222,8 @@ class Product extends Component {
 		if (this.state.count > 0 && this.state.count !== prevCount && this.state.isOpenPriceModal === true) {
 			this.runTimer()
 		} else if (this.state.count <= 0 && this.state.count !== prevCount && this.state.isOpenPriceModal === true) {
-			this.setState({isOpenPriceModal: false})
+			// this.setState({isOpenPriceModal: false})
+			this.closeModalPrice(this.state.selectedProductId)
 		} else if (this.state.count !== this.state.initCount && this.state.isOpenPriceModal === false) {
 			this.setState({count: this.state.initCount})
 		}
@@ -245,6 +254,15 @@ class Product extends Component {
 				if (data.message === 'success') {
 					const productsRef = firebase.database().ref().child('products')
 					const productRef = productsRef.child(productId)
+
+					productRef.once('value', snap => {
+						productRef.update({
+							watching: snap.val().watching +1
+						})
+					})
+
+					console.log('Watching sekarang:', this.state.productUnlocked.watching);
+
 					productRef.on('value', snap => {
 						this.setState({
 							selectedProductId: productId,
