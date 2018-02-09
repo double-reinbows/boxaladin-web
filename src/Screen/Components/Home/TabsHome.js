@@ -2,14 +2,10 @@ import React from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 
 //import iconTabs
-// import IconTabs1 from '../../../asset/TabsHome/IconTabs1.svg';
-// <img src={IconTabs1} className="TabsHome__icon1" alt="IconTabs1" />
-// import IconTabs2 from '../../../asset/TabsHome/IconTabs2.svg';
-// <img src={IconTabs1} className="TabsHome__icon1" alt="IconTabs1" />
-// import IconTabs3 from '../../../asset/TabsHome/IconTabs3.svg';
-// <img src={IconTabs1} className="TabsHome__icon1" alt="IconTabs1" />
-// import IconTabs4 from '../../../asset/TabsHome/IconTabs4.svg';
-// <img src={IconTabs1} className="TabsHome__icon1" alt="IconTabs1" />
+import IconTabs1 from '../../../asset/TabsHome/IconTabs1.svg';
+import IconTabs2 from '../../../asset/TabsHome/IconTabs2.svg';
+import IconTabs3 from '../../../asset/TabsHome/IconTabs3.svg';
+import IconTabs4 from '../../../asset/TabsHome/IconTabs4.svg';
 
 //import Dropdown
 import DropdownSmartfren from './Dropdown/DropdownSmartfren';
@@ -43,7 +39,7 @@ export default class Example extends React.Component {
               className="TabsHome__link {classnames({ active: this.state.activeTab === '1' })}"
               onClick={() => { this.toggle('1'); }}
             >
-              Pulsa
+              Pulsa <img src={IconTabs1} className="TabsHome__icon1" alt="IconTabs1" />
             </NavLink>
           </NavItem>
           <NavItem className="TabsHome">
@@ -51,7 +47,7 @@ export default class Example extends React.Component {
               className="TabsHome__link {classnames({ active: this.state.activeTab === '2' })}"
               onClick={() => { this.toggle('2'); }}
             >
-              Paket Data
+              Paket Data <img src={IconTabs2} className="TabsHome__icon1" alt="IconTabs1" />
             </NavLink>
           </NavItem>
           <NavItem className="TabsHome">
@@ -59,7 +55,7 @@ export default class Example extends React.Component {
               className="TabsHome__link {classnames({ active: this.state.activeTab === '3' })}"
               onClick={() => { this.toggle('3'); }}
             >
-              E-Voucher
+              E-Voucher <img src={IconTabs3} className="TabsHome__icon1" alt="IconTabs1" />
             </NavLink>
           </NavItem>
           <NavItem className="TabsHome">
@@ -67,7 +63,7 @@ export default class Example extends React.Component {
               className="TabsHome__link {classnames({ active: this.state.activeTab === '4' })}"
               onClick={() => { this.toggle('4'); }}
             >
-              Voucher Game
+              Voucher Game <img src={IconTabs4} className="TabsHome__icon1" alt="IconTabs1" />
             </NavLink>
           </NavItem>
         </Nav>

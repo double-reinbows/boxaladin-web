@@ -321,9 +321,6 @@
   text-align: center; }
   .TabsHome__link {
     height: 100%;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
     border: 1px solid #979797 !important; }
     .TabsHome__link:hover {
       color: black !important;
@@ -331,6 +328,9 @@
   .TabsHome__icon1 {
     height: 40px;
     width: 20px; }
+    .TabsHome__icon1:hover {
+      color: var(--color-yellow-1) !important;
+      background-color: var(--color-yellow-1); }
 
 .TabsPane1 {
   margin: 0rem;
