@@ -11,7 +11,6 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
-import { Link } from 'react-router-dom'
 
   import {connect} from 'react-redux'
 
@@ -36,13 +35,13 @@ class NavBar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="faded" light expand="md" className="headerz">
-        <img
-          src={logo}
-          alt="logo"
-          className="logo"
-          href="/home"
-        />
+        <Navbar light expand="md" className="Navbarz">
+          <a href="/home">
+            <div className="Navbarz__Link">
+              <img src={logo} alt="logo" className="logo Navbarz__Link__img" href="/home"/>
+            </div>
+          </a>
+
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -58,12 +57,8 @@ class NavBar extends React.Component {
       return (
         <Nav navbar >
           <NavItem>
-            <Link to="/product" className="nav-link">PRODUCT</Link>
+            <NavLink href="/product">PRODUCT</NavLink>
           </NavItem>
-
-          {/* <NavItem>
-            <Link to="/cart" className="nav-link">CART</Link>
-          </NavItem> */}
 
           <UncontrolledDropdown nav>
             <DropdownToggle nav caret>
@@ -74,10 +69,7 @@ class NavBar extends React.Component {
               Hi,
             </DropdownItem>
               <DropdownItem>
-                <Link to="/me" className="nav-link">User Profile</Link>
-              </DropdownItem>
-              <DropdownItem>
-                <Link to="/invoice" className="nav-link">Invoice</Link>
+                User Profile
               </DropdownItem>
               <DropdownItem divider />
               <DropdownItem onClick={() => this.logout()}>
@@ -89,24 +81,23 @@ class NavBar extends React.Component {
       )
     } else {
       return (
-        <Nav navbar >
-          <NavItem className="headerzz">
-            <NavLink href="/home">HOME</NavLink>
+        <Nav navbar>
+          <NavItem>
+            <NavLink className="Navbarz__List" href="/home">HOME</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/howitworks">HOW ITS WORKS</NavLink>
+            <NavLink className="Navbarz__List" href="/howitworks">HOW ITS WORKS</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/contactus">CONTACT US</NavLink>
+            <NavLink className="Navbarz__ContactUs" href="/contactus">CONTACT US</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/signup">DAFTAR</NavLink>
+            <NavLink className="Navbarz__List" href="/signup">DAFTAR</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/login">MASUK</NavLink>
+            <NavLink className="Navbarz__List" href="/login">MASUK</NavLink>
           </NavItem>
         </Nav>
-
       )
     }
   }

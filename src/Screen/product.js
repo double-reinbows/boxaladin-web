@@ -1,228 +1,234 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as firebase from 'firebase'
-import Modal from 'react-modal'
+// import Modal from 'react-modal'
 import axios from 'axios'
-import jwt from 'jsonwebtoken'
+// import jwt from 'jsonwebtoken'
+import {
+	Modal, ModalBody, ModalFooter, ModalHeader,
+	Container,
+	Row, Col,
+	Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button,
+	Form, FormGroup, Label, Input
+} from 'reactstrap'
+
 import { getProducts, getFilteredProducts } from '../actions/productAction'
 import { getCategories } from '../actions/categoryAction'
 import { getBrands } from '../actions/brandAction'
-
-Modal.setAppElement('#root');
-
-const customStyles = {
-	overlay : {
-    position          : 'absolute',
-    top               : 0,
-    left              : 0,
-    right             : 0,
-    bottom            : 0,
-    backgroundColor   : 'rgba(255, 255, 255, 0.80)'
-  },
-  content : {
-    // position                   : 'relative',
-    // top                        : '200px',
-    // left                       : '500px',
-    // right                      : '500px',
-    // bottom                     : '200px',
-    // border                     : '1px solid #ccc',
-    // background                 : '#fff',
-    // overflow                   : 'auto',
-    // WebkitOverflowScrolling    : 'touch',
-    // borderRadius               : '4px',
-    // outline                    : 'none',
-    // padding                    : '50px'
-  }
-};
+import { getPhoneNumbers } from '../actions/'
 
 class Product extends Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
-			products: [],
 			productUnlocked: {},
-			showPriceModal: false,
-			categories: [],
-			brands: [],
+			isOpenPriceModal: false,
 			selectedCategory: 'all',
 			selectedBrand: 'all',
-			isVerified: false,
-			filteredProducts: []
+			// isVerified: false,
+			count: 15,
+			initCount: 15,
+			selectedProductId: '',
+			isOpenPhoneModal: false,
+			selectedPhone: ''
 		}
-	}
 
-cekEmail(){
-	if (localStorage.getItem("token")){
-		const userInfo = jwt.decode(localStorage.getItem('token'));
-		console.log(userInfo)
-		if (userInfo.emailVerificationStatus === true) {
-			this.setState({
-				isVerified: true
-			})
-		} else {
-			this.setState({
-				isVerified: false
-			})
-		}
+		this.togglePriceModal = this.togglePriceModal.bind(this)
+		this.togglePhoneModal = this.togglePhoneModal.bind(this)
+		this.closePhoneModal = this.closePhoneModal.bind(this)
 	}
-}
 
   render () {
 		console.log('State:', this.state);
 		console.log('Props:', this.props)
     return (
       <div>
-				<h2 className="text-center">Product List</h2>
-				{ this.showProducts() }
+				{/* <h2 className="text-center">Products</h2> */}
+				<Container>
+					{ this.showProducts() }
+				</Container>
 
-				<Modal
-					isOpen={ this.state.showPriceModal }
-					style={ customStyles }
-				>
-					<h3>{this.state.productUnlocked.productName}</h3>
-					<strike><h3>Rp{this.state.productUnlocked.price}</h3></strike>
-					<h1>Rp{this.state.productUnlocked.aladinPrice}</h1>
-					<button className="btn btn-default btn-xs" style={{ width: 100 }} onClick={ () => this.closeModalPrice(this.state.productUnlocked.id) }>Close</button>
-					<button className="btn btn-primary btn-xs" style={{ width: 100 }}>Buy</button>
-				</Modal>
+				{ this.showPriceModal() }
+				{ this.showPhoneModal() }
 
       </div>
     )
   }
 
 	componentDidMount() {
-		// this.fetchBrands()
-		// this.fetchCategories()
-		// this.fetchProductsWithFilter()
-		this.cekEmail()
+		// this.cekEmail()
 		this.props.getProducts()
 		this.props.getCategories()
 		this.props.getBrands()
+		this.props.getFilteredProducts(this.state.selectedBrand, this.state.selectedCategory)
+		this.props.getPhoneNumbers()
 	}
 
-	// fetchProductsWithFilter() {
-	// 	// const productsRef = firebase.database().ref().child('products')
-	// 	// productsRef.once('value').then(snap => {
-	// 	// 	let dataProducts = []
-	// 	// 	for (var key in snap.val()) {
-	// 	// 		dataProducts.push(snap.val()[key])
-	// 	// 	}
-  //
-	// 		if (this.state.selectedBrand === 'all' && this.state.selectedCategory === 'all') {
-	//       // fetch all products
-	// 			this.setState({ products: this.props.products })
-	// 			console.log('show all products');
-	// 		} else if (this.state.selectedBrand === 'all') {
-	// 			// filter products by category
-	// 			const filtered = this.props.products.filter(product => {
-	// 				return product.categoryId.toString() === this.state.selectedCategory
-	// 			})
-	// 			this.setState({ products: filtered })
-	// 			console.log(filtered);
-	// 			console.log('filter products by category');
-	// 		} else if (this.state.selectedCategory === 'all') {
-	// 			// filter products by brand
-	// 			const filtered = this.props.products.filter(product => {
-	// 				return product.brandId.toString() === this.state.selectedBrand
-	// 			})
-	// 			this.setState({ products: filtered })
-	// 			console.log(filtered);
-	// 			console.log('filter products by brand');
-	// 		} else {
-	//       // filter products by category & brand
-	// 			const filteredByBrand = this.props.products.filter(product => {
-	// 				return product.brandId.toString() === this.state.selectedBrand
-	// 			})
-	// 			const filtered = filteredByBrand.filter(product => {
-	// 				return product.categoryId.toString() === this.state.selectedCategory
-	// 			})
-	// 			this.setState({ products: filtered })
-	// 			console.log(filtered);
-	// 			console.log('filter products by brand & category');
-	// 		}
-  //
-	// 	// })
-	// }
+	componentDidUpdate(prevProps, prevState) {
+		this.checkTimer(prevState.count)
+		this.afterResetPrice(prevState.productUnlocked.aladinPrice)
+	}
 
-	filterProducts() {
-		if (this.state.selectedBrand === 'all' && this.state.selectedCategory === 'all') {
-			// fetch all products
-			this.setState({ products: this.props.products })
-			console.log('show all products');
-		} else if (this.state.selectedBrand === 'all') {
-			// filter products by category
-			const filtered = this.props.products.filter(product => {
-				return product.categoryId.toString() === this.state.selectedCategory
-			})
-			this.setState({ products: filtered })
-			console.log(filtered);
-			console.log('filter products by category');
-		} else if (this.state.selectedCategory === 'all') {
-			// filter products by brand
-			const filtered = this.props.products.filter(product => {
-				return product.brandId.toString() === this.state.selectedBrand
-			})
-			this.setState({ products: filtered })
-			console.log(filtered);
-			console.log('filter products by brand');
-		} else {
-			// filter products by category & brand
-			const filteredByBrand = this.props.products.filter(product => {
-				return product.brandId.toString() === this.state.selectedBrand
-			})
-			const filtered = filteredByBrand.filter(product => {
-				return product.categoryId.toString() === this.state.selectedCategory
-			})
-			this.setState({ products: filtered })
-			console.log(filtered);
-			console.log('filter products by brand & category');
+	afterResetPrice(prevPrice) {
+		if (prevPrice !== undefined && this.state.productUnlocked.aladinPrice > prevPrice) {
+      // kalau ada user yang sudah beli produk ini, maka user lain yang sedang lihat harga secara otomatis modalnya close
+			this.closeModalPrice(this.state.selectedProductId)
 		}
 	}
 
-	// fetchBrands() {
-	// 	axios({
-	// 		method: 'GET',
-	// 		url: `http://localhost:3000/api/brand`
-	// 	})
-	// 	.then(({data}) => this.setState({ brands: data}))
-	// 	.catch(err => console.log(err))
+	// addToCart(product) {
+	// 	this.props.addToCart(this.props.cart, product)
+	// 	this.togglePriceModal()
 	// }
 
-	// fetchCategories() {
-	// 	axios({
-	// 		method: 'GET',
-	// 		url: `http://localhost:3000/api/category`
-	// 	})
-	// 	.then(({data}) => this.setState({ categories: data }))
-	// 	.catch(err => console.log(err))
-	// }
+	submitTransaction(e) {
+		e.preventDefault()
 
-	// fetchProducts() {
-	// 	const productsRef = firebase.database().ref().child('products')
-	// 	productsRef.once('value').then(snap => {
-	// 		// console.log(snap.val())
-	// 		let dataProducts = []
-	// 		// snap.val().map(dataProduct => (
-	// 		// 	dataProducts.push(dataProduct)
-	// 		// ))
-	// 		for (var key in snap.val()) {
-	// 			dataProducts.push(snap.val()[key])
-	// 			// console.log(snap.val()[key]);
+		axios({
+			method: 'POST',
+			url: `http://localhost:3000/payment`,
+			data: {
+				amount: this.state.productUnlocked.aladinPrice,
+				productId: this.state.productUnlocked.id,
+				phoneNumber: this.state.selectedPhone
+			},
+			headers: {
+				token: localStorage.getItem('token')
+			}
+		})
+		.then(({data}) => {
+			this.closePhoneModal()
+			console.log('Data dari create transaction:', data)
+			this.props.history.push(`/payment/${data.id}`)
+		})
+		.catch(err => console.log(err))
+	}
+
+	togglePhoneModal() {
+		this.setState({isOpenPhoneModal: !this.state.isOpenPhoneModal})
+	}
+
+	closePhoneModal() {
+		this.setState({
+			selectedProductId: '',
+			productUnlocked: {},
+			selectedPhone: '',
+			isOpenPhoneModal: false
+		})
+	}
+
+	showPhoneModal() {
+		return (
+			<Modal isOpen={this.state.isOpenPhoneModal}>
+				<Form onSubmit={(e) => this.submitTransaction(e)}>
+					<ModalHeader toggle={this.togglePhoneModal}>Nomor tujuan</ModalHeader>
+					<ModalBody>
+						{/* Form here */}
+
+							<FormGroup>
+								<Label for="selectNumber"></Label>
+								<Input onChange={(e) => this.setState({selectedPhone: e.target.value})} type="select" name="selectNumber" id="selectNumber">
+									{this.props.phoneNumbers.map((phone, idx) => {
+										return (
+											<option key={idx} value={phone.number}>{phone.number}</option>
+										)
+									})}
+								</Input>
+							</FormGroup>
+
+							{/* <FormGroup>
+								<Input type="text" name="phone" placeholder="Phone Number" />
+							</FormGroup> */}
+
+					</ModalBody>
+					<ModalFooter>
+						<Button type="submit" color="primary">Confirm</Button>
+						<Button type="button" color="danger" onClick={this.closePhoneModal}>Cancel</Button>
+					</ModalFooter>
+				</Form>
+			</Modal>
+		)
+	}
+
+	insertPhoneNumber() {
+		this.closeModalPrice(this.state.selectedProductId)
+		this.setState({selectedPhone: this.props.phoneNumbers[0] ? this.props.phoneNumbers[0].number : ''})
+
+		axios({
+			method: 'PUT',
+			url: `http://localhost:3000/api/product/${this.state.selectedProductId}`
+		})
+		.then(({data}) => {
+			this.togglePhoneModal()
+		})
+		.catch(err => console.log(err))
+	}
+
+	showPriceModal() {
+		return (
+			<Modal isOpen={this.state.isOpenPriceModal}>
+				<ModalHeader toggle={this.togglePriceModal}>{this.state.productUnlocked.productName}</ModalHeader>
+				<ModalBody>
+					<strike><h4>Rp{this.state.productUnlocked.price}</h4></strike>
+					<h1>Rp{this.state.productUnlocked.aladinPrice}</h1>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					<h1>{this.state.count < 10 ? `00:0${this.state.count}` : `00:${this.state.count}`}</h1>
+				</ModalBody>
+				<ModalFooter>
+					<Button color="secondary" onClick={() => this.closeModalPrice(this.state.selectedProductId)}>Cancel</Button>
+					<Button color="primary" onClick={() => this.insertPhoneNumber()}>Buy</Button>
+				</ModalFooter>
+			</Modal>
+		)
+	}
+
+	// cekEmail(){
+	// 	if (localStorage.getItem("token")){
+	// 		const userInfo = jwt.decode(localStorage.getItem('token'));
+	// 		console.log(userInfo)
+	// 		if (userInfo.emailVerificationStatus === true) {
+	// 			this.setState({
+	// 				isVerified: true
+	// 			})
+	// 		} else {
+	// 			this.setState({
+	// 				isVerified: false
+	// 			})
 	// 		}
-	// 		// console.log(dataProducts);
-	// 		this.setState({ products: dataProducts })
-	// 		this.setState({ filteredProducts: dataProducts })
-	// 	})
+	// 	}
 	// }
+
+	togglePriceModal() {
+		this.setState({isOpenPriceModal: !this.state.isOpenPriceModal})
+	}
 
 	closeModalPrice(productId) {
 		const productsRef = firebase.database().ref().child('products')
 		const productRef = productsRef.child(productId)
 		productRef.off()
-		this.setState({showPriceModal: false, productUnlocked: {}})
+
+		this.setState({isOpenPriceModal: false})
+	}
+
+	checkTimer(prevCount) {
+		if (this.state.count > 0 && this.state.count !== prevCount && this.state.isOpenPriceModal === true) {
+			this.runTimer()
+		} else if (this.state.count <= 0 && this.state.count !== prevCount && this.state.isOpenPriceModal === true) {
+			this.setState({isOpenPriceModal: false})
+		} else if (this.state.count !== this.state.initCount && this.state.isOpenPriceModal === false) {
+			this.setState({count: this.state.initCount})
+		}
+	}
+
+	runTimer() {
+		setTimeout(() => {
+			this.setState({count: this.state.count >= 0 ? this.state.count-1 : 0})
+		}, 1000)
 	}
 
 	watchProductPrice(productId) {
+		// this.setState({selectedProductId: productId})
+
 		if (localStorage.getItem('token') !== null) {
 			axios({
 				method: 'POST',
@@ -240,9 +246,24 @@ cekEmail(){
 					const productsRef = firebase.database().ref().child('products')
 					const productRef = productsRef.child(productId)
 					productRef.on('value', snap => {
-						this.setState({productUnlocked: snap.val()})
-						this.setState({showPriceModal: true})
+						this.setState({
+							selectedProductId: productId,
+							isOpenPriceModal: true,
+							productUnlocked: snap.val()
+						})
+						// this.setState({productUnlocked: snap.val()})
+						// this.setState({isOpenPriceModal: true})
+
+            // supaya modal price tertutup ketika harga kembali normal (ada yang beli)
+            //
+						// if (snap.val().aladinPrice === snap.val().price) {
+						// 	this.closeModalPrice(this.state.selectedProductId)
+						// }
+
 					})
+
+					this.runTimer()
+
 				} else if (data.message === 'not enough aladin key') {
 					alert(data.message)
 				} else {
@@ -258,50 +279,59 @@ cekEmail(){
 	showProducts() {
 		return (
 			<div>
-			<form className="form-horizontal">
-				<div className="form-group">
-					<label htmlFor="select" className="col-sm-1 control-label">Category</label>
-					<div className="col-sm-2">
-						<select className="form-control" id="select" onChange={ (e) => this.setState({ selectedCategory: e.target.value }) }>
+
+				{/* Filter Bar */}
+				<Form>
+
+					<FormGroup>
+						<Label for="selectCategory">Category</Label>
+						<Input type="select" id="selectCategory" onChange={ (e) => this.setState({ selectedCategory: e.target.value }) }>
 							<option value="all">All</option>
 							{this.props.categories.map((category, idx) => {
 								return (
 									<option key={idx} value={category.id}>{category.categoryName}</option>
 								)
 							})}
-						</select>
-					</div>
+						</Input>
+					</FormGroup>
 
-					<label htmlFor="select" className="col-sm-1 control-label">Brand</label>
-					<div className="col-sm-2">
-						<select className="form-control" id="select" onChange={ (e) => this.setState({ selectedBrand: e.target.value }) }>
+					<FormGroup>
+						<Label for="selectBrand">Brand</Label>
+						<Input type="select" id="selectBrand" onChange={ (e) => this.setState({ selectedBrand: e.target.value }) }>
 							<option value="all">All</option>
 							{this.props.brands.map((brand, idx) => {
 								return (
 									<option key={idx} value={brand.id}>{brand.brandName}</option>
 								)
 							})}
-						</select>
-					</div>
+						</Input>
+					</FormGroup>
 
-					<div className="col-sm-2">
-						<button type="button" className="btn btn-primary" onClick={ () => this.filterProducts() }>Filter</button>
-					</div>
-				</div>
-			</form>
-			{this.state.products.map((product, idx) => {
-				return (
-					<div key={idx} className="panel panel-default">
-						<div className="panel-heading">
-					  	<h3 className="panel-title"><b>{product.productName}</b></h3>
-					  </div>
-						<div className="panel-body">
-							<h4>Rp{product.price} (harga asli)</h4>
-							<button className="btn btn-success btn-xs" onClick={ () => this.watchProductPrice(product.id)} >Unlock</button>
-						</div>
-					</div>
-				)
-			})}
+					<FormGroup>
+						<Button type="Button" color="primary" onClick={ () => this.props.getFilteredProducts(this.state.selectedBrand, this.state.selectedCategory) }>Filter</Button>
+					</FormGroup>
+
+				</Form>
+
+				{/* Data Products */}
+				<Row>
+					{this.props.filteredProducts.map((product, idx) => {
+						return (
+							<Col xs="3" key={idx}>
+								<Card>
+									<CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+									<CardBody>
+										<CardTitle>{product.productName}</CardTitle>
+										<CardSubtitle>Card subtitle</CardSubtitle>
+										<CardText>Some quick example text to build on the card title and make up the bulk of the cards content.</CardText>
+										<Button color="success" onClick= { () => this.watchProductPrice(product.id) }>Unlock Price</Button>
+									</CardBody>
+								</Card>
+							</Col>
+						)
+					})}
+				</Row>
+
 			</div>
 		)
 
@@ -314,7 +344,9 @@ const mapStateToProps = (state) => {
 		products: state.productReducer.products,
 		categories: state.categoryReducer.categories,
 		brands: state.brandReducer.brands,
-		filteredProducts: state.productReducer.filteredProducts
+		filteredProducts: state.productReducer.filteredProducts,
+		phoneNumbers: state.userReducer.phoneNumbers
+		// cart: state.productReducer.cart
   }
 }
 
@@ -323,7 +355,9 @@ const mapDispatchToProps = (dispatch) => {
 		getProducts: () => dispatch(getProducts()),
 		getCategories: () => dispatch(getCategories()),
 		getBrands: () => dispatch(getBrands()),
-		getFilteredProducts: (brand, category) => dispatch(getFilteredProducts(brand, category))
+		getFilteredProducts: (brand, category) => dispatch(getFilteredProducts(brand, category)),
+		getPhoneNumbers: () => dispatch(getPhoneNumbers())
+		// addToCart: (cart, product) => dispatch(addToCart(cart, product))
 	}
 }
 

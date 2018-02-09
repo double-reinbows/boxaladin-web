@@ -2,19 +2,19 @@ import React from 'react'
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import NavBar from './screen/components/navbar'
-import Footer from './screen/components/footer'
+import NavBar from './Screen/NavBar'
 
-import Login from './screen/login'
-import Signup from './screen/signup'
-import EmailVerificationDone from './screen/emailVerificationDone'
-import Product from './screen/product'
-import LandingPage from './screen/landingPage'
-import User from './screen/user'
-import Home from './screen/home'
-
-
-// import Phone from './screen/Phone'
+import Home from './Screen/Home'
+import Login from './Screen/Login'
+import Signup from './Screen/Signup'
+import EmailVerificationDone from './Screen/EmailVerificationDone'
+// import Phone from './Screen/Phone'
+import Product from './Screen/Product'
+import LandingPage from './Screen/LandingPage'
+import User from './Screen/User'
+import Invoice from './Screen/Invoice'
+import Pembayaran from './Screen/Pembayaran'
+// import Cart from './screen/Cart'
 
 
 class RouteList extends React.Component {
@@ -74,7 +74,21 @@ class RouteList extends React.Component {
               component={EmailVerificationDone}
             />
 
-            <Footer/>
+            <Route exact path="/invoice" component={Invoice} />
+            <Route exact path="/payment/:id" component={Pembayaran} />
+
+            {/* <Route
+              exact
+              path="/cart"
+              render={() =>
+                localStorage.getItem('token') !== null ? (
+                  <Cart />
+                ) : (
+                  <Redirect to="/" />
+                )
+              }
+            /> */}
+
           </div>
         </Router>
       </div>
