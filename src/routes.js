@@ -23,7 +23,10 @@ import EmailVerificationDone from './Screen/EmailVerificationDone'
 import User from './Screen/User'
 
 //page can access with or without login
-import Product from './Screen/Product'
+import Product from './Screen/product'
+
+import Invoice from './screen/Invoice'
+import InvoiceDetail from './screen/Pembayaran'
 
 
 class RouteList extends React.Component {
@@ -86,7 +89,7 @@ class RouteList extends React.Component {
             />
 
             <Route exact path="/invoice" component={Invoice} />
-            <Route exact path="/payment/:id" component={Pembayaran} />
+            <Route exact path="/payment/:id" component={InvoiceDetail} />
 
             {/* <Route
               exact
