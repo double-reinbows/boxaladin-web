@@ -6,9 +6,6 @@
     margin: 2rem;
 }
 
-.a{
-  background-color: #3E3E3E;
-}
 .DropdownUser{
   width: 150px;
   height: 40px;
@@ -43,9 +40,10 @@
 
   }
   &__item{
-    width: 200px !important;
+    width: 150px !important;
     min-width: 0rem !important;
     background-color: #FFCD05 !important;
+    border-radius: 10px !important;
   }
 
   &__inside{
