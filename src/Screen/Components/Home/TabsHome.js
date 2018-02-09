@@ -1,7 +1,17 @@
 import React from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 
+//import iconTabs
+// import IconTabs1 from '../../../asset/TabsHome/IconTabs1.svg';
+// <img src={IconTabs1} className="TabsHome__icon1" alt="IconTabs1" />
+// import IconTabs2 from '../../../asset/TabsHome/IconTabs2.svg';
+// <img src={IconTabs1} className="TabsHome__icon1" alt="IconTabs1" />
+// import IconTabs3 from '../../../asset/TabsHome/IconTabs3.svg';
+// <img src={IconTabs1} className="TabsHome__icon1" alt="IconTabs1" />
+// import IconTabs4 from '../../../asset/TabsHome/IconTabs4.svg';
+// <img src={IconTabs1} className="TabsHome__icon1" alt="IconTabs1" />
 
+//import Dropdown
 import DropdownSmartfren from './Dropdown/DropdownSmartfren';
 import DropdownTelkomsel from './Dropdown/DropdownTelkomsel';
 import DropdownTri from './Dropdown/DropdownTri';

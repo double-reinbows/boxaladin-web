@@ -13,7 +13,7 @@ import {connect} from 'react-redux'
 import {logoutAction} from '../../actions/'
 
 import logo from '../../asset/Logo/LogoBig.svg'
-import IconUser from '../../asset/Login/user.svg'
+import LoginIcon from '../../asset/Login/login.svg'
 import DropdownUser from './Header/Dropdown/DropdownUser'
 
 
@@ -55,10 +55,10 @@ class NavBar extends React.Component {
         <Nav navbar className="HeaderTop__Right">
 
           <NavItem>
-            <Button outline color="warning" className="HeaderTop__ButtonTopUP">
+            <button className="HeaderTop__ButtonTopUP">
               <label className="HeaderTop__ButtonTopUP__label">Top Up  </label>{' '}
               <label className="HeaderTop__ButtonTopUP__label__italic">Aladinkey!</label>
-            </Button>
+            </button>
           </NavItem>
 
           <NavItem>
@@ -72,9 +72,10 @@ class NavBar extends React.Component {
         <Nav navbar className="HeaderTop__Right">
 
           <NavItem>
-            <Button outline color="warning" className="HeaderTop__ButtonLogin" href="/login">
-              <label className="HeaderTop__ButtonLogin__label">Login </label>{' '}
-              <img src={IconUser} alt="IconUser" className="HeaderTop__ButtonLogin__icon" />
+            <Button className="ButtonLogin" href="/login">
+              Login
+              <hr/>
+              <img src={LoginIcon} alt="LoginIcon" className="ButtonLogin__icon1" href="/home"/>
             </Button>
           </NavItem>
 

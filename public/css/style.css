@@ -95,31 +95,20 @@
     height: 40px;
     width: 200px;
     border: 2px solid #FFCD05;
+    color: #FFCD05;
+    background-color: #3E3E3E;
     box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
     font-family: Raleway;
     font-size: 22px;
     font-weight: 600;
     line-height: 21px;
-    text-align: center; }
+    text-align: center;
+    margin-right: 20px !important; }
     .HeaderTop__ButtonTopUP__label {
       font-size: 18px; }
       .HeaderTop__ButtonTopUP__label__italic {
         font-size: 18px;
         font-style: italic; }
-  .HeaderTop__ButtonLogin {
-    height: 40px;
-    width: 150px !important;
-    background-color: #FFCD05 !important; }
-    .HeaderTop__ButtonLogin__label {
-      color: #3E3E3E;
-      font-family: Raleway;
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      margin: 2px; }
-    .HeaderTop__ButtonLogin__icon {
-      width: 25px !important;
-      height: 25px !important; }
   .HeaderTop__List {
     color: var(--color-primary-2) !important;
     padding-top: 20px !important; }
@@ -137,6 +126,28 @@
       color: white !important;
       background-color: #e5b721;
       height: 100%; }
+
+.ButtonLogin {
+  width: 150px;
+  height: 40px;
+  padding-left: 15px !important;
+  padding-top: 0px !important;
+  border-radius: 10px !important;
+  background-color: #FFCD05 !important;
+  display: flex !important;
+  align-items: center !important;
+  color: #3E3E3E !important;
+  font-family: Raleway !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1px !important;
+  margin: 10px !important; }
+  .ButtonLogin__icon1 {
+    width: 25px !important;
+    height: 25px !important; }
+  .ButtonLogin__icon2 {
+    width: 25px !important;
+    height: 25px !important; }
 
 .Bar-First {
   margin: 0rem !important;
@@ -290,15 +301,21 @@
   height: 25rem; }
 
 .NavTabsHome {
-  background-color: var(--color-grey-dark-1);
-  color: white !important;
+  background-color: var(--color-dark-3);
+  color: var(--color-yellow-1) !important;
   margin: 0rem !important; }
 
 .TabsHome {
   width: 25% !important;
   height: 5rem !important;
   text-align: center !important;
-  margin: 0rem !important; }
+  margin: 0rem !important;
+  font-family: Raleway;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 11px;
+  text-align: center; }
   .TabsHome__link {
     height: 100%;
     display: flex !important;
@@ -308,6 +325,9 @@
     .TabsHome__link:hover {
       color: black !important;
       background-color: var(--color-primary-2); }
+  .TabsHome__icon1 {
+    height: 40px;
+    width: 20px; }
 
 .TabsPane1 {
   margin: 0rem;
@@ -422,12 +442,27 @@ body {
   width: 200px;
   margin: 2rem; }
 
+.a {
+  background-color: #3E3E3E; }
+
 .DropdownUser {
-  height: 50px !important;
-  width: 200px !important;
-  margin: 2rem !important;
-  border-radius: 4px;
-  background-color: #FFCD05 !important; }
+  width: 150px;
+  height: 40px;
+  padding: 0rem !important;
+  padding-left: 15px !important;
+  border-radius: 10px !important;
+  background-color: #FFCD05 !important;
+  display: flex !important;
+  align-items: center !important;
+  color: #3E3E3E !important;
+  font-family: Raleway !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1px !important;
+  margin: 10px !important; }
+  .DropdownUser__icon1 {
+    width: 25px !important;
+    height: 25px !important; }
   .DropdownUser__label {
     height: 10px;
     width: 150px;
@@ -454,6 +489,16 @@ body {
       font-family: Raleway;
       font-size: 22px;
       font-weight: 600; }
+
+hr {
+  border: none !important;
+  border-left: 1px solid black !important;
+  height: 43px !important;
+  width: 1px !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-right: 10px !important;
+  margin-left: 25px !important; }
 
 :root {
   --color-yellow-1: #FFCD05;

@@ -6,12 +6,30 @@
     margin: 2rem;
 }
 
+.a{
+  background-color: #3E3E3E;
+}
 .DropdownUser{
-	height: 50px !important;
-	width: 200px !important;
-  margin: 2rem !important;
-	border-radius: 4px;
-	background-color: #FFCD05 !important;
+  width: 150px;
+  height: 40px;
+  padding: 0rem !important;
+  padding-left: 15px !important;
+  border-radius: 10px !important;
+  background-color: #FFCD05 !important;
+  display: flex !important;
+  align-items: center !important;
+
+  color: #3E3E3E !important;
+  font-family: Raleway !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1px !important;
+  margin: 10px !important;
+
+  &__icon1{
+    width: 25px !important;
+    height: 25px !important;
+  }
 
   &__label {
   	height: 10px;
@@ -45,4 +63,15 @@
       font-weight: 600;
     }
   }
+}
+
+hr{
+  border: none !important;
+  border-left: 1px solid hsla(200, 10%, 0%,100) !important;
+  height: 43px !important;
+  width: 1px !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-right: 10px !important;
+  margin-left: 25px !important;
 }

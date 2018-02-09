@@ -2,6 +2,8 @@ import React from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
+import ExpandIcon from '../../../../asset/Login/expand.svg'
+
 import {connect} from 'react-redux'
 
 import {logoutAction} from '../../../../actions/'
@@ -26,8 +28,10 @@ class DropdownUser extends React.Component {
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
 
-        <DropdownToggle caret className="DropdownUser">
-          <label className="DropdownUser__label">Teza Harsony</label>
+        <DropdownToggle className="ButtonLogin">
+          Profile
+          <hr/>
+          <img src={ExpandIcon} alt="LoginIcon" className="ButtonLogin__icon2" href="/home"/>
         </DropdownToggle>
 
         <DropdownMenu className="DropdownUser__item">
