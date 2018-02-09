@@ -85,7 +85,21 @@ class RouteList extends React.Component {
               component={EmailVerificationDone}
             />
 
-            <Footer/>
+            <Route exact path="/invoice" component={Invoice} />
+            <Route exact path="/payment/:id" component={Pembayaran} />
+
+            {/* <Route
+              exact
+              path="/cart"
+              render={() =>
+                localStorage.getItem('token') !== null ? (
+                  <Cart />
+                ) : (
+                  <Redirect to="/" />
+                )
+              }
+            /> */}
+
           </div>
         </Router>
       </div>

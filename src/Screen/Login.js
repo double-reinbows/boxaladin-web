@@ -45,8 +45,6 @@ class Login extends Component {
     })
   }
 
-  
-
   logInInputHandler(e) {
     this.setState({ [e.target.name]: e.target.value })
   }
