@@ -1,89 +1,106 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
-import { connect } from 'react-redux'
+import React from 'react'
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
 
-import NavBar from './Screen/NavBar'
-import Home from './Screen/Home'
-import Login from './Screen/login'
-import Signup from './Screen/signup'
-import EmailVerificationDone from './Screen/EmailVerificationDone'
-import Phone from './Screen/Phone'
-import Product from './Screen/product'
+//convention pake camelcase
+
+//component page
+import NavBar from './Screen/Components/NavBar'
+import Footer from './Screen/Components/Footer'
+
+//page non login
 import LandingPage from './Screen/LandingPage'
+import AboutUs from './Screen/AboutUs'
+import HowItWorks from './Screen/HowItWorks'
+
+//page login
+import Login from './Screen/Login'
+import Signup from './Screen/Signup'
+
+//page after login
+import Home from './Screen/Home'
+import EmailVerificationDone from './Screen/EmailVerificationDone'
+import User from './Screen/User'
+
+//page can access with or without login
+import Product from './Screen/Product'
+
 
 class RouteList extends React.Component {
-	render() {
-		return (
-			<div>
-				<Router>
-					<div>
-						<NavBar />
-						<div className="container">
-							<Route exact path="/" render={() => (
-								localStorage.getItem('token') !== null ? (
-									<Redirect to="/home"/>
-								) : (
-									<LandingPage/>
-								)
-							)}/>
+  render() {
+    return (
+      <div>
+        <Router>
+          <div>
+            <NavBar />
 
-							<Route exact path="/home" render={() => (
-								localStorage.getItem('token') !== null ? (
-									<Home/>
-								) : (
-									<Redirect to="/"/>
-								)
-							)}/>
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/aboutus" component={AboutUs} />
+            <Route exact path="/howitworks" component={HowItWorks} />
 
-							<Route exact path="/product" render={() => (
-								localStorage.getItem('token') !== null ? (
-									<Product/>
-								) : (
-									<Product/>
-								)
-							)}/>
+            <Route exact path="/home" component={Home} />
+            <Route
+              exact
+              path="/Login"
+              render={() =>
+                localStorage.getItem('token') !== null ? (
+                  <Redirect to="/landingpage" />
+                ) : (
+                  <Login />
+                )
+              }
+            />
 
-							<Route exact path="/login" render={() => (
-								localStorage.getItem('token') !== null ? (
-									<Redirect to="/"/>
-								) : (
-									<Login/>
-								)
-							)}/>
+            <Route
+              exact
+              path="/signup"
+              render={() =>
+                localStorage.getItem('token') !== null ? (
+                  <Redirect to="/landingpage" />
+                ) : (
+                  <Signup />
+                )
+              }
+            />
 
-							<Route exact path="/signup" render={() => (
-								localStorage.getItem('token') !== null ? (
-									<Redirect to="/"/>
-								) : (
-									<Signup/>
-								)
-							)}/>
+            <Route
+              exact
+              path="/me"
+              render={() =>
+                localStorage.getItem('token') !== null ? (
+                  <User />
+                ) : (
+                  <Redirect to="/landingpage" />
+                )
+              }
+            />
 
-							<Route exact path="/phone" render={() => (
-								localStorage.getItem('token') !== null ? (
-									<Phone/>
-								) : (
-									<Redirect to="/"/>
-								)
-							)}/>
+            <Route
+              path="/product"
+              component={Product}
+            />
 
-							<Route path="/emailVerification" component={ EmailVerificationDone }/>
-						</div>
-					</div>
-				</Router>
-			</div>
-		)
-	}
+            <Route
+              path="/emailVerification"
+              component={EmailVerificationDone}
+            />
+
+            <Footer/>
+          </div>
+        </Router>
+      </div>
+    )
+  }
 }
 
-const mapStateToProps = (state) => {
-	return {
-		isLogin: state.userReducer.isLogin
-	}
+const mapStateToProps = state => {
+  return {
+    isLogin: state.userReducer.isLogin
+  }
 }
 
-const mapDispatchToProps = (dispatch) => {
-	return {}
+const mapDispatchToProps = dispatch => {
+  return {}
 }
 
 const connectComponent = connect(mapStateToProps, mapDispatchToProps)(RouteList)

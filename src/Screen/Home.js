@@ -1,26 +1,30 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 
-import { loginAction } from '../actions/'
+import {loginAction} from '../actions/'
 
 class Home extends Component {
-  render () {
+  render() {
+    console.log('State:', this.state);
+		console.log('Props:', this.props);
     return (
-      <div>
+      <div className="text-center">
         <h1>Welcome</h1>
-        <h4>This is BoxAladin's Home Screen.</h4>
+        <h4>This is BoxAladin Home Screen.</h4>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    isLogin: state.userReducer.isLogin
+    isLogin: state.userReducer.isLogin,
+    dataUser: state.userReducer.dataUser,
+    phoneNumbers: state.userReducer.phoneNumbers
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     loginAction: () => dispatch(loginAction())
   }

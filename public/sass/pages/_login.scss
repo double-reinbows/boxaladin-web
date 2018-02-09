@@ -1,0 +1,60 @@
+.Login {
+  display: flex;
+  justify-content: center;
+
+  &__container {
+    width: 40rem;
+    height: 100%;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    font-size: 2rem;
+    box-shadow: var(--shadow-dark);
+
+
+    &__small{
+      font-size: 1rem;
+    }
+
+    &__row1{
+      background-color: var(--color-container-1);
+      padding: 2rem;
+    }
+
+    &__icon{
+      height: 15rem;
+      align-items: center;
+   }
+
+    &__form {
+      padding-top: 2rem;
+    }
+
+    &__row2{
+      background-color: var(--color-container-2);
+      margin-top: 0rem;
+    }
+
+    &__button{
+      padding-left: 2rem;
+      padding-right: 2rem;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
+    &__row3{
+      background-color: var(--color-container-1);
+      color: var(--color-grey-light-1);
+      display: flex;
+      justify-content: center;
+    }
+
+    &__label{
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      align-content: center;
+    }
+  }
+
+}
