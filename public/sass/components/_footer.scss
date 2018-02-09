@@ -1,5 +1,5 @@
 .footerz {
-    background-color: var(--color-footer);
+    background-color: var(--color-grey-7);
     grid-column: full-start / full-end;
     padding: 5rem;
 }
@@ -27,7 +27,8 @@
 
   &:hover,
   &:active {
-    background-color: var(--color-grey-dark-1);
+    background-color: var(--color-yellow-4);
+    color: var(--color-grey-7);
     transform: translateY(-3px);
   }
 }
@@ -37,7 +38,9 @@
 }
 .footerz2 {
     font-size: 1.4rem;
-    color: var(--color-primary-3);
-    background-color: var(--color-primary-2);
+    color: var(--color-grey-7);
+    background-color: var(--color-yellow-1);
     text-align: center;
+    padding: 0rem !important;
+    height: 30px;
 }

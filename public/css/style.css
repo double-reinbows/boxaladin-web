@@ -1,5 +1,5 @@
 .footerz {
-  background-color: var(--color-footer);
+  background-color: var(--color-grey-7);
   grid-column: full-start / full-end;
   padding: 5rem; }
 
@@ -21,7 +21,8 @@
   transition: all .2s; }
 
 .linkfooter:hover, .linkfooter:active {
-  background-color: var(--color-grey-dark-1);
+  background-color: var(--color-yellow-4);
+  color: var(--color-grey-7);
   transform: translateY(-3px); }
 
 .SocialMedia {
@@ -30,9 +31,11 @@
 
 .footerz2 {
   font-size: 1.4rem;
-  color: var(--color-primary-3);
-  background-color: var(--color-primary-2);
-  text-align: center; }
+  color: var(--color-grey-7);
+  background-color: var(--color-yellow-1);
+  text-align: center;
+  padding: 0rem !important;
+  height: 30px; }
 
 .Navbarz {
   background-color: var(--color-grey-dark-1);
@@ -321,10 +324,10 @@
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
-    border: 0.25rem solid var(--color-primary-3) !important; }
+    border: 1px solid #979797 !important; }
     .TabsHome__link:hover {
       color: black !important;
-      background-color: var(--color-primary-2); }
+      background-color: var(--color-yellow-1); }
   .TabsHome__icon1 {
     height: 40px;
     width: 20px; }
@@ -332,7 +335,10 @@
 .TabsPane1 {
   margin: 0rem;
   padding: 2rem;
-  background-color: var(--color-primary-2); }
+  background-color: var; }
+  .TabsPane1:hover {
+    color: black !important;
+    background-color: var(--color-yellow-1); }
   .TabsPane1__text {
     font-size: 5rem !important;
     text-align: center !important;
@@ -347,8 +353,15 @@
     .TabsPane1__dropdown__content {
       flex: 1 1 200px; }
   .TabsPane1__button {
-    color: var(--color-primary-2) !important;
-    background-color: var(--color-primary-3) !important; }
+    color: var(--color-yellow-1) !important;
+    background-color: #3e3e3e !important;
+    font-family: Raleway;
+    font-size: 24px !important;
+    font-weight: 800;
+    letter-spacing: 1px;
+    line-height: 29px;
+    text-align: center;
+    margin: 0rem; }
 
 .dropz {
   width: 10rem !important;
@@ -368,41 +381,41 @@
       background-color: var(--color-primary-2); }
 
 .BannerText1 {
-  border-top: 0.25rem solid var(--color-primary-2) !important;
-  height: 20rem;
+  border-top: 0.25rem solid var(--color-yellow-1) !important;
+  height: 25rem;
   width: 100%;
   margin: 0rem !important;
-  background-color: var(--color-primary-3);
+  background-color: var(--color-grey-7);
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center; }
   .BannerText1__text1 {
-    font-size: 2rem;
+    font-size: 4rem;
     padding: 2rem;
     margin: 0rem !important;
-    color: var(--color-primary-2);
+    color: var(--color-yellow-1);
     text-align: center; }
   .BannerText1__text2 {
     padding: 2rem;
     margin: 0rem !important;
     margin: 0rem !important;
-    font-size: 1rem;
-    color: var(--color-primary-1); }
+    font-size: 1.5rem;
+    color: var(--color-grey-6); }
 
 .BannerText2 {
-  height: 15rem;
+  height: 25rem;
   width: 100%;
   margin: 0rem !important;
-  background-color: var(--color-primary-1);
+  background-color: var(--color-grey-6);
   color: var(--color-grey-dark-1);
   text-align: center; }
   .BannerText2__text1 {
-    font-size: 2rem;
+    font-size: 4rem;
     padding: 2rem;
     margin: 0rem !important; }
   .BannerText2__text2 {
-    font-size: 1rem;
+    font-size: 1.5rem;
     padding-right: 2rem;
     padding-left: 2rem;
     margin: 0rem !important; }
