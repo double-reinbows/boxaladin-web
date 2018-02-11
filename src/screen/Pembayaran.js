@@ -36,8 +36,20 @@ class InvoiceDetail extends React.Component {
     return (
       <div>
         <Container>
-          { this.showTabs() }
-          { this.show3dsModal() }
+          <h1>Payment</h1>
+          {this.state.invoice ? (
+              <div>
+                <h5>Silahkan melakukan pembayaran sejumlah {this.state.invoice.payment.amount} ke salah satu virtual bank account di bawah ini:</h5>
+                <ul>
+                  {this.state.invoice.payment.availableBanks.map((bank, idx) => {
+                    return (
+                      <li key={idx}>{bank.bank_code}: {bank.bank_account_number}</li>
+                    )
+                  })}
+                </ul>
+              </div>
+            ) : null
+          }
         </Container>
       </div>
     )
