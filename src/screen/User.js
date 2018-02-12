@@ -100,7 +100,7 @@ class User extends React.Component {
 		e.preventDefault()
 		// alert('Final submit!')
 		console.log(`Data buat confirm change primary phone: ID=${this.state.numberId}, OTP=${this.state.OTP}`);
-
+		
 		axios({
 				method: 'POST',
 				url: `http://localhost:3000/changePrimary`,
@@ -301,10 +301,10 @@ class User extends React.Component {
 
 	requestOTP(phone) {
 		console.log(phone);
-
-		this.setState({numberId: phone.id})
+		
+		// this.setState({numberId: phone.id})
 		this.setState({phoneModal: true})
-
+		
 		axios({
 			method: 'POST',
 			url: `http://localhost:3000/smsVerification`,

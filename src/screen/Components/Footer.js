@@ -1,35 +1,34 @@
 import React from 'react';
-import logo from '../../asset/Logo/LogoBig.svg'
-
 export default  class Footer extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="footerz">
-          <div>
-            <ul className="navfooter">
-              <img src={logo} alt="logo" className="logo Navbarz__Link__img" href="/home"/>
-              <li className="navf__item">
-                <a href="/aboutus" className="linkfooter">Get in touch</a>
-              </li>
-              <li className="navf__item">
-                <a href="/aboutus" className="linkfooter">How it works</a>
-              </li>
-              <li className="navf__item">
-                <a href="/aboutus" className="linkfooter">Contact us</a>
-              </li>
-              <li className="navf__item">
-                <a href="/aboutus" className="linkfooter">Our Social Media</a>
-              </li>
-            </ul>
+      <div className="footerz" >
+        <div className="row text-center" style={{marginRight:0,marginLeft:0}}>
+          <div className="col-sm-4 footerz__body">
+            ABOUT US
           </div>
-          
-        </div>
-        <div className="footerz2">
-          <p>
-              &copy; Copyright 2017 by BoxAladin.
-          </p>
+
+          <div className="col-sm-4 footerz__body">
+            QUICKLINKS
+          </div>
+
+          <div className="col-sm-4 footerz__body" style={{paddingRight:0}}>
+            <div >
+              GET IN TOUCH
+            </div>
+            <div >
+              Home
+            </div>
+            <div >
+              Phone
+            </div>
+            <div >
+              Our Social Media
+            </div>
+
+
+          </div>
         </div>
       </div>
     );

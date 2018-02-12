@@ -50,10 +50,12 @@ class Login extends Component {
   }
 
   render () {
+    console.log('State:', this.state);
     console.log('Props:', this.props);
     return (
       <div className="Login">
-        <div className="Login__container">
+
+        
 
           <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
 
@@ -92,8 +94,6 @@ class Login extends Component {
           </div>
 
           </form>
-
-        </div>
 
       </div>
     )

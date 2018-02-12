@@ -134,7 +134,7 @@
   width: 150px;
   height: 40px;
   padding-left: 15px;
-  padding-top: 0px;
+  padding-top: 3px;
   border-radius: 10px;
   background-color: #FFCD05;
   display: flex;
@@ -151,6 +151,9 @@
   .ButtonLogin__icon2 {
     width: 15.219px !important;
     height: 25px !important; }
+
+.buttonProfile {
+  padding-top: 0; }
 
 .Bar-First {
   margin: 0rem !important;
@@ -338,7 +341,7 @@
   background-color: var; }
   .TabsPane1:hover {
     color: black !important;
-    background-color: var(--color-yellow-1); }
+    background-color: white; }
   .TabsPane1__text {
     font-size: 5rem !important;
     text-align: center !important;
@@ -501,15 +504,25 @@ body {
       font-size: 22px;
       font-weight: 600; }
 
-hr {
-  border: none !important;
-  border-left: 1px solid black !important;
-  height: 39px !important;
-  width: 1px !important;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  margin-right: 10px !important;
-  margin-left: 25px !important; }
+.dropdownLoginHr {
+  border: none;
+  border-left: 1px solid black;
+  height: 39px;
+  width: 1px;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 9px;
+  margin-left: 31px; }
+
+.dropdownProfileHr {
+  border: none;
+  border-left: 1px solid black;
+  height: 39px;
+  width: 1px;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 11px;
+  margin-left: 20px; }
 
 :root {
   --color-yellow-1: #FFCD05;

@@ -25,8 +25,8 @@ import EmailVerificationDone from './Screen/EmailVerificationDone'
 import User from './Screen/User'
 
 //page pembelian
-import Invoice from './screen/Invoice'
-import Pembayaran from './screen/Pembayaran'
+import Invoice from './Screen/Invoice'
+import Pembayaran from './Screen/Pembayaran'
 
 
 class RouteList extends React.Component {

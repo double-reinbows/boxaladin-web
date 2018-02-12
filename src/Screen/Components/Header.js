@@ -16,6 +16,8 @@ import logo from '../../asset/Logo/LogoBig.svg'
 import LoginIcon from '../../asset/Login/login.svg'
 import DropdownUser from './Header/Dropdown/DropdownUser'
 
+import ModalLogin from './Login/ModalLogin'
+import ModalSignup from './Signup/ModalSignup'
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -71,10 +73,12 @@ class NavBar extends React.Component {
       return (
         <Nav navbar className="HeaderTop__Right">
 
+            <ModalLogin />
+            <ModalSignup />
             <Button className="ButtonLogin" href="/login">
-              Login
+              Login lama
               <hr className="dropdownLoginHr"/>
-              <img src={LoginIcon} alt="LoginIcon" className="ButtonLogin__icon1" href="/home"/>
+              <img src={LoginIcon} alt="LoginIcon" className="ButtonLogin__iconLogin" href="/home"/>
             </Button>
 
         </Nav>

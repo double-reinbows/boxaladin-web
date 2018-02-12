@@ -8,6 +8,7 @@ import BannerText1 from './Components/Home/BannerText1'
 import BannerText2 from './Components/Home/BannerText2'
 import TabsHome from './Components/Home/TabsHome'
 
+
 class Home extends Component {
   render() {
     console.log('State:', this.state);
