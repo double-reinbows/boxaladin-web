@@ -174,12 +174,12 @@ class Signup extends Component {
     if (this.state._formIsValid) {
       let payload = {
         email: this.state.email,
-        first_name: this.state.first_name,
-        family_name: this.state.family_name,
+        firstName: this.state.first_name,
+        familyName: this.state.family_name,
         phonenumber: this.state.phonenumber,
         password: this.state.password,
         sex: this.state.sex,
-        typed_email: this.state.typed_email,
+        typedEmail: this.state.typed_email,
         username: this.state.username
       }
       axios

@@ -5,13 +5,15 @@ import {connect} from 'react-redux'
 //convention pake camelcase
 
 //component page
-import NavBar from './Screen/Components/NavBar'
+// import NavBar from './Screen/Components/NavBar'
+import Header from './Screen/Components/Header'
 import Footer from './Screen/Components/Footer'
 
 //page non login
 import LandingPage from './Screen/LandingPage'
 import AboutUs from './Screen/AboutUs'
 import HowItWorks from './Screen/HowItWorks'
+import Product from './Screen/product'
 
 //page login
 import Login from './Screen/Login'
@@ -22,11 +24,9 @@ import Home from './Screen/Home'
 import EmailVerificationDone from './Screen/EmailVerificationDone'
 import User from './Screen/User'
 
-//page can access with or without login
-import Product from './Screen/product'
-
+//page pembelian
 import Invoice from './screen/Invoice'
-import InvoiceDetail from './screen/Pembayaran'
+import Pembayaran from './screen/Pembayaran'
 
 
 class RouteList extends React.Component {
@@ -35,7 +35,7 @@ class RouteList extends React.Component {
       <div>
         <Router>
           <div>
-            <NavBar />
+            <Header />
 
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/aboutus" component={AboutUs} />
@@ -47,7 +47,7 @@ class RouteList extends React.Component {
               path="/Login"
               render={() =>
                 localStorage.getItem('token') !== null ? (
-                  <Redirect to="/landingpage" />
+                  <Redirect to="/home" />
                 ) : (
                   <Login />
                 )
@@ -59,7 +59,7 @@ class RouteList extends React.Component {
               path="/signup"
               render={() =>
                 localStorage.getItem('token') !== null ? (
-                  <Redirect to="/landingpage" />
+                  <Redirect to="/home" />
                 ) : (
                   <Signup />
                 )
@@ -88,21 +88,17 @@ class RouteList extends React.Component {
               component={EmailVerificationDone}
             />
 
-            <Route exact path="/invoice" component={Invoice} />
-            <Route exact path="/payment/:id" component={InvoiceDetail} />
+            <Route
+              path="/payment/:id"
+              component={Pembayaran}
+            />
 
-            {/* <Route
-              exact
-              path="/cart"
-              render={() =>
-                localStorage.getItem('token') !== null ? (
-                  <Cart />
-                ) : (
-                  <Redirect to="/" />
-                )
-              }
-            /> */}
+            <Route
+              path="/invoice"
+              component={Invoice}
+            />
 
+            <Footer/>
           </div>
         </Router>
       </div>

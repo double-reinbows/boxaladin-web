@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import {
   Container, TabContent, TabPane, Nav, NavItem, NavLink,
-  Button, Form, FormGroup, Label, Input, FormText,
-  Modal, ModalHeader, ModalBody, ModalFooter
+  Button, Form, FormGroup, Input,
+  Modal, ModalHeader, ModalBody
 } from 'reactstrap';
 
 import classnames from 'classnames';

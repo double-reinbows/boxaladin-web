@@ -3,14 +3,21 @@ import {connect} from 'react-redux'
 
 import {loginAction} from '../actions/'
 
+import Carousel from './Components/Home/Carousel'
+import BannerText1 from './Components/Home/BannerText1'
+import BannerText2 from './Components/Home/BannerText2'
+import TabsHome from './Components/Home/TabsHome'
+
 class Home extends Component {
   render() {
     console.log('State:', this.state);
 		console.log('Props:', this.props);
     return (
-      <div className="text-center">
-        <h1>Welcome</h1>
-        <h4>This is BoxAladin Home Screen.</h4>
+      <div>
+        <Carousel />
+        <TabsHome />
+        <BannerText1 />
+        <BannerText2 />
       </div>
     )
   }
