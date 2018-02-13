@@ -5,7 +5,8 @@ import {connect} from 'react-redux'
 //convention pake camelcase
 
 //component page
-import NavBar from './Screen/Components/NavBar'
+// import NavBar from './Screen/Components/NavBar'
+import Header from './Screen/Components/Header/Header'
 import Footer from './Screen/Components/Footer'
 
 //page non login
@@ -13,10 +14,6 @@ import LandingPage from './Screen/LandingPage'
 import AboutUs from './Screen/AboutUs'
 import HowItWorks from './Screen/HowItWorks'
 import Product from './Screen/Product'
-
-//page login
-import Login from './Screen/Login'
-import Signup from './Screen/Signup'
 
 //page after login
 import Home from './Screen/Home'
@@ -34,36 +31,13 @@ class RouteList extends React.Component {
       <div>
         <Router>
           <div>
-            <NavBar />
+            <Header />
 
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/howitworks" component={HowItWorks} />
 
             <Route exact path="/home" component={Home} />
-            <Route
-              exact
-              path="/Login"
-              render={() =>
-                localStorage.getItem('token') !== null ? (
-                  <Redirect to="/landingpage" />
-                ) : (
-                  <Login />
-                )
-              }
-            />
-
-            <Route
-              exact
-              path="/signup"
-              render={() =>
-                localStorage.getItem('token') !== null ? (
-                  <Redirect to="/landingpage" />
-                ) : (
-                  <Signup />
-                )
-              }
-            />
 
             <Route
               exact

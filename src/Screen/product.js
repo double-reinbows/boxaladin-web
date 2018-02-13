@@ -35,6 +35,7 @@ class Product extends Component {
 
 		this.togglePriceModal = this.togglePriceModal.bind(this)
 		this.togglePhoneModal = this.togglePhoneModal.bind(this)
+		this.closePhoneModal = this.closePhoneModal.bind(this)
 	}
 
   render () {
@@ -65,6 +66,14 @@ class Product extends Component {
 
 	componentDidUpdate(prevProps, prevState) {
 		this.checkTimer(prevState.count)
+		this.afterResetPrice(prevState.productUnlocked.aladinPrice)
+	}
+
+	afterResetPrice(prevPrice) {
+		if (prevPrice !== undefined && this.state.productUnlocked.aladinPrice > prevPrice) {
+      // kalau ada user yang sudah beli produk ini, maka user lain yang sedang lihat harga secara otomatis modalnya close
+			this.closeModalPrice(this.state.selectedProductId)
+		}
 	}
 
 	// addToCart(product) {
@@ -88,12 +97,7 @@ class Product extends Component {
 			}
 		})
 		.then(({data}) => {
-			this.setState({
-				selectedProductId: '',
-				productUnlocked: {},
-				selectedPhone: ''
-			})
-			this.togglePhoneModal()
+			this.closePhoneModal()
 			console.log('Data dari create transaction:', data)
 			this.props.history.push(`/payment/${data.id}`)
 		})
@@ -102,6 +106,15 @@ class Product extends Component {
 
 	togglePhoneModal() {
 		this.setState({isOpenPhoneModal: !this.state.isOpenPhoneModal})
+	}
+
+	closePhoneModal() {
+		this.setState({
+			selectedProductId: '',
+			productUnlocked: {},
+			selectedPhone: '',
+			isOpenPhoneModal: false
+		})
 	}
 
 	showPhoneModal() {
@@ -130,7 +143,7 @@ class Product extends Component {
 					</ModalBody>
 					<ModalFooter>
 						<Button type="submit" color="primary">Confirm</Button>
-						<Button type="button" color="danger" onClick={this.togglePhoneModal}>Cancel</Button>
+						<Button type="button" color="danger" onClick={this.closePhoneModal}>Cancel</Button>
 					</ModalFooter>
 				</Form>
 			</Modal>
@@ -243,9 +256,9 @@ class Product extends Component {
 
             // supaya modal price tertutup ketika harga kembali normal (ada yang beli)
             //
-						if (snap.val().aladinPrice === snap.val().price) {
-							this.closeModalPrice(this.state.selectedProductId)
-						}
+						// if (snap.val().aladinPrice === snap.val().price) {
+						// 	this.closeModalPrice(this.state.selectedProductId)
+						// }
 
 					})
 
@@ -310,7 +323,7 @@ class Product extends Component {
 									<CardBody>
 										<CardTitle>{product.productName}</CardTitle>
 										<CardSubtitle>Card subtitle</CardSubtitle>
-										<CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+										<CardText>Some quick example text to build on the card title and make up the bulk of the cards content.</CardText>
 										<Button color="success" onClick= { () => this.watchProductPrice(product.id) }>Unlock Price</Button>
 									</CardBody>
 								</Card>

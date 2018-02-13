@@ -66,12 +66,8 @@ class Example extends Component {
 
     const slides = items.map((item) => {
       return (
-        <CarouselItem
-          onExiting={this.onExiting}
-          onExited={this.onExited}
-          key={item.src}
-        >
-          <img src={item.src} alt={item.altText} />
+        <CarouselItem onExiting={this.onExiting} onExited={this.onExited} key={item.src} >
+          <img className="carouselHome" src={item.src} alt={item.altText} />
           <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
         </CarouselItem>
       );

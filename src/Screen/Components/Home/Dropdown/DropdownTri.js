@@ -1,5 +1,7 @@
 import React from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import LogoTri from '../../../../asset/LandingPage/pulsa/Tri.svg'
+
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -20,13 +22,13 @@ export default class Example extends React.Component {
   render() {
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle caret>
-          Tri
+        <DropdownToggle caret className="dropz">
+          <img src={LogoTri} className="dropz__img" alt="Logo Tri" />
         </DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem>100</DropdownItem>
-          <DropdownItem>50</DropdownItem>
-          <DropdownItem>25</DropdownItem>
+        <DropdownMenu className="dropz__item">
+          <DropdownItem className="dropz__item">100</DropdownItem>
+          <DropdownItem className="dropz__item">50</DropdownItem>
+          <DropdownItem className="dropz__item">25</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     );

@@ -1,0 +1,110 @@
+import axios from 'axios'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import jwt from 'jsonwebtoken'
+import { Button } from 'reactstrap';
+
+import { loginAction, logoutAction, getPhoneNumbers } from '../../../actions'
+
+const URL = 'http://localhost:3000/'
+
+class Login extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      password: '',
+      username: ''
+    }
+  }
+
+  logIn(e) {
+    e.preventDefault()
+    axios.post(URL + 'signin', {
+      username: this.state.username,
+      password: this.state.password
+    })
+    .then(({data}) => {
+      if (data.message === 'username not found') {
+        console.log(data)
+        alert(data.message)
+      } else if (data.message === 'password incorrect') {
+        console.log(data)
+        alert(data.message)
+      } else if (data.message === 'login success') {
+        console.log(data)
+        localStorage.setItem('token', localStorage.getItem('token') || data.token)
+
+        const decoded = jwt.verify(data.token, 'satekambing')
+        console.log('Data decoded:', decoded);
+        this.props.loginAction(decoded)
+        this.props.getPhoneNumbers()
+      }
+    })
+    .catch(e => {
+      console.log(e)
+    })
+  }
+
+  logInInputHandler(e) {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  render () {
+    console.log('State:', this.state);
+    console.log('Props:', this.props);
+    return (
+      <div className="Login">
+        <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
+
+          <div>
+            <label className="Login__Title1">
+              Anda harus login terlebih dahulu untuk melihat harga
+            </label>
+          </div>
+
+          <div>
+            <label className="Login__Title2">
+              Login
+            </label>
+          </div>
+
+          <div className="form-group Login__Form">
+            <label>Email address</label>
+            <input  name="username" type="username" className="form-control inputz" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email or username here" onChange={ (e) => this.logInInputHandler(e) }/>
+          </div>
+
+          <div className="form-group Login__Form">
+            <label>Password</label>
+            <input name="password" type="password"  className="form-control inputz" id="exampleInputPassword" aria-describedby="passwordHelp" placeholder="Enter your password" onChange={ (e) => this.logInInputHandler(e) }/>
+            <label className="Login__LupaPassword"><a href="/signup">lupa password?</a></label>
+          </div>
+
+          <div className="form-group">
+              <Button type="submit" className="Login__ButtonLogin">Login</Button>
+          </div>
+
+          <label className="Login__Daftar">Belum memiliki akun? daftar <a href="/signup" className="Login__Link"> disini</a></label>
+
+        </form>
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    isLogin: state.userReducer.isLogin
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginAction: (payload) => dispatch(loginAction(payload)),
+    logoutAction: () => dispatch(logoutAction()),
+    getPhoneNumbers: () => dispatch(getPhoneNumbers())
+  }
+}
+
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(Login)
+
+export default connectComponent

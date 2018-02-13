@@ -1,7 +1,13 @@
 import React from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
-import classnames from 'classnames';
 
+//import iconTabs
+import IconTabs1 from '../../../asset/TabsHome/IconTabs1.svg';
+import IconTabs2 from '../../../asset/TabsHome/IconTabs2.svg';
+import IconTabs3 from '../../../asset/TabsHome/IconTabs3.svg';
+import IconTabs4 from '../../../asset/TabsHome/IconTabs4.svg';
+
+//import Dropdown
 import DropdownSmartfren from './Dropdown/DropdownSmartfren';
 import DropdownTelkomsel from './Dropdown/DropdownTelkomsel';
 import DropdownTri from './Dropdown/DropdownTri';
@@ -27,37 +33,37 @@ export default class Example extends React.Component {
   render() {
     return (
       <div>
-        <Nav className="HomeContainer" tabs>
+        <Nav className="NavTabsHome" tabs>
           <NavItem className="TabsHome">
             <NavLink
-              className={classnames({ active: this.state.activeTab === '1' })}
+              className="TabsHome__link {classnames({ active: this.state.activeTab === '1' })}"
               onClick={() => { this.toggle('1'); }}
             >
-              Pulsa
+              Pulsa <img src={IconTabs1} className="TabsHome__icon1" alt="IconTabs1" />
             </NavLink>
           </NavItem>
           <NavItem className="TabsHome">
             <NavLink
-              className={classnames({ active: this.state.activeTab === '2' })}
+              className="TabsHome__link {classnames({ active: this.state.activeTab === '2' })}"
               onClick={() => { this.toggle('2'); }}
             >
-              Paket Data
+              Paket Data <img src={IconTabs2} className="TabsHome__icon1" alt="IconTabs1" />
             </NavLink>
           </NavItem>
           <NavItem className="TabsHome">
             <NavLink
-              className={classnames({ active: this.state.activeTab === '3' })}
+              className="TabsHome__link {classnames({ active: this.state.activeTab === '3' })}"
               onClick={() => { this.toggle('3'); }}
             >
-              E-Voucher
+              E-Voucher <img src={IconTabs3} className="TabsHome__icon1" alt="IconTabs1" />
             </NavLink>
           </NavItem>
           <NavItem className="TabsHome">
             <NavLink
-              className={classnames({ active: this.state.activeTab === '4' })}
+              className="TabsHome__link {classnames({ active: this.state.activeTab === '4' })}"
               onClick={() => { this.toggle('4'); }}
             >
-              Voucher Game
+              Voucher Game <img src={IconTabs4} className="TabsHome__icon1" alt="IconTabs1" />
             </NavLink>
           </NavItem>
         </Nav>
@@ -66,19 +72,24 @@ export default class Example extends React.Component {
 
           <TabPane tabId="1">
             <div>
-              <Row className="rowz">
-                <Col sm="12" className="TabsHome__pane1">
-                  <h4 className="TabsHome__pane1__font">PULSA SELULER</h4>
+              <div className="TabsPane1">
 
-                  <div className="TabsHome__pane1__dropdown">
-                    <div className="TabsHome__pane1__dropdown__content"><DropdownTelkomsel/></div>
-                    <div className="TabsHome__pane1__dropdown__content"><DropdownXL/></div>
-                    <div className="TabsHome__pane1__dropdown__content"><DropdownTri/></div>
-                    <div className="TabsHome__pane1__dropdown__content"><DropdownSmartfren/></div>
-                  </div>
+                <div className="TabsPane1__text">
+                  <label className="TabsPane1__label">PULSA SELULER</label>
+                </div>
 
-                </Col>
-              </Row>
+                <div className="TabsPane1__dropdown">
+                  <DropdownTelkomsel className="TabsPane1__dropdown__content"/>
+                  <DropdownXL className="TabsPane1__dropdown__content"/>
+                  <DropdownTri className="TabsPane1__dropdown__content"/>
+                  <DropdownSmartfren className="TabsPane1__dropdown__content"/>
+                </div>
+
+              </div>
+
+              <div>
+                <button type="button" className="btn btn-lg btn-block TabsPane1__button">LIHAT HARGA</button>
+              </div>
             </div>
           </TabPane>
 

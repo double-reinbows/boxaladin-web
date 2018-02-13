@@ -3,11 +3,11 @@ import {connect} from 'react-redux'
 
 import {loginAction} from '../actions/'
 
-// import Carousel from './Components/Home/Carousel'
-import BannerHome from './Components/Home/BannerHome'
-import Banner2Home from './Components/Home/Banner2Home'
-import Banner3Home from './Components/Home/Banner3Home'
+import Carousel from './Components/Home/Carousel'
+import BannerText1 from './Components/Home/BannerText1'
+import BannerText2 from './Components/Home/BannerText2'
 import TabsHome from './Components/Home/TabsHome'
+
 
 class Home extends Component {
   render() {
@@ -15,10 +15,10 @@ class Home extends Component {
 		console.log('Props:', this.props);
     return (
       <div>
-        <BannerHome />
+        <Carousel />
         <TabsHome />
-        <Banner2Home />
-        <Banner3Home />
+        <BannerText1 />
+        <BannerText2 />
       </div>
     )
   }
