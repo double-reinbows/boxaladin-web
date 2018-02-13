@@ -213,75 +213,77 @@
 
 .Signup {
   display: flex;
-  justify-content: center; }
-  .Signup__container {
-    width: 40rem;
-    height: 100%;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-    font-size: 2rem; }
-    .Signup__container__small {
-      font-size: 1rem; }
-    .Signup__container__row1 {
-      background-color: var(--color-container-1);
-      padding: 2rem; }
-    .Signup__container__icon {
-      height: 15rem;
-      align-items: center; }
-    .Signup__container__form {
-      padding-top: 2rem; }
-    .Signup__container__row2 {
-      background-color: var(--color-container-2);
-      margin-top: 0rem;
-      padding: 2rem; }
-    .Signup__container__row3 {
-      background-color: var(--color-container-1);
-      margin-top: 0rem; }
-    .Signup__container__button {
-      padding-left: 2rem;
-      padding-right: 2rem;
-      padding-top: 4rem;
-      padding-bottom: 4rem; }
+  justify-content: center;
+  background-color: var(--color-grey-5);
+  color: var(--color-yellow-1);
+  text-align: center; }
+  .Signup__Title {
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: center;
+    padding: 1rem; }
+  .Signup__Title2 {
+    font-family: Raleway;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 24px;
+    text-align: center; }
+  .Signup__Form {
+    text-align: left; }
+  .Signup__ButtonLogin {
+    color: var(--color-grey-5);
+    background-color: var(--color-yellow-1);
+    border-color: var(--color-yellow-1);
+    width: 100px;
+    height: 25px;
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 16px;
+    text-align: center; }
 
 .Login {
   display: flex;
-  justify-content: center; }
-  .Login__container {
-    width: 40rem;
-    height: 100%;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-    font-size: 2rem;
-    box-shadow: var(--shadow-dark); }
-    .Login__container__small {
-      font-size: 1rem; }
-    .Login__container__row1 {
-      background-color: var(--color-container-1);
-      padding: 2rem; }
-    .Login__container__icon {
-      height: 15rem;
-      align-items: center; }
-    .Login__container__form {
-      padding-top: 2rem; }
-    .Login__container__row2 {
-      background-color: var(--color-container-2);
-      margin-top: 0rem; }
-    .Login__container__button {
-      padding-left: 2rem;
-      padding-right: 2rem;
-      padding-top: 4rem;
-      padding-bottom: 4rem; }
-    .Login__container__row3 {
-      background-color: var(--color-container-1);
-      color: var(--color-grey-light-1);
-      display: flex;
-      justify-content: center; }
-    .Login__container__label {
-      padding-left: 1rem;
-      padding-right: 1rem;
-      padding-top: 2rem;
-      padding-bottom: 2rem;
-      align-content: center; }
+  justify-content: center;
+  background-color: var(--color-grey-5);
+  color: var(--color-yellow-1);
+  text-align: center;
+  width: 750px; }
+  .Login__Title1 {
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 2rem; }
+  .Login__Title2 {
+    font-family: Raleway;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 24px;
+    text-align: center; }
+  .Login__Form {
+    text-align: left; }
+  .Login__LupaPassword {
+    color: var(--color-yellow-1);
+    font-style: italic; }
+  .Login__ButtonLogin {
+    color: var(--color-grey-5);
+    background-color: var(--color-yellow-1);
+    border-color: var(--color-yellow-1);
+    width: 100px;
+    height: 25px;
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 16px;
+    text-align: center;
+    margin: 1rem; }
+  .Login__Daftar {
+    margin-bottom: 3rem; }
 
 .AboutUs {
   height: 75rem;
@@ -524,6 +526,31 @@ body {
   margin-bottom: 0;
   margin-right: 11px;
   margin-left: 20px; }
+
+.ModalTop {
+  border-bottom: none;
+  border-radius: 0;
+  background-color: var(--color-grey-5); }
+
+.Modalz {
+  width: 750px;
+  margin-top: 10%;
+  border-radius: 0;
+  border: 5px solid var(--white); }
+
+.inputz {
+  border: transparent;
+  border-bottom: 2px solid var(--color-yellow-1);
+  background: transparent;
+  font-family: Raleway;
+  font-style: italic;
+  color: var(--color-yellow-1);
+  outline: none; }
+  .inputz:focus {
+    background-color: none; }
+  .inputz:hover {
+    background: transparent;
+    border: transparent; }
 
 :root {
   --color-yellow-1: #FFCD05;

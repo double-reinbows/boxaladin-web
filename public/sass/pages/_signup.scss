@@ -1,47 +1,42 @@
 .Signup {
   display: flex;
   justify-content: center;
+  background-color: var(--color-grey-5);
+  color: var(--color-yellow-1);
+  text-align: center;
 
-  &__container {
-    width: 40rem;
-    height: 100%;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-    font-size: 2rem;
-
-    &__small{
-      font-size: 1rem;
-    }
-
-    &__row1{
-      background-color: var(--color-container-1);
-      padding: 2rem;
-    }
-
-    &__icon{
-      height: 15rem;
-      align-items: center;
-   }
-
-    &__form {
-      padding-top: 2rem;
-    }
-
-    &__row2{
-      background-color: var(--color-container-2);
-      margin-top: 0rem;
-      padding: 2rem;
-    }
-    &__row3{
-      background-color: var(--color-container-1);
-      margin-top: 0rem;
-    }
-
-    &__button{
-      padding-left: 2rem;
-      padding-right: 2rem;
-      padding-top: 4rem;
-      padding-bottom: 4rem;
-    }
+  &__Title{
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: center;
+    padding: 1rem;
   }
+
+  &__Title2{
+    font-family: Raleway;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 24px;
+    text-align: center;
+  }
+
+  &__Form{
+    text-align: left;
+  }
+  
+  &__ButtonLogin{
+    color: var(--color-grey-5);
+    background-color: var(--color-yellow-1);
+    border-color: var(--color-yellow-1);
+    width: 100px;
+    height: 25px;
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 16px;
+    text-align: center;
+  }
+
 }

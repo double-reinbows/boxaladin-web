@@ -84,3 +84,34 @@
   margin-right: 11px ;
   margin-left: 20px ;
 }
+
+.ModalTop{
+  border-bottom: none;
+  border-radius: 0;
+  background-color: var(--color-grey-5);
+}
+
+.Modalz{
+  width: 750px;
+  margin-top:10%;
+  border-radius: 0;
+  border: 5px solid var(--white);
+
+}
+
+.inputz{
+  border: transparent;
+  border-bottom: 2px solid var(--color-yellow-1);
+  background: transparent;
+  font-family: Raleway;
+  font-style: italic;
+  color: var(--color-yellow-1);
+  outline: none;
+  &:focus{
+    background-color: none;
+  }
+  &:hover{
+    background: transparent;
+    border: transparent;
+  }
+}

@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import jwt from 'jsonwebtoken'
 import IconUser from '../asset/Login/user.svg'
+import { Button } from 'reactstrap';
 
 import { loginAction, logoutAction, getPhoneNumbers } from '../actions/'
 
@@ -54,47 +55,38 @@ class Login extends Component {
     console.log('Props:', this.props);
     return (
       <div className="Login">
+        <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
 
-        
-
-          <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
-
-          <div className="Login__container__row1 mx-auto">
-            <div className="Login__container__row1">
-              <img src={IconUser} alt="IconUser" className="Login__container__icon rounded mx-auto d-block" />
-            </div>
-
-            <div className="Login__container__form">
-                <div className="form-group">
-                  <label>Email address</label>
-                  <input name="username" type="username" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email or username here" onChange={ (e) => this.logInInputHandler(e) }/>
-                  <small id="emailHelp" className="form-text text-muted Login__container__small">We'll never share your email or username with anyone else.</small>
-                </div>
-                <div className="form-group">
-                  <label>Password</label>
-                  <input name="password" type="password"  className="form-control" id="exampleInputPassword" aria-describedby="passwordHelp" placeholder="Enter your password" onChange={ (e) => this.logInInputHandler(e) }/>
-                </div>
-            </div>
-
+          <div>
+            <label className="Login__Title1">
+              Anda harus login terlebih dahulu untuk melihat harga
+            </label>
           </div>
 
-          <div className="Login__container__row2">
-            <div className="Login__container__button">
-              <div className="form-group">
-                  <button type="submit" className="btn btn-primary btn-lg btn-block">Login</button>
-              </div>
-              <div className="form-group">
-                  <button type="submit" className="btn btn-primary btn-lg btn-block">Connect with Social Account</button>
-              </div>
-            </div>
+          <div>
+            <label className="Login__Title2">
+              Login
+            </label>
           </div>
 
-          <div className="Login__container__row3">
-            <label className="Login__container__label">Don't have an account? <a href="/signup"> Sign up</a></label>
+          <div className="form-group Login__Form">
+            <label>Email address</label>
+            <input  name="username" type="username" className="form-control inputz" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email or username here" onChange={ (e) => this.logInInputHandler(e) }/>
           </div>
 
-          </form>
+          <div className="form-group Login__Form">
+            <label>Password</label>
+            <input name="password" type="password"  className="form-control inputz" id="exampleInputPassword" aria-describedby="passwordHelp" placeholder="Enter your password" onChange={ (e) => this.logInInputHandler(e) }/>
+            <label className="Login__LupaPassword"><a href="/signup">lupa password?</a></label>
+          </div>
 
+          <div className="form-group">
+              <Button type="submit" className="Login__ButtonLogin">Login</Button>
+          </div>
+
+          <label className="Login__Daftar">Belum memiliki akun? daftar <a href="/signup"> disini</a></label>
+
+        </form>
       </div>
     )
   }

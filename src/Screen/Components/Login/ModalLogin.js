@@ -9,7 +9,6 @@ class ModalLogin extends React.Component {
     this.state = {
       modal: false
     };
-    // this.props.modal = false;
 
     this.toggle = this.toggle.bind(this);
   }
@@ -20,8 +19,6 @@ class ModalLogin extends React.Component {
     });
   }
   render() {
-    console.log(this.state);
-    console.log(this.props);
       return (
         <div>
           <Button className="ButtonLogin" onClick={this.toggle}>
@@ -30,7 +27,8 @@ class ModalLogin extends React.Component {
             <hr className="dropdownLoginHr"/>
             <img src={LoginIcon} alt="LoginIcon" className="ButtonLogin__iconLogin" href="/home"/>
           </Button>
-          <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+          <Modal isOpen={this.state.modal} toggle={this.toggle} className="{this.props.className} Modalz" backdrop="static">
+            <ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>
             <Login />
           </Modal>
         </div>

@@ -134,7 +134,7 @@
   width: 150px;
   height: 40px;
   padding-left: 15px;
-  padding-top: 3px;
+  padding-top: 0;
   border-radius: 10px;
   background-color: #FFCD05;
   display: flex;
@@ -145,15 +145,16 @@
   font-weight: 800;
   letter-spacing: 1px;
   margin: 10px; }
-  .ButtonLogin__icon1 {
+  .ButtonLogin__iconLogin {
     width: 17px !important;
     height: 25px !important; }
-  .ButtonLogin__icon2 {
+  .ButtonLogin__iconProfile {
     width: 15.219px !important;
     height: 25px !important; }
-
-.buttonProfile {
-  padding-top: 0; }
+  .ButtonLogin__Profile {
+    padding-top: 20px; }
+  .ButtonLogin__P {
+    padding-top: 20px; }
 
 .Bar-First {
   margin: 0rem !important;
@@ -212,75 +213,69 @@
 
 .Signup {
   display: flex;
-  justify-content: center; }
-  .Signup__container {
-    width: 40rem;
-    height: 100%;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-    font-size: 2rem; }
-    .Signup__container__small {
-      font-size: 1rem; }
-    .Signup__container__row1 {
-      background-color: var(--color-container-1);
-      padding: 2rem; }
-    .Signup__container__icon {
-      height: 15rem;
-      align-items: center; }
-    .Signup__container__form {
-      padding-top: 2rem; }
-    .Signup__container__row2 {
-      background-color: var(--color-container-2);
-      margin-top: 0rem;
-      padding: 2rem; }
-    .Signup__container__row3 {
-      background-color: var(--color-container-1);
-      margin-top: 0rem; }
-    .Signup__container__button {
-      padding-left: 2rem;
-      padding-right: 2rem;
-      padding-top: 4rem;
-      padding-bottom: 4rem; }
+  justify-content: center;
+  background-color: var(--color-grey-5);
+  color: var(--color-yellow-1);
+  text-align: center; }
+  .Signup__Title {
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: center;
+    padding: 1rem; }
+  .Signup__Title2 {
+    font-family: Raleway;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 24px;
+    text-align: center; }
+  .Signup__Form {
+    text-align: left; }
+  .Signup__ButtonLogin {
+    color: var(--color-grey-5);
+    background-color: var(--color-yellow-1);
+    border-color: var(--color-yellow-1);
+    width: 100px;
+    height: 25px;
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 16px;
+    text-align: center; }
 
 .Login {
   display: flex;
-  justify-content: center; }
-  .Login__container {
-    width: 40rem;
-    height: 100%;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-    font-size: 2rem;
-    box-shadow: var(--shadow-dark); }
-    .Login__container__small {
-      font-size: 1rem; }
-    .Login__container__row1 {
-      background-color: var(--color-container-1);
-      padding: 2rem; }
-    .Login__container__icon {
-      height: 15rem;
-      align-items: center; }
-    .Login__container__form {
-      padding-top: 2rem; }
-    .Login__container__row2 {
-      background-color: var(--color-container-2);
-      margin-top: 0rem; }
-    .Login__container__button {
-      padding-left: 2rem;
-      padding-right: 2rem;
-      padding-top: 4rem;
-      padding-bottom: 4rem; }
-    .Login__container__row3 {
-      background-color: var(--color-container-1);
-      color: var(--color-grey-light-1);
-      display: flex;
-      justify-content: center; }
-    .Login__container__label {
-      padding-left: 1rem;
-      padding-right: 1rem;
-      padding-top: 2rem;
-      padding-bottom: 2rem;
-      align-content: center; }
+  justify-content: center;
+  background-color: var(--color-grey-5);
+  color: var(--color-yellow-1);
+  text-align: center; }
+  .Login__Title {
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: center;
+    padding: 1rem; }
+  .Login__Title2 {
+    font-family: Raleway;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 24px;
+    text-align: center; }
+  .Login__Form {
+    text-align: left; }
+  .Login__ButtonLogin {
+    color: var(--color-grey-5);
+    background-color: var(--color-yellow-1);
+    border-color: var(--color-yellow-1);
+    width: 100px;
+    height: 25px;
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 16px;
+    text-align: center; }
 
 .AboutUs {
   height: 75rem;
@@ -523,6 +518,15 @@ body {
   margin-bottom: 0;
   margin-right: 11px;
   margin-left: 20px; }
+
+.ModalTop {
+  border-bottom: none;
+  background-color: var(--color-grey-5); }
+
+.Modalz {
+  height: 400px !important;
+  width: 750px !important;
+  margin-top: 10% !important; }
 
 :root {
   --color-yellow-1: #FFCD05;
