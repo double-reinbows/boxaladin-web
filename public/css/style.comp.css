@@ -250,13 +250,14 @@
   background-color: var(--color-grey-5);
   color: var(--color-yellow-1);
   text-align: center; }
-  .Login__Title {
+  .Login__Title1 {
     font-family: Raleway;
     font-size: 14px;
     font-weight: 500;
     line-height: 16px;
     text-align: center;
-    padding: 1rem; }
+    padding: 1rem;
+    margin-bottom: 2rem; }
   .Login__Title2 {
     font-family: Raleway;
     font-size: 20px;
@@ -265,6 +266,9 @@
     text-align: center; }
   .Login__Form {
     text-align: left; }
+  .Login__LupaPassword {
+    color: var(--color-yellow-1);
+    font-style: italic; }
   .Login__ButtonLogin {
     color: var(--color-grey-5);
     background-color: var(--color-yellow-1);
@@ -275,7 +279,10 @@
     font-size: 14px;
     font-weight: bold;
     line-height: 16px;
-    text-align: center; }
+    text-align: center;
+    margin: 1rem; }
+  .Login__Daftar {
+    margin-bottom: 3rem; }
 
 .AboutUs {
   height: 75rem;
@@ -521,12 +528,28 @@ body {
 
 .ModalTop {
   border-bottom: none;
+  border-radius: 0;
   background-color: var(--color-grey-5); }
 
 .Modalz {
-  height: 400px !important;
-  width: 750px !important;
-  margin-top: 10% !important; }
+  width: 750px;
+  margin-top: 10%;
+  border-radius: 0;
+  border: 5px solid var(--white); }
+
+.inputz {
+  border: transparent;
+  border-bottom: 2px solid var(--color-yellow-1);
+  background: transparent;
+  font-family: Raleway;
+  font-style: italic;
+  color: var(--color-yellow-1);
+  outline: none; }
+  .inputz:focus {
+    background-color: none; }
+  .inputz:hover {
+    background: transparent;
+    border: transparent; }
 
 :root {
   --color-yellow-1: #FFCD05;

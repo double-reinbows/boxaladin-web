@@ -25,7 +25,7 @@ class ModalSignup extends React.Component {
             {this.props.buttonLabel}
             Signup
             <hr className="dropdownLoginHr"/>
-            <img src={LoginIcon} alt="LoginIcon" className="ButtonLogin__iconLogin" href="/home"/>
+            <img src={LoginIcon} alt="LoginIcon" className="ButtonSignup__iconLogin" href="/home"/>
           </Button>
           <Modal isOpen={this.state.modal} toggle={this.toggle} className="{this.props.className} Modalz" backdrop="static">
             <ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>

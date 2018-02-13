@@ -75,11 +75,6 @@ class NavBar extends React.Component {
 
             <ModalLogin />
             <ModalSignup />
-            <Button className="ButtonLogin" href="/login">
-              Login lama
-              <hr className="dropdownLoginHr"/>
-              <img src={LoginIcon} alt="LoginIcon" className="ButtonLogin__iconLogin" href="/home"/>
-            </Button>
 
         </Nav>
       )

@@ -223,11 +223,7 @@ class Signup extends Component {
             </label>
           </div>
 
-          <div className="form-group Login__Form">
-            <label>Email address</label>
-            <input name="username" type="username" className="form-control inputz" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email or username here" onChange={ (e) => this.logInInputHandler(e) }/>
-            <small id="emailHelp" className="form-text text-muted Login__container__small">We'll never share your email or username with anyone else.</small>
-          </div>
+
 
           <div className="form-group Signup__Form">
             <label>First Name</label>
@@ -270,9 +266,15 @@ class Signup extends Component {
           </div>
 
           <div className="form-group Signup__Form">
-            <label>Email</label>
-            <input name="email" required type="email" className="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter your email here" onChange={e => this.signUpInputHandler(e)} />
+            <label>Email address</label>
+            <input name="email" required type="email" className="form-control inputz" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter your email here" onChange={e => this.signUpInputHandler(e)} />
           </div>
+
+          <input
+            name="condition"
+            type="checkbox"/>
+          <label className="Signup__Condition">Saya telah membaca syarat dan kondisi yang berlaku</label>
+
 
           <div className="form-group">
             <button type="submit" className="Signup__ButtonLogin">Register</button>

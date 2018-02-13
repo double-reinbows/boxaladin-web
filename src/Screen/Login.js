@@ -84,7 +84,7 @@ class Login extends Component {
               <Button type="submit" className="Login__ButtonLogin">Login</Button>
           </div>
 
-          <label className="Login__Daftar">Belum memiliki akun? daftar <a href="/signup"> disini</a></label>
+          <label className="Login__Daftar">Belum memiliki akun? daftar <a href="/signup" className="Login__Link"> disini</a></label>
 
         </form>
       </div>

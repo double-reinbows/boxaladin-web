@@ -96,8 +96,14 @@
   margin-top:10%;
   border-radius: 0;
   border: 5px solid var(--white);
-
 }
+
+@media (min-width: 576px) {
+  .Modalz{
+    max-width:none
+  }
+}
+
 
 .inputz{
   border: transparent;
@@ -108,10 +114,33 @@
   color: var(--color-yellow-1);
   outline: none;
   &:focus{
-    background-color: none;
+    border: transparent;
+    border-bottom: 2px solid var(--color-yellow-1);
+    background: transparent;
+    font-family: Raleway;
+    font-style: italic;
+    color: var(--color-yellow-1);
   }
   &:hover{
-    background: transparent;
     border: transparent;
+    border-bottom: 2px solid var(--color-yellow-1);
+    background: transparent;
+    font-family: Raleway;
+    font-style: italic;
+    color: var(--color-yellow-1);
+  }
+  &::placeholder{
+    background: transparent;
+    font-family: Raleway;
+    font-style: italic;
+    color: var(--color-yellow-1);
+  }
+  &:active{
+    border: transparent;
+    border-bottom: 2px solid var(--color-yellow-1);
+    background: transparent;
+    font-family: Raleway;
+    font-style: italic;
+    color: var(--color-yellow-1);
   }
 }

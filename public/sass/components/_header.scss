@@ -99,3 +99,30 @@
     padding-top: 20px;
   }
 }
+
+.ButtonSignup{
+  width: 150px;
+  height: 40px;
+  padding-left: 15px;
+  padding-top: 0;
+  border-radius: 10px;
+  background-color: #FFCD05;
+  display: flex;
+  align-items: center;
+
+  color: #3E3E3E;
+  font-family: Raleway;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 10px;
+
+  &__iconLogin{
+    width: 17px !important;
+    height: 25px !important;
+  }
+
+  &__P{
+    padding-top: 20px;
+  }
+}
