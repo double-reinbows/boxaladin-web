@@ -1,17 +1,25 @@
-@import "abstracts/functions";
-@import "abstracts/mixins";
-@import "abstracts/variables";
+//components
+@import "components/container";
+@import "components/footer";
+@import "components/navbar";
+@import "components/header";
 
-@import "base/animations";
-@import "base/base";
-@import "base/typography";
-@import "base/utilities";
+//pages
+@import "pages/landingpage";
+@import "pages/signup";
+@import "pages/login";
+@import "pages/aboutus";
+@import "pages/howitworks";
 
-@import "components/components";
-@import "components/form";
-
-@import "layout/footer";
-@import "layout/header";
-@import "layout/navigation";
-
+@import "pages/product";
 @import "pages/home";
+
+
+// reuseable components
+@import "reusable/animations";
+@import "reusable/base";
+@import "reusable/components";
+@import "reusable/form";
+@import "reusable/typography";
+@import "reusable/utilities";
+@import "reusable/variables";

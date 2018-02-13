@@ -1,0 +1,60 @@
+.Login {
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-grey-5);
+  color: var(--color-yellow-1);
+  text-align: center;
+
+  &__Title1{
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  &__Title2{
+    font-family: Raleway;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 24px;
+    text-align: center;
+  }
+
+  &__Form{
+    text-align: left;
+  }
+
+  &__LupaPassword{
+    color: var(--color-yellow-1);
+    font-style: italic;
+  }
+
+  &__ButtonLogin{
+    color: var(--color-grey-5);
+    background-color: var(--color-yellow-1);
+    border-color: var(--color-yellow-1);
+    width: 100px;
+    height: 25px;
+    font-family: Raleway;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 16px;
+    text-align: center;
+    margin: 1rem;
+  }
+
+  &__Daftar{
+    margin-bottom: 3rem;
+    color: var(--white);
+
+  }
+
+  &__Link{
+    color: var(--color-yellow-1);
+    font-style: italic;
+  }
+
+}

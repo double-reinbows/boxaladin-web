@@ -1,0 +1,128 @@
+.HeaderTop {
+    background-color: #3E3E3E;
+    border-bottom: 4px solid #FFCD05;
+
+    &__Right{
+      display: flex;
+      flex-direction: column;
+      align-items: center !important;
+      margin: 0rem !important;
+      padding: 0rem !important;
+    }
+    &__Button{
+      padding: 5px !important;
+      margin: 20px !important;
+      justify-content: center;
+      &__img{
+        width: 25px;
+        height: 25px;
+      }
+    }
+
+    &__ButtonTopUP{
+    	height: 40px;
+    	width: 200px;
+    	border: 2px solid #FFCD05;
+      color: #FFCD05;
+      background-color: #3E3E3E;
+    	box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.5);
+    	font-family: Raleway;
+    	font-size: 22px;
+    	font-weight: 600;
+    	line-height: 21px;
+    	text-align: center;
+      margin-right: 20px !important;
+      &__label{
+      	font-size: 18px;
+        &__italic{
+          font-size: 18px;
+          font-style: italic;
+        }
+      }
+    }
+
+    &__List {
+      color: var(--color-primary-2) !important;
+      padding-top: 20px !important;
+
+      &:hover {
+        color: white !important;
+        background-color: #e5b721;
+        height: 100%;
+        width: 100%;
+      }
+    }
+    &__ContactUs{
+      color: var(--color-primary-2) !important;
+      margin-right: 20px;
+      padding-top: 20px !important;
+      padding-bottom: 20px !important;
+      &:hover {
+        color: white !important;
+        background-color: #e5b721;
+        height: 100%;
+      }
+    }
+}
+
+
+.ButtonLogin{
+  width: 150px;
+  height: 40px;
+  padding-left: 15px;
+  padding-top: 0;
+  border-radius: 10px;
+  background-color: #FFCD05;
+  display: flex;
+  align-items: center;
+
+  color: #3E3E3E;
+  font-family: Raleway;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 10px;
+
+  &__iconLogin{
+    width: 17px !important;
+    height: 25px !important;
+  }
+  &__iconProfile{
+    width: 15.219px !important;
+    height: 25px !important;
+  }
+
+  &__Profile{
+    padding-top: 20px;
+  }
+  &__P{
+    padding-top: 20px;
+  }
+}
+
+.ButtonSignup{
+  width: 150px;
+  height: 40px;
+  padding-left: 15px;
+  padding-top: 0;
+  border-radius: 10px;
+  background-color: #FFCD05;
+  display: flex;
+  align-items: center;
+
+  color: #3E3E3E;
+  font-family: Raleway;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 10px;
+
+  &__iconLogin{
+    width: 17px !important;
+    height: 25px !important;
+  }
+
+  &__P{
+    padding-top: 20px;
+  }
+}

@@ -4,6 +4,9 @@ import {connect} from 'react-redux'
 
 import {loginAction} from '../actions/'
 
+import IconUser from '../asset/Login/user.svg'
+import { Button } from 'reactstrap';
+
 const URL = 'http://localhost:3000/'
 
 class Signup extends Component {
@@ -172,12 +175,12 @@ class Signup extends Component {
     if (this.state._formIsValid) {
       let payload = {
         email: this.state.email,
-        first_name: this.state.first_name,
-        family_name: this.state.family_name,
+        firstName: this.state.first_name,
+        familyName: this.state.family_name,
         phonenumber: this.state.phonenumber,
         password: this.state.password,
         sex: this.state.sex,
-        typed_email: this.state.typed_email,
+        typedEmail: this.state.typed_email,
         username: this.state.username
       }
       axios
@@ -212,107 +215,72 @@ class Signup extends Component {
   render() {
     console.log(this.state)
     return (
-      <div className="container">
+      <div className="Signup">
         <form className="form-horizontal" onSubmit={e => this.signUp(e)}>
+          <div>
+            <label className="Login__Title2">
+              Register
+            </label>
+          </div>
 
-          <div className="form-group">
+
+
+          <div className="form-group Signup__Form">
             <label>First Name</label>
-            <input name="first_name" type="text" className="form-control" id="inputFirstName" aria-describedby="firstnamelHelp" placeholder="Enter your first name here" onChange={e => this.signUpInputHandler(e)}/>
+            <input name="first_name" type="text" className="form-control inputz" id="inputFirstName" aria-describedby="firstnamelHelp" placeholder="Enter your first name here" onChange={e => this.signUpInputHandler(e)}/>
           </div>
 
-          <div className="form-group">
-            <div className="col-sm-4 col-sm-offset-4">
-              <input
-                name="family_name"
-                type="text"
-                className="form-control"
-                id="inputFamilyName"
-                placeholder="family name"
-                onChange={e => this.signUpInputHandler(e)}
-              />
-            </div>
+          <div className="form-group Signup__Form">
+            <label>Family Name</label>
+            <input name="family_name" type="text" className="form-control inputz" id="inputFamilyName" aria-describedby="familynamelHelp" placeholder="Enter your family name here" onChange={e => this.signUpInputHandler(e)}/>
           </div>
 
-          <div className="form-group">
-            <div className="col-sm-4 col-sm-offset-4">
-              <input
-                name="phonenumber"
-                required
-                type="integer"
-                className="form-control"
-                id="inputUsername"
-                placeholder="phonenumber"
-                onChange={e => this.handlePhoneNum(e)}
-              />
-            </div>
+          <div className="form-group Signup__Form">
+            <label>Phone Number</label>
+            <input name="phonenumber" required type="integer" className="form-control inputz" id="inputPhonenumber" aria-describedby="phonenumberHelp" placeholder="Enter your phonenumber here" onChange={e => this.handlePhoneNum(e)}/>
           </div>
 
-          <div className="form-group">
-            <div className="col-sm-4 col-sm-offset-4">
-              <input
-                name="username"
-                required
-                type="text"
-                className="form-control"
-                id="inputUsername"
-                placeholder="username"
-                onChange={e => this.signUpInputHandler(e)}
-              />
-            </div>
+          <div className="form-group Signup__Form">
+            <label>Username</label>
+            <input name="username" required type="text" className="form-control inputz" id="inputUsername" aria-describedby="usernameHelp" placeholder="Enter your username here" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
-          <div className="form-group">
-            <div className="col-sm-4 col-sm-offset-4">
-              <input
-                name="password"
-                required
-                type="password"
-                className="form-control"
-                id="inputPassword"
-                placeholder="password"
-                onChange={e => this.signUpInputHandler(e)}
-              />
-            </div>
+          <div className="form-group Signup__Form">
+            <label>Password</label>
+            <input name="password" required type="password" className="form-control inputz" id="inputPassword" aria-describedby="passwordHelp" placeholder="Enter your password here" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
-          <div className="form-group">
-            <div className="col-sm-4 col-sm-offset-4">
-              <label className="control-label" htmlFor="sex">
-                Sex:
-              </label>
-              <select
-                name="sex"
-                value={this.state.sex}
-                onChange={this.signUpInputHandler}
-              >
-                <option value={null}>Select gender</option>
-                <option value="M">Male</option>
-                <option value="F">Female</option>
-              </select>
-            </div>
+          <div className="form-group Signup__Form">
+            <label className="control-label" htmlFor="sex">
+              Sex:
+            </label>
+            <select
+              name="sex"
+              value={this.state.sex}
+              onChange={this.signUpInputHandler}
+            >
+              <option value={null}>Select gender</option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+            </select>
           </div>
 
-          <div className="form-group">
-            <div className="col-sm-4 col-sm-offset-4">
-              <input
-                name="email"
-                required
-                type="email"
-                className="form-control"
-                id="inputEmail"
-                placeholder="email"
-                onChange={e => this.signUpInputHandler(e)}
-              />
-            </div>
+          <div className="form-group Signup__Form">
+            <label>Email address</label>
+            <input name="email" required type="email" className="form-control inputz" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter your email here" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
+          <input
+            name="condition"
+            type="checkbox"/>
+          <label className="Signup__Condition">Saya telah membaca syarat dan kondisi yang berlaku</label>
+
+
           <div className="form-group">
-            <div className="col-sm-4 col-sm-offset-4">
-              <button type="submit" className="btn btn-primary">
-                Register
-              </button>
-            </div>
+            <button type="submit" className="Signup__ButtonLogin">Register</button>
           </div>
+
+
         </form>
       </div>
     )
