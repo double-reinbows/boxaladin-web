@@ -5,6 +5,7 @@
     &__Right{
       display: flex;
       flex-direction: column;
+      justify-content: flex-end;
       align-items: center !important;
       margin: 0rem !important;
       padding: 0rem !important;
@@ -16,28 +17,6 @@
       &__img{
         width: 25px;
         height: 25px;
-      }
-    }
-
-    &__ButtonTopUP{
-    	height: 40px;
-    	width: 200px;
-    	border: 2px solid #FFCD05;
-      color: #FFCD05;
-      background-color: #3E3E3E;
-    	box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.5);
-    	font-family: Raleway;
-    	font-size: 22px;
-    	font-weight: 600;
-    	line-height: 21px;
-    	text-align: center;
-      margin-right: 20px !important;
-      &__label{
-      	font-size: 18px;
-        &__italic{
-          font-size: 18px;
-          font-style: italic;
-        }
       }
     }
 
@@ -65,12 +44,37 @@
     }
 }
 
+.ButtonTopUP{
+  height: 40px;
+  width: 200px;
+  border: 2px solid #FFCD05;
+  color: #FFCD05;
+  background-color: #3E3E3E;
+  box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.5);
+  font-family: Raleway;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 21px;
+  text-align: center;
+  margin-right: 20px !important;
+  &__label{
+    font-size: 18px;
+    &__italic{
+      font-size: 18px;
+      font-style: italic;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .ButtonTopUP{
+    border: transparent;
+    outline-color: none;
+  }
+}
 
 .ButtonLogin{
-  width: 150px;
   height: 40px;
-  padding-left: 15px;
-  padding-top: 0;
   border-radius: 10px;
   background-color: #FFCD05;
   display: flex;
@@ -84,8 +88,8 @@
   margin: 10px;
 
   &__iconLogin{
-    width: 17px !important;
-    height: 25px !important;
+    width: 17px;
+    height: 25px;
   }
   &__iconProfile{
     width: 15.219px !important;
@@ -100,11 +104,24 @@
   }
 }
 
+@media (max-width: 767px)  {
+  .ButtonLogin {
+    background-color: transparent;
+    color: var(--color-yellow-1);
+    margin-left: 60px;
+  }
+}
+
+@media (max-width: 767px)  {
+  .ButtonLogin__iconLogin{
+    width: 0px;
+    height: 0px;
+  }
+}
+
+
 .ButtonSignup{
-  width: 150px;
   height: 40px;
-  padding-left: 15px;
-  padding-top: 0;
   border-radius: 10px;
   background-color: #FFCD05;
   display: flex;
@@ -118,11 +135,77 @@
   margin: 10px;
 
   &__iconLogin{
-    width: 17px !important;
-    height: 25px !important;
+    width: 17px;
+    height: 25px;
   }
 
   &__P{
     padding-top: 20px;
   }
+}
+
+@media (max-width: 767px)  {
+  .ButtonSignup__iconLogin{
+    width: 0px;
+    height: 0px;
+  }
+}
+
+@media (max-width: 767px)  {
+  .ButtonSignup {
+    background-color: transparent;
+    color: var(--color-yellow-1);
+    margin-left: 60px;
+  }
+}
+
+.ButtonProfile{
+  height: 40px;
+  border-radius: 10px;
+  background-color: #FFCD05;
+  display: flex;
+  align-items: center;
+  padding-top: 0px;
+
+  color: #3E3E3E;
+  font-family: Raleway;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 10px;
+
+  &__iconLogin{
+    width: 17px;
+    height: 25px;
+  }
+  &__iconProfile{
+    width: 15.219px !important;
+    height: 25px !important;
+  }
+
+  &__Profile{
+    padding-top: 20px;
+  }
+  &__P{
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 767px)  {
+  .ButtonLogin {
+    background-color: transparent;
+    color: var(--color-yellow-1);
+    margin-left: 60px;
+  }
+}
+
+@media (max-width: 767px)  {
+  .ButtonLogin__iconLogin{
+    width: 0px;
+    height: 0px;
+  }
+}
+
+.navbartogel{
+  background-color: var(--color-yellow-1);
 }

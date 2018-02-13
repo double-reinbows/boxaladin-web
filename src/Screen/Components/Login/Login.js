@@ -2,10 +2,9 @@ import axios from 'axios'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import jwt from 'jsonwebtoken'
-import IconUser from '../asset/Login/user.svg'
 import { Button } from 'reactstrap';
 
-import { loginAction, logoutAction, getPhoneNumbers } from '../actions/'
+import { loginAction, logoutAction, getPhoneNumbers } from '../../../actions'
 
 const URL = 'http://localhost:3000/'
 

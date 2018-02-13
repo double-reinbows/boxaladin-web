@@ -37,53 +37,13 @@
   padding: 0rem !important;
   height: 30px; }
 
-.Navbarz {
-  background-color: var(--color-grey-dark-1);
-  border-bottom: var(--line);
-  padding-top: 0rem !important;
-  padding-bottom: 0rem !important;
-  padding-left: 1rem !important;
-  padding-right: 1rem !important;
-  font-size: 2rem;
-  border-bottom: 0.5rem solid var(--color-primary-2); }
-  .Navbarz__Link {
-    padding: 5px; }
-    .Navbarz__Link__img {
-      margin: 0px !important; }
-  .Navbarz__Right {
-    margin: 0rem !important;
-    padding: 0rem !important; }
-  .Navbarz__Button {
-    padding: 5px !important;
-    margin: 20px !important;
-    justify-content: center; }
-    .Navbarz__Button__img {
-      width: 25px;
-      height: 25px; }
-  .Navbarz__List {
-    color: var(--color-primary-2) !important;
-    padding-top: 20px !important; }
-    .Navbarz__List:hover {
-      color: white !important;
-      background-color: #e5b721;
-      height: 100%;
-      width: 100%; }
-  .Navbarz__ContactUs {
-    color: var(--color-primary-2) !important;
-    margin-right: 20px;
-    padding-top: 20px !important;
-    padding-bottom: 20px !important; }
-    .Navbarz__ContactUs:hover {
-      color: white !important;
-      background-color: #e5b721;
-      height: 100%; }
-
 .HeaderTop {
   background-color: #3E3E3E;
   border-bottom: 4px solid #FFCD05; }
   .HeaderTop__Right {
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     align-items: center !important;
     margin: 0rem !important;
     padding: 0rem !important; }
@@ -94,24 +54,6 @@
     .HeaderTop__Button__img {
       width: 25px;
       height: 25px; }
-  .HeaderTop__ButtonTopUP {
-    height: 40px;
-    width: 200px;
-    border: 2px solid #FFCD05;
-    color: #FFCD05;
-    background-color: #3E3E3E;
-    box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
-    font-family: Raleway;
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 21px;
-    text-align: center;
-    margin-right: 20px !important; }
-    .HeaderTop__ButtonTopUP__label {
-      font-size: 18px; }
-      .HeaderTop__ButtonTopUP__label__italic {
-        font-size: 18px;
-        font-style: italic; }
   .HeaderTop__List {
     color: var(--color-primary-2) !important;
     padding-top: 20px !important; }
@@ -130,11 +72,32 @@
       background-color: #e5b721;
       height: 100%; }
 
-.ButtonLogin {
-  width: 150px;
+.ButtonTopUP {
   height: 40px;
-  padding-left: 15px;
-  padding-top: 0;
+  width: 200px;
+  border: 2px solid #FFCD05;
+  color: #FFCD05;
+  background-color: #3E3E3E;
+  box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  font-family: Raleway;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 21px;
+  text-align: center;
+  margin-right: 20px !important; }
+  .ButtonTopUP__label {
+    font-size: 18px; }
+    .ButtonTopUP__label__italic {
+      font-size: 18px;
+      font-style: italic; }
+
+@media (max-width: 767px) {
+  .ButtonTopUP {
+    border: transparent;
+    outline-color: none; } }
+
+.ButtonLogin {
+  height: 40px;
   border-radius: 10px;
   background-color: #FFCD05;
   display: flex;
@@ -146,8 +109,8 @@
   letter-spacing: 1px;
   margin: 10px; }
   .ButtonLogin__iconLogin {
-    width: 17px !important;
-    height: 25px !important; }
+    width: 17px;
+    height: 25px; }
   .ButtonLogin__iconProfile {
     width: 15.219px !important;
     height: 25px !important; }
@@ -156,11 +119,19 @@
   .ButtonLogin__P {
     padding-top: 20px; }
 
+@media (max-width: 767px) {
+  .ButtonLogin {
+    background-color: transparent;
+    color: var(--color-yellow-1);
+    margin-left: 60px; } }
+
+@media (max-width: 767px) {
+  .ButtonLogin__iconLogin {
+    width: 0px;
+    height: 0px; } }
+
 .ButtonSignup {
-  width: 150px;
   height: 40px;
-  padding-left: 15px;
-  padding-top: 0;
   border-radius: 10px;
   background-color: #FFCD05;
   display: flex;
@@ -172,10 +143,59 @@
   letter-spacing: 1px;
   margin: 10px; }
   .ButtonSignup__iconLogin {
-    width: 17px !important;
-    height: 25px !important; }
+    width: 17px;
+    height: 25px; }
   .ButtonSignup__P {
     padding-top: 20px; }
+
+@media (max-width: 767px) {
+  .ButtonSignup__iconLogin {
+    width: 0px;
+    height: 0px; } }
+
+@media (max-width: 767px) {
+  .ButtonSignup {
+    background-color: transparent;
+    color: var(--color-yellow-1);
+    margin-left: 60px; } }
+
+.ButtonProfile {
+  height: 40px;
+  border-radius: 10px;
+  background-color: #FFCD05;
+  display: flex;
+  align-items: center;
+  padding-top: 0px;
+  color: #3E3E3E;
+  font-family: Raleway;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 10px; }
+  .ButtonProfile__iconLogin {
+    width: 17px;
+    height: 25px; }
+  .ButtonProfile__iconProfile {
+    width: 15.219px !important;
+    height: 25px !important; }
+  .ButtonProfile__Profile {
+    padding-top: 20px; }
+  .ButtonProfile__P {
+    padding-top: 20px; }
+
+@media (max-width: 767px) {
+  .ButtonLogin {
+    background-color: transparent;
+    color: var(--color-yellow-1);
+    margin-left: 60px; } }
+
+@media (max-width: 767px) {
+  .ButtonLogin__iconLogin {
+    width: 0px;
+    height: 0px; } }
+
+.navbartogel {
+  background-color: var(--color-yellow-1); }
 
 .Bar-First {
   margin: 0rem !important;
@@ -555,6 +575,11 @@ body {
   margin-bottom: 0;
   margin-right: 11px;
   margin-left: 20px; }
+
+@media (max-width: 767px) {
+  .dropdownLoginHr {
+    width: 0px;
+    height: 0px; } }
 
 .ModalTop {
   border-bottom: none;

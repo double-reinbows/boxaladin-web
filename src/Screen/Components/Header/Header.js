@@ -4,20 +4,18 @@ import {
   Navbar,
   NavbarToggler,
   Nav,
-  NavItem,
-  Button
+  NavItem
 } from 'reactstrap';
 
 import {connect} from 'react-redux'
 
-import {logoutAction} from '../../actions/'
+import {logoutAction} from '../../../actions'
 
-import logo from '../../asset/Logo/LogoBig.svg'
-import LoginIcon from '../../asset/Login/login.svg'
-import DropdownUser from './Header/Dropdown/DropdownUser'
+import logo from '../../../asset/Logo/LogoBig.svg'
+import DropdownUser from './Dropdown/DropdownUser'
 
-import ModalLogin from './Login/ModalLogin'
-import ModalSignup from './Signup/ModalSignup'
+import ModalLogin from '../Login/ModalLogin'
+import ModalSignup from '../Signup/ModalSignup'
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -41,7 +39,7 @@ class NavBar extends React.Component {
             <img src={logo} alt="logo" className="BoxAladinLogo-Big" href="/home"/>
           </a>
 
-          <NavbarToggler onClick={this.toggle} />
+          <NavbarToggler onClick={this.toggle} className="navbartogel"/>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
             </Nav>
@@ -57,9 +55,9 @@ class NavBar extends React.Component {
         <Nav navbar className="HeaderTop__Right">
 
           <NavItem>
-            <button className="HeaderTop__ButtonTopUP">
-              <label className="HeaderTop__ButtonTopUP__label">Top Up  </label>{' '}
-              <label className="HeaderTop__ButtonTopUP__label__italic">Aladinkey!</label>
+            <button className="ButtonTopUP">
+              <label className="ButtonTopUP__label">Top Up  </label>{' '}
+              <label className="ButtonTopUP__label__italic">Aladinkey!</label>
             </button>
           </NavItem>
 
