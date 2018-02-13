@@ -156,6 +156,27 @@
   .ButtonLogin__P {
     padding-top: 20px; }
 
+.ButtonSignup {
+  width: 150px;
+  height: 40px;
+  padding-left: 15px;
+  padding-top: 0;
+  border-radius: 10px;
+  background-color: #FFCD05;
+  display: flex;
+  align-items: center;
+  color: #3E3E3E;
+  font-family: Raleway;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 10px; }
+  .ButtonSignup__iconLogin {
+    width: 17px !important;
+    height: 25px !important; }
+  .ButtonSignup__P {
+    padding-top: 20px; }
+
 .Bar-First {
   margin: 0rem !important;
   padding: 0rem !important; }
@@ -216,7 +237,8 @@
   justify-content: center;
   background-color: var(--color-grey-5);
   color: var(--color-yellow-1);
-  text-align: center; }
+  text-align: center;
+  padding: 2rem; }
   .Signup__Title {
     font-family: Raleway;
     font-size: 14px;
@@ -242,7 +264,11 @@
     font-size: 14px;
     font-weight: bold;
     line-height: 16px;
-    text-align: center; }
+    text-align: center;
+    margin: 2rem; }
+  .Signup__Condition {
+    color: var(--white);
+    margin: 1rem; }
 
 .Login {
   display: flex;
@@ -282,7 +308,11 @@
     text-align: center;
     margin: 1rem; }
   .Login__Daftar {
-    margin-bottom: 3rem; }
+    margin-bottom: 3rem;
+    color: var(--white); }
+  .Login__Link {
+    color: var(--color-yellow-1);
+    font-style: italic; }
 
 .AboutUs {
   height: 75rem;
@@ -537,6 +567,10 @@ body {
   border-radius: 0;
   border: 5px solid var(--white); }
 
+@media (min-width: 576px) {
+  .Modalz {
+    max-width: none; } }
+
 .inputz {
   border: transparent;
   border-bottom: 2px solid var(--color-yellow-1);
@@ -546,10 +580,31 @@ body {
   color: var(--color-yellow-1);
   outline: none; }
   .inputz:focus {
-    background-color: none; }
-  .inputz:hover {
+    border: transparent;
+    border-bottom: 2px solid var(--color-yellow-1);
     background: transparent;
-    border: transparent; }
+    font-family: Raleway;
+    font-style: italic;
+    color: var(--color-yellow-1); }
+  .inputz:hover {
+    border: transparent;
+    border-bottom: 2px solid var(--color-yellow-1);
+    background: transparent;
+    font-family: Raleway;
+    font-style: italic;
+    color: var(--color-yellow-1); }
+  .inputz::placeholder {
+    background: transparent;
+    font-family: Raleway;
+    font-style: italic;
+    color: var(--color-yellow-1); }
+  .inputz:active {
+    border: transparent;
+    border-bottom: 2px solid var(--color-yellow-1);
+    background: transparent;
+    font-family: Raleway;
+    font-style: italic;
+    color: var(--color-yellow-1); }
 
 :root {
   --color-yellow-1: #FFCD05;

@@ -27,14 +27,10 @@ import User from './Screen/User'
 //page pembelian
 import Invoice from './Screen/Invoice'
 import Pembayaran from './Screen/Pembayaran'
-<<<<<<< HEAD
 import TopupKey from './Screen/TopupKey'
 import TopupInvoice from './Screen/TopupInvoice'
 import TopupPayment from './Screen/TopupPayment'
 // import Cart from './screen/Cart'
-=======
->>>>>>> 6349684433c391c1979bdf616e084fe1539438ea
-
 
 class RouteList extends React.Component {
   render() {
@@ -95,18 +91,15 @@ class RouteList extends React.Component {
               component={EmailVerificationDone}
             />
 
-<<<<<<< HEAD
             <Route exact path="/invoice" component={Invoice} />
             <Route exact path="/payment/:id" component={Pembayaran} />
             <Route exact path="/topup" component={TopupKey} />
             <Route exact path="/topupinvoice" component={TopupInvoice} />
             <Route exact path="/topupinvoice/:id" component={TopupPayment} />
-=======
             <Route
               path="/payment/:id"
               component={Pembayaran}
             />
->>>>>>> 6349684433c391c1979bdf616e084fe1539438ea
 
             <Route
               path="/invoice"
