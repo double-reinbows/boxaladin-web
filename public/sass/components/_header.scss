@@ -46,7 +46,7 @@
 
 //Botton for user login
 .ButtonLoginSignup{
-  cursor: grab;
+  cursor: pointer;
   height: 40px;
   border-radius: 10px;
   background-color: #FFCD05;
@@ -67,9 +67,6 @@
   &__iconProfile{
     width: 15px;
     height: 25px;
-  }
-  &:hover{
-    color: var(--blue);
   }
 }
 

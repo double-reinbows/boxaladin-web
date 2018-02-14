@@ -73,6 +73,7 @@
     outline-color: none; } }
 
 .ButtonLoginSignup {
+  cursor: pointer;
   height: 40px;
   border-radius: 10px;
   background-color: #FFCD05;
@@ -92,13 +93,13 @@
     height: 25px; }
 
 @media (max-width: 767px) {
-  .ButtonLogin {
+  .ButtonLoginSignup {
     background-color: transparent;
     color: var(--color-yellow-1);
     margin-left: 60px; } }
 
 @media (max-width: 767px) {
-  .ButtonLogin__iconLogin {
+  .ButtonLoginSignup__iconLogin {
     width: 0px;
     height: 0px; } }
 
