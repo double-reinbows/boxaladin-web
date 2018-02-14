@@ -590,14 +590,17 @@ body {
   background-color: var(--color-grey-5); }
 
 .Modalz {
-  width: 750px;
   margin-top: 10%;
   border-radius: 0;
   border: 5px solid var(--white); }
 
-@media (min-width: 576px) {
+@media (min-width: 275px) and (max-width: 500px) {
   .Modalz {
-    max-width: none; } }
+    margin-top: 20%;
+    font-size: 14px;
+    margin-left: 43px;
+    width: 80%;
+    max-width: 100%; } }
 
 .inputz {
   border: transparent;

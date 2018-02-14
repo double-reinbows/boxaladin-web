@@ -1,5 +1,4 @@
 //components
-@import "components/container";
 @import "components/footer";
 @import "components/header";
 
@@ -13,12 +12,7 @@
 @import "pages/product";
 @import "pages/home";
 
-
 // reuseable components
-@import "reusable/animations";
 @import "reusable/base";
 @import "reusable/components";
-@import "reusable/form";
-@import "reusable/typography";
-@import "reusable/utilities";
 @import "reusable/variables";
