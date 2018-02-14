@@ -14,8 +14,8 @@ import {logoutAction} from '../../../actions'
 import logo from '../../../asset/Logo/LogoBig.svg'
 import DropdownUser from './Dropdown/DropdownUser'
 
-import ModalLogin from '../Login/ModalLogin'
-import ModalSignup from '../Signup/ModalSignup'
+import ModalLogin from './Login/ModalLogin'
+import ModalSignup from './Signup/ModalSignup'
 
 class NavBar extends React.Component {
   constructor(props) {

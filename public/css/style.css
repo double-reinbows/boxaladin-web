@@ -118,6 +118,68 @@
   .ButtonProfile__iconLogin {
     width: 17px;
     height: 25px; }
+  .ButtonProfile__Profile {
+    padding-top: 20px; }
+  .ButtonProfile__P {
+    padding-top: 20px; }
+
+@media (max-width: 767px) {
+  .ButtonLogin {
+    background-color: transparent;
+    color: var(--color-yellow-1);
+    margin-left: 60px; } }
+
+@media (max-width: 767px) {
+  .ButtonLogin__iconLogin {
+    width: 0px;
+    height: 0px; } }
+
+.ButtonSignup {
+  cursor: default;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #FFCD05;
+  display: flex;
+  align-items: center;
+  color: #3E3E3E;
+  font-family: Raleway;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 10px; }
+  .ButtonSignup__iconLogin {
+    width: 17px;
+    height: 25px; }
+  .ButtonSignup__P {
+    padding-top: 20px; }
+
+@media (max-width: 767px) {
+  .ButtonSignup__iconLogin {
+    width: 0px;
+    height: 0px; } }
+
+@media (max-width: 767px) {
+  .ButtonSignup {
+    background-color: transparent;
+    color: var(--color-yellow-1);
+    margin-left: 60px; } }
+
+.ButtonProfile {
+  height: 40px;
+  border-radius: 10px;
+  background-color: #FFCD05;
+  display: flex;
+  align-items: center;
+  padding-top: 0px;
+  color: #3E3E3E;
+  font-family: Raleway;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 10px; }
+  .ButtonProfile__iconLogin {
+    width: 17px;
+    height: 25px; }
   .ButtonProfile__iconProfile {
     width: 15.219px;
     height: 25px; }
@@ -135,6 +197,9 @@
 
 .IconBurger {
   background-color: var(--color-yellow-1); }
+
+.lupapass {
+  color: var(--color-yellow-1); }
 
 .Bar-First {
   margin: 0rem !important;
@@ -501,7 +566,7 @@ body {
 .dropdownLoginHr {
   border: none;
   border-left: 1px solid black;
-  height: 39px;
+  height: 40px;
   width: 1px;
   margin-top: 0;
   margin-bottom: 0;
@@ -527,6 +592,8 @@ body {
   border-bottom: none;
   border-radius: 0;
   background-color: var(--color-grey-5); }
+  .ModalTop span {
+    color: #FFCD05; }
 
 .Modalz {
   margin-top: 10%;
@@ -548,7 +615,7 @@ body {
   font-family: Raleway;
   font-style: italic;
   color: var(--color-yellow-1);
-  outline: none; }
+  box-shadow: none !important; }
   .inputz:focus {
     border: transparent;
     border-bottom: 2px solid var(--color-yellow-1);

@@ -106,6 +106,90 @@
     width: 17px;
     height: 25px;
   }
+
+  &__Profile{
+    padding-top: 20px;
+  }
+  &__P{
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 767px)  {
+  .ButtonLogin {
+    background-color: transparent;
+    color: var(--color-yellow-1);
+    margin-left: 60px;
+  }
+}
+
+@media (max-width: 767px)  {
+  .ButtonLogin__iconLogin{
+    width: 0px;
+    height: 0px;
+  }
+}
+
+
+.ButtonSignup{
+  cursor: default;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #FFCD05;
+  display: flex;
+  align-items: center;
+
+  color: #3E3E3E;
+  font-family: Raleway;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 10px;
+
+  &__iconLogin{
+    width: 17px;
+    height: 25px;
+  }
+
+  &__P{
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 767px)  {
+  .ButtonSignup__iconLogin{
+    width: 0px;
+    height: 0px;
+  }
+}
+
+@media (max-width: 767px)  {
+  .ButtonSignup {
+    background-color: transparent;
+    color: var(--color-yellow-1);
+    margin-left: 60px;
+  }
+}
+
+.ButtonProfile{
+  height: 40px;
+  border-radius: 10px;
+  background-color: #FFCD05;
+  display: flex;
+  align-items: center;
+  padding-top: 0px;
+
+  color: #3E3E3E;
+  font-family: Raleway;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 10px;
+
+  &__iconLogin{
+    width: 17px;
+    height: 25px;
+  }
   &__iconProfile{
     width: 15.219px;
     height: 25px;
@@ -132,4 +216,9 @@
 //Button for navgar toggle
 .IconBurger{
   background-color: var(--color-yellow-1);
+}
+
+//link lupa password
+.lupapass{
+    color: var(--color-yellow-1);
 }

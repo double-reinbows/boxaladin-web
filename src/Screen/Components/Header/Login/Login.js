@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import jwt from 'jsonwebtoken'
 import { Button } from 'reactstrap';
 
-import { loginAction, logoutAction, getPhoneNumbers } from '../../../actions'
+import { loginAction, logoutAction, getPhoneNumbers } from '../../../../actions'
 
 const URL = 'http://localhost:3000/'
 
@@ -76,7 +76,7 @@ class Login extends Component {
           <div className="form-group Login__Form">
             <label>Password</label>
             <input name="password" type="password"  className="form-control inputz" id="exampleInputPassword" aria-describedby="passwordHelp" placeholder="Enter your password" onChange={ (e) => this.logInInputHandler(e) }/>
-            <label className="Login__LupaPassword"><a href="/signup">lupa password?</a></label>
+            <label className="Login__LupaPassword"><a className="lupapass" href="/signup">lupa password?</a></label>
           </div>
 
           <div className="form-group">

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Modal, ModalHeader, Navbar } from 'reactstrap';
-import LoginIcon from '../../../asset/Login/login.svg'
-import Signup from './Signup'
+import LoginIcon from '../../../../asset/Login/login.svg'
+import Login from './Login'
 
-class ModalSignup extends React.Component {
+class ModalLogin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,17 +23,17 @@ class ModalSignup extends React.Component {
         <div>
           <Navbar className="ButtonLoginSignup" onClick={this.toggle}>
             {this.props.buttonLabel}
-            Signup
+            Login
             <hr className="dropdownLoginHr"/>
             <img src={LoginIcon} alt="LoginIcon" className="ButtonLoginSignup__iconLogin" href="/home"/>
           </Navbar>
           <Modal isOpen={this.state.modal} toggle={this.toggle} className="{this.props.className} Modalz" backdrop="static">
             <ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>
-            <Signup />
+            <Login />
           </Modal>
         </div>
       );
     }
   }
 
-export default ModalSignup;
+export default ModalLogin;

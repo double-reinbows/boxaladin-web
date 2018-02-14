@@ -44,33 +44,9 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    align-items: center !important;
-    margin: 0rem !important;
-    padding: 0rem !important; }
-  .HeaderTop__Button {
-    padding: 5px !important;
-    margin: 20px !important;
-    justify-content: center; }
-    .HeaderTop__Button__img {
-      width: 25px;
-      height: 25px; }
-  .HeaderTop__List {
-    color: var(--color-primary-2) !important;
-    padding-top: 20px !important; }
-    .HeaderTop__List:hover {
-      color: white !important;
-      background-color: #e5b721;
-      height: 100%;
-      width: 100%; }
-  .HeaderTop__ContactUs {
-    color: var(--color-primary-2) !important;
-    margin-right: 20px;
-    padding-top: 20px !important;
-    padding-bottom: 20px !important; }
-    .HeaderTop__ContactUs:hover {
-      color: white !important;
-      background-color: #e5b721;
-      height: 100%; }
+    align-items: center;
+    margin: 0rem;
+    padding: 0rem; }
 
 .ButtonTopUP {
   height: 40px;
@@ -84,7 +60,7 @@
   font-weight: 600;
   line-height: 21px;
   text-align: center;
-  margin-right: 20px !important; }
+  margin-right: 20px; }
   .ButtonTopUP__label {
     font-size: 18px; }
     .ButtonTopUP__label__italic {
@@ -96,7 +72,7 @@
     border: transparent;
     outline-color: none; } }
 
-.ButtonLogin {
+.ButtonLoginSignup {
   height: 40px;
   border-radius: 10px;
   background-color: #FFCD05;
@@ -108,15 +84,43 @@
   font-weight: 800;
   letter-spacing: 1px;
   margin: 10px; }
-  .ButtonLogin__iconLogin {
+  .ButtonLoginSignup__iconLogin {
     width: 17px;
     height: 25px; }
-  .ButtonLogin__iconProfile {
-    width: 15.219px !important;
-    height: 25px !important; }
-  .ButtonLogin__Profile {
+  .ButtonLoginSignup__iconProfile {
+    width: 15px;
+    height: 25px; }
+
+@media (max-width: 767px) {
+  .ButtonLogin {
+    background-color: transparent;
+    color: var(--color-yellow-1);
+    margin-left: 60px; } }
+
+@media (max-width: 767px) {
+  .ButtonLogin__iconLogin {
+    width: 0px;
+    height: 0px; } }
+
+.ButtonProfile {
+  height: 40px;
+  border-radius: 10px;
+  background-color: #FFCD05;
+  display: flex;
+  align-items: center;
+  padding-top: 0px;
+  color: #3E3E3E;
+  font-family: Raleway;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 10px; }
+  .ButtonProfile__iconLogin {
+    width: 17px;
+    height: 25px; }
+  .ButtonProfile__Profile {
     padding-top: 20px; }
-  .ButtonLogin__P {
+  .ButtonProfile__P {
     padding-top: 20px; }
 
 @media (max-width: 767px) {
@@ -131,6 +135,7 @@
     height: 0px; } }
 
 .ButtonSignup {
+  cursor: default;
   height: 40px;
   border-radius: 10px;
   background-color: #FFCD05;
@@ -176,12 +181,8 @@
     width: 17px;
     height: 25px; }
   .ButtonProfile__iconProfile {
-    width: 15.219px !important;
-    height: 25px !important; }
-  .ButtonProfile__Profile {
-    padding-top: 20px; }
-  .ButtonProfile__P {
-    padding-top: 20px; }
+    width: 15.219px;
+    height: 25px; }
 
 @media (max-width: 767px) {
   .ButtonLogin {
@@ -194,8 +195,11 @@
     width: 0px;
     height: 0px; } }
 
-.navbartogel {
+.IconBurger {
   background-color: var(--color-yellow-1); }
+
+.lupapass {
+  color: var(--color-yellow-1); }
 
 .Bar-First {
   margin: 0rem !important;
@@ -562,7 +566,7 @@ body {
 .dropdownLoginHr {
   border: none;
   border-left: 1px solid black;
-  height: 39px;
+  height: 40px;
   width: 1px;
   margin-top: 0;
   margin-bottom: 0;
@@ -588,6 +592,8 @@ body {
   border-bottom: none;
   border-radius: 0;
   background-color: var(--color-grey-5); }
+  .ModalTop span {
+    color: #FFCD05; }
 
 .Modalz {
   margin-top: 10%;
@@ -609,7 +615,7 @@ body {
   font-family: Raleway;
   font-style: italic;
   color: var(--color-yellow-1);
-  outline: none; }
+  box-shadow: none !important; }
   .inputz:focus {
     border: transparent;
     border-bottom: 2px solid var(--color-yellow-1);

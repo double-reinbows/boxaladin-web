@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import {loginAction} from '../../../actions'
+import {loginAction} from '../../../../actions'
 
 const URL = 'http://localhost:3000/'
 
