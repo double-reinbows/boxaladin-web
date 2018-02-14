@@ -84,3 +84,8 @@ export const getFilteredProductsAction = (payload) => ({
 // 	type: 'UPDATE_CART',
 // 	payload
 // })
+
+export const selectProductID = (payload) => ({
+	type: 'SELECT_PRODUCT_ID',
+	payload
+})

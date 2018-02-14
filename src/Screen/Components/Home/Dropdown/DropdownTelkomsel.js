@@ -3,7 +3,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 import { connect } from 'react-redux'
 
 import LogoTelkomsel from '../../../../asset/LandingPage/pulsa/Telkomsel.svg'
-import { getProducts } from '../../../../actions/productAction'
+import { selectProductID } from '../../../../actions/productAction'
 
 class Example extends React.Component {
   constructor(props) {
@@ -22,8 +22,8 @@ class Example extends React.Component {
   }
 
   render() {
-    console.log('Props:', this.props);
-    console.log('State:', this.state);
+    console.log('Telkomsel Dropdown Props:', this.props);
+    console.log('Telkomsel Dropdown State:', this.state);
     
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
@@ -37,7 +37,7 @@ class Example extends React.Component {
           })
           .map((data, i) => {
             return (
-              <DropdownItem key={i} className="dropz__item">{data.productName}</DropdownItem>
+              <DropdownItem key={i} value={data.id} className="dropz__item" onClick={(e) => this.props.selectProductID(e.target.value)}>{data.productName}</DropdownItem>
             )
           })}
           
@@ -45,22 +45,19 @@ class Example extends React.Component {
       </Dropdown>
     );
   }
-
-  componentDidMount() {
-    this.props.getProducts()
-  }
-
+  
 }
 
 const mapStateToProps = (state) => {
   return {
-    products: state.productReducer.products
+    products: state.productReducer.products,
+    selectedProductID: state.productReducer.selectedProductID
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getProducts: () => dispatch(getProducts())
+    selectProductID: (id) => dispatch(selectProductID(id))
   }
 }
 
