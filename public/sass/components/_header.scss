@@ -46,6 +46,7 @@
 
 //Botton for user login
 .ButtonLoginSignup{
+  cursor: grab;
   height: 40px;
   border-radius: 10px;
   background-color: #FFCD05;
@@ -67,11 +68,14 @@
     width: 15px;
     height: 25px;
   }
+  &:hover{
+    color: var(--blue);
+  }
 }
 
 //media query resposive header for button login
 @media (max-width: 767px)  {
-  .ButtonLogin {
+  .ButtonLoginSignup {
     background-color: transparent;
     color: var(--color-yellow-1);
     margin-left: 60px;
@@ -80,7 +84,7 @@
 
 //media query resposive header for icon inside button login
 @media (max-width: 767px)  {
-  .ButtonLogin__iconLogin{
+  .ButtonLoginSignup__iconLogin{
     width: 0px;
     height: 0px;
   }

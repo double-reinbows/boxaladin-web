@@ -73,6 +73,7 @@
     outline-color: none; } }
 
 .ButtonLoginSignup {
+  cursor: grab;
   height: 40px;
   border-radius: 10px;
   background-color: #FFCD05;
@@ -90,15 +91,17 @@
   .ButtonLoginSignup__iconProfile {
     width: 15px;
     height: 25px; }
+  .ButtonLoginSignup:hover {
+    color: var(--blue); }
 
 @media (max-width: 767px) {
-  .ButtonLogin {
+  .ButtonLoginSignup {
     background-color: transparent;
     color: var(--color-yellow-1);
     margin-left: 60px; } }
 
 @media (max-width: 767px) {
-  .ButtonLogin__iconLogin {
+  .ButtonLoginSignup__iconLogin {
     width: 0px;
     height: 0px; } }
 
