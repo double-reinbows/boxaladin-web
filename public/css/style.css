@@ -97,6 +97,7 @@
     outline-color: none; } }
 
 .ButtonLogin {
+  cursor: default;
   height: 40px;
   border-radius: 10px;
   background-color: #FFCD05;
@@ -131,6 +132,7 @@
     height: 0px; } }
 
 .ButtonSignup {
+  cursor: default;
   height: 40px;
   border-radius: 10px;
   background-color: #FFCD05;
@@ -298,6 +300,7 @@
   text-align: center; }
   .Login__Title1 {
     font-family: Raleway;
+    font-size: 14px;
     font-weight: 500;
     line-height: 16px;
     text-align: center;
@@ -305,6 +308,7 @@
     margin-bottom: 2rem; }
   .Login__Title2 {
     font-family: Raleway;
+    font-size: 20px;
     font-weight: 900;
     line-height: 24px;
     text-align: center; }
@@ -560,7 +564,7 @@ body {
 .dropdownLoginHr {
   border: none;
   border-left: 1px solid black;
-  height: 39px;
+  height: 40px;
   width: 1px;
   margin-top: 0;
   margin-bottom: 0;
@@ -586,6 +590,8 @@ body {
   border-bottom: none;
   border-radius: 0;
   background-color: var(--color-grey-5); }
+  .ModalTop span {
+    color: #FFCD05; }
 
 .Modalz {
   margin-top: 10%;
@@ -607,7 +613,7 @@ body {
   font-family: Raleway;
   font-style: italic;
   color: var(--color-yellow-1);
-  outline: none; }
+  box-shadow: none !important; }
   .inputz:focus {
     border: transparent;
     border-bottom: 2px solid var(--color-yellow-1);

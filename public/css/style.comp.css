@@ -97,6 +97,7 @@
     outline-color: none; } }
 
 .ButtonLogin {
+  cursor: default;
   height: 40px;
   border-radius: 10px;
   background-color: #FFCD05;
@@ -131,6 +132,7 @@
     height: 0px; } }
 
 .ButtonSignup {
+  cursor: default;
   height: 40px;
   border-radius: 10px;
   background-color: #FFCD05;
@@ -562,7 +564,7 @@ body {
 .dropdownLoginHr {
   border: none;
   border-left: 1px solid black;
-  height: 39px;
+  height: 40px;
   width: 1px;
   margin-top: 0;
   margin-bottom: 0;
@@ -588,16 +590,21 @@ body {
   border-bottom: none;
   border-radius: 0;
   background-color: var(--color-grey-5); }
+  .ModalTop span {
+    color: #FFCD05; }
 
 .Modalz {
-  width: 750px;
   margin-top: 10%;
   border-radius: 0;
   border: 5px solid var(--white); }
 
-@media (min-width: 576px) {
+@media (min-width: 275px) and (max-width: 500px) {
   .Modalz {
-    max-width: none; } }
+    margin-top: 20%;
+    font-size: 14px;
+    margin-left: 43px;
+    width: 80%;
+    max-width: 100%; } }
 
 .inputz {
   border: transparent;
@@ -606,7 +613,7 @@ body {
   font-family: Raleway;
   font-style: italic;
   color: var(--color-yellow-1);
-  outline: none; }
+  box-shadow: none !important; }
   .inputz:focus {
     border: transparent;
     border-bottom: 2px solid var(--color-yellow-1);
