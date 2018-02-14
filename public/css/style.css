@@ -298,7 +298,6 @@
   text-align: center; }
   .Login__Title1 {
     font-family: Raleway;
-    font-size: 14px;
     font-weight: 500;
     line-height: 16px;
     text-align: center;
@@ -306,7 +305,6 @@
     margin-bottom: 2rem; }
   .Login__Title2 {
     font-family: Raleway;
-    font-size: 20px;
     font-weight: 900;
     line-height: 24px;
     text-align: center; }
@@ -475,6 +473,9 @@
     padding-left: 2rem;
     margin: 0rem !important; }
 
+.rowz {
+  margin: 0rem !important; }
+
 * {
   margin: 0;
   padding: 0; }
@@ -587,14 +588,17 @@ body {
   background-color: var(--color-grey-5); }
 
 .Modalz {
-  width: 750px;
   margin-top: 10%;
   border-radius: 0;
   border: 5px solid var(--white); }
 
-@media (min-width: 576px) {
+@media (min-width: 275px) and (max-width: 500px) {
   .Modalz {
-    max-width: none; } }
+    margin-top: 20%;
+    font-size: 14px;
+    margin-left: 43px;
+    width: 80%;
+    max-width: 100%; } }
 
 .inputz {
   border: transparent;
