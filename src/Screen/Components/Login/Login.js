@@ -2,10 +2,9 @@ import axios from 'axios'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import jwt from 'jsonwebtoken'
-import IconUser from '../asset/Login/user.svg'
 import { Button } from 'reactstrap';
 
-import { loginAction, logoutAction, getPhoneNumbers } from '../actions/'
+import { loginAction, logoutAction, getPhoneNumbers } from '../../../actions'
 
 const URL = 'http://localhost:3000/'
 
@@ -84,7 +83,7 @@ class Login extends Component {
               <Button type="submit" className="Login__ButtonLogin">Login</Button>
           </div>
 
-          <label className="Login__Daftar">Belum memiliki akun? daftar <a href="/signup"> disini</a></label>
+          <label className="Login__Daftar">Belum memiliki akun? daftar <a href="/signup" className="Login__Link"> disini</a></label>
 
         </form>
       </div>

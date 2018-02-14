@@ -4,6 +4,7 @@
   background-color: var(--color-grey-5);
   color: var(--color-yellow-1);
   text-align: center;
+  padding: 2rem;
 
   &__Title{
     font-family: Raleway;
@@ -25,7 +26,7 @@
   &__Form{
     text-align: left;
   }
-  
+
   &__ButtonLogin{
     color: var(--color-grey-5);
     background-color: var(--color-yellow-1);
@@ -37,6 +38,12 @@
     font-weight: bold;
     line-height: 16px;
     text-align: center;
+    margin: 2rem;
+  }
+
+  &__Condition{
+    color: var(--white);
+    margin: 1rem;
   }
 
 }
