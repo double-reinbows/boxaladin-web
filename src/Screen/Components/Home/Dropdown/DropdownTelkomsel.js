@@ -1,8 +1,11 @@
 import React from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import LogoTelkomsel from '../../../../asset/LandingPage/pulsa/Telkomsel.svg'
+import { connect } from 'react-redux'
 
-export default class Example extends React.Component {
+import LogoTelkomsel from '../../../../asset/LandingPage/pulsa/Telkomsel.svg'
+import { selectProductID } from '../../../../actions/productAction'
+
+class Example extends React.Component {
   constructor(props) {
     super(props);
 
@@ -25,11 +28,36 @@ export default class Example extends React.Component {
         <img src={LogoTelkomsel} className="dropz__img" alt="Logo Telkomsel" />
         </DropdownToggle>
         <DropdownMenu className="dropz__item">
-          <DropdownItem className="dropz__item">100</DropdownItem>
-          <DropdownItem className="dropz__item">50</DropdownItem>
-          <DropdownItem className="dropz__item">25</DropdownItem>
+
+          {this.props.products.filter(data => {
+            return data.brand === 'Telkomsel' && data.category === 'Pulsa'
+          })
+          .map((data, i) => {
+            return (
+              <DropdownItem key={i} value={data.id} className="dropz__item" onClick={(e) => this.props.selectProductID(e.target.value)}>{data.productName}</DropdownItem>
+            )
+          })}
+          
         </DropdownMenu>
       </Dropdown>
     );
   }
+  
 }
+
+const mapStateToProps = (state) => {
+  return {
+    products: state.productReducer.products,
+    selectedProductID: state.productReducer.selectedProductID
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    selectProductID: (id) => dispatch(selectProductID(id))
+  }
+}
+
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(Example)
+
+export default connectComponent

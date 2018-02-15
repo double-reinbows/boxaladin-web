@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
 import {loginAction} from '../actions/'
+import { getProducts } from '../actions/productAction'
 
 import Carousel from './Components/Home/Carousel'
 import BannerText1 from './Components/Home/BannerText1'
@@ -10,6 +11,11 @@ import TabsHome from './Components/Home/TabsHome'
 
 
 class Home extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+  
   render() {
     console.log('State:', this.state);
 		console.log('Props:', this.props);
@@ -22,6 +28,11 @@ class Home extends Component {
       </div>
     )
   }
+
+  componentDidMount() {
+    this.props.getProducts()
+  }
+  
 }
 
 const mapStateToProps = state => {
@@ -34,7 +45,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loginAction: () => dispatch(loginAction())
+    loginAction: () => dispatch(loginAction()),
+    getProducts: () => dispatch(getProducts())    
   }
 }
 

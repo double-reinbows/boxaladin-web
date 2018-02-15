@@ -23,7 +23,13 @@ import User from './Screen/User'
 //page pembelian
 import Invoice from './Screen/Invoice'
 import Pembayaran from './Screen/Pembayaran'
+import TopupKey from './Screen/TopupKey'
+import TopupInvoice from './Screen/TopupInvoice'
+import TopupPayment from './Screen/TopupPayment'
+// import Cart from './screen/Cart'
 
+import Bidding from './Screen/Bidding'
+import InsertPhone from './Screen/InsertPhone'
 
 class RouteList extends React.Component {
   render() {
@@ -60,6 +66,14 @@ class RouteList extends React.Component {
               path="/emailVerification"
               component={EmailVerificationDone}
             />
+
+            <Route exact path="/invoice" component={Invoice} />
+            <Route exact path="/payment/:id" component={Pembayaran} />
+            <Route exact path="/topup" component={TopupKey} />
+            <Route exact path="/topupinvoice" component={TopupInvoice} />
+            <Route exact path="/topupinvoice/:id" component={TopupPayment} />
+            <Route exact path="/bidding" component={Bidding} />
+            <Route exact path="/insertphone" component={InsertPhone} />
 
             <Route
               path="/payment/:id"

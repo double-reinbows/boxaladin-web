@@ -1,5 +1,7 @@
 import React from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 //import iconTabs
 import IconTabs1 from '../../../asset/TabsHome/IconTabs1.svg';
@@ -13,7 +15,7 @@ import DropdownTelkomsel from './Dropdown/DropdownTelkomsel';
 import DropdownTri from './Dropdown/DropdownTri';
 import DropdownXL from './Dropdown/DropdownXL';
 
-export default class Example extends React.Component {
+class Example extends React.Component {
   constructor(props) {
     super(props);
 
@@ -30,7 +32,11 @@ export default class Example extends React.Component {
       });
     }
   }
+  
   render() {
+    console.log('Tabs Home Props:', this.props);
+    console.log('Tabs Home State:', this.state);
+    
     return (
       <div>
         <Nav className="NavTabsHome" tabs>
@@ -88,7 +94,15 @@ export default class Example extends React.Component {
               </div>
 
               <div>
-                <button type="button" className="btn btn-lg btn-block TabsPane1__button">LIHAT HARGA</button>
+                <h1>
+                  { this.showSelectedProductName() }
+                </h1>
+              </div>
+
+              <div>
+                <Link to="/bidding">
+                  <button type="button" className="btn btn-lg btn-block TabsPane1__button">LIHAT HARGA</button>
+                </Link>
               </div>
             </div>
           </TabPane>
@@ -104,4 +118,28 @@ export default class Example extends React.Component {
       </div>
     );
   }
+
+  showSelectedProductName() {
+    let result = this.props.products.filter(data => {
+      return data.id.toString() === this.props.selectedProductID
+    })
+
+    return result[0] ? result[0].productName : null
+  }
+  
 }
+
+const mapStateToProps = (state) => {
+  return {
+    products: state.productReducer.products,
+    selectedProductID: state.productReducer.selectedProductID
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {}
+}
+
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(Example)
+
+export default connectComponent

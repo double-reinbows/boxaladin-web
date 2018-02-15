@@ -2,15 +2,25 @@ import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import {
-  Container, TabContent, TabPane, Nav, NavItem, NavLink,
-  Button, Form, FormGroup, Input,
-  Modal, ModalHeader, ModalBody
+  Container,
+  TabContent,
+  TabPane,
+  Nav,
+  NavItem,
+  NavLink,
+  Button,
+  Form,
+  FormGroup,
+  Input,
+  Modal,
+  ModalHeader,
+  ModalBody, 
 } from 'reactstrap';
 
 import classnames from 'classnames';
 import Xendit from 'xendit-js-node'
 
-class InvoiceDetail extends React.Component {
+class TopupPayment extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -36,7 +46,7 @@ class InvoiceDetail extends React.Component {
     return (
       <div>
         <Container>
-          <h1>Payment</h1>
+					<h1>Topup Payment</h1>
           {this.state.invoice ? (
               <div>
                 <h5>Silahkan melakukan pembayaran sejumlah {this.state.invoice.payment.amount} ke salah satu virtual bank account di bawah ini:</h5>
@@ -62,11 +72,11 @@ class InvoiceDetail extends React.Component {
   submitPaymentWithCC(token) {
     axios({
       method: 'POST',
-      url: `http://localhost:3000/creditcard`,
+      url: `http://localhost:3000/creditCardTopup`,
       data: {
         tokenId: token,
         externalId: this.state.invoice.paymentId.toString(),
-        amount: this.state.invoice.aladinPrice,
+        amount: this.state.invoice.payment.amount,
         cardCvn: this.state.cvn
       }
     })
@@ -96,7 +106,7 @@ class InvoiceDetail extends React.Component {
   createCCToken() {
     Xendit.setPublishableKey('xnd_public_development_OImFfL0l07evlc5rd+AaEmTDb9L38NJ8lXbg+Rxi/Gbe8LGkBQ93hg==')
     Xendit.card.createToken({
-      amount: this.state.invoice.aladinPrice,
+      amount: this.state.invoice.payment.amount,
 			card_number: this.state.ccNumber,
 			card_exp_month: this.state.ccExpiredMonth,
 			card_exp_year: this.state.ccExpiredYear,
@@ -179,7 +189,7 @@ class InvoiceDetail extends React.Component {
           <Form>
 
             <FormGroup>
-              <Input type="text" value={this.state.invoice !== null ? this.state.invoice.aladinPrice : ''} disabled />
+              <Input type="text" value={this.state.invoice !== null ? this.state.invoice.payment.amount : ''} disabled />
             </FormGroup>
 
             <FormGroup>
@@ -219,7 +229,7 @@ class InvoiceDetail extends React.Component {
   getInvoiceById() {
     axios({
       method: 'GET',
-      url: `http://localhost:3000/transaction/${this.props.match.params.id}`
+      url: `http://localhost:3000/topup/${this.props.match.params.id}`
     })
     .then(({data}) => this.setState({invoice: data}))
     .catch(err => console.log(err))
@@ -239,6 +249,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(InvoiceDetail)
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(TopupPayment)
 
 export default connectComponent
