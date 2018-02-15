@@ -22,9 +22,6 @@ class Example extends React.Component {
   }
 
   render() {
-    console.log('Telkomsel Dropdown Props:', this.props);
-    console.log('Telkomsel Dropdown State:', this.state);
-    
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
         <DropdownToggle caret className="dropz">

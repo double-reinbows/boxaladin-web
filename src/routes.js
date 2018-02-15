@@ -32,6 +32,9 @@ import TopupInvoice from './Screen/TopupInvoice'
 import TopupPayment from './Screen/TopupPayment'
 // import Cart from './screen/Cart'
 
+import Bidding from './Screen/Bidding'
+import InsertPhone from './Screen/InsertPhone'
+
 class RouteList extends React.Component {
   render() {
     return (
@@ -96,6 +99,9 @@ class RouteList extends React.Component {
             <Route exact path="/topup" component={TopupKey} />
             <Route exact path="/topupinvoice" component={TopupInvoice} />
             <Route exact path="/topupinvoice/:id" component={TopupPayment} />
+            <Route exact path="/bidding" component={Bidding} />
+            <Route exact path="/insertphone" component={InsertPhone} />
+
             <Route
               path="/payment/:id"
               component={Pembayaran}

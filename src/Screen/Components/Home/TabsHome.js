@@ -1,6 +1,7 @@
 import React from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 //import iconTabs
 import IconTabs1 from '../../../asset/TabsHome/IconTabs1.svg';
@@ -33,6 +34,9 @@ class Example extends React.Component {
   }
   
   render() {
+    console.log('Tabs Home Props:', this.props);
+    console.log('Tabs Home State:', this.state);
+    
     return (
       <div>
         <Nav className="NavTabsHome" tabs>
@@ -96,7 +100,9 @@ class Example extends React.Component {
               </div>
 
               <div>
-                <button type="button" className="btn btn-lg btn-block TabsPane1__button">LIHAT HARGA</button>
+                <Link to="/bidding">
+                  <button type="button" className="btn btn-lg btn-block TabsPane1__button">LIHAT HARGA</button>
+                </Link>
               </div>
             </div>
           </TabPane>
@@ -120,7 +126,7 @@ class Example extends React.Component {
 
     return result[0] ? result[0].productName : null
   }
-
+  
 }
 
 const mapStateToProps = (state) => {
