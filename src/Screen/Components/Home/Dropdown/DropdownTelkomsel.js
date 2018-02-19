@@ -34,15 +34,15 @@ class Example extends React.Component {
           })
           .map((data, i) => {
             return (
-              <DropdownItem key={i} value={data.id} className="dropz__item" onClick={(e) => this.props.selectProductID(e.target.value)}>{data.productName}</DropdownItem>
+              <DropdownItem key={i} value={data.id} className="dropz__item" onClick={(e) => this.props.selectProductID(e.target.value)}>{data.price}</DropdownItem>
             )
           })}
-          
+
         </DropdownMenu>
       </Dropdown>
     );
   }
-  
+
 }
 
 const mapStateToProps = (state) => {

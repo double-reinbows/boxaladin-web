@@ -28,13 +28,13 @@ class Example extends React.Component {
           <img src={LogoSmart} className="dropz__img" alt="Logo Smart" />
         </DropdownToggle>
         <DropdownMenu className="dropz__item">
-          
+
           {this.props.products.filter(data => {
             return data.brand === 'Smartfren' && data.category === 'Pulsa'
           })
           .map((data, i) => {
             return (
-              <DropdownItem key={i} value={data.id} className="dropz__item" onClick={(e) => this.props.selectProductID(e.target.value)}>{data.productName}</DropdownItem>
+              <DropdownItem key={i} value={data.id} className="dropz__item" onClick={(e) => this.props.selectProductID(e.target.value)}>{data.price}</DropdownItem>
             )
           })}
 
