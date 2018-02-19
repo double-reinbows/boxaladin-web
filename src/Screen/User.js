@@ -5,7 +5,8 @@ import Modal from 'react-modal'
 import axios from 'axios'
 import { Button } from 'reactstrap'
 
-import { loginAction, getPhoneNumbers } from '../actions/'
+import { getPhoneNumbers } from '../actions/'
+import { getUser } from '../actions/userAction'
 
 const customStyles = {
 	overlay : {
@@ -65,7 +66,7 @@ class User extends React.Component {
 	}
 
 	componentDidMount() {
-		this.setDataUser()
+		this.props.getUser()
 		this.props.getPhoneNumbers()
 	}
 
@@ -443,33 +444,28 @@ class User extends React.Component {
 	showDataUser() {
 		return (
 			<div>
-				<h3>{this.props.dataUser !== null ? this.props.dataUser.first_name : null} {this.props.dataUser !== null ? this.props.dataUser.family_name : null}</h3>
-				<h4>username: {this.props.dataUser !== null ? this.props.dataUser.username : null}</h4>
-				<h4>email: {this.props.dataUser !== null ? this.props.dataUser.email : null}</h4>
+				<h3>{this.props.userInfo !== null ? this.props.userInfo.first_name : null} {this.props.userInfo !== null ? this.props.userInfo.family_name : null}</h3>
+				<h4>username: {this.props.userInfo !== null ? this.props.userInfo.username : null}</h4>
+				<h4>email: {this.props.userInfo !== null ? this.props.userInfo.email : null}</h4>
+				<h4>aladin key: {this.props.userInfo !== null ? this.props.userInfo.aladinKeys : null}</h4>
+				<h4>coin: {this.props.userInfo !== null ? this.props.userInfo.coin : null}</h4>
 				{ this.showPhoneNumbers() }
 			</div>
 		)
-	}
-
-	setDataUser() {
-		const decoded = jwt.verify(localStorage.getItem('token'), 'satekambing')
-		console.log('Data decoded:', decoded);
-		this.props.loginAction(decoded)
 	}
 }
 
 const mapStateToProps = (state) => {
 	return {
-		isLogin: state.userReducer.isLogin,
-		dataUser: state.userReducer.dataUser,
+		userInfo: state.userReducer.userInfo,
 		phoneNumbers: state.userReducer.phoneNumbers
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		loginAction: (payload) => dispatch(loginAction(payload)),
-		getPhoneNumbers: () => dispatch(getPhoneNumbers())
+		getPhoneNumbers: () => dispatch(getPhoneNumbers()),
+		getUser: () => dispatch(getUser())
 	}
 }
 
