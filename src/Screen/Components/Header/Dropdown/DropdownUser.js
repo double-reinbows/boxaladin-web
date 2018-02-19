@@ -7,6 +7,7 @@ import ExpandIcon from '../../../../asset/Login/expand.svg'
 import {connect} from 'react-redux'
 
 import {logoutAction} from '../../../../actions/'
+import { getUser } from '../../../../actions/userAction'
 
 class DropdownUser extends React.Component {
   constructor(props) {
@@ -25,6 +26,9 @@ class DropdownUser extends React.Component {
   }
 
   render() {
+    console.log('State DropDown:', this.state)
+    console.log('Props DropDown:', this.props)
+
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
 
@@ -58,7 +62,7 @@ class DropdownUser extends React.Component {
           </DropdownItem>
 
           <DropdownItem className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" to="/topup">Aladinkey: </Link>
+            <Link className="DropdownUser__inside__link" to="/topup">Aladinkey: {this.props.userInfo.aladinKeys}</Link>
           </DropdownItem>
 
           <DropdownItem divider />
@@ -72,6 +76,10 @@ class DropdownUser extends React.Component {
     );
   }
 
+  componentDidMount() {
+    this.props.getUser()
+  }
+
   logout() {
     localStorage.removeItem('token')
     this.props.logoutAction()
@@ -80,14 +88,15 @@ class DropdownUser extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isLogin: state.userReducer.isLogin
-    // dataUser: state.userReducer.dataUser
+    isLogin: state.userReducer.isLogin,
+    userInfo: state.userReducer.userInfo
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    logoutAction: () => dispatch(logoutAction())
+    logoutAction: () => dispatch(logoutAction()),
+    getUser: () => dispatch(getUser())
   }
 }
 
