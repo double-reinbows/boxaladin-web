@@ -485,6 +485,7 @@ svg {
   .bidding__3 {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     padding: 30px; }
     .bidding__3__col {
