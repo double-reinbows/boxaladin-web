@@ -8,6 +8,7 @@ import {
 } from 'reactstrap';
 
 import {connect} from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import {logoutAction} from '../../../actions'
 
@@ -35,9 +36,9 @@ class NavBar extends React.Component {
     return (
       <div>
         <Navbar light expand="md" className="HeaderTop">
-          <a href="/home">
+          <Link to="/home">
             <img src={logo} alt="logo" className="BoxAladinLogo-Big" href="/home"/>
-          </a>
+          </Link>
 
           <NavbarToggler onClick={this.toggle} className="IconBurger"/>
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -55,10 +56,19 @@ class NavBar extends React.Component {
         <Nav navbar className="HeaderTop__Right">
 
           <NavItem>
+<<<<<<< HEAD:src/Screen/Components/Header/Header.js
             <button className="ButtonTopUP">
               <label className="ButtonTopUP__label">Top Up  </label>{' '}
               <label className="ButtonTopUP__label__italic">Aladinkey!</label>
             </button>
+=======
+            <Link to="/topup">
+              <button className="HeaderTop__ButtonTopUP">
+                <label className="HeaderTop__ButtonTopUP__label">Top Up  </label>{' '}
+                <label className="HeaderTop__ButtonTopUP__label__italic">Aladinkey!</label>
+              </button>
+            </Link>
+>>>>>>> f7859a280404f83ccb707aca6dbc259771114b77:src/Screen/Components/Header.js
           </NavItem>
 
           <NavItem>

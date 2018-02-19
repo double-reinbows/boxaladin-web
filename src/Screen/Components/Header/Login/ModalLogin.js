@@ -1,7 +1,16 @@
 import React from 'react';
+<<<<<<< HEAD:src/Screen/Components/Header/Login/ModalLogin.js
 import { Modal, ModalHeader, Navbar } from 'reactstrap';
 import LoginIcon from '../../../../asset/Login/login.svg'
 import Login from './Login'
+=======
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { connect } from 'react-redux'
+
+import LoginIcon from '../../../asset/Login/login.svg'
+import Login from '../../Login'
+import { loginAction } from '../../../actions/'
+>>>>>>> f7859a280404f83ccb707aca6dbc259771114b77:src/Screen/Components/Login/ModalLogin.js
 
 class ModalLogin extends React.Component {
   constructor(props) {
@@ -36,4 +45,14 @@ class ModalLogin extends React.Component {
     }
   }
 
-export default ModalLogin;
+const mapStateToProps = (state) => {
+  return {}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {}
+}
+
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(ModalLogin)
+
+export default connectComponent
