@@ -19,11 +19,11 @@ class Bidding extends React.Component {
   render() {
     console.log('Bidding Props:', this.props);
     console.log('Bidding State:', this.state);
-    
+
     return (
       <div className="container">
         <h1>Bidding</h1>
-        
+
         <hr />
         <h1>{this.state.productUnlocked.productName}</h1>
         <strike><h4>Rp{this.state.productUnlocked.price}</h4></strike>
@@ -51,7 +51,7 @@ class Bidding extends React.Component {
 
   buy() {
     console.log('Buy Now!!!!!')
-    
+
 		axios({
 			method: 'PUT',
 			url: `http://localhost:3000/api/product/${this.props.selectedProductID}`
@@ -65,16 +65,16 @@ class Bidding extends React.Component {
 		})
 		.catch(err => console.log(err))
   }
-  
+
   cancel() {
     this.stopWatchProductPrice(this.props.selectedProductID)
     this.props.history.push('/home')
   }
-  
+
   watchProductPrice(productId) {
     const productsRef = firebase.database().ref().child('products')
     const productRef = productsRef.child(productId)
-    
+
 		if (localStorage.getItem('token') !== null) {
 
 			axios({
@@ -113,32 +113,32 @@ class Bidding extends React.Component {
 
           this.props.history.push('/home')
           alert(data.message)
-        
+
         } else {
-        
+
           console.log(data)
-        
+
         }
 			})
       .catch(err => console.log(err))
-      
+
 		} else {
-      
+
       alert('harus login')
-    
+
     }
   }
-  
+
   runTimer() {
 		setTimeout(() => {
 			this.setState({count: this.state.count >= 0 ? this.state.count-1 : 0})
 		}, 1000)
   }
-  
+
   checkTimer(prevCount) {
 		if (this.state.count > 0 && this.state.count !== prevCount && this.state.isWatching === true) {
       this.runTimer()
-      
+
 		} else if (this.state.count <= 0 && this.state.count !== prevCount && this.state.isWatching === true) {
       this.stopWatchProductPrice(this.props.selectedProductID)
       alert('Waktu habis Brayyy...')
@@ -148,7 +148,7 @@ class Bidding extends React.Component {
 			this.setState({count: this.state.initCount})
 		}
   }
-  
+
   afterResetPrice(prevPrice) {
 		if (prevPrice !== undefined && this.state.productUnlocked.aladinPrice > prevPrice) {
       alert('Maaf, produk ini sudah terbeli orang lain! Silahkan melakukan bidding lagi.')
@@ -156,19 +156,19 @@ class Bidding extends React.Component {
       this.props.history.push('/home')
 		}
   }
-  
+
   stopWatchProductPrice(productId) {
     const productsRef = firebase.database().ref().child('products')
 		const productRef = productsRef.child(productId)
 
     productRef.off()
     this.setState({isWatching: false})
-    
+
     productRef.once('value', snap => {
 			productRef.update({
 				watching: snap.val().watching -1
 			})
-		})    
+		})
   }
 
 }

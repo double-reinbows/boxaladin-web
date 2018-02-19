@@ -42,6 +42,10 @@ class DropdownUser extends React.Component {
           </DropdownItem>
 
           <DropdownItem className="DropdownUser__inside">
+            <Link className="DropdownUser__inside__link" to="/pulsa">Pulsa</Link>
+          </DropdownItem>
+
+          <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/me">User Profile</Link>
           </DropdownItem>
 
@@ -50,7 +54,11 @@ class DropdownUser extends React.Component {
           </DropdownItem>
 
           <DropdownItem className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" to="/invoice">Aladinkey: </Link>
+            <Link className="DropdownUser__inside__link" to="/topupinvoice">Topup-Invoice</Link>
+          </DropdownItem>
+
+          <DropdownItem className="DropdownUser__inside">
+            <Link className="DropdownUser__inside__link" to="/topup">Aladinkey: </Link>
           </DropdownItem>
 
           <DropdownItem divider />

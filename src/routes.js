@@ -34,6 +34,7 @@ import TopupPayment from './Screen/TopupPayment'
 
 import Bidding from './Screen/Bidding'
 import InsertPhone from './Screen/InsertPhone'
+import Pulsa from './Screen/Pulsa'
 
 class RouteList extends React.Component {
   render() {
@@ -101,16 +102,7 @@ class RouteList extends React.Component {
             <Route exact path="/topupinvoice/:id" component={TopupPayment} />
             <Route exact path="/bidding" component={Bidding} />
             <Route exact path="/insertphone" component={InsertPhone} />
-
-            <Route
-              path="/payment/:id"
-              component={Pembayaran}
-            />
-
-            <Route
-              path="/invoice"
-              component={Invoice}
-            />
+            <Route exact path="/pulsa" component={Pulsa} />
 
             <Footer/>
           </div>
