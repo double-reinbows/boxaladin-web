@@ -38,7 +38,7 @@ class Example extends React.Component {
     console.log('Tabs Home State:', this.state);
     
     return (
-      <div>
+      <div className="tes">
         <Nav className="NavTabsHome" tabs>
           <NavItem className="TabsHome">
             <NavLink

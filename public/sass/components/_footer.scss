@@ -5,14 +5,12 @@
 
   &__Top{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    height: 400px;
 
     &__Left{
       width: 50%;
-
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
 
@@ -24,7 +22,6 @@
         font-size: 18px;
         font-weight: bold;
         line-height: 21px;
-        margin: 2rem;
         padding: 2rem;
       }
 
@@ -40,10 +37,8 @@
     }
 
     &__Right{
-      width: 50%;
-
       display: flex;
-      flex-direction: column;
+      align-items: center;
 
       color: var(--color-yellow-1);
 
@@ -53,7 +48,6 @@
       }
 
       &__Row1{
-        width: 33.3%;
         font-family: Raleway;
         font-size: 18px;
         font-weight: bold;
@@ -70,7 +64,6 @@
       }
 
       &__Row2{
-        width: 33.3%;
         font-family: Raleway;
         font-size: 18px;
         font-weight: bold;
@@ -87,12 +80,15 @@
       }
 
       &__Row3{
-        width: 33.3%;
         font-family: Raleway;
         font-size: 18px;
         font-weight: bold;
         line-height: 21px;
         margin: 2rem;
+
+        &__logo{
+          padding-top: 20px;
+        }
       }
     }
 
@@ -100,10 +96,25 @@
 
   &__Bot{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 150px;
+    height: 70px;
     background-color: var(--color-yellow-1);
+    &__labelTop{
+      color: #3E3E3E;
+      font-family: Raleway;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 16px;
+    }
+    &__labelBot{
+      color: #3E3E3E;
+      font-family: Raleway;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 16px;
+    }
   }
 }
 
@@ -119,10 +130,14 @@
   height: 25px;
 }
 
-.FooterzKosong{
-  width: 100%;
-  height: 100px;
-}
+// .FooterzKosong{
+//   width: 100%;
+//   height: 100px;
+// }
 ul {
   list-style-type: none;
+}
+
+svg{
+  fill:blue;
 }

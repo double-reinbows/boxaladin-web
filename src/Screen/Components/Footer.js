@@ -48,7 +48,7 @@ export default  class Footer extends React.Component {
               <div className="footerz__Top__Right__Row3">
 
                 Our Social Media
-                <div>
+                <div className="footerz__Top__Right__Row3">
                   <a href="/facebook.com">
                     <img src={facebook} alt="logo" className="LogoSosmed" href="/home"/>
                   </a>
@@ -70,7 +70,12 @@ export default  class Footer extends React.Component {
         </div>
 
         <div className="footerz__Bot">
-          BoxAladin Corps
+          <div className="footerz__Bot__labelTop">
+            <label>Dilindungi oleh Hak Cipta dan berbadan hukum resmi.</label>
+          </div>
+          <div className="footerz__Bot__labelBot">
+            <label>Est.2016 PT BOX ALADIN ASIAPASIFIC</label>
+          </div>
         </div>
 
 

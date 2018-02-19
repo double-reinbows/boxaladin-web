@@ -9,23 +9,23 @@
 .DropdownUser{
   width: 150px;
   height: 40px;
-  padding: 0rem !important;
-  padding-left: 15px !important;
-  border-radius: 10px !important;
-  background-color: #FFCD05 !important;
-  display: flex !important;
-  align-items: center !important;
+  padding: 0rem ;
+  padding-left: 15px ;
+  border-radius: 10px ;
+  background-color: #FFCD05 ;
+  display: flex ;
+  align-items: center ;
 
-  color: #3E3E3E !important;
-  font-family: Raleway !important;
-  font-size: 22px !important;
-  font-weight: 800 !important;
-  letter-spacing: 1px !important;
-  margin: 10px !important;
+  color: #3E3E3E ;
+  font-family: Raleway ;
+  font-size: 22px ;
+  font-weight: 800 ;
+  letter-spacing: 1px ;
+  margin: 10px ;
 
   &__icon1{
-    width: 25px !important;
-    height: 25px !important;
+    width: 25px ;
+    height: 25px ;
   }
 
   &__label {
@@ -40,22 +40,22 @@
 
   }
   &__item{
-    width: 150px !important;
-    min-width: 0rem !important;
-    background-color: #FFCD05 !important;
-    border-radius: 10px !important;
+    width: 150px ;
+    min-width: 0rem ;
+    background-color: #FFCD05 ;
+    border-radius: 10px ;
   }
 
   &__inside{
-    height: 50px !important;
-    min-width: 0rem !important;
-    background-color: #FFCD05 !important;
-    color: #3E3E3E !important;
+    height: 50px ;
+    min-width: 0rem ;
+    background-color: #FFCD05 ;
+    color: #3E3E3E ;
     font-family: Raleway;
   	font-size: 22px;
   	font-weight: 600;
     &__link{
-      color: #3E3E3E !important;
+      color: #3E3E3E ;
       font-family: Raleway;
       font-size: 22px;
       font-weight: 600;
@@ -132,7 +132,7 @@
   font-family: Raleway;
   font-style: italic;
   color: var(--color-yellow-1);
-  box-shadow: none !important;
+  box-shadow: none ;
   &:focus{
     border: transparent;
     border-bottom: 2px solid var(--color-yellow-1);
