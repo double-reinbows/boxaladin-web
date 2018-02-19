@@ -411,6 +411,139 @@ ul {
   align-items: center;
   justify-content: center; }
 
+.bidding {
+  background-color: var(--color-grey-5);
+  display: flex;
+  justify-content: center; }
+  .bidding__container {
+    width: 800px;
+    padding: 50px;
+    background-color: var(--color-grey-5);
+    display: flex;
+    flex-direction: column; }
+  .bidding__1 {
+    width: 100%;
+    padding-bottom: 30px; }
+    .bidding__1__Title {
+      width: 100%;
+      text-align: center;
+      color: #FFCD05;
+      font-family: Raleway;
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 30px; }
+  .bidding__2 {
+    width: 100%;
+    display: flex;
+    padding-botto: 30px; }
+    .bidding__2__col1 {
+      width: 50%; }
+    .bidding__2__col2 {
+      width: 50%; }
+      .bidding__2__col2__pulsa {
+        color: #FFFFFF;
+        font-family: Raleway;
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 26px; }
+      .bidding__2__col2__coret {
+        height: 26px;
+        width: 106px;
+        color: #FFFFFF;
+        font-family: Raleway;
+        font-size: 22px;
+        font-weight: 900;
+        line-height: 26px;
+        text-decoration: line-through; }
+      .bidding__2__col2__newPrice {
+        height: 49px;
+        width: 201px;
+        color: #FFCD05;
+        font-family: Raleway;
+        font-size: 42px;
+        font-weight: 900;
+        line-height: 49px; }
+      .bidding__2__col2__live {
+        height: 24px;
+        width: 106px;
+        color: #FFCD05;
+        font-family: Raleway;
+        font-size: 20px;
+        font-weight: 900;
+        line-height: 24px; }
+      .bidding__2__col2__text {
+        height: 48px;
+        width: 229px;
+        color: #FFFFFF;
+        font-family: Raleway;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 16px; }
+  .bidding__3 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 30px; }
+    .bidding__3__col {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px; }
+      .bidding__3__col__text {
+        color: #FFFFFF;
+        font-family: Raleway;
+        font-size: 36px;
+        font-weight: 800;
+        line-height: 42px; }
+      .bidding__3__col__logoWatch {
+        height: 75px;
+        width: 100px;
+        padding: 10px; }
+      .bidding__3__col__logoTimer {
+        height: 75px;
+        width: 100px;
+        padding: 10px; }
+  .bidding__4 {
+    width: 100%;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center; }
+    .bidding__4__btnBuy {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 80%;
+      height: 75px;
+      border-radius: 8px;
+      background-color: var(--color-yellow-1);
+      color: #3E3E3E;
+      font-family: Raleway;
+      font-size: 30px;
+      font-weight: bold;
+      line-height: 35px; }
+  .bidding__5 {
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 8px; }
+    .bidding__5__btnCancel {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 90%;
+      height: 75px;
+      border: none;
+      background-color: var(--color-grey-5);
+      color: #FFFFFF;
+      font-family: Raleway;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 21px; }
+
 .product {
   background-color: var(--color-primary-3); }
 

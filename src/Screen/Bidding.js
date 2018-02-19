@@ -3,6 +3,11 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import * as firebase from 'firebase'
 
+import timer from '../asset/bidding/timer.svg'
+import watch from '../asset/bidding/watch.svg'
+
+import LogoIndosat from '../asset/LandingPage/pulsa/Indosat.svg'
+
 import { getPhoneNumbers } from '../actions/'
 
 class Bidding extends React.Component {
@@ -10,8 +15,8 @@ class Bidding extends React.Component {
     super(props)
     this.state = {
       productUnlocked: {},
-			count: 15,
-      initCount: 15,
+			count: 999,
+      initCount: 999,
       isWatching: false
     }
   }
@@ -21,20 +26,72 @@ class Bidding extends React.Component {
     console.log('Bidding State:', this.state);
 
     return (
-      <div className="container">
-        <h1>Bidding</h1>
+      <div className="bidding">
+        <div className="bidding__container">
+          <div className="bidding__1">
+            <label className="bidding__1__Title">Bidding Time</label>
+          </div>
 
-        <hr />
-        <h1>{this.state.productUnlocked.productName}</h1>
-        <strike><h4>Rp{this.state.productUnlocked.price}</h4></strike>
-        <h1>Rp{this.state.productUnlocked.aladinPrice}</h1>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        <h3>Watching: {this.state.productUnlocked.watching}</h3>
-        <h1>{this.state.count < 10 ? `00:0${this.state.count}` : `00:${this.state.count}`}</h1>
+          <div className="bidding__2">
+            <div className="bidding__2__col1">
+              <img src={LogoIndosat} className="logoIndosat" alt="Logo Indosat"/>
+            </div>
 
-        <button className="btn btn-lg btn-danger" onClick={() => this.cancel()}>Batal</button>
-        <button className="btn btn-lg btn-success" onClick={() => this.buy()}>Beli</button>
+            <div className="bidding__2__col2">
+              <div>
+                <label className="bidding__2__col2__pulsa">{this.state.productUnlocked.productName}</label>
+              </div>
 
+              <div>
+                <label className="bidding__2__col2__coret">Rp{this.state.productUnlocked.price}</label>
+              </div>
+
+              <div>
+                <label className="bidding__2__col2__newPrice">Rp{this.state.productUnlocked.aladinPrice}</label>
+              </div>
+
+              <div>
+                <label className="bidding__2__col2__live">Harga Live</label>
+              </div>
+
+              <div>
+                <label className="bidding__2__col2__text">
+                  Harga akan makin murah seiring banyaknya user lain yang masuk hingga ada user yang membeli.
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div className="bidding__3">
+
+            <div className="bidding__3__col">
+              <div>
+                <label className="bidding__3__col__text">{this.state.count < 10 ? `00:0${this.state.count}` : `00:${this.state.count}`} detik</label>
+              </div>
+              <div>
+                <img src={timer} className="bidding__3__col__logoTimer" alt="Logo Timer"/>
+              </div>
+            </div>
+
+            <div className="bidding__3__col">
+              <div>
+                <img src={watch} className="bidding__3__col__logoWatch" alt="Logo Watch"/>
+              </div>
+              <div>
+                <label className="bidding__3__col__text">{this.state.productUnlocked.watching} orang</label>
+              </div>
+            </div>
+
+          </div>
+
+          <div className="bidding__4">
+            <button className="bidding__4__btnBuy" onClick={() => this.buy()}>Beli</button>
+          </div>
+
+          <div className="bidding__5">
+            <button className="bidding__5__btnCancel" onClick={() => this.cancel()}>Batal</button>
+          </div>
+        </div>
       </div>
     )
   }

@@ -411,6 +411,23 @@ ul {
   align-items: center;
   justify-content: center; }
 
+.bidding {
+  margin: 50px;
+  display: flex;
+  flex-direction: column; }
+  .bidding__Title {
+    text-align: center; }
+  .bidding__btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin: 20px; }
+    .bidding__btn__batal {
+      width: 40%; }
+    .bidding__btn__beli {
+      width: 40%; }
+
 .product {
   background-color: var(--color-primary-3); }
 
