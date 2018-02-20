@@ -25,24 +25,6 @@ class Bidding extends React.Component {
   render() {
     console.log('Bidding Props:', this.props);
     console.log('Bidding State:', this.state);
-<<<<<<< HEAD
-=======
-
-    return (
-      <div className="container">
-        <h1>Bidding</h1>
-
-        <hr />
-        <h1>{this.state.productUnlocked.productName}</h1>
-        <strike><h4>Rp{this.state.productUnlocked.price}</h4></strike>
-        <h1>Rp{this.state.productUnlocked.aladinPrice}</h1>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        <h3>Watching: {this.state.productUnlocked.watching}</h3>
-        <h1>{this.state.count < 10 ? `00:0${this.state.count}` : `00:${this.state.count}`}</h1>
-
-        <button className="btn btn-lg btn-danger" onClick={() => this.cancel()}>Batal</button>
-        <button className="btn btn-lg btn-success" onClick={() => this.buy()}>Beli</button>
->>>>>>> f7859a280404f83ccb707aca6dbc259771114b77
 
     return (
       <div className="bidding">
@@ -155,13 +137,8 @@ class Bidding extends React.Component {
   }
 
   watchProductPrice(productId) {
-<<<<<<< HEAD
-    // const productsRef = firebase.database().ref().child('products')
-    // const productRef = productsRef.child(productId)
-=======
     const productsRef = firebase.database().ref().child('products')
     const productRef = productsRef.child(productId)
->>>>>>> f7859a280404f83ccb707aca6dbc259771114b77
 
 		if (localStorage.getItem('token') !== null) {
 

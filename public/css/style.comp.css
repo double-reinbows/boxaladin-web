@@ -422,10 +422,13 @@ svg {
 .bidding {
   background-color: var(--color-grey-5);
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 5%;
+  border-bottom: 10px solid yellow; }
   .bidding__container {
-    width: 800px;
-    padding: 50px;
+    width: 100%;
     background-color: var(--color-grey-5);
     display: flex;
     flex-direction: column; }
@@ -455,8 +458,6 @@ svg {
         font-weight: 600;
         line-height: 26px; }
       .bidding__2__col2__coret {
-        height: 26px;
-        width: 106px;
         color: #FFFFFF;
         font-family: Raleway;
         font-size: 22px;
@@ -464,24 +465,18 @@ svg {
         line-height: 26px;
         text-decoration: line-through; }
       .bidding__2__col2__newPrice {
-        height: 49px;
-        width: 201px;
         color: #FFCD05;
         font-family: Raleway;
         font-size: 42px;
         font-weight: 900;
         line-height: 49px; }
       .bidding__2__col2__live {
-        height: 24px;
-        width: 106px;
         color: #FFCD05;
         font-family: Raleway;
         font-size: 20px;
         font-weight: 900;
         line-height: 24px; }
       .bidding__2__col2__text {
-        height: 48px;
-        width: 229px;
         color: #FFFFFF;
         font-family: Raleway;
         font-size: 14px;
@@ -490,6 +485,7 @@ svg {
   .bidding__3 {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     padding: 30px; }
     .bidding__3__col {

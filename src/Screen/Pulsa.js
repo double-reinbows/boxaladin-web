@@ -1,9 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-	Form, FormGroup, Label, Input, Button
+	FormGroup, Input, Button
 } from 'reactstrap'
-import axios from 'axios'
 
 import { getPhoneNumbers } from '../actions/'
 import { getProducts } from '../actions/productAction'

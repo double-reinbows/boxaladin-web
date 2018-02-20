@@ -56,19 +56,11 @@ class NavBar extends React.Component {
         <Nav navbar className="HeaderTop__Right">
 
           <NavItem>
-<<<<<<< HEAD:src/Screen/Components/Header/Header.js
             <button className="ButtonTopUP">
               <label className="ButtonTopUP__label">Top Up  </label>{' '}
               <label className="ButtonTopUP__label__italic">Aladinkey!</label>
             </button>
-=======
-            <Link to="/topup">
-              <button className="HeaderTop__ButtonTopUP">
-                <label className="HeaderTop__ButtonTopUP__label">Top Up  </label>{' '}
-                <label className="HeaderTop__ButtonTopUP__label__italic">Aladinkey!</label>
-              </button>
-            </Link>
->>>>>>> f7859a280404f83ccb707aca6dbc259771114b77:src/Screen/Components/Header.js
+
           </NavItem>
 
           <NavItem>

@@ -1,15 +1,10 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import jwt from 'jsonwebtoken'
 import { Button } from 'reactstrap';
 
-<<<<<<< HEAD:src/Screen/Components/Header/Login/Login.js
 import { loginAction, logoutAction, getPhoneNumbers } from '../../../../actions'
-=======
-import { loginAction, logoutAction, getPhoneNumbers } from '../actions/'
-import { getUser } from '../actions/userAction'
->>>>>>> f7859a280404f83ccb707aca6dbc259771114b77:src/Screen/Login.js
+import { getUser } from '../../../../actions/userAction'
 
 const URL = 'http://localhost:3000/'
 
