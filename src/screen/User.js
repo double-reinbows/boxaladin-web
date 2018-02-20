@@ -318,7 +318,7 @@ class User extends React.Component {
 		.then(response => {
 			console.log('Request send sms done!');
 			// this.setState({numberId: null})
-			// phone.id = null
+			// phone.id = null tesss
 		})
 		.catch(err => console.log(err))
 	}
