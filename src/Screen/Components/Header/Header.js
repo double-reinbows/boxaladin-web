@@ -8,6 +8,7 @@ import {
 } from 'reactstrap';
 
 import {connect} from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import {logoutAction} from '../../../actions'
 
@@ -35,9 +36,9 @@ class NavBar extends React.Component {
     return (
       <div>
         <Navbar light expand="md" className="HeaderTop">
-          <a href="/home">
+          <Link to="/home">
             <img src={logo} alt="logo" className="BoxAladinLogo-Big" href="/home"/>
-          </a>
+          </Link>
 
           <NavbarToggler onClick={this.toggle} className="IconBurger"/>
           <Collapse isOpen={this.state.isOpen} navbar>

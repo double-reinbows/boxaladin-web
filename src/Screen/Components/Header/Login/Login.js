@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken'
 import { Button } from 'reactstrap';
 
 import { loginAction, logoutAction, getPhoneNumbers } from '../../../../actions'
+import { getUser } from '../../../../actions/userAction'
 
 const URL = 'http://localhost:3000/'
 
@@ -32,11 +33,12 @@ class Login extends Component {
         alert(data.message)
       } else if (data.message === 'login success') {
         console.log(data)
-        localStorage.setItem('token', localStorage.getItem('token') || data.token)
+        localStorage.setItem('token', data.token)
 
-        const decoded = jwt.verify(data.token, 'satekambing')
-        console.log('Data decoded:', decoded);
-        this.props.loginAction(decoded)
+        // const decoded = jwt.verify(data.token, 'satekambing')
+
+        this.props.loginAction()
+        this.props.getUser()
         this.props.getPhoneNumbers()
       }
     })
@@ -93,15 +95,17 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isLogin: state.userReducer.isLogin
+    isLogin: state.userReducer.isLogin,
+    dataUser: state.userReducer.dataUser
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginAction: (payload) => dispatch(loginAction(payload)),
+    loginAction: () => dispatch(loginAction()),
     logoutAction: () => dispatch(logoutAction()),
-    getPhoneNumbers: () => dispatch(getPhoneNumbers())
+    getPhoneNumbers: () => dispatch(getPhoneNumbers()),
+    getUser: () => dispatch(getUser())
   }
 }
 

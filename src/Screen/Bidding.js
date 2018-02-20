@@ -9,6 +9,7 @@ import watch from '../asset/bidding/watch.svg'
 import LogoIndosat from '../asset/LandingPage/pulsa/Indosat.svg'
 
 import { getPhoneNumbers } from '../actions/'
+import { getUser } from '../actions/userAction'
 
 class Bidding extends React.Component {
   constructor(props) {
@@ -99,12 +100,19 @@ class Bidding extends React.Component {
   componentDidMount() {
     this.watchProductPrice(this.props.selectedProductID)
     this.props.getPhoneNumbers()
+    // this.handleBack()
   }
 
   componentDidUpdate(prevProps, prevState) {
 		this.checkTimer(prevState.count)
 		this.afterResetPrice(prevState.productUnlocked.aladinPrice)
   }
+
+  // handleBack() {
+  //   if (this.props.history.action === 'POP') {
+  //     this.props.history.push('/home')
+  //   }
+  // }
 
   buy() {
     console.log('Buy Now!!!!!')
@@ -129,8 +137,8 @@ class Bidding extends React.Component {
   }
 
   watchProductPrice(productId) {
-    // const productsRef = firebase.database().ref().child('products')
-    // const productRef = productsRef.child(productId)
+    const productsRef = firebase.database().ref().child('products')
+    const productRef = productsRef.child(productId)
 
 		if (localStorage.getItem('token') !== null) {
 
@@ -147,6 +155,9 @@ class Bidding extends React.Component {
 			.then(({data}) => {
 
 				if (data.message === 'success') {
+
+          // biar update user info (jumlah aladin key)
+          this.props.getUser()
 
 					const productsRef = firebase.database().ref().child('products')
 					const productRef = productsRef.child(productId)
@@ -239,7 +250,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getPhoneNumbers: () => dispatch(getPhoneNumbers())
+    getPhoneNumbers: () => dispatch(getPhoneNumbers()),
+    getUser: () => dispatch(getUser())
   }
 }
 

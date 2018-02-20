@@ -51,7 +51,7 @@ class Invoice extends React.Component {
                 <th scope="row">{idx+1}</th>
                 <td>{data.product.productName}</td>
                 <td>{data.payment.amount}</td>
-                <td>{data.status}</td>
+                <td>{data.payment.status}</td>
                 <td>{data.status === 'PENDING' ? (
                   <Button color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button>
                 ) : null}</td>
