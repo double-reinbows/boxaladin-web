@@ -24,7 +24,7 @@ class Example extends React.Component {
   render() {
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle caret className="dropz">
+        <DropdownToggle className="dropz">
           <img src={LogoSmart} className="dropz__img" alt="Logo Smart" />
         </DropdownToggle>
         <DropdownMenu className="dropz__item">

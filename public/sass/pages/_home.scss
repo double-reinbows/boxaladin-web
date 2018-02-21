@@ -12,6 +12,7 @@
   font-size: 20px;
   cursor: default;
 }
+
 @media (min-width: 275px ) and (max-width:500px ) {
   .NavTabsHome{
     font-size: 14px;
@@ -47,12 +48,13 @@
 // for component TabsPane1 at TabsHome
   .TabsPane1{
     margin: 0rem;
-    padding: 2rem;
     background-color: var;
+
     &:hover{
       color: black ;
       background-color: white;
     }
+
     &__text{
       font-size: 5rem ;
       text-align: center ;
@@ -60,12 +62,18 @@
     }
 
     &__label{
-      margin: 0rem;
+      font-family: Raleway;
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      line-height: 42px;
+      text-align: center;
     }
 
     &__dropdown{
       display: flex;
       justify-content: space-around;
+      flex-wrap: wrap;
       padding-top: 1.5rem;
       margin-bottom: 5rem ;
 
@@ -74,14 +82,21 @@
       }
     }
 
+    &__selectedProduct{
+      text-align: center;
+      padding: 20px;
+      color: var(--color-grey-5);
+    }
+
     &__button{
-      color: var(--color-yellow-1) ;
-      background-color: #3e3e3e ;
+      color: var(--color-yellow-1);
+      background-color: var(--color-grey-5);
+      width: 100%;
+      padding: 20px;
       font-family: Raleway;
       font-size: 24px;
       font-weight: 800;
       letter-spacing: 1px;
-      line-height: 29px;
       text-align: center;
       margin: 0rem;
     }
@@ -90,25 +105,33 @@
 
 // for component dropdown at TabsPane1
     .dropz{
-      width: 10rem ;
+      width: 12rem ;
       height: 5rem ;
+      background-color: var(--color-grey-5);
+      margin-bottom: 10px;
+
       &:hover{
         color: black ;
         background-color: var(--color-primary-2);
       }
+
       &__img{
         width: 6rem;
         height: 3rem;
       }
+
       &__item{
         min-width: 0rem ;
-        width: 8rem ;
+        width: 12rem ;
         text-align: center ;
+        background-color: var(--blue);
+
         &:hover{
           color: black ;
           background-color: var(--color-primary-2);
         }
       }
+
     }
 
 //////////////////////////////////
@@ -164,4 +187,3 @@
 .rowz {
   margin: 0;
 }
-
