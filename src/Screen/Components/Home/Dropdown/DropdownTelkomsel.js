@@ -3,6 +3,8 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 import { connect } from 'react-redux'
 
 import LogoTelkomsel from '../../../../asset/LandingPage/pulsa/Telkomsel.svg'
+import expand from '../../../../asset/TabsHome/expandDrop.svg'
+
 import { selectProductID } from '../../../../actions/productAction'
 
 class Example extends React.Component {
@@ -24,9 +26,18 @@ class Example extends React.Component {
   render() {
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle caret className="dropz">
-        <img src={LogoTelkomsel} className="dropz__img" alt="Logo Telkomsel" />
+
+        <DropdownToggle className="dropz">
+
+          <div className="dropz__big">
+            <img src={LogoTelkomsel} className="dropz__img" alt="Logo Smart" />
+          </div>
+          <div className="dropz__small">
+            <img src={expand} className="dropz__icon" alt="Logo expand" />
+          </div>
+
         </DropdownToggle>
+
         <DropdownMenu className="dropz__item">
 
           {this.props.products.filter(data => {
@@ -39,6 +50,7 @@ class Example extends React.Component {
           })}
 
         </DropdownMenu>
+
       </Dropdown>
     );
   }
