@@ -36,6 +36,8 @@ import Bidding from './Screen/Bidding'
 import InsertPhone from './Screen/InsertPhone'
 import Pulsa from './Screen/Pulsa'
 
+import Game from './Screen/Game'
+
 class RouteList extends React.Component {
   render() {
     return (
@@ -103,6 +105,7 @@ class RouteList extends React.Component {
             <Route exact path="/bidding" component={Bidding} />
             <Route exact path="/insertphone" component={InsertPhone} />
             <Route exact path="/pulsa" component={Pulsa} />
+            <Route exact path="/game" component={ Game } />
 
             <Footer/>
           </div>
