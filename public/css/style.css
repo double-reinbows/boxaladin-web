@@ -659,20 +659,33 @@ svg {
   width: 12rem;
   height: 5rem;
   padding: 0rem;
-  display: flex;
-  align-items: center;
-  background-color: var(--color-grey-5); }
+  border: 3px solid #3E3E3E; }
+  .dropz__devide {
+    width: 100%;
+    height: 100%;
+    margin: 0rem;
+    padding: 0rem;
+    border: none;
+    display: flex; }
   .dropz__big {
-    margin: 0rem;
-    padding: 0rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
     width: 75%;
-    height: 100%; }
-  .dropz__small {
+    height: 100%;
     margin: 0rem;
-    padding: 0rem;
+    padding: 0rem; }
+  .dropz__small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-grey-5);
     width: 25%;
     height: 100%;
-    justify-content: center; }
+    justify-content: center;
+    margin: 0rem;
+    padding: 0rem; }
   .dropz:hover {
     color: black;
     background-color: var(--color-primary-2); }
@@ -686,9 +699,14 @@ svg {
     width: 100%;
     text-align: center;
     margin: 0rem;
-    padding: 1rem;
-    color: var(--color-yellow-1);
+    padding: 0.5rem;
     background-color: var(--color-grey-5); }
+    .dropz__item__inside {
+      padding: 0.5rem;
+      color: var(--color-yellow-1); }
+      .dropz__item__inside:hover {
+        background-color: var(--color-yellow-1);
+        color: var(--color-grey-5); }
 
 .BannerText1 {
   border-top: 0.25rem solid var(--color-yellow-1);
