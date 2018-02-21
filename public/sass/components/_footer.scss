@@ -1,3 +1,4 @@
+
 .footerz {
   display: flex;
   flex-direction: column;
@@ -88,7 +89,7 @@
         font-size: 18px;
         font-weight: bold;
         line-height: 21px;
-        margin: 2rem;
+        margin-top: 2rem;
 
 
 
@@ -122,8 +123,11 @@
       font-size: 14px;
       font-weight: 800;
       line-height: 16px;
+
+
     }
   }
+
 }
   @media (min-width: 100px ) and (max-width:396px ) {
   .footerz__Top__Right__devide{

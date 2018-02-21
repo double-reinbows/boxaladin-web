@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import jwt from 'jsonwebtoken'
 import { Button } from 'reactstrap';
 
 import { loginAction, logoutAction, getPhoneNumbers } from '../../../../actions'

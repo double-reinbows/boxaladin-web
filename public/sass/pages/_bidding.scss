@@ -12,6 +12,8 @@
     background-color: var(--color-grey-5);
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+
   }
 
   &__1{
@@ -32,7 +34,7 @@
   &__2{
     width: 100%;
     display: flex;
-    padding-botto: 30px;
+    padding-bottom: 30px;
 
     &__col1{
       width: 50%;
@@ -40,6 +42,10 @@
 
     &__col2{
       width: 50%;
+
+      &__mid{
+        text-align: center;
+      }
 
       &__pulsa{
         color: #FFFFFF;
@@ -56,6 +62,7 @@
         font-weight: 900;
         line-height: 26px;
         text-decoration: line-through;
+        text-align: center;
       }
 
       &__newPrice{
@@ -64,6 +71,7 @@
       	font-size: 42px;
       	font-weight: 900;
       	line-height: 49px;
+
       }
 
       &__live{
@@ -89,6 +97,7 @@
   &__3{
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     padding: 30px;
 
@@ -98,6 +107,7 @@
       flex-direction: column;
       align-items: center;
       padding: 10px;
+      text-align: center;
 
       &__text{
       	color: #FFFFFF;
@@ -171,7 +181,22 @@
     	font-size: 18px;
     	font-weight: bold;
     	line-height: 21px;
+
+
     }
   }
 
+}
+
+@media (min-width: 275px ) and (max-width:500px) {
+  .bidding__2__col1{
+    width: 300px !important;
+    background-color: var(--blue);
+  }
+}
+
+@media (min-width: 275px ) and (max-width:500px) {
+  .bidding__3__col{
+    font-size: 20px;
+  }
 }

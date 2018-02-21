@@ -3,6 +3,8 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 import { connect } from 'react-redux'
 
 import LogoSmart from '../../../../asset/LandingPage/pulsa/Smart.svg'
+import expand from '../../../../asset/TabsHome/expandDrop.svg'
+
 import { selectProductID } from '../../../../actions/productAction'
 
 class Example extends React.Component {
@@ -24,9 +26,18 @@ class Example extends React.Component {
   render() {
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle caret className="dropz">
-          <img src={LogoSmart} className="dropz__img" alt="Logo Smart" />
+
+        <DropdownToggle className="dropz">
+          <div className="dropz__devide">
+            <div className="dropz__big">
+              <img src={LogoSmart} className="dropz__img" alt="Logo Smart" />
+            </div>
+            <div className="dropz__small">
+              <img src={expand} className="dropz__icon" alt="Logo expand" />
+            </div>
+          </div>
         </DropdownToggle>
+
         <DropdownMenu className="dropz__item">
 
           {this.props.products.filter(data => {
@@ -34,11 +45,12 @@ class Example extends React.Component {
           })
           .map((data, i) => {
             return (
-              <DropdownItem key={i} value={data.id} className="dropz__item" onClick={(e) => this.props.selectProductID(e.target.value)}>{data.price}</DropdownItem>
+              <DropdownItem key={i} value={data.id} className="dropz__item__inside" onClick={(e) => this.props.selectProductID(e.target.value)}>{data.price}</DropdownItem>
             )
           })}
 
         </DropdownMenu>
+
       </Dropdown>
     );
   }

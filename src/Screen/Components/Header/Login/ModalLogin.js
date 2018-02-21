@@ -1,10 +1,10 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Navbar } from 'reactstrap';
+
+import { Modal, ModalHeader, Navbar } from 'reactstrap';
 import { connect } from 'react-redux'
 
 import LoginIcon from '../../../../asset/Login/login.svg'
 import Login from './Login'
-import { loginAction } from '../../../../actions'
 
 class ModalLogin extends React.Component {
   constructor(props) {

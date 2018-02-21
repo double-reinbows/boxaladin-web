@@ -32,11 +32,11 @@ class Example extends React.Component {
       });
     }
   }
-  
+
   render() {
     console.log('Tabs Home Props:', this.props);
     console.log('Tabs Home State:', this.state);
-    
+
     return (
       <div className="tes">
         <Nav className="NavTabsHome" tabs>
@@ -94,8 +94,8 @@ class Example extends React.Component {
               </div>
 
               <div>
-                <h1>
-                  { this.showSelectedProductName() }
+                <h1 className="TabsPane1__selectedProduct">
+                   {this.showSelectedProductName()}
                 </h1>
               </div>
 
@@ -126,7 +126,7 @@ class Example extends React.Component {
 
     return result[0] ? result[0].productName : null
   }
-  
+
 }
 
 const mapStateToProps = (state) => {

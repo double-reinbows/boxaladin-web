@@ -60,6 +60,7 @@ class NavBar extends React.Component {
               <label className="ButtonTopUP__label">Top Up  </label>{' '}
               <label className="ButtonTopUP__label__italic">Aladinkey!</label>
             </button>
+
           </NavItem>
 
           <NavItem>

@@ -43,11 +43,11 @@ class Bidding extends React.Component {
                 <label className="bidding__2__col2__pulsa">{this.state.productUnlocked.productName}</label>
               </div>
 
-              <div>
+              <div className="bidding__2__col2__mid">
                 <label className="bidding__2__col2__coret">Rp{this.state.productUnlocked.price}</label>
               </div>
 
-              <div>
+              <div className="bidding__2__col2__mid">
                 <label className="bidding__2__col2__newPrice">Rp{this.state.productUnlocked.aladinPrice}</label>
               </div>
 

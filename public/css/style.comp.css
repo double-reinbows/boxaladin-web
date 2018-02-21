@@ -449,7 +449,8 @@ svg {
     width: 100%;
     background-color: var(--color-grey-5);
     display: flex;
-    flex-direction: column; }
+    flex-direction: column;
+    flex-wrap: wrap; }
   .bidding__1 {
     width: 100%;
     padding-bottom: 30px; }
@@ -464,11 +465,13 @@ svg {
   .bidding__2 {
     width: 100%;
     display: flex;
-    padding-botto: 30px; }
+    padding-bottom: 30px; }
     .bidding__2__col1 {
       width: 50%; }
     .bidding__2__col2 {
       width: 50%; }
+      .bidding__2__col2__mid {
+        text-align: center; }
       .bidding__2__col2__pulsa {
         color: #FFFFFF;
         font-family: Raleway;
@@ -481,7 +484,8 @@ svg {
         font-size: 22px;
         font-weight: 900;
         line-height: 26px;
-        text-decoration: line-through; }
+        text-decoration: line-through;
+        text-align: center; }
       .bidding__2__col2__newPrice {
         color: #FFCD05;
         font-family: Raleway;
@@ -503,6 +507,7 @@ svg {
   .bidding__3 {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     padding: 30px; }
     .bidding__3__col {
@@ -510,7 +515,8 @@ svg {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 10px; }
+      padding: 10px;
+      text-align: center; }
       .bidding__3__col__text {
         color: #FFFFFF;
         font-family: Raleway;
@@ -564,6 +570,15 @@ svg {
       font-size: 18px;
       font-weight: bold;
       line-height: 21px; }
+
+@media (min-width: 275px) and (max-width: 500px) {
+  .bidding__2__col1 {
+    width: 300px !important;
+    background-color: var(--blue); } }
+
+@media (min-width: 275px) and (max-width: 500px) {
+  .bidding__3__col {
+    font-size: 20px; } }
 
 .product {
   background-color: var(--color-primary-3); }
@@ -704,9 +719,6 @@ svg {
 html {
   box-sizing: border-box;
   font-size: 62.5%; }
-  @media only screen and (max-width: 68.75em) {
-    html {
-      font-size: 50%; } }
 
 body {
   font-family: 'Open Sans', sans-serif;
