@@ -8,10 +8,10 @@ class Game extends React.Component {
 			si1: null,
 			si2: null,
 			si3: null,
-			slot1: 'BOX-ZONK-1',
-			slot2: 'BOX-ZONK-1',
-			slot3: 'BOX-ZONK-1',
-			items: ['BOX-ZONK-1', 'BOX-ZONK-2', 'BOX-ZONK-3', 'BOX-ZONK-4', 'BOX-ZONK-5', 'BOX-ZONK-6', 'BOX-ALADIN'],
+			slot1: 'box1',
+			slot2: 'box1',
+			slot3: 'box1',
+			items: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 			isRunning: false
 		}
 	}
@@ -21,6 +21,10 @@ class Game extends React.Component {
 
 		return (
 			<div className="container">
+				<div className={this.state.slot1} />
+				<div className={this.state.slot2} />
+				<div className={this.state.slot3} />
+
 				<h1>{this.state.slot1}</h1>
 				<h1>{this.state.slot2}</h1>
 				<h1>{this.state.slot3}</h1>
@@ -54,9 +58,9 @@ class Game extends React.Component {
 
 	reset() {
 		this.setState({
-			slot1: 'BOX-ZONK-1',
-			slot2: 'BOX-ZONK-1',
-			slot3: 'BOX-ZONK-1'
+			slot1: 'box1',
+			slot2: 'box1',
+			slot3: 'box1'
 		})
 	}
 
