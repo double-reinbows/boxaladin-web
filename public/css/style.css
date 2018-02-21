@@ -85,14 +85,29 @@
       font-weight: 800;
       line-height: 16px; }
 
+@media (min-width: 200px) and (max-width: 400px) {
+  .footerz__Top__Right__devide {
+    display: block; } }
+
 .LogoFooter {
   width: 250px;
   height: 70px;
   margin: 2rem; }
 
-.LogoSosmed {
-  width: 25px;
-  height: 25px; }
+.LogoSosmed__facebook {
+  padding-right: 10px;
+  padding-bottom: 10px; }
+
+.LogoSosmed__twitter {
+  padding-right: 10px;
+  padding-bottom: 10px; }
+
+.LogoSosmed__instagram {
+  padding-right: 10px;
+  padding-bottom: 10px; }
+
+.LogoSosmed__youtube {
+  padding-bottom: 10px; }
 
 ul {
   list-style-type: none; }
@@ -617,6 +632,7 @@ svg {
     text-align: center; }
   .TabsPane1__dropdown {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     flex-wrap: wrap;
     padding-top: 1.5rem;

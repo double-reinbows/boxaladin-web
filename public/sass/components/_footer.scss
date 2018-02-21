@@ -121,7 +121,11 @@
   }
 
 }
-
+  @media (min-width: 200px ) and (max-width:400px ) {
+  .footerz__Top__Right__devide{
+    display: block;
+  }
+}
 
 .LogoFooter{
   width: 250px;
@@ -130,14 +134,24 @@
 }
 
 .LogoSosmed{
-  width: 25px;
-  height: 25px;
+  &__facebook{
+    padding-right: 10px;
+    padding-bottom: 10px;
+  }
+  &__twitter{
+    padding-right: 10px;
+    padding-bottom: 10px;
+  }
+  &__instagram{
+    padding-right: 10px;
+    padding-bottom: 10px;
+  }
+  &__youtube{
+    padding-bottom: 10px;
+  }
 }
 
-// .FooterzKosong{
-//   width: 100%;
-//   height: 100px;
-// }
+
 ul {
   list-style-type: none;
 }
