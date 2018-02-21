@@ -29,6 +29,7 @@
     .footerz__Top__Right {
       display: flex;
       align-items: center;
+      margin-right: 2rem;
       color: var(--color-yellow-1); }
       .footerz__Top__Right__devide {
         display: flex;
@@ -64,7 +65,9 @@
         line-height: 21px;
         margin-top: 2rem; }
         .footerz__Top__Right__Row3__logo {
-          padding-top: 20px; }
+          padding-top: 20px;
+          display: flex;
+          justify-content: space-between; }
   .footerz__Bot {
     display: flex;
     flex-direction: column;
@@ -85,7 +88,7 @@
       font-weight: 800;
       line-height: 16px; }
 
-@media (min-width: 200px) and (max-width: 400px) {
+@media (min-width: 200px) and (max-width: 396px) {
   .footerz__Top__Right__devide {
     display: block; } }
 

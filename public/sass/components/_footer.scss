@@ -40,7 +40,7 @@
     &__Right{
       display: flex;
       align-items: center;
-
+      margin-right: 2rem;
       color: var(--color-yellow-1);
 
       &__devide{
@@ -54,6 +54,8 @@
         font-weight: bold;
         line-height: 21px;
         margin: 2rem;
+
+
         &__list{
           margin-top: 2rem;
           margin-bottom: 2rem;
@@ -70,6 +72,8 @@
         font-weight: bold;
         line-height: 21px;
         margin: 2rem;
+
+
         &__list{
           margin-top: 2rem;
           margin-bottom: 2rem;
@@ -87,8 +91,12 @@
         line-height: 21px;
         margin-top: 2rem;
 
+
+
         &__logo{
           padding-top: 20px;
+          display: flex;
+          justify-content: space-between;
         }
       }
     }
@@ -121,7 +129,7 @@
   }
 
 }
-  @media (min-width: 200px ) and (max-width:400px ) {
+  @media (min-width: 200px ) and (max-width:396px ) {
   .footerz__Top__Right__devide{
     display: block;
   }

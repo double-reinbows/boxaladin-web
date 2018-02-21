@@ -48,7 +48,7 @@ export default  class Footer extends React.Component {
               <div className="footerz__Top__Right__Row3">
 
                 Our Social Media
-                <div className="footerz__Top__Right__Row3">
+                <div className="footerz__Top__Right__Row3__logo">
                   <a href="/facebook.com">
                     <img src={facebook} alt="logo" className="LogoSosmed__facebook" href="/home"/>
                   </a>
