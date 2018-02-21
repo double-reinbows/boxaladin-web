@@ -1,67 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-class Slot {
-	constructor(el, max, step) {
-		this.speed = 0; //speed of the slot at any point of time
-    this.step = step; //speed will increase at this rate
-    this.si = null; //holds setInterval object for the given slot
-    this.el = el; //dom element of the slot
-    this.maxSpeed = max; //max speed this slot can have
-		this.items = ['zonk', 'zonk', 'zonk', 'zonk', 'zonk', 'zonk', 'BOX-ALADIN'];
-	}
-
-	start() {
-
-		console.log('Slot start......')
-
-		var _this = this;
-    // $(_this.el).addClass('motion');
-    // $(_this.el).spStart();
-    _this.si = setInterval(function() {
-      if(_this.speed < _this.maxSpeed) {
-        _this.speed += _this.step;
-        // $(_this.el).spSpeed(_this.speed);
-				console.log(`running... with speed ${_this.speed} & step ${_this.step}`);
-
-				// for (var i = 0; i < _this.items.length; i+=_this.step) {
-				// 	var run = setInterval(() => {
-				// 		console.log(`running... with speed ${_this.speed} & step ${_this.step}`);
-				// 	}, _this.speed)
-				// }
-      } else {
-				console.log(`running stable... with speed ${_this.speed} & step ${_this.step}`);
-      }
-    }, 100);
-
-	}
-
-	stop() {
-
-		var _this = this
-    		,limit = 30;
-    clearInterval(_this.si);
-    _this.si = setInterval(function() {
-      if(_this.speed > limit) {
-        _this.speed -= _this.step;
-        // $(_this.el).spSpeed(_this.speed);
-				console.log(`running to stop... with speed ${_this.speed} & step ${_this.step}`);
-      }
-      if(_this.speed <= limit) {
-        // _this.finalPos(_this.el);
-        // $(_this.el).spSpeed(0);
-        // $(_this.el).spStop();
-        clearInterval(_this.si);
-        // $(_this.el).removeClass('motion');
-        _this.speed = 0;
-				console.log('Slot stopped :)');
-      }
-    }, 100);
-
-	}
-
-}
-
 class Game extends React.Component {
 	constructor(props) {
 		super(props)
@@ -72,7 +11,8 @@ class Game extends React.Component {
 			slot1: 'BOX-ZONK-1',
 			slot2: 'BOX-ZONK-1',
 			slot3: 'BOX-ZONK-1',
-			items: ['BOX-ZONK-1', 'BOX-ZONK-2', 'BOX-ZONK-3', 'BOX-ZONK-4', 'BOX-ZONK-5', 'BOX-ZONK-6', 'BOX-ALADIN']
+			items: ['BOX-ZONK-1', 'BOX-ZONK-2', 'BOX-ZONK-3', 'BOX-ZONK-4', 'BOX-ZONK-5', 'BOX-ZONK-6', 'BOX-ALADIN'],
+			isRunning: false
 		}
 	}
 
@@ -84,9 +24,9 @@ class Game extends React.Component {
 				<h1>{this.state.slot1}</h1>
 				<h1>{this.state.slot2}</h1>
 				<h1>{this.state.slot3}</h1>
-				<button className="btn btn-success btn-lg" onClick={ () => this.start() }>START</button>
-				<button className="btn btn-danger btn-lg" onClick={ () => this.stop() }>STOP</button>
-				<button className="btn btn-secondary btn-lg" onClick={ () => this.reset() }>RESET</button>
+				<button disabled={this.state.isRunning} className="btn btn-success btn-lg" onClick={ () => this.start() }>START</button>
+				<button disabled={!this.state.isRunning} className="btn btn-danger btn-lg" onClick={ () => this.stop() }>STOP</button>
+				<button disabled={this.state.isRunning} className="btn btn-secondary btn-lg" onClick={ () => this.reset() }>RESET</button>
 			</div>
 		)
 	}
@@ -95,6 +35,8 @@ class Game extends React.Component {
 		this.start1()
 		this.start2()
 		this.start3()
+
+		this.setState({ isRunning: true })
 	}
 
 	stop() {
@@ -105,7 +47,8 @@ class Game extends React.Component {
 		this.setState({
 			si1: null,
 			si2: null,
-			si3: null
+			si3: null,
+			isRunning: false
 		})
 	}
 
