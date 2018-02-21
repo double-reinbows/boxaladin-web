@@ -65,6 +65,7 @@
 
     &__dropdown{
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-around;
       padding-top: 1.5rem;
       margin-bottom: 5rem ;
@@ -90,8 +91,9 @@
 
 // for component dropdown at TabsPane1
     .dropz{
-      width: 10rem ;
+      width: 12rem ;
       height: 5rem ;
+      margin-bottom: 10px;
       &:hover{
         color: black ;
         background-color: var(--color-primary-2);
@@ -164,4 +166,3 @@
 .rowz {
   margin: 0;
 }
-
