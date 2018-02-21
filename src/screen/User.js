@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import jwt from 'jsonwebtoken'
 import Modal from 'react-modal'
 import axios from 'axios'
 import { Button } from 'reactstrap'
@@ -318,7 +319,7 @@ class User extends React.Component {
 		.then(response => {
 			console.log('Request send sms done!');
 			// this.setState({numberId: null})
-			// phone.id = null tesss
+			// phone.id = null
 		})
 		.catch(err => console.log(err))
 	}
