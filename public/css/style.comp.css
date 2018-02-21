@@ -88,7 +88,11 @@
       font-weight: 800;
       line-height: 16px; }
 
+<<<<<<< HEAD
 @media (min-width: 100px) and (max-width: 396px) {
+=======
+@media (min-width: 200px) and (max-width: 396px) {
+>>>>>>> 86c740446866a8e4c658fb2531904da9cc9d85dd
   .footerz__Top__Right__devide {
     display: block; } }
 
@@ -578,7 +582,7 @@ svg {
 
 @media (min-width: 275px) and (max-width: 500px) {
   .bidding__3__col {
-    font-size: 20px; } }
+    font-size: 14px; } }
 
 .product {
   background-color: var(--color-primary-3); }

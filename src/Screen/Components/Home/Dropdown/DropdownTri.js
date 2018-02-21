@@ -28,11 +28,13 @@ class Example extends React.Component {
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
 
         <DropdownToggle className="dropz">
-          <div className="dropz__big">
-            <img src={LogoTri} className="dropz__img" alt="Logo Tri" />
-          </div>
-          <div className="dropz__small">
-            <img src={expand} className="dropz__icon" alt="Logo expand" />
+          <div className="dropz__devide">
+            <div className="dropz__big">
+              <img src={LogoTri} className="dropz__img" alt="Logo Tri" />
+            </div>
+            <div className="dropz__small">
+              <img src={expand} className="dropz__icon" alt="Logo expand" />
+            </div>
           </div>
         </DropdownToggle>
 
@@ -43,7 +45,7 @@ class Example extends React.Component {
           })
           .map((data, i) => {
             return (
-              <DropdownItem key={i} value={data.id} className="dropz__item" onClick={(e) => this.props.selectProductID(e.target.value)}>{data.price}</DropdownItem>
+              <DropdownItem key={i} value={data.id} className="dropz__item__inside" onClick={(e) => this.props.selectProductID(e.target.value)}>{data.price}</DropdownItem>
             )
           })}
 
