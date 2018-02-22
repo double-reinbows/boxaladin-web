@@ -35,7 +35,7 @@ class Bidding extends React.Component {
 
           <div className="bidding__2">
             <div className="bidding__2__col1">
-              <img src={LogoIndosat} className="logoIndosat" alt="Logo Indosat"/>
+              <img src={this.state.productUnlocked.brandLogo} className="bidding__2__col1__logo" alt="Logo pulsa"/>
             </div>
 
             <div className="bidding__2__col2">

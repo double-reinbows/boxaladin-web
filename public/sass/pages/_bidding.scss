@@ -38,6 +38,14 @@
 
     &__col1{
       width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &__logo{
+        width: 75%;
+        height: 75%;
+      }
     }
 
     &__col2{
