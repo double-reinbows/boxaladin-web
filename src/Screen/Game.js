@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap'
+import axios from 'axios'
 
 class Game extends React.Component {
 	constructor(props) {
@@ -17,33 +18,6 @@ class Game extends React.Component {
 			speed1: 50,
 			speed2: 30,
 			speed3: 20,
-
-			// items1: [
-			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin',
-			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
-			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
-			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
-			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
-			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6'
-			// 				],
-      //
-			// items2: [
-			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
-			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
-			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin',
-			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
-			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
-			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6'
-			// 				],
-      //
-			// items3: [
-			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
-			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
-			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
-			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
-			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin',
-			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6'
-			// 				],
 
 			itemsdummy1: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 			itemsdummy2: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
@@ -92,6 +66,33 @@ class Game extends React.Component {
 		)
 	}
 
+	submitResult(slot1, slot2, slot3) {
+		if (slot1 !== 6 && slot2 !== 6 && slot3 !== 6) {
+			console.log('Maaf Anda kurang beruntung.')
+		} else {
+
+			const slots = [ slot1, slot2, slot3 ]
+			const stars = slots.filter(data => data === 6)
+
+			console.log('Total bintang: ', stars.length)
+			
+			axios({
+				method: 'POST',
+				url: `http://localhost:3000/win`,
+				headers: { token: localStorage.getItem('token') },
+				data: {
+					star: stars.length
+				}
+			})
+			.then(({data}) => {
+				console.log(data)
+				this.toggle()
+			})
+			.catch(err => console.log(err))
+
+		}
+	}
+
 	toggle() {
 		this.setState({ modal: !this.state.modal })
 	}
@@ -116,6 +117,7 @@ class Game extends React.Component {
 		this.stop3()
 
 		this.handleBingo()
+		this.submitResult(this.state.slot1, this.state.slot2, this.state.slot3)
 
 		this.setState({
 			si1: null,
