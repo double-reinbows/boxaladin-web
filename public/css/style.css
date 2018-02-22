@@ -469,7 +469,13 @@ svg {
     display: flex;
     padding-bottom: 30px; }
     .bidding__2__col1 {
-      width: 50%; }
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .bidding__2__col1__logo {
+        width: 75%;
+        height: 75%; }
     .bidding__2__col2 {
       width: 50%; }
       .bidding__2__col2__mid {
