@@ -19,7 +19,7 @@
         font-size: 18px;
         font-weight: bold;
         line-height: 21px;
-        padding: 2rem; }
+        padding: 1rem; }
       .footerz__Top__Left__label {
         margin: 2rem; }
       .footerz__Top__Left__button {
@@ -63,7 +63,9 @@
         font-size: 18px;
         font-weight: bold;
         line-height: 21px;
-        margin-top: 2rem; }
+        margin-top: 2rem;
+        margin-left: 2rem;
+        margin-bottom: 2rem; }
         .footerz__Top__Right__Row3__logo {
           padding-top: 20px;
           display: flex;
@@ -88,11 +90,7 @@
       font-weight: 800;
       line-height: 16px; }
 
-<<<<<<< HEAD
 @media (min-width: 100px) and (max-width: 396px) {
-=======
-@media (min-width: 200px) and (max-width: 396px) {
->>>>>>> 86c740446866a8e4c658fb2531904da9cc9d85dd
   .footerz__Top__Right__devide {
     display: block; } }
 
@@ -582,7 +580,7 @@ svg {
 
 @media (min-width: 275px) and (max-width: 500px) {
   .bidding__3__col {
-    font-size: 14px; } }
+    font-size: 20px; } }
 
 .product {
   background-color: var(--color-primary-3); }
@@ -666,7 +664,8 @@ svg {
   width: 12rem;
   height: 5rem;
   padding: 0rem;
-  border: 3px solid #3E3E3E; }
+  border: 3px solid #3E3E3E;
+  margin-bottom: 10px; }
   .dropz__devide {
     width: 100%;
     height: 100%;
