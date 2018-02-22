@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap'
 
 class Game extends React.Component {
 	constructor(props) {
@@ -8,12 +9,51 @@ class Game extends React.Component {
 			si1: null,
 			si2: null,
 			si3: null,
-			slot1: 'box1',
-			slot2: 'box1',
-			slot3: 'box1',
-			items: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
-			isRunning: false
+
+			slot1: 0,
+			slot2: 0,
+			slot3: 0,
+
+			speed1: 50,
+			speed2: 30,
+			speed3: 20,
+
+			// items1: [
+			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin',
+			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
+			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
+			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
+			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
+			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6'
+			// 				],
+      //
+			// items2: [
+			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
+			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
+			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin',
+			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
+			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
+			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6'
+			// 				],
+      //
+			// items3: [
+			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
+			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
+			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
+			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6',
+			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin',
+			// 				'box1', 'box2', 'box3', 'box4', 'box5', 'box6'
+			// 				],
+
+			itemsdummy1: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
+			itemsdummy2: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
+			itemsdummy3: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
+
+			isRunning: false,
+			modal: false
 		}
+
+		this.toggle = this.toggle.bind(this)
 	}
 
 	render() {
@@ -21,18 +61,45 @@ class Game extends React.Component {
 
 		return (
 			<div className="container">
-				<div className={this.state.slot1} />
-				<div className={this.state.slot2} />
-				<div className={this.state.slot3} />
 
-				<h1>{this.state.slot1}</h1>
-				<h1>{this.state.slot2}</h1>
-				<h1>{this.state.slot3}</h1>
-				<button disabled={this.state.isRunning} className="btn btn-success btn-lg" onClick={ () => this.start() }>START</button>
-				<button disabled={!this.state.isRunning} className="btn btn-danger btn-lg" onClick={ () => this.stop() }>STOP</button>
-				<button disabled={this.state.isRunning} className="btn btn-secondary btn-lg" onClick={ () => this.reset() }>RESET</button>
+				<div className="slotitems">
+					<div className={this.state.itemsdummy1[this.state.slot1]} />
+					<div className={this.state.itemsdummy2[this.state.slot2]} />
+					<div className={this.state.itemsdummy3[this.state.slot3]} />
+				</div>
+
+				<div>
+					<button disabled={this.state.isRunning} className="btn btn-success btn-lg" onClick={ () => this.start() }>START</button>
+					<button disabled={!this.state.isRunning} className="btn btn-danger btn-lg" onClick={ () => this.stop() }>STOP</button>
+					<button disabled={this.state.isRunning} className="btn btn-secondary btn-lg" onClick={ () => this.reset() }>RESET</button>
+				</div>
+
+				<Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+					<ModalHeader toggle={this.toggle}></ModalHeader>
+					<ModalBody>
+						<div className="slotitems">
+							<div className={this.state.itemsdummy1[this.state.slot1]} />
+							<div className={this.state.itemsdummy2[this.state.slot2]} />
+							<div className={this.state.itemsdummy3[this.state.slot3]} />
+						</div>
+					</ModalBody>
+					<ModalFooter>
+					 <Button color="primary" onClick={this.toggle}>OK</Button>
+				 </ModalFooter>
+				</Modal>
+
 			</div>
 		)
+	}
+
+	toggle() {
+		this.setState({ modal: !this.state.modal })
+	}
+
+	handleBingo() {
+		if (this.state.slot3 === this.state.itemsdummy3.length-1 && (this.state.slot1 === this.state.slot2 && this.state.slot2 === this.state.slot3) ) {
+			this.setState({ slot3: this.state.slot3 - 6 })
+		}
 	}
 
 	start() {
@@ -48,19 +115,23 @@ class Game extends React.Component {
 		this.stop2()
 		this.stop3()
 
+		this.handleBingo()
+
 		this.setState({
 			si1: null,
 			si2: null,
 			si3: null,
 			isRunning: false
 		})
+
+		this.toggle()
 	}
 
 	reset() {
 		this.setState({
-			slot1: 'box1',
-			slot2: 'box1',
-			slot3: 'box1'
+			slot1: 0,
+			slot2: 0,
+			slot3: 0
 		})
 	}
 
@@ -72,16 +143,15 @@ class Game extends React.Component {
 
 		this.state.si1 = setInterval(function() {
 
-			console.log(_this.state.items[i])
-			_this.setState({ slot1: _this.state.items[i] })
+			_this.setState({ slot1: i })
 
-			if (i < 6) {
+			if (i < _this.state.itemsdummy1.length-1) {
 				i++
 			} else {
 				i=0
 			}
 
-  	}, 100)
+  	}, this.state.speed1)
 
 	}
 
@@ -98,16 +168,15 @@ class Game extends React.Component {
 
 		this.state.si2 = setInterval(function() {
 
-			console.log(_this.state.items[i])
-			_this.setState({ slot2: _this.state.items[i] })
+			_this.setState({ slot2: i })
 
-			if (i < 6) {
+			if (i < _this.state.itemsdummy2.length-1) {
 				i++
 			} else {
 				i=0
 			}
 
-  	}, 70)
+  	}, this.state.speed2)
 
 	}
 
@@ -124,16 +193,15 @@ class Game extends React.Component {
 
 		this.state.si3 = setInterval(function() {
 
-			console.log(_this.state.items[i])
-			_this.setState({ slot3: _this.state.items[i] })
+			_this.setState({ slot3: i })
 
-			if (i < 6) {
+			if (i < _this.state.itemsdummy3.length-1) {
 				i++
 			} else {
 				i=0
 			}
 
-  	}, 50)
+  	}, this.state.speed3)
 
 	}
 

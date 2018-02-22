@@ -455,6 +455,53 @@
     padding-left: 2rem;
     margin: 0rem !important; }
 
+.slotitems {
+  display: flex; }
+
+.box1 {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  margin: 5px; }
+
+.box2 {
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  margin: 5px; }
+
+.box3 {
+  width: 100px;
+  height: 100px;
+  background-color: green;
+  margin: 5px; }
+
+.box4 {
+  width: 100px;
+  height: 100px;
+  background-color: grey;
+  margin: 5px; }
+
+.box5 {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  margin: 5px; }
+
+.box6 {
+  width: 100px;
+  height: 100px;
+  background-color: purple;
+  margin: 5px; }
+
+.boxaladin {
+  background-image: url("https://steemit-production-imageproxy-thumbnail.s3.amazonaws.com/U5du7QzV9m547GdgFGVuh2ckhRKGL9Q_1680x8400");
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  background-color: black;
+  background-size: 100px 100px; }
+
 * {
   margin: 0;
   padding: 0; }

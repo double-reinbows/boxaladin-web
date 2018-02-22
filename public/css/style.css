@@ -455,6 +455,9 @@
     padding-left: 2rem;
     margin: 0rem !important; }
 
+.slotitems {
+  display: flex; }
+
 .box1 {
   width: 100px;
   height: 100px;
