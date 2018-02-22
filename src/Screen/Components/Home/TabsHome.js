@@ -10,6 +10,7 @@ import IconTabs3 from '../../../asset/TabsHome/IconTabs3.svg';
 import IconTabs4 from '../../../asset/TabsHome/IconTabs4.svg';
 
 //import Dropdown
+import DropdownIndosat from './Dropdown/DropdownIndosat';
 import DropdownSmartfren from './Dropdown/DropdownSmartfren';
 import DropdownTelkomsel from './Dropdown/DropdownTelkomsel';
 import DropdownTri from './Dropdown/DropdownTri';
@@ -85,6 +86,7 @@ class Example extends React.Component {
                 </div>
 
                 <div className="TabsPane1__dropdown">
+                  <DropdownIndosat className="TabsPane1__dropdown__content"/>
                   <DropdownTelkomsel className="TabsPane1__dropdown__content"/>
                   <DropdownXL className="TabsPane1__dropdown__content"/>
                   <DropdownTri className="TabsPane1__dropdown__content"/>

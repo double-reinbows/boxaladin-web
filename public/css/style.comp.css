@@ -469,49 +469,44 @@ svg {
     display: flex;
     padding-bottom: 30px; }
     .bidding__2__col1 {
-      width: 50%;
+      width: 100%;
       display: flex;
       justify-content: center;
       align-items: center; }
       .bidding__2__col1__logo {
-        width: 75%;
-        height: 75%; }
-    .bidding__2__col2 {
-      width: 50%; }
-      .bidding__2__col2__mid {
-        text-align: center; }
-      .bidding__2__col2__pulsa {
-        color: #FFFFFF;
-        font-family: Raleway;
-        font-size: 22px;
-        font-weight: 600;
-        line-height: 26px; }
-      .bidding__2__col2__coret {
-        color: #FFFFFF;
-        font-family: Raleway;
-        font-size: 22px;
-        font-weight: 900;
-        line-height: 26px;
-        text-decoration: line-through;
-        text-align: center; }
-      .bidding__2__col2__newPrice {
-        color: #FFCD05;
-        font-family: Raleway;
-        font-size: 42px;
-        font-weight: 900;
-        line-height: 49px; }
-      .bidding__2__col2__live {
-        color: #FFCD05;
-        font-family: Raleway;
-        font-size: 20px;
-        font-weight: 900;
-        line-height: 24px; }
-      .bidding__2__col2__text {
-        color: #FFFFFF;
-        font-family: Raleway;
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 16px; }
+        width: 50%; }
+    .bidding__2__col2__pulsa {
+      color: #FFFFFF;
+      font-family: Raleway;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 26px; }
+    .bidding__2__col2__coret {
+      color: #FFFFFF;
+      font-family: Raleway;
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 26px;
+      text-decoration: line-through;
+      text-align: center; }
+    .bidding__2__col2__newPrice {
+      color: #FFCD05;
+      font-family: Raleway;
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 49px; }
+    .bidding__2__col2__live {
+      color: #FFCD05;
+      font-family: Raleway;
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 24px; }
+    .bidding__2__col2__text {
+      color: #FFFFFF;
+      font-family: Raleway;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 16px; }
   .bidding__3 {
     width: 100%;
     display: flex;
@@ -519,7 +514,6 @@ svg {
     justify-content: center;
     padding: 30px; }
     .bidding__3__col {
-      width: 50%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -579,14 +573,22 @@ svg {
       font-weight: bold;
       line-height: 21px; }
 
-@media (min-width: 275px) and (max-width: 500px) {
-  .bidding__2__col1 {
-    width: 300px !important;
-    background-color: var(--blue); } }
+@media (min-width: 100px) and (max-width: 690px) {
+  .bidding__2 {
+    display: block; } }
 
-@media (min-width: 275px) and (max-width: 500px) {
+@media (min-width: 100px) and (max-width: 500px) {
+  .bidding__2__col1 {
+    width: 100%;
+    margin-bottom: 10px; } }
+
+@media (min-width: 100px) and (max-width: 500px) {
   .bidding__3__col {
     font-size: 20px; } }
+
+@media (min-width: 100px) and (max-width: 500px) {
+  .bidding__3 {
+    display: block; } }
 
 .product {
   background-color: var(--color-primary-3); }
@@ -821,7 +823,7 @@ body {
     line-height: 11px;
     text-align: center; }
   .DropdownUser__item {
-    width: 150px;
+    width: 100%;
     min-width: 0rem;
     background-color: #FFCD05;
     border-radius: 10px; }
