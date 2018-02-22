@@ -37,22 +37,19 @@
     padding-bottom: 30px;
 
     &__col1{
-      width: 50%;
+      width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
 
       &__logo{
         width: 75%;
-        height: 75%;
       }
     }
 
     &__col2{
-      width: 50%;
 
       &__mid{
-        text-align: center;
       }
 
       &__pulsa{
@@ -110,7 +107,6 @@
     padding: 30px;
 
     &__col{
-      width: 50%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -195,16 +191,25 @@
   }
 
 }
-
-@media (min-width: 275px ) and (max-width:500px) {
+@media (min-width: 100px ) and (max-width:690px) {
+  .bidding__2{
+    display: block;
+  }
+}
+@media (min-width: 100px ) and (max-width:500px) {
   .bidding__2__col1{
-    width: 300px !important;
-    background-color: var(--blue);
+    width: 100%;
+    margin-bottom: 10px;
   }
 }
 
-@media (min-width: 275px ) and (max-width:500px) {
+@media (min-width: 100px ) and (max-width:500px) {
   .bidding__3__col{
     font-size: 20px;
+  }
+}
+@media (min-width: 100px ) and (max-width:500px) {
+  .bidding__3{
+    display: block;
   }
 }
