@@ -63,25 +63,11 @@ class Game extends React.Component {
 						<div>
 							<button disabled={this.state.isRunning} className="game__slotButton__start" onClick={ () => this.reset() }>RESET</button>
 						</div>
-						
+
 						</div>
 
 					</div>
 
-
-					<Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-						<ModalHeader toggle={this.toggle}></ModalHeader>
-						<ModalBody>
-							<div className="game__slotitems">
-								<div className={this.state.itemsdummy1[this.state.slot1]} />
-								<div className={this.state.itemsdummy2[this.state.slot2]} />
-								<div className={this.state.itemsdummy3[this.state.slot3]} />
-							</div>
-						</ModalBody>
-						<ModalFooter>
-						<Button color="game__primary" onClick={this.toggle}>OK</Button>
-					</ModalFooter>
-					</Modal>
 				</div>
 			</div>
 		)
@@ -96,7 +82,7 @@ class Game extends React.Component {
 			const stars = slots.filter(data => data === 6)
 
 			console.log('Total bintang: ', stars.length)
-			
+
 			axios({
 				method: 'POST',
 				url: `http://localhost:3000/win`,
