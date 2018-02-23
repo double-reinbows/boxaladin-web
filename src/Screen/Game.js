@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap'
 import axios from 'axios'
+import Coin from '../../src/asset/Game/coin.svg'
 
 class Game extends React.Component {
 	constructor(props) {
@@ -34,34 +35,45 @@ class Game extends React.Component {
 		console.log('State:', this.state)
 
 		return (
-			<div className="container">
+			<div className="game">
+				`<div className="game__Container">
+					<div className="game__slotLabel">
+						<h1 className="game__slotLabel__h1">GAMES</h1>
+						<p className="game__slotLabel__p">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+					</div>
 
-				<div className="slotitems">
-					<div className={this.state.itemsdummy1[this.state.slot1]} />
-					<div className={this.state.itemsdummy2[this.state.slot2]} />
-					<div className={this.state.itemsdummy3[this.state.slot3]} />
-				</div>
-
-				<div>
-					<button disabled={this.state.isRunning} className="btn btn-success btn-lg" onClick={ () => this.start() }>START</button>
-					<button disabled={!this.state.isRunning} className="btn btn-danger btn-lg" onClick={ () => this.stop() }>STOP</button>
-					<button disabled={this.state.isRunning} className="btn btn-secondary btn-lg" onClick={ () => this.reset() }>RESET</button>
-				</div>
-
-				<Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-					<ModalHeader toggle={this.toggle}></ModalHeader>
-					<ModalBody>
-						<div className="slotitems">
+					<div>
+						<div className="game__slotitems">
 							<div className={this.state.itemsdummy1[this.state.slot1]} />
 							<div className={this.state.itemsdummy2[this.state.slot2]} />
 							<div className={this.state.itemsdummy3[this.state.slot3]} />
 						</div>
-					</ModalBody>
-					<ModalFooter>
-					 <Button color="primary" onClick={this.toggle}>OK</Button>
-				 </ModalFooter>
-				</Modal>
+						<div>
+							<img className="game__slotCoin" src={Coin} alt="coin image"/>
+						</div>
+					</div>
 
+					<div className="game__slotButton">
+						<button disabled={this.state.isRunning} className="btn btn-success btn-lg" onClick={ () => this.start() }>START</button>
+						<button disabled={!this.state.isRunning} className="btn btn-danger btn-lg" onClick={ () => this.stop() }>STOP</button>
+						<button disabled={this.state.isRunning} className="btn btn-secondary btn-lg" onClick={ () => this.reset() }>RESET</button>
+					</div>
+
+
+					<Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+						<ModalHeader toggle={this.toggle}></ModalHeader>
+						<ModalBody>
+							<div className="game__slotitems">
+								<div className={this.state.itemsdummy1[this.state.slot1]} />
+								<div className={this.state.itemsdummy2[this.state.slot2]} />
+								<div className={this.state.itemsdummy3[this.state.slot3]} />
+							</div>
+						</ModalBody>
+						<ModalFooter>
+						<Button color="game__primary" onClick={this.toggle}>OK</Button>
+					</ModalFooter>
+					</Modal>
+				</div>
 			</div>
 		)
 	}

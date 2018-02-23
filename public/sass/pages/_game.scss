@@ -1,6 +1,52 @@
-.slotitems {
-	display: flex;
+.game{
+	background-color: var(--color-grey-5);
+
+	&__container{
+		margin: auto;
+		width: 100%;
+		max-width: 600px;	
+	}
+
+	&__slotLabel{
+		text-align: center;
+		font-family: raleway;
+			&__h1{
+				color: #FFCD05;	
+				font-size: 48px;	
+				font-weight: 900;	
+				line-height: 56px;
+			}
+
+			&__p{
+				color: white;
+				font-size: 14px;
+				font-weight: 500;	
+				line-height: 16px;
+			}
+
+	}
+
+
+	
+	&__slotCoin{
+		width: 5%;
+	}
+	&__slotitems {
+		display: flex;
+		justify-content: center;
+	}
+	&__slotButton {
+		display: flex;
+		justify-content: center;
+	}
 }
+
+
+
+
+
+
+
 
 .box1 {
 	width: 100px;
