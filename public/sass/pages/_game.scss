@@ -1,0 +1,181 @@
+.game{
+	background-color: var(--color-grey-5);
+
+	&__container{
+		margin: auto;
+		width: 100%;
+		max-width: 720px;
+	}
+
+	&__slotLabel{
+		text-align: center;
+		font-family: raleway;
+			&__h1{
+				color: #FFCD05;	
+				font-size: 48px;	
+				font-weight: 900;	
+				line-height: 56px;
+			}
+
+			&__paragraph{
+				color: white;
+				font-size: 14px;
+				font-weight: 500;	
+				line-height: 16px;
+			}
+
+	}
+
+	&__slotCoin{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&__icon{
+			width: 10%;
+			margin: 10px;
+		}
+
+		&__label{
+			margin: 10px;
+			color: #FFFFFF;
+			font-family: Raleway;
+			font-size: 24px;
+			font-weight: bold;	
+			line-height: 29px;
+		}
+	}
+
+	&__container2{
+		display: flex;
+		justify-content: center;
+	}
+
+	&__slotItems{
+		display: flex;
+		justify-content: center;
+		width: 360px;
+		border-radius: 30px;
+		background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%);		
+		padding: 20px;
+		margin-bottom: 10px;
+
+			&__box {
+				background-color: black;
+				display: flex;
+				justify-content: center;
+				width: 100%;
+				border-radius: 10px;
+				border: 3px solid;
+		}
+	}
+
+	&__slotButton {
+		display: flex;
+		justify-content: center;
+
+		&__container3{
+			width: 40%;
+		}
+
+		&__start{
+			width: 100%;
+			margin-top: 10px;
+			margin-bottom: 10px;	
+			color: #FFFFFF;	
+			font-family: Raleway;	
+			font-size: 25px;
+			font-weight: 900;	
+			letter-spacing: 3px;	
+			line-height: 33px;
+			border-radius: 8px;
+			background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%)		
+		}
+	}
+}
+@media (min-width: 275px ) and (max-width:500px ) {
+  .game__slotItems{
+		padding: 15px;
+		width: 310px;
+  }
+}
+
+
+
+.box1 {
+	width: 80%;
+	height: 140px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: white;
+}
+
+.box2 {
+	width: 80%;
+	height: 140px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: yellow;
+}
+
+.box3 {
+	width: 80%;
+	height: 140px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: green;
+}
+
+.box4 {
+	width: 80%;
+	height: 140px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: grey;
+}
+
+.box5 {
+	width: 80%;
+	height: 140px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: blue;
+}
+
+.box6 {
+	width: 80%;
+	height: 140px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: purple;
+}
+
+.boxaladin {
+	background-image: url("https://steemit-production-imageproxy-thumbnail.s3.amazonaws.com/U5du7QzV9m547GdgFGVuh2ckhRKGL9Q_1680x8400");
+	width: 80%;
+	height: 140px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: white;
+	background-size: 100% 100%;
+}

@@ -764,6 +764,184 @@ svg {
     text-align: center;
     color: var(--color-yellow-1); }
 
+.pembayaran {
+  width: 100%;
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  background-color: var(--color-grey-8); }
+  .pembayaran__container {
+    margin: auto;
+    max-width: 700px;
+    width: 100%;
+    background-color: var(--color-white);
+    padding: 10px; }
+  .pembayaran__title {
+    text-align: center;
+    background-color: var; }
+  .pembayaran__button {
+    display: flex;
+    height: 100%; }
+  .pembayaran__1 {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end; }
+  .pembayaran__2 {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end; }
+  .pembayaran__IconBank {
+    width: 25%;
+    height: 25%;
+    justify-content: flex-end; }
+
+.game {
+  background-color: var(--color-grey-5); }
+  .game__container {
+    margin: auto;
+    width: 100%;
+    max-width: 720px; }
+  .game__slotLabel {
+    text-align: center;
+    font-family: raleway; }
+    .game__slotLabel__h1 {
+      color: #FFCD05;
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 56px; }
+    .game__slotLabel__paragraph {
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 16px; }
+  .game__slotCoin {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .game__slotCoin__icon {
+      width: 10%;
+      margin: 10px; }
+    .game__slotCoin__label {
+      margin: 10px;
+      color: #FFFFFF;
+      font-family: Raleway;
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 29px; }
+  .game__container2 {
+    display: flex;
+    justify-content: center; }
+  .game__slotItems {
+    display: flex;
+    justify-content: center;
+    width: 360px;
+    border-radius: 30px;
+    background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%);
+    padding: 20px;
+    margin-bottom: 10px; }
+    .game__slotItems__box {
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      border-radius: 10px;
+      border: 3px solid; }
+  .game__slotButton {
+    display: flex;
+    justify-content: center; }
+    .game__slotButton__container3 {
+      width: 40%; }
+    .game__slotButton__start {
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      color: #FFFFFF;
+      font-family: Raleway;
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      line-height: 33px;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%); }
+
+@media (min-width: 275px) and (max-width: 500px) {
+  .game__slotItems {
+    padding: 15px;
+    width: 310px; } }
+
+.box1 {
+  width: 80%;
+  height: 140px;
+  border-radius: 10px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: white; }
+
+.box2 {
+  width: 80%;
+  height: 140px;
+  border-radius: 10px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: yellow; }
+
+.box3 {
+  width: 80%;
+  height: 140px;
+  border-radius: 10px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: green; }
+
+.box4 {
+  width: 80%;
+  height: 140px;
+  border-radius: 10px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: grey; }
+
+.box5 {
+  width: 80%;
+  height: 140px;
+  border-radius: 10px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: blue; }
+
+.box6 {
+  width: 80%;
+  height: 140px;
+  border-radius: 10px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: purple; }
+
+.boxaladin {
+  background-image: url("https://steemit-production-imageproxy-thumbnail.s3.amazonaws.com/U5du7QzV9m547GdgFGVuh2ckhRKGL9Q_1680x8400");
+  width: 80%;
+  height: 140px;
+  border-radius: 10px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: white;
+  background-size: 100% 100%; }
+
 * {
   margin: 0;
   padding: 0; }
@@ -954,4 +1132,5 @@ body {
   --color-red-4: #DA4733;
   --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
   --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
+  --linear-game: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%);
   --line: 1px solid var(--color-grey-light-2); }
