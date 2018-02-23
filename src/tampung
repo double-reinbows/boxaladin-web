@@ -41,3 +41,34 @@
     <img src={Mandiri} alt="IconBank" className="pembayaran__IconBank" />
   </div>
 </Button>
+
+
+
+render() {
+    console.log('InsertPhone Props:', this.props);
+    console.log('InsertPhone State:', this.state);
+
+    return (
+      <div>
+        <h1>insert phone</h1>
+
+        <Form onSubmit={(e) => this.submitTransaction(e)}>
+          <FormGroup>
+
+            <Input type="tel" value={ this.state.phone } onChange={ (e) => this.setState({phone: e.target.value}) } />
+
+          </FormGroup>
+
+          <Button type="submit" color="primary">Confirm</Button>
+				</Form>
+      </div>
+    )
+  }
+
+  componentDidMount() {
+    this.props.getPhoneNumbers()
+    this.setState({productUnlocked: this.props.location.state.productUnlocked})
+    this.setState({
+      phone: this.props.location.state.phoneNumbers[0] ? this.props.location.state.phoneNumbers.filter(data => data.primary === true)[0].number : ''
+    })
+  }

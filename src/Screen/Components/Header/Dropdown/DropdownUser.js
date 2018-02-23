@@ -33,10 +33,16 @@ class DropdownUser extends React.Component {
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
 
 
-        <DropdownToggle className="ButtonProfile">
-          Profile
-          <hr className="dropdownProfileHr"/>
-          <img src={ExpandIcon} alt="LoginIcon" className="ButtonProfile__iconProfile" href="/home"/>
+        <DropdownToggle className="dropProfile">
+          <div className="dropProfile__devide">
+            <div className="dropProfile__big">
+              Profile
+            </div>
+
+            <div className="dropProfile__small">
+              <img src={ExpandIcon} alt="LoginIcon" className="dropProfile__iconProfile" href="/home"/>
+            </div>
+          </div>
         </DropdownToggle>
 
         <DropdownMenu className="DropdownUser__item">
