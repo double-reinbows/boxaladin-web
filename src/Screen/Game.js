@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap'
 import axios from 'axios'
 import Coin from '../../src/asset/Game/coin.svg'
+import { getUser } from '../actions/userAction'
 
 class Game extends React.Component {
 	constructor(props) {
@@ -33,6 +34,7 @@ class Game extends React.Component {
 
 	render() {
 		console.log('State:', this.state)
+		console.log('Props:', this.props)
 
 		return (
 			<div className="game">
@@ -52,7 +54,7 @@ class Game extends React.Component {
 					</div>
 					<div className="game__slotCoin">
 								<img className="game__slotCoin__icon" src={Coin} alt="coin image"/>
-								<label className="game__slotCoin__label">Your Coin : 45</label>
+								<label className="game__slotCoin__label">Your Coin : {this.props.userInfo.coin}</label>
 					</div>
 					<div className="game__slotButton">
 						<div className="game__slotButton__container3">
@@ -71,6 +73,10 @@ class Game extends React.Component {
 				</div>
 			</div>
 		)
+	}
+
+	componentDidMount() {
+		this.props.getUser()
 	}
 
 	submitResult(slot1, slot2, slot3) {
@@ -116,6 +122,7 @@ class Game extends React.Component {
 		this.start3()
 
 		this.setState({ isRunning: true })
+		this.props.getUser()
 	}
 
 	stop() {
@@ -225,11 +232,15 @@ class Game extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-	return {}
+	return {
+		userInfo: state.userReducer.userInfo
+	}
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {}
+	return {
+		getUser: () => dispatch(getUser())
+	}
 }
 
 const connectComponent = connect(mapStateToProps, mapDispatchToProps)(Game)
