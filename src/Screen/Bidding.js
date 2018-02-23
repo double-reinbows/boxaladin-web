@@ -106,6 +106,11 @@ class Bidding extends React.Component {
 		this.afterResetPrice(prevState.productUnlocked.aladinPrice)
   }
 
+  componentWillUnmount() {
+    console.log('will unmount..........')
+    this.stopWatchProductPrice(this.props.selectedProductID)
+  }
+
   // handleBack() {
   //   if (this.props.history.action === 'POP') {
   //     this.props.history.push('/home')
@@ -120,7 +125,7 @@ class Bidding extends React.Component {
 			url: `http://localhost:3000/api/product/${this.props.selectedProductID}`
 		})
 		.then(({data}) => {
-      this.stopWatchProductPrice(this.props.selectedProductID)
+      // this.stopWatchProductPrice(this.props.selectedProductID)
       this.props.history.push('/insertphone', {
         productUnlocked: this.state.productUnlocked,
         phoneNumbers: this.props.phoneNumbers
@@ -130,7 +135,7 @@ class Bidding extends React.Component {
   }
 
   cancel() {
-    this.stopWatchProductPrice(this.props.selectedProductID)
+    // this.stopWatchProductPrice(this.props.selectedProductID)
     this.props.history.push('/home')
   }
 
@@ -206,7 +211,7 @@ class Bidding extends React.Component {
       this.runTimer()
 
 		} else if (this.state.count <= 0 && this.state.count !== prevCount && this.state.isWatching === true) {
-      this.stopWatchProductPrice(this.props.selectedProductID)
+      // this.stopWatchProductPrice(this.props.selectedProductID)
       alert('Waktu habis Brayyy...')
       this.props.history.push('/home')
 
@@ -218,7 +223,7 @@ class Bidding extends React.Component {
   afterResetPrice(prevPrice) {
 		if (prevPrice !== undefined && this.state.productUnlocked.aladinPrice > prevPrice) {
       alert('Maaf, produk ini sudah terbeli orang lain! Silahkan melakukan bidding lagi.')
-      this.stopWatchProductPrice(this.props.selectedProductID)
+      // this.stopWatchProductPrice(this.props.selectedProductID)
       this.props.history.push('/home')
 		}
   }
