@@ -126,6 +126,14 @@ class Bidding extends React.Component {
 		})
 		.then(({data}) => {
       // this.stopWatchProductPrice(this.props.selectedProductID)
+
+      const productsRef = firebase.database().ref().child('products')
+      const productRef = productsRef.child(this.props.selectedProductID)
+      
+      productRef.update({
+        watching: 0
+      })
+
       this.props.history.push('/insertphone', {
         productUnlocked: this.state.productUnlocked,
         phoneNumbers: this.props.phoneNumbers
@@ -236,9 +244,13 @@ class Bidding extends React.Component {
     this.setState({isWatching: false})
 
     productRef.once('value', snap => {
-			productRef.update({
-				watching: snap.val().watching -1
-			})
+			if (snap.val().watching > 0) {
+        
+        productRef.update({
+          watching: snap.val().watching -1
+        })
+
+      }
 		})
   }
 
