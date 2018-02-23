@@ -19,10 +19,10 @@ class InsertPhone extends React.Component {
   render() {
     console.log('InsertPhone Props:', this.props);
     console.log('InsertPhone State:', this.state);
-    
+
     return (
-      <div>
-        <h1>insert phone</h1>
+      <div className="InsertPhone">
+        <h1 className="InsertPhone__text">insert your phone number</h1>
 
         <Form onSubmit={(e) => this.submitTransaction(e)}>
           <FormGroup>
@@ -36,7 +36,8 @@ class InsertPhone extends React.Component {
             </Input>
           </FormGroup>
 
-          <Button type="submit" color="primary">Confirm</Button>
+          <Button type="submit" color="primary" size="lg" block>Confirm</Button>
+
 				</Form>
       </div>
     )
@@ -82,7 +83,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-		getPhoneNumbers: () => dispatch(getPhoneNumbers())    
+		getPhoneNumbers: () => dispatch(getPhoneNumbers())
   }
 }
 

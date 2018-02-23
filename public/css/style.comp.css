@@ -467,7 +467,13 @@ svg {
     display: flex;
     padding-bottom: 30px; }
     .bidding__2__col1 {
-      width: 50%; }
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .bidding__2__col1__logo {
+        width: 75%;
+        height: 75%; }
     .bidding__2__col2 {
       width: 50%; }
       .bidding__2__col2__mid {
@@ -751,6 +757,14 @@ svg {
 
 .rowz {
   margin: 0; }
+
+.InsertPhone {
+  padding: 10%;
+  padding-left: 20%;
+  padding-right: 20%;
+  background-color: var(--color-grey-5); }
+  .InsertPhone__text {
+    text-align: center; }
 
 * {
   margin: 0;

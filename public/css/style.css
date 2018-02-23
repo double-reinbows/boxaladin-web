@@ -758,6 +758,14 @@ svg {
 .rowz {
   margin: 0; }
 
+.InsertPhone {
+  padding: 10%;
+  padding-left: 20%;
+  padding-right: 20%;
+  background-color: var(--color-grey-5); }
+  .InsertPhone__text {
+    text-align: center; }
+
 * {
   margin: 0;
   padding: 0; }
