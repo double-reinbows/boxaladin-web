@@ -4,7 +4,7 @@
 	&__container{
 		margin: auto;
 		width: 100%;
-		max-width: 600px;	
+		max-width: 720px;
 	}
 
 	&__slotLabel{
@@ -17,7 +17,7 @@
 				line-height: 56px;
 			}
 
-			&__p{
+			&__paragraph{
 				color: white;
 				font-size: 14px;
 				font-weight: 500;	
@@ -26,75 +26,156 @@
 
 	}
 
-
-	
 	&__slotCoin{
-		width: 5%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&__icon{
+			width: 10%;
+			margin: 10px;
+		}
+
+		&__label{
+			margin: 10px;
+			color: #FFFFFF;
+			font-family: Raleway;
+			font-size: 24px;
+			font-weight: bold;	
+			line-height: 29px;
+		}
 	}
-	&__slotitems {
+
+	&__container2{
 		display: flex;
 		justify-content: center;
 	}
+
+	&__slotItems{
+		display: flex;
+		justify-content: center;
+		width: 360px;
+		border-radius: 30px;
+		background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%);		
+		padding: 20px;
+		margin-bottom: 10px;
+
+			&__box {
+				background-color: black;
+				display: flex;
+				justify-content: center;
+				width: 100%;
+				border-radius: 10px;
+				border: 3px solid;
+		}
+	}
+
 	&__slotButton {
 		display: flex;
 		justify-content: center;
+
+		&__container3{
+			width: 40%;
+		}
+
+		&__start{
+			width: 100%;
+			margin-top: 10px;
+			margin-bottom: 10px;	
+			color: #FFFFFF;	
+			font-family: Raleway;	
+			font-size: 25px;
+			font-weight: 900;	
+			letter-spacing: 3px;	
+			line-height: 33px;
+			border-radius: 8px;
+			background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%)		
+		}
 	}
 }
-
-
-
-
-
+@media (min-width: 275px ) and (max-width:500px ) {
+  .game__slotItems{
+		padding: 15px;
+		width: 310px;
+  }
+}
 
 
 
 .box1 {
-	width: 100px;
-	height: 100px;
-	background-color: black;
-	margin: 5px;
+	width: 80%;
+	height: 140px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: white;
 }
 
 .box2 {
-	width: 100px;
-	height: 100px;
+	width: 80%;
+	height: 140px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
 	background-color: yellow;
-	margin: 5px;
 }
 
 .box3 {
-	width: 100px;
-	height: 100px;
+	width: 80%;
+	height: 140px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
 	background-color: green;
-	margin: 5px;
 }
 
 .box4 {
-	width: 100px;
-	height: 100px;
+	width: 80%;
+	height: 140px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
 	background-color: grey;
-	margin: 5px;
 }
 
 .box5 {
-	width: 100px;
-	height: 100px;
+	width: 80%;
+	height: 140px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
 	background-color: blue;
-	margin: 5px;
 }
 
 .box6 {
-	width: 100px;
-	height: 100px;
+	width: 80%;
+	height: 140px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
 	background-color: purple;
-	margin: 5px;
 }
 
 .boxaladin {
 	background-image: url("https://steemit-production-imageproxy-thumbnail.s3.amazonaws.com/U5du7QzV9m547GdgFGVuh2ckhRKGL9Q_1680x8400");
-	width: 100px;
-	height: 100px;
-	margin: 5px;
-	background-color: black;
-	background-size: 100px 100px;
+	width: 80%;
+	height: 140px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: white;
+	background-size: 100% 100%;
 }

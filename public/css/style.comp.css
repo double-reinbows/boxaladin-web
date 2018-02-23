@@ -755,8 +755,33 @@ svg {
 .rowz {
   margin: 0; }
 
-.slotitems {
-  display: flex; }
+.game {
+  background-color: var(--color-grey-5); }
+  .game__container {
+    margin: auto;
+    width: 100%;
+    max-width: 600px; }
+  .game__slotLabel {
+    text-align: center;
+    font-family: raleway; }
+    .game__slotLabel__h1 {
+      color: #FFCD05;
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 56px; }
+    .game__slotLabel__p {
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 16px; }
+  .game__slotCoin {
+    width: 5%; }
+  .game__slotitems {
+    display: flex;
+    justify-content: center; }
+  .game__slotButton {
+    display: flex;
+    justify-content: center; }
 
 .box1 {
   width: 100px;

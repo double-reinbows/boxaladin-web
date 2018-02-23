@@ -36,27 +36,36 @@ class Game extends React.Component {
 
 		return (
 			<div className="game">
-				`<div className="game__Container">
+				`<div className="game__container">
 					<div className="game__slotLabel">
 						<h1 className="game__slotLabel__h1">GAMES</h1>
-						<p className="game__slotLabel__p">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+						<p className="game__slotLabel__paragraph">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
 					</div>
-
-					<div>
-						<div className="game__slotitems">
-							<div className={this.state.itemsdummy1[this.state.slot1]} />
-							<div className={this.state.itemsdummy2[this.state.slot2]} />
-							<div className={this.state.itemsdummy3[this.state.slot3]} />
+					<div className="game__container2">
+						<div className="game__slotItems">
+							<div className="game__slotItems__box">
+										<div className={this.state.itemsdummy1[this.state.slot1]} />
+										<div className={this.state.itemsdummy1[this.state.slot2]} />
+										<div className={this.state.itemsdummy1[this.state.slot3]} />
+							</div>
+						</div>
+					</div>
+					<div className="game__slotCoin">
+								<img className="game__slotCoin__icon" src={Coin} alt="coin image"/>
+								<label className="game__slotCoin__label">Your Coin : 45</label>
+					</div>
+					<div className="game__slotButton">
+						<div className="game__slotButton__container3">
+							<button disabled={this.state.isRunning} className="game__slotButton__start" onClick={ () => this.start() }>START</button>
+												<div>
+							<button disabled={!this.state.isRunning} className="game__slotButton__start" onClick={ () => this.stop() }>STOP</button>
 						</div>
 						<div>
-							<img className="game__slotCoin" src={Coin} alt="coin image"/>
+							<button disabled={this.state.isRunning} className="game__slotButton__start" onClick={ () => this.reset() }>RESET</button>
 						</div>
-					</div>
+						
+						</div>
 
-					<div className="game__slotButton">
-						<button disabled={this.state.isRunning} className="btn btn-success btn-lg" onClick={ () => this.start() }>START</button>
-						<button disabled={!this.state.isRunning} className="btn btn-danger btn-lg" onClick={ () => this.stop() }>STOP</button>
-						<button disabled={this.state.isRunning} className="btn btn-secondary btn-lg" onClick={ () => this.reset() }>RESET</button>
 					</div>
 
 
@@ -98,7 +107,7 @@ class Game extends React.Component {
 			})
 			.then(({data}) => {
 				console.log(data)
-				this.toggle()
+				// this.toggle()
 			})
 			.catch(err => console.log(err))
 
