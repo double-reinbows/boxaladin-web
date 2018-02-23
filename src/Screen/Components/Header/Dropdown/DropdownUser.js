@@ -41,7 +41,7 @@ class DropdownUser extends React.Component {
 
         <DropdownMenu className="DropdownUser__item">
 
-          <DropdownItem className="DropdownUser__inside">
+          <DropdownItem disabled="true" className="DropdownUser__inside">
             Hi, Teza
           </DropdownItem>
 

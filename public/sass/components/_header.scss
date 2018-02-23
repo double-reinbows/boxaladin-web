@@ -40,7 +40,7 @@
 @media (max-width: 767px) {
   .ButtonTopUP{
     border: transparent;
-    outline-color: none;
+    box-shadow: none;
   }
 }
 
@@ -87,34 +87,6 @@
   }
 }
 
-//Botton for user see after login
-.ButtonProfile{
-  height: 40px;
-  border-radius: 10px;
-  background-color: #FFCD05;
-  display: flex;
-  align-items: center;
-  padding-top: 0px;
-
-  color: #3E3E3E;
-  font-family: Raleway;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin: 10px;
-
-  &__iconLogin{
-    width: 17px;
-    height: 25px;
-  }
-
-  &__Profile{
-    padding-top: 20px;
-  }
-  &__P{
-    padding-top: 20px;
-  }
-}
 
 @media (max-width: 767px)  {
   .ButtonLogin {
@@ -196,6 +168,24 @@
     height: 25px;
   }
 }
+
+@media (max-width: 767px)  {
+  .ButtonProfile {
+    background-color: transparent !important;
+    background: transparent;
+    color: var(--color-yellow-1);
+    margin-left: 0;
+    border: none;
+  }
+}
+
+@media (max-width: 767px)  {
+  .ButtonProfile__iconProfile{
+    width: 0px;
+    height: 0px;
+  }
+}
+
 
 //media query resposive header for button login
 @media (max-width: 767px)  {
