@@ -3,9 +3,11 @@ import { connect } from 'react-redux'
 import {
 	Form, FormGroup, Label, Input, Button
 } from 'reactstrap'
+
 import axios from 'axios'
 
-import { getPhoneNumbers } from '../actions/'
+import ModalConfirmation from './ModalConfirmation'
+import { getPhoneNumbers } from '../../../actions/'
 
 class InsertPhone extends React.Component {
   constructor(props) {
@@ -27,13 +29,8 @@ class InsertPhone extends React.Component {
         <Form onSubmit={(e) => this.submitTransaction(e)}>
           <FormGroup>
             <Label for="selectNumber"></Label>
-            <Input onChange={(e) => this.setState({phone: e.target.value})} type="select" name="selectNumber" id="selectNumber">
-              {this.props.phoneNumbers.map((phone, idx) => {
-                return (
-                  <option key={idx} value={phone.number}>{phone.number}</option>
-                )
-              })}
-            </Input>
+
+						<Input type="tel" value={ this.state.phone } onChange={ (e) => this.setState({phone: e.target.value}) } />
           </FormGroup>
 
           <Button type="submit" color="primary" size="lg" block>Confirm</Button>
@@ -46,8 +43,9 @@ class InsertPhone extends React.Component {
   componentDidMount() {
     this.props.getPhoneNumbers()
     this.setState({productUnlocked: this.props.location.state.productUnlocked})
-    this.setState({phone: this.props.location.state.phoneNumbers[0] ? this.props.location.state.phoneNumbers[0].number : ''})
-  }
+		this.setState({
+			phone: this.props.location.state.phoneNumbers[0] ? this.props.location.state.phoneNumbers.filter(data => data.primary === true)[0].number : ''
+		})  }
 
   submitTransaction(e) {
     e.preventDefault()

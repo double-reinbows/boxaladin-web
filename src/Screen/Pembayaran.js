@@ -10,6 +10,10 @@ import {
 import classnames from 'classnames';
 import Xendit from 'xendit-js-node'
 
+import MANDIRI from '../asset/Logo/MANDIRI.svg'
+import BNI from '../asset/Logo/BNI.svg'
+import BRI from '../asset/Logo/BRI.svg'
+
 class InvoiceDetail extends React.Component {
   constructor(props) {
     super(props)
@@ -34,23 +38,30 @@ class InvoiceDetail extends React.Component {
     console.log('State:', this.state);
 
     return (
-      <div>
-        <Container>
-          <h1>Payment</h1>
+      <div className="pembayaran">
+        <div className="pembayaran__container">
+          <h1 className="pembayaran__title">Menunggu Pembayaran</h1>
           {this.state.invoice ? (
               <div>
-                <h5>Silahkan melakukan pembayaran sejumlah {this.state.invoice.payment.amount} ke salah satu virtual bank account di bawah ini:</h5>
+                <h1 className="pembayaran__title">Jumlah yang harus di bayarkan {this.state.invoice.payment.amount}</h1>
+
+                <h5>Silahkan melakukan pembayaran ke salah satu virtual bank account di bawah ini:</h5>
+
                 <ul>
                   {this.state.invoice.payment.availableBanks.map((bank, idx) => {
                     return (
-                      <li key={idx}>{bank.bank_code}: {bank.bank_account_number}</li>
+                      <div>
+                        <img src={[bank.bank_code]} className="pembayaran__logoBank" alt="logoBank" />
+                        <li key={idx}>{bank.bank_code}: {bank.bank_account_number}</li>
+                      </div>
                     )
                   })}
                 </ul>
+
               </div>
             ) : null
           }
-        </Container>
+        </div>
       </div>
     )
   }

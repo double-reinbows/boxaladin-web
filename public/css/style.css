@@ -761,7 +761,40 @@ svg {
   padding-right: 20%;
   background-color: var(--color-grey-5); }
   .InsertPhone__text {
-    text-align: center; }
+    text-align: center;
+    color: var(--color-yellow-1); }
+
+.pembayaran {
+  width: 100%;
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  background-color: var(--color-grey-8); }
+  .pembayaran__container {
+    margin: auto;
+    max-width: 700px;
+    width: 100%;
+    background-color: var(--color-white);
+    padding: 10px; }
+  .pembayaran__title {
+    text-align: center;
+    background-color: var; }
+  .pembayaran__button {
+    display: flex;
+    height: 100%; }
+  .pembayaran__1 {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end; }
+  .pembayaran__2 {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end; }
+  .pembayaran__IconBank {
+    width: 25%;
+    height: 25%;
+    justify-content: flex-end; }
 
 * {
   margin: 0;

@@ -461,55 +461,11 @@ svg {
     display: flex;
     padding-bottom: 30px; }
     .bidding__2__col1 {
-<<<<<<< HEAD
-      width: 50%;
-=======
       width: 100%;
->>>>>>> 43117383882922d2cabf937334d504007a4f63dd
       display: flex;
       justify-content: center;
       align-items: center; }
       .bidding__2__col1__logo {
-<<<<<<< HEAD
-        width: 75%;
-        height: 75%; }
-    .bidding__2__col2 {
-      width: 50%; }
-      .bidding__2__col2__mid {
-        text-align: center; }
-      .bidding__2__col2__pulsa {
-        color: #FFFFFF;
-        font-family: Raleway;
-        font-size: 22px;
-        font-weight: 600;
-        line-height: 26px; }
-      .bidding__2__col2__coret {
-        color: #FFFFFF;
-        font-family: Raleway;
-        font-size: 22px;
-        font-weight: 900;
-        line-height: 26px;
-        text-decoration: line-through;
-        text-align: center; }
-      .bidding__2__col2__newPrice {
-        color: #FFCD05;
-        font-family: Raleway;
-        font-size: 42px;
-        font-weight: 900;
-        line-height: 49px; }
-      .bidding__2__col2__live {
-        color: #FFCD05;
-        font-family: Raleway;
-        font-size: 20px;
-        font-weight: 900;
-        line-height: 24px; }
-      .bidding__2__col2__text {
-        color: #FFFFFF;
-        font-family: Raleway;
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 16px; }
-=======
         width: 50%; }
     .bidding__2__col2__pulsa {
       color: #FFFFFF;
@@ -543,7 +499,6 @@ svg {
       font-size: 14px;
       font-weight: 600;
       line-height: 16px; }
->>>>>>> 43117383882922d2cabf937334d504007a4f63dd
   .bidding__3 {
     width: 100%;
     display: flex;
@@ -806,7 +761,8 @@ svg {
   padding-right: 20%;
   background-color: var(--color-grey-5); }
   .InsertPhone__text {
-    text-align: center; }
+    text-align: center;
+    color: var(--color-yellow-1); }
 
 * {
   margin: 0;

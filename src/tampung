@@ -1,2 +1,43 @@
-testing
-woi masuk kek
+<div className="InsertPhone">
+  <h1 className="InsertPhone__text">insert your phone number</h1>
+
+  <Form onSubmit={(e) => this.submitTransaction(e)}>
+    <FormGroup>
+      <Label for="selectNumber"></Label>
+      <Input onChange={(e) => this.setState({phone: e.target.value})} type="select" name="selectNumber" id="selectNumber">
+        {this.props.phoneNumbers.map((phone, idx) => {
+          return (
+            <option key={idx} value={phone.number}>{phone.number}</option>
+          )
+        })}
+      </Input>
+    </FormGroup>
+
+    <Button type="submit" color="primary" size="lg" block>Confirm</Button>
+
+  </Form>
+</div>
+
+
+
+<FormGroup>
+  <Label for="exampleNumber">Number</Label>
+  <Input onChange={(e) => this.setState({phone: e.target.value})} type="number" name="number" id="exampleNumber" placeholder="number placeholder" value="123">
+    {this.props.phoneNumbers.map((phone, idx) => {
+      return (
+        <option key={idx} value={phone.number}>{phone.number}</option>
+      )
+    })}
+  </Input>
+</FormGroup>
+
+
+<Button outline color="secondary" size ="lg" block className="pembayaran__button">
+  <div className="pembayaran__1">
+    Virtual Account
+  </div>
+
+  <div className="pembayaran__2">
+    <img src={Mandiri} alt="IconBank" className="pembayaran__IconBank" />
+  </div>
+</Button>

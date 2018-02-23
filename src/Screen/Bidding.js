@@ -6,8 +6,6 @@ import * as firebase from 'firebase'
 import timer from '../asset/bidding/timer.svg'
 import watch from '../asset/bidding/watch.svg'
 
-import LogoIndosat from '../asset/LandingPage/pulsa/Indosat.svg'
-
 import { getPhoneNumbers } from '../actions/'
 import { getUser } from '../actions/userAction'
 
@@ -16,8 +14,8 @@ class Bidding extends React.Component {
     super(props)
     this.state = {
       productUnlocked: {},
-			count: 999,
-      initCount: 999,
+			count: 15,
+      initCount: 15,
       isWatching: false
     }
   }

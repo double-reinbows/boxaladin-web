@@ -29,7 +29,7 @@ import TopupPayment from './Screen/TopupPayment'
 // import Cart from './screen/Cart'
 
 import Bidding from './Screen/Bidding'
-import InsertPhone from './Screen/InsertPhone'
+import InsertPhone from './Screen/Components/InsertPhone/InsertPhone'
 import Pulsa from './Screen/Pulsa'
 
 class RouteList extends React.Component {

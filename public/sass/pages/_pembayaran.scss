@@ -1,0 +1,48 @@
+.pembayaran{
+  width: 100%;
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  background-color: var(--color-grey-8);
+
+  &__container{
+    margin: auto;
+    max-width: 700px;
+    width: 100%;
+    background-color: var(--color-white);
+    padding: 10px;
+  }
+
+  &__title{
+    text-align: center;
+    background-color: var
+  }
+
+
+  &__button{
+    display: flex;
+    height: 100%;
+  }
+
+  &__1{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__2{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__IconBank{
+
+    width: 25%;
+    height: 25%;
+    justify-content: flex-end;
+
+  }
+
+}
