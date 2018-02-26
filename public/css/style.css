@@ -979,6 +979,15 @@ svg {
   background-color: white;
   background-size: 100% 100%; }
 
+.TopupKey {
+  padding: 10%;
+  padding-left: 20%;
+  padding-right: 20%;
+  background-color: var(--color-grey-5); }
+  .TopupKey__text {
+    text-align: center;
+    color: var(--color-yellow-1); }
+
 * {
   margin: 0;
   padding: 0; }
