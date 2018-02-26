@@ -10,7 +10,6 @@ import Header from './Screen/Components/Header/Header'
 import Footer from './Screen/Components/Footer'
 
 //page non login
-import LandingPage from './Screen/LandingPage'
 import AboutUs from './Screen/AboutUs'
 import HowItWorks from './Screen/HowItWorks'
 import Product from './Screen/Product'
@@ -42,7 +41,7 @@ class RouteList extends React.Component {
           <div>
             <Header />
 
-            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/" component={Home} />
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/howitworks" component={HowItWorks} />
 
@@ -55,7 +54,7 @@ class RouteList extends React.Component {
                 localStorage.getItem('token') !== null ? (
                   <User />
                 ) : (
-                  <Redirect to="/landingpage" />
+                  <Redirect to="/home" />
                 )
               }
             />

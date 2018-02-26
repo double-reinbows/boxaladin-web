@@ -15,6 +15,7 @@
 
 //Botton for top up aladinkey
 .ButtonTopUP{
+  cursor:inherit;
   height: 40px;
   width: 200px;
   border: 2px solid #FFCD05;
@@ -29,9 +30,11 @@
   margin-right: 20px;
   &__label{
     font-size: 18px;
+    cursor:inherit;
     &__italic{
       font-size: 18px;
       font-style: italic;
+      cursor:inherit;
     }
   }
 }

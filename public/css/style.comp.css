@@ -314,61 +314,6 @@ svg {
     width: 0px;
     height: 0px; } }
 
-.Bar-First {
-  margin: 0rem;
-  padding: 0rem; }
-  .Bar-First__col1 {
-    padding: 0rem; }
-  .Bar-First__col2 {
-    padding: 0rem;
-    position: relative; }
-  .Bar-First__banner {
-    width: 100%;
-    float: left;
-    max-width: 100%;
-    height: auto; }
-  .Bar-First__label {
-    width: 300px;
-    font-size: 25px;
-    color: white;
-    background-color: black;
-    opacity: 0.65;
-    position: absolute;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    top: 70%;
-    transform: translateY(-50%); }
-    .Bar-First__label__TextTop {
-      margin-bottom: 10px; }
-    .Bar-First__label__TextBottom {
-      font-weight: bolder; }
-
-.Bar-Second {
-  background-color: var(--color-primary-2);
-  height: 10rem;
-  clip-path: polygon(50% 0%, 100% 0, 100% 50%, 50% 100%, 0% 50%, 0 0); }
-  .Bar-Second__Text {
-    font-size: 4rem;
-    color: var(--color-primary-1); }
-
-@media screen and (max-width: 574px) and (min-width: 300px) {
-  .Bar-Second-Text {
-    font-size: 21.7px; } }
-
-.Bar-Third {
-  background-color: var(--color-grey-light-4);
-  height: 11rem;
-  padding: 0rem; }
-  .Bar-Third__clip {
-    clip-path: polygon(50% 0%, 100% 0, 100% 50%, 50% 100%, 0% 50%, 0 0);
-    background-color: var(--white);
-    margin: 0rem;
-    padding: 0rem; }
-  .Bar-Third__img {
-    height: 5rem;
-    margin: 3rem; }
-
 .Signup {
   display: flex;
   justify-content: center;
@@ -978,6 +923,15 @@ svg {
   margin-right: 5px;
   background-color: white;
   background-size: 100% 100%; }
+
+.TopupKey {
+  padding: 10%;
+  padding-left: 20%;
+  padding-right: 20%;
+  background-color: var(--color-grey-5); }
+  .TopupKey__text {
+    text-align: center;
+    color: var(--color-yellow-1); }
 
 * {
   margin: 0;
