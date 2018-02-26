@@ -884,6 +884,12 @@ svg {
       width: 100%;
       border-radius: 10px;
       border: 3px solid; }
+    .game__slotItems__items {
+      width: 300px;
+      animation-duration: 5s;
+      animation-timing-function: ease;
+      animation-delay: 5.2s;
+      animation-fill-mode: backwards; }
   .game__slotButton {
     display: flex;
     justify-content: center; }
@@ -987,6 +993,27 @@ svg {
   .TopupKey__text {
     text-align: center;
     color: var(--color-yellow-1); }
+
+.User {
+  padding: 2.5%;
+  padding-left: 35%;
+  padding-right: 35%;
+  background-color: var(--color-grey-5);
+  color: var(--color-yellow-1);
+  border: 5px solid #FFCD05; }
+  .User__Label {
+    color: var(--color-yellow-1);
+    display: flex;
+    justify-content: center;
+    font-size: 30px; }
+  .User__logo {
+    width: 25px;
+    height: 25px;
+    margin: 5px; }
+  .User__Phone {
+    display: flex; }
+    .User__Phone__2 {
+      width: 75%; }
 
 * {
   margin: 0;

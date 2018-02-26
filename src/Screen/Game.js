@@ -17,9 +17,9 @@ class Game extends React.Component {
 			slot2: 0,
 			slot3: 0,
 
-			speed1: 50,
-			speed2: 30,
-			speed3: 20,
+			speed1: 100,
+			speed2: 100,
+			speed3: 100,
 
 			itemsdummy1: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 			itemsdummy2: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
@@ -46,7 +46,9 @@ class Game extends React.Component {
 					<div className="game__container2">
 						<div className="game__slotItems">
 							<div className="game__slotItems__box">
+									<div className="game__slotItems__items">
 										<div className={this.state.itemsdummy1[this.state.slot1]} />
+									</div>
 										<div className={this.state.itemsdummy1[this.state.slot2]} />
 										<div className={this.state.itemsdummy1[this.state.slot3]} />
 							</div>
