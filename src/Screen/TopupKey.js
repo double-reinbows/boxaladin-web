@@ -24,11 +24,9 @@ class TopupKey extends React.Component {
 		console.log('Props:', this.props)
 
 		return (
-			<div>
-				<Container>
-					<h1>TopUp</h1>
-					{ this.showForm() }
-				</Container>
+			<div className="TopupKey">
+				<h1 className="TopupKey__text">TopUp</h1>
+				{ this.showForm() }
 			</div>
 		)
 	}
@@ -52,7 +50,7 @@ class TopupKey extends React.Component {
 				</FormGroup>
 
 				<FormGroup>
-					<Button color="primary" type="submit">Topup</Button>
+					<Button color="primary" type="submit" size="lg" block>Topup</Button>
 				</FormGroup>
 			</Form>
 		)
