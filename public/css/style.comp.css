@@ -132,6 +132,7 @@ svg {
     padding: 0rem; }
 
 .ButtonTopUP {
+  cursor: inherit;
   height: 40px;
   width: 200px;
   border: 2px solid #FFCD05;
@@ -145,10 +146,12 @@ svg {
   text-align: center;
   margin-right: 20px; }
   .ButtonTopUP__label {
-    font-size: 18px; }
+    font-size: 18px;
+    cursor: inherit; }
     .ButtonTopUP__label__italic {
       font-size: 18px;
-      font-style: italic; }
+      font-style: italic;
+      cursor: inherit; }
 
 @media (max-width: 767px) {
   .ButtonTopUP {

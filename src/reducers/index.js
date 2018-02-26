@@ -7,6 +7,7 @@ import brandReducer from './brandReducer'
 import transactionReducer from './transactionReducer'
 import keyReducer from './keyReducer'
 import topupReducer from './topupReducer'
+import rewardReducer from './rewardReducer'
 
 var Reducer = combineReducers({
   userReducer,
@@ -15,7 +16,8 @@ var Reducer = combineReducers({
   brandReducer,
   transactionReducer,
   keyReducer,
-  topupReducer
+  topupReducer,
+  rewardReducer,
 })
 
 export default Reducer
