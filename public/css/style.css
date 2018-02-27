@@ -132,6 +132,7 @@ svg {
     padding: 0rem; }
 
 .ButtonTopUP {
+  cursor: inherit;
   height: 40px;
   width: 200px;
   border: 2px solid #FFCD05;
@@ -145,10 +146,12 @@ svg {
   text-align: center;
   margin-right: 20px; }
   .ButtonTopUP__label {
-    font-size: 18px; }
+    font-size: 18px;
+    cursor: inherit; }
     .ButtonTopUP__label__italic {
       font-size: 18px;
-      font-style: italic; }
+      font-style: italic;
+      cursor: inherit; }
 
 @media (max-width: 767px) {
   .ButtonTopUP {
@@ -245,9 +248,10 @@ svg {
   color: var(--color-yellow-1); }
 
 .dropProfile {
-  width: 200px;
-  height: 50px;
-  border-radius: 4px;
+  width: 205px;
+  height: 44px;
+  padding: 0;
+  border-radius: 10px;
   background-color: var(--color-yellow-1); }
   .dropProfile__devide {
     width: 100%;
@@ -257,6 +261,7 @@ svg {
     border: none;
     display: flex; }
   .dropProfile__big {
+    width: 75%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -268,16 +273,16 @@ svg {
     line-height: 11px;
     text-align: center;
     border-right: 2px solid var(--color-grey-5);
-    width: 75%;
-    height: 100%;
     margin: 0rem;
-    padding: 0rem; }
+    padding: 0rem;
+    margin-left: 10px;
+    padding-right: 10px; }
   .dropProfile__small {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--color-yellow-1);
-    width: 25%;
+    width: 16%;
     height: 100%;
     justify-content: center;
     margin: 0rem;
@@ -286,8 +291,8 @@ svg {
     width: 6rem;
     height: 3rem; }
   .dropProfile__iconProfile {
-    width: 1rem;
-    height: 1rem; }
+    width: 55%;
+    height: 20px; }
 
 @media (max-width: 767px) {
   .dropProfile {
@@ -313,61 +318,6 @@ svg {
   .dropProfile__small {
     width: 0px;
     height: 0px; } }
-
-.Bar-First {
-  margin: 0rem;
-  padding: 0rem; }
-  .Bar-First__col1 {
-    padding: 0rem; }
-  .Bar-First__col2 {
-    padding: 0rem;
-    position: relative; }
-  .Bar-First__banner {
-    width: 100%;
-    float: left;
-    max-width: 100%;
-    height: auto; }
-  .Bar-First__label {
-    width: 300px;
-    font-size: 25px;
-    color: white;
-    background-color: black;
-    opacity: 0.65;
-    position: absolute;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    top: 70%;
-    transform: translateY(-50%); }
-    .Bar-First__label__TextTop {
-      margin-bottom: 10px; }
-    .Bar-First__label__TextBottom {
-      font-weight: bolder; }
-
-.Bar-Second {
-  background-color: var(--color-primary-2);
-  height: 10rem;
-  clip-path: polygon(50% 0%, 100% 0, 100% 50%, 50% 100%, 0% 50%, 0 0); }
-  .Bar-Second__Text {
-    font-size: 4rem;
-    color: var(--color-primary-1); }
-
-@media screen and (max-width: 574px) and (min-width: 300px) {
-  .Bar-Second-Text {
-    font-size: 21.7px; } }
-
-.Bar-Third {
-  background-color: var(--color-grey-light-4);
-  height: 11rem;
-  padding: 0rem; }
-  .Bar-Third__clip {
-    clip-path: polygon(50% 0%, 100% 0, 100% 50%, 50% 100%, 0% 50%, 0 0);
-    background-color: var(--white);
-    margin: 0rem;
-    padding: 0rem; }
-  .Bar-Third__img {
-    height: 5rem;
-    margin: 3rem; }
 
 .Signup {
   display: flex;
@@ -1047,51 +997,27 @@ body {
   width: 200px;
   margin: 2rem; }
 
-.DropdownUser {
-  width: 100%;
-  height: 40px;
-  padding: 0rem;
-  padding-left: 15px;
-  border-radius: 10px;
+.DropdownUser__item {
   background-color: #FFCD05;
-  display: flex;
-  align-items: center;
-  color: #3E3E3E;
+  border-radius: 10px;
+  min-width: 205px; }
+
+.DropdownUser__inside {
+  color: #3E3E3E !important;
+  background-color: #FFCD05;
+  height: 50px;
   font-family: Raleway;
   font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin: 10px; }
-  .DropdownUser__icon1 {
-    width: 25px;
-    height: 25px; }
-  .DropdownUser__label {
-    height: 10px;
-    width: 150px;
-    color: #3E3E3E;
+  font-weight: 600; }
+  .DropdownUser__inside:hover {
+    background-color: #FFCD05; }
+  .DropdownUser__inside__link {
     font-family: Raleway;
     font-size: 22px;
     font-weight: 600;
-    line-height: 11px;
-    text-align: center; }
-  .DropdownUser__item {
-    min-width: 0rem;
-    background-color: #FFCD05;
-    border-radius: 10px; }
-  .DropdownUser__inside {
-    border-radius: 10px;
-    height: 50px;
-    min-width: 0rem;
-    background-color: #FFCD05;
-    color: #3E3E3E !important;
-    font-family: Raleway;
-    font-size: 22px;
-    font-weight: 600; }
-    .DropdownUser__inside__link {
-      color: #3E3E3E;
-      font-family: Raleway;
-      font-size: 22px;
-      font-weight: 600; }
+    color: #3E3E3E; }
+    .DropdownUser__inside__link:hover {
+      color: #3E3E3E; }
 
 .dropdownLoginHr {
   border: none;

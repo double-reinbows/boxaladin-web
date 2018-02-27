@@ -4,6 +4,7 @@ import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap'
 import axios from 'axios'
 import Coin from '../../src/asset/Game/coin.svg'
 import { getUser } from '../actions/userAction'
+import { getUserRewards } from '../actions/rewardAction'
 
 class Game extends React.Component {
 	constructor(props) {
@@ -38,7 +39,7 @@ class Game extends React.Component {
 
 		return (
 			<div className="game">
-				`<div className="game__container">
+				<div className="game__container">
 					<div className="game__slotLabel">
 						<h1 className="game__slotLabel__h1">GAMES</h1>
 						<p className="game__slotLabel__paragraph">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
@@ -83,6 +84,7 @@ class Game extends React.Component {
 
 	submitResult(slot1, slot2, slot3) {
 		if (slot1 !== 6 && slot2 !== 6 && slot3 !== 6) {
+			alert('Maaf Anda kurang beruntung.')
 			console.log('Maaf Anda kurang beruntung.')
 		} else {
 
@@ -100,8 +102,10 @@ class Game extends React.Component {
 				}
 			})
 			.then(({data}) => {
+				this.props.getUserRewards()		
 				console.log(data)
-				// this.toggle()
+				alert('Selamat! kamu dapat ' + data.reward.rewardName + '.')
+				this.props.history.push(`/reward/${data.id}`)
 			})
 			.catch(err => console.log(err))
 
@@ -113,18 +117,43 @@ class Game extends React.Component {
 	}
 
 	handleBingo() {
-		if (this.state.slot3 === this.state.itemsdummy3.length-1 && (this.state.slot1 === this.state.slot2 && this.state.slot2 === this.state.slot3) ) {
-			this.setState({ slot3: this.state.slot3 - 6 })
+		if (this.state.slot3 === this.state.itemsdummy3.length - 1 && (this.state.slot1 === this.state.slot2 && this.state.slot2 === this.state.slot3) ) {
+			this.setState({ slot3: this.state.slot3 - (this.state.itemsdummy3.length - 1) })
 		}
 	}
 
 	start() {
-		this.start1()
-		this.start2()
-		this.start3()
+		if (this.props.userInfo.coin <= 0) {
+		
+			alert('Maaf Anda tidak punya coin untuk bermain game.')
+		
+		} else {
 
-		this.setState({ isRunning: true })
-		this.props.getUser()
+			axios({
+				method: 'PUT',
+				url: `http://localhost:3000/users/coin`,
+				headers: {
+					token: localStorage.getItem('token')
+				},
+				data: {
+					coin: this.props.userInfo.coin
+				}
+			})
+			.then(({data}) => {
+				console.log(data)
+				this.props.getUser()
+		})
+			.catch(err => {
+				console.log(err)
+			})
+
+			this.start1()
+			this.start2()
+			this.start3()
+
+			this.setState({ isRunning: true })
+
+		}
 	}
 
 	stop() {
@@ -235,13 +264,15 @@ class Game extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		userInfo: state.userReducer.userInfo
+		userInfo: state.userReducer.userInfo,
+		userRewards: state.rewardReducer.userRewards,
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		getUser: () => dispatch(getUser())
+		getUser: () => dispatch(getUser()),
+		getUserRewards: () => dispatch(getUserRewards())
 	}
 }
 

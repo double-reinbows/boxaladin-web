@@ -10,7 +10,6 @@ import Header from './Screen/Components/Header/Header'
 import Footer from './Screen/Components/Footer'
 
 //page non login
-import LandingPage from './Screen/LandingPage'
 import AboutUs from './Screen/AboutUs'
 import HowItWorks from './Screen/HowItWorks'
 import Product from './Screen/Product'
@@ -33,6 +32,8 @@ import InsertPhone from './Screen/Components/InsertPhone/InsertPhone'
 import Pulsa from './Screen/Pulsa'
 
 import Game from './Screen/Game'
+import Reward from './Screen/Reward'
+import RewardClaim from './Screen/RewardClaim'
 
 class RouteList extends React.Component {
   render() {
@@ -42,7 +43,7 @@ class RouteList extends React.Component {
           <div>
             <Header />
 
-            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/" component={Home} />
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/howitworks" component={HowItWorks} />
 
@@ -55,7 +56,7 @@ class RouteList extends React.Component {
                 localStorage.getItem('token') !== null ? (
                   <User />
                 ) : (
-                  <Redirect to="/landingpage" />
+                  <Redirect to="/home" />
                 )
               }
             />
@@ -79,6 +80,8 @@ class RouteList extends React.Component {
             <Route exact path="/insertphone" component={InsertPhone} />
             <Route exact path="/pulsa" component={Pulsa} />
             <Route exact path="/game" component={ Game } />
+            <Route exact path="/reward" component={ Reward } />
+            <Route exact path="/reward/:id" component={ RewardClaim } />
 
             <Footer/>
           </div>

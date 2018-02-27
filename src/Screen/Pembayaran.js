@@ -50,7 +50,7 @@ class InvoiceDetail extends React.Component {
                 <ul>
                   {this.state.invoice.payment.availableBanks.map((bank, idx) => {
                     return (
-                      <div>
+                      <div key={idx}>
                         <img src={[bank.bank_code]} className="pembayaran__logoBank" alt="logoBank" />
                         <li key={idx}>{bank.bank_code}: {bank.bank_account_number}</li>
                       </div>
