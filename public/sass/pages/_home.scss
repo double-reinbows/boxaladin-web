@@ -13,9 +13,9 @@
   cursor: default;
 }
 
-@media (min-width: 275px ) and (max-width:500px ) {
+@media (min-width: 200px ) and (max-width:500px ) {
   .NavTabsHome{
-    font-size: 14px;
+    font-size: 13px;
   }
 }
 
@@ -106,7 +106,7 @@
 
 // for component dropdown at TabsPane1
     .dropz{
-      width: 12rem;
+      width: 17rem;
       height: 5rem;
       padding: 0rem;
       border: 3px solid #3E3E3E;
