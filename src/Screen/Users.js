@@ -8,6 +8,15 @@ import { Button } from 'reactstrap'
 import { getPhoneNumbers } from '../actions/'
 import { getUser } from '../actions/userAction'
 
+import Logo from '../asset/TabsHome/IconTabs1.svg'
+import IconCoin from '../asset/user/IconCoin.svg'
+import IconEmail from '../asset/user/IconEmail.svg'
+import IconKey from '../asset/user/IconKey.svg'
+import IconPhone from '../asset/user/IconPhone.svg'
+import IconUser from '../asset/user/IconUser.svg'
+import IconCheck from '../asset/user/IconCheck.svg'
+
+
 const customStyles = {
 	overlay : {
     position          : 'absolute',
@@ -54,13 +63,19 @@ class User extends React.Component {
 		console.log('State:', this.state);
 		console.log('Props:', this.props);
 		return (
-			<div>
-				{ this.showDataUser() }
-				{ this.showPhoneModal() }
-				{ this.showAddPhoneModal() }
-				{ this.showChangePhoneModal(this.state.numberToSend) }
-				{ this.showChangePrimaryPhone() }
-				{ this.showChangePrimaryPhoneOTP() }
+			<div className="User">
+				<div className="User__container">
+					<label className="User__Label">
+						User Profile Page
+					</label>
+					{ this.showDataUser() }
+					
+					{ this.showPhoneModal() }
+					{ this.showAddPhoneModal() }
+					{ this.showChangePhoneModal(this.state.numberToSend) }
+					{ this.showChangePrimaryPhone() }
+					{ this.showChangePrimaryPhoneOTP() }
+				</div>
 			</div>
 		)
 	}
@@ -191,7 +206,7 @@ class User extends React.Component {
 								<option value={null}>--Select Number--</option>
 								{this.props.phoneNumbers.filter(phone => {
 									return phone.primary === false && phone.verified === true
-								})
+								}) 
 								.map((phone, idx) => {
 									return (
 										<option key={idx} value={phone.id}>{phone.number}</option>
@@ -326,30 +341,72 @@ class User extends React.Component {
 
 	showPhoneNumbers() {
 		return (
-			<div>
-				<h4>phones: </h4>
-				<ul>
-					{this.props.phoneNumbers !== null ? (
-							this.props.phoneNumbers.map((phone, idx) => {
-								return (
-									<li key={idx}>
-										{phone.number}
-										{phone.verified === false ? (
-											<span><Button onClick={ () => this.requestOTP(phone) } color="success" type="button">verify</Button> <Button type="button" color="secondary" onClick={() => this.changePhone(phone)}>change</Button> <Button type="button" color="danger" onClick={() => this.removePhone(phone)}>remove</Button></span>
-										) : (
-											<span><i style={{ color: "green" }}>verified</i> <Button type="button" color="danger" onClick={() => this.removePhone(phone)}>remove</Button></span>
-										)}
-										{phone.primary === true ? "(primary)" : null}
-									</li>
-								)
-							})
-					) : (
-	          null
-					)}
-				</ul>
-				<Button color="link" onClick={() => this.addPhone()}>Add</Button>
-				<br/>
-				<Button color="link" onClick={() => this.setState({changePrimaryPhoneModal: true})}>Select primary</Button>
+			<div className="User__Phone">
+				<div className="User__Phone__row1">
+					<img src={IconPhone} className="User__show__logo" alt="Logo"/>
+					<label>Your registered phone number</label>
+				</div>
+				<div className="User__Phone__row2">
+					<ul>
+						{this.props.phoneNumbers !== null ? (
+								this.props.phoneNumbers.map((phone, idx) => {
+									return (
+										<li key={idx} className="User__Phone__row2__li">
+											<div className="User__Phone__row2__number">
+												{phone.number}
+											</div>
+											{phone.verified === false ? (
+												<div className="User__Phone__row2__unverify">
+													<div className="User__Phone__row2__unverify__1">
+														<Button onClick={ () => this.requestOTP(phone) } color="success" type="button" className="User__Phone__row2__unverify__1__button1">
+															verify
+														</Button>
+													</div>
+													<div className="User__Phone__row2__unverify__2">
+														<Button type="button" color="secondary" onClick={() => this.changePhone(phone)} className="User__Phone__row2__unverify__2__button2">
+															change
+														</Button>
+													</div>
+													<div className="User__Phone__row2__unverify__3">
+														<Button type="button" color="danger" onClick={() => this.removePhone(phone)} className="User__Phone__row2__unverify__3__button3">
+															remove
+														</Button>
+													</div>
+												</div>
+											) : (
+												<div className="User__Phone__row2__verify">
+													<div className="User__Phone__row2__verify__1">
+														<label className="User__Phone__row2__verify__1__button4" style={{ color: "green" }}>
+															verified
+														</label>
+													</div>
+													<div className="User__Phone__row2__verify__2">
+														<Button type="button" color="danger" onClick={() => this.removePhone(phone)} className="User__Phone__row2__verify__2__button5">
+															remove
+														</Button>
+													</div>
+													<div className="User__Phone__row2__verify__3">
+														{phone.primary === true ? 
+															<img src={IconCheck} className="User__Phone__row2__verify__3__check" alt="Logo"/> 
+														: null}
+													</div>
+												</div>
+											)}
+											
+										</li>
+									)
+								})
+						) : (
+							null
+						)}
+					</ul>
+					
+					<div className="User__Phone__row3">
+						<Button color="success" onClick={() => this.addPhone()} className="User__Phone__row3__button1">Add New Phonenumber</Button>
+						<Button color="danger" onClick={() => this.setState({changePrimaryPhoneModal: true})} className="User__Phone__row3__button2">Select primary Phonenumber</Button>
+					</div>
+
+				</div>
 			</div>
 		)
 	}
@@ -445,10 +502,22 @@ class User extends React.Component {
 		return (
 			<div>
 				<h3>{this.props.userInfo !== null ? this.props.userInfo.first_name : null} {this.props.userInfo !== null ? this.props.userInfo.family_name : null}</h3>
-				<h4>username: {this.props.userInfo !== null ? this.props.userInfo.username : null}</h4>
-				<h4>email: {this.props.userInfo !== null ? this.props.userInfo.email : null}</h4>
-				<h4>aladin key: {this.props.userInfo !== null ? this.props.userInfo.aladinKeys : null}</h4>
-				<h4>coin: {this.props.userInfo !== null ? this.props.userInfo.coin : null}</h4>
+				<div className="User__show">
+					<img src={IconUser} className="User__show__logo" alt="Logo"/>
+					{this.props.userInfo !== null ? this.props.userInfo.username : null}
+				</div>
+				<div className="User__show">
+					<img src={IconEmail} className="User__show__logo" alt="Logo"/> 
+					{this.props.userInfo !== null ? this.props.userInfo.email : null}
+				</div>
+				<div className="User__show">
+					<img src={IconKey} className="User__show__logo" alt="Logo"/>
+					{this.props.userInfo !== null ? this.props.userInfo.aladinKeys : null}
+				</div>
+				<div className="User__show">
+					<img src={IconCoin} className="User__show__logo" alt="Logo"/>
+					{this.props.userInfo !== null ? this.props.userInfo.coin : null}
+				</div>
 				{ this.showPhoneNumbers() }
 			</div>
 		)
