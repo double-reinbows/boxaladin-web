@@ -179,6 +179,61 @@ svg {
     width: 15px;
     height: 25px; }
 
+.ButtonLoginz {
+  width: 205px;
+  height: 44px;
+  padding: 0;
+  border-radius: 10px;
+  background-color: var(--color-yellow-1); }
+  .ButtonLoginz:active {
+    background-color: var(--color-yellow-1); }
+  .ButtonLoginz:hover {
+    background-color: var(--color-yellow-1); }
+  .ButtonLoginz__devide {
+    width: 100%;
+    height: 100%;
+    margin: 0rem;
+    padding: 0rem;
+    border: none;
+    display: flex;
+    outline: none; }
+    .ButtonLoginz__devide:active {
+      border-radius: 10px;
+      background-color: var(--color-yellow-1); }
+  .ButtonLoginz__big {
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-yellow-1);
+    color: var(--color-grey-5);
+    font-family: Raleway;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 11px;
+    text-align: center;
+    border-right: 2px solid var(--color-grey-5);
+    margin: 0rem;
+    padding: 0rem;
+    margin-left: 10px;
+    padding-right: 10px; }
+  .ButtonLoginz__small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-yellow-1);
+    width: 16%;
+    height: 100%;
+    justify-content: center;
+    margin: 0rem;
+    padding: 0rem; }
+  .ButtonLoginz__img {
+    width: 6rem;
+    height: 3rem; }
+  .ButtonLoginz__iconProfile {
+    width: 55%;
+    height: 20px; }
+
 @media (max-width: 767px) {
   .ButtonLoginSignup {
     background-color: transparent;
