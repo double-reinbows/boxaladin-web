@@ -970,51 +970,27 @@ body {
   width: 200px;
   margin: 2rem; }
 
-.DropdownUser {
-  width: 100%;
-  height: 40px;
-  padding: 0rem;
-  padding-left: 15px;
-  border-radius: 10px;
+.DropdownUser__item {
   background-color: #FFCD05;
-  display: flex;
-  align-items: center;
-  color: #3E3E3E;
+  border-radius: 10px;
+  min-width: 205px; }
+
+.DropdownUser__inside {
+  color: #3E3E3E !important;
+  background-color: #FFCD05;
+  height: 50px;
   font-family: Raleway;
   font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin: 10px; }
-  .DropdownUser__icon1 {
-    width: 25px;
-    height: 25px; }
-  .DropdownUser__label {
-    height: 10px;
-    width: 150px;
-    color: #3E3E3E;
+  font-weight: 600; }
+  .DropdownUser__inside:hover {
+    background-color: #FFCD05; }
+  .DropdownUser__inside__link {
     font-family: Raleway;
     font-size: 22px;
     font-weight: 600;
-    line-height: 11px;
-    text-align: center; }
-  .DropdownUser__item {
-    min-width: 0rem;
-    background-color: #FFCD05;
-    border-radius: 10px; }
-  .DropdownUser__inside {
-    border-radius: 10px;
-    height: 50px;
-    min-width: 0rem;
-    background-color: #FFCD05;
-    color: #3E3E3E !important;
-    font-family: Raleway;
-    font-size: 22px;
-    font-weight: 600; }
-    .DropdownUser__inside__link {
-      color: #3E3E3E;
-      font-family: Raleway;
-      font-size: 22px;
-      font-weight: 600; }
+    color: #3E3E3E; }
+    .DropdownUser__inside__link:hover {
+      color: #3E3E3E; }
 
 .dropdownLoginHr {
   border: none;
