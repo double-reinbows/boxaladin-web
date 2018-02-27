@@ -48,7 +48,7 @@ class DropdownUser extends React.Component {
         <DropdownMenu className="DropdownUser__item">
 
           <DropdownItem disabled="true" className="DropdownUser__inside">
-            Hi, Teza
+            Hi, {this.props.userInfo.firstName}
           </DropdownItem>
 
           <DropdownItem className="DropdownUser__inside">
@@ -81,7 +81,7 @@ class DropdownUser extends React.Component {
 
           <DropdownItem divider />
 
-          <DropdownItem className="DropdownUser__inside__link" onClick={() => this.logout()}>
+          <DropdownItem className="DropdownUser__inside" onClick={() => this.logout()}>
             Logout
           </DropdownItem>
 
