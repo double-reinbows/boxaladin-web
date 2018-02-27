@@ -954,25 +954,90 @@ svg {
     color: var(--color-yellow-1); }
 
 .User {
-  padding: 2.5%;
-  padding-left: 35%;
-  padding-right: 35%;
-  background-color: var(--color-grey-5);
-  color: var(--color-yellow-1);
-  border: 5px solid #FFCD05; }
+  background-color: var(--color-grey-5); }
+  .User__container {
+    margin: auto;
+    width: 100%;
+    max-width: 720px;
+    color: var(--color-yellow-1); }
   .User__Label {
-    color: var(--color-yellow-1);
     display: flex;
     justify-content: center;
+    font-size: 40px;
+    color: var(--color-yellow-1);
+    padding: 2.5%; }
+  .User__show {
+    border-bottom: 2px solid #FFCD05;
     font-size: 30px; }
-  .User__logo {
-    width: 25px;
-    height: 25px;
-    margin: 5px; }
+    .User__show__logo {
+      width: 25px;
+      height: 25px;
+      margin-right: 5%; }
   .User__Phone {
-    display: flex; }
-    .User__Phone__2 {
-      width: 75%; }
+    display: flex;
+    flex-direction: column;
+    font-size: 30px; }
+    .User__Phone__row1 {
+      width: 100%; }
+    .User__Phone__row2 {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end; }
+      .User__Phone__row2__li {
+        display: flex;
+        border: orange 4 px solid; }
+      .User__Phone__row2__number {
+        width: 75%;
+        display: flex;
+        justify-content: flex-start; }
+      .User__Phone__row2__unverify {
+        width: 75%;
+        display: flex;
+        justify-content: flex-end; }
+        .User__Phone__row2__unverify__1 {
+          width: 33.3%; }
+          .User__Phone__row2__unverify__1__button1 {
+            width: 100%; }
+        .User__Phone__row2__unverify__2 {
+          width: 33.3%; }
+          .User__Phone__row2__unverify__2__button2 {
+            width: 100%; }
+        .User__Phone__row2__unverify__3 {
+          width: 33.3%; }
+          .User__Phone__row2__unverify__3__button3 {
+            width: 100%; }
+      .User__Phone__row2__verify {
+        width: 75%;
+        display: flex;
+        justify-content: flex-end; }
+        .User__Phone__row2__verify__1 {
+          width: 33.3%; }
+          .User__Phone__row2__verify__1__button4 {
+            width: 100%;
+            text-align: center; }
+        .User__Phone__row2__verify__2 {
+          width: 33.3%; }
+          .User__Phone__row2__verify__2__button5 {
+            width: 100%; }
+        .User__Phone__row2__verify__3 {
+          width: 33.3%;
+          display: flex;
+          justify-content: center;
+          align-items: center; }
+          .User__Phone__row2__verify__3__check {
+            height: 20px; }
+    .User__Phone__row3 {
+      width: 100%;
+      height: 10%;
+      display: flex;
+      justify-content: space-around; }
+      .User__Phone__row3__button1 {
+        width: 40%;
+        margin: 5%; }
+      .User__Phone__row3__button2 {
+        width: 40%;
+        margin: 5%; }
 
 * {
   margin: 0;
@@ -1009,12 +1074,8 @@ body {
 .DropdownUser__item {
   background-color: #FFCD05;
   border-radius: 10px;
-<<<<<<< HEAD
-  min-width: 205px; }
-=======
   min-width: 205px;
   font-family: Raleway; }
->>>>>>> 9f479dc2bf22bed4a4599bb7169f8290a557153c
 
 .DropdownUser__inside {
   color: #3E3E3E !important;
