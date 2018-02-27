@@ -20,13 +20,20 @@ class ModalSignup extends React.Component {
   }
   render() {
       return (
-        <div>
-          <Navbar className="ButtonLoginSignup" onClick={this.toggle}>
-            {this.props.buttonLabel}
-            Signup
-            <hr className="dropdownLoginHr"/>
-            <img src={LoginIcon} alt="LoginIcon" className="ButtonLoginSignup__iconLogin" href="/home"/>
+        <div className="header-margin">
+          <Navbar className="ButtonLoginz" onClick={this.toggle}>
+            <div className="ButtonLoginz__devide">
+              <div className="ButtonLoginz__big">
+                {this.props.buttonLabel}
+                Signup
+              </div>
+
+              <div className="ButtonLoginz__small">
+                <img src={LoginIcon} alt="LoginIcon" className="ButtonLoginz__iconLogin" href="/home"/>
+              </div>
+            </div>
           </Navbar>
+
           <Modal isOpen={this.state.modal} toggle={this.toggle} className="{this.props.className} Modalz" backdrop="static">
             <ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>
             <Signup />

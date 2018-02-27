@@ -235,24 +235,27 @@ svg {
     height: 20px; }
 
 @media (max-width: 767px) {
-  .ButtonLoginSignup {
-    background-color: transparent;
+  .ButtonLoginz {
+    background-color: transparent !important;
+    background: transparent;
     color: var(--color-yellow-1);
-    margin-left: 60px; } }
+    border: none; } }
 
 @media (max-width: 767px) {
-  .ButtonLoginSignup__iconLogin {
+  .ButtonLoginz__big {
+    background-color: transparent !important;
+    background: transparent;
+    color: var(--color-yellow-1);
+    border: none;
+    margin-left: 15px; } }
+
+@media (max-width: 767px) {
+  .ButtonLoginz__small {
     width: 0px;
     height: 0px; } }
 
 @media (max-width: 767px) {
-  .ButtonLogin {
-    background-color: transparent;
-    color: var(--color-yellow-1);
-    margin-left: 60px; } }
-
-@media (max-width: 767px) {
-  .ButtonLogin__iconLogin {
+  .ButtonLoginz__iconLogin {
     width: 0px;
     height: 0px; } }
 
@@ -308,7 +311,8 @@ svg {
   height: 44px;
   padding: 0;
   border-radius: 10px;
-  background-color: var(--color-yellow-1); }
+  background-color: var(--color-yellow-1);
+  margin: 1%; }
   .dropProfile:active {
     background-color: var(--color-yellow-1); }
   .dropProfile:hover {
@@ -374,14 +378,17 @@ svg {
     margin-left: 15px; } }
 
 @media (max-width: 767px) {
-  .dropProfile__iconProfile {
+  .dropProfile__small {
     width: 0px;
     height: 0px; } }
 
 @media (max-width: 767px) {
-  .dropProfile__small {
+  .dropProfile__iconProfile {
     width: 0px;
     height: 0px; } }
+
+.header-margin {
+  margin: 2%; }
 
 .Signup {
   display: flex;

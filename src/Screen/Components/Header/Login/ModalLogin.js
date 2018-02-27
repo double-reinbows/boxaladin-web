@@ -32,7 +32,7 @@ class ModalLogin extends React.Component {
               </div>
 
               <div className="ButtonLoginz__small">
-                <img src={LoginIcon} alt="LoginIcon" className="ButtonLoginSignup__iconLogin" href="/home"/>
+                <img src={LoginIcon} alt="LoginIcon" className="ButtonLoginz__iconLogin" href="/home"/>
               </div>
             </div>
           </Navbar>
