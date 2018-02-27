@@ -946,8 +946,8 @@ svg {
 
 .User {
   padding: 2.5%;
-  padding-left: 35%;
-  padding-right: 35%;
+  padding-left: 20%;
+  padding-right: 20%;
   background-color: var(--color-grey-5);
   color: var(--color-yellow-1);
   border: 5px solid #FFCD05; }
@@ -961,9 +961,20 @@ svg {
     height: 25px;
     margin: 5px; }
   .User__Phone {
-    display: flex; }
+    display: flex;
+    flex-direction: column; }
+    .User__Phone__1 {
+      width: 100%; }
     .User__Phone__2 {
-      width: 75%; }
+      width: 100%;
+      display: flex; }
+    .User__Phone__3 {
+      width: 100%;
+      display: flex; }
+      .User__Phone__3__right {
+        width: 50%; }
+      .User__Phone__3__left {
+        width: 50%; }
 
 * {
   margin: 0;
