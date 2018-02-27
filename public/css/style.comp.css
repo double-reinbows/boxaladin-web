@@ -1009,12 +1009,8 @@ body {
 .DropdownUser__item {
   background-color: #FFCD05;
   border-radius: 10px;
-<<<<<<< HEAD
-  min-width: 205px; }
-=======
   min-width: 205px;
   font-family: Raleway; }
->>>>>>> 9f479dc2bf22bed4a4599bb7169f8290a557153c
 
 .DropdownUser__inside {
   color: #3E3E3E !important;

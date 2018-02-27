@@ -17,7 +17,7 @@ import Product from './Screen/Product'
 //page after login
 import Home from './Screen/Home'
 import EmailVerificationDone from './Screen/EmailVerificationDone'
-import User from './Screen/User'
+import User from './Screen/Users'
 
 //page pembelian
 import Invoice from './Screen/Invoice'
