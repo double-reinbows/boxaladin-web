@@ -349,9 +349,16 @@ class User extends React.Component {
 										<li key={idx}>
 											{phone.number}
 											{phone.verified === false ? (
-												<span><Button onClick={ () => this.requestOTP(phone) } color="success" type="button">verify</Button> <Button type="button" color="secondary" onClick={() => this.changePhone(phone)}>change</Button> <Button type="button" color="danger" onClick={() => this.removePhone(phone)}>remove</Button></span>
+												<span>
+													<Button onClick={ () => this.requestOTP(phone) } color="success" type="button">verify</Button>
+													<Button type="button" color="secondary" onClick={() => this.changePhone(phone)}>change</Button>
+													<Button type="button" color="danger" onClick={() => this.removePhone(phone)}>remove</Button>
+												</span>
 											) : (
-												<span><i style={{ color: "green" }}>verified</i> <Button type="button" color="danger" onClick={() => this.removePhone(phone)}>remove</Button></span>
+												<span>
+													<i style={{ color: "green" }}>verified</i>
+													<Button type="button" color="danger" onClick={() => this.removePhone(phone)}>remove</Button>
+												</span>
 											)}
 											{phone.primary === true ? "(primary)" : null}
 										</li>
