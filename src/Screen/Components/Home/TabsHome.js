@@ -86,7 +86,7 @@ class Example extends React.Component {
                 </div>
 
                 <div className="TabsPane1__dropdown">
-                  <DropdownIndosat className="TabsPane1__dropdown__content"/>
+                  <DropdownIndosat />
                   <DropdownTelkomsel className="TabsPane1__dropdown__content"/>
                   <DropdownXL className="TabsPane1__dropdown__content"/>
                   <DropdownTri className="TabsPane1__dropdown__content"/>
