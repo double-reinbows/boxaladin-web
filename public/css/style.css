@@ -89,10 +89,17 @@
       font-size: 14px;
       font-weight: 800;
       line-height: 16px; }
+    .footerz__Bot__label {
+      text-align: center; }
 
 @media (min-width: 100px) and (max-width: 396px) {
   .footerz__Top__Right__devide {
     display: block; } }
+
+@media (max-width: 767px) {
+  .footerz__bot {
+    padding-left: 5%;
+    padding-right: 5%; } }
 
 .LogoFooter {
   width: 240px;
@@ -117,9 +124,6 @@
 
 ul {
   list-style-type: none; }
-
-svg {
-  fill: blue; }
 
 .HeaderTop {
   background-color: #3E3E3E;
