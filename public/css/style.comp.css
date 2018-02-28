@@ -159,101 +159,93 @@ svg {
     border: transparent;
     box-shadow: none; } }
 
-.ButtonLoginSignup {
-  cursor: pointer;
-  height: 40px;
+.ButtonLoginz {
+  width: 205px;
+  height: 44px;
+  padding: 0;
   border-radius: 10px;
-  background-color: #FFCD05;
-  display: flex;
-  align-items: center;
-  color: #3E3E3E;
-  font-family: Raleway;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin: 10px; }
-  .ButtonLoginSignup__iconLogin {
-    width: 17px;
-    height: 25px; }
-  .ButtonLoginSignup__iconProfile {
-    width: 15px;
-    height: 25px; }
-
-@media (max-width: 767px) {
-  .ButtonLoginSignup {
-    background-color: transparent;
-    color: var(--color-yellow-1);
-    margin-left: 60px; } }
-
-@media (max-width: 767px) {
-  .ButtonLoginSignup__iconLogin {
-    width: 0px;
-    height: 0px; } }
-
-@media (max-width: 767px) {
-  .ButtonLogin {
-    background-color: transparent;
-    color: var(--color-yellow-1);
-    margin-left: 60px; } }
-
-@media (max-width: 767px) {
-  .ButtonLogin__iconLogin {
-    width: 0px;
-    height: 0px; } }
-
-.ButtonSignup {
-  cursor: default;
-  height: 40px;
-  border-radius: 10px;
-  background-color: #FFCD05;
-  display: flex;
-  align-items: center;
-  color: #3E3E3E;
-  font-family: Raleway;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin: 10px; }
-  .ButtonSignup__iconLogin {
-    width: 17px;
-    height: 25px; }
-  .ButtonSignup__P {
-    padding-top: 20px; }
-
-@media (max-width: 767px) {
-  .ButtonSignup__iconLogin {
-    width: 0px;
-    height: 0px; } }
-
-@media (max-width: 767px) {
-  .ButtonSignup {
-    background-color: transparent;
-    color: var(--color-yellow-1);
-    margin-left: 60px; } }
-
-@media (max-width: 767px) {
-  .ButtonLogin {
-    background-color: transparent;
-    color: var(--color-yellow-1);
-    margin-left: 60px; } }
-
-@media (max-width: 767px) {
-  .ButtonLogin__iconLogin {
-    width: 0px;
-    height: 0px; } }
-
-.IconBurger {
   background-color: var(--color-yellow-1); }
+  .ButtonLoginz:active {
+    background-color: var(--color-yellow-1); }
+  .ButtonLoginz:hover {
+    background-color: var(--color-yellow-1); }
+  .ButtonLoginz__devide {
+    width: 100%;
+    height: 100%;
+    margin: 0rem;
+    padding: 0rem;
+    border: none;
+    display: flex;
+    outline: none; }
+    .ButtonLoginz__devide:active {
+      border-radius: 10px;
+      background-color: var(--color-yellow-1); }
+  .ButtonLoginz__big {
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-yellow-1);
+    color: var(--color-grey-5);
+    font-family: Raleway;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 11px;
+    text-align: center;
+    border-right: 2px solid var(--color-grey-5);
+    margin: 0rem;
+    padding: 0rem;
+    margin-left: 10px;
+    padding-right: 10px; }
+  .ButtonLoginz__small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-yellow-1);
+    width: 16%;
+    height: 100%;
+    justify-content: center;
+    margin: 0rem;
+    padding: 0rem; }
+  .ButtonLoginz__img {
+    width: 6rem;
+    height: 3rem; }
+  .ButtonLoginz__iconLogin {
+    width: 50%;
+    height: 50%; }
 
-.lupapass {
-  color: var(--color-yellow-1); }
+@media (max-width: 767px) {
+  .ButtonLoginz {
+    background-color: transparent !important;
+    background: transparent;
+    color: var(--color-yellow-1);
+    border: none; } }
+
+@media (max-width: 767px) {
+  .ButtonLoginz__big {
+    background-color: transparent !important;
+    background: transparent;
+    color: var(--color-yellow-1);
+    border: none;
+    margin-left: 15px; } }
+
+@media (max-width: 767px) {
+  .ButtonLoginz__small {
+    width: 0px;
+    height: 0px; } }
+
+@media (max-width: 767px) {
+  .ButtonLoginz__iconLogin {
+    width: 0px;
+    height: 0px; } }
 
 .dropProfile {
   width: 205px;
   height: 44px;
   padding: 0;
   border-radius: 10px;
-  background-color: var(--color-yellow-1); }
+  background-color: var(--color-yellow-1);
+  margin: 1%; }
   .dropProfile:active {
     background-color: var(--color-yellow-1); }
   .dropProfile:hover {
@@ -319,14 +311,27 @@ svg {
     margin-left: 15px; } }
 
 @media (max-width: 767px) {
-  .dropProfile__iconProfile {
+  .dropProfile__small {
     width: 0px;
     height: 0px; } }
 
 @media (max-width: 767px) {
-  .dropProfile__small {
+  .dropProfile__iconProfile {
     width: 0px;
     height: 0px; } }
+
+.IconBurger {
+  background-color: var(--color-yellow-1); }
+
+.lupapass {
+  color: var(--color-yellow-1); }
+
+.header-margin {
+  margin: 2%; }
+
+@media (max-width: 767px) {
+  .header-margin {
+    margin: 0%; } }
 
 .Signup {
   display: flex;
@@ -954,25 +959,90 @@ svg {
     color: var(--color-yellow-1); }
 
 .User {
-  padding: 2.5%;
-  padding-left: 35%;
-  padding-right: 35%;
-  background-color: var(--color-grey-5);
-  color: var(--color-yellow-1);
-  border: 5px solid #FFCD05; }
+  background-color: var(--color-grey-5); }
+  .User__container {
+    margin: auto;
+    width: 100%;
+    max-width: 720px;
+    color: var(--color-yellow-1); }
   .User__Label {
-    color: var(--color-yellow-1);
     display: flex;
     justify-content: center;
+    font-size: 40px;
+    color: var(--color-yellow-1);
+    padding: 2.5%; }
+  .User__show {
+    border-bottom: 2px solid #FFCD05;
     font-size: 30px; }
-  .User__logo {
-    width: 25px;
-    height: 25px;
-    margin: 5px; }
+    .User__show__logo {
+      width: 25px;
+      height: 25px;
+      margin-right: 5%; }
   .User__Phone {
-    display: flex; }
-    .User__Phone__2 {
-      width: 75%; }
+    display: flex;
+    flex-direction: column;
+    font-size: 30px; }
+    .User__Phone__row1 {
+      width: 100%; }
+    .User__Phone__row2 {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end; }
+      .User__Phone__row2__li {
+        display: flex;
+        border: orange 4 px solid; }
+      .User__Phone__row2__number {
+        width: 75%;
+        display: flex;
+        justify-content: flex-start; }
+      .User__Phone__row2__unverify {
+        width: 75%;
+        display: flex;
+        justify-content: flex-end; }
+        .User__Phone__row2__unverify__1 {
+          width: 33.3%; }
+          .User__Phone__row2__unverify__1__button1 {
+            width: 100%; }
+        .User__Phone__row2__unverify__2 {
+          width: 33.3%; }
+          .User__Phone__row2__unverify__2__button2 {
+            width: 100%; }
+        .User__Phone__row2__unverify__3 {
+          width: 33.3%; }
+          .User__Phone__row2__unverify__3__button3 {
+            width: 100%; }
+      .User__Phone__row2__verify {
+        width: 75%;
+        display: flex;
+        justify-content: flex-end; }
+        .User__Phone__row2__verify__1 {
+          width: 33.3%; }
+          .User__Phone__row2__verify__1__button4 {
+            width: 100%;
+            text-align: center; }
+        .User__Phone__row2__verify__2 {
+          width: 33.3%; }
+          .User__Phone__row2__verify__2__button5 {
+            width: 100%; }
+        .User__Phone__row2__verify__3 {
+          width: 33.3%;
+          display: flex;
+          justify-content: center;
+          align-items: center; }
+          .User__Phone__row2__verify__3__check {
+            height: 20px; }
+    .User__Phone__row3 {
+      width: 100%;
+      height: 10%;
+      display: flex;
+      justify-content: space-around; }
+      .User__Phone__row3__button1 {
+        width: 40%;
+        margin: 5%; }
+      .User__Phone__row3__button2 {
+        width: 40%;
+        margin: 5%; }
 
 * {
   margin: 0;
@@ -1028,36 +1098,6 @@ body {
     color: #3E3E3E; }
     .DropdownUser__inside__link:hover {
       color: #3E3E3E; }
-
-.dropdownLoginHr {
-  border: none;
-  border-left: 1px solid black;
-  height: 40px;
-  width: 1px;
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-right: 9px;
-  margin-left: 31px; }
-
-@media (max-width: 767px) {
-  .dropdownLoginHr {
-    width: 0px;
-    height: 0px; } }
-
-.dropdownProfileHr {
-  border: none;
-  border-left: 1px solid black;
-  height: 39px;
-  width: 1px;
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-right: 11px;
-  margin-left: 20px; }
-
-@media (max-width: 767px) {
-  .dropdownProfileHr {
-    width: 0px;
-    height: 0px; } }
 
 .ModalTop {
   border-bottom: none;

@@ -48,145 +48,13 @@
 }
 
 //Botton for user login
-.ButtonLoginSignup{
-  cursor: pointer;
-  height: 40px;
-  border-radius: 10px;
-  background-color: #FFCD05;
-  display: flex;
-  align-items: center;
-
-  color: #3E3E3E;
-  font-family: Raleway;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin: 10px;
-
-  &__iconLogin{
-    width: 17px;
-    height: 25px;
-  }
-  &__iconProfile{
-    width: 15px;
-    height: 25px;
-  }
-}
-
-//media query resposive header for button login
-@media (max-width: 767px)  {
-  .ButtonLoginSignup {
-    background-color: transparent;
-    color: var(--color-yellow-1);
-    margin-left: 60px;
-  }
-}
-
-//media query resposive header for icon inside button login
-@media (max-width: 767px)  {
-  .ButtonLoginSignup__iconLogin{
-    width: 0px;
-    height: 0px;
-  }
-}
-
-
-@media (max-width: 767px)  {
-  .ButtonLogin {
-    background-color: transparent;
-    color: var(--color-yellow-1);
-    margin-left: 60px;
-  }
-}
-
-@media (max-width: 767px)  {
-  .ButtonLogin__iconLogin{
-    width: 0px;
-    height: 0px;
-  }
-}
-
-
-.ButtonSignup{
-  cursor: default;
-  height: 40px;
-  border-radius: 10px;
-  background-color: #FFCD05;
-  display: flex;
-  align-items: center;
-
-  color: #3E3E3E;
-  font-family: Raleway;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin: 10px;
-
-  &__iconLogin{
-    width: 17px;
-    height: 25px;
-  }
-
-  &__P{
-    padding-top: 20px;
-  }
-}
-
-@media (max-width: 767px)  {
-  .ButtonSignup__iconLogin{
-    width: 0px;
-    height: 0px;
-  }
-}
-
-@media (max-width: 767px)  {
-  .ButtonSignup {
-    background-color: transparent;
-    color: var(--color-yellow-1);
-    margin-left: 60px;
-  }
-}
-
-
-//media query resposive header for button login
-@media (max-width: 767px)  {
-  .ButtonLogin {
-    background-color: transparent;
-    color: var(--color-yellow-1);
-    margin-left: 60px;
-  }
-}
-
-//media query resposive header for icon inside button login
-@media (max-width: 767px)  {
-  .ButtonLogin__iconLogin{
-    width: 0px;
-    height: 0px;
-  }
-}
-
-//Button for navgar toggle
-.IconBurger{
-  background-color: var(--color-yellow-1);
-}
-
-//link lupa password
-.lupapass{
-    color: var(--color-yellow-1);
-}
-
-.dropProfile{
+.ButtonHeader{
   width: 205px;
   height: 44px;
   padding: 0;
   border-radius: 10px;
   background-color: var(--color-yellow-1);
-  &:active{
-    background-color: var(--color-yellow-1);
-  }
-  &:hover{
-    background-color: var(--color-yellow-1);
-  } 
+  
   &__devide{
     width: 100%;
     height: 100%;
@@ -235,15 +103,14 @@
     width: 6rem;
     height: 3rem;
   }
-  &__iconProfile{
-    width: 55%;
-    height: 20px;
+  &__iconLogin{
+    width: 50%;
+    height: 50%;
   }
-
 }
 
 @media (max-width: 767px)  {
-  .dropProfile {
+  .ButtonHeader {
     background-color: transparent !important;
     background: transparent;
     color: var(--color-yellow-1);
@@ -252,7 +119,7 @@
 }
 
 @media (max-width: 767px)  {
-  .dropProfile__big {
+  .ButtonHeader__big {
     background-color: transparent !important;
     background: transparent;
     color: var(--color-yellow-1);
@@ -262,15 +129,35 @@
 }
 
 @media (max-width: 767px)  {
-  .dropProfile__iconProfile{
+  .ButtonHeader__small{
     width: 0px;
     height: 0px;
   }
 }
 
 @media (max-width: 767px)  {
-  .dropProfile__small{
+  .ButtonHeader__iconLogin{
     width: 0px;
     height: 0px;
+  }
+}
+
+//Button for navgar toggle
+.IconBurger{
+  background-color: var(--color-yellow-1);
+}
+
+//link lupa password
+.lupapass{
+    color: var(--color-yellow-1);
+}
+
+.header-margin{
+  margin: 2%;
+}
+
+@media (max-width: 767px)  {
+  .header-margin{
+    margin: 0%;
   }
 }

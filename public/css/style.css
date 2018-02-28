@@ -159,106 +159,13 @@ svg {
     border: transparent;
     box-shadow: none; } }
 
-.ButtonLoginSignup {
-  cursor: pointer;
-  height: 40px;
-  border-radius: 10px;
-  background-color: #FFCD05;
-  display: flex;
-  align-items: center;
-  color: #3E3E3E;
-  font-family: Raleway;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin: 10px; }
-  .ButtonLoginSignup__iconLogin {
-    width: 17px;
-    height: 25px; }
-  .ButtonLoginSignup__iconProfile {
-    width: 15px;
-    height: 25px; }
-
-@media (max-width: 767px) {
-  .ButtonLoginSignup {
-    background-color: transparent;
-    color: var(--color-yellow-1);
-    margin-left: 60px; } }
-
-@media (max-width: 767px) {
-  .ButtonLoginSignup__iconLogin {
-    width: 0px;
-    height: 0px; } }
-
-@media (max-width: 767px) {
-  .ButtonLogin {
-    background-color: transparent;
-    color: var(--color-yellow-1);
-    margin-left: 60px; } }
-
-@media (max-width: 767px) {
-  .ButtonLogin__iconLogin {
-    width: 0px;
-    height: 0px; } }
-
-.ButtonSignup {
-  cursor: default;
-  height: 40px;
-  border-radius: 10px;
-  background-color: #FFCD05;
-  display: flex;
-  align-items: center;
-  color: #3E3E3E;
-  font-family: Raleway;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin: 10px; }
-  .ButtonSignup__iconLogin {
-    width: 17px;
-    height: 25px; }
-  .ButtonSignup__P {
-    padding-top: 20px; }
-
-@media (max-width: 767px) {
-  .ButtonSignup__iconLogin {
-    width: 0px;
-    height: 0px; } }
-
-@media (max-width: 767px) {
-  .ButtonSignup {
-    background-color: transparent;
-    color: var(--color-yellow-1);
-    margin-left: 60px; } }
-
-@media (max-width: 767px) {
-  .ButtonLogin {
-    background-color: transparent;
-    color: var(--color-yellow-1);
-    margin-left: 60px; } }
-
-@media (max-width: 767px) {
-  .ButtonLogin__iconLogin {
-    width: 0px;
-    height: 0px; } }
-
-.IconBurger {
-  background-color: var(--color-yellow-1); }
-
-.lupapass {
-  color: var(--color-yellow-1); }
-
-.dropProfile {
+.ButtonHeader {
   width: 205px;
   height: 44px;
   padding: 0;
   border-radius: 10px;
   background-color: var(--color-yellow-1); }
-  .dropProfile:active {
-    background-color: var(--color-yellow-1); }
-  .dropProfile:hover {
-    background-color: var(--color-yellow-1); }
-  .dropProfile__devide {
+  .ButtonHeader__devide {
     width: 100%;
     height: 100%;
     margin: 0rem;
@@ -266,10 +173,10 @@ svg {
     border: none;
     display: flex;
     outline: none; }
-    .dropProfile__devide:active {
+    .ButtonHeader__devide:active {
       border-radius: 10px;
       background-color: var(--color-yellow-1); }
-  .dropProfile__big {
+  .ButtonHeader__big {
     width: 75%;
     display: flex;
     justify-content: center;
@@ -286,7 +193,7 @@ svg {
     padding: 0rem;
     margin-left: 10px;
     padding-right: 10px; }
-  .dropProfile__small {
+  .ButtonHeader__small {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -296,22 +203,22 @@ svg {
     justify-content: center;
     margin: 0rem;
     padding: 0rem; }
-  .dropProfile__img {
+  .ButtonHeader__img {
     width: 6rem;
     height: 3rem; }
-  .dropProfile__iconProfile {
-    width: 55%;
-    height: 20px; }
+  .ButtonHeader__iconLogin {
+    width: 50%;
+    height: 50%; }
 
 @media (max-width: 767px) {
-  .dropProfile {
+  .ButtonHeader {
     background-color: transparent !important;
     background: transparent;
     color: var(--color-yellow-1);
     border: none; } }
 
 @media (max-width: 767px) {
-  .dropProfile__big {
+  .ButtonHeader__big {
     background-color: transparent !important;
     background: transparent;
     color: var(--color-yellow-1);
@@ -319,14 +226,27 @@ svg {
     margin-left: 15px; } }
 
 @media (max-width: 767px) {
-  .dropProfile__iconProfile {
+  .ButtonHeader__small {
     width: 0px;
     height: 0px; } }
 
 @media (max-width: 767px) {
-  .dropProfile__small {
+  .ButtonHeader__iconLogin {
     width: 0px;
     height: 0px; } }
+
+.IconBurger {
+  background-color: var(--color-yellow-1); }
+
+.lupapass {
+  color: var(--color-yellow-1); }
+
+.header-margin {
+  margin: 2%; }
+
+@media (max-width: 767px) {
+  .header-margin {
+    margin: 0%; } }
 
 .Signup {
   display: flex;
@@ -606,7 +526,8 @@ svg {
   border: 1px solid #979797; }
   .TabsHome:hover {
     color: black;
-    background-color: var(--color-yellow-1); }
+    background-color: var(--color-yellow-1);
+    border: 1px solid #979797; }
   .TabsHome__icon1 {
     height: 40px;
     width: 20px; }
@@ -1093,36 +1014,6 @@ body {
     color: #3E3E3E; }
     .DropdownUser__inside__link:hover {
       color: #3E3E3E; }
-
-.dropdownLoginHr {
-  border: none;
-  border-left: 1px solid black;
-  height: 40px;
-  width: 1px;
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-right: 9px;
-  margin-left: 31px; }
-
-@media (max-width: 767px) {
-  .dropdownLoginHr {
-    width: 0px;
-    height: 0px; } }
-
-.dropdownProfileHr {
-  border: none;
-  border-left: 1px solid black;
-  height: 39px;
-  width: 1px;
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-right: 11px;
-  margin-left: 20px; }
-
-@media (max-width: 767px) {
-  .dropdownProfileHr {
-    width: 0px;
-    height: 0px; } }
 
 .ModalTop {
   border-bottom: none;

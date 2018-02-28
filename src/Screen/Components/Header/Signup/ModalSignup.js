@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, ModalHeader, Navbar } from 'reactstrap';
+import { Modal, ModalHeader, Navbar, Button } from 'reactstrap';
 import LoginIcon from '../../../../asset/Login/login.svg'
 import Signup from './Signup'
 
@@ -20,13 +20,20 @@ class ModalSignup extends React.Component {
   }
   render() {
       return (
-        <div>
-          <Navbar className="ButtonLoginSignup" onClick={this.toggle}>
-            {this.props.buttonLabel}
-            Signup
-            <hr className="dropdownLoginHr"/>
-            <img src={LoginIcon} alt="LoginIcon" className="ButtonLoginSignup__iconLogin" href="/home"/>
-          </Navbar>
+        <div className="header-margin">
+          <Button className="ButtonHeader" onClick={this.toggle}>
+            <div className="ButtonHeader__devide">
+              <div className="ButtonHeader__big">
+                {this.props.buttonLabel}
+                Signup
+              </div>
+
+              <div className="ButtonHeader__small">
+                <img src={LoginIcon} alt="LoginIcon" className="ButtonHeader__iconLogin" href="/home"/>
+              </div>
+            </div>
+          </Button>
+
           <Modal isOpen={this.state.modal} toggle={this.toggle} className="{this.props.className} Modalz" backdrop="static">
             <ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>
             <Signup />
