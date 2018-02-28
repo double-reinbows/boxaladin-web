@@ -146,6 +146,9 @@ svg {
   line-height: 21px;
   text-align: center;
   margin-right: 20px; }
+  .ButtonTopUP:hover {
+    background-color: #FFCD05;
+    color: #3E3E3E; }
   .ButtonTopUP__label {
     font-size: 18px;
     cursor: inherit; }
