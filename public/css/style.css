@@ -159,26 +159,6 @@ svg {
     border: transparent;
     box-shadow: none; } }
 
-.ButtonLoginSignup {
-  cursor: pointer;
-  height: 40px;
-  border-radius: 10px;
-  background-color: #FFCD05;
-  display: flex;
-  align-items: center;
-  color: #3E3E3E;
-  font-family: Raleway;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin: 10px; }
-  .ButtonLoginSignup__iconLogin {
-    width: 17px;
-    height: 25px; }
-  .ButtonLoginSignup__iconProfile {
-    width: 15px;
-    height: 25px; }
-
 .ButtonLoginz {
   width: 205px;
   height: 44px;
@@ -230,9 +210,9 @@ svg {
   .ButtonLoginz__img {
     width: 6rem;
     height: 3rem; }
-  .ButtonLoginz__iconProfile {
-    width: 55%;
-    height: 20px; }
+  .ButtonLoginz__iconLogin {
+    width: 50%;
+    height: 50%; }
 
 @media (max-width: 767px) {
   .ButtonLoginz {
@@ -258,53 +238,6 @@ svg {
   .ButtonLoginz__iconLogin {
     width: 0px;
     height: 0px; } }
-
-.ButtonSignup {
-  cursor: default;
-  height: 40px;
-  border-radius: 10px;
-  background-color: #FFCD05;
-  display: flex;
-  align-items: center;
-  color: #3E3E3E;
-  font-family: Raleway;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin: 10px; }
-  .ButtonSignup__iconLogin {
-    width: 17px;
-    height: 25px; }
-  .ButtonSignup__P {
-    padding-top: 20px; }
-
-@media (max-width: 767px) {
-  .ButtonSignup__iconLogin {
-    width: 0px;
-    height: 0px; } }
-
-@media (max-width: 767px) {
-  .ButtonSignup {
-    background-color: transparent;
-    color: var(--color-yellow-1);
-    margin-left: 60px; } }
-
-@media (max-width: 767px) {
-  .ButtonLogin {
-    background-color: transparent;
-    color: var(--color-yellow-1);
-    margin-left: 60px; } }
-
-@media (max-width: 767px) {
-  .ButtonLogin__iconLogin {
-    width: 0px;
-    height: 0px; } }
-
-.IconBurger {
-  background-color: var(--color-yellow-1); }
-
-.lupapass {
-  color: var(--color-yellow-1); }
 
 .dropProfile {
   width: 205px;
@@ -387,8 +320,18 @@ svg {
     width: 0px;
     height: 0px; } }
 
+.IconBurger {
+  background-color: var(--color-yellow-1); }
+
+.lupapass {
+  color: var(--color-yellow-1); }
+
 .header-margin {
   margin: 2%; }
+
+@media (max-width: 767px) {
+  .header-margin {
+    margin: 0%; } }
 
 .Signup {
   display: flex;
@@ -668,7 +611,8 @@ svg {
   border: 1px solid #979797; }
   .TabsHome:hover {
     color: black;
-    background-color: var(--color-yellow-1); }
+    background-color: var(--color-yellow-1);
+    border: 1px solid #979797; }
   .TabsHome__icon1 {
     height: 40px;
     width: 20px; }
@@ -1155,36 +1099,6 @@ body {
     color: #3E3E3E; }
     .DropdownUser__inside__link:hover {
       color: #3E3E3E; }
-
-.dropdownLoginHr {
-  border: none;
-  border-left: 1px solid black;
-  height: 40px;
-  width: 1px;
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-right: 9px;
-  margin-left: 31px; }
-
-@media (max-width: 767px) {
-  .dropdownLoginHr {
-    width: 0px;
-    height: 0px; } }
-
-.dropdownProfileHr {
-  border: none;
-  border-left: 1px solid black;
-  height: 39px;
-  width: 1px;
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-right: 11px;
-  margin-left: 20px; }
-
-@media (max-width: 767px) {
-  .dropdownProfileHr {
-    width: 0px;
-    height: 0px; } }
 
 .ModalTop {
   border-bottom: none;

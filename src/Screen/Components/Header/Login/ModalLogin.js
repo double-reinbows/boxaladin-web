@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Modal, ModalHeader, Navbar } from 'reactstrap';
+import { Modal, ModalHeader, Navbar, Button } from 'reactstrap';
 import { connect } from 'react-redux'
 
 import LoginIcon from '../../../../asset/Login/login.svg'
@@ -23,8 +23,8 @@ class ModalLogin extends React.Component {
   }
   render() {
       return (
-        <div>
-          <Navbar className="ButtonLoginz" onClick={this.toggle}>
+        <div className="header-margin">
+          <Button className="ButtonLoginz" onClick={this.toggle}>
             <div className="ButtonLoginz__devide">
               <div className="ButtonLoginz__big">
                 {this.props.buttonLabel}
@@ -35,7 +35,7 @@ class ModalLogin extends React.Component {
                 <img src={LoginIcon} alt="LoginIcon" className="ButtonLoginz__iconLogin" href="/home"/>
               </div>
             </div>
-          </Navbar>
+          </Button>
           <Modal isOpen={this.state.modal} toggle={this.toggle} className="{this.props.className} Modalz" backdrop="static">
             <ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>
             <Login />
