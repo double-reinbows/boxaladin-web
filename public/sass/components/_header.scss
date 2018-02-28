@@ -48,18 +48,13 @@
 }
 
 //Botton for user login
-.ButtonLoginz{
+.ButtonHeader{
   width: 205px;
   height: 44px;
   padding: 0;
   border-radius: 10px;
   background-color: var(--color-yellow-1);
-  &:active{
-    background-color: var(--color-yellow-1);
-  }
-  &:hover{
-    background-color: var(--color-yellow-1);
-  } 
+  
   &__devide{
     width: 100%;
     height: 100%;
@@ -115,7 +110,7 @@
 }
 
 @media (max-width: 767px)  {
-  .ButtonLoginz {
+  .ButtonHeader {
     background-color: transparent !important;
     background: transparent;
     color: var(--color-yellow-1);
@@ -124,109 +119,7 @@
 }
 
 @media (max-width: 767px)  {
-  .ButtonLoginz__big {
-    background-color: transparent !important;
-    background: transparent;
-    color: var(--color-yellow-1);
-    border: none;
-    margin-left: 15px;
-  }
-}
-
-@media (max-width: 767px)  {
-  .ButtonLoginz__small{
-    width: 0px;
-    height: 0px;
-  }
-}
-
-@media (max-width: 767px)  {
-  .ButtonLoginz__iconLogin{
-    width: 0px;
-    height: 0px;
-  }
-}
-
-.dropProfile{
-  width: 205px;
-  height: 44px;
-  padding: 0;
-  border-radius: 10px;
-  background-color: var(--color-yellow-1);
-  margin: 1%;
-
-  &:active{
-    background-color: var(--color-yellow-1);
-  }
-  &:hover{
-    background-color: var(--color-yellow-1);
-  } 
-  &__devide{
-    width: 100%;
-    height: 100%;
-    margin: 0rem;
-    padding: 0rem;
-    border: none;
-    display: flex;
-    outline: none;
-    &:active{
-      border-radius: 10px;
-      background-color: var(--color-yellow-1);
-    }
-  }
-
-  &__big{
-    width: 75%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-yellow-1);
-    color: var(--color-grey-5);
-    font-family: Raleway;
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 11px;
-    text-align: center;
-    border-right: 2px solid var(--color-grey-5);
-    margin: 0rem;
-    padding: 0rem;
-    margin-left: 10px;
-    padding-right: 10px;
-  }
-
-  &__small{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-yellow-1);
-    width: 16%;
-    height: 100%;
-    justify-content: center;
-    margin: 0rem;
-    padding: 0rem;
-  }
-  &__img{
-    width: 6rem;
-    height: 3rem;
-  }
-  &__iconProfile{
-    width: 55%;
-    height: 20px;
-  }
-
-}
-
-@media (max-width: 767px)  {
-  .dropProfile {
-    background-color: transparent !important;
-    background: transparent;
-    color: var(--color-yellow-1);
-    border: none;
-  }
-}
-
-@media (max-width: 767px)  {
-  .dropProfile__big {
+  .ButtonHeader__big {
     background-color: transparent !important;
     background: transparent;
     color: var(--color-yellow-1);
@@ -236,19 +129,18 @@
 }
 
 @media (max-width: 767px)  {
-  .dropProfile__small{
+  .ButtonHeader__small{
     width: 0px;
     height: 0px;
   }
 }
 
 @media (max-width: 767px)  {
-  .dropProfile__iconProfile{
+  .ButtonHeader__iconLogin{
     width: 0px;
     height: 0px;
   }
 }
-
 
 //Button for navgar toggle
 .IconBurger{

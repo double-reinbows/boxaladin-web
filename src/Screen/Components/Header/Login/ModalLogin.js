@@ -24,15 +24,15 @@ class ModalLogin extends React.Component {
   render() {
       return (
         <div className="header-margin">
-          <Button className="ButtonLoginz" onClick={this.toggle}>
-            <div className="ButtonLoginz__devide">
-              <div className="ButtonLoginz__big">
+          <Button className="ButtonHeader" onClick={this.toggle}>
+            <div className="ButtonHeader__devide">
+              <div className="ButtonHeader__big">
                 {this.props.buttonLabel}
                 Login
               </div>
 
-              <div className="ButtonLoginz__small">
-                <img src={LoginIcon} alt="LoginIcon" className="ButtonLoginz__iconLogin" href="/home"/>
+              <div className="ButtonHeader__small">
+                <img src={LoginIcon} alt="LoginIcon" className="ButtonHeader__iconLogin" href="/home"/>
               </div>
             </div>
           </Button>
