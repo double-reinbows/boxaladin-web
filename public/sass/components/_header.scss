@@ -13,6 +13,27 @@
     }
 }
 
+//Button for navgar toggle
+.IconBurger{
+  background-color: var(--color-yellow-1);
+}
+
+//link lupa password
+.lupapass{
+    color: var(--color-yellow-1);
+}
+
+.header-margin{
+  margin: 2%;
+}
+
+@media (max-width: 767px)  {
+  .header-margin{
+    margin: 0%;
+    padding-left: 10%;
+  }
+}
+
 //Botton for top up aladinkey
 .ButtonTopUP{
   cursor:inherit;
@@ -33,15 +54,19 @@
     background-color: #FFCD05;
     color: #3E3E3E;
   }
+
   &__label{
     font-size: 18px;
     cursor:inherit;
+
     &__italic{
       font-size: 18px;
       font-style: italic;
       cursor:inherit;
     }
+    
   }
+
 }
 
 //media query resposive header for button top up
@@ -147,22 +172,3 @@
   }
 }
 
-//Button for navgar toggle
-.IconBurger{
-  background-color: var(--color-yellow-1);
-}
-
-//link lupa password
-.lupapass{
-    color: var(--color-yellow-1);
-}
-
-.header-margin{
-  margin: 2%;
-}
-
-@media (max-width: 767px)  {
-  .header-margin{
-    margin: 0%;
-  }
-}

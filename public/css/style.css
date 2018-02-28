@@ -136,6 +136,20 @@ ul {
     margin: 0rem;
     padding: 0rem; }
 
+.IconBurger {
+  background-color: var(--color-yellow-1); }
+
+.lupapass {
+  color: var(--color-yellow-1); }
+
+.header-margin {
+  margin: 2%; }
+
+@media (max-width: 767px) {
+  .header-margin {
+    margin: 0%;
+    padding-left: 10%; } }
+
 .ButtonTopUP {
   cursor: inherit;
   height: 40px;
@@ -242,19 +256,6 @@ ul {
     width: 0px;
     height: 0px; } }
 
-.IconBurger {
-  background-color: var(--color-yellow-1); }
-
-.lupapass {
-  color: var(--color-yellow-1); }
-
-.header-margin {
-  margin: 2%; }
-
-@media (max-width: 767px) {
-  .header-margin {
-    margin: 0%; } }
-
 .Signup {
   display: flex;
   justify-content: center;
@@ -298,7 +299,8 @@ ul {
   justify-content: center;
   background-color: var(--color-grey-5);
   color: var(--color-yellow-1);
-  text-align: center; }
+  text-align: center;
+  padding: 5%; }
   .Login__Title1 {
     font-family: Raleway;
     font-size: 14px;
@@ -1034,7 +1036,7 @@ body {
   border-radius: 0;
   border: 5px solid var(--white); }
 
-@media (min-width: 275px) and (max-width: 500px) {
+@media (min-width: 320px) and (max-width: 500px) {
   .Modalz {
     margin-top: 20%;
     font-size: 14px;
