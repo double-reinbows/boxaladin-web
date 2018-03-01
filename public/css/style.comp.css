@@ -89,10 +89,17 @@
       font-size: 14px;
       font-weight: 800;
       line-height: 16px; }
+    .footerz__Bot__label {
+      text-align: center; }
 
 @media (min-width: 100px) and (max-width: 396px) {
   .footerz__Top__Right__devide {
     display: block; } }
+
+@media (max-width: 767px) {
+  .footerz__bot {
+    padding-left: 5%;
+    padding-right: 5%; } }
 
 .LogoFooter {
   width: 240px;
@@ -118,9 +125,6 @@
 ul {
   list-style-type: none; }
 
-svg {
-  fill: blue; }
-
 .HeaderTop {
   background-color: #3E3E3E;
   border-bottom: 4px solid #FFCD05; }
@@ -131,194 +135,6 @@ svg {
     align-items: center;
     margin: 0rem;
     padding: 0rem; }
-
-.ButtonTopUP {
-  cursor: inherit;
-  height: 40px;
-  width: 200px;
-  border: 2px solid #FFCD05;
-  color: #FFCD05;
-  background-color: #3E3E3E;
-  box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
-  font-family: Raleway;
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 21px;
-  text-align: center;
-  margin-right: 20px; }
-  .ButtonTopUP__label {
-    font-size: 18px;
-    cursor: inherit; }
-    .ButtonTopUP__label__italic {
-      font-size: 18px;
-      font-style: italic;
-      cursor: inherit; }
-
-@media (max-width: 767px) {
-  .ButtonTopUP {
-    border: transparent;
-    box-shadow: none; } }
-
-.ButtonLoginz {
-  width: 205px;
-  height: 44px;
-  padding: 0;
-  border-radius: 10px;
-  background-color: var(--color-yellow-1); }
-  .ButtonLoginz:active {
-    background-color: var(--color-yellow-1); }
-  .ButtonLoginz:hover {
-    background-color: var(--color-yellow-1); }
-  .ButtonLoginz__devide {
-    width: 100%;
-    height: 100%;
-    margin: 0rem;
-    padding: 0rem;
-    border: none;
-    display: flex;
-    outline: none; }
-    .ButtonLoginz__devide:active {
-      border-radius: 10px;
-      background-color: var(--color-yellow-1); }
-  .ButtonLoginz__big {
-    width: 75%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-yellow-1);
-    color: var(--color-grey-5);
-    font-family: Raleway;
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 11px;
-    text-align: center;
-    border-right: 2px solid var(--color-grey-5);
-    margin: 0rem;
-    padding: 0rem;
-    margin-left: 10px;
-    padding-right: 10px; }
-  .ButtonLoginz__small {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-yellow-1);
-    width: 16%;
-    height: 100%;
-    justify-content: center;
-    margin: 0rem;
-    padding: 0rem; }
-  .ButtonLoginz__img {
-    width: 6rem;
-    height: 3rem; }
-  .ButtonLoginz__iconLogin {
-    width: 50%;
-    height: 50%; }
-
-@media (max-width: 767px) {
-  .ButtonLoginz {
-    background-color: transparent !important;
-    background: transparent;
-    color: var(--color-yellow-1);
-    border: none; } }
-
-@media (max-width: 767px) {
-  .ButtonLoginz__big {
-    background-color: transparent !important;
-    background: transparent;
-    color: var(--color-yellow-1);
-    border: none;
-    margin-left: 15px; } }
-
-@media (max-width: 767px) {
-  .ButtonLoginz__small {
-    width: 0px;
-    height: 0px; } }
-
-@media (max-width: 767px) {
-  .ButtonLoginz__iconLogin {
-    width: 0px;
-    height: 0px; } }
-
-.dropProfile {
-  width: 205px;
-  height: 44px;
-  padding: 0;
-  border-radius: 10px;
-  background-color: var(--color-yellow-1);
-  margin: 1%; }
-  .dropProfile:active {
-    background-color: var(--color-yellow-1); }
-  .dropProfile:hover {
-    background-color: var(--color-yellow-1); }
-  .dropProfile__devide {
-    width: 100%;
-    height: 100%;
-    margin: 0rem;
-    padding: 0rem;
-    border: none;
-    display: flex;
-    outline: none; }
-    .dropProfile__devide:active {
-      border-radius: 10px;
-      background-color: var(--color-yellow-1); }
-  .dropProfile__big {
-    width: 75%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-yellow-1);
-    color: var(--color-grey-5);
-    font-family: Raleway;
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 11px;
-    text-align: center;
-    border-right: 2px solid var(--color-grey-5);
-    margin: 0rem;
-    padding: 0rem;
-    margin-left: 10px;
-    padding-right: 10px; }
-  .dropProfile__small {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-yellow-1);
-    width: 16%;
-    height: 100%;
-    justify-content: center;
-    margin: 0rem;
-    padding: 0rem; }
-  .dropProfile__img {
-    width: 6rem;
-    height: 3rem; }
-  .dropProfile__iconProfile {
-    width: 55%;
-    height: 20px; }
-
-@media (max-width: 767px) {
-  .dropProfile {
-    background-color: transparent !important;
-    background: transparent;
-    color: var(--color-yellow-1);
-    border: none; } }
-
-@media (max-width: 767px) {
-  .dropProfile__big {
-    background-color: transparent !important;
-    background: transparent;
-    color: var(--color-yellow-1);
-    border: none;
-    margin-left: 15px; } }
-
-@media (max-width: 767px) {
-  .dropProfile__small {
-    width: 0px;
-    height: 0px; } }
-
-@media (max-width: 767px) {
-  .dropProfile__iconProfile {
-    width: 0px;
-    height: 0px; } }
 
 .IconBurger {
   background-color: var(--color-yellow-1); }
@@ -331,7 +147,116 @@ svg {
 
 @media (max-width: 767px) {
   .header-margin {
-    margin: 0%; } }
+    margin: 0%;
+    padding-left: 10%; } }
+
+.ButtonTopUP {
+  cursor: inherit;
+  height: 40px;
+  width: 200px;
+  border: 2px solid #FFCD05;
+  color: #FFCD05;
+  background-color: #3E3E3E;
+  box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  font-family: Raleway;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+  margin-right: 20px; }
+  .ButtonTopUP:hover {
+    background-color: #FFCD05;
+    color: #3E3E3E; }
+  .ButtonTopUP__label {
+    font-size: 18px;
+    cursor: inherit; }
+    .ButtonTopUP__label__italic {
+      font-size: 18px;
+      font-style: italic;
+      cursor: inherit; }
+
+@media (max-width: 767px) {
+  .ButtonTopUP {
+    border: transparent;
+    box-shadow: none;
+    margin-right: 0px; } }
+
+.ButtonHeader {
+  width: 205px;
+  height: 44px;
+  padding: 0;
+  border-radius: 10px;
+  background-color: var(--color-yellow-1); }
+  .ButtonHeader__devide {
+    width: 100%;
+    height: 100%;
+    margin: 0rem;
+    padding: 0rem;
+    border: none;
+    display: flex;
+    outline: none; }
+    .ButtonHeader__devide:active {
+      border-radius: 10px;
+      background-color: var(--color-yellow-1); }
+  .ButtonHeader__big {
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-yellow-1);
+    color: var(--color-grey-5);
+    font-family: Raleway;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 11px;
+    text-align: center;
+    border-right: 2px solid var(--color-grey-5);
+    margin: 0rem;
+    padding: 0rem;
+    margin-left: 10px;
+    padding-right: 10px; }
+  .ButtonHeader__small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-yellow-1);
+    width: 16%;
+    height: 100%;
+    justify-content: center;
+    margin: 0rem;
+    padding: 0rem; }
+  .ButtonHeader__img {
+    width: 6rem;
+    height: 3rem; }
+  .ButtonHeader__iconLogin {
+    width: 50%;
+    height: 50%; }
+
+@media (max-width: 767px) {
+  .ButtonHeader {
+    background-color: transparent !important;
+    background: transparent;
+    color: var(--color-yellow-1);
+    border: none;
+    padding-left: 10%; } }
+
+@media (max-width: 767px) {
+  .ButtonHeader__big {
+    background-color: transparent !important;
+    background: transparent;
+    color: var(--color-yellow-1);
+    border: none;
+    margin-left: 15px; } }
+
+@media (max-width: 767px) {
+  .ButtonHeader__small {
+    width: 0px;
+    height: 0px; } }
+
+@media (max-width: 767px) {
+  .ButtonHeader__iconLogin {
+    width: 0px;
+    height: 0px; } }
 
 .Signup {
   display: flex;
@@ -376,7 +301,8 @@ svg {
   justify-content: center;
   background-color: var(--color-grey-5);
   color: var(--color-yellow-1);
-  text-align: center; }
+  text-align: center;
+  padding: 5%; }
   .Login__Title1 {
     font-family: Raleway;
     font-size: 14px;
@@ -611,7 +537,8 @@ svg {
   border: 1px solid #979797; }
   .TabsHome:hover {
     color: black;
-    background-color: var(--color-yellow-1); }
+    background-color: var(--color-yellow-1);
+    border: 1px solid #979797; }
   .TabsHome__icon1 {
     height: 40px;
     width: 20px; }
@@ -626,25 +553,20 @@ svg {
     color: black;
     background-color: white; }
   .TabsPane1__text {
-    font-size: 5rem;
-    text-align: center;
-    margin: 0rem; }
+    text-align: center; }
   .TabsPane1__label {
     font-family: Raleway;
     font-size: 36px;
     font-weight: 800;
     letter-spacing: 1px;
     line-height: 42px;
-    text-align: center; }
+    margin: 1%; }
   .TabsPane1__dropdown {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     flex-wrap: wrap;
-    padding-top: 1.5rem;
-    margin-bottom: 5rem; }
-    .TabsPane1__dropdown__content {
-      flex: 1 1 200px; }
+    padding: 1rem; }
   .TabsPane1__selectedProduct {
     text-align: center;
     padding: 20px;
@@ -661,12 +583,16 @@ svg {
     text-align: center;
     margin: 0rem; }
 
+@media (min-width: 320px) and (max-width: 767px) {
+  .TabsPane1__label {
+    padding: 5%; } }
+
 .dropz {
   width: 17rem;
   height: 5rem;
   padding: 0rem;
   border: 3px solid #3E3E3E;
-  margin-bottom: 10px; }
+  margin: 5%; }
   .dropz__devide {
     width: 100%;
     height: 100%;
@@ -1111,7 +1037,7 @@ body {
   border-radius: 0;
   border: 5px solid var(--white); }
 
-@media (min-width: 275px) and (max-width: 500px) {
+@media (min-width: 320px) and (max-width: 500px) {
   .Modalz {
     margin-top: 20%;
     font-size: 14px;

@@ -25,16 +25,24 @@
   },
   "devDependencies": {
     "autoprefixer": "^7.1.4",
+    "babel-jest": "^22.4.1",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
     "concat": "^1.0.3",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^22.4.2",
+    "jest-cli": "^22.4.2",
+    "jest-enzyme": "^4.2.0",
     "node-sass": "^4.5.3",
     "npm-run-all": "^4.1.1",
-    "postcss-cli": "^4.1.1"
+    "postcss-cli": "^4.1.1",
+    "react-test-renderer": "^16.2.0"
   },
   "scripts": {
     "start": "npm-run-all --parallel watch:sass reactstart compile:sass",
     "reactstart": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest",
     "eject": "react-scripts eject",
     "watch:sass": "node-sass public/sass/main.scss public/css/style.css -w",
     "devserver": "live-server",
@@ -42,5 +50,13 @@
     "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' css/style.comp.css -o css/style.prefix.css",
     "compress:css": "node-sass css/style.prefix.css css/style.css --output-style compressed",
     "build:css": "npm-run-all compile:sass prefix:css compress:css"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>src/setupTests.js",
+    "unmockedModulePathPatterns": [
+      "react",
+      "enzyme",
+      "jest-enzyme"
+    ]
   }
 }
