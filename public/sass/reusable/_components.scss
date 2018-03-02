@@ -143,7 +143,7 @@
     color: var(--color-yellow-1);
   }
 }
-
-.modalTes{
-  
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-yellow-1) !important;
+  -webkit-box-shadow: 0 0 0 34px #3E3E3E inset !important;
 }

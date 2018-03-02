@@ -843,12 +843,6 @@ svg {
       width: 100%;
       border-radius: 10px;
       border: 3px solid; }
-    .game__slotItems__items {
-      width: 300px;
-      animation-duration: 5s;
-      animation-timing-function: ease;
-      animation-delay: 5.2s;
-      animation-fill-mode: backwards; }
   .game__slotButton {
     display: flex;
     justify-content: center; }
