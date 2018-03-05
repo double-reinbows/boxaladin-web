@@ -39,7 +39,7 @@ class Reward extends React.Component {
             <th>No.</th>
             <th>Hadiah</th>
             <th>Status</th>
-            <th></th>
+            {/* <th></th> */}
           </tr>
         </thead>
         <tbody>
@@ -49,9 +49,9 @@ class Reward extends React.Component {
                 <th scope="row">{idx+1}</th>
                 <td>{data.reward.rewardName}</td>
                 <td>{data.status}</td>
-                <td>{data.status === 'PENDING' ? (
+                {/* <td>{data.status === 'PENDING' ? (
                   <Button color="success" onClick={() => this.showMetodeClaim(data.id)}>Claim</Button>
-                ) : null}</td>
+                ) : null}</td> */}
               </tr>
             )
           })}

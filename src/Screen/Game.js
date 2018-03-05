@@ -14,13 +14,21 @@ class Game extends React.Component {
 			si2: null,
 			si3: null,
 
-			slot1: 0,
-			slot2: 0,
-			slot3: 0,
+			slot1_atas: 5,
+			slot2_atas: 5,
+			slot3_atas: 5,
 
-			speed1: 100,
-			speed2: 100,
-			speed3: 100,
+			slot1: 6,
+			slot2: 6,
+			slot3: 6,
+
+			slot1_bawah: 0,
+			slot2_bawah: 0,
+			slot3_bawah: 0,
+
+			speed1: 500,
+			speed2: 500,
+			speed3: 500,
 
 			itemsdummy1: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 			itemsdummy2: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
@@ -44,17 +52,43 @@ class Game extends React.Component {
 						<h1 className="game__slotLabel__h1">GAMES</h1>
 						<p className="game__slotLabel__paragraph">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
 					</div>
+
 					<div className="game__container2">
 						<div className="game__slotItems">
 							<div className="game__slotItems__box">
-									<div className="game__slotItems__items">
+									{/* <div className="game__slotItems__items">
+									</div> */}
+										<div className={this.state.itemsdummy1[this.state.slot1_atas]} />
+										<div className={this.state.itemsdummy1[this.state.slot2_atas]} />
+										<div className={this.state.itemsdummy1[this.state.slot3_atas]} />
+							</div>
+						</div>
+					</div>
+
+					<div className="game__container2">
+						<div className="game__slotItems">
+							<div className="game__slotItems__box">
+									{/* <div className="game__slotItems__items">
+									</div> */}
 										<div className={this.state.itemsdummy1[this.state.slot1]} />
-									</div>
 										<div className={this.state.itemsdummy1[this.state.slot2]} />
 										<div className={this.state.itemsdummy1[this.state.slot3]} />
 							</div>
 						</div>
 					</div>
+
+					<div className="game__container2">
+						<div className="game__slotItems">
+							<div className="game__slotItems__box">
+									{/* <div className="game__slotItems__items">
+									</div> */}
+										<div className={this.state.itemsdummy1[this.state.slot1_bawah]} />
+										<div className={this.state.itemsdummy1[this.state.slot2_bawah]} />
+										<div className={this.state.itemsdummy1[this.state.slot3_bawah]} />
+							</div>
+						</div>
+					</div>
+
 					<div className="game__slotCoin">
 								<img className="game__slotCoin__icon" src={Coin} alt="coin image"/>
 								<label className="game__slotCoin__label">Your Coin : {this.props.userInfo.coin}</label>
@@ -82,30 +116,34 @@ class Game extends React.Component {
 		this.props.getUser()
 	}
 
-	submitResult(slot1, slot2, slot3) {
-		if (slot1 !== 6 && slot2 !== 6 && slot3 !== 6) {
-			alert('Maaf Anda kurang beruntung.')
+	submitResult(result) {
+		if (result === 0) {
+			// alert('Maaf Anda kurang beruntung.')
 			console.log('Maaf Anda kurang beruntung.')
 		} else {
 
-			const slots = [ slot1, slot2, slot3 ]
-			const stars = slots.filter(data => data === 6)
+			console.log('Anda menang dengan star =', result)
 
-			console.log('Total bintang: ', stars.length)
+			// const slots = [ slot1, slot2, slot3 ]
+			// const stars = slots.filter(data => data === 6)
+
+			// console.log('starts:', stars)
+			// console.log('Total bintang: ', stars.length)
 
 			axios({
 				method: 'POST',
 				url: `http://localhost:3000/win`,
 				headers: { token: localStorage.getItem('token') },
 				data: {
-					star: stars.length
+					star: result
 				}
 			})
 			.then(({data}) => {
-				this.props.getUserRewards()		
+				this.props.getUserRewards()
 				console.log(data)
 				alert('Selamat! kamu dapat ' + data.reward.rewardName + '.')
-				this.props.history.push(`/reward/${data.id}`)
+				this.props.history.push(`/reward`)
+				// this.props.history.push(`/reward/${data.id}`)
 			})
 			.catch(err => console.log(err))
 
@@ -114,6 +152,34 @@ class Game extends React.Component {
 
 	toggle() {
 		this.setState({ modal: !this.state.modal })
+	}
+
+	handleResult() {
+		switch (this.state.slot1.toString() + this.state.slot2.toString() + this.state.slot3.toString()) {
+			case '666':
+				return 5
+				break;
+			
+			case '000':
+				return 4
+				break;
+
+			case '555':
+				return 3
+				break;
+
+			case '560':
+				return 2
+				break;
+
+			case '065':
+				return 1
+				break;
+		
+			default:
+				return 0
+				break;
+		}
 	}
 
 	handleBingo() {
@@ -161,8 +227,8 @@ class Game extends React.Component {
 		this.stop2()
 		this.stop3()
 
-		this.handleBingo()
-		this.submitResult(this.state.slot1, this.state.slot2, this.state.slot3)
+		// this.handleBingo()
+		this.submitResult(this.handleResult())
 
 		this.setState({
 			si1: null,
@@ -176,9 +242,17 @@ class Game extends React.Component {
 
 	reset() {
 		this.setState({
-			slot1: 0,
-			slot2: 0,
-			slot3: 0
+			slot1: 6,
+			slot2: 6,
+			slot3: 6,
+
+			slot1_atas: 5,
+			slot2_atas: 5,
+			slot3_atas: 5,
+
+			slot1_bawah: 0,
+			slot2_bawah: 0,
+			slot3_bawah: 0
 		})
 	}
 
@@ -186,11 +260,15 @@ class Game extends React.Component {
 		console.log('START-1...')
 
 		var _this = this
-		var i = 1
+		var i = 0
 
 		this.state.si1 = setInterval(function() {
 
-			_this.setState({ slot1: i })
+			_this.setState({
+				slot1: i,
+				slot1_atas: i === 0 ? _this.state.itemsdummy1.length-1 : i-1,
+				slot1_bawah: i === _this.state.itemsdummy1.length-1 ? 0 : i+1
+			})
 
 			if (i < _this.state.itemsdummy1.length-1) {
 				i++
@@ -211,11 +289,15 @@ class Game extends React.Component {
 		console.log('START-2...')
 
 		var _this = this
-		var i = 1
+		var i = 0
 
 		this.state.si2 = setInterval(function() {
 
-			_this.setState({ slot2: i })
+			_this.setState({
+				slot2: i,
+				slot2_atas: i === 0 ? _this.state.itemsdummy2.length-1 : i-1,
+				slot2_bawah: i === _this.state.itemsdummy1.length-1 ? 0 : i+1
+			})
 
 			if (i < _this.state.itemsdummy2.length-1) {
 				i++
@@ -236,11 +318,15 @@ class Game extends React.Component {
 		console.log('START-3...')
 
 		var _this = this
-		var i = 1
+		var i = 0
 
 		this.state.si3 = setInterval(function() {
 
-			_this.setState({ slot3: i })
+			_this.setState({
+				slot3: i,
+				slot3_atas: i === 0 ? _this.state.itemsdummy1.length-1 : i-1,
+				slot3_bawah: i === _this.state.itemsdummy1.length-1 ? 0 : i+1
+			})
 
 			if (i < _this.state.itemsdummy3.length-1) {
 				i++
