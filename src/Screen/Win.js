@@ -5,6 +5,7 @@ import {
   Table,
   Button
 } from 'reactstrap'
+import moment from 'moment'
 
 import { getUserWins } from '../actions/winAction'
 
@@ -39,7 +40,7 @@ class Reward extends React.Component {
             <th>No.</th>
             <th>Star</th>
             <th>Free Key</th>
-            <th>Date</th>
+            <th>Tanggal</th>
           </tr>
         </thead>
         <tbody>
@@ -49,7 +50,7 @@ class Reward extends React.Component {
                 <th scope="row">{idx+1}</th>
                 <td>{data.freekey.star}</td>
                 <td>{data.freekey.amount}</td>
-                <td>{data.createdAt}</td>
+                <td>{moment(data.createdAt, moment.ISO_8601).format('MMMM Do YYYY, h:mm:ss a')}</td>
               </tr>
             )
           })}

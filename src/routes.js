@@ -33,7 +33,7 @@ import Pulsa from './Screen/Pulsa'
 
 import Game from './Screen/Game'
 import Win from './Screen/Win'
-// import RewardClaim from './Screen/RewardClaim'
+import ClaimReward from './Screen/ClaimReward'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -77,7 +77,7 @@ class RouteList extends React.Component {
             <PrivateRoute exact path="/pulsa" component={Pulsa} />
             <PrivateRoute exact path="/game" component={ Game } />
             <PrivateRoute exact path="/win" component={ Win } />
-            {/* <PrivateRoute exact path="/reward/:id" component={ RewardClaim } /> */}
+            <PrivateRoute exact path="/claimreward" component={ ClaimReward } />
 
             <Route exact path="/emailVerification" component={EmailVerificationDone} />
             {/* <Route exact path="/product" component={Product} /> */}

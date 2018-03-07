@@ -96,7 +96,7 @@ class Game extends React.Component {
 
 					<div className="game__slotCoin">
 								<img className="game__slotCoin__icon" src={Coin} alt="coin image"/>
-								<label className="game__slotCoin__label">Your Aladin Key : {this.props.userInfo.aladinKeys}</label>
+								<label className="game__slotCoin__label">Your Key : {this.props.userInfo.aladinKeys}</label>
 					</div>
 
 					<div className="game__slotButton">
