@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-const getUserRewardsAction = (payload) => ({
-  type: 'GET_USER_REWARDS',
+const getUserWinsAction = (payload) => ({
+  type: 'GET_USER_WINS',
   payload
 })
 
-export const getUserRewards = () => {
+export const getUserWins = () => {
   return (dispatch) => {
     axios({
       method: 'GET',
@@ -15,7 +15,7 @@ export const getUserRewards = () => {
       }
     })
     .then(({data}) => {
-      dispatch(getUserRewardsAction(data))
+      dispatch(getUserWinsAction(data))
     })
     .catch(err => console.log(err))
   }

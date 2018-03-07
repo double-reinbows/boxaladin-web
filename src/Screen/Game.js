@@ -4,7 +4,7 @@ import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap'
 import axios from 'axios'
 import Coin from '../../src/asset/Game/coin.svg'
 import { getUser } from '../actions/userAction'
-import { getUserRewards } from '../actions/rewardAction'
+import { getUserWins } from '../actions/winAction'
 
 class Game extends React.Component {
 	constructor(props) {
@@ -93,6 +93,12 @@ class Game extends React.Component {
 								<img className="game__slotCoin__icon" src={Coin} alt="coin image"/>
 								<label className="game__slotCoin__label">Your Coin : {this.props.userInfo.coin}</label>
 					</div>
+
+					<div className="game__slotCoin">
+								<img className="game__slotCoin__icon" src={Coin} alt="coin image"/>
+								<label className="game__slotCoin__label">Your Aladin Key : {this.props.userInfo.aladinKeys}</label>
+					</div>
+
 					<div className="game__slotButton">
 						<div className="game__slotButton__container3">
 							<button disabled={this.state.isRunning} className="game__slotButton__start" onClick={ () => this.start() }>START</button>
@@ -139,11 +145,10 @@ class Game extends React.Component {
 				}
 			})
 			.then(({data}) => {
-				this.props.getUserRewards()
+				this.props.getUser()
+				this.props.getUserWins()
 				console.log(data)
-				alert('Selamat! kamu dapat ' + data.reward.rewardName + '.')
-				this.props.history.push(`/reward`)
-				// this.props.history.push(`/reward/${data.id}`)
+				alert('Selamat! kamu dapat ' + data.freekey.amount + ' Free Key.')
 			})
 			.catch(err => console.log(err))
 
@@ -351,14 +356,14 @@ class Game extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		userInfo: state.userReducer.userInfo,
-		userRewards: state.rewardReducer.userRewards,
+		userWins: state.winReducer.userWins,
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		getUser: () => dispatch(getUser()),
-		getUserRewards: () => dispatch(getUserRewards())
+		getUserWins: () => dispatch(getUserWins())
 	}
 }
 
