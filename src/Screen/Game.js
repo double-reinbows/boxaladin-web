@@ -36,7 +36,7 @@ class Game extends React.Component {
 
 			isRunning: false,
 			modal: false,
-			coin: null,
+			key: null,
 		}
 
 		this.toggle = this.toggle.bind(this)
@@ -118,8 +118,8 @@ class Game extends React.Component {
 
 					<div className="game__slotCoin">
 						<form onSubmit={(e) => this.upCoin(e)}>
-							<input min="1" id="upcoin" onChange={(e) => this.setState({ coin: parseInt(e.target.value) })} type="number" placeholder="amount" />
-							<Button color="succes">submit</Button>
+							<input min="1" id="upcoin" onChange={(e) => this.setState({ key: parseInt(e.target.value) })} type="number" placeholder="1 aladin key = 10 coin" />
+							<Button color="success">CONVERT</Button>
 						</form>
 					</div>
 
@@ -135,23 +135,23 @@ class Game extends React.Component {
 	upCoin(e) {
 		e.preventDefault()
 
-		if (this.state.coin > this.props.userInfo.aladinKeys) {
+		if (this.state.key > this.props.userInfo.aladinKeys) {
 			return alert('aladin key tidak cukup')
 		}
 
-		if (this.state.coin <= 0) {
+		if (this.state.key <= 0) {
 			return alert('harus lebih besar dari 0')
 		}
 
-		if (this.state.coin) {
+		if (this.state.key) {
 
-			// return alert(this.state.coin)
+			// return alert(this.state.key)
 			
 			axios({
 				method: 'PUT',
 				url: `http://localhost:3000/users/upcoin`,
 				data: {
-					coin: this.state.coin
+					key: this.state.key
 				},
 				headers: {
 					token: localStorage.getItem('token')
