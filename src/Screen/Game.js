@@ -103,9 +103,9 @@ class Game extends React.Component {
 												<div>
 							<button disabled={!this.state.isRunning} className="game__slotButton__start" onClick={ () => this.stop() }>STOP</button>
 						</div>
-						<div>
+						{/* <div>
 							<button disabled={this.state.isRunning} className="game__slotButton__start" onClick={ () => this.reset() }>RESET</button>
-						</div>
+						</div> */}
 
 						</div>
 
@@ -178,8 +178,9 @@ class Game extends React.Component {
 
 	submitResult(result) {
 		if (result === 0) {
-			// alert('Maaf Anda kurang beruntung.')
+			alert('Maaf Anda kurang beruntung.')
 			console.log('Maaf Anda kurang beruntung.')
+			this.reset()
 		} else {
 
 			console.log('Anda menang dengan star =', result)
@@ -203,6 +204,7 @@ class Game extends React.Component {
 				this.props.getUserWins()
 				console.log(data)
 				alert('Selamat! kamu dapat ' + data.freekey.amount + ' Free Key.')
+				this.reset()
 			})
 			.catch(err => console.log(err))
 

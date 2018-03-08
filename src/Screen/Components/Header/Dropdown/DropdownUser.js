@@ -51,9 +51,9 @@ class DropdownUser extends React.Component {
             Hi, {this.props.userInfo.firstName}
           </DropdownItem>
 
-          <DropdownItem className="DropdownUser__inside">
+          {/* <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/pulsa">Pulsa</Link>
-          </DropdownItem>
+          </DropdownItem> */}
 
           <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/me">User Profile</Link>
