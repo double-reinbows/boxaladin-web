@@ -33,14 +33,14 @@ class DropdownUser extends React.Component {
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
 
 
-        <DropdownToggle className="dropProfile">
-          <div className="dropProfile__devide">
-            <div className="dropProfile__big">
+        <DropdownToggle className="ButtonHeader">
+          <div className="ButtonHeader__devide">
+            <div className="ButtonHeader__big">
               Profile
             </div>
 
-            <div className="dropProfile__small">
-              <img src={ExpandIcon} alt="LoginIcon" className="dropProfile__iconProfile" href="/home"/>
+            <div className="ButtonHeader__small">
+              <img src={ExpandIcon} alt="LoginIcon" className="ButtonHeader__iconLogin" href="/home"/>
             </div>
           </div>
         </DropdownToggle>
@@ -51,9 +51,9 @@ class DropdownUser extends React.Component {
             Hi, {this.props.userInfo.firstName}
           </DropdownItem>
 
-          <DropdownItem className="DropdownUser__inside">
+          {/* <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/pulsa">Pulsa</Link>
-          </DropdownItem>
+          </DropdownItem> */}
 
           <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/me">User Profile</Link>
@@ -76,7 +76,11 @@ class DropdownUser extends React.Component {
           </DropdownItem>
 
           <DropdownItem className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" to="/reward">Rewards</Link>
+            <Link className="DropdownUser__inside__link" to="/win">Game Result</Link>
+          </DropdownItem>
+
+          <DropdownItem className="DropdownUser__inside">
+            <Link className="DropdownUser__inside__link" to="/claimreward">Claim Reward</Link>
           </DropdownItem>
 
           <DropdownItem divider />

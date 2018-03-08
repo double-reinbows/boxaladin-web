@@ -17,7 +17,7 @@ export default  class Footer extends React.Component {
           <div className="footerz__Top__Left">
             <div className="footerz__Top__Left__box">
               <a href="/home">
-                <img src={logo} alt="logo" className="LogoFooter" href="/home"/>
+                <img src={logo} alt="logo" className="LogoFooter"/>
               </a>
               <label className="footerz__Top__Left__label">LINE @boxaladin</label>
               <Button className="footerz__Top__Left__button">Layanan Bantuan</Button>
@@ -71,10 +71,10 @@ export default  class Footer extends React.Component {
 
         <div className="footerz__Bot">
           <div className="footerz__Bot__labelTop">
-            <label>Dilindungi oleh Hak Cipta dan berbadan hukum resmi.</label>
+            <label className="footerz__Bot__label">Dilindungi oleh Hak Cipta dan berbadan hukum resmi.</label>
           </div>
           <div className="footerz__Bot__labelBot">
-            <label>Est.2016 PT BOX ALADIN ASIAPASIFIC</label>
+            <label className="footerz__Bot__label">Est.2016 PT BOX ALADIN ASIAPASIFIC</label>
           </div>
         </div>
 

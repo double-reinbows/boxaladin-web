@@ -37,39 +37,6 @@
   }
 }
 
-.dropdownLoginHr{
-  border: none ;
-  border-left: 1px solid hsla(200, 10%, 0%,100);
-  height: 40px ;
-  width: 1px ;
-  margin-top: 0 ;
-  margin-bottom: 0 ;
-  margin-right: 9px ;
-  margin-left: 31px ;
-}
-@media (max-width: 767px)  {
-  .dropdownLoginHr{
-    width: 0px;
-    height: 0px;
-  }
-}
-.dropdownProfileHr{
-  border: none ;
-  border-left: 1px solid hsla(200, 10%, 0%,100);
-  height: 39px ;
-  width: 1px ;
-  margin-top: 0 ;
-  margin-bottom: 0 ;
-  margin-right: 11px ;
-  margin-left: 20px ;
-}
-@media (max-width: 767px)  {
-  .dropdownProfileHr{
-    width: 0px;
-    height: 0px;
-  }
-}
-
 .ModalTop{
   border-bottom: none;
   border-radius: 0;
@@ -85,7 +52,7 @@
   border: 5px solid var(--white);
 }
 
-@media (min-width: 275px ) and (max-width:500px ) {
+@media (min-width: 320px ) and (max-width:500px ) {
   .Modalz{
     margin-top:20%;
     font-size: 14px;
@@ -94,13 +61,6 @@
     max-width: 100%;
   }
 }
-// @media (max-width: 362px ) {
-//   .Modalz{
-//     font-size: 14px;
-//     margin-left: 37px;
-//     max-width:343px
-//   }
-// }
 
 
 

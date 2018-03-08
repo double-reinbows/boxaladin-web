@@ -13,6 +13,27 @@
     }
 }
 
+//Button for navgar toggle
+.IconBurger{
+  background-color: var(--color-yellow-1);
+}
+
+//link lupa password
+.lupapass{
+    color: var(--color-yellow-1);
+}
+
+.header-margin{
+  margin: 2%;
+}
+
+@media (max-width: 767px)  {
+  .header-margin{
+    margin: 0%;
+    padding-left: 10%;
+  }
+}
+
 //Botton for top up aladinkey
 .ButtonTopUP{
   cursor:inherit;
@@ -25,18 +46,27 @@
   font-family: Raleway;
   font-size: 22px;
   font-weight: 600;
-  line-height: 21px;
+  line-height: 20px;
   text-align: center;
   margin-right: 20px;
+
+  &:hover{
+    background-color: #FFCD05;
+    color: #3E3E3E;
+  }
+
   &__label{
     font-size: 18px;
     cursor:inherit;
+
     &__italic{
       font-size: 18px;
       font-style: italic;
       cursor:inherit;
     }
+    
   }
+
 }
 
 //media query resposive header for button top up
@@ -44,48 +74,18 @@
   .ButtonTopUP{
     border: transparent;
     box-shadow: none;
+    margin-right: 0px;
   }
 }
 
 //Botton for user login
-.ButtonLoginSignup{
-  cursor: pointer;
-  height: 40px;
-  border-radius: 10px;
-  background-color: #FFCD05;
-  display: flex;
-  align-items: center;
-
-  color: #3E3E3E;
-  font-family: Raleway;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin: 10px;
-
-  &__iconLogin{
-    width: 17px;
-    height: 25px;
-  }
-  &__iconProfile{
-    width: 15px;
-    height: 25px;
-  }
-}
-
-//Botton for user login
-.ButtonLoginz{
+.ButtonHeader{
   width: 205px;
   height: 44px;
   padding: 0;
   border-radius: 10px;
   background-color: var(--color-yellow-1);
-  &:active{
-    background-color: var(--color-yellow-1);
-  }
-  &:hover{
-    background-color: var(--color-yellow-1);
-  } 
+  
   &__devide{
     width: 100%;
     height: 100%;
@@ -134,194 +134,24 @@
     width: 6rem;
     height: 3rem;
   }
-  &__iconProfile{
-    width: 55%;
-    height: 20px;
-  }
-}
-
-@media (max-width: 767px)  {
-  .ButtonLoginz {
-    background-color: transparent !important;
-    background: transparent;
-    color: var(--color-yellow-1);
-    border: none;
-  }
-}
-
-@media (max-width: 767px)  {
-  .ButtonLoginz__big {
-    background-color: transparent !important;
-    background: transparent;
-    color: var(--color-yellow-1);
-    border: none;
-    margin-left: 15px;
-  }
-}
-
-@media (max-width: 767px)  {
-  .ButtonLoginz__small{
-    width: 0px;
-    height: 0px;
-  }
-}
-
-@media (max-width: 767px)  {
-  .ButtonLoginz__iconLogin{
-    width: 0px;
-    height: 0px;
-  }
-}
-
-
-.ButtonSignup{
-  cursor: default;
-  height: 40px;
-  border-radius: 10px;
-  background-color: #FFCD05;
-  display: flex;
-  align-items: center;
-
-  color: #3E3E3E;
-  font-family: Raleway;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin: 10px;
-
   &__iconLogin{
-    width: 17px;
-    height: 25px;
-  }
-
-  &__P{
-    padding-top: 20px;
+    width: 50%;
+    height: 50%;
   }
 }
 
 @media (max-width: 767px)  {
-  .ButtonSignup__iconLogin{
-    width: 0px;
-    height: 0px;
-  }
-}
-
-@media (max-width: 767px)  {
-  .ButtonSignup {
-    background-color: transparent;
-    color: var(--color-yellow-1);
-    margin-left: 60px;
-  }
-}
-
-
-//media query resposive header for button login
-@media (max-width: 767px)  {
-  .ButtonLogin {
-    background-color: transparent;
-    color: var(--color-yellow-1);
-    margin-left: 60px;
-  }
-}
-
-//media query resposive header for icon inside button login
-@media (max-width: 767px)  {
-  .ButtonLogin__iconLogin{
-    width: 0px;
-    height: 0px;
-  }
-}
-
-//Button for navgar toggle
-.IconBurger{
-  background-color: var(--color-yellow-1);
-}
-
-//link lupa password
-.lupapass{
-    color: var(--color-yellow-1);
-}
-
-.dropProfile{
-  width: 205px;
-  height: 44px;
-  padding: 0;
-  border-radius: 10px;
-  background-color: var(--color-yellow-1);
-  margin: 1%;
-
-  &:active{
-    background-color: var(--color-yellow-1);
-  }
-  &:hover{
-    background-color: var(--color-yellow-1);
-  } 
-  &__devide{
-    width: 100%;
-    height: 100%;
-    margin: 0rem;
-    padding: 0rem;
-    border: none;
-    display: flex;
-    outline: none;
-    &:active{
-      border-radius: 10px;
-      background-color: var(--color-yellow-1);
-    }
-  }
-
-  &__big{
-    width: 75%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-yellow-1);
-    color: var(--color-grey-5);
-    font-family: Raleway;
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 11px;
-    text-align: center;
-    border-right: 2px solid var(--color-grey-5);
-    margin: 0rem;
-    padding: 0rem;
-    margin-left: 10px;
-    padding-right: 10px;
-  }
-
-  &__small{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-yellow-1);
-    width: 16%;
-    height: 100%;
-    justify-content: center;
-    margin: 0rem;
-    padding: 0rem;
-  }
-  &__img{
-    width: 6rem;
-    height: 3rem;
-  }
-  &__iconProfile{
-    width: 55%;
-    height: 20px;
-  }
-
-}
-
-@media (max-width: 767px)  {
-  .dropProfile {
+  .ButtonHeader {
     background-color: transparent !important;
     background: transparent;
     color: var(--color-yellow-1);
     border: none;
+    padding-left: 10%;
   }
 }
 
 @media (max-width: 767px)  {
-  .dropProfile__big {
+  .ButtonHeader__big {
     background-color: transparent !important;
     background: transparent;
     color: var(--color-yellow-1);
@@ -331,22 +161,16 @@
 }
 
 @media (max-width: 767px)  {
-  .dropProfile__small{
+  .ButtonHeader__small{
     width: 0px;
     height: 0px;
   }
 }
 
 @media (max-width: 767px)  {
-  .dropProfile__iconProfile{
+  .ButtonHeader__iconLogin{
     width: 0px;
     height: 0px;
   }
 }
 
-
-
-
-.header-margin{
-  margin: 2%;
-}

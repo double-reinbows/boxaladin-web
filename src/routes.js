@@ -29,11 +29,29 @@ import TopupPayment from './Screen/TopupPayment'
 
 import Bidding from './Screen/Bidding'
 import InsertPhone from './Screen/Components/InsertPhone/InsertPhone'
-import Pulsa from './Screen/Pulsa'
+// import Pulsa from './Screen/Pulsa'
 
 import Game from './Screen/Game'
-import Reward from './Screen/Reward'
-import RewardClaim from './Screen/RewardClaim'
+import Win from './Screen/Win'
+import ClaimReward from './Screen/ClaimReward'
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) => (
+      localStorage.getItem('token') ? (
+        <Component {...props} />
+      ) : (
+        <Redirect
+          to={{
+            pathname: "/",
+            state: { from: props.location }
+          }}
+        />
+      ))
+    }
+  />
+);
 
 class RouteList extends React.Component {
   render() {
@@ -46,42 +64,23 @@ class RouteList extends React.Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/howitworks" component={HowItWorks} />
-
             <Route exact path="/home" component={Home} />
 
-            <Route
-              exact
-              path="/me"
-              render={() =>
-                localStorage.getItem('token') !== null ? (
-                  <User />
-                ) : (
-                  <Redirect to="/home" />
-                )
-              }
-            />
+            <PrivateRoute exact path="/me" component={User} />
+            <PrivateRoute exact path="/invoice" component={Invoice} />
+            <PrivateRoute exact path="/payment/:id" component={Pembayaran} />
+            <PrivateRoute exact path="/topup" component={TopupKey} />
+            <PrivateRoute exact path="/topupinvoice" component={TopupInvoice} />
+            <PrivateRoute exact path="/topupinvoice/:id" component={TopupPayment} />
+            <PrivateRoute exact path="/bidding" component={Bidding} />
+            <PrivateRoute exact path="/insertphone" component={InsertPhone} />
+            {/* <PrivateRoute exact path="/pulsa" component={Pulsa} /> */}
+            <PrivateRoute exact path="/game" component={ Game } />
+            <PrivateRoute exact path="/win" component={ Win } />
+            <PrivateRoute exact path="/claimreward" component={ ClaimReward } />
 
-            <Route
-              path="/product"
-              component={Product}
-            />
-
-            <Route
-              path="/emailVerification"
-              component={EmailVerificationDone}
-            />
-
-            <Route exact path="/invoice" component={Invoice} />
-            <Route exact path="/payment/:id" component={Pembayaran} />
-            <Route exact path="/topup" component={TopupKey} />
-            <Route exact path="/topupinvoice" component={TopupInvoice} />
-            <Route exact path="/topupinvoice/:id" component={TopupPayment} />
-            <Route exact path="/bidding" component={Bidding} />
-            <Route exact path="/insertphone" component={InsertPhone} />
-            <Route exact path="/pulsa" component={Pulsa} />
-            <Route exact path="/game" component={ Game } />
-            <Route exact path="/reward" component={ Reward } />
-            <Route exact path="/reward/:id" component={ RewardClaim } />
+            <Route exact path="/emailVerification" component={EmailVerificationDone} />
+            {/* <Route exact path="/product" component={Product} /> */}
 
             <Footer/>
           </div>

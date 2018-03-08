@@ -1,11 +1,11 @@
 const defaultState = {
-  userRewards: []
+  rewards: []
 }
 
 const rewardReducer = (state=defaultState, action) => {
   switch (action.type) {
-    case 'GET_USER_REWARDS':
-      return {...state, userRewards: action.payload}
+    case 'GET_REWARDS':
+      return {...state, rewards: action.payload}
       break;
   
     default:
