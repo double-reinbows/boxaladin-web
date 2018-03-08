@@ -26,16 +26,17 @@ class Game extends React.Component {
 			slot2_bawah: 0,
 			slot3_bawah: 0,
 
-			speed1: 500,
-			speed2: 500,
-			speed3: 500,
+			speed1: 100,
+			speed2: 70,
+			speed3: 50,
 
 			itemsdummy1: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 			itemsdummy2: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 			itemsdummy3: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 
 			isRunning: false,
-			modal: false
+			modal: false,
+			coin: null,
 		}
 
 		this.toggle = this.toggle.bind(this)
@@ -94,10 +95,7 @@ class Game extends React.Component {
 								<label className="game__slotCoin__label">Your Coin : {this.props.userInfo.coin}</label>
 					</div>
 
-					<div className="game__slotCoin">
-								<img className="game__slotCoin__icon" src={Coin} alt="coin image"/>
-								<label className="game__slotCoin__label">Your Key : {this.props.userInfo.aladinKeys}</label>
-					</div>
+					
 
 					<div className="game__slotButton">
 						<div className="game__slotButton__container3">
@@ -113,6 +111,18 @@ class Game extends React.Component {
 
 					</div>
 
+					<div className="game__slotCoin">
+								{/* <img className="game__slotCoin__icon" src={Coin} alt="coin image"/> */}
+								<label className="game__slotCoin__label">Aladin Key : {this.props.userInfo.aladinKeys}</label>
+					</div>
+
+					<div className="game__slotCoin">
+						<form onSubmit={(e) => this.upCoin(e)}>
+							<input min="1" id="upcoin" onChange={(e) => this.setState({ coin: parseInt(e.target.value) })} type="number" placeholder="amount" />
+							<Button color="succes">submit</Button>
+						</form>
+					</div>
+
 				</div>
 			</div>
 		)
@@ -120,6 +130,50 @@ class Game extends React.Component {
 
 	componentDidMount() {
 		this.props.getUser()
+	}
+
+	upCoin(e) {
+		e.preventDefault()
+
+		if (this.state.coin > this.props.userInfo.aladinKeys) {
+			return alert('aladin key tidak cukup')
+		}
+
+		if (this.state.coin <= 0) {
+			return alert('harus lebih besar dari 0')
+		}
+
+		if (this.state.coin) {
+
+			// return alert(this.state.coin)
+			
+			axios({
+				method: 'PUT',
+				url: `http://localhost:3000/users/upcoin`,
+				data: {
+					coin: this.state.coin
+				},
+				headers: {
+					token: localStorage.getItem('token')
+				}
+			})
+			.then(response => {
+
+				this.setState({
+					coin: 0
+				})
+
+				document.getElementById('upcoin').value = ''
+				this.props.getUser()
+				return console.log(response.data)
+			
+			})
+			.catch(err => console.log(err))
+
+		} else {
+			return alert('tidak boleh kosong')
+		}
+
 	}
 
 	submitResult(result) {
@@ -213,7 +267,7 @@ class Game extends React.Component {
 			.then(({data}) => {
 				console.log(data)
 				this.props.getUser()
-		})
+			})
 			.catch(err => {
 				console.log(err)
 			})

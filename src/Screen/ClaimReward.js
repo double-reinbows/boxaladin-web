@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { Table, Button, Col, Card, CardImg, CardText, CardBody, CardLink, CardTitle, CardSubtitle } from 'reactstrap'
+import { Table, Button, Row, Col, Card, CardImg, CardText, CardBody, CardLink, CardTitle, CardSubtitle } from 'reactstrap'
 import moment from 'moment'
 
 import { getRewards } from '../actions/rewardAction'
@@ -20,26 +20,27 @@ class ClaimReward extends React.Component {
 
     return (
       <div className="container">
-
-        {this.props.rewards.map((data, i) => {
-          return (
-            <Col xs="3" key={i}>
-              <Card>
-                <CardBody>
-                  <CardTitle>{data.rewardName}</CardTitle>
-                  <CardSubtitle>{data.rewardName}</CardSubtitle>
-                </CardBody>
-                <img width="100%" src={data.image} alt="Card image cap" />
-                <CardBody>
-                  <CardText>{data.description}.</CardText>
-                  <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                  <CardText>{data.aladinKey} Aladin Key</CardText>    
-                  <Button onClick={() => this.claim(data)} size="lg" color="success">TUKAR | {data.aladinKey}</Button>
-                </CardBody>
-              </Card>
-            </Col>
-          )
-        })}
+        <Row>
+          {this.props.rewards.map((data, i) => {
+            return (
+              <Col xs="3" key={i}>
+                <Card>
+                  <CardBody>
+                    <CardTitle>{data.rewardName}</CardTitle>
+                    <CardSubtitle>{data.rewardName}</CardSubtitle>
+                  </CardBody>
+                  <img width="100%" src={data.image} alt="Card image cap" />
+                  <CardBody>
+                    <CardText>{data.description}.</CardText>
+                    <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                    <CardText>{data.aladinKey} Aladin Key</CardText>    
+                    <Button onClick={() => this.claim(data)} size="lg" color="success">TUKAR | {data.aladinKey}</Button>
+                  </CardBody>
+                </Card>
+              </Col>
+            )
+          })}
+        </Row>
 
         <br />
         <h1>Your Claim</h1>
@@ -50,8 +51,8 @@ class ClaimReward extends React.Component {
               <th>No.</th>
               <th>Item</th>
               <th>Deskripsi</th>
-              <th>Status</th>
               <th>Tanggal</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -61,8 +62,8 @@ class ClaimReward extends React.Component {
                   <th scope="row">{idx+1}</th>
                   <td>{data.reward.rewardName}</td>
                   <td>{data.reward.description}</td>
-                  <td>{data.status}</td>
                   <td>{moment(data.createdAt, moment.ISO_8601).format('MMMM Do YYYY, h:mm:ss a')}</td>
+                  <td>{data.status}</td>
                 </tr>
               )
             })}
