@@ -1025,26 +1025,6 @@ body {
     .DropdownUser__inside__link:hover {
       color: #3E3E3E; }
 
-.ModalTop {
-  border-bottom: none;
-  border-radius: 0;
-  background-color: var(--color-grey-5); }
-  .ModalTop span {
-    color: #FFCD05; }
-
-.Modalz {
-  margin-top: 10%;
-  border-radius: 0;
-  border: 5px solid var(--white); }
-
-@media (min-width: 320px) and (max-width: 500px) {
-  .Modalz {
-    margin-top: 20%;
-    font-size: 14px;
-    margin-left: 43px;
-    width: 80%;
-    max-width: 100%; } }
-
 .inputz {
   border: transparent;
   border-bottom: 2px solid var(--color-yellow-1);
@@ -1079,6 +1059,39 @@ body {
     font-family: Raleway;
     font-style: italic;
     color: var(--color-yellow-1); }
+
+.ModalTop {
+  border-bottom: none;
+  border-radius: 0;
+  background-color: var(--color-grey-5); }
+  .ModalTop span {
+    color: #FFCD05; }
+
+.Modalz {
+  margin-top: 10%;
+  border-radius: 0;
+  border: 5px solid var(--white); }
+
+@media (min-width: 320px) and (max-width: 500px) {
+  .Modalz {
+    margin-top: 20%;
+    font-size: 14px;
+    margin-left: 43px;
+    width: 80%;
+    max-width: 100%; } }
+
+.overlayz {
+  position: 'absolute';
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: navy; }
+
+.ModalzPhone {
+  margin-top: 10%;
+  border-radius: 0;
+  border: 5px solid var(--white); }
 
 :root {
   --color-yellow-1: #FFCD05;
