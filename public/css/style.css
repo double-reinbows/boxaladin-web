@@ -891,7 +891,8 @@ ul {
     width: 100%;
     max-width: 720px;
     color: var(--color-yellow-1);
-    padding: 5%; }
+    padding: 5%;
+    padding-top: 0%; }
   .User__Label {
     display: flex;
     justify-content: center;
@@ -955,7 +956,7 @@ ul {
           .User__Phone__row2__verify__1__label {
             width: 100%;
             text-align: center;
-            font-size: 30px; }
+            font-size: 25px; }
         .User__Phone__row2__verify__2 {
           width: 33.3%; }
           .User__Phone__row2__verify__2__button5 {
@@ -978,6 +979,10 @@ ul {
       .User__Phone__row3__button2 {
         width: 40%;
         margin: 5%; }
+
+@media (min-width: 200px) and (max-width: 766px) {
+  .User__container {
+    padding-top: 5%; } }
 
 @media (min-width: 200px) and (max-width: 766px) {
   .User__Label {
