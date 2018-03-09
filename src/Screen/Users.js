@@ -304,75 +304,104 @@ class User extends React.Component {
 	}
 
 	showPhoneNumbers() {
-		return (
-			<div className="User__Phone">
-				<div className="User__Phone__row1">
-					<img src={IconPhone} className="User__show__logo" alt="Logo"/>
-					<label>Your registered phone number</label>
-				</div>
-				<div className="User__Phone__row2">
-					<ul>
-						{this.props.phoneNumbers !== null ? (
-								this.props.phoneNumbers.map((phone, idx) => {
-									return (
-										<li key={idx} className="User__Phone__row2__li">
-											<div className="User__Phone__row2__number">
-												{phone.number}
-											</div>
-											{phone.verified === false ? (
-												<div className="User__Phone__row2__unverify">
-													<div className="User__Phone__row2__unverify__1">
-														<Button onClick={ () => this.requestOTP(phone) } color="success" type="button" className="User__Phone__row2__unverify__1__button1">
-															verify
-														</Button>
-													</div>
-													<div className="User__Phone__row2__unverify__2">
-														<Button type="button" color="secondary" onClick={() => this.changePhone(phone)} className="User__Phone__row2__unverify__2__button2">
-															change
-														</Button>
-													</div>
-													<div className="User__Phone__row2__unverify__3">
-														<Button type="button" color="danger" onClick={() => this.removePhone(phone)} className="User__Phone__row2__unverify__3__button3">
-															remove
-														</Button>
-													</div>
-												</div>
-											) : (
-												<div className="User__Phone__row2__verify">
-													<div className="User__Phone__row2__verify__1">
-														<label className="User__Phone__row2__verify__1__button4" style={{ color: "green" }}>
-															verified
-														</label>
-													</div>
-													<div className="User__Phone__row2__verify__2">
-														<Button type="button" color="danger" onClick={() => this.removePhone(phone)} className="User__Phone__row2__verify__2__button5">
-															remove
-														</Button>
-													</div>
-													<div className="User__Phone__row2__verify__3">
-														{phone.primary === true ? 
-															<img src={IconCheck} className="User__Phone__row2__verify__3__check" alt="Logo"/> 
-														: null}
-													</div>
-												</div>
-											)}
-											
-										</li>
-									)
-								})
-						) : (
-							null
-						)}
-					</ul>
-					
-					<div className="User__Phone__row3">
-						<Button color="success" onClick={() => this.addPhone()} className="User__Phone__row3__button1">Add New Phonenumber</Button>
-						<Button color="danger" onClick={() => this.setState({changePrimaryPhoneModal: true})} className="User__Phone__row3__button2">Select primary Phonenumber</Button>
-					</div>
+		return <div className="User__Phone">
+        <div className="User__Phone__row1">
+          <img src={IconPhone} className="User__show__logo" alt="Logo" />
+          <label className="User__Label">
+            Your registered phone number
+          </label>
+        </div>
+        <div className="User__Phone__row2">
+          <ul>
+            {this.props.phoneNumbers !== null ? this.props.phoneNumbers.map(
+                  (phone, idx) => {
+                    return (
+                      <li key={idx} className="User__Phone__row2__li">
+                        <div className="User__Phone__row2__number">
+                          {phone.number}
+                        </div>
+                        {phone.verified === false ? (
+                          <div className="User__Phone__row2__unverify">
+                            <div className="User__Phone__row2__unverify__1">
+                              <Button
+                                onClick={() => this.requestOTP(phone)}
+                                color="success"
+                                type="button"
+                                className="User__Phone__row2__unverify__1__button1"
+                              >
+                                verify
+                              </Button>
+                            </div>
+                            <div className="User__Phone__row2__unverify__2">
+                              <Button
+                                type="button"
+                                color="secondary"
+                                onClick={() => this.changePhone(phone)}
+                                className="User__Phone__row2__unverify__2__button2"
+                              >
+                                change
+                              </Button>
+                            </div>
+                            <div className="User__Phone__row2__unverify__3">
+                              <Button
+                                type="button"
+                                color="danger"
+                                onClick={() => this.removePhone(phone)}
+                                className="User__Phone__row2__unverify__3__button3"
+                              >
+                                remove
+                              </Button>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="User__Phone__row2__verify">
+                            <div className="User__Phone__row2__verify__1">
+                              <label
+                                className="User__Phone__row2__verify__1__label"
+                                style={{ color: "green" }}
+                              >
+                                verified
+                              </label>
+                            </div>
+                            <div className="User__Phone__row2__verify__2">
+                              <Button
+                                type="button"
+                                color="danger"
+                                onClick={() => this.removePhone(phone)}
+                                className="User__Phone__row2__verify__2__button5"
+                              >
+                                remove
+                              </Button>
+                            </div>
+                            <div className="User__Phone__row2__verify__3">
+                              {phone.primary === true ? (
+                                <img
+                                  src={IconCheck}
+                                  className="User__Phone__row2__verify__3__check"
+                                  alt="Logo"
+                                />
+                              ) : null}
+                            </div>
+                          </div>
+                        )}
+                      </li>
+                    );
+                  }
+                ) : null}
+          </ul>
 
-				</div>
-			</div>
-		)
+          <div className="User__Phone__row3">
+            <Button color="success" onClick={() => this.addPhone()} className="User__Phone__row3__button1">
+              Add New Number
+            </Button>
+            <Button color="danger" onClick={() => this.setState({
+                  changePrimaryPhoneModal: true
+                })} className="User__Phone__row3__button2">
+              Select Primary Number
+            </Button>
+          </div>
+        </div>
+      </div>;
 	}
 
 	submitPhone(e) {
