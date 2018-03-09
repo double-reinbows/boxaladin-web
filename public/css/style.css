@@ -805,7 +805,7 @@ ul {
     display: flex;
     justify-content: center; }
   .game__slotItems {
-    width: 360px;
+    width: 70%;
     border-radius: 30px;
     background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%);
     padding: 20px;
