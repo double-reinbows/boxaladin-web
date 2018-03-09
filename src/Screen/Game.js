@@ -53,50 +53,47 @@ class Game extends React.Component {
 						<h1 className="game__slotLabel__h1">GAMES</h1>
 						<p className="game__slotLabel__paragraph">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
 					</div>
+					<div>
+						<div className="game__container2">
+							<div className="game__convert">
+								<div className="game__convert__label">
+											<label>Aladin Key : {this.props.userInfo.aladinKeys}</label>
+								</div>
+								<div>
+									<form onSubmit={(e) => this.upCoin(e)}>
+										<input className="game__convert__input" min="1" id="upcoin" onChange={(e) => this.setState({ key: parseInt(e.target.value) })} type="number" placeholder="1 aladin key = 10 coin" />
+										<button className="game__convert__buttonConvert">CONVERT</button>
+									</form>
+								</div>
+							</div>
+						</div>
 
-					<div className="game__container2">
-						<div className="game__slotItems">
-							<div className="game__slotItems__box">
-									{/* <div className="game__slotItems__items">
-									</div> */}
+							<div className="game__slotCoin">
+										<img className="game__slotCoin__icon" src={Coin} alt="coin image"/>
+										<label className="game__slotCoin__label">Your Coin : {this.props.userInfo.coin}</label>
+							</div>
+						<div className="game__container3">
+							<div className="game__slotItems">
+								<div className="game__slotItems__boxContainer">
+									<div className="game__slotItems__boxContainer__box">
 										<div className={this.state.itemsdummy1[this.state.slot1_atas]} />
 										<div className={this.state.itemsdummy1[this.state.slot2_atas]} />
 										<div className={this.state.itemsdummy1[this.state.slot3_atas]} />
-							</div>
-						</div>
-					</div>
-
-					<div className="game__container2">
-						<div className="game__slotItems">
-							<div className="game__slotItems__box">
-									{/* <div className="game__slotItems__items">
-									</div> */}
+									</div>
+									<div className="game__slotItems__boxContainer__box">
 										<div className={this.state.itemsdummy1[this.state.slot1]} />
 										<div className={this.state.itemsdummy1[this.state.slot2]} />
 										<div className={this.state.itemsdummy1[this.state.slot3]} />
-							</div>
-						</div>
-					</div>
-
-					<div className="game__container2">
-						<div className="game__slotItems">
-							<div className="game__slotItems__box">
-									{/* <div className="game__slotItems__items">
-									</div> */}
+									</div>
+									<div className="game__slotItems__boxContainer__box">
 										<div className={this.state.itemsdummy1[this.state.slot1_bawah]} />
 										<div className={this.state.itemsdummy1[this.state.slot2_bawah]} />
 										<div className={this.state.itemsdummy1[this.state.slot3_bawah]} />
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-
-					<div className="game__slotCoin">
-								<img className="game__slotCoin__icon" src={Coin} alt="coin image"/>
-								<label className="game__slotCoin__label">Your Coin : {this.props.userInfo.coin}</label>
-					</div>
-
-					
-
 					<div className="game__slotButton">
 						<div className="game__slotButton__container3">
 							<button disabled={this.state.isRunning} className="game__slotButton__start" onClick={ () => this.start() }>START</button>
@@ -106,23 +103,8 @@ class Game extends React.Component {
 						{/* <div>
 							<button disabled={this.state.isRunning} className="game__slotButton__start" onClick={ () => this.reset() }>RESET</button>
 						</div> */}
-
 						</div>
-
 					</div>
-
-					<div className="game__slotCoin">
-								{/* <img className="game__slotCoin__icon" src={Coin} alt="coin image"/> */}
-								<label className="game__slotCoin__label">Aladin Key : {this.props.userInfo.aladinKeys}</label>
-					</div>
-
-					<div className="game__slotCoin">
-						<form onSubmit={(e) => this.upCoin(e)}>
-							<input min="1" id="upcoin" onChange={(e) => this.setState({ key: parseInt(e.target.value) })} type="number" placeholder="1 aladin key = 10 coin" />
-							<Button color="success">CONVERT</Button>
-						</form>
-					</div>
-
 				</div>
 			</div>
 		)
