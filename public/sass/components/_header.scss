@@ -13,10 +13,42 @@
     }
 }
 
+@media (max-width: 767px)  {
+  .HeaderTop{
+    display: none;
+  }
+}
+
+.HeaderTopM {
+    background-color: #3E3E3E;
+    border-bottom: 4px solid #FFCD05;
+
+    &__logo{
+      margin: 0px auto;
+    }
+    &__Right{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      margin: 0rem;
+      padding: 0rem;
+    }
+}
+
+@media (min-width: 768px)  {
+  .HeaderTopM{
+    display: none;
+  }
+}
+
+
 //Button for navgar toggle
 .IconBurger{
   background-color: var(--color-yellow-1);
 }
+
+
 
 //link lupa password
 .lupapass{
