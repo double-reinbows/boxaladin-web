@@ -36,6 +36,12 @@
     }
   }
 }
+@media (min-width: 296px ) and (max-width:767px) {
+  .DropdownUser__item{
+    top: 180px !important;
+    transform: translate3d(0px, -130px, 0px) !important;
+  }
+}
 
 .ModalTop{
   border-bottom: none;
@@ -47,22 +53,27 @@
 }
 
 .Modalz{
-  margin-top:10%;
+  margin-top:8%;
   border-radius: 0;
   border: 5px solid var(--white);
 }
 
-@media (min-width: 320px ) and (max-width:500px ) {
+@media (min-width: 767px ) {
   .Modalz{
-    margin-top:20%;
     font-size: 14px;
-    margin-left: 43px;
-    width: 80%;
-    max-width: 100%;
+    max-width: 730px;
+  }
+}
+@media (min-width: 200px ) and (max-width:766px ) {
+  .Modalz{
+    font-size: 14px;
+    max-width: 600px;
   }
 }
 
-
+.form-horizontal{
+  width: 100%;
+}
 
 .inputz{
   border: transparent;
@@ -79,6 +90,7 @@
     font-family: Raleway;
     font-style: italic;
     color: var(--color-yellow-1);
+    box-shadow: var(--color-grey-5);
   }
   &:hover{
     border: transparent;

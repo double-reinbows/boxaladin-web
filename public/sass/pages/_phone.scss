@@ -1,0 +1,65 @@
+.ReactModal__Overlay--after-open{
+  background-color: transparent !important;
+}
+
+.ModalPhone{
+  border-radius: 0;
+  border: 5px solid var(--color-yellow-1);
+  position: fixed;
+  top: 35%;
+  left: 35%;
+  width: 30%;
+  height: 25%;
+  z-index: 10;
+  background-color: black;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 767px) and (max-width:1280px){
+  .ModalPhone{
+    top: 30%;
+    left: 30%;
+    width: 40%;
+  }
+} 
+
+@media (min-width: 200px) and (max-width:766px) {
+  .ModalPhone{
+    top: 25%;
+    left: 15%;
+    width: 70%;
+  }
+} 
+
+.ModalContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10%;
+
+    &__form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        color: black;
+    }
+
+    &__button{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 2.5%;
+    }
+
+    &__select{
+      width: 80%;
+    }
+}
+
