@@ -374,7 +374,15 @@ class User extends React.Component {
                               </Button>
                             </div>
                             <div className="User__Phone__row2__verify__3">
-                              {phone.primary === true ? (
+															{/* {
+																phone.primary && (
+																	<img
+                                  src={IconCheck}
+                                  className="User__Phone__row2__verify__3__check"
+																	alt="Logo"/>
+																)
+															} */}
+															{phone.primary === true ? (
                                 <img
                                   src={IconCheck}
                                   className="User__Phone__row2__verify__3__check"

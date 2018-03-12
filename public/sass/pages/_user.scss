@@ -127,12 +127,12 @@
             justify-content: space-around;
 
             &__button1{
-                width: 40%;
+                width: 45%;
                 margin: 5%;
             }
 
             &__button2{
-                width: 40%;
+                width: 45%;
                 margin: 5%;
             }
         }
@@ -140,9 +140,9 @@
 }
 
 @media (min-width: 200px) and (max-width:766px) {
-  .User__container{
-      padding-top: 5%;
-  }
+    .User__container{
+        padding-top: 5%;
+    }
 }
 
 @media (min-width: 200px) and (max-width:766px) {
