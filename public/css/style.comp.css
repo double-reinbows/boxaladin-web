@@ -26,6 +26,15 @@
         margin: 2rem;
         background-color: var(--color-yellow-1);
         color: var(--color-dark-3); }
+        .footerz__Top__Left__button:active {
+          background-color: var(--color-yellow-1) !important;
+          color: var(--color-dark-3); }
+        .footerz__Top__Left__button:hover {
+          background-color: var(--color-yellow-1);
+          color: var(--color-dark-3); }
+        .footerz__Top__Left__button:focus {
+          background-color: var(--color-yellow-1);
+          color: var(--color-dark-3); }
     .footerz__Top__Right {
       display: flex;
       align-items: center;
@@ -165,8 +174,8 @@ ul {
   text-align: center;
   margin-right: 20px; }
   .ButtonTopUP:hover {
-    background-color: #FFCD05;
-    color: #3E3E3E; }
+    color: #FFCD05;
+    background-color: #3E3E3E; }
   .ButtonTopUP__label {
     font-size: 18px;
     cursor: inherit; }
@@ -187,6 +196,11 @@ ul {
   padding: 0;
   border-radius: 10px;
   background-color: var(--color-yellow-1); }
+  .ButtonHeader:active {
+    background-color: var(--color-yellow-1) !important;
+    border-color: transparent; }
+  .ButtonHeader:hover {
+    background-color: var(--color-yellow-1); }
   .ButtonHeader__devide {
     width: 100%;
     height: 100%;
@@ -196,8 +210,7 @@ ul {
     display: flex;
     outline: none; }
     .ButtonHeader__devide:active {
-      border-radius: 10px;
-      background-color: var(--color-yellow-1); }
+      border-radius: 10px; }
   .ButtonHeader__big {
     width: 75%;
     display: flex;
@@ -238,22 +251,23 @@ ul {
     background: transparent;
     color: var(--color-yellow-1);
     border: none;
-    padding-left: 10%; } }
-
-@media (max-width: 767px) {
+    padding-left: 10%; }
+    .ButtonHeader:active {
+      background-color: transparent !important;
+      box-shadow: var(--color-grey-5) !important; }
+    .ButtonHeader:focus {
+      box-shadow: var(--color-grey-5) !important; }
+  .ButtonHeader__devide:active {
+    background-color: transparent !important; }
   .ButtonHeader__big {
     background-color: transparent !important;
     background: transparent;
     color: var(--color-yellow-1);
     border: none;
-    margin-left: 15px; } }
-
-@media (max-width: 767px) {
+    margin-left: 15px; }
   .ButtonHeader__small {
     width: 0px;
-    height: 0px; } }
-
-@media (max-width: 767px) {
+    height: 0px; }
   .ButtonHeader__iconLogin {
     width: 0px;
     height: 0px; } }
@@ -728,7 +742,7 @@ ul {
   .game__container {
     margin: auto;
     width: 100%;
-    max-width: 720px; }
+    max-width: 600px; }
   .game__slotLabel {
     text-align: center;
     font-family: raleway; }
@@ -742,6 +756,37 @@ ul {
       font-size: 14px;
       font-weight: 500;
       line-height: 16px; }
+  .game__container2 {
+    display: flex;
+    justify-content: center; }
+  .game__convert {
+    text-align: center; }
+    .game__convert__label {
+      margin: 10px;
+      color: #FFFFFF;
+      font-family: Raleway;
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 29px; }
+    .game__convert__input {
+      border-radius: 5px;
+      margin-right: 10px;
+      height: 30px;
+      font-family: Raleway;
+      line-height: 29px;
+      font-size: 21px;
+      padding-left: 10px; }
+    .game__convert__buttonConvert {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      color: #FFFFFF;
+      font-family: Raleway;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      line-height: 33px;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%); }
   .game__slotCoin {
     display: flex;
     justify-content: center;
@@ -756,30 +801,22 @@ ul {
       font-size: 24px;
       font-weight: bold;
       line-height: 29px; }
-  .game__container2 {
+  .game__container3 {
     display: flex;
     justify-content: center; }
   .game__slotItems {
-    display: flex;
-    justify-content: center;
     width: 360px;
     border-radius: 30px;
     background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%);
     padding: 20px;
     margin-bottom: 10px; }
-    .game__slotItems__box {
+    .game__slotItems__boxContainer {
       background-color: black;
-      display: flex;
-      justify-content: center;
       width: 100%;
       border-radius: 10px;
       border: 3px solid; }
-    .game__slotItems__items {
-      width: 300px;
-      animation-duration: 5s;
-      animation-timing-function: ease;
-      animation-delay: 5.2s;
-      animation-fill-mode: backwards; }
+      .game__slotItems__boxContainer__box {
+        display: flex; }
   .game__slotButton {
     display: flex;
     justify-content: center; }
@@ -805,7 +842,7 @@ ul {
 
 .box1 {
   width: 80%;
-  height: 140px;
+  height: 100px;
   border-radius: 10px;
   margin-top: 3px;
   margin-bottom: 3px;
@@ -815,7 +852,7 @@ ul {
 
 .box2 {
   width: 80%;
-  height: 140px;
+  height: 100px;
   border-radius: 10px;
   margin-top: 3px;
   margin-bottom: 3px;
@@ -825,7 +862,7 @@ ul {
 
 .box3 {
   width: 80%;
-  height: 140px;
+  height: 100px;
   border-radius: 10px;
   margin-top: 3px;
   margin-bottom: 3px;
@@ -835,7 +872,7 @@ ul {
 
 .box4 {
   width: 80%;
-  height: 140px;
+  height: 100px;
   border-radius: 10px;
   margin-top: 3px;
   margin-bottom: 3px;
@@ -845,7 +882,7 @@ ul {
 
 .box5 {
   width: 80%;
-  height: 140px;
+  height: 100px;
   border-radius: 10px;
   margin-top: 3px;
   margin-bottom: 3px;
@@ -855,7 +892,7 @@ ul {
 
 .box6 {
   width: 80%;
-  height: 140px;
+  height: 100px;
   border-radius: 10px;
   margin-top: 3px;
   margin-bottom: 3px;
@@ -866,7 +903,7 @@ ul {
 .boxaladin {
   background-image: url("https://steemit-production-imageproxy-thumbnail.s3.amazonaws.com/U5du7QzV9m547GdgFGVuh2ckhRKGL9Q_1680x8400");
   width: 80%;
-  height: 140px;
+  height: 100px;
   border-radius: 10px;
   margin-top: 3px;
   margin-bottom: 3px;
@@ -1110,6 +1147,36 @@ body {
     .DropdownUser__inside__link:hover {
       color: #3E3E3E; }
 
+@media (min-width: 296px) and (max-width: 767px) {
+  .DropdownUser__item {
+    top: 180px !important;
+    transform: translate3d(0px, -130px, 0px) !important; } }
+
+.ModalTop {
+  border-bottom: none;
+  border-radius: 0;
+  background-color: var(--color-grey-5); }
+  .ModalTop span {
+    color: #FFCD05; }
+
+.Modalz {
+  margin-top: 8%;
+  border-radius: 0;
+  border: 5px solid var(--white); }
+
+@media (min-width: 767px) {
+  .Modalz {
+    font-size: 14px;
+    max-width: 730px; } }
+
+@media (min-width: 200px) and (max-width: 766px) {
+  .Modalz {
+    font-size: 14px;
+    max-width: 600px; } }
+
+.form-horizontal {
+  width: 100%; }
+
 .inputz {
   border: transparent;
   border-bottom: 2px solid var(--color-yellow-1);
@@ -1124,7 +1191,8 @@ body {
     background: transparent;
     font-family: Raleway;
     font-style: italic;
-    color: var(--color-yellow-1); }
+    color: var(--color-yellow-1);
+    box-shadow: var(--color-grey-5); }
   .inputz:hover {
     border: transparent;
     border-bottom: 2px solid var(--color-yellow-1);

@@ -29,11 +29,11 @@ import TopupPayment from './Screen/TopupPayment'
 
 import Bidding from './Screen/Bidding'
 import InsertPhone from './Screen/Components/InsertPhone/InsertPhone'
-import Pulsa from './Screen/Pulsa'
+// import Pulsa from './Screen/Pulsa'
 
 import Game from './Screen/Game'
-import Reward from './Screen/Reward'
-import RewardClaim from './Screen/RewardClaim'
+import Win from './Screen/Win'
+import ClaimReward from './Screen/ClaimReward'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -74,10 +74,10 @@ class RouteList extends React.Component {
             <PrivateRoute exact path="/topupinvoice/:id" component={TopupPayment} />
             <PrivateRoute exact path="/bidding" component={Bidding} />
             <PrivateRoute exact path="/insertphone" component={InsertPhone} />
-            <PrivateRoute exact path="/pulsa" component={Pulsa} />
+            {/* <PrivateRoute exact path="/pulsa" component={Pulsa} /> */}
             <PrivateRoute exact path="/game" component={ Game } />
-            <PrivateRoute exact path="/reward" component={ Reward } />
-            <PrivateRoute exact path="/reward/:id" component={ RewardClaim } />
+            <PrivateRoute exact path="/win" component={ Win } />
+            <PrivateRoute exact path="/claimreward" component={ ClaimReward } />
 
             <Route exact path="/emailVerification" component={EmailVerificationDone} />
             {/* <Route exact path="/product" component={Product} /> */}

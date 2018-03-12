@@ -51,8 +51,8 @@
   margin-right: 20px;
 
   &:hover{
-    background-color: #FFCD05;
-    color: #3E3E3E;
+    color: #FFCD05;
+    background-color: #3E3E3E;
   }
 
   &__label{
@@ -85,7 +85,16 @@
   padding: 0;
   border-radius: 10px;
   background-color: var(--color-yellow-1);
-  
+  &:active{
+    background-color: var(--color-yellow-1) !important;
+    border-color: transparent;
+  }
+  &:hover{
+    background-color: var(--color-yellow-1);
+  }
+  // &:focus{
+  //   box-shadow: transparent !important;
+  // }
   &__devide{
     width: 100%;
     height: 100%;
@@ -96,7 +105,6 @@
     outline: none;
     &:active{
       border-radius: 10px;
-      background-color: var(--color-yellow-1);
     }
   }
 
@@ -147,10 +155,19 @@
     color: var(--color-yellow-1);
     border: none;
     padding-left: 10%;
+      &:active{
+        background-color: transparent !important;
+        box-shadow: var(--color-grey-5) !important
+      }
+      &:focus{
+        box-shadow: var(--color-grey-5) !important;
+      }
   }
-}
-
-@media (max-width: 767px)  {
+  .ButtonHeader__devide {
+    &:active{
+      background-color: transparent !important;
+    }
+  }
   .ButtonHeader__big {
     background-color: transparent !important;
     background: transparent;
@@ -158,19 +175,44 @@
     border: none;
     margin-left: 15px;
   }
-}
-
-@media (max-width: 767px)  {
   .ButtonHeader__small{
     width: 0px;
     height: 0px;
   }
-}
-
-@media (max-width: 767px)  {
   .ButtonHeader__iconLogin{
     width: 0px;
     height: 0px;
   }
 }
+// @media (max-width: 767px)  {
+//   .ButtonHeader__devide {
+//     :active{
+//       background-color: transparent !important;
+//     }
+//   }
+// }
+
+// @media (max-width: 767px)  {
+//   .ButtonHeader__big {
+//     background-color: transparent !important;
+//     background: transparent;
+//     color: var(--color-yellow-1);
+//     border: none;
+//     margin-left: 15px;
+//   }
+// }
+
+// @media (max-width: 767px)  {
+//   .ButtonHeader__small{
+//     width: 0px;
+//     height: 0px;
+//   }
+// }
+
+// @media (max-width: 767px)  {
+//   .ButtonHeader__iconLogin{
+//     width: 0px;
+//     height: 0px;
+//   }
+// }
 
