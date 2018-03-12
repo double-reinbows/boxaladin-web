@@ -805,7 +805,7 @@ ul {
     display: flex;
     justify-content: center; }
   .game__slotItems {
-    width: 360px;
+    width: 70%;
     border-radius: 30px;
     background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%);
     padding: 20px;
@@ -1027,7 +1027,8 @@ ul {
 
 @media (min-width: 200px) and (max-width: 766px) {
   .User__show {
-    font-size: 18px; } }
+    font-size: 18px;
+    padding: 2.5%; } }
 
 @media (min-width: 200px) and (max-width: 766px) {
   .User__phone {
@@ -1039,7 +1040,7 @@ ul {
 
 @media (min-width: 200px) and (max-width: 766px) {
   .User__Phone__row2__number {
-    font-size: 18px; } }
+    font-size: 15px; } }
 
 .ReactModal__Overlay--after-open {
   background-color: transparent !important; }
@@ -1213,30 +1214,9 @@ body {
     font-style: italic;
     color: var(--color-yellow-1); }
 
-.ModalTop {
-  border-bottom: none;
-  border-radius: 0;
-  background-color: var(--color-grey-5); }
-  .ModalTop span {
-    color: #FFCD05; }
-
-.Modalz {
-  margin-top: 8%;
-  border-radius: 0;
-  border: 5px solid var(--white); }
-
-@media (min-width: 767px) {
-  .Modalz {
-    font-size: 14px;
-    max-width: 730px; } }
-
-@media (min-width: 200px) and (max-width: 766px) {
-  .Modalz {
-    font-size: 14px;
-    max-width: 600px; } }
-
-.form-horizontal {
-  width: 100%; }
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-yellow-1) !important;
+  -webkit-box-shadow: 0 0 0 34px #3E3E3E inset !important; }
 
 :root {
   --color-yellow-1: #FFCD05;
