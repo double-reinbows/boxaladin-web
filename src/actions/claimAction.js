@@ -9,7 +9,7 @@ export const getUserClaims = () => {
   return (dispatch) => {
     axios({
       method: 'GET',
-      url: `http://localhost:3000/claim/user`,
+      url: `${process.env.REACT_APP_API_HOST}/claim/user`,
       headers: {
         token: localStorage.getItem('token')
       }

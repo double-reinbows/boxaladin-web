@@ -87,7 +87,7 @@ class Product extends Component {
 
 		axios({
 			method: 'POST',
-			url: `http://localhost:3000/payment`,
+			url: `${process.env.REACT_APP_API_HOST}/payment`,
 			data: {
 				amount: this.state.productUnlocked.aladinPrice,
 				productId: this.state.productUnlocked.id,
@@ -157,7 +157,7 @@ class Product extends Component {
 
 		axios({
 			method: 'PUT',
-			url: `http://localhost:3000/api/product/${this.state.selectedProductId}`
+			url: `${process.env.REACT_APP_API_HOST}/api/product/${this.state.selectedProductId}`
 		})
 		.then(({data}) => {
 			this.togglePhoneModal()
@@ -241,7 +241,7 @@ class Product extends Component {
 		if (localStorage.getItem('token') !== null) {
 			axios({
 				method: 'POST',
-				url: `http://localhost:3000/unlockPrice`,
+				url: `${process.env.REACT_APP_API_HOST}/unlockPrice`,
 				data: {
 					productId: productId
 				},

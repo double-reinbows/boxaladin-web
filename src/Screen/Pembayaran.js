@@ -73,7 +73,7 @@ class InvoiceDetail extends React.Component {
   submitPaymentWithCC(token) {
     axios({
       method: 'POST',
-      url: `http://localhost:3000/creditcard`,
+      url: `${process.env.REACT_APP_API_HOST}/creditcard`,
       data: {
         tokenId: token,
         externalId: this.state.invoice.paymentId.toString(),
@@ -230,7 +230,7 @@ class InvoiceDetail extends React.Component {
   getInvoiceById() {
     axios({
       method: 'GET',
-      url: `http://localhost:3000/transaction/${this.props.match.params.id}`
+      url: `${process.env.REACT_APP_API_HOST}/transaction/${this.props.match.params.id}`
     })
     .then(({data}) => this.setState({invoice: data}))
     .catch(err => console.log(err))

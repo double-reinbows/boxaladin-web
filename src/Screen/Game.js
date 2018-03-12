@@ -131,7 +131,7 @@ class Game extends React.Component {
 			
 			axios({
 				method: 'PUT',
-				url: `http://localhost:3000/users/upcoin`,
+				url: `${process.env.REACT_APP_API_HOST}/users/upcoin`,
 				data: {
 					key: this.state.key
 				},
@@ -175,7 +175,7 @@ class Game extends React.Component {
 
 			axios({
 				method: 'POST',
-				url: `http://localhost:3000/win`,
+				url: `${process.env.REACT_APP_API_HOST}/win`,
 				headers: { token: localStorage.getItem('token') },
 				data: {
 					star: result
@@ -240,7 +240,7 @@ class Game extends React.Component {
 
 			axios({
 				method: 'PUT',
-				url: `http://localhost:3000/users/coin`,
+				url: `${process.env.REACT_APP_API_HOST}/users/coin`,
 				headers: {
 					token: localStorage.getItem('token')
 				},

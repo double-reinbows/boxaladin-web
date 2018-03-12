@@ -9,7 +9,7 @@ export const getCategories = () => {
 	return (dispatch) => {
 		axios({
 			method: 'GET',
-			url: `http://localhost:3000/api/category`
+			url: `${process.env.REACT_APP_API_HOST}/api/category`
 		})
 		.then(({data}) => {
 			dispatch(getCategoriesAction(data))

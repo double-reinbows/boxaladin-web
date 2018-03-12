@@ -14,7 +14,7 @@ import axios from 'axios'
     return (dispatch) => {
       axios({
         method: 'GET',
-        url: `http://localhost:3000/topup/userPending`,
+        url: `${process.env.REACT_APP_API_HOST}/topup/userPending`,
         headers: {
           token: localStorage.getItem('token')
         }
@@ -30,7 +30,7 @@ import axios from 'axios'
     return (dispatch) => {
       axios({
         method: 'GET',
-        url: `http://localhost:3000/topup/user`,
+        url: `${process.env.REACT_APP_API_HOST}/topup/user`,
         headers: {
           token: localStorage.getItem('token')
         }

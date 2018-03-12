@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-const BA_API_HOST = 'http://localhost:3000'
+const BA_API_HOST = `${process.env.REACT_APP_API_HOST}`
 
 class EmailVerificationDone extends React.Component {
   render() {
