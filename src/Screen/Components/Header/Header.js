@@ -55,7 +55,7 @@ class NavBar extends React.Component {
           <Link to="/home" className="HeaderTopM__logo">
             <img src={logo} alt="logo" className="BoxAladinLogo-Big" href="/home" />
           </Link>
-          <Collapse isOpen={this.state.isOpen} navbar className="HeaderTopz">
+          <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
             </Nav>
             {this.showRightButton()}

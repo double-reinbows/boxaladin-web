@@ -22,9 +22,10 @@
 .HeaderTopM {
     background-color: #3E3E3E;
     border-bottom: 4px solid #FFCD05;
-
+    
     &__logo{
       margin: 0px auto;
+      padding-right: 5%;
     }
     &__Right{
       display: flex;
