@@ -1217,30 +1217,6 @@ body {
 input:-webkit-autofill {
   -webkit-text-fill-color: var(--color-yellow-1) !important;
   -webkit-box-shadow: 0 0 0 34px #3E3E3E inset !important; }
-.ModalTop {
-  border-bottom: none;
-  border-radius: 0;
-  background-color: var(--color-grey-5); }
-  .ModalTop span {
-    color: #FFCD05; }
-
-.Modalz {
-  margin-top: 8%;
-  border-radius: 0;
-  border: 5px solid var(--white); }
-
-@media (min-width: 767px) {
-  .Modalz {
-    font-size: 14px;
-    max-width: 730px; } }
-
-@media (min-width: 200px) and (max-width: 766px) {
-  .Modalz {
-    font-size: 14px;
-    max-width: 600px; } }
-
-.form-horizontal {
-  width: 100%; }
 
 :root {
   --color-yellow-1: #FFCD05;
