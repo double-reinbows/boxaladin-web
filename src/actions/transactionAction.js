@@ -14,7 +14,7 @@ import axios from 'axios'
     return (dispatch) => {
       axios({
         method: 'GET',
-        url: `http://localhost:3000/transaction/userPending`,
+        url: `${process.env.REACT_APP_API_HOST}/transaction/userPending`,
         headers: {
           token: localStorage.getItem('token')
         }
@@ -30,7 +30,7 @@ import axios from 'axios'
     return (dispatch) => {
       axios({
         method: 'GET',
-        url: `http://localhost:3000/transaction/user`,
+        url: `${process.env.REACT_APP_API_HOST}/transaction/user`,
         headers: {
           token: localStorage.getItem('token')
         }

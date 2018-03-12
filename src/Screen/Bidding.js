@@ -122,7 +122,7 @@ class Bidding extends React.Component {
 
 		axios({
 			method: 'PUT',
-			url: `http://localhost:3000/api/product/${this.props.selectedProductID}`
+			url: `${process.env.REACT_APP_API_HOST}/api/product/${this.props.selectedProductID}`
 		})
 		.then(({data}) => {
       // this.stopWatchProductPrice(this.props.selectedProductID)
@@ -155,7 +155,7 @@ class Bidding extends React.Component {
 
 			axios({
 				method: 'POST',
-				url: `http://localhost:3000/unlockPrice`,
+				url: `${process.env.REACT_APP_API_HOST}/unlockPrice`,
 				data: {
 					productId: this.props.selectedProductID
 				},

@@ -1074,6 +1074,10 @@ body {
     font-style: italic;
     color: var(--color-yellow-1); }
 
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-yellow-1) !important;
+  -webkit-box-shadow: 0 0 0 34px #3E3E3E inset !important; }
+
 :root {
   --color-yellow-1: #FFCD05;
   --color-yellow-2: #FEC40C;

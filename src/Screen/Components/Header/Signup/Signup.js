@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 
 import {loginAction} from '../../../../actions'
 
-const URL = 'http://localhost:3000/'
+const URL = `${process.env.REACT_APP_API_HOST}/`
 
 class Signup extends Component {
   constructor(props) {

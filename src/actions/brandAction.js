@@ -9,7 +9,7 @@ export const getBrands = () => {
 	return (dispatch) => {
 		axios({
 			method: 'GET',
-			url: `http://localhost:3000/api/brand`
+			url: `${process.env.REACT_APP_API_HOST}/api/brand`
 		})
 		.then(({data}) => {
 			dispatch(getBrandsAction(data))

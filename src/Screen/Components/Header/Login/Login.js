@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 import { loginAction, logoutAction, getPhoneNumbers } from '../../../../actions'
 import { getUser } from '../../../../actions/userAction'
 
-const URL = 'http://localhost:3000/'
+const URL = `${process.env.REACT_APP_API_HOST}/`
 
 class Login extends Component {
   constructor(props) {

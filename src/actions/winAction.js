@@ -9,7 +9,7 @@ export const getUserWins = () => {
   return (dispatch) => {
     axios({
       method: 'GET',
-      url: `http://localhost:3000/win/user`,
+      url: `${process.env.REACT_APP_API_HOST}/win/user`,
       headers: {
         token: localStorage.getItem('token')
       }

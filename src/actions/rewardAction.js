@@ -9,7 +9,7 @@ export const getRewards = () => {
   return (dispatch) => {
     axios({
       method: 'GET',
-      url: `http://localhost:3000/reward`,
+      url: `${process.env.REACT_APP_API_HOST}/reward`,
     })
     .then(({data}) => {
       dispatch(getRewardsAction(data))
