@@ -16,33 +16,6 @@ import IconPhone from '../asset/user/IconPhone.svg'
 import IconUser from '../asset/user/IconUser.svg'
 import IconCheck from '../asset/user/IconCheck.svg'
 
-
-const customStyles = {
-	overlay : {
-    position          : 'absolute',
-    top               : 0,
-    left              : 0,
-    right             : 0,
-    bottom            : 0,
-    backgroundColor   : 'rgba(255, 255, 255, 0.80)'
-  },
-  content : {
-    position                   : 'absolute',
-    top                        : '200px',
-    left                       : '500px',
-    right                      : '500px',
-    bottom                     : '200px',
-    border                     : '1px solid #ccc',
-    background                 : '#fff',
-    overflow                   : 'auto',
-    WebkitOverflowScrolling    : 'touch',
-    borderRadius               : '4px',
-    outline                    : 'none',
-    padding                    : '50px'
-
-  }
-};
-
 class User extends React.Component {
 	constructor() {
 		super()
@@ -139,25 +112,22 @@ class User extends React.Component {
 			.catch(err => console.log(err))
 	}
 
+	// modal untuk OTP setelah change primary number
 	showChangePrimaryPhoneOTP() {
 		return (
-			<Modal
-				isOpen={this.state.changePrimaryPhoneOTPModal}
-				style={ customStyles }
-			>
-				<form className="form-horizontal" onSubmit={ (e) => this.finalSubmitChangePrimaryPhone(e) }>
-					<div className="form-group">
-						<div className="col-sm-12">
-							<input name="OTP" required autoFocus type="text" maxLength={6} className="form-control" id="inputUsername" placeholder="Masukan 6 digit OTP" onChange={ (e) => this.setState({OTP: e.target.value}) } />
-						</div>
+			<Modal isOpen={this.state.changePrimaryPhoneOTPModal} className="ModalPhone">
+				<form className="modalContent" onSubmit={ (e) => this.finalSubmitChangePrimaryPhone(e) }>
+					
+					<div className="form-group ModalContent__form">
+						<input name="OTP" required autoFocus type="text" maxLength={6} className="form-control" id="inputUsername" placeholder="Masukan 6 digit OTP" onChange={ (e) => this.setState({OTP: e.target.value}) } />
 					</div>
-					<div className="form-group">
-						<div className="col-sm-12 col-sm-offset-3">
-							<Button type="button" color="secondary" onClick={ () => this.setState({ changePrimaryPhoneOTPModal: false }) }>Cancel</Button>
-							<Button style={{ marginLeft: 5 }} type="submit" color="primary">Submit</Button>
-						</div>
+
+					<div className="form-group ModalContent__button">
+						<Button type="button" color="secondary" onClick={ () => this.setState({ changePrimaryPhoneOTPModal: false }) }>Cancel</Button>
+						<Button style={{ marginLeft: 5 }} type="submit" color="primary">Submit</Button>
 					</div>
 				</form>
+
 			</Modal>
 		)
 	}
@@ -193,84 +163,81 @@ class User extends React.Component {
 		}
 	}
 
+	// modal untuk select primary phone
 	showChangePrimaryPhone() {
 		return (
-			<Modal
-				isOpen={this.state.changePrimaryPhoneModal}
-				style={ customStyles }
-			>
-				<form className="form-horizontal" onSubmit={ (e) => this.submitChangePrimaryPhone(e) }>
-					<div className="form-group">
-						<div className="col-sm-12">
-							<select onChange={ (e) => this.setState({numberId: e.target.value}) }>
-								<option value={null}>--Select Number--</option>
-								{this.props.phoneNumbers.filter(phone => {
-									return phone.primary === false && phone.verified === true
-								}) 
-								.map((phone, idx) => {
-									return (
-										<option key={idx} value={phone.id}>{phone.number}</option>
-									)
-								})}
-							</select>
-						</div>
+			<Modal isOpen={this.state.changePrimaryPhoneModal} className="ModalPhone">
+				<form className="ModalContent" onSubmit={ (e) => this.submitChangePrimaryPhone(e) }>
+					
+					<div className="form-group ModalContent__form">
+						<select className="ModalContent__select"onChange={ (e) => this.setState({numberId: e.target.value}) }>
+							<option value={null}>--Select Number--</option>
+							{this.props.phoneNumbers.filter(phone => {
+								return phone.primary === false && phone.verified === true
+							}) 
+							.map((phone, idx) => {
+								return (
+									<option key={idx} value={phone.id}>{phone.number}</option>
+								)
+							})}
+						</select>
 					</div>
 
-					<div className="form-group">
-						<div className="col-sm-12 col-sm-offset-3">
-							<Button type="button" color="secondary" onClick={ () => this.setState({ changePrimaryPhoneModal: false }) }>Cancel</Button>
-							<Button style={{ marginLeft: 5 }} type="submit" color="primary">Set</Button>
-						</div>
+					<div className="form-group ModalContent__button">
+						<Button type="button" color="secondary" onClick={ () => this.setState({ changePrimaryPhoneModal: false }) }>Cancel</Button>
+						<Button style={{ marginLeft: 5 }} type="submit" color="primary">Set</Button>
 					</div>
 				</form>
+
 			</Modal>
 		)
 	}
 
+	// modal untuk change
 	showChangePhoneModal(numValue) {
 		// var numValue = this.state.numberToSend
 		return (
-			<Modal
-				isOpen={this.state.changePhoneModal}
-				style={ customStyles }
-			>
-				<form className="form-horizontal" onSubmit={ (e) => this.submitChangePhone(e) }>
-					<div className="form-group">
-						<div className="col-sm-12">
-							<input value={numValue} name="numberToSend" required autoFocus type="text" maxLength={14} className="form-control" placeholder="Number to change" onChange={ (e) => this.handlePhoneNum(e) } />
-						</div>
+			<Modal isOpen={this.state.changePhoneModal} className="ModalPhone">
+			
+				<form className="ModalContent" onSubmit={ (e) => this.submitChangePhone(e) }>
+					
+					<div className="form-group ModalContent__form">
+						<input value={numValue} name="numberToSend" required autoFocus type="text" maxLength={14} className="form-control" placeholder="Number to change" onChange={ (e) => this.handlePhoneNum(e) } />
 					</div>
-					<div className="form-group">
-						<div className="col-sm-12 col-sm-offset-3">
-							<Button type="button" color="secondary" onClick={ () => this.setState({ changePhoneModal: false }) }>Cancel</Button>
-							<Button style={{ marginLeft: 5 }} type="submit" color="primary">Change</Button>
-						</div>
+
+					<div className="form-group ModalContent__button">
+						<Button type="button" color="secondary" onClick={ () => this.setState({ changePhoneModal: false }) }>Cancel</Button>
+						<Button style={{ marginLeft: 5 }} type="submit" color="primary">Change</Button>
 					</div>
 				</form>
+
 			</Modal>
 		)
 	}
 
+	// modal untuk add phone
 	showAddPhoneModal() {
 		return (
-			<Modal
-				isOpen={this.state.addPhoneModal}
-				style={ customStyles }
-			>
-				<form className="form-horizontal" onSubmit={ (e) => this.submitPhone(e) }>
-					<div className="form-group">
-						<div className="col-sm-12">
-							<input name="numberToSend" required autoFocus type="text" maxLength={14} className="form-control" placeholder="Phone Number" onChange={ (e) => this.handlePhoneNum(e) } />
-						</div>
-					</div>
-					<div className="form-group">
-						<div className="col-sm-12 col-sm-offset-3">
-							<Button type="button" color="secondary" onClick={ () => this.setState({ addPhoneModal: false }) }>Cancel</Button>
-							<Button style={{ marginLeft: 5 }} type="submit" color="primary">Confirm</Button>
-						</div>
-					</div>
-				</form>
-			</Modal>
+		<Modal isOpen={this.state.addPhoneModal} className="ModalPhone">
+			<form className="ModalContent" onSubmit={e => this.submitPhone(e)}>
+			
+              <div className="form-group ModalContent__form">
+                <input name="numberToSend" required autoFocus type="text" maxLength={14} className="form-control" placeholder="Phone Number" onChange={e => this.handlePhoneNum(e)} />
+			  </div>
+			  
+              <div className="form-group ModalContent__button">
+				<Button type="button" color="danger" onClick={() => this.setState(
+					{ addPhoneModal: false }
+					)}>
+					Cancel
+				</Button>
+				<Button style={{ marginLeft: 5 }} type="submit" color="primary">
+					Confirm
+				</Button>
+			  </div>
+			  
+            </form>
+		</Modal>
 		)
 	}
 
@@ -291,24 +258,21 @@ class User extends React.Component {
 		}
 		// console.log(e.target.value);
 	}
-
+//Modal for verify number
 	showPhoneModal() {
 		return (
-			<Modal
-				isOpen={this.state.phoneModal}
-				style={ customStyles }
-			>
-				<form className="form-horizontal" onSubmit={ (e) => this.submitOTP(e) }>
-					<div className="form-group">
+			<Modal isOpen={this.state.phoneModal} className="ModalPhone">
+				<form className="ModalContent" onSubmit={ (e) => this.submitOTP(e) }>
+					
+					<div className="form-group ModalContent__form">
 						<div className="col-sm-12">
 							<input name="otp" required autoFocus type="text" maxLength={6} className="form-control" id="inputUsername" placeholder="Masukan 6 digit OTP" onChange={ (e) => this.setState({OTP: e.target.value}) } />
 						</div>
 					</div>
-					<div className="form-group">
-						<div className="col-sm-12 col-sm-offset-3">
-							<Button type="button" color="secondary" onClick={ () => this.setState({ phoneModal: false }) }>Cancel</Button>
-							<Button style={{ marginLeft: 5 }} type="submit" color="primary">Confirm</Button>
-						</div>
+
+					<div className="form-group ModalContent__button">
+						<Button type="button" color="secondary" onClick={ () => this.setState({ phoneModal: false }) }>Cancel</Button>
+						<Button style={{ marginLeft: 5 }} type="submit" color="primary">Confirm</Button>
 					</div>
 				</form>
 			</Modal>
@@ -340,75 +304,104 @@ class User extends React.Component {
 	}
 
 	showPhoneNumbers() {
-		return (
-			<div className="User__Phone">
-				<div className="User__Phone__row1">
-					<img src={IconPhone} className="User__show__logo" alt="Logo"/>
-					<label>Your registered phone number</label>
-				</div>
-				<div className="User__Phone__row2">
-					<ul>
-						{this.props.phoneNumbers !== null ? (
-								this.props.phoneNumbers.map((phone, idx) => {
-									return (
-										<li key={idx} className="User__Phone__row2__li">
-											<div className="User__Phone__row2__number">
-												{phone.number}
-											</div>
-											{phone.verified === false ? (
-												<div className="User__Phone__row2__unverify">
-													<div className="User__Phone__row2__unverify__1">
-														<Button onClick={ () => this.requestOTP(phone) } color="success" type="button" className="User__Phone__row2__unverify__1__button1">
-															verify
-														</Button>
-													</div>
-													<div className="User__Phone__row2__unverify__2">
-														<Button type="button" color="secondary" onClick={() => this.changePhone(phone)} className="User__Phone__row2__unverify__2__button2">
-															change
-														</Button>
-													</div>
-													<div className="User__Phone__row2__unverify__3">
-														<Button type="button" color="danger" onClick={() => this.removePhone(phone)} className="User__Phone__row2__unverify__3__button3">
-															remove
-														</Button>
-													</div>
-												</div>
-											) : (
-												<div className="User__Phone__row2__verify">
-													<div className="User__Phone__row2__verify__1">
-														<label className="User__Phone__row2__verify__1__button4" style={{ color: "green" }}>
-															verified
-														</label>
-													</div>
-													<div className="User__Phone__row2__verify__2">
-														<Button type="button" color="danger" onClick={() => this.removePhone(phone)} className="User__Phone__row2__verify__2__button5">
-															remove
-														</Button>
-													</div>
-													<div className="User__Phone__row2__verify__3">
-														{phone.primary === true ? 
-															<img src={IconCheck} className="User__Phone__row2__verify__3__check" alt="Logo"/> 
-														: null}
-													</div>
-												</div>
-											)}
-											
-										</li>
-									)
-								})
-						) : (
-							null
-						)}
-					</ul>
-					
-					<div className="User__Phone__row3">
-						<Button color="success" onClick={() => this.addPhone()} className="User__Phone__row3__button1">Add New Phonenumber</Button>
-						<Button color="danger" onClick={() => this.setState({changePrimaryPhoneModal: true})} className="User__Phone__row3__button2">Select primary Phonenumber</Button>
-					</div>
+		return <div className="User__Phone">
+        <div className="User__Phone__row1">
+          <img src={IconPhone} className="User__show__logo" alt="Logo" />
+          <label className="User__Label">
+            Your registered phone number
+          </label>
+        </div>
+        <div className="User__Phone__row2">
+          <ul>
+            {this.props.phoneNumbers !== null ? this.props.phoneNumbers.map(
+                  (phone, idx) => {
+                    return (
+                      <li key={idx} className="User__Phone__row2__li">
+                        <div className="User__Phone__row2__number">
+                          {phone.number}
+                        </div>
+                        {phone.verified === false ? (
+                          <div className="User__Phone__row2__unverify">
+                            <div className="User__Phone__row2__unverify__1">
+                              <Button
+                                onClick={() => this.requestOTP(phone)}
+                                color="success"
+                                type="button"
+                                className="User__Phone__row2__unverify__1__button1"
+                              >
+                                verify
+                              </Button>
+                            </div>
+                            <div className="User__Phone__row2__unverify__2">
+                              <Button
+                                type="button"
+                                color="secondary"
+                                onClick={() => this.changePhone(phone)}
+                                className="User__Phone__row2__unverify__2__button2"
+                              >
+                                change
+                              </Button>
+                            </div>
+                            <div className="User__Phone__row2__unverify__3">
+                              <Button
+                                type="button"
+                                color="danger"
+                                onClick={() => this.removePhone(phone)}
+                                className="User__Phone__row2__unverify__3__button3"
+                              >
+                                remove
+                              </Button>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="User__Phone__row2__verify">
+                            <div className="User__Phone__row2__verify__1">
+                              <label
+                                className="User__Phone__row2__verify__1__label"
+                                style={{ color: "green" }}
+                              >
+                                verified
+                              </label>
+                            </div>
+                            <div className="User__Phone__row2__verify__2">
+                              <Button
+                                type="button"
+                                color="danger"
+                                onClick={() => this.removePhone(phone)}
+                                className="User__Phone__row2__verify__2__button5"
+                              >
+                                remove
+                              </Button>
+                            </div>
+                            <div className="User__Phone__row2__verify__3">
+                              {phone.primary === true ? (
+                                <img
+                                  src={IconCheck}
+                                  className="User__Phone__row2__verify__3__check"
+                                  alt="Logo"
+                                />
+                              ) : null}
+                            </div>
+                          </div>
+                        )}
+                      </li>
+                    );
+                  }
+                ) : null}
+          </ul>
 
-				</div>
-			</div>
-		)
+          <div className="User__Phone__row3">
+            <Button color="success" onClick={() => this.addPhone()} className="User__Phone__row3__button1">
+              Add New Number
+            </Button>
+            <Button color="danger" onClick={() => this.setState({
+                  changePrimaryPhoneModal: true
+                })} className="User__Phone__row3__button2">
+              Select Primary Number
+            </Button>
+          </div>
+        </div>
+      </div>;
 	}
 
 	submitPhone(e) {

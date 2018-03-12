@@ -37,33 +37,6 @@
   }
 }
 
-.ModalTop{
-  border-bottom: none;
-  border-radius: 0;
-  background-color: var(--color-grey-5);
-  span{
-    color: #FFCD05;
-  }
-}
-
-.Modalz{
-  margin-top:10%;
-  border-radius: 0;
-  border: 5px solid var(--white);
-}
-
-@media (min-width: 320px ) and (max-width:500px ) {
-  .Modalz{
-    margin-top:20%;
-    font-size: 14px;
-    margin-left: 43px;
-    width: 80%;
-    max-width: 100%;
-  }
-}
-
-
-
 .inputz{
   border: transparent;
   border-bottom: 2px solid var(--color-yellow-1);
@@ -102,4 +75,38 @@
     font-style: italic;
     color: var(--color-yellow-1);
   }
+}
+
+
+.ModalTop{
+  border-bottom: none;
+  border-radius: 0;
+  background-color: var(--color-grey-5);
+  span{
+    color: #FFCD05;
+  }
+}
+
+.Modalz{
+  margin-top:8%;
+  border-radius: 0;
+  border: 5px solid var(--white);
+}
+
+@media (min-width: 767px ) {
+  .Modalz{
+    font-size: 14px;
+    max-width: 730px;
+  }
+}
+
+@media (min-width: 200px ) and (max-width:766px ) {
+  .Modalz{
+    font-size: 14px;
+    max-width: 600px;
+  }
+}
+
+.form-horizontal{
+  width: 100%;
 }
