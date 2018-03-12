@@ -2,12 +2,20 @@ import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import Login from '../../Screen/Components/Header/Login/Login';
 // import Login from '../Login'
+import { Provider } from 'react-redux'
+
+import store from '../../store/'
 
 describe('Login Component', () => {
  
     // make our assertion and what we expect to happen 
     it('should render without throwing an error', () => {
-      expect(shallow(<Login />).exists(<form className='Login'></form>)).toBe(true)
+      expect(shallow(
+        <Provider store={store}>
+          <Login />
+        </Provider>
+      
+    ).exists(<form className='form-horizontal'></form>)).toBe(true)
     })
 
     // it('renders a email input', () => {
