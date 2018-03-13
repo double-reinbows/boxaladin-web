@@ -22,5 +22,5 @@ yarn-debug.log*
 yarn-error.log*
 
 
-public/css/style.comp.css
-style.comp.css
+public/css/style.css
+style.css
