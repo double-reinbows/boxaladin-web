@@ -16,16 +16,15 @@ class ResetPassword extends React.Component {
     console.log('State:', this.state)
 
     return (
-      <div className="container">
-        <h1>New Password</h1>
+      <div className="resetPassword">
+        <h1 className="resetPassword__text">New Password</h1>
 
         <Form onSubmit={ (e) => this.resetPassword(e) }>
           <FormGroup>
-            <Label for="password">password</Label>
             <Input onChange={(e) => this.setState({ password: e.target.value })} minLength="8" type="password" name="password" id="password" placeholder="new password" />
           </FormGroup>
           <FormGroup>
-            <Button color="success">submit</Button>
+            <Button color="success" size="lg" block>submit</Button>
           </FormGroup>
         </Form>
 
