@@ -15,6 +15,10 @@ const getPhoneNumbersAction = (payload) => ({
   payload
 })
 
+export const setIsLoading = (payload) => ({
+  type: 'LOADING',
+  payload
+})
 
 export const getPhoneNumbers = () => {
   return (dispatch) => {
