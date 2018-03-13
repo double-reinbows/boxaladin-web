@@ -16,16 +16,15 @@ class RequestResetPassword extends React.Component {
     console.log('State:', this.state)
 
     return (
-      <div className="container">
-        <h1>Request Reset Password</h1>
+      <div className="RequestReset">
+        <h1 className="RequestReset__text">Request Reset Password</h1>
 
         <Form onSubmit={ (e) => this.sendLink(e) }>
           <FormGroup>
-            <Label for="email">Email</Label>
-            <Input onChange={(e) => this.setState({ email: e.target.value })} type="email" name="email" id="email" placeholder="email" />
+             <Input onChange={(e) => this.setState({ email: e.target.value })} type="email" name="email" id="email" placeholder="email" />
           </FormGroup>
           <FormGroup>
-            <Button color="success">send link</Button>
+            <Button color="success" size="lg" block>send link</Button>
           </FormGroup>
         </Form>
 
