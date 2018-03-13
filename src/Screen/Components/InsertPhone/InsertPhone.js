@@ -53,7 +53,7 @@ class InsertPhone extends React.Component {
 
     axios({
 			method: 'POST',
-			url: `http://localhost:3000/payment`,
+			url: `${process.env.REACT_APP_API_HOST}/payment`,
 			data: {
 				amount: this.state.productUnlocked.aladinPrice,
 				productId: this.state.productUnlocked.id,

@@ -1,21 +1,18 @@
 import axios from 'axios'
 
-const getUserRewardsAction = (payload) => ({
-  type: 'GET_USER_REWARDS',
+const getRewardsAction = (payload) => ({
+  type: 'GET_REWARDS',
   payload
 })
 
-export const getUserRewards = () => {
+export const getRewards = () => {
   return (dispatch) => {
     axios({
       method: 'GET',
-      url: `http://localhost:3000/win/user`,
-      headers: {
-        token: localStorage.getItem('token')
-      }
+      url: `${process.env.REACT_APP_API_HOST}/reward`,
     })
     .then(({data}) => {
-      dispatch(getUserRewardsAction(data))
+      dispatch(getRewardsAction(data))
     })
     .catch(err => console.log(err))
   }

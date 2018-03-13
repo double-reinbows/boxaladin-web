@@ -25,7 +25,7 @@ class TopupKey extends React.Component {
 
 		return (
 			<div className="TopupKey">
-				<h1 className="TopupKey__text">TopUp</h1>
+				<h1 className="TopupKey__text">Top Up Your Aladin Key</h1>
 				{ this.showForm() }
 			</div>
 		)
@@ -64,7 +64,7 @@ class TopupKey extends React.Component {
 		} else {
 			axios({
 				method: 'POST',
-				url: `http://localhost:3000/topupKey`,
+				url: `${process.env.REACT_APP_API_HOST}/topupKey`,
 				data: {
 					keyId: this.state.idKeySelected
 				},

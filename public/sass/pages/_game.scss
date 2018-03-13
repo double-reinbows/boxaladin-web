@@ -4,7 +4,9 @@
 	&__container{
 		margin: auto;
 		width: 100%;
-		max-width: 720px;
+		max-width: 600px;
+		background-color: var(--color-grey-5);
+
 	}
 
 	&__slotLabel{
@@ -23,7 +25,47 @@
 				font-weight: 500;	
 				line-height: 16px;
 			}
+	}
 
+	&__container2{
+		display: flex;
+		justify-content: center;
+	}
+
+	&__convert{
+		text-align: center;
+		&__label{
+			margin: 10px;
+			color: #FFFFFF;
+			font-family: Raleway;
+			font-size: 24px;
+			font-weight: bold;	
+			line-height: 29px;
+
+		}
+		&__input{
+			border-radius: 5px;
+			margin-right: 10px;
+			height: 30px;
+			font-family: Raleway;
+			line-height: 29px;
+			font-size: 21px;
+			padding-left: 10px;
+
+		}
+
+		&__buttonConvert{
+			margin-top: 10px;
+			margin-bottom: 10px;	
+			color: #FFFFFF;	
+			font-family: Raleway;	
+			font-size: 15px;
+			font-weight: 900;	
+			letter-spacing: 3px;	
+			line-height: 33px;
+			border-radius: 8px;
+			background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%)		
+		}
 	}
 
 	&__slotCoin{
@@ -45,38 +87,30 @@
 		}
 	}
 
-	&__container2{
+	&__container3{
 		display: flex;
 		justify-content: center;
 	}
 
 	&__slotItems{
-		display: flex;
-		justify-content: center;
-		width: 360px;
+		// display: flex;
+		// justify-content: center;
+		width: 70%;
 		border-radius: 30px;
 		background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%);		
 		padding: 20px;
 		margin-bottom: 10px;
 
-			&__box {
+			&__boxContainer {
 				background-color: black;
-				display: flex;
-				justify-content: center;
 				width: 100%;
 				border-radius: 10px;
 				border: 3px solid;
+				&__box{
+					display: flex;
+				}
+			}
 		}
-
-			&__items{
-				width: 300px;
-				animation-duration: 5s;
-				animation-timing-function: ease;
-				animation-delay: 5.2s;
-				animation-fill-mode: backwards;
-				
-		}
-	}
 
 	&__slotButton {
 		display: flex;
@@ -100,7 +134,43 @@
 			background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%)		
 		}
 	}
+	&__modal{
+		&__container{
+			background-color: var(--color-grey-5);
+		}
+		&__outerContainer{
+			display: flex;
+			justify-content: center;
+		}
+		&__boxContainer {
+			background-color: black;
+			width: 80%;
+			border-radius: 10px;
+			border: 3px solid;
+			&__item{
+				display: flex;
+			}
+		}
+		&__paragraph{
+			margin-top: 10px;
+			margin-bottom: 20px;
+			text-align: center;
+			font-family: raleway;
+			color: white;
+			font-size: 14px;
+			font-weight: 500;	
+			line-height: 16px;
+		
+		}
+	}
 }
+
+@media (min-width: 767px ){
+  .game__modal{
+		max-width: 650px;
+  }
+}
+
 @media (min-width: 275px ) and (max-width:500px ) {
   .game__slotItems{
 		padding: 15px;
@@ -112,7 +182,7 @@
 
 .box1 {
 	width: 80%;
-	height: 140px;	
+	height: 100px;	
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -125,7 +195,7 @@
 
 .box2 {
 	width: 80%;
-	height: 140px;	
+	height: 100px;	
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -137,7 +207,7 @@
 
 .box3 {
 	width: 80%;
-	height: 140px;	
+	height: 100px;	
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -149,7 +219,7 @@
 
 .box4 {
 	width: 80%;
-	height: 140px;	
+	height: 100px;	
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -161,7 +231,7 @@
 
 .box5 {
 	width: 80%;
-	height: 140px;	
+	height: 100px;	
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -173,7 +243,7 @@
 
 .box6 {
 	width: 80%;
-	height: 140px;	
+	height: 100px;	
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -186,7 +256,7 @@
 .boxaladin {
 	background-image: url("https://steemit-production-imageproxy-thumbnail.s3.amazonaws.com/U5du7QzV9m547GdgFGVuh2ckhRKGL9Q_1680x8400");
 	width: 80%;
-	height: 140px;	
+	height: 100px;	
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;

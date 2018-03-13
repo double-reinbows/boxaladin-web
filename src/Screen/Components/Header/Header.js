@@ -41,12 +41,27 @@ class NavBar extends React.Component {
           </Link>
 
           <NavbarToggler onClick={this.toggle} className="IconBurger"/>
+          <Collapse isOpen={this.state.isOpen} navbar className="HeaderTopz">
+            <Nav className="ml-auto" navbar>
+            </Nav>
+            {this.showRightButton()}
+          </Collapse>
+        </Navbar>
+
+        <Navbar light expand="md" className="HeaderTopM">
+          <NavbarToggler onClick={this.toggle} className="IconBurger" />
+          
+
+          <Link to="/home" className="HeaderTopM__logo">
+            <img src={logo} alt="logo" className="BoxAladinLogo-Big" href="/home" />
+          </Link>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
             </Nav>
             {this.showRightButton()}
           </Collapse>
         </Navbar>
+
       </div>
     );
   }

@@ -5,8 +5,9 @@ import {
   Table,
   Button
 } from 'reactstrap'
+import moment from 'moment'
 
-import { getUserRewards } from '../actions/rewardAction'
+import { getUserWins } from '../actions/winAction'
 
 class Reward extends React.Component {
   constructor(props) {
@@ -21,37 +22,35 @@ class Reward extends React.Component {
       <div>
         <Container>
           <h1>Reward</h1>
-          {this.showReward()}
+          {this.showWin()}
         </Container>
       </div>
     )
   }
 
   componentDidMount() {
-    this.props.getUserRewards()
+    this.props.getUserWins()
   }
 
-  showReward() {
+  showWin() {
     return (
       <Table>
         <thead>
           <tr>
             <th>No.</th>
-            <th>Hadiah</th>
-            <th>Status</th>
-            <th></th>
+            <th>Star</th>
+            <th>Free Key</th>
+            <th>Tanggal</th>
           </tr>
         </thead>
         <tbody>
-          {this.props.userRewards.map((data, idx) => {
+          {this.props.userWins.map((data, idx) => {
             return (
               <tr key={idx}>
                 <th scope="row">{idx+1}</th>
-                <td>{data.reward.rewardName}</td>
-                <td>{data.status}</td>
-                <td>{data.status === 'PENDING' ? (
-                  <Button color="success" onClick={() => this.showMetodeClaim(data.id)}>Claim</Button>
-                ) : null}</td>
+                <td>{data.freekey.star}</td>
+                <td>{data.freekey.amount}</td>
+                <td>{moment(data.createdAt, moment.ISO_8601).format('MMMM Do YYYY, h:mm:ss a')}</td>
               </tr>
             )
           })}
@@ -60,21 +59,17 @@ class Reward extends React.Component {
     )
   }
 
-  showMetodeClaim(id) {
-    this.props.history.push(`/reward/${id}`)
-  }
-
 }
 
 const mapStateToProps = (state) => {
   return {
-    userRewards: state.rewardReducer.userRewards,
+    userWins: state.winReducer.userWins,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUserRewards: () => dispatch(getUserRewards())
+    getUserWins: () => dispatch(getUserWins())
   }
 }
 

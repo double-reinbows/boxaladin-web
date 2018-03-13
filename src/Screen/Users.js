@@ -63,7 +63,7 @@ class User extends React.Component {
 
 		axios({
 			method: 'POST',
-			url: `http://localhost:3000/phoneVerification`,
+			url: `${process.env.REACT_APP_API_HOST}/phoneVerification`,
 			data: {
 				numberId: this.state.numberId,
 				otp: this.state.OTP
@@ -92,7 +92,7 @@ class User extends React.Component {
 
 		axios({
 				method: 'POST',
-				url: `http://localhost:3000/changePrimary`,
+				url: `${process.env.REACT_APP_API_HOST}/changePrimary`,
 				headers: {
 					token: localStorage.getItem('token')
 				},
@@ -145,7 +145,7 @@ class User extends React.Component {
 
 			axios({
 				method: 'POST',
-				url: `http://localhost:3000/smsVerification`,
+				url: `${process.env.REACT_APP_API_HOST}/smsVerification`,
 				data: {
 					phoneId: this.state.numberId
 				},
@@ -287,7 +287,7 @@ class User extends React.Component {
 
 		axios({
 			method: 'POST',
-			url: `http://localhost:3000/smsVerification`,
+			url: `${process.env.REACT_APP_API_HOST}/smsVerification`,
 			data: {
 				phoneId: phone.id
 			},
@@ -374,7 +374,15 @@ class User extends React.Component {
                               </Button>
                             </div>
                             <div className="User__Phone__row2__verify__3">
-                              {phone.primary === true ? (
+															{/* {
+																phone.primary && (
+																	<img
+                                  src={IconCheck}
+                                  className="User__Phone__row2__verify__3__check"
+																	alt="Logo"/>
+																)
+															} */}
+															{phone.primary === true ? (
                                 <img
                                   src={IconCheck}
                                   className="User__Phone__row2__verify__3__check"
@@ -413,7 +421,7 @@ class User extends React.Component {
 		} else {
 			axios({
 				method: 'POST',
-				url: `http://localhost:3000/phonenumber`,
+				url: `${process.env.REACT_APP_API_HOST}/phonenumber`,
 				data: {
 					phonenumber: this.state.numberToSend
 				},
@@ -454,7 +462,7 @@ class User extends React.Component {
 		} else {
 			axios({
 				method: 'PUT',
-				url: `http://localhost:3000/phone/${this.state.idPhoneToChange}`,
+				url: `${process.env.REACT_APP_API_HOST}/phone/${this.state.idPhoneToChange}`,
 				data: {
 					phonenumber: this.state.numberToSend
 				},
@@ -482,7 +490,7 @@ class User extends React.Component {
 		// alert('Remove phone here!')
 		axios({
 			method: 'DELETE',
-			url: `http://localhost:3000/phone/${phone.id}`
+			url: `${process.env.REACT_APP_API_HOST}/phone/${phone.id}`
 		})
 		.then(({data}) => {
 			console.log('Data remove phone:', data)

@@ -10,6 +10,7 @@
     "firebase": "^4.8.2",
     "jsonwebtoken": "^8.1.0",
     "md5": "^2.2.1",
+    "moment": "^2.21.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-modal": "^3.1.10",
@@ -30,6 +31,7 @@
     "concat": "^1.0.3",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-redux": "^0.1.8",
     "jest": "^22.4.2",
     "jest-cli": "^22.4.2",
     "jest-enzyme": "^4.2.0",
@@ -37,7 +39,8 @@
     "npm-run-all": "^4.1.1",
     "postcss-cli": "^4.1.1",
     "react-test-renderer": "^16.2.0",
-    "redux-mock-store": "^1.5.1"
+    "redux-mock-store": "^1.5.1",
+    "redux-test-utils": "^0.2.2"
   },
   "scripts": {
     "start": "npm-run-all --parallel watch:sass reactstart compile:sass",
