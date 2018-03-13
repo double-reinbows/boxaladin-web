@@ -251,12 +251,12 @@ class Signup extends Component {
             <label className="control-label" htmlFor="sex">
               Sex:
             </label>
-            <select
+            <select className="form-group Signup__Sex"
               name="sex"
               value={this.state.sex}
               onChange={this.signUpInputHandler}
             >
-              <option value={null}>Select gender</option>
+              <option disabled={true} value={null}>Select gender</option>
               <option value="M">Male</option>
               <option value="F">Female</option>
             </select>

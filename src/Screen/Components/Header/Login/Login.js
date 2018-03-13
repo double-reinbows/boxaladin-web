@@ -25,7 +25,7 @@ class Login extends Component {
       password: this.state.password
     })
     .then(({data}) => {
-      if (data.message === 'username not found') {
+      if (data.message === 'username or email not found') {
         console.log(data)
         alert(data.message)
       } else if (data.message === 'password incorrect') {
@@ -71,7 +71,7 @@ class Login extends Component {
           </div>
 
           <div className="form-group Login__Form">
-            <label>Email address</label>
+            <label>Email address/username</label>
             <input  name="username" type="username" className="form-control inputz" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email or username here" onChange={ (e) => this.logInInputHandler(e) }/>
           </div>
 

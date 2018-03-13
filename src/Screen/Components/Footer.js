@@ -20,7 +20,7 @@ export default  class Footer extends React.Component {
                 <img src={logo} alt="logo" className="LogoFooter"/>
               </a>
               <label className="footerz__Top__Left__label">LINE @boxaladin</label>
-              <Button className="footerz__Top__Left__button">Layanan Bantuan</Button>
+              <button className="footerz__Top__Left__button">Layanan Bantuan</button>
             </div>
           </div>
 
