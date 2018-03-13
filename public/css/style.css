@@ -5,9 +5,10 @@
   .footerz__Top {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; }
+    justify-content: center;
+    border-top: 2px solid var(--color-yellow-1); }
     .footerz__Top__Left {
-      width: 50%;
+      width: 43%;
       display: flex;
       justify-content: center;
       align-items: center; }
@@ -19,13 +20,16 @@
         font-size: 18px;
         font-weight: bold;
         line-height: 21px;
-        padding: 1rem; }
-      .footerz__Top__Left__label {
-        margin: 2rem; }
+        height: 100%; }
       .footerz__Top__Left__button {
-        margin: 2rem;
+        margin-top: 1rem;
         background-color: var(--color-yellow-1);
-        color: var(--color-dark-3); }
+        color: var(--color-dark-3);
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 21px;
+        font-family: Raleway;
+        border-radius: 4px; }
         .footerz__Top__Left__button:active {
           background-color: var(--color-yellow-1) !important;
           color: var(--color-dark-3); }
@@ -112,7 +116,6 @@
 
 .LogoFooter {
   width: 240px;
-  height: 60px;
   margin-top: 2rem;
   margin-bottom: 2rem; }
 
@@ -281,7 +284,7 @@ ul {
   padding: 2rem; }
   .Signup__Title {
     font-family: Raleway;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 500;
     line-height: 16px;
     text-align: center;
@@ -293,7 +296,13 @@ ul {
     line-height: 24px;
     text-align: center; }
   .Signup__Form {
-    text-align: left; }
+    text-align: left;
+    font-size: 17px; }
+  .Signup__Sex {
+    border-radius: 5px;
+    background-color: var(--color-grey-5);
+    color: white;
+    margin-left: 5px; }
   .Signup__ButtonLogin {
     color: var(--color-grey-5);
     background-color: var(--color-yellow-1);
@@ -606,7 +615,7 @@ ul {
   height: 5rem;
   padding: 0rem;
   border: 3px solid #3E3E3E;
-  margin: 5%; }
+  margin-bottom: 5%; }
   .dropz__devide {
     width: 100%;
     height: 100%;
@@ -742,7 +751,8 @@ ul {
   .game__container {
     margin: auto;
     width: 100%;
-    max-width: 600px; }
+    max-width: 600px;
+    background-color: var(--color-grey-5); }
   .game__slotLabel {
     text-align: center;
     font-family: raleway; }
@@ -834,6 +844,31 @@ ul {
       line-height: 33px;
       border-radius: 8px;
       background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%); }
+  .game__modal__container {
+    background-color: var(--color-grey-5); }
+  .game__modal__outerContainer {
+    display: flex;
+    justify-content: center; }
+  .game__modal__boxContainer {
+    background-color: black;
+    width: 80%;
+    border-radius: 10px;
+    border: 3px solid; }
+    .game__modal__boxContainer__item {
+      display: flex; }
+  .game__modal__paragraph {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: raleway;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px; }
+
+@media (min-width: 767px) {
+  .game__modal {
+    max-width: 650px; } }
 
 @media (min-width: 275px) and (max-width: 500px) {
   .game__slotItems {
@@ -1011,10 +1046,10 @@ ul {
       display: flex;
       justify-content: space-around; }
       .User__Phone__row3__button1 {
-        width: 40%;
+        width: 45%;
         margin: 5%; }
       .User__Phone__row3__button2 {
-        width: 40%;
+        width: 45%;
         margin: 5%; }
 
 @media (min-width: 200px) and (max-width: 766px) {
@@ -1091,6 +1126,7 @@ ul {
     justify-content: center;
     margin: 2.5%; }
   .ModalContent__select {
+    background-color: white;
     width: 80%; }
 
 * {
@@ -1181,6 +1217,7 @@ body {
 .inputz {
   border: transparent;
   border-bottom: 2px solid var(--color-yellow-1);
+  font-size: 15px;
   background: transparent;
   font-family: Raleway;
   font-style: italic;

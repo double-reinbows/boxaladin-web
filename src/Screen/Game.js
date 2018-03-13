@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap'
+import { Modal, ModalHeader } from 'reactstrap'
 import axios from 'axios'
 import Coin from '../../src/asset/Game/coin.svg'
 import { getUser } from '../actions/userAction'
@@ -26,9 +26,9 @@ class Game extends React.Component {
 			slot2_bawah: 0,
 			slot3_bawah: 0,
 
-			speed1: 100,
-			speed2: 70,
-			speed3: 50,
+			speed1: 300,
+			speed2: 300,
+			speed3: 300,
 
 			itemsdummy1: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 			itemsdummy2: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
@@ -37,6 +37,7 @@ class Game extends React.Component {
 			isRunning: false,
 			modal: false,
 			key: null,
+			freeKey: 0
 		}
 
 		this.toggle = this.toggle.bind(this)
@@ -97,7 +98,7 @@ class Game extends React.Component {
 					<div className="game__slotButton">
 						<div className="game__slotButton__container3">
 							<button disabled={this.state.isRunning} className="game__slotButton__start" onClick={ () => this.start() }>START</button>
-												<div>
+						<div>
 							<button disabled={!this.state.isRunning} className="game__slotButton__start" onClick={ () => this.stop() }>STOP</button>
 						</div>
 						{/* <div>
@@ -106,6 +107,26 @@ class Game extends React.Component {
 						</div>
 					</div>
 				</div>
+
+					<Modal isOpen={this.state.modal} className="game__modal">
+						<div className="game__modal__container">
+							<ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>
+							<div	className="game__modal__outerContainer">
+								<div className="game__modal__boxContainer">
+									<div className="game__modal__boxContainer__item">
+										<div className={this.state.itemsdummy1[6]} />
+										<div className={this.state.itemsdummy1[6]} />
+										<div className={this.state.itemsdummy1[6]} />
+									</div>
+								</div>
+							</div>
+								<div className="game__modal__paragraph">
+									<label>selamat {this.props.userInfo.firstName}</label>
+									<br/>
+									<label>anda mendapatkan hadiah berupa {this.state.freeKey} key gratis</label>
+								</div>
+						</div>
+					</Modal>
 			</div>
 		)
 	}
@@ -160,9 +181,15 @@ class Game extends React.Component {
 
 	submitResult(result) {
 		if (result === 0) {
+			console.log('tes4', this.state.modal)
+			// this.setState({
+			// 	modal:false
+			// })
 			alert('Maaf Anda kurang beruntung.')
 			console.log('Maaf Anda kurang beruntung.')
+			console.log('tes', this.state.modal)
 			this.reset()
+			return			
 		} else {
 
 			console.log('Anda menang dengan star =', result)
@@ -182,10 +209,16 @@ class Game extends React.Component {
 				}
 			})
 			.then(({data}) => {
+				console.log('tes2', this.state.modal)
+				this.setState({
+					modal:true,
+					freeKey: data.freekey.amount
+				})
+				console.log('tes3', this.state.modal)
 				this.props.getUser()
 				this.props.getUserWins()
 				console.log(data)
-				alert('Selamat! kamu dapat ' + data.freekey.amount + ' Free Key.')
+				// alert('Selamat! kamu dapat ' + data.freekey.amount + ' Free Key.')
 				this.reset()
 			})
 			.catch(err => console.log(err))
@@ -194,7 +227,10 @@ class Game extends React.Component {
 	}
 
 	toggle() {
-		this.setState({ modal: !this.state.modal })
+		this.setState({ 
+			modal: false,
+			freeKey: 0
+		})
 	}
 
 	handleResult() {
