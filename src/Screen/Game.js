@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap'
+import { Modal, ModalHeader } from 'reactstrap'
 import axios from 'axios'
 import Coin from '../../src/asset/Game/coin.svg'
 import { getUser } from '../actions/userAction'
@@ -26,9 +26,9 @@ class Game extends React.Component {
 			slot2_bawah: 0,
 			slot3_bawah: 0,
 
-			speed1: 300,
-			speed2: 300,
-			speed3: 300,
+			speed1: 70,
+			speed2: 20,
+			speed3: 50,
 
 			itemsdummy1: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 			itemsdummy2: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
@@ -181,8 +181,13 @@ class Game extends React.Component {
 
 	submitResult(result) {
 		if (result === 0) {
+			console.log('tes4', this.state.modal)
+			// this.setState({
+			// 	modal:false
+			// })
 			alert('Maaf Anda kurang beruntung.')
 			console.log('Maaf Anda kurang beruntung.')
+			console.log('tes', this.state.modal)
 			this.reset()
 			return			
 		} else {
@@ -204,18 +209,17 @@ class Game extends React.Component {
 				}
 			})
 			.then(({data}) => {
+				console.log('tes2', this.state.modal)
 				this.setState({
 					modal:true,
 					freeKey: data.freekey.amount
 				})
+				console.log('tes3', this.state.modal)
 				this.props.getUser()
 				this.props.getUserWins()
 				console.log(data)
 				// alert('Selamat! kamu dapat ' + data.freekey.amount + ' Free Key.')
 				this.reset()
-				this.setState({
-					freeKey:0
-				})
 			})
 			.catch(err => console.log(err))
 
@@ -223,7 +227,10 @@ class Game extends React.Component {
 	}
 
 	toggle() {
-		this.setState({ modal: !this.state.modal })
+		this.setState({ 
+			modal: false,
+			freekey: 0
+		})
 	}
 
 	handleResult() {
