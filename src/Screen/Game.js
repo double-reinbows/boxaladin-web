@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap'
+import { Modal, ModalHeader } from 'reactstrap'
 import axios from 'axios'
 import Coin from '../../src/asset/Game/coin.svg'
 import { getUser } from '../actions/userAction'
@@ -181,8 +181,13 @@ class Game extends React.Component {
 
 	submitResult(result) {
 		if (result === 0) {
+			console.log('tes4', this.state.modal)
+			// this.setState({
+			// 	modal:false
+			// })
 			alert('Maaf Anda kurang beruntung.')
 			console.log('Maaf Anda kurang beruntung.')
+			console.log('tes', this.state.modal)
 			this.reset()
 			return			
 		} else {
@@ -204,18 +209,17 @@ class Game extends React.Component {
 				}
 			})
 			.then(({data}) => {
+				console.log('tes2', this.state.modal)
 				this.setState({
 					modal:true,
 					freeKey: data.freekey.amount
 				})
+				console.log('tes3', this.state.modal)
 				this.props.getUser()
 				this.props.getUserWins()
 				console.log(data)
 				// alert('Selamat! kamu dapat ' + data.freekey.amount + ' Free Key.')
 				this.reset()
-				this.setState({
-					freeKey:0
-				})
 			})
 			.catch(err => console.log(err))
 
@@ -223,7 +227,10 @@ class Game extends React.Component {
 	}
 
 	toggle() {
-		this.setState({ modal: !this.state.modal })
+		this.setState({ 
+			modal: false,
+			freeKey: 0
+		})
 	}
 
 	handleResult() {

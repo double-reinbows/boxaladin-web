@@ -308,7 +308,7 @@ ul {
   padding: 2rem; }
   .Signup__Title {
     font-family: Raleway;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 500;
     line-height: 16px;
     text-align: center;
@@ -320,7 +320,13 @@ ul {
     line-height: 24px;
     text-align: center; }
   .Signup__Form {
-    text-align: left; }
+    text-align: left;
+    font-size: 17px; }
+  .Signup__Sex {
+    border-radius: 5px;
+    background-color: var(--color-grey-5);
+    color: white;
+    margin-left: 5px; }
   .Signup__ButtonLogin {
     color: var(--color-grey-5);
     background-color: var(--color-yellow-1);
