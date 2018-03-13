@@ -103,7 +103,7 @@ class Example extends React.Component {
 
               <div>
                 <Link to="/bidding">
-                  <button type="button" className="btn btn-lg btn-block TabsPane1__button">LIHAT HARGA</button>
+                  <button onClick={() => this.handleNotLogin()} disabled={ this.props.selectedProductID !== '' ? false : true} type="button" className="btn btn-lg btn-block TabsPane1__button">LIHAT HARGA</button>
                 </Link>
               </div>
             </div>
@@ -119,6 +119,12 @@ class Example extends React.Component {
         </TabContent>
       </div>
     );
+  }
+
+  handleNotLogin() {
+    if (localStorage.getItem('token') === null) {
+      alert('Anda belum login')
+    }
   }
 
   showSelectedProductName() {

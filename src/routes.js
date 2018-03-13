@@ -34,6 +34,8 @@ import InsertPhone from './Screen/Components/InsertPhone/InsertPhone'
 import Game from './Screen/Game'
 import Win from './Screen/Win'
 import ClaimReward from './Screen/ClaimReward'
+import RequestResetPassword from './Screen/RequestResetPassword'
+import ResetPassword from './Screen/ResetPassword'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -81,6 +83,8 @@ class RouteList extends React.Component {
 
             <Route exact path="/emailVerification" component={EmailVerificationDone} />
             {/* <Route exact path="/product" component={Product} /> */}
+            <Route exact path="/requestresetpassword" component={RequestResetPassword} />
+            <Route exact path="/resetpassword" component={ResetPassword} />
 
             <Footer/>
           </div>

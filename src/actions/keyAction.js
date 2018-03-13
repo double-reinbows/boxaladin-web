@@ -9,7 +9,7 @@ export const getKeys = (keyId) => {
 	return (dispatch) => {
 		axios({
 			method: 'GET',
-			url: `http://localhost:3000/voucheraladinkey`
+			url: `${process.env.REACT_APP_API_HOST}/voucheraladinkey`
 		})
 		.then(({data}) => {
 			dispatch(getKeysAction(data))

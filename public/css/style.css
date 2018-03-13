@@ -1056,7 +1056,8 @@ ul {
 
 @media (min-width: 200px) and (max-width: 766px) {
   .User__show {
-    font-size: 18px; } }
+    font-size: 18px;
+    padding: 2.5%; } }
 
 @media (min-width: 200px) and (max-width: 766px) {
   .User__phone {
@@ -1068,7 +1069,7 @@ ul {
 
 @media (min-width: 200px) and (max-width: 766px) {
   .User__Phone__row2__number {
-    font-size: 18px; } }
+    font-size: 15px; } }
 
 .ReactModal__Overlay--after-open {
   background-color: transparent !important; }

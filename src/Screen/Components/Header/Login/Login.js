@@ -2,11 +2,12 @@ import axios from 'axios'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button } from 'reactstrap';
+import { Link } from 'react-router-dom'
 
 import { loginAction, logoutAction, getPhoneNumbers } from '../../../../actions'
 import { getUser } from '../../../../actions/userAction'
 
-const URL = 'http://localhost:3000/'
+const URL = `${process.env.REACT_APP_API_HOST}/`
 
 class Login extends Component {
   constructor(props) {
@@ -77,7 +78,8 @@ class Login extends Component {
           <div className="form-group Login__Form">
             <label>Password</label>
             <input name="password" type="password"  className="form-control inputz" id="exampleInputPassword" aria-describedby="passwordHelp" placeholder="Enter your password" onChange={ (e) => this.logInInputHandler(e) }/>
-            <label className="Login__LupaPassword"><a className="lupapass" href="/signup">lupa password?</a></label>
+            <label className="Login__LupaPassword"><a className="lupapass" href="/requestresetpassword">lupa password?</a></label>
+            {/* <Link to="/requestresetpassword" className="Login__LupaPassword lupapass">lupa password?</Link> */}
           </div>
 
           <div className="form-group">

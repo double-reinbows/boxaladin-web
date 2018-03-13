@@ -100,7 +100,7 @@ class ClaimReward extends React.Component {
 
       axios({
         method: 'POST',
-        url: `http://localhost:3000/claim`,
+        url: `${process.env.REACT_APP_API_HOST}/claim`,
         headers: {
           token: localStorage.getItem('token')
         },
