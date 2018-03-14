@@ -232,7 +232,7 @@ class Bidding extends React.Component {
 
 		} else if (this.state.count <= 0 && this.state.count !== prevCount && this.state.isWatching === true) {
       // this.stopWatchProductPrice(this.props.selectedProductID)
-      alert('Waktu habis Brayyy...')
+      alert('Waktu bidding sudah habis')
       this.props.history.push('/home')
 
 		} else if (this.state.count !== this.state.initCount && this.state.isWatching === false) {

@@ -477,7 +477,7 @@ ul {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     padding: 30px; }
     .bidding__3__col {
       display: flex;
@@ -486,7 +486,7 @@ ul {
       padding: 10px;
       text-align: center; }
       .bidding__3__col__text {
-        color: #FFFFFF;
+        color: #FFCD05;
         font-family: Raleway;
         font-size: 36px;
         font-weight: 800;
