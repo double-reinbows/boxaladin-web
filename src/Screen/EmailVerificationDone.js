@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { connect } from 'react-redux'
+
+import { setModalLogin, setModalRegister } from '../actions/'
 
 const BA_API_HOST = `${process.env.REACT_APP_API_HOST}`
 
@@ -31,10 +34,32 @@ class EmailVerificationDone extends React.Component {
   showLoginLink() {
     if (localStorage.getItem('token') == null) {
       return (
-        <h3 className="emailVerification__text">Click <Link to="/login">here</Link> to login</h3>
+        // <h3 className="emailVerification__text">Click <Link to="/login">here</Link> to login</h3>
+        <h3 className="emailVerification__text">Click <text onClick={() => this.openLoginModal()}>here</text> to login</h3>
       )
     }
   }
+
+  openLoginModal() {
+    this.props.setModalLogin(!this.props.modalLogin)
+  }
+
 }
 
-export default EmailVerificationDone
+const mapStateToProps = (state) => {
+  return {
+    modalLogin: state.modalReducer.modalLogin,
+    modalRegister: state.modalReducer.modalRegister,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setModalLogin: (payload) => dispatch(setModalLogin(payload)),
+    setModalRegister: (payload) => dispatch(setModalRegister(payload)),
+  }
+}
+
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(EmailVerificationDone)
+
+export default connectComponent

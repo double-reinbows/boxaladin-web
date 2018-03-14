@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button } from 'reactstrap';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 import { loginAction, logoutAction, getPhoneNumbers } from '../../../../actions'
 import { getUser } from '../../../../actions/userAction'
@@ -41,6 +41,9 @@ class Login extends Component {
         this.props.loginAction()
         this.props.getUser()
         this.props.getPhoneNumbers()
+        this.props.setModalLogin(false)
+        this.props.setModalRegister(false)
+        this.props.history.push('/')
       }
     })
     .catch(e => {
@@ -53,8 +56,8 @@ class Login extends Component {
   }
 
   render () {
-    console.log('State:', this.state);
-    console.log('Props:', this.props);
+    console.log('Login State:', this.state);
+    console.log('Login Props:', this.props);
     return (
       <div className="Login">
         <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
@@ -123,4 +126,4 @@ const mapDispatchToProps = (dispatch) => {
 
 const connectComponent = connect(mapStateToProps, mapDispatchToProps)(Login)
 
-export default connectComponent
+export default withRouter(connectComponent)
