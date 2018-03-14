@@ -20,6 +20,16 @@ export const setIsLoading = (payload) => ({
   payload
 })
 
+export const setModalLogin = (payload) => ({
+  type: 'SET_MODAL_LOGIN',
+  payload
+})
+
+export const setModalRegister = (payload) => ({
+  type: 'SET_MODAL_REGISTER',
+  payload
+})
+
 export const getPhoneNumbers = () => {
   return (dispatch) => {
     axios({
