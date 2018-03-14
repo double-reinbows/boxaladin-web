@@ -221,7 +221,7 @@ class Game extends React.Component {
 				this.props.getUserWins()
 				console.log(data)
 				// alert('Selamat! kamu dapat ' + data.freekey.amount + ' Free Key.')
-				this.reset()
+				// this.reset()
 			})
 			.catch(err => console.log(err))
 
@@ -233,6 +233,7 @@ class Game extends React.Component {
 			modal: false,
 			freeKey: 0
 		})
+		this.reset()
 	}
 
 	handleResult() {
@@ -318,7 +319,7 @@ class Game extends React.Component {
 			isRunning: false
 		})
 
-		this.toggle()
+		// this.toggle()
 	}
 
 	reset() {
