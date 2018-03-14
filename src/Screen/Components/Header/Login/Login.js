@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 import { loginAction, logoutAction, getPhoneNumbers } from '../../../../actions'
 import { getUser } from '../../../../actions/userAction'
+import { setModalLogin, setModalRegister } from '../../../../actions/'
 
 const URL = `${process.env.REACT_APP_API_HOST}/`
 
@@ -86,18 +87,26 @@ class Login extends Component {
               <Button type="submit" className="Login__ButtonLogin">Login</Button>
           </div>
 
-          <label className="Login__Daftar">Belum memiliki akun? daftar <a href="/signup" className="Login__Link"> disini</a></label>
+          <label className="Login__Daftar">Belum memiliki akun? daftar <text onClick={() => this.openRegisterModal()} className="Login__Link"> disini</text></label>
 
         </form>
       </div>
     )
   }
+
+  openRegisterModal() {
+    this.props.setModalLogin(!this.props.modalLogin)
+    this.props.setModalRegister(!this.props.modalRegister)
+  }
+
 }
 
 const mapStateToProps = (state) => {
   return {
     isLogin: state.userReducer.isLogin,
-    dataUser: state.userReducer.dataUser
+    dataUser: state.userReducer.dataUser,
+    modalLogin: state.modalReducer.modalLogin,
+    modalRegister: state.modalReducer.modalRegister,
   }
 }
 
@@ -106,7 +115,9 @@ const mapDispatchToProps = (dispatch) => {
     loginAction: () => dispatch(loginAction()),
     logoutAction: () => dispatch(logoutAction()),
     getPhoneNumbers: () => dispatch(getPhoneNumbers()),
-    getUser: () => dispatch(getUser())
+    getUser: () => dispatch(getUser()),
+    setModalLogin: (payload) => dispatch(setModalLogin(payload)),
+    setModalRegister: (payload) => dispatch(setModalRegister(payload)),
   }
 }
 
