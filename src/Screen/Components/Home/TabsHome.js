@@ -88,7 +88,6 @@ class Example extends React.Component {
                 </div>
 
                 <div className="TabsPane1__dropdown">
-                  <DropdownBolt />
                   <DropdownIndosat />
                   <DropdownTelkomsel className="TabsPane1__dropdown__content"/>
                   <DropdownXL className="TabsPane1__dropdown__content"/>
@@ -121,10 +120,7 @@ class Example extends React.Component {
                 </div>
 
                 <div className="TabsPane1__dropdown">
-                  <DropdownIndosat />
-                  <DropdownTelkomsel />
-                  <DropdownXL />
-                  <DropdownTri />
+                  <DropdownBolt />
                 </div>
 
               </div>

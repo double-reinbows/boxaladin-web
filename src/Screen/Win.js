@@ -19,11 +19,11 @@ class Reward extends React.Component {
     console.log('Props:', this.props)
     console.log('State:', this.state)
     return (
-      <div>
-        <Container>
-          <h1>Reward</h1>
+      <div className="invoice">
+        <div className="invoice__container">
+          <h1 className="invoice__text">Reward</h1>
           {this.showWin()}
-        </Container>
+        </div>
       </div>
     )
   }
