@@ -25,7 +25,7 @@ class TopupKey extends React.Component {
 
 		return (
 			<div className="TopupKey">
-				<h1 className="TopupKey__text">TopUp</h1>
+				<h1 className="TopupKey__text">Top Up Your Aladin Key</h1>
 				{ this.showForm() }
 			</div>
 		)

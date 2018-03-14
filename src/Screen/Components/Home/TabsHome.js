@@ -110,13 +110,38 @@ class Example extends React.Component {
           </TabPane>
 
           <TabPane tabId="2">
-          <Row>
-            <Col sm="12" className="TabsHome__pane1">
-              <h4 className="TabsHome__pane1__font">Tab 2 Contents</h4>
-            </Col>
-          </Row>
+            <div>
+              <div className="TabsPane1">
+
+                <div className="TabsPane1__text">
+                  <label className="TabsPane1__label">PAKET DATA</label>
+                </div>
+
+                <div className="TabsPane1__dropdown">
+                  <DropdownIndosat />
+                  <DropdownTelkomsel />
+                  <DropdownXL />
+                  <DropdownTri />
+                </div>
+
+              </div>
+
+              <div>
+                <h1 className="TabsPane1__selectedProduct">
+                  {this.showSelectedProductName()}
+                </h1>
+              </div>
+
+              <div>
+                <Link to="/bidding">
+                  <button onClick={() => this.handleNotLogin()} disabled={this.props.selectedProductID !== '' ? false : true} type="button" className="btn btn-lg btn-block TabsPane1__button">LIHAT HARGA</button>
+                </Link>
+              </div>
+            </div>
           </TabPane>
+
         </TabContent>
+
       </div>
     );
   }

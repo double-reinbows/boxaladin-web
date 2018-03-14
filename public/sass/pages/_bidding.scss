@@ -49,9 +49,6 @@
 
     &__col2{
 
-      &__mid{
-      }
-
       &__pulsa{
         color: #FFFFFF;
         font-family: Raleway;
@@ -103,7 +100,7 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     padding: 30px;
 
     &__col{
@@ -114,7 +111,7 @@
       text-align: center;
 
       &__text{
-      	color: #FFFFFF;
+      	color: #FFCD05;
       	font-family: Raleway;
       	font-size: 36px;
       	font-weight: 800;

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Modal, ModalHeader } from 'reactstrap'
 import axios from 'axios'
 import Coin from '../../src/asset/Game/coin.svg'
+import Star from '../../src/asset/Game/star.svg'
 import { getUser } from '../actions/userAction'
 import { getUserWins } from '../actions/winAction'
 
@@ -108,24 +109,23 @@ class Game extends React.Component {
 					</div>
 				</div>
 
-					<Modal isOpen={this.state.modal} className="game__modal">
-						<div className="game__modal__container">
-							<ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>
-							<div	className="game__modal__outerContainer">
-								<div className="game__modal__boxContainer">
-									<div className="game__modal__boxContainer__item">
-										<div className={this.state.itemsdummy1[6]} />
-										<div className={this.state.itemsdummy1[6]} />
-										<div className={this.state.itemsdummy1[6]} />
-									</div>
+					<Modal isOpen={this.state.modal} className="gameModal">
+						<ModalHeader toggle={this.toggle} className="gameModal__Top"></ModalHeader>
+							<div className="gameModal__Container">
+								
+								<div className="gameModal__Container__item">
+									<img className="game__modal__icon" src={Star} alt="Star image" />
 								</div>
+
+								<label className="gameModal__Container__text">
+									selamat {this.props.userInfo.firstName}
+								</label>
+
+								<label className="gameModal__Container__text">
+									anda mendapatkan hadiah berupa {this.state.freeKey} key gratis
+								</label>
 							</div>
-								<div className="game__modal__paragraph">
-									<label>selamat {this.props.userInfo.firstName}</label>
-									<br/>
-									<label>anda mendapatkan hadiah berupa {this.state.freeKey} key gratis</label>
-								</div>
-						</div>
+						
 					</Modal>
 			</div>
 		)
@@ -214,7 +214,9 @@ class Game extends React.Component {
 					modal:true,
 					freeKey: data.freekey.amount
 				})
-				console.log('tes3', this.state.modal)
+				console.log('tes3', this.state.freeKey)
+				console.log('tes3', data.freekey.amount)
+
 				this.props.getUser()
 				this.props.getUserWins()
 				console.log(data)

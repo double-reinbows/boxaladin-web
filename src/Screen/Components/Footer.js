@@ -15,13 +15,12 @@ export default  class Footer extends React.Component {
       <div className="footerz" >
         <div className="footerz__Top">
           <div className="footerz__Top__Left">
-            <div className="footerz__Top__Left__box">
               <a href="/home">
                 <img src={logo} alt="logo" className="LogoFooter"/>
               </a>
               <label className="footerz__Top__Left__label">LINE @boxaladin</label>
-              <button className="footerz__Top__Left__button">Layanan Bantuan</button>
-            </div>
+              <Button className="footerz__Top__Left__button">Layanan Bantuan</Button>
+            
           </div>
 
           <div className="footerz__Top__Right">
@@ -80,6 +79,6 @@ export default  class Footer extends React.Component {
 
 
       </div>
-    );
+    )
   }
 }

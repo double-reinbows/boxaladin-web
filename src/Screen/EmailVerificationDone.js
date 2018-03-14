@@ -7,8 +7,8 @@ const BA_API_HOST = `${process.env.REACT_APP_API_HOST}`
 class EmailVerificationDone extends React.Component {
   render() {
     return (
-      <div>
-        <h1>Congratz, your email is verified.</h1>
+      <div className="emailVerification">
+        <h1 className="emailVerification__text">Your email is verified.</h1>
         { this.showLoginLink() }
       </div>
     )
@@ -31,7 +31,7 @@ class EmailVerificationDone extends React.Component {
   showLoginLink() {
     if (localStorage.getItem('token') == null) {
       return (
-        <h3>Click <Link to="/login">here</Link> to login</h3>
+        <h3 className="emailVerification__text">Click <Link to="/login">here</Link> to login</h3>
       )
     }
   }

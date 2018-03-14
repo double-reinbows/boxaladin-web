@@ -8,19 +8,15 @@
     justify-content: center;
     border-top: 2px solid var(--color-yellow-1); }
     .footerz__Top__Left {
-      width: 43%;
+      width: 50%;
       display: flex;
-      justify-content: center;
-      align-items: center; }
-      .footerz__Top__Left__box {
-        display: flex;
-        flex-direction: column;
-        color: var(--color-yellow-1);
-        font-family: Raleway;
-        font-size: 18px;
-        font-weight: bold;
-        line-height: 21px;
-        height: 100%; }
+      flex-direction: column;
+      align-items: center;
+      color: var(--color-yellow-1);
+      font-family: Raleway;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 21px; }
       .footerz__Top__Left__button {
         margin-top: 1rem;
         background-color: var(--color-yellow-1);
@@ -83,6 +79,12 @@
           padding-top: 20px;
           display: flex;
           justify-content: space-between; }
+  @media (max-width: 767px) {
+    .footerz .footerz__Top__Left {
+      padding: 0%; } }
+  @media (max-width: 767px) {
+    .footerz .LogoFooter {
+      width: 180px; } }
   .footerz__Bot {
     display: flex;
     flex-direction: column;
@@ -147,6 +149,28 @@ ul {
     align-items: center;
     margin: 0rem;
     padding: 0rem; }
+
+@media (max-width: 767px) {
+  .HeaderTop {
+    display: none; } }
+
+.HeaderTopM {
+  background-color: #3E3E3E;
+  border-bottom: 4px solid #FFCD05; }
+  .HeaderTopM__logo {
+    margin: 0px auto;
+    padding-right: 5%; }
+  .HeaderTopM__Right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0rem;
+    padding: 0rem; }
+
+@media (min-width: 768px) {
+  .HeaderTopM {
+    display: none; } }
 
 .IconBurger {
   background-color: var(--color-yellow-1); }
@@ -453,7 +477,7 @@ ul {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     padding: 30px; }
     .bidding__3__col {
       display: flex;
@@ -462,7 +486,7 @@ ul {
       padding: 10px;
       text-align: center; }
       .bidding__3__col__text {
-        color: #FFFFFF;
+        color: #FFCD05;
         font-family: Raleway;
         font-size: 36px;
         font-weight: 800;
@@ -749,6 +773,7 @@ ul {
 .game {
   background-color: var(--color-grey-5); }
   .game__container {
+    padding: 2.5%;
     margin: auto;
     width: 100%;
     max-width: 600px;
@@ -844,31 +869,6 @@ ul {
       line-height: 33px;
       border-radius: 8px;
       background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%); }
-  .game__modal__container {
-    background-color: var(--color-grey-5); }
-  .game__modal__outerContainer {
-    display: flex;
-    justify-content: center; }
-  .game__modal__boxContainer {
-    background-color: black;
-    width: 80%;
-    border-radius: 10px;
-    border: 3px solid; }
-    .game__modal__boxContainer__item {
-      display: flex; }
-  .game__modal__paragraph {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    text-align: center;
-    font-family: raleway;
-    color: white;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 16px; }
-
-@media (min-width: 767px) {
-  .game__modal {
-    max-width: 650px; } }
 
 @media (min-width: 275px) and (max-width: 500px) {
   .game__slotItems {
@@ -946,6 +946,46 @@ ul {
   margin-right: 5px;
   background-color: white;
   background-size: 100% 100%; }
+
+.gameModal {
+  background-color: black;
+  border: 5px solid var(--color-yellow-1);
+  top: 25%; }
+  .gameModal__Top {
+    border-bottom: none;
+    border-radius: 0;
+    background-color: black; }
+  .gameModal__Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: black; }
+    .gameModal__Container__item {
+      display: flex;
+      justify-content: center; }
+    .gameModal__Container__text {
+      margin: 2.5%;
+      text-align: center;
+      font-family: raleway;
+      color: var(--color-yellow-1);
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 16px; }
+  .gameModal__icon {
+    width: 50px;
+    height: 50px; }
+
+@media (min-width: 767px) and (max-width: 1280px) {
+  .gameModal {
+    top: 30%;
+    left: 30%;
+    width: 40%; } }
+
+@media (min-width: 200px) and (max-width: 766px) {
+  .gameModal {
+    top: 25%;
+    left: 15%;
+    width: 70%; } }
 
 .TopupKey {
   padding: 10%;
@@ -1129,6 +1169,35 @@ ul {
     background-color: white;
     width: 80%; }
 
+.RequestReset {
+  padding: 10%;
+  padding-left: 20%;
+  padding-right: 20%;
+  background-color: var(--color-grey-5); }
+  .RequestReset__text {
+    text-align: center;
+    color: var(--color-yellow-1); }
+
+.emailVerification {
+  padding: 10%;
+  padding-left: 20%;
+  padding-right: 20%;
+  background-color: var(--color-grey-5); }
+  .emailVerification__text {
+    text-align: center;
+    color: var(--color-yellow-1);
+    padding: 0%; }
+
+.resetPassword {
+  padding: 10%;
+  padding-left: 20%;
+  padding-right: 20%;
+  background-color: var(--color-grey-5); }
+  .resetPassword__text {
+    text-align: center;
+    color: var(--color-yellow-1);
+    padding: 0%; }
+
 * {
   margin: 0;
   padding: 0; }
@@ -1217,7 +1286,6 @@ body {
 .inputz {
   border: transparent;
   border-bottom: 2px solid var(--color-yellow-1);
-  font-size: 15px;
   background: transparent;
   font-family: Raleway;
   font-style: italic;
@@ -1280,7 +1348,7 @@ input:-webkit-autofill {
   --color-red-2: #F34817;
   --color-red-3: #D0021B;
   --color-red-4: #DA4733;
-  --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
-  --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
+  --shadow-dark: 0 2rem 6rem rgba(0,0,0,.3);
+  --shadow-light: 0 2rem 5rem rgba(0,0,0,.06);
   --linear-game: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%);
   --line: 1px solid var(--color-grey-light-2); }
