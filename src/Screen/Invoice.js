@@ -18,11 +18,11 @@ class Invoice extends React.Component {
     console.log('Props:', this.props)
     console.log('State:', this.state)
     return (
-      <div>
-        <Container>
-          <h1>Invoice</h1>
+      <div className="invoice">
+        <div className="invoice__container">
+          <h1 className="invoice__text">Invoice</h1>
           {this.showInvoice()}
-        </Container>
+        </div>
       </div>
     )
   }
