@@ -57,7 +57,8 @@ class Example extends React.Component {
               Paket Data <img src={IconTabs2} className="TabsHome__icon1" alt="IconTabs1" />
             </NavLink>
           </NavItem>
-          <NavItem className="TabsHome">
+        {/* ini bagian evouher dan pulsa, kalo perlu baru di uncommenct */}
+          {/* <NavItem className="TabsHome">
             <NavLink
               className="TabsHome__link {classnames({ active: this.state.activeTab === '3' })}"
               onClick={() => { this.toggle('3'); }}
@@ -72,7 +73,7 @@ class Example extends React.Component {
             >
               Voucher Game <img src={IconTabs4} className="TabsHome__icon1" alt="IconTabs1" />
             </NavLink>
-          </NavItem>
+          </NavItem> */}
         </Nav>
 
         <TabContent activeTab={this.state.activeTab}>
