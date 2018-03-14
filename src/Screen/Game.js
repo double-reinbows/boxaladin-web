@@ -109,19 +109,19 @@ class Game extends React.Component {
 					</div>
 				</div>
 
-					<Modal isOpen={this.state.modal} className="game__modal">
-						<ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>
-							<div className="game__modal__Container">
+					<Modal isOpen={this.state.modal} className="gameModal">
+						<ModalHeader toggle={this.toggle} className="gameModal__Top"></ModalHeader>
+							<div className="gameModal__Container">
 								
-								<div className="game__modal__Container__item">
+								<div className="gameModal__Container__item">
 									<img className="game__modal__icon" src={Star} alt="Star image" />
 								</div>
 
-								<label className="game__modal__Container__text">
+								<label className="gameModal__Container__text">
 									selamat {this.props.userInfo.firstName}
 								</label>
 
-								<label className="game__modal__Container__text">
+								<label className="gameModal__Container__text">
 									anda mendapatkan hadiah berupa {this.state.freeKey} key gratis
 								</label>
 							</div>
