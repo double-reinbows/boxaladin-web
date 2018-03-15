@@ -770,6 +770,14 @@ ul {
     height: 25%;
     justify-content: flex-end; }
 
+.close {
+  color: var(--color-yellow-1); }
+  .close:hover {
+    color: var(--color-yellow-1); }
+  .close:focus {
+    color: var(--color-yellow-1);
+    outline: none; }
+
 .game {
   background-color: var(--color-grey-5); }
   .game__container {
@@ -948,6 +956,7 @@ ul {
   background-size: 100% 100%; }
 
 .gameModal {
+  color: var(--color-yellow-1);
   background-color: black;
   border: 5px solid var(--color-yellow-1);
   top: 25%; }
@@ -967,7 +976,6 @@ ul {
       margin: 2.5%;
       text-align: center;
       font-family: raleway;
-      color: var(--color-yellow-1);
       font-size: 20px;
       font-weight: 500;
       line-height: 16px; }
@@ -1211,6 +1219,7 @@ ul {
   background-color: #3E3E3E;
   color: #FFCD05; }
   .invoice__container {
+    min-height: 30rem;
     padding: 2.5%;
     padding-left: 15%;
     padding-right: 15%; }
@@ -1238,6 +1247,10 @@ body {
   line-height: 1.6;
   color: var(--color-grey-dark-2);
   min-height: 100vh; }
+
+body.modal-open {
+  overflow: inherit;
+  padding-right: inherit !important; }
 
 .logo {
   height: 4rem;
@@ -1302,7 +1315,8 @@ body {
     max-width: 600px; } }
 
 .form-horizontal {
-  width: 100%; }
+  width: 100%;
+  font-size: 20px; }
 
 .inputz {
   border: transparent;
@@ -1310,6 +1324,7 @@ body {
   background: transparent;
   font-family: Raleway;
   font-style: italic;
+  font-size: 17px;
   color: var(--color-yellow-1);
   box-shadow: none; }
   .inputz:focus {
@@ -1369,7 +1384,7 @@ input:-webkit-autofill {
   --color-red-2: #F34817;
   --color-red-3: #D0021B;
   --color-red-4: #DA4733;
-  --shadow-dark: 0 2rem 6rem rgba(0,0,0,.3);
-  --shadow-light: 0 2rem 5rem rgba(0,0,0,.06);
+  --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
+  --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
   --linear-game: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%);
   --line: 1px solid var(--color-grey-light-2); }
