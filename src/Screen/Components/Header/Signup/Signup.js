@@ -129,15 +129,7 @@ class Signup extends Component {
   }
 
   vConfirm() {
-    /**
-     * Password harus 8 karakter atau lebih, alphanumeric, special characters.
-     * Spasi ga termasuk.
-     * Tapi pola di sini ga nge-cek apakah password yang dimasukin sudah kombinasi upper-lower case atau belum,
-     * sudah include special char atau belum, dst.
-     * Yang divalidasi simply jumlah karakter dan karakter yang boleh masuk.
-     */
     if (this.state.confirm !== this.state.password) {
-      this.setState({ password: undefined, _vPassword: false })
       alert('Password must same')
     } 
   }
@@ -163,9 +155,9 @@ class Signup extends Component {
     // await this.vFname()
     // await this.vLname()
     // await this.vUsername()
-    await this.vPassword()
-    await this.vEmail()
-    await this.vConfirm()
+    this.vPassword()
+    this.vEmail()
+    this.vConfirm()
 
     if (
       // this.state._vFname &&
@@ -240,22 +232,22 @@ class Signup extends Component {
 
           <div className="form-group Signup__Form">
             <label>Email address</label>
-            <input name="email" required type="email" className="form-control inputz" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter your email here" onChange={e => this.signUpInputToLowerHandler(e)} />
+            <input name="email" required type="email" className="form-control inputz" aria-describedby="emailHelp" placeholder="Enter your email here" onChange={e => this.signUpInputToLowerHandler(e)} />
           </div>
 
           <div className="form-group Signup__Form">
             <label>Phone Number</label>
-            <input name="phonenumber" required type="integer" className="form-control inputz" id="inputPhonenumber" aria-describedby="phonenumberHelp" placeholder="Enter your phonenumber here" onChange={e => this.handlePhoneNum(e)}/>
+            <input name="phonenumber" required type="integer" className="form-control inputz" aria-describedby="phonenumberHelp" placeholder="Enter your phonenumber here" onChange={e => this.handlePhoneNum(e)}/>
           </div>
 
           <div className="form-group Signup__Form">
             <label>Password</label>
-            <input name="password" required type="password" className="form-control inputz" id="inputPassword" aria-describedby="passwordHelp" placeholder="Enter your password here" onChange={e => this.signUpInputHandler(e)} />
+            <input name="password" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Enter your password here" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
           <div className="form-group Signup__Form">
             <label>Confirm Password</label>
-            <input name="confirm" required type="password" className="form-control inputz" id="inputConfirm" aria-describedby="passwordHelp" placeholder="Confirm your password here" onChange={e => this.signUpInputHandler(e)} />
+            <input name="confirm" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Confirm your password here" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
           <input
