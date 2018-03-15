@@ -1178,20 +1178,11 @@ ul {
     text-align: center;
     color: var(--color-yellow-1); }
 
-<<<<<<< HEAD
-.EmailVerification {
-=======
 .emailVerification {
->>>>>>> fe8bb4bcb6808fd35b520be733e46f4c14d2cd14
   padding: 10%;
   padding-left: 20%;
   padding-right: 20%;
   background-color: var(--color-grey-5); }
-<<<<<<< HEAD
-  .EmailVerification__text {
-    text-align: center;
-    color: var(--color-yellow-1); }
-=======
   .emailVerification__text {
     text-align: center;
     color: var(--color-yellow-1);
@@ -1217,7 +1208,6 @@ ul {
   .invoice__text {
     text-align: center;
     margin-bottom: 20px; }
->>>>>>> fe8bb4bcb6808fd35b520be733e46f4c14d2cd14
 
 * {
   margin: 0;
