@@ -54,41 +54,41 @@ class Signup extends Component {
     }
   }
 
-  vFname() {
-    /**
-     * Pola yang dipakai buat nama hanya huruf,
-     * tanpa angka, spasi atau special character.
-     * Untuk pola di sini, jumlah karakter yang diizinkan 3-20 karakter.
-     */
-    if (this.state.first_name === '' || this.state.first_name === undefined) {
-      console.log('first_name kosong')
-      this.setState({first_name: undefined, _vFname: false})
-      alert('First name must be filled')
-    } else if (!/^[A-Za-z]{3,20}$/.test(this.state.first_name)) {
-      alert('First name must be 3 char or more')
-      this.setState({first_name: undefined, _vFname: false})
-      alert('First name must be 3 char or more')
-    } else if (/^[A-Za-z]{3,20}$/.test(this.state.first_name)) {
-      this.setState({_vFname: true})
-    }
-  }
+  // vFname() {
+  //   /**
+  //    * Pola yang dipakai buat nama hanya huruf,
+  //    * tanpa angka, spasi atau special character.
+  //    * Untuk pola di sini, jumlah karakter yang diizinkan 3-20 karakter.
+  //    */
+  //   if (this.state.first_name === '' || this.state.first_name === undefined) {
+  //     console.log('first_name kosong')
+  //     this.setState({first_name: undefined, _vFname: false})
+  //     alert('First name must be filled')
+  //   } else if (!/^[A-Za-z]{3,20}$/.test(this.state.first_name)) {
+  //     alert('First name must be 3 char or more')
+  //     this.setState({first_name: undefined, _vFname: false})
+  //     alert('First name must be 3 char or more')
+  //   } else if (/^[A-Za-z]{3,20}$/.test(this.state.first_name)) {
+  //     this.setState({_vFname: true})
+  //   }
+  // }
 
-  vLname() {
-    /**
-     * Basically sama kayak vFname.
-     * Tapi karena last name null-able, perlu sedikit modifikasi.
-     * Logic-nya adalah, kalau family_name diisi, baru state-nya dievaluasi. Kalau kosong, ya sudah.
-     * Last name yang diizinkan: Satu huruf atau lebih, dan hanya huruf.
-     * Kalau mau nambah 'boleh pakai spasi', ganti polanya jadi
-     * /^[A-Za-z ]{1,20}$/
-     */
-    if (/^[ ]{1,20}$/.test(this.state.family_name)) {
-      this.setState({family_name: undefined})
-    } else if (!/^[A-Za-z ]{1,20}$/.test(this.state.family_name)) {
-      this.setState({family_name: undefined})
-      alert('Wrong name format')
-    }
-  }
+  // vLname() {
+  //   /**
+  //    * Basically sama kayak vFname.
+  //    * Tapi karena last name null-able, perlu sedikit modifikasi.
+  //    * Logic-nya adalah, kalau family_name diisi, baru state-nya dievaluasi. Kalau kosong, ya sudah.
+  //    * Last name yang diizinkan: Satu huruf atau lebih, dan hanya huruf.
+  //    * Kalau mau nambah 'boleh pakai spasi', ganti polanya jadi
+  //    * /^[A-Za-z ]{1,20}$/
+  //    */
+  //   if (/^[ ]{1,20}$/.test(this.state.family_name)) {
+  //     this.setState({family_name: undefined})
+  //   } else if (!/^[A-Za-z ]{1,20}$/.test(this.state.family_name)) {
+  //     this.setState({family_name: undefined})
+  //     alert('Wrong name format')
+  //   }
+  // }
 
   handlePhoneNum(e) {
     var num = e.target.value.split('')
@@ -127,6 +127,20 @@ class Signup extends Component {
     }
   }
 
+  vConfirm() {
+    /**
+     * Password harus 8 karakter atau lebih, alphanumeric, special characters.
+     * Spasi ga termasuk.
+     * Tapi pola di sini ga nge-cek apakah password yang dimasukin sudah kombinasi upper-lower case atau belum,
+     * sudah include special char atau belum, dst.
+     * Yang divalidasi simply jumlah karakter dan karakter yang boleh masuk.
+     */
+    if (this.state.confirm !== this.state.password) {
+      this.setState({ password: undefined, _vPassword: false })
+      alert('Password must same')
+    } 
+  }
+
   vUsername() {
     /**
      * Username yang diizinkan: alphanumeric, 3-20 karakter.
@@ -145,15 +159,16 @@ class Signup extends Component {
    * dievaluasi di sini
    */
   async formIsValid() {
-    await this.vFname()
-    await this.vLname()
-    await this.vUsername()
+    // await this.vFname()
+    // await this.vLname()
+    // await this.vUsername()
     await this.vPassword()
     await this.vEmail()
+    await this.vConfirm()
 
     if (
-      this.state._vFname &&
-      this.state._vUsername &&
+      // this.state._vFname &&
+      // this.state._vUsername &&
       this.state._vPassword &&
       this.state._vEmail
     ) {
@@ -172,13 +187,10 @@ class Signup extends Component {
     if (this.state._formIsValid) {
       let payload = {
         email: this.state.email,
-        firstName: this.state.first_name,
-        familyName: this.state.family_name,
         phonenumber: this.state.phonenumber,
         password: this.state.password,
-        sex: this.state.sex,
-        typedEmail: this.state.typed_email,
-        username: this.state.username
+        confirm: this.state.confirm,
+        typedEmail: this.state.typed_email
       }
       axios
         .post(URL + 'signup', payload)
@@ -237,7 +249,7 @@ class Signup extends Component {
 
           <div className="form-group Signup__Form">
             <label>Confirm Password</label>
-            <input name="password" required type="password" className="form-control inputz" id="inputPassword" aria-describedby="passwordHelp" placeholder="Enter your password here" onChange={e => this.signUpInputHandler(e)} />
+            <input name="confirm" required type="password" className="form-control inputz" id="inputConfirm" aria-describedby="passwordHelp" placeholder="Confirm your password here" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
           <input
