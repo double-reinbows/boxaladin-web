@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button } from 'reactstrap';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 import { loginAction, logoutAction, getPhoneNumbers } from '../../../../actions'
 import { getUser } from '../../../../actions/userAction'
@@ -41,6 +41,9 @@ class Login extends Component {
         this.props.loginAction()
         this.props.getUser()
         this.props.getPhoneNumbers()
+        this.props.setModalLogin(false)
+        this.props.setModalRegister(false)
+        this.props.history.push('/')
       }
     })
     .catch(e => {
@@ -49,12 +52,16 @@ class Login extends Component {
   }
 
   logInInputHandler(e) {
-    this.setState({ [e.target.name]: e.target.value })
+    this.setState({ [e.target.name]: e.target.value.trim() })
+  }
+
+  logInInputToLowerHandler(e) {
+    this.setState({ [e.target.name]: e.target.value.trim().toLowerCase() })
   }
 
   render () {
-    console.log('State:', this.state);
-    console.log('Props:', this.props);
+    console.log('Login State:', this.state);
+    console.log('Login Props:', this.props);
     return (
       <div className="Login">
         <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
@@ -73,7 +80,7 @@ class Login extends Component {
 
           <div className="form-group Login__Form">
             <label>Email address/username</label>
-            <input  name="username" type="username" className="form-control inputz" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email or username here" onChange={ (e) => this.logInInputHandler(e) }/>
+            <input  name="username" type="username" className="form-control inputz" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email or username here" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
           </div>
 
           <div className="form-group Login__Form">
@@ -123,4 +130,4 @@ const mapDispatchToProps = (dispatch) => {
 
 const connectComponent = connect(mapStateToProps, mapDispatchToProps)(Login)
 
-export default connectComponent
+export default withRouter(connectComponent)
