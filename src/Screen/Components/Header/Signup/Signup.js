@@ -226,7 +226,7 @@ class Signup extends Component {
 
           <div className="form-group Signup__Form">
             <label>Email address</label>
-            <input name="email" required type="email" className="form-control inputz" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter your email here" onChange={e => this.signUpInputHandler(e)} />
+            <input name="email" required type="email" className="form-control inputz" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter your email here" onChange={e => this.signUpInputToLowerHandler(e)} />
           </div>
 
           <div className="form-group Signup__Form">
