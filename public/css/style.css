@@ -183,8 +183,7 @@ ul {
 
 @media (max-width: 767px) {
   .header-margin {
-    margin: 0%;
-    padding-left: 10%; } }
+    margin: 0%; } }
 
 .ButtonTopUP {
   cursor: inherit;
@@ -1186,20 +1185,11 @@ ul {
     text-align: center;
     color: var(--color-yellow-1); }
 
-<<<<<<< HEAD
-.EmailVerification {
-=======
 .emailVerification {
->>>>>>> fe8bb4bcb6808fd35b520be733e46f4c14d2cd14
   padding: 10%;
   padding-left: 20%;
   padding-right: 20%;
   background-color: var(--color-grey-5); }
-<<<<<<< HEAD
-  .EmailVerification__text {
-    text-align: center;
-    color: var(--color-yellow-1); }
-=======
   .emailVerification__text {
     text-align: center;
     color: var(--color-yellow-1);
@@ -1226,7 +1216,6 @@ ul {
   .invoice__text {
     text-align: center;
     margin-bottom: 20px; }
->>>>>>> fe8bb4bcb6808fd35b520be733e46f4c14d2cd14
 
 * {
   margin: 0;
@@ -1384,7 +1373,7 @@ input:-webkit-autofill {
   --color-red-2: #F34817;
   --color-red-3: #D0021B;
   --color-red-4: #DA4733;
-  --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
-  --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
+  --shadow-dark: 0 2rem 6rem rgba(0,0,0,.3);
+  --shadow-light: 0 2rem 5rem rgba(0,0,0,.06);
   --linear-game: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%);
   --line: 1px solid var(--color-grey-light-2); }
