@@ -11,7 +11,6 @@
 
 # misc
 .DS_Store
-.env.local
 .env.development.local
 .env.test.local
 .env.production.local
@@ -22,10 +21,7 @@ yarn-debug.log*
 yarn-error.log*
 
 
-<<<<<<< HEAD
 public/css/style.comp.css
 style.comp.css
-=======
 public/css/style.css
 style.css
->>>>>>> fe8bb4bcb6808fd35b520be733e46f4c14d2cd14
