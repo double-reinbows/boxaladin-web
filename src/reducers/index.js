@@ -10,6 +10,8 @@ import topupReducer from './topupReducer'
 import winReducer from './winReducer'
 import rewardReducer from './rewardReducer'
 import claimReducer from './claimReducer'
+import loadingReducer from './loadingReducer'
+import modalReducer from './modalReducer'
 
 var Reducer = combineReducers({
   userReducer,
@@ -22,6 +24,8 @@ var Reducer = combineReducers({
   winReducer,
   rewardReducer,
   claimReducer,
+  loadingReducer,
+  modalReducer,
 })
 
 export default Reducer

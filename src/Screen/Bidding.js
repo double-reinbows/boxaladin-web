@@ -6,7 +6,9 @@ import * as firebase from 'firebase'
 import timer from '../asset/bidding/timer.svg'
 import watch from '../asset/bidding/watch.svg'
 
-import { getPhoneNumbers } from '../actions/'
+import Loading from './Components/Loading/'
+
+import { getPhoneNumbers, setIsLoading } from '../actions/'
 import { getUser } from '../actions/userAction'
 
 class Bidding extends React.Component {
@@ -27,6 +29,13 @@ class Bidding extends React.Component {
     return (
       <div className="bidding">
         <div className="bidding__container">
+
+          {this.props.isLoading ? (
+            <div className="">
+              <Loading />
+            </div>
+          ) : null}
+          
           <div className="bidding__1">
             <label className="bidding__1__Title">Bidding Time</label>
           </div>
@@ -153,6 +162,8 @@ class Bidding extends React.Component {
 
 		if (localStorage.getItem('token') !== null) {
 
+      this.props.setIsLoading(true)
+
 			axios({
 				method: 'POST',
 				url: `${process.env.REACT_APP_API_HOST}/unlockPrice`,
@@ -169,23 +180,24 @@ class Bidding extends React.Component {
 
           // biar update user info (jumlah aladin key)
           this.props.getUser()
-
+          
 					const productsRef = firebase.database().ref().child('products')
 					const productRef = productsRef.child(productId)
-
+          
 					productRef.once('value', snap => {
-						productRef.update({
-							watching: snap.val().watching +1
+            productRef.update({
+              watching: snap.val().watching +1
 						})
 					})
-
+          
 					productRef.on('value', snap => {
-						this.setState({
+            this.setState({
               productUnlocked: snap.val(),
               isWatching: true
 						})
 					})
-
+          
+          this.props.setIsLoading(false)
 					this.runTimer()
 
 				} else if (data.message === 'not enough aladin key') {
@@ -220,7 +232,7 @@ class Bidding extends React.Component {
 
 		} else if (this.state.count <= 0 && this.state.count !== prevCount && this.state.isWatching === true) {
       // this.stopWatchProductPrice(this.props.selectedProductID)
-      alert('Waktu habis Brayyy...')
+      alert('Waktu bidding sudah habis')
       this.props.history.push('/home')
 
 		} else if (this.state.count !== this.state.initCount && this.state.isWatching === false) {
@@ -259,14 +271,16 @@ class Bidding extends React.Component {
 const mapStateToProps = (state) => {
   return {
     selectedProductID: state.productReducer.selectedProductID,
-    phoneNumbers: state.userReducer.phoneNumbers
+    phoneNumbers: state.userReducer.phoneNumbers,
+    isLoading: state.loadingReducer.isLoading,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getPhoneNumbers: () => dispatch(getPhoneNumbers()),
-    getUser: () => dispatch(getUser())
+    getUser: () => dispatch(getUser()),
+    setIsLoading: (bool) => dispatch(setIsLoading(bool)),
   }
 }
 

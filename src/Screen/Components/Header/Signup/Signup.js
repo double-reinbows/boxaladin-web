@@ -54,41 +54,41 @@ class Signup extends Component {
     }
   }
 
-  vFname() {
-    /**
-     * Pola yang dipakai buat nama hanya huruf,
-     * tanpa angka, spasi atau special character.
-     * Untuk pola di sini, jumlah karakter yang diizinkan 3-20 karakter.
-     */
-    if (this.state.first_name === '' || this.state.first_name === undefined) {
-      console.log('first_name kosong')
-      this.setState({first_name: undefined, _vFname: false})
-      alert('First name must be filled')
-    } else if (!/^[A-Za-z]{3,20}$/.test(this.state.first_name)) {
-      alert('First name must be 3 char or more')
-      this.setState({first_name: undefined, _vFname: false})
-      alert('First name must be 3 char or more')
-    } else if (/^[A-Za-z]{3,20}$/.test(this.state.first_name)) {
-      this.setState({_vFname: true})
-    }
-  }
+  // vFname() {
+  //   /**
+  //    * Pola yang dipakai buat nama hanya huruf,
+  //    * tanpa angka, spasi atau special character.
+  //    * Untuk pola di sini, jumlah karakter yang diizinkan 3-20 karakter.
+  //    */
+  //   if (this.state.first_name === '' || this.state.first_name === undefined) {
+  //     console.log('first_name kosong')
+  //     this.setState({first_name: undefined, _vFname: false})
+  //     alert('First name must be filled')
+  //   } else if (!/^[A-Za-z]{3,20}$/.test(this.state.first_name)) {
+  //     alert('First name must be 3 char or more')
+  //     this.setState({first_name: undefined, _vFname: false})
+  //     alert('First name must be 3 char or more')
+  //   } else if (/^[A-Za-z]{3,20}$/.test(this.state.first_name)) {
+  //     this.setState({_vFname: true})
+  //   }
+  // }
 
-  vLname() {
-    /**
-     * Basically sama kayak vFname.
-     * Tapi karena last name null-able, perlu sedikit modifikasi.
-     * Logic-nya adalah, kalau family_name diisi, baru state-nya dievaluasi. Kalau kosong, ya sudah.
-     * Last name yang diizinkan: Satu huruf atau lebih, dan hanya huruf.
-     * Kalau mau nambah 'boleh pakai spasi', ganti polanya jadi
-     * /^[A-Za-z ]{1,20}$/
-     */
-    if (/^[ ]{1,20}$/.test(this.state.family_name)) {
-      this.setState({family_name: undefined})
-    } else if (!/^[A-Za-z ]{1,20}$/.test(this.state.family_name)) {
-      this.setState({family_name: undefined})
-      alert('Wrong name format')
-    }
-  }
+  // vLname() {
+  //   /**
+  //    * Basically sama kayak vFname.
+  //    * Tapi karena last name null-able, perlu sedikit modifikasi.
+  //    * Logic-nya adalah, kalau family_name diisi, baru state-nya dievaluasi. Kalau kosong, ya sudah.
+  //    * Last name yang diizinkan: Satu huruf atau lebih, dan hanya huruf.
+  //    * Kalau mau nambah 'boleh pakai spasi', ganti polanya jadi
+  //    * /^[A-Za-z ]{1,20}$/
+  //    */
+  //   if (/^[ ]{1,20}$/.test(this.state.family_name)) {
+  //     this.setState({family_name: undefined})
+  //   } else if (!/^[A-Za-z ]{1,20}$/.test(this.state.family_name)) {
+  //     this.setState({family_name: undefined})
+  //     alert('Wrong name format')
+  //   }
+  // }
 
   handlePhoneNum(e) {
     var num = e.target.value.split('')
@@ -127,6 +127,12 @@ class Signup extends Component {
     }
   }
 
+  vConfirm() {
+    if (this.state.confirm !== this.state.password) {
+      alert('Password must same')
+    } 
+  }
+
   vUsername() {
     /**
      * Username yang diizinkan: alphanumeric, 3-20 karakter.
@@ -145,15 +151,16 @@ class Signup extends Component {
    * dievaluasi di sini
    */
   async formIsValid() {
-    await this.vFname()
-    await this.vLname()
-    await this.vUsername()
-    await this.vPassword()
-    await this.vEmail()
+    // await this.vFname()
+    // await this.vLname()
+    // await this.vUsername()
+    this.vPassword()
+    this.vEmail()
+    this.vConfirm()
 
     if (
-      this.state._vFname &&
-      this.state._vUsername &&
+      // this.state._vFname &&
+      // this.state._vUsername &&
       this.state._vPassword &&
       this.state._vEmail
     ) {
@@ -172,13 +179,10 @@ class Signup extends Component {
     if (this.state._formIsValid) {
       let payload = {
         email: this.state.email,
-        firstName: this.state.first_name,
-        familyName: this.state.family_name,
         phonenumber: this.state.phonenumber,
         password: this.state.password,
-        sex: this.state.sex,
-        typedEmail: this.state.typed_email,
-        username: this.state.username
+        confirm: this.state.confirm,
+        typedEmail: this.state.typed_email
       }
       axios
         .post(URL + 'signup', payload)
@@ -220,51 +224,24 @@ class Signup extends Component {
             </label>
           </div>
 
-
-
           <div className="form-group Signup__Form">
-            <label>First Name</label>
-            <input name="first_name" type="text" className="form-control inputz" id="inputFirstName" aria-describedby="firstnamelHelp" placeholder="Enter your first name here" onChange={e => this.signUpInputHandler(e)}/>
-          </div>
-
-          <div className="form-group Signup__Form">
-            <label>Family Name</label>
-            <input name="family_name" type="text" className="form-control inputz" id="inputFamilyName" aria-describedby="familynamelHelp" placeholder="Enter your family name here" onChange={e => this.signUpInputHandler(e)}/>
+            <label>Email address</label>
+            <input name="email" required type="email" className="form-control inputz" aria-describedby="emailHelp" placeholder="Enter your email here" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
           <div className="form-group Signup__Form">
             <label>Phone Number</label>
-            <input name="phonenumber" required type="integer" className="form-control inputz" id="inputPhonenumber" aria-describedby="phonenumberHelp" placeholder="Enter your phonenumber here" onChange={e => this.handlePhoneNum(e)}/>
-          </div>
-
-          <div className="form-group Signup__Form">
-            <label>Username</label>
-            <input name="username" required type="text" className="form-control inputz" id="inputUsername" aria-describedby="usernameHelp" placeholder="Enter your username here" onChange={e => this.signUpInputHandler(e)} />
+            <input name="phonenumber" required type="integer" className="form-control inputz" aria-describedby="phonenumberHelp" placeholder="Enter your phonenumber here" onChange={e => this.handlePhoneNum(e)}/>
           </div>
 
           <div className="form-group Signup__Form">
             <label>Password</label>
-            <input name="password" required type="password" className="form-control inputz" id="inputPassword" aria-describedby="passwordHelp" placeholder="Enter your password here" onChange={e => this.signUpInputHandler(e)} />
+            <input name="password" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Enter your password here" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
           <div className="form-group Signup__Form">
-            <label className="control-label" htmlFor="sex">
-              Sex:
-            </label>
-            <select
-              name="sex"
-              value={this.state.sex}
-              onChange={this.signUpInputHandler}
-            >
-              <option value={null}>Select gender</option>
-              <option value="M">Male</option>
-              <option value="F">Female</option>
-            </select>
-          </div>
-
-          <div className="form-group Signup__Form">
-            <label>Email address</label>
-            <input name="email" required type="email" className="form-control inputz" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter your email here" onChange={e => this.signUpInputHandler(e)} />
+            <label>Confirm Password</label>
+            <input name="confirm" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Confirm your password here" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
           <input

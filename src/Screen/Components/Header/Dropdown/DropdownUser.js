@@ -48,7 +48,7 @@ class DropdownUser extends React.Component {
         <DropdownMenu className="DropdownUser__item">
 
           <DropdownItem disabled="true" className="DropdownUser__inside">
-            Hi, {this.props.userInfo.firstName}
+            Hi, Sobat
           </DropdownItem>
 
           {/* <DropdownItem className="DropdownUser__inside">

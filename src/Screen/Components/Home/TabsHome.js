@@ -10,6 +10,7 @@ import IconTabs3 from '../../../asset/TabsHome/IconTabs3.svg';
 import IconTabs4 from '../../../asset/TabsHome/IconTabs4.svg';
 
 //import Dropdown
+import DropdownBolt from './Dropdown/DropdownBolt';
 import DropdownIndosat from './Dropdown/DropdownIndosat';
 import DropdownSmartfren from './Dropdown/DropdownSmartfren';
 import DropdownTelkomsel from './Dropdown/DropdownTelkomsel';
@@ -57,7 +58,8 @@ class Example extends React.Component {
               Paket Data <img src={IconTabs2} className="TabsHome__icon1" alt="IconTabs1" />
             </NavLink>
           </NavItem>
-          <NavItem className="TabsHome">
+        {/* ini bagian evouher dan pulsa, kalo perlu baru di uncommenct */}
+          {/* <NavItem className="TabsHome">
             <NavLink
               className="TabsHome__link {classnames({ active: this.state.activeTab === '3' })}"
               onClick={() => { this.toggle('3'); }}
@@ -72,7 +74,7 @@ class Example extends React.Component {
             >
               Voucher Game <img src={IconTabs4} className="TabsHome__icon1" alt="IconTabs1" />
             </NavLink>
-          </NavItem>
+          </NavItem> */}
         </Nav>
 
         <TabContent activeTab={this.state.activeTab}>
@@ -110,13 +112,35 @@ class Example extends React.Component {
           </TabPane>
 
           <TabPane tabId="2">
-          <Row>
-            <Col sm="12" className="TabsHome__pane1">
-              <h4 className="TabsHome__pane1__font">Tab 2 Contents</h4>
-            </Col>
-          </Row>
+            <div>
+              <div className="TabsPane1">
+
+                <div className="TabsPane1__text">
+                  <label className="TabsPane1__label">PAKET DATA</label>
+                </div>
+
+                <div className="TabsPane1__dropdown">
+                  <DropdownBolt />
+                </div>
+
+              </div>
+
+              <div>
+                <h1 className="TabsPane1__selectedProduct">
+                  {this.showSelectedProductName()}
+                </h1>
+              </div>
+
+              <div>
+                <Link to="/bidding">
+                  <button onClick={() => this.handleNotLogin()} disabled={this.props.selectedProductID !== '' ? false : true} type="button" className="btn btn-lg btn-block TabsPane1__button">LIHAT HARGA</button>
+                </Link>
+              </div>
+            </div>
           </TabPane>
+
         </TabContent>
+
       </div>
     );
   }
