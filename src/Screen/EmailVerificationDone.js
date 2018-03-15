@@ -25,10 +25,13 @@ class EmailVerificationDone extends React.Component {
   }
 
   verifyEmail() {
-    const email_token = this.props.location.search.split('=')[1]
+    const email = this.props.location.search.split('&')[0].split('=')[1]
+    const email_token = this.props.location.search.split('&')[1].split('=')[1]
+
+    // console.log('verify email:', email_token, email)
     axios({
       method: 'GET',
-      url: `${BA_API_HOST}/emailVerification?encoded=${email_token}`
+      url: `${BA_API_HOST}/emailVerification?email=${email}&encoded=${email_token}`
     })
     .then(response => console.log(response))
     .catch(err => console.log(err))

@@ -35,13 +35,14 @@ class ResetPassword extends React.Component {
   resetPassword(e) {
     e.preventDefault()
 
-    const email_token = this.props.location.search.split('=')[1]
+    const email = this.props.location.search.split('&')[0].split('=')[1]
+    const email_token = this.props.location.search.split('&')[1].split('=')[1]
     
     if (this.state.password !== null) {
       
       axios({
         method: 'POST',
-        url: `${process.env.REACT_APP_API_HOST}/resetpassword?encoded=${email_token}`,
+        url: `${process.env.REACT_APP_API_HOST}/resetpassword?email=${email}&encoded=${email_token}`,
         data: {
           password: this.state.password
         }
