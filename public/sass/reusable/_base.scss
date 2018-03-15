@@ -27,7 +27,10 @@ body {
     color: var(--color-grey-dark-2);
 
     min-height: 100vh;
+    
 }
+body.modal-open { overflow:inherit; padding-right:inherit !important; }
+
 
 ////////////////////////////////////////
 // LOGO
