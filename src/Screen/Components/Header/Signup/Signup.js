@@ -224,16 +224,9 @@ class Signup extends Component {
             </label>
           </div>
 
-
-
           <div className="form-group Signup__Form">
-            <label>First Name</label>
-            <input name="first_name" type="text" className="form-control inputz" id="inputFirstName" aria-describedby="firstnamelHelp" placeholder="Enter your first name here" onChange={e => this.signUpInputHandler(e)}/>
-          </div>
-
-          <div className="form-group Signup__Form">
-            <label>Family Name</label>
-            <input name="family_name" type="text" className="form-control inputz" id="inputFamilyName" aria-describedby="familynamelHelp" placeholder="Enter your family name here" onChange={e => this.signUpInputHandler(e)}/>
+            <label>Email address</label>
+            <input name="email" required type="email" className="form-control inputz" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter your email here" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
           <div className="form-group Signup__Form">
@@ -242,33 +235,13 @@ class Signup extends Component {
           </div>
 
           <div className="form-group Signup__Form">
-            <label>Username</label>
-            <input name="username" required type="text" className="form-control inputz" id="inputUsername" aria-describedby="usernameHelp" placeholder="Enter your username here" onChange={e => this.signUpInputHandler(e)} />
-          </div>
-
-          <div className="form-group Signup__Form">
             <label>Password</label>
             <input name="password" required type="password" className="form-control inputz" id="inputPassword" aria-describedby="passwordHelp" placeholder="Enter your password here" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
           <div className="form-group Signup__Form">
-            <label className="control-label" htmlFor="sex">
-              Sex:
-            </label>
-            <select className="form-group Signup__Sex"
-              name="sex"
-              value={this.state.sex}
-              onChange={this.signUpInputHandler}
-            >
-              <option disabled={true} value={null}>Select gender</option>
-              <option value="M">Male</option>
-              <option value="F">Female</option>
-            </select>
-          </div>
-
-          <div className="form-group Signup__Form">
-            <label>Email address</label>
-            <input name="email" required type="email" className="form-control inputz" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter your email here" onChange={e => this.signUpInputToLowerHandler(e)} />
+            <label>Confirm Password</label>
+            <input name="password" required type="password" className="form-control inputz" id="inputPassword" aria-describedby="passwordHelp" placeholder="Enter your password here" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
           <input

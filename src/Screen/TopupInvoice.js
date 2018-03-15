@@ -18,11 +18,11 @@ class TopupInvoice extends React.Component {
     console.log('Props:', this.props)
     console.log('State:', this.state)
     return (
-      <div>
-        <Container>
-          <h1>Topup Invoice</h1>
+      <div className="invoice">
+        <div className="invoice__container">
+          <h1 className="invoice__text">Topup Invoice</h1>
 					{ this.showInvoice() }
-        </Container>
+        </div>
       </div>
     )
   }
