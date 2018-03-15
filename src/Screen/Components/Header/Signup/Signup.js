@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
 import {loginAction} from '../../../../actions'
+import { setModalLogin, setModalRegister } from '../../../../actions/'
 
 const URL = `${process.env.REACT_APP_API_HOST}/`
 
@@ -209,6 +210,7 @@ class Signup extends Component {
              * selain terima token.
              * Redirect ke home misalnya? Atau dilempar lagi ke halaman login?
              */
+            this.props.setModalRegister(false)
           }
         })
         .catch(e => {
@@ -275,13 +277,17 @@ class Signup extends Component {
 
 const mapStateToProps = state => {
   return {
-    isLogin: state.userReducer.isLogin
+    isLogin: state.userReducer.isLogin,
+    modalLogin: state.modalReducer.modalLogin,
+    modalRegister: state.modalReducer.modalRegister,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    loginAction: () => dispatch(loginAction())
+    loginAction: () => dispatch(loginAction()),
+    setModalLogin: (payload) => dispatch(setModalLogin(payload)),
+    setModalRegister: (payload) => dispatch(setModalRegister(payload)),
   }
 }
 
