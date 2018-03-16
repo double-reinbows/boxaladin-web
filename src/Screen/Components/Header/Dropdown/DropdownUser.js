@@ -68,7 +68,7 @@ class DropdownUser extends React.Component {
           </DropdownItem>
 
           <DropdownItem className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" to="/topup">Aladinkey: {this.props.userInfo.aladinKeys}</Link>
+            <Link className="DropdownUser__inside__link" to="/dompetaladin">Dompet Aladin</Link>
           </DropdownItem>
 
           <DropdownItem className="DropdownUser__inside">

@@ -204,11 +204,13 @@ ul {
     background-color: #3E3E3E; }
   .ButtonTopUP__label {
     font-size: 18px;
-    cursor: inherit; }
+    cursor: inherit;
+    margin: 0rem; }
     .ButtonTopUP__label__italic {
       font-size: 18px;
       font-style: italic;
-      cursor: inherit; }
+      cursor: inherit;
+      margin: 0rem; }
 
 @media (max-width: 767px) {
   .ButtonTopUP {
