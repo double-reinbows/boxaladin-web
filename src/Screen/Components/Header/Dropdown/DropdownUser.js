@@ -79,9 +79,9 @@ class DropdownUser extends React.Component {
             <Link className="DropdownUser__inside__link" to="/win">Game Result</Link>
           </DropdownItem>
 
-          <DropdownItem className="DropdownUser__inside">
+          {/* <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/claimreward">Claim Reward</Link>
-          </DropdownItem>
+          </DropdownItem> */}
 
           <DropdownItem divider />
 
