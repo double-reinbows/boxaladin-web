@@ -31,6 +31,7 @@ import Bidding from './Screen/Bidding'
 import InsertPhone from './Screen/Components/InsertPhone/InsertPhone'
 // import Pulsa from './Screen/Pulsa'
 
+import DompetAladin from './Screen/DompetAladin'
 import Game from './Screen/Game'
 import Win from './Screen/Win'
 import ClaimReward from './Screen/ClaimReward'
@@ -78,6 +79,7 @@ class RouteList extends React.Component {
             <PrivateRoute exact path="/insertphone" component={InsertPhone} />
             {/* <PrivateRoute exact path="/pulsa" component={Pulsa} /> */}
             <PrivateRoute exact path="/game" component={ Game } />
+            <PrivateRoute exact path="/dompetaladin" component={DompetAladin} />
             <PrivateRoute exact path="/win" component={ Win } />
             <PrivateRoute exact path="/claimreward" component={ ClaimReward } />
 

@@ -1,0 +1,21 @@
+version: 0.1
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region ap-southeast-1)
+  build:
+    commands:
+      - echo Building the Docker image...
+      - docker build -t ba-web-dockers:develop .
+      - docker tag ba-web-dockers:develop 776507434898.dkr.ecr.ap-southeast-1.amazonaws.com/ba-web-dockers:develop
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push 776507434898.dkr.ecr.ap-southeast-1.amazonaws.com/ba-web-dockers:develop
+      - rm Dockerfile
+artifacts:
+  files:
+    - '**/*'

@@ -2,8 +2,9 @@ import axios from 'axios'
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import {loginAction} from '../../../../actions'
-import { setModalLogin, setModalRegister } from '../../../../actions/'
+import { setModalLogin, setModalRegister, setIsLoading, loginAction } from '../../../../actions/'
+
+import Loading from '../../Loading/'
 
 const URL = `${process.env.REACT_APP_API_HOST}/`
 

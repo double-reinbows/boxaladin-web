@@ -4,9 +4,10 @@ import { connect } from 'react-redux'
 import { Button } from 'reactstrap';
 import { Link, withRouter } from 'react-router-dom'
 
-import { loginAction, logoutAction, getPhoneNumbers } from '../../../../actions'
+import { loginAction, logoutAction, getPhoneNumbers, setModalLogin, setModalRegister, setIsLoading } from '../../../../actions'
 import { getUser } from '../../../../actions/userAction'
-import { setModalLogin, setModalRegister } from '../../../../actions/'
+
+import Loading from '../../Loading/'
 
 const URL = `${process.env.REACT_APP_API_HOST}/`
 
@@ -15,18 +16,21 @@ class Login extends Component {
     super(props)
     this.state = {
       password: '',
-      username: ''
+      email: ''
     }
   }
 
   logIn(e) {
     e.preventDefault()
+    this.props.setIsLoading(true)
+    
     axios.post(URL + 'signin', {
-      username: this.state.username,
+      username: this.state.email,
       password: this.state.password
     })
     .then(({data}) => {
-      if (data.message === 'username or email not found') {
+      this.props.setIsLoading(false)
+      if (data.message === 'email not found') {
         console.log(data)
         alert(data.message)
       } else if (data.message === 'password incorrect') {
@@ -64,6 +68,12 @@ class Login extends Component {
     console.log('Login Props:', this.props);
     return (
       <div className="Login">
+
+        {this.props.isLoading ? (
+          <div className="">
+            <Loading />
+          </div>
+        ) : null}
         <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
 
           <div>
@@ -79,8 +89,8 @@ class Login extends Component {
           </div>
 
           <div className="form-group Login__Form">
-            <label>Email address/username</label>
-            <input  name="username" type="username" className="form-control inputz" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email or username here" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
+            <label>Email address</label>
+            <input name="email" type="email" className="form-control inputz" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email here" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
           </div>
 
           <div className="form-group Login__Form">
@@ -114,6 +124,7 @@ const mapStateToProps = (state) => {
     dataUser: state.userReducer.dataUser,
     modalLogin: state.modalReducer.modalLogin,
     modalRegister: state.modalReducer.modalRegister,
+    isLoading: state.loadingReducer.isLoading,
   }
 }
 
@@ -125,6 +136,7 @@ const mapDispatchToProps = (dispatch) => {
     getUser: () => dispatch(getUser()),
     setModalLogin: (payload) => dispatch(setModalLogin(payload)),
     setModalRegister: (payload) => dispatch(setModalRegister(payload)),
+    setIsLoading: (bool) => dispatch(setIsLoading(bool)),
   }
 }
 
