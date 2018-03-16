@@ -27,9 +27,9 @@ class Game extends React.Component {
 			slot2_bawah: 0,
 			slot3_bawah: 0,
 
-			speed1: 300,
-			speed2: 300,
-			speed3: 300,
+			speed1: 70,
+			speed2: 20,
+			speed3: 50,
 
 			itemsdummy1: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 			itemsdummy2: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
