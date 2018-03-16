@@ -15,18 +15,18 @@ class Login extends Component {
     super(props)
     this.state = {
       password: '',
-      username: ''
+      email: ''
     }
   }
 
   logIn(e) {
     e.preventDefault()
     axios.post(URL + 'signin', {
-      username: this.state.username,
+      username: this.state.email,
       password: this.state.password
     })
     .then(({data}) => {
-      if (data.message === 'username or email not found') {
+      if (data.message === 'email not found') {
         console.log(data)
         alert(data.message)
       } else if (data.message === 'password incorrect') {
@@ -79,8 +79,8 @@ class Login extends Component {
           </div>
 
           <div className="form-group Login__Form">
-            <label>Email address/username</label>
-            <input  name="username" type="username" className="form-control inputz" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email or username here" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
+            <label>Email address</label>
+            <input name="email" type="email" className="form-control inputz" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email here" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
           </div>
 
           <div className="form-group Login__Form">
