@@ -71,10 +71,10 @@ class NavBar extends React.Component {
         <Nav navbar className="HeaderTop__Right">
 
           <NavItem>
-            <Link to="/topup">
-              <button className="ButtonTopUP" href="/topup">
-                <label className="ButtonTopUP__label">Top Up  </label>{' '}
-                <label className="ButtonTopUP__label__italic">Aladinkey!</label>
+            <Link to="/dompetaladin">
+              <button className="ButtonTopUP">
+                <label className="ButtonTopUP__label">Dompet Aladin</label>{' '}
+                <label className="ButtonTopUP__label__italic"></label>
               </button>
             </Link>
           </NavItem>

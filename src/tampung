@@ -72,3 +72,13 @@ render() {
       phone: this.props.location.state.phoneNumbers[0] ? this.props.location.state.phoneNumbers.filter(data => data.primary === true)[0].number : ''
     })
   }
+
+
+<NavItem>
+  <Link to="/topup">
+    <button className="ButtonTopUP" href="/topup">
+      <label className="ButtonTopUP__label">Top Up  </label>{' '}
+      <label className="ButtonTopUP__label__italic">Aladinkey!</label>
+    </button>
+  </Link>
+</NavItem>
