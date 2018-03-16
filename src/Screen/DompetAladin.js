@@ -7,8 +7,6 @@ import Star from '../../src/asset/Game/star.svg'
 import { getUser } from '../actions/userAction'
 import { getUserWins } from '../actions/winAction'
 import { getKeys } from '../actions/keyAction'
-
-
 class Dompet extends React.Component {
     constructor(props) {
         super(props)
