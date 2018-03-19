@@ -199,19 +199,19 @@ class Bidding extends React.Component {
 						})
 					})
           
-          this.props.setIsLoading(false)
 					this.runTimer()
-
+          
 				} else if (data.message === 'not enough aladin key') {
-
+          
           this.props.history.push('/home')
           alert(data.message)
-
+          
         } else {
-
+          
           console.log(data)
-
+          
         }
+        this.props.setIsLoading(false)
 			})
       .catch(err => console.log(err))
 
