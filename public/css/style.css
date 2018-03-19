@@ -1010,6 +1010,7 @@ ul {
   .User__container {
     margin: auto;
     width: 100%;
+    height: 100%;
     max-width: 720px;
     color: var(--color-yellow-1);
     padding: 5%;
@@ -1101,28 +1102,29 @@ ul {
         width: 45%;
         margin: 5%; }
 
-@media (min-width: 200px) and (max-width: 766px) {
+@media (min-width: 200px) and (max-width: 768px) {
   .User__container {
-    padding-top: 5%; } }
+    padding-top: 5%;
+    padding-bottom: 5%; } }
 
-@media (min-width: 200px) and (max-width: 766px) {
+@media (min-width: 200px) and (max-width: 768px) {
   .User__Label {
     font-size: 20px; } }
 
-@media (min-width: 200px) and (max-width: 766px) {
+@media (min-width: 200px) and (max-width: 768px) {
   .User__show {
     font-size: 18px;
     padding: 2.5%; } }
 
-@media (min-width: 200px) and (max-width: 766px) {
+@media (min-width: 200px) and (max-width: 768px) {
   .User__phone {
     font-size: 18px; } }
 
-@media (min-width: 200px) and (max-width: 766px) {
+@media (min-width: 200px) and (max-width: 768px) {
   .User__Phone__row2__verify__1__label {
     font-size: 10px; } }
 
-@media (min-width: 200px) and (max-width: 766px) {
+@media (min-width: 200px) and (max-width: 768px) {
   .User__Phone__row2__number {
     font-size: 15px; } }
 
