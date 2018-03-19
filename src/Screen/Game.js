@@ -185,10 +185,10 @@ class Game extends React.Component {
 			// this.setState({
 			// 	modal:false
 			// })
-			alert('Maaf Anda kurang beruntung.')
+			// alert('Maaf Anda kurang beruntung.')
 			console.log('Maaf Anda kurang beruntung.')
 			console.log('tes', this.state.modal)
-			this.reset()
+			// this.reset()
 			return			
 		} else {
 

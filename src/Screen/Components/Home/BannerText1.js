@@ -12,7 +12,6 @@ export default  class BannerHome extends React.Component {
             barang yang dijualnya dengan cara lelang yang menggunakan sistem DUTCH
             AUCTION.
           </h1>
-          <Button className="mx-auto" color="warning">lihat disini</Button>
         </div>
       </div>
     )

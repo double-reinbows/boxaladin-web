@@ -179,7 +179,7 @@ ul {
   color: var(--color-yellow-1); }
 
 .header-margin {
-  margin: 2%; }
+  margin-right: 15px; }
 
 @media (max-width: 767px) {
   .header-margin {
