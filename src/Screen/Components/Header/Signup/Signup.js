@@ -121,19 +121,23 @@ class Signup extends Component {
     if (this.state.password === '' || this.state.password === undefined) {
       this.setState({password: undefined, _vPassword: false})
       alert('Password must be filled')
+      document.getElementById('password').value = "";
+      document.getElementById('confirm_password').value = "";
     } else if (!/^[A-Za-z0-9!@#$%^&*()_]{8,20}$/.test(this.state.password)) {
       this.setState({password: undefined, _vPassword: false})
       alert('Password must 8 char or more')
+      document.getElementById('password').value = "";
+      document.getElementById('confirm_password').value = "";
     } else if (/^[A-Za-z0-9!@#$%^&*()_]{8,20}$/.test(this.state.password)) {
       this.setState({_vPassword: true})
     }
   }
 
-  vConfirm() {
-    if (this.state.confirm !== this.state.password) {
-      alert('Password must same')
-    } 
-  }
+  // vConfirm() {
+  //   if (this.state.confirm !== this.state.password) {
+  //     alert('Password must same')
+  //   }
+  // }
 
   vUsername() {
     /**
@@ -156,9 +160,9 @@ class Signup extends Component {
     // await this.vFname()
     // await this.vLname()
     // await this.vUsername()
-    this.vPassword()
-    this.vEmail()
-    this.vConfirm()
+    await this.vPassword()
+    await this.vEmail()
+    // await this.vConfirm()
 
     if (
       // this.state._vFname &&
@@ -175,10 +179,20 @@ class Signup extends Component {
   //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   async signUp(e) {
+    console.log('SIGNUP')
     e.preventDefault()
+
+    if (this.state.password !== this.state.confirm) {
+      return alert('confirm password salah')
+    }
+
+    this.props.setIsLoading(true)
+
     await this.formIsValid()
+    console.log('SETELAH FORMISVALID')
 
     if (this.state._formIsValid) {
+      console.log('FORM VALID')
       let payload = {
         email: this.state.email,
         phonenumber: this.state.phonenumber,
@@ -189,26 +203,42 @@ class Signup extends Component {
       axios
         .post(URL + 'signup', payload)
         .then(({data}) => {
+          console.log('MASUK THEN')
+          console.log(data)
           // console.log(data)
           // localStorage.setItem('token', data)
           if (data.hasOwnProperty('isUsed')) {
             if (data.isUsed.username) alert('username already used')
             else if (data.isUsed.email) alert('email already used')
           } else {
-            localStorage.setItem('token', data.token)
-            console.log('>>>Signed up')
-            this.props.loginAction()
-            /**
-             * Tinggal tambah, kalau udah sukses signup mau ngapain lagi
-             * selain terima token.
-             * Redirect ke home misalnya? Atau dilempar lagi ke halaman login?
-             */
-            this.props.setModalRegister(false)
+
+            if (data.errors) {
+              alert('email already used')
+            } else {
+
+              localStorage.setItem('token', data.token)
+              console.log('>>>Signed up', data)
+              this.props.loginAction()
+              /**
+               * Tinggal tambah, kalau udah sukses signup mau ngapain lagi
+               * selain terima token.
+               * Redirect ke home misalnya? Atau dilempar lagi ke halaman login?
+               */
+              this.props.setModalRegister(false)
+
+            }
+
           }
+          return this.props.setIsLoading(false)
         })
         .catch(e => {
+          console.log('MASUK CATCH')          
           console.log(e)
+          return this.props.setIsLoading(false)
         })
+    } else {
+      console.log('FORM NOT VALID!')
+      return this.props.setIsLoading(false)
     }
   }
 
@@ -224,6 +254,9 @@ class Signup extends Component {
     console.log(this.state)
     return (
       <div className="Signup">
+        
+        {this.props.isLoading ? <Loading /> : null}
+
         <form className="form-horizontal" onSubmit={e => this.signUp(e)}>
           <div>
             <label className="Login__Title2">
@@ -243,12 +276,12 @@ class Signup extends Component {
 
           <div className="form-group Signup__Form">
             <label>Password</label>
-            <input name="password" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Enter your password here" onChange={e => this.signUpInputHandler(e)} />
+            <input id="password" name="password" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Enter your password here" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
           <div className="form-group Signup__Form">
             <label>Confirm Password</label>
-            <input name="confirm" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Confirm your password here" onChange={e => this.signUpInputHandler(e)} />
+            <input id="confirm_password" name="confirm" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Confirm your password here" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
           <input
@@ -273,6 +306,7 @@ const mapStateToProps = state => {
     isLogin: state.userReducer.isLogin,
     modalLogin: state.modalReducer.modalLogin,
     modalRegister: state.modalReducer.modalRegister,
+    isLoading: state.loadingReducer.isLoading,
   }
 }
 
@@ -281,6 +315,7 @@ const mapDispatchToProps = dispatch => {
     loginAction: () => dispatch(loginAction()),
     setModalLogin: (payload) => dispatch(setModalLogin(payload)),
     setModalRegister: (payload) => dispatch(setModalRegister(payload)),
+    setIsLoading: (payload) => dispatch(setIsLoading(payload)),
   }
 }
 

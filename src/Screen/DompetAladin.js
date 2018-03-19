@@ -104,8 +104,15 @@ class Dompet extends React.Component {
                 }
             })
                 .then(({ data }) => {
+
                     console.log('Response.data:', data)
-                    this.props.history.push(`/topupinvoice/${data.id}`)
+
+                    if (data.msg === 'not verified user') {
+                        alert('Silahkan verifikasi akun Anda.\nSilahkan klik link verifikasi yang dikirim ke email Anda.')
+                    } else {
+                        this.props.history.push(`/topupinvoice/${data.id}`)
+                    }
+
                 })
                 .catch(err => console.log('Error:', err))
         }
