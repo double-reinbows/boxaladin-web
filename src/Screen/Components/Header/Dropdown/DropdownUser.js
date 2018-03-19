@@ -90,11 +90,9 @@ class DropdownUser extends React.Component {
           </DropdownItem>
           </a>
 
-          <a href="/claimreward">
-          <DropdownItem className="DropdownUser__inside">
+          {/* <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/claimreward">Claim Reward</Link>
-          </DropdownItem>
-          </a>
+          </DropdownItem> */}
 
           <DropdownItem divider />
 

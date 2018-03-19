@@ -16,6 +16,8 @@ class InsertPhone extends React.Component {
       phone: '',
       productUnlocked: {}
     }
+
+    this.handleBack()
   }
 
   render() {
@@ -45,7 +47,13 @@ class InsertPhone extends React.Component {
     this.setState({productUnlocked: this.props.location.state.productUnlocked})
 		this.setState({
 			phone: this.props.location.state.phoneNumbers[0] ? this.props.location.state.phoneNumbers.filter(data => data.primary === true)[0].number : ''
-		})  }
+    })  }
+    
+  handleBack() {
+    if (this.props.history.action === 'POP') {
+      this.props.history.replace('/')
+    }
+  }
 
   submitTransaction(e) {
     e.preventDefault()

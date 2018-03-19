@@ -74,6 +74,9 @@ class TopupKey extends React.Component {
 			})
 			.then(({data}) => {
 				console.log('Response.data:',data)
+				if (data.msg === 'not verified user') {
+					return alert(`Akun Anda belum terverifikasi.\nSilahkan verifikasi email dengan klik link yang kami kirim ke email Anda.`)
+				}
 				this.props.history.push(`/topupinvoice/${data.id}`)
 			})
 			.catch(err => console.log('Error:', err))
