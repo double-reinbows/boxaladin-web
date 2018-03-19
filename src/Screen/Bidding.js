@@ -16,10 +16,12 @@ class Bidding extends React.Component {
     super(props)
     this.state = {
       productUnlocked: {},
-			count: 15,
-      initCount: 15,
+			count: 9999,
+      initCount: 9999,
       isWatching: false
     }
+
+    this.handleBack()
   }
 
   render() {
@@ -120,11 +122,11 @@ class Bidding extends React.Component {
     this.stopWatchProductPrice(this.props.selectedProductID)
   }
 
-  // handleBack() {
-  //   if (this.props.history.action === 'POP') {
-  //     this.props.history.push('/home')
-  //   }
-  // }
+  handleBack() {
+    if (this.props.history.action === 'POP') {
+      this.props.history.replace('/')
+    }
+  }
 
   buy() {
     console.log('Buy Now!!!!!')

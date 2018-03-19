@@ -179,7 +179,7 @@ ul {
   color: var(--color-yellow-1); }
 
 .header-margin {
-  margin: 2%; }
+  margin-right: 15px; }
 
 @media (max-width: 767px) {
   .header-margin {
@@ -700,14 +700,14 @@ ul {
   padding-bottom: 20px; }
   .BannerText1__text1 {
     font-size: 4rem;
-    padding: 2rem;
+    padding: 1rem;
     margin: 0;
     color: var(--color-yellow-1);
     text-align: center; }
   .BannerText1__text2 {
     padding: 2rem;
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: var(--color-grey-6); }
 
 .BannerText2 {
@@ -719,13 +719,13 @@ ul {
   padding-bottom: 20px; }
   .BannerText2__text1 {
     font-size: 4rem;
-    padding: 2rem;
+    padding: 1rem;
     margin: 0; }
   .BannerText2__text2 {
-    font-size: 1.5rem;
-    padding-right: 2rem;
-    padding-left: 2rem;
-    margin: 0; }
+    font-size: 2rem;
+    padding: 2rem;
+    margin: 0;
+    text-align: left; }
 
 .rowz {
   margin: 0; }
@@ -1056,7 +1056,8 @@ ul {
         .User__Phone__row2__unverify__1 {
           width: 33.3%; }
           .User__Phone__row2__unverify__1__button1 {
-            width: 100%; }
+            width: 100%;
+            margin: -4px; }
         .User__Phone__row2__unverify__2 {
           width: 33.3%; }
           .User__Phone__row2__unverify__2__button2 {
@@ -1064,7 +1065,8 @@ ul {
         .User__Phone__row2__unverify__3 {
           width: 33.3%; }
           .User__Phone__row2__unverify__3__button3 {
-            width: 100%; }
+            width: 100%;
+            margin: 4px; }
       .User__Phone__row2__verify {
         width: 75%;
         display: flex;
@@ -1078,7 +1080,8 @@ ul {
           .User__Phone__row2__verify__1__label {
             width: 100%;
             text-align: center;
-            font-size: 25px; }
+            font-size: 25px;
+            margin: -4px; }
         .User__Phone__row2__verify__2 {
           width: 33.3%; }
           .User__Phone__row2__verify__2__button5 {
@@ -1089,23 +1092,22 @@ ul {
           justify-content: center;
           align-items: center; }
           .User__Phone__row2__verify__3__check {
-            height: 20px; }
+            height: 20px;
+            margin: 4px; }
     .User__Phone__row3 {
       width: 100%;
-      height: 10%;
       display: flex;
       justify-content: space-around; }
       .User__Phone__row3__button1 {
-        width: 45%;
-        margin: 5%; }
+        width: 45%; }
       .User__Phone__row3__button2 {
-        width: 45%;
-        margin: 5%; }
+        width: 45%; }
 
 @media (min-width: 200px) and (max-width: 768px) {
   .User__container {
     padding-top: 5%;
-    padding-bottom: 5%; } }
+    padding-bottom: 5%;
+    min-height: 500px; } }
 
 @media (min-width: 200px) and (max-width: 768px) {
   .User__Label {
@@ -1377,7 +1379,7 @@ input:-webkit-autofill {
   --color-red-2: #F34817;
   --color-red-3: #D0021B;
   --color-red-4: #DA4733;
-  --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
-  --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
+  --shadow-dark: 0 2rem 6rem rgba(0,0,0,.3);
+  --shadow-light: 0 2rem 5rem rgba(0,0,0,.06);
   --linear-game: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%);
   --line: 1px solid var(--color-grey-light-2); }

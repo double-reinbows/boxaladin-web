@@ -4,7 +4,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 
 import { setModalLogin, setModalRegister, loginAction } from '../actions/'
-import { getUser } from '../actions/userAction'
+import { getUser, refreshToken } from '../actions/userAction'
 
 const BA_API_HOST = `${process.env.REACT_APP_API_HOST}`
 
@@ -22,6 +22,7 @@ class EmailVerificationDone extends React.Component {
     this.verifyEmail()
     this.props.loginAction()
     this.props.getUser()
+    this.props.refreshToken()
   }
 
   verifyEmail() {
@@ -65,6 +66,7 @@ const mapDispatchToProps = (dispatch) => {
     setModalRegister: (payload) => dispatch(setModalRegister(payload)),
     loginAction: () => dispatch(loginAction()),
     getUser: () => dispatch(getUser()),
+    refreshToken: () => dispatch(refreshToken()),
   }
 }
 
