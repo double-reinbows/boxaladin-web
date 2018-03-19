@@ -421,8 +421,7 @@ ul {
   justify-content: center;
   padding-left: 20%;
   padding-right: 20%;
-  padding-top: 5%;
-  border-bottom: 10px solid yellow; }
+  padding-top: 5%; }
   .bidding__container {
     width: 100%;
     background-color: var(--color-grey-5);
@@ -516,9 +515,6 @@ ul {
     flex-direction: row;
     justify-content: center; }
     .bidding__4__btnBuy {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
       width: 80%;
       height: 75px;
       border-radius: 8px;
@@ -536,10 +532,7 @@ ul {
     justify-content: center;
     border-radius: 8px; }
     .bidding__5__btnCancel {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      width: 90%;
+      width: 80%;
       height: 75px;
       border: none;
       background-color: var(--color-grey-5);
@@ -995,20 +988,36 @@ li {
       font-weight: 500;
       line-height: 16px; }
   .gameModal__icon {
-    width: 50px;
-    height: 50px; }
-
-@media (min-width: 767px) and (max-width: 1280px) {
-  .gameModal {
-    top: 30%;
-    left: 30%;
-    width: 40%; } }
+    width: 250px;
+    height: 250px; }
 
 @media (min-width: 200px) and (max-width: 766px) {
-  .gameModal {
-    top: 25%;
-    left: 15%;
-    width: 70%; } }
+  .gameModal__icon {
+    width: 150px;
+    height: 150px; } }
+
+@media (min-width: 767px) and (max-width: 1280px) {
+  .gameModal__icon {
+    width: 200px;
+    height: 200px; } }
+
+@media (min-width: 767px) and (max-width: 1280px) {
+  .gameModal__Container__text {
+    margin: 2.5%;
+    text-align: center;
+    font-family: raleway;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 16px; } }
+
+@media (min-width: 200px) and (max-width: 766px) {
+  .gameModal__Container__text {
+    margin: 2.5%;
+    text-align: center;
+    font-family: raleway;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 16px; } }
 
 .TopupKey {
   padding: 10%;

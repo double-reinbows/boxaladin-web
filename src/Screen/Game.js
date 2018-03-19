@@ -27,9 +27,9 @@ class Game extends React.Component {
 			slot2_bawah: 0,
 			slot3_bawah: 0,
 
-			speed1: 70,
-			speed2: 20,
-			speed3: 50,
+			speed1: 700,
+			speed2: 700,
+			speed3: 700,
 
 			itemsdummy1: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 			itemsdummy2: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
@@ -114,7 +114,7 @@ class Game extends React.Component {
 							<div className="gameModal__Container">
 								
 								<div className="gameModal__Container__item">
-									<img className="game__modal__icon" src={Star} alt="Star image" />
+									<img className="gameModal__icon" src={Star} alt="Star image" />
 								</div>
 
 								<label className="gameModal__Container__text">
@@ -122,7 +122,11 @@ class Game extends React.Component {
 								</label>
 
 								<label className="gameModal__Container__text">
-									anda mendapatkan hadiah berupa {this.state.freeKey} key gratis
+									anda mendapatkan hadiah 
+								</label>
+
+								<label className="gameModal__Container__text">
+									berupa {this.state.freeKey} key gratis
 								</label>
 							</div>
 						
