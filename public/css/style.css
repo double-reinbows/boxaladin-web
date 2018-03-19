@@ -382,6 +382,15 @@ ul {
     line-height: 16px;
     text-align: center;
     margin: 1rem; }
+    .Login__ButtonLogin:active {
+      background-color: var(--color-yellow-1) !important;
+      color: var(--color-dark-3); }
+    .Login__ButtonLogin:hover {
+      background-color: var(--color-yellow-1);
+      color: var(--color-dark-3); }
+    .Login__ButtonLogin:focus {
+      background-color: var(--color-yellow-1);
+      color: var(--color-dark-3); }
   .Login__Daftar {
     margin-bottom: 3rem;
     color: var(--white); }

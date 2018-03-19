@@ -45,6 +45,18 @@
     line-height: 16px;
     text-align: center;
     margin: 1rem;
+    &:active{
+      background-color: var(--color-yellow-1) !important;
+      color: var(--color-dark-3);
+    }
+    &:hover{
+      background-color: var(--color-yellow-1);
+      color: var(--color-dark-3);
+    }
+    &:focus{
+      background-color: var(--color-yellow-1);
+      color: var(--color-dark-3);
+    }
   }
 
   &__Daftar{
