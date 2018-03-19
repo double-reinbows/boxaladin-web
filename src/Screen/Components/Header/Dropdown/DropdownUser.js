@@ -54,34 +54,47 @@ class DropdownUser extends React.Component {
           {/* <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/pulsa">Pulsa</Link>
           </DropdownItem> */}
-
+          <a href="/me">
           <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/me">User Profile</Link>
           </DropdownItem>
+          </a>
 
+          <a href="/invoice">
           <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/invoice">Invoice</Link>
           </DropdownItem>
+          </a>
 
+          <a href="/topupinvoice">
           <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/topupinvoice">Topup-Invoice</Link>
           </DropdownItem>
+          </a>
 
+          <a href="/dompetaladin">
           <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/dompetaladin">Dompet Aladin</Link>
           </DropdownItem>
+          </a>
 
+          <a href="/game">
           <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/game">Play Game</Link>
           </DropdownItem>
+          </a>
 
+          <a href="/win">
           <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/win">Game Result</Link>
           </DropdownItem>
+          </a>
 
+          <a href="/claimreward">
           <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/claimreward">Claim Reward</Link>
           </DropdownItem>
+          </a>
 
           <DropdownItem divider />
 
