@@ -8,7 +8,9 @@ export default  class BannerHome extends React.Component {
         <div className="BannerText1">
           <h1 className="BannerText1__text1">Kok bisa lebih murah?</h1>
           <h1 className="BannerText1__text2">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            Box Aladin telah dirancang untuk memberi para anggotanya harga termurah atas
+            barang yang dijualnya dengan cara lelang yang menggunakan sistem DUTCH
+            AUCTION.
           </h1>
           <Button className="mx-auto" color="warning">lihat disini</Button>
         </div>
