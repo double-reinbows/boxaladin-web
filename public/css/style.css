@@ -1393,7 +1393,7 @@ input:-webkit-autofill {
   --color-red-2: #F34817;
   --color-red-3: #D0021B;
   --color-red-4: #DA4733;
-  --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
-  --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
+  --shadow-dark: 0 2rem 6rem rgba(0,0,0,.3);
+  --shadow-light: 0 2rem 5rem rgba(0,0,0,.06);
   --linear-game: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%);
   --line: 1px solid var(--color-grey-light-2); }
