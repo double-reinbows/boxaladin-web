@@ -1056,7 +1056,8 @@ ul {
         .User__Phone__row2__unverify__1 {
           width: 33.3%; }
           .User__Phone__row2__unverify__1__button1 {
-            width: 100%; }
+            width: 100%;
+            margin: -4px; }
         .User__Phone__row2__unverify__2 {
           width: 33.3%; }
           .User__Phone__row2__unverify__2__button2 {
@@ -1064,7 +1065,8 @@ ul {
         .User__Phone__row2__unverify__3 {
           width: 33.3%; }
           .User__Phone__row2__unverify__3__button3 {
-            width: 100%; }
+            width: 100%;
+            margin: 4px; }
       .User__Phone__row2__verify {
         width: 75%;
         display: flex;
@@ -1078,7 +1080,8 @@ ul {
           .User__Phone__row2__verify__1__label {
             width: 100%;
             text-align: center;
-            font-size: 25px; }
+            font-size: 25px;
+            margin: -4px; }
         .User__Phone__row2__verify__2 {
           width: 33.3%; }
           .User__Phone__row2__verify__2__button5 {
@@ -1089,17 +1092,16 @@ ul {
           justify-content: center;
           align-items: center; }
           .User__Phone__row2__verify__3__check {
-            height: 20px; }
+            height: 20px;
+            margin: 4px; }
     .User__Phone__row3 {
       width: 100%;
       display: flex;
       justify-content: space-around; }
       .User__Phone__row3__button1 {
-        width: 45%;
-        margin: 5%; }
+        width: 45%; }
       .User__Phone__row3__button2 {
-        width: 45%;
-        margin: 5%; }
+        width: 45%; }
 
 @media (min-width: 200px) and (max-width: 768px) {
   .User__container {
