@@ -22,6 +22,7 @@ class Bidding extends React.Component {
     }
 
     this.handleBack()
+    localStorage.setItem('selectedProductId', this.props.selectedProductID)
   }
 
   render() {
@@ -120,10 +121,12 @@ class Bidding extends React.Component {
   componentWillUnmount() {
     console.log('will unmount..........')
     this.stopWatchProductPrice(this.props.selectedProductID)
+    localStorage.removeItem('selectedProductId')
   }
 
   handleBack() {
     if (this.props.history.action === 'POP') {
+      this.stopWatchProductPrice(localStorage.getItem('selectedProductId'))
       this.props.history.replace('/')
     }
   }
@@ -159,6 +162,10 @@ class Bidding extends React.Component {
   }
 
   watchProductPrice(productId) {
+    if (productId === '') {
+      return null
+    }
+
     const productsRef = firebase.database().ref().child('products')
     const productRef = productsRef.child(productId)
 
@@ -251,6 +258,10 @@ class Bidding extends React.Component {
   }
 
   stopWatchProductPrice(productId) {
+    if (productId === '') {
+      return null
+    }
+
     const productsRef = firebase.database().ref().child('products')
 		const productRef = productsRef.child(productId)
 
