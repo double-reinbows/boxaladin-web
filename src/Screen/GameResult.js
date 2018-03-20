@@ -9,7 +9,7 @@ import moment from 'moment'
 
 import { getUserWins } from '../actions/winAction'
 
-class Reward extends React.Component {
+class GameResult extends React.Component {
   constructor(props) {
     super(props)
     this.state = {}
@@ -21,7 +21,7 @@ class Reward extends React.Component {
     return (
       <div className="invoice">
         <div className="invoice__container">
-          <h1 className="invoice__text">Reward</h1>
+          <h1 className="invoice__text">Game Result</h1>
           {this.showWin()}
         </div>
       </div>
@@ -73,6 +73,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(Reward)
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(GameResult)
 
 export default connectComponent

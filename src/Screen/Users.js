@@ -219,24 +219,19 @@ class User extends React.Component {
 	showAddPhoneModal() {
 		return (
 		<Modal isOpen={this.state.addPhoneModal} className="ModalPhone">
+		
 			<form className="ModalContent" onSubmit={e => this.submitPhone(e)}>
 			
-              <div className="form-group ModalContent__form">
-                <input name="numberToSend" required autoFocus type="text" maxLength={14} className="form-control" placeholder="Phone Number" onChange={e => this.handlePhoneNum(e)} />
+				<div className="form-group ModalContent__form">
+					<input name="numberToSend" required autoFocus type="text" maxLength={14} className="form-control" placeholder="Phone Number" onChange={e => this.handlePhoneNum(e)} />
 			  </div>
 			  
-              <div className="form-group ModalContent__button">
-				<Button type="button" color="danger" onClick={() => this.setState(
-					{ addPhoneModal: false }
-					)}>
-					Cancel
-				</Button>
-				<Button style={{ marginLeft: 5 }} type="submit" color="primary">
-					Confirm
-				</Button>
+        <div className="form-group ModalContent__button">
+					<Button type="button" color="danger" onClick={() => this.setState({ addPhoneModal: false })}>Cancel</Button>
+					<Button style={{ marginLeft: 5 }} type="submit" color="primary">Confirm</Button>
 			  </div>
 			  
-            </form>
+      </form>
 		</Modal>
 		)
 	}
@@ -262,12 +257,11 @@ class User extends React.Component {
 	showPhoneModal() {
 		return (
 			<Modal isOpen={this.state.phoneModal} className="ModalPhone">
+
 				<form className="ModalContent" onSubmit={ (e) => this.submitOTP(e) }>
 					
 					<div className="form-group ModalContent__form">
-						<div className="col-sm-12">
-							<input name="otp" required autoFocus type="text" maxLength={6} className="form-control" id="inputUsername" placeholder="Masukan 6 digit OTP" onChange={ (e) => this.setState({OTP: e.target.value}) } />
-						</div>
+						<input name="otp" required autoFocus type="text" maxLength={6} className="form-control" id="inputUsername" placeholder="Masukan 6 digit OTP" onChange={ (e) => this.setState({OTP: e.target.value}) } />
 					</div>
 
 					<div className="form-group ModalContent__button">
@@ -275,6 +269,7 @@ class User extends React.Component {
 						<Button style={{ marginLeft: 5 }} type="submit" color="primary">Confirm</Button>
 					</div>
 				</form>
+
 			</Modal>
 		)
 	}

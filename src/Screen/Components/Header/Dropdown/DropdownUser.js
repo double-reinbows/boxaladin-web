@@ -60,18 +60,6 @@ class DropdownUser extends React.Component {
           </DropdownItem>
           </a>
 
-          <a href="/invoice">
-          <DropdownItem className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" to="/invoice">Invoice</Link>
-          </DropdownItem>
-          </a>
-
-          <a href="/topupinvoice">
-          <DropdownItem className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" to="/topupinvoice">Topup-Invoice</Link>
-          </DropdownItem>
-          </a>
-
           <a href="/dompetaladin">
           <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/dompetaladin">Dompet Aladin</Link>
@@ -86,8 +74,20 @@ class DropdownUser extends React.Component {
 
           <a href="/win">
           <DropdownItem className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" to="/win">Game Result</Link>
+            <Link className="DropdownUser__inside__link" to="/gameresult">Game Result</Link>
           </DropdownItem>
+          </a>
+
+          <a href="/invoice">
+            <DropdownItem className="DropdownUser__inside">
+              <Link className="DropdownUser__inside__link" to="/invoice">Invoice</Link>
+            </DropdownItem>
+          </a>
+
+          <a href="/topupinvoice">
+            <DropdownItem className="DropdownUser__inside">
+              <Link className="DropdownUser__inside__link" to="/topupinvoice">Topup-Invoice</Link>
+            </DropdownItem>
           </a>
 
           {/* <DropdownItem className="DropdownUser__inside">
