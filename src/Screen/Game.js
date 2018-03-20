@@ -117,13 +117,16 @@ class Game extends React.Component {
 						</div>
 					</div>
 					
-					<div className="game__prize">
-						<h1 className="game__prize__title">Game Prize</h1>
-						
-						<h1 className="game__prize__h1">
-							Dapatkan hadiah hingga 300 Aladin Keys dengan memainkan Aladin Games dengan mendapatkan pola tertentu seperti
-						</h1>
+				</div>
 
+				<div className="game__prize">
+					<h1 className="game__prize__title">Game Prize</h1>
+
+					<h1 className="game__prize__h1">
+						Dapatkan hadiah hingga 300 Aladin Keys dengan memainkan Aladin Games dengan mendapatkan pola tertentu seperti
+					</h1>
+
+					<div className="game__prize__row">
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win1} alt="coin image" />
 							<h1 className="game__prize__h1">
@@ -158,8 +161,8 @@ class Game extends React.Component {
 								100 Aladin Keys
 							</h1>
 						</div>
-
 					</div>
+
 				</div>
 
 					<Modal isOpen={this.state.modal} className="gameModal">

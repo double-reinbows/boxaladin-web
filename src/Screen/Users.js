@@ -500,7 +500,10 @@ class User extends React.Component {
 				<h3>{this.props.userInfo !== null ? this.props.userInfo.first_name : null} {this.props.userInfo !== null ? this.props.userInfo.family_name : null}</h3>
 				<div className="User__show">
 					<img src={IconEmail} className="User__show__logo" alt="Logo"/> 
-					{this.props.userInfo !== null ? this.props.userInfo.email : null} {this.props.userInfo !== null ? (this.props.userInfo.emailVerified ? '(verified)' : '(not verified)') : null}
+					{this.props.userInfo !== null ? this.props.userInfo.email : null} {this.props.userInfo !== null ? 
+						(this.props.userInfo.emailVerified ? '(verified)' : 
+						(<Button color= "success" onClick={() => this.resendEmailVerification()}> Resend Verification email </Button>)) : null
+					}
 				</div>
 				<div className="User__show">
 					<img src={IconKey} className="User__show__logo" alt="Logo"/>
@@ -514,6 +517,29 @@ class User extends React.Component {
 			</div>
 		)
 	}
+
+	resendEmailVerification() {
+		console.log('RESEND EMAIL!')
+
+		axios({
+			method: 'POST',
+			url: `${process.env.REACT_APP_API_HOST}/resendemailverification`,
+			headers: {
+				token: localStorage.getItem('token')
+			}
+		})
+		.then(response => {
+			console.log('RESPONSE:', response)
+			if (response.status === 200) {
+				return alert(response.data.message)
+			}
+			return null
+		})
+		.catch(err => {
+			return console.log('ERROR:', err)
+		})
+	}
+
 }
 
 const mapStateToProps = (state) => {

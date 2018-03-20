@@ -220,7 +220,10 @@ class Bidding extends React.Component {
         }
         this.props.setIsLoading(false)
 			})
-      .catch(err => console.log(err))
+      .catch(err => {
+        this.props.setIsLoading(false)
+        return console.log(err)
+      })
 
 		} else {
 
