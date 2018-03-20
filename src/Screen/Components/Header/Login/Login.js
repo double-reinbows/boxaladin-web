@@ -25,7 +25,7 @@ class Login extends Component {
     this.props.setIsLoading(true)
     
     axios.post(URL + 'signin', {
-      username: this.state.email,
+      email: this.state.email,
       password: this.state.password
     })
     .then(({data}) => {

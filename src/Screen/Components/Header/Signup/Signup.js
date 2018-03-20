@@ -13,7 +13,8 @@ class Signup extends Component {
     super(props)
     this.state = {
       _formIsValid: false,
-      phonenumber: ''
+      phonenumber: '',
+      notif: '',
     }
     this.signUpInputHandler = this.signUpInputHandler.bind(this)
   }
@@ -38,7 +39,7 @@ class Signup extends Component {
     if (pattern.test(obj.email)) {
       console.log('dotted gmail')
       this.setState({
-        typed_email: obj.email,
+        typedEmail: obj.email,
         email: obj.email.replace(pattern, `$1$2@gmail.com`)
       })
     }
@@ -184,7 +185,7 @@ class Signup extends Component {
         phonenumber: this.state.phonenumber,
         password: this.state.password,
         confirm: this.state.confirm,
-        typedEmail: this.state.typed_email
+        typedEmail: this.state.typedEmail
       }
       axios
         .post(URL + 'signup', payload)
@@ -192,8 +193,15 @@ class Signup extends Component {
           // console.log(data)
           // localStorage.setItem('token', data)
           if (data.hasOwnProperty('isUsed')) {
-            if (data.isUsed.username) alert('username already used')
-            else if (data.isUsed.email) alert('email already used')
+            if (data.isUsed.username) {
+              this.setState({
+                notif: "email sudah digunakan",
+              })
+            } else if (data.isUsed.email) {  
+              this.setState({
+              notif: "email sudah digunakan",
+            })
+          }
           } else {
             localStorage.setItem('token', data.token)
             console.log('>>>Signed up')
@@ -251,9 +259,9 @@ class Signup extends Component {
             <input name="confirm" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Confirm your password here" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
-          <input
-            name="condition"
-            type="checkbox"/>
+          <label>label:{this.state.notif}</label>
+          <br/>
+          <input name="condition" type="checkbox"/>
           <label className="Signup__Condition">Saya telah membaca syarat dan kondisi yang berlaku</label>
 
 
