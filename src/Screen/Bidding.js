@@ -126,7 +126,9 @@ class Bidding extends React.Component {
 
   handleBack() {
     if (this.props.history.action === 'POP') {
-      this.stopWatchProductPrice(localStorage.getItem('selectedProductId'))
+      if (localStorage.getItem('selectedProductId')) {
+        this.stopWatchProductPrice(localStorage.getItem('selectedProductId'))
+      }
       this.props.history.replace('/')
     }
   }
