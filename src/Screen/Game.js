@@ -80,8 +80,8 @@ class Game extends React.Component {
 						</div>
 
 							<div className="game__slotCoin">
-										<img className="game__slotCoin__icon" src={Coin} alt="coin image"/>
-										<label className="game__slotCoin__label">Your Coin : {this.props.userInfo.coin}</label>
+								<img className="game__slotCoin__icon" src={Coin} alt="coin image"/>
+								<label className="game__slotCoin__label">Your Coin : {this.props.userInfo.coin}</label>
 							</div>
 						<div className="game__container3">
 							<div className="game__slotItems">
