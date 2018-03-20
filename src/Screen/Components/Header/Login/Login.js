@@ -30,7 +30,7 @@ class Login extends Component {
     })
     .then(({data}) => {
       this.props.setIsLoading(false)
-      if (data.message === 'email not found') {
+      if (data.message === 'username or email not found') {
         console.log(data)
         alert(data.message)
       } else if (data.message === 'password incorrect') {

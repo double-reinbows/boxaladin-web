@@ -382,6 +382,15 @@ ul {
     line-height: 16px;
     text-align: center;
     margin: 1rem; }
+    .Login__ButtonLogin:active {
+      background-color: var(--color-yellow-1) !important;
+      color: var(--color-dark-3); }
+    .Login__ButtonLogin:hover {
+      background-color: var(--color-yellow-1);
+      color: var(--color-dark-3); }
+    .Login__ButtonLogin:focus {
+      background-color: var(--color-yellow-1);
+      color: var(--color-dark-3); }
   .Login__Daftar {
     margin-bottom: 3rem;
     color: var(--white); }
@@ -412,8 +421,7 @@ ul {
   justify-content: center;
   padding-left: 20%;
   padding-right: 20%;
-  padding-top: 5%;
-  border-bottom: 10px solid yellow; }
+  padding-top: 5%; }
   .bidding__container {
     width: 100%;
     background-color: var(--color-grey-5);
@@ -507,9 +515,6 @@ ul {
     flex-direction: row;
     justify-content: center; }
     .bidding__4__btnBuy {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
       width: 80%;
       height: 75px;
       border-radius: 8px;
@@ -527,10 +532,7 @@ ul {
     justify-content: center;
     border-radius: 8px; }
     .bidding__5__btnCancel {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      width: 90%;
+      width: 80%;
       height: 75px;
       border: none;
       background-color: var(--color-grey-5);
@@ -729,6 +731,26 @@ ul {
     margin: 0;
     text-align: left; }
 
+.BannerText3 {
+  width: 100%;
+  margin: 0;
+  background-color: var(--color-grey-7);
+  text-align: center;
+  padding-bottom: 20px; }
+  .BannerText3__text1 {
+    font-size: 4rem;
+    padding: 1rem;
+    margin: 0;
+    color: var(--color-yellow-1); }
+  .BannerText3__text2 {
+    font-size: 2rem;
+    padding: 2rem;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin: 0;
+    text-align: left;
+    color: var(--color-grey-6); }
+
 .rowz {
   margin: 0; }
 
@@ -794,7 +816,8 @@ li {
     background-color: var(--color-grey-5); }
   .game__slotLabel {
     text-align: center;
-    font-family: raleway; }
+    font-family: raleway;
+    padding-bottom: 25px; }
     .game__slotLabel__h1 {
       color: #FFCD05;
       font-size: 48px;
@@ -802,9 +825,29 @@ li {
       line-height: 56px; }
     .game__slotLabel__paragraph {
       color: white;
-      font-size: 14px;
+      font-size: 20px;
       font-weight: 500;
       line-height: 16px; }
+  .game__prize {
+    margin-top: 5%;
+    text-align: center;
+    font-family: raleway; }
+    .game__prize__container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 5%; }
+    .game__prize__title {
+      color: #FFCD05;
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 56px; }
+    .game__prize__h1 {
+      color: #FFCD05;
+      font-size: 20px; }
+    .game__prize__img {
+      width: 150px;
+      height: 150px; }
   .game__container2 {
     display: flex;
     justify-content: center; }
@@ -812,7 +855,7 @@ li {
     text-align: center; }
     .game__convert__label {
       margin: 10px;
-      color: #FFFFFF;
+      color: #FFCD05;
       font-family: Raleway;
       font-size: 24px;
       font-weight: bold;
@@ -839,7 +882,8 @@ li {
   .game__slotCoin {
     display: flex;
     justify-content: center;
-    align-items: center; }
+    align-items: center;
+    padding: 25px; }
     .game__slotCoin__icon {
       width: 10%;
       margin: 10px; }
@@ -986,20 +1030,36 @@ li {
       font-weight: 500;
       line-height: 16px; }
   .gameModal__icon {
-    width: 50px;
-    height: 50px; }
-
-@media (min-width: 767px) and (max-width: 1280px) {
-  .gameModal {
-    top: 30%;
-    left: 30%;
-    width: 40%; } }
+    width: 250px;
+    height: 250px; }
 
 @media (min-width: 200px) and (max-width: 766px) {
-  .gameModal {
-    top: 25%;
-    left: 15%;
-    width: 70%; } }
+  .gameModal__icon {
+    width: 150px;
+    height: 150px; } }
+
+@media (min-width: 767px) and (max-width: 1280px) {
+  .gameModal__icon {
+    width: 200px;
+    height: 200px; } }
+
+@media (min-width: 767px) and (max-width: 1280px) {
+  .gameModal__Container__text {
+    margin: 2.5%;
+    text-align: center;
+    font-family: raleway;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 16px; } }
+
+@media (min-width: 200px) and (max-width: 766px) {
+  .gameModal__Container__text {
+    margin: 2.5%;
+    text-align: center;
+    font-family: raleway;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 16px; } }
 
 .TopupKey {
   padding: 10%;

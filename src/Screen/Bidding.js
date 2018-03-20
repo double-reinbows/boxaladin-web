@@ -16,12 +16,13 @@ class Bidding extends React.Component {
     super(props)
     this.state = {
       productUnlocked: {},
-			count: 9999,
-      initCount: 9999,
+			count: 15,
+      initCount: 15,
       isWatching: false
     }
 
     this.handleBack()
+    localStorage.setItem('selectedProductId', this.props.selectedProductID)
   }
 
   render() {
@@ -120,10 +121,12 @@ class Bidding extends React.Component {
   componentWillUnmount() {
     console.log('will unmount..........')
     this.stopWatchProductPrice(this.props.selectedProductID)
+    localStorage.removeItem('selectedProductId')
   }
 
   handleBack() {
     if (this.props.history.action === 'POP') {
+      this.stopWatchProductPrice(localStorage.getItem('selectedProductId'))
       this.props.history.replace('/')
     }
   }
@@ -159,6 +162,10 @@ class Bidding extends React.Component {
   }
 
   watchProductPrice(productId) {
+    if (productId === '') {
+      return null
+    }
+
     const productsRef = firebase.database().ref().child('products')
     const productRef = productsRef.child(productId)
 
@@ -199,21 +206,24 @@ class Bidding extends React.Component {
 						})
 					})
           
-          this.props.setIsLoading(false)
 					this.runTimer()
-
+          
 				} else if (data.message === 'not enough aladin key') {
-
+          
           this.props.history.push('/home')
           alert(data.message)
-
+          
         } else {
-
+          
           console.log(data)
-
+          
         }
+        this.props.setIsLoading(false)
 			})
-      .catch(err => console.log(err))
+      .catch(err => {
+        this.props.setIsLoading(false)
+        return console.log(err)
+      })
 
 		} else {
 
@@ -251,6 +261,10 @@ class Bidding extends React.Component {
   }
 
   stopWatchProductPrice(productId) {
+    if (productId === '') {
+      return null
+    }
+
     const productsRef = firebase.database().ref().child('products')
 		const productRef = productsRef.child(productId)
 

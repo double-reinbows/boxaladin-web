@@ -2,8 +2,16 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Modal, ModalHeader } from 'reactstrap'
 import axios from 'axios'
+
 import Coin from '../../src/asset/Game/coin.svg'
 import Star from '../../src/asset/Game/star.svg'
+
+import win1 from '../../src/asset/Game/win/300keys.png'
+import win2 from '../../src/asset/Game/win/250keys.png'
+import win3 from '../../src/asset/Game/win/200keys.png'
+import win4 from '../../src/asset/Game/win/150keys.png'
+import win5 from '../../src/asset/Game/win/100keys.png'
+
 import { getUser } from '../actions/userAction'
 import { getUserWins } from '../actions/winAction'
 
@@ -28,8 +36,8 @@ class Game extends React.Component {
 			slot3_bawah: 0,
 
 			speed1: 70,
-			speed2: 20,
-			speed3: 50,
+			speed2: 50,
+			speed3: 100,
 
 			itemsdummy1: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 			itemsdummy2: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
@@ -52,16 +60,17 @@ class Game extends React.Component {
 			<div className="game">
 				<div className="game__container">
 					<div className="game__slotLabel">
-						<h1 className="game__slotLabel__h1">GAMES</h1>
-						<p className="game__slotLabel__paragraph">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+						<h1 className="game__slotLabel__h1">ALADIN GAMES</h1>
+						<p className="game__slotLabel__paragraph">Play Aladin Games with your Aladin Coin</p>
 					</div>
 					<div>
 						<div className="game__container2">
 							<div className="game__convert">
-								<div className="game__convert__label">
-											<label>Aladin Key : {this.props.userInfo.aladinKeys}</label>
+								<div>
+									<label className="game__convert__label">Aladin Key : {this.props.userInfo.aladinKeys}</label>
 								</div>
 								<div>
+									<p className="game__slotLabel__paragraph">Convert your Aladin Keys to Aladin Coin here</p>
 									<form onSubmit={(e) => this.upCoin(e)}>
 										<input className="game__convert__input" min="1" id="upcoin" onChange={(e) => this.setState({ key: parseInt(e.target.value) })} type="number" placeholder="1 aladin key = 10 coin" />
 										<button className="game__convert__buttonConvert">CONVERT</button>
@@ -71,8 +80,8 @@ class Game extends React.Component {
 						</div>
 
 							<div className="game__slotCoin">
-										<img className="game__slotCoin__icon" src={Coin} alt="coin image"/>
-										<label className="game__slotCoin__label">Your Coin : {this.props.userInfo.coin}</label>
+								<img className="game__slotCoin__icon" src={Coin} alt="coin image"/>
+								<label className="game__slotCoin__label">Your Coin : {this.props.userInfo.coin}</label>
 							</div>
 						<div className="game__container3">
 							<div className="game__slotItems">
@@ -107,6 +116,50 @@ class Game extends React.Component {
 						</div> */}
 						</div>
 					</div>
+					
+					<div className="game__prize">
+						<h1 className="game__prize__title">Game Prize</h1>
+						
+						<h1 className="game__prize__h1">
+							Dapatkan hadiah hingga 300 Aladin Keys dengan memainkan Aladin Games dengan mendapatkan pola tertentu seperti
+						</h1>
+
+						<div className="game__prize__container">
+							<img className="game__prize__img" src={win1} alt="coin image" />
+							<h1 className="game__prize__h1">
+								300 Aladin Keys
+							</h1>
+						</div>
+
+						<div className="game__prize__container">
+							<img className="game__prize__img" src={win2} alt="coin image" />
+							<h1 className="game__prize__h1">
+								250 Aladin Keys
+							</h1>
+						</div>
+
+						<div className="game__prize__container">
+							<img className="game__prize__img" src={win3} alt="coin image" />
+							<h1 className="game__prize__h1">
+								200 Aladin Keys
+							</h1>
+						</div>
+
+						<div className="game__prize__container">
+							<img className="game__prize__img" src={win4} alt="coin image" />
+							<h1 className="game__prize__h1">
+								150 Aladin Keys
+							</h1>
+						</div>
+
+						<div className="game__prize__container">
+							<img className="game__prize__img" src={win5} alt="coin image" />
+							<h1 className="game__prize__h1">
+								100 Aladin Keys
+							</h1>
+						</div>
+
+					</div>
 				</div>
 
 					<Modal isOpen={this.state.modal} className="gameModal">
@@ -114,7 +167,7 @@ class Game extends React.Component {
 							<div className="gameModal__Container">
 								
 								<div className="gameModal__Container__item">
-									<img className="game__modal__icon" src={Star} alt="Star image" />
+									<img className="gameModal__icon" src={Star} alt="Star image" />
 								</div>
 
 								<label className="gameModal__Container__text">
@@ -122,10 +175,13 @@ class Game extends React.Component {
 								</label>
 
 								<label className="gameModal__Container__text">
-									anda mendapatkan hadiah berupa {this.state.freeKey} key gratis
+									anda mendapatkan hadiah 
+								</label>
+
+								<label className="gameModal__Container__text">
+									berupa {this.state.freeKey} key gratis
 								</label>
 							</div>
-						
 					</Modal>
 			</div>
 		)
