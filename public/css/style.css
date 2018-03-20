@@ -832,8 +832,15 @@ li {
     margin-top: 5%;
     text-align: center;
     font-family: raleway; }
+    .game__prize__row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center; }
     .game__prize__container {
       display: flex;
+      flex-direction: column;
       justify-content: space-around;
       align-items: center;
       margin: 5%; }
@@ -844,7 +851,8 @@ li {
       line-height: 56px; }
     .game__prize__h1 {
       color: #FFCD05;
-      font-size: 20px; }
+      font-size: 20px;
+      margin-top: 25px; }
     .game__prize__img {
       width: 150px;
       height: 150px; }
