@@ -61,15 +61,16 @@ class Game extends React.Component {
 				<div className="game__container">
 					<div className="game__slotLabel">
 						<h1 className="game__slotLabel__h1">ALADIN GAMES</h1>
-						<p className="game__slotLabel__paragraph">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+						<p className="game__slotLabel__paragraph">Play Aladin Games with your Aladin Coin</p>
 					</div>
 					<div>
 						<div className="game__container2">
 							<div className="game__convert">
-								<div className="game__convert__label">
-											<label>Aladin Key : {this.props.userInfo.aladinKeys}</label>
+								<div>
+									<label className="game__convert__label">Aladin Key : {this.props.userInfo.aladinKeys}</label>
 								</div>
 								<div>
+									<p className="game__slotLabel__paragraph">Convert your Aladin Keys to Aladin Coin here</p>
 									<form onSubmit={(e) => this.upCoin(e)}>
 										<input className="game__convert__input" min="1" id="upcoin" onChange={(e) => this.setState({ key: parseInt(e.target.value) })} type="number" placeholder="1 aladin key = 10 coin" />
 										<button className="game__convert__buttonConvert">CONVERT</button>
