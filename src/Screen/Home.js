@@ -18,7 +18,7 @@ class Home extends Component {
   
   render() {
     console.log('State:', this.state);
-		console.log('Props:', this.props);
+    console.log('Props:', this.props);
     return (
       <div>
         <Carousel />
@@ -32,7 +32,7 @@ class Home extends Component {
   componentDidMount() {
     this.props.getProducts()
   }
-  
+
 }
 
 const mapStateToProps = state => {
