@@ -42,6 +42,33 @@
 			}
 	}
 
+	&__prize{
+		margin-top: 5%;
+		text-align: center;
+		font-family: raleway;
+			&__container{
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				margin: 5%;
+			}
+			&__title{
+				color: #FFCD05;	
+				font-size: 48px;	
+				font-weight: 900;	
+				line-height: 56px;
+			}
+			&__h1{
+				color: #FFCD05;	
+				font-size: 20px;	
+			}
+
+			&__img{
+				width: 150px;
+				height: 150px;
+			}
+	}
+
 	&__container2{
 		display: flex;
 		justify-content: center;

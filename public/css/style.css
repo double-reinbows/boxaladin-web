@@ -731,6 +731,26 @@ ul {
     margin: 0;
     text-align: left; }
 
+.BannerText3 {
+  width: 100%;
+  margin: 0;
+  background-color: var(--color-grey-7);
+  text-align: center;
+  padding-bottom: 20px; }
+  .BannerText3__text1 {
+    font-size: 4rem;
+    padding: 1rem;
+    margin: 0;
+    color: var(--color-yellow-1); }
+  .BannerText3__text2 {
+    font-size: 2rem;
+    padding: 2rem;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin: 0;
+    text-align: left;
+    color: var(--color-grey-6); }
+
 .rowz {
   margin: 0; }
 
@@ -807,6 +827,26 @@ li {
       font-size: 14px;
       font-weight: 500;
       line-height: 16px; }
+  .game__prize {
+    margin-top: 5%;
+    text-align: center;
+    font-family: raleway; }
+    .game__prize__container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 5%; }
+    .game__prize__title {
+      color: #FFCD05;
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 56px; }
+    .game__prize__h1 {
+      color: #FFCD05;
+      font-size: 20px; }
+    .game__prize__img {
+      width: 150px;
+      height: 150px; }
   .game__container2 {
     display: flex;
     justify-content: center; }
