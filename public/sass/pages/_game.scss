@@ -27,6 +27,7 @@
 	&__slotLabel{
 		text-align: center;
 		font-family: raleway;
+		padding-bottom: 25px;
 			&__h1{
 				color: #FFCD05;	
 				font-size: 48px;	
@@ -36,9 +37,36 @@
 
 			&__paragraph{
 				color: white;
-				font-size: 14px;
+				font-size: 20px;
 				font-weight: 500;	
 				line-height: 16px;
+			}
+	}
+
+	&__prize{
+		margin-top: 5%;
+		text-align: center;
+		font-family: raleway;
+			&__container{
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				margin: 5%;
+			}
+			&__title{
+				color: #FFCD05;	
+				font-size: 48px;	
+				font-weight: 900;	
+				line-height: 56px;
+			}
+			&__h1{
+				color: #FFCD05;	
+				font-size: 20px;	
+			}
+
+			&__img{
+				width: 150px;
+				height: 150px;
 			}
 	}
 
@@ -51,7 +79,7 @@
 		text-align: center;
 		&__label{
 			margin: 10px;
-			color: #FFFFFF;
+			color: #FFCD05;
 			font-family: Raleway;
 			font-size: 24px;
 			font-weight: bold;	
@@ -87,6 +115,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		padding: 25px;
 		&__icon{
 			width: 10%;
 			margin: 10px;

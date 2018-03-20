@@ -246,6 +246,30 @@
   }
 }
 
+.BannerText3{
+  width: 100%;
+  margin: 0;
+  background-color: var(--color-grey-7);
+  text-align: center;
+  padding-bottom: 20px;
+
+  &__text1{
+    font-size: 4rem;
+    padding: 1rem;
+    margin: 0;
+    color: var(--color-yellow-1);
+  }
+  &__text2{
+    font-size: 2rem;
+    padding: 2rem;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin: 0;
+    text-align: left;
+    color: var(--color-grey-6);
+  }
+}
+
 .rowz {
   margin: 0;
 }
