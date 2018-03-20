@@ -33,7 +33,7 @@ import InsertPhone from './Screen/Components/InsertPhone/InsertPhone'
 
 import DompetAladin from './Screen/DompetAladin'
 import Game from './Screen/Game'
-import Win from './Screen/Win'
+import GameResult from './Screen/GameResult'
 import ClaimReward from './Screen/ClaimReward'
 import RequestResetPassword from './Screen/RequestResetPassword'
 import ResetPassword from './Screen/ResetPassword'
@@ -80,7 +80,7 @@ class RouteList extends React.Component {
             {/* <PrivateRoute exact path="/pulsa" component={Pulsa} /> */}
             <PrivateRoute exact path="/game" component={ Game } />
             <PrivateRoute exact path="/dompetaladin" component={DompetAladin} />
-            <PrivateRoute exact path="/win" component={ Win } />
+            <PrivateRoute exact path="/gameresult" component={ GameResult } />
             {/* <PrivateRoute exact path="/claimreward" component={ ClaimReward } /> */}
 
             <Route exact path="/emailVerification" component={EmailVerificationDone} />
