@@ -46,7 +46,8 @@ class Game extends React.Component {
 			isRunning: false,
 			modal: false,
 			key: null,
-			freeKey: 0
+			freeKey: 0,
+			notif: ''
 		}
 
 		this.toggle = this.toggle.bind(this)
@@ -78,7 +79,7 @@ class Game extends React.Component {
 								</div>
 							</div>
 						</div>
-
+						<label className="alert__game">{this.state.notif}</label>
 							<div className="game__slotCoin">
 								<img className="game__slotCoin__icon" src={Coin} alt="coin image"/>
 								<label className="game__slotCoin__label">Your Coin : {this.props.userInfo.coin}</label>
@@ -195,17 +196,18 @@ class Game extends React.Component {
 		e.preventDefault()
 
 		if (this.state.key > this.props.userInfo.aladinKeys) {
-			return alert('aladin key tidak cukup')
+			return this.setState({
+        notif: "Aladin Key Tidak Cukup",
+      })
 		}
 
 		if (this.state.key <= 0) {
-			return alert('harus lebih besar dari 0')
+			return this.setState({
+        notif: "Harus Lebih Besar Dari 0",
+      })
 		}
 
 		if (this.state.key) {
-
-			// return alert(this.state.key)
-			
 			axios({
 				method: 'PUT',
 				url: `${process.env.REACT_APP_API_HOST}/users/upcoin`,
@@ -230,20 +232,15 @@ class Game extends React.Component {
 			.catch(err => console.log(err))
 
 		} else {
-			return alert('tidak boleh kosong')
+			return this.setState({
+        notif: "Tidak Boleh Kosong",
+      })
 		}
 
 	}
 
 	submitResult(result) {
 		if (result === 0) {
-			console.log('tes4', this.state.modal)
-			// this.setState({
-			// 	modal:false
-			// })
-			// alert('Maaf Anda kurang beruntung.')
-			console.log('Maaf Anda kurang beruntung.')
-			console.log('tes', this.state.modal)
 			// this.reset()
 			return			
 		} else {
@@ -265,19 +262,14 @@ class Game extends React.Component {
 				}
 			})
 			.then(({data}) => {
-				console.log('tes2', this.state.modal)
 				this.setState({
 					modal:true,
 					freeKey: data.freekey.amount
 				})
-				console.log('tes3', this.state.freeKey)
-				console.log('tes3', data.freekey.amount)
 
 				this.props.getUser()
 				this.props.getUserWins()
 				console.log(data)
-				// alert('Selamat! kamu dapat ' + data.freekey.amount + ' Free Key.')
-				// this.reset()
 			})
 			.catch(err => console.log(err))
 
@@ -329,7 +321,9 @@ class Game extends React.Component {
 	start() {
 		if (this.props.userInfo.coin <= 0) {
 		
-			alert('Maaf Anda tidak punya coin untuk bermain game.')
+			this.setState({
+        notif: "Maaf Anda tidak punya coin untuk bermain game.",
+      })
 		
 		} else {
 

@@ -754,9 +754,6 @@ ul {
 .rowz {
   margin: 0; }
 
-li {
-  margin-bottom: 15px; }
-
 .InsertPhone {
   padding: 10%;
   padding-left: 20%;
@@ -1083,7 +1080,7 @@ li {
   .User__Label {
     display: flex;
     justify-content: center;
-    font-size: 40px;
+    font-size: 30px;
     color: var(--color-yellow-1);
     padding: 2.5%; }
   .User__show {
@@ -1418,6 +1415,24 @@ body.modal-open {
 input:-webkit-autofill {
   -webkit-text-fill-color: var(--color-yellow-1) !important;
   -webkit-box-shadow: 0 0 0 34px #3E3E3E inset !important; }
+
+.alert {
+  color: #ff2323; }
+  .alert__dompetAladin {
+    color: white;
+    font-size: 14px;
+    display: flex;
+    justify-content: center; }
+  .alert__game {
+    color: #ff2323;
+    font-size: 14px;
+    display: flex;
+    justify-content: center; }
+  .alert__resetPassword {
+    color: white;
+    font-size: 14px;
+    display: flex;
+    justify-content: center; }
 
 :root {
   --color-yellow-1: #FFCD05;

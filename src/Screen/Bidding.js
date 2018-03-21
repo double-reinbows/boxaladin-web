@@ -16,9 +16,10 @@ class Bidding extends React.Component {
     super(props)
     this.state = {
       productUnlocked: {},
-			count: 15,
-      initCount: 15,
-      isWatching: false
+			count: 999,
+      initCount: 999,
+      isWatching: false,
+      notif:''
     }
 
     this.handleBack()
@@ -211,7 +212,9 @@ class Bidding extends React.Component {
 				} else if (data.message === 'not enough aladin key') {
           
           this.props.history.push('/home')
-          alert(data.message)
+          this.setState({
+            notif: data.message,
+          })
           
         } else {
           
@@ -227,7 +230,9 @@ class Bidding extends React.Component {
 
 		} else {
 
-      alert('harus login')
+      this.setState({
+        notif: "Harus Login",
+      })
 
     }
   }

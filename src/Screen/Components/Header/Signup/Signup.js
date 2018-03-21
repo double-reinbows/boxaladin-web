@@ -51,7 +51,9 @@ class Signup extends Component {
       this.setState({email: undefined, _vEmail: false})
     } else if (!patt.test(this.state.email)) {
       this.setState({email: undefined, _vEmail: false})
-      alert('Wrong email address')
+      this.setState({
+        notif: "Format Email Yang Anda Masukkan Salah",
+      })
     } else if (patt.test(this.state.email)) {
       this.setState({_vEmail: true})
     }
@@ -121,14 +123,16 @@ class Signup extends Component {
      */
     if (this.state.password === '' || this.state.password === undefined) {
       this.setState({password: undefined, _vPassword: false})
-      alert('Password must be filled')
+      this.setState({
+        notif: "Password Harus diisi",
+      })
       document.getElementById('password').value = "";
       document.getElementById('confirm_password').value = "";
     } else if (!/^[A-Za-z0-9!@#$%^&*()_]{8,20}$/.test(this.state.password)) {
       this.setState({
         password: undefined, 
         _vPassword: false,
-        notif : "password harus 8 karakter atau lebih"
+        notif : "Password Harus Terdiri Dari 8 Huruf/Angka atau Lebih"
       })
       document.getElementById('password').value = "";
       document.getElementById('confirm_password').value = "";
@@ -189,7 +193,7 @@ class Signup extends Component {
 
     if (this.state.password !== this.state.confirm) {
       return this.setState({
-        notif: "password tidak sama",
+        notif: "Password Tidak Sama",
       })
     }
 
@@ -217,18 +221,18 @@ class Signup extends Component {
           if (data.hasOwnProperty('isUsed')) {
             if (data.isUsed.username) {
               this.setState({
-                notif: "email3 sudah digunakan",
+                notif: "Email Sudah digunakan",
               })
             } else if (data.isUsed.email) {  
               this.setState({
-              notif: "email2 sudah digunakan",
+                notif: "Email Sudah digunakan",
             })
           }
           } else {
 
             if (data.errors) {
               this.setState({
-                notif: "email sudah digunakan",
+                notif: "Email Sudah digunakan",
               })
             } else {
 
@@ -300,7 +304,7 @@ class Signup extends Component {
             <input id="confirm_password" name="confirm" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Confirm your password here" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
-          <label>{this.state.notif}</label>
+          <label className="alert">{this.state.notif}</label>
           <br/>
           <input name="condition" type="checkbox"/>
           <label className="Signup__Condition">Saya telah membaca syarat dan kondisi yang berlaku</label>

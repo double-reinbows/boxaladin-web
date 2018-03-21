@@ -16,7 +16,8 @@ class Login extends Component {
     super(props)
     this.state = {
       password: '',
-      email: ''
+      email: '',
+      notif: ''
     }
   }
 
@@ -32,10 +33,14 @@ class Login extends Component {
       this.props.setIsLoading(false)
       if (data.message === 'username or email not found') {
         console.log(data)
-        alert(data.message)
+        this.setState({
+          notif: "Email Tidak Terdaftar, Silakan Register Jika Belum Memiliki Akun",
+        })
       } else if (data.message === 'password incorrect') {
         console.log(data)
-        alert(data.message)
+        this.setState({
+          notif: "Password Yang Anda Masukkan Salah",
+        })
       } else if (data.message === 'login success') {
         console.log(data)
         localStorage.setItem('token', data.token)
@@ -99,6 +104,9 @@ class Login extends Component {
             <label className="Login__LupaPassword"><a className="lupapass" href="/requestresetpassword">lupa password?</a></label>
             {/* <Link to="/requestresetpassword" className="Login__LupaPassword lupapass">lupa password?</Link> */}
           </div>
+
+          <label className="alert">{this.state.notif}</label>
+          <br/>
 
           <div className="form-group">
               <Button type="submit" className="Login__ButtonLogin">Login</Button>
