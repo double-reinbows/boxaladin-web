@@ -121,3 +121,28 @@ input:-webkit-autofill {
   -webkit-text-fill-color: var(--color-yellow-1) !important;
   -webkit-box-shadow: 0 0 0 34px #3E3E3E inset !important;
 }
+
+.alert{
+  color: #ff2323;
+
+
+  &__dompetAladin{
+    color: white;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+  }
+  &__game{
+    color: #ff2323;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+  }
+  &__resetPassword{
+    color: white;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+  }
+}
+

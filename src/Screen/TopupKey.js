@@ -15,7 +15,8 @@ class TopupKey extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			idKeySelected: ''
+			idKeySelected: '',
+			notif: ''
 		}
 	}
 
@@ -47,6 +48,8 @@ class TopupKey extends React.Component {
 							)
 						})}
 					</Input>
+					<label className="alert">{this.state.notif}</label>
+          <br/>
 				</FormGroup>
 
 				<FormGroup>
@@ -75,7 +78,9 @@ class TopupKey extends React.Component {
 			.then(({data}) => {
 				console.log('Response.data:',data)
 				if (data.msg === 'not verified user') {
-					return alert(`Akun Anda belum terverifikasi.\nSilahkan verifikasi email dengan klik link yang kami kirim ke email Anda.`)
+					return this.setState({
+						notif: "Akun Anda belum terverifikasi.\nSilahkan verifikasi email dengan klik link yang kami kirim ke email Anda.",
+					})
 				}
 				this.props.history.push(`/topupinvoice/${data.id}`)
 			})
