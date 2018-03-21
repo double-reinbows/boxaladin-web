@@ -14,7 +14,9 @@ class Dompet extends React.Component {
             isRunning: false,
             key: null,
             freeKey: 0,
-            dKeySelected: ''
+            dKeySelected: '',
+            notif: '',
+            notif2: '',
         }
     }
 
@@ -40,7 +42,7 @@ class Dompet extends React.Component {
                                     <label className="game__slotCoin__label">Your Coin : {this.props.userInfo.coin}</label>
                                 </div>
 
-                                <p className="game__slotLabel__paragraph">Convert your aladin key to coin here: </p>
+                                <label className="game__slotLabel__paragraph">Convert your aladin key to coin here: </label>
 
                                 <div>
                                     <form onSubmit={(e) => this.upCoin(e)}>
@@ -50,6 +52,7 @@ class Dompet extends React.Component {
                                 </div>
                             </div>
                         </div>
+                        <label className="alert__dompetAladin">{this.state.notif2}</label>
                     </div>
                     
                     <div className="TopupKey">
@@ -68,22 +71,30 @@ class Dompet extends React.Component {
 
     showForm() {
         return (
-            <Form onSubmit={(e) => this.submitForm(e)}>
-                <FormGroup>
-                    <Input type="select" name="aladinTopup" onChange={(e) => this.setState({ idKeySelected: e.target.value })}>
-                        <option value=''>-- Select --</option>
-                        {this.props.keys.map((data, i) => {
-                            return (
-                                <option key={i} value={data.id}>{data.keyAmount} keys - Rp.{data.price}</option>
-                            )
-                        })}
-                    </Input>
-                </FormGroup>
+            <div>
+                <div>
+                    <Form onSubmit={(e) => this.submitForm(e)}>
+                        <FormGroup>
+                            <Input type="select" name="aladinTopup" onChange={(e) => this.setState({ idKeySelected: e.target.value })}>
+                                <option selected="true" disabled="true" value=''>-- Select --</option>
+                                {this.props.keys.map((data, i) => {
+                                    return (
+                                        <option key={i} value={data.id}>{data.keyAmount} keys - Rp.{data.price}</option>
+                                    )
+                                })}
+                            </Input>
+                        </FormGroup>
 
-                <FormGroup>
-                    <Button color="primary" type="submit" size="lg" block>Topup</Button>
-                </FormGroup>
-            </Form>
+                        <FormGroup>
+                            <Button color="primary" type="submit" size="lg" block>Topup</Button>
+                        </FormGroup>
+                    </Form>
+                </div>
+                <div>
+                    <label className="alert__dompetAladin">{this.state.notif}</label>
+                </div>
+            </div>
+
         )
     }
 
@@ -91,7 +102,9 @@ class Dompet extends React.Component {
         e.preventDefault()
 
         if (this.state.idKeySelected === '') {
-            alert('Harus pilih salah satu voucher aladin key.')
+            this.setState({
+                notif: "Harus Pilih Salah Satu Voucher Aladin Key.",
+            })
         } else {
             axios({
                 method: 'POST',
@@ -108,7 +121,9 @@ class Dompet extends React.Component {
                     console.log('Response.data:', data)
 
                     if (data.msg === 'not verified user') {
-                        alert('Silahkan verifikasi akun Anda.\nSilahkan klik link verifikasi yang dikirim ke email Anda.')
+                        return this.setState({
+                            notif: "Silahkan Verifikasi Email Untuk Membeli Kunci.",
+                        })
                     } else {
                         this.props.history.push(`/topupinvoice/${data.id}`)
                     }
@@ -122,17 +137,18 @@ class Dompet extends React.Component {
         e.preventDefault()
 
         if (this.state.key > this.props.userInfo.aladinKeys) {
-            return alert('aladin key tidak cukup')
+            return this.setState({
+                notif2: "Aladin Key Tidak Cukup",  
+            })
         }
 
         if (this.state.key <= 0) {
-            return alert('harus lebih besar dari 0')
+            return this.setState({
+                notif2: "Harus Lebih Besar Dari 0",
+            })
         }
 
         if (this.state.key) {
-
-            // return alert(this.state.key)
-
             axios({
                 method: 'PUT',
                 url: `${process.env.REACT_APP_API_HOST}/users/upcoin`,

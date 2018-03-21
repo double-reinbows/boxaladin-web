@@ -13,7 +13,8 @@ class Signup extends Component {
     super(props)
     this.state = {
       _formIsValid: false,
-      phonenumber: ''
+      phonenumber: '',
+      notif: '',
     }
     this.signUpInputHandler = this.signUpInputHandler.bind(this)
   }
@@ -38,7 +39,7 @@ class Signup extends Component {
     if (pattern.test(obj.email)) {
       console.log('dotted gmail')
       this.setState({
-        typed_email: obj.email,
+        typedEmail: obj.email,
         email: obj.email.replace(pattern, `$1$2@gmail.com`)
       })
     }
@@ -50,7 +51,9 @@ class Signup extends Component {
       this.setState({email: undefined, _vEmail: false})
     } else if (!patt.test(this.state.email)) {
       this.setState({email: undefined, _vEmail: false})
-      alert('Wrong email address')
+      this.setState({
+        notif: "Format Email Yang Anda Masukkan Salah",
+      })
     } else if (patt.test(this.state.email)) {
       this.setState({_vEmail: true})
     }
@@ -120,14 +123,20 @@ class Signup extends Component {
      */
     if (this.state.password === '' || this.state.password === undefined) {
       this.setState({password: undefined, _vPassword: false})
-      alert('Password must be filled')
+      this.setState({
+        notif: "Password Harus diisi",
+      })
       document.getElementById('password').value = "";
       document.getElementById('confirm_password').value = "";
     } else if (!/^[A-Za-z0-9!@#$%^&*()_]{8,20}$/.test(this.state.password)) {
-      this.setState({password: undefined, _vPassword: false})
-      alert('Password must 8 char or more')
+      this.setState({
+        password: undefined, 
+        _vPassword: false,
+        notif : "Password Harus Terdiri Dari 8 Huruf/Angka atau Lebih"
+      })
       document.getElementById('password').value = "";
       document.getElementById('confirm_password').value = "";
+      return
     } else if (/^[A-Za-z0-9!@#$%^&*()_]{8,20}$/.test(this.state.password)) {
       this.setState({_vPassword: true})
     }
@@ -183,7 +192,9 @@ class Signup extends Component {
     e.preventDefault()
 
     if (this.state.password !== this.state.confirm) {
-      return alert('confirm password salah')
+      return this.setState({
+        notif: "Password Tidak Sama",
+      })
     }
 
     this.props.setIsLoading(true)
@@ -198,7 +209,7 @@ class Signup extends Component {
         phonenumber: this.state.phonenumber,
         password: this.state.password,
         confirm: this.state.confirm,
-        typedEmail: this.state.typed_email
+        typedEmail: this.state.typedEmail
       }
       axios
         .post(URL + 'signup', payload)
@@ -208,12 +219,21 @@ class Signup extends Component {
           // console.log(data)
           // localStorage.setItem('token', data)
           if (data.hasOwnProperty('isUsed')) {
-            if (data.isUsed.username) alert('username already used')
-            else if (data.isUsed.email) alert('email already used')
+            if (data.isUsed.username) {
+              this.setState({
+                notif: "Email Sudah digunakan",
+              })
+            } else if (data.isUsed.email) {  
+              this.setState({
+                notif: "Email Sudah digunakan",
+            })
+          }
           } else {
 
             if (data.errors) {
-              alert('email already used')
+              this.setState({
+                notif: "Email Sudah digunakan",
+              })
             } else {
 
               localStorage.setItem('token', data.token)
@@ -284,9 +304,9 @@ class Signup extends Component {
             <input id="confirm_password" name="confirm" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Confirm your password here" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
-          <input
-            name="condition"
-            type="checkbox"/>
+          <label className="alert">{this.state.notif}</label>
+          <br/>
+          <input name="condition" type="checkbox"/>
           <label className="Signup__Condition">Saya telah membaca syarat dan kondisi yang berlaku</label>
 
 

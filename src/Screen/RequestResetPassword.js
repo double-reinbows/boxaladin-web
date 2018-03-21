@@ -7,7 +7,8 @@ class RequestResetPassword extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      email: null
+      email: null,
+      notif: ''
     }
   }
 
@@ -27,7 +28,7 @@ class RequestResetPassword extends React.Component {
             <Button color="success" size="lg" block>send link</Button>
           </FormGroup>
         </Form>
-
+        <label className="alert__resetPassword">{this.state.notif}</label>
       </div>
     )
   }
@@ -46,7 +47,9 @@ class RequestResetPassword extends React.Component {
       })
       .then(({data}) => {
         if (data.msg === 'email sent') {
-          alert(data.msg)
+          this.setState({
+            notif: "Email Sent",
+          })
           this.props.history.push('/')
         } else {
           console.log(data)
@@ -55,7 +58,9 @@ class RequestResetPassword extends React.Component {
       .catch(err => console.log(err))
 
     } else {
-      alert('harus masukan email')
+      this.setState({
+        notif: "Email Harus diisi",
+      })
     }
 
   }
