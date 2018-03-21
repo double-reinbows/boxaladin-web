@@ -542,20 +542,14 @@ ul {
       font-weight: bold;
       line-height: 21px; }
 
-@media (min-width: 100px) and (max-width: 690px) {
+@media (min-width: 200px) and (max-width: 767px) {
   .bidding__2 {
-    display: block; } }
-
-@media (min-width: 100px) and (max-width: 500px) {
+    display: block; }
   .bidding__2__col1 {
     width: 100%;
-    margin-bottom: 10px; } }
-
-@media (min-width: 100px) and (max-width: 500px) {
+    margin-bottom: 10px; }
   .bidding__3__col {
-    font-size: 20px; } }
-
-@media (min-width: 100px) and (max-width: 500px) {
+    font-size: 20px; }
   .bidding__3 {
     display: block; } }
 
@@ -571,10 +565,6 @@ ul {
   color: var(--color-yellow-1);
   font-size: 20px;
   cursor: default; }
-
-@media (min-width: 200px) and (max-width: 500px) {
-  .NavTabsHome {
-    font-size: 13px; } }
 
 .TabsHome {
   width: 50%;
@@ -632,10 +622,6 @@ ul {
     letter-spacing: 1px;
     text-align: center;
     margin: 0rem; }
-
-@media (min-width: 320px) and (max-width: 767px) {
-  .TabsPane1__label {
-    padding: 5%; } }
 
 .dropz {
   width: 17rem;
@@ -757,6 +743,12 @@ ul {
 li {
   margin-bottom: 15px; }
 
+@media (min-width: 200px) and (max-width: 767px) {
+  .NavTabsHome {
+    font-size: 13px; }
+  .TabsPane1__label {
+    padding: 5%; } }
+
 .InsertPhone {
   padding: 10%;
   padding-left: 20%;
@@ -797,14 +789,6 @@ li {
     width: 25%;
     height: 25%;
     justify-content: flex-end; }
-
-.close {
-  color: var(--color-yellow-1); }
-  .close:hover {
-    color: var(--color-yellow-1); }
-  .close:focus {
-    color: var(--color-yellow-1);
-    outline: none; }
 
 .game {
   background-color: var(--color-grey-5); }
@@ -936,10 +920,15 @@ li {
       border-radius: 8px;
       background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%); }
 
-@media (min-width: 275px) and (max-width: 500px) {
+@media (min-width: 275px) {
   .game__slotItems {
     padding: 15px;
     width: 310px; } }
+
+@media (min-width: 350px) and (max-width: 500px) {
+  .game__slotItems {
+    padding: 15px;
+    width: 90%; } }
 
 .box1 {
   width: 80%;
@@ -1044,14 +1033,19 @@ li {
 @media (min-width: 200px) and (max-width: 766px) {
   .gameModal__icon {
     width: 150px;
-    height: 150px; } }
+    height: 150px; }
+  .gameModal__Container__text {
+    margin: 2.5%;
+    text-align: center;
+    font-family: raleway;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 16px; } }
 
 @media (min-width: 767px) and (max-width: 1280px) {
   .gameModal__icon {
     width: 200px;
-    height: 200px; } }
-
-@media (min-width: 767px) and (max-width: 1280px) {
+    height: 200px; }
   .gameModal__Container__text {
     margin: 2.5%;
     text-align: center;
@@ -1060,14 +1054,13 @@ li {
     font-weight: 500;
     line-height: 16px; } }
 
-@media (min-width: 200px) and (max-width: 766px) {
-  .gameModal__Container__text {
-    margin: 2.5%;
-    text-align: center;
-    font-family: raleway;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 16px; } }
+.close {
+  color: var(--color-yellow-1); }
+  .close:hover {
+    color: var(--color-yellow-1); }
+  .close:focus {
+    color: var(--color-yellow-1);
+    outline: none; }
 
 .TopupKey {
   padding: 10%;
@@ -1180,26 +1173,16 @@ li {
   .User__container {
     padding-top: 5%;
     padding-bottom: 5%;
-    min-height: 500px; } }
-
-@media (min-width: 200px) and (max-width: 768px) {
+    min-height: 500px; }
   .User__Label {
-    font-size: 20px; } }
-
-@media (min-width: 200px) and (max-width: 768px) {
+    font-size: 20px; }
   .User__show {
     font-size: 18px;
-    padding: 2.5%; } }
-
-@media (min-width: 200px) and (max-width: 768px) {
+    padding: 2.5%; }
   .User__phone {
-    font-size: 18px; } }
-
-@media (min-width: 200px) and (max-width: 768px) {
+    font-size: 18px; }
   .User__Phone__row2__verify__1__label {
-    font-size: 10px; } }
-
-@media (min-width: 200px) and (max-width: 768px) {
+    font-size: 10px; }
   .User__Phone__row2__number {
     font-size: 15px; } }
 
@@ -1219,18 +1202,6 @@ li {
   display: flex;
   justify-content: center;
   align-items: center; }
-
-@media (min-width: 767px) and (max-width: 1280px) {
-  .ModalPhone {
-    top: 30%;
-    left: 30%;
-    width: 40%; } }
-
-@media (min-width: 200px) and (max-width: 766px) {
-  .ModalPhone {
-    top: 25%;
-    left: 15%;
-    width: 70%; } }
 
 .ModalContent {
   display: flex;
@@ -1254,6 +1225,18 @@ li {
   .ModalContent__select {
     background-color: white;
     width: 80%; }
+
+@media (min-width: 767px) and (max-width: 1280px) {
+  .ModalPhone {
+    top: 30%;
+    left: 30%;
+    width: 40%; } }
+
+@media (min-width: 200px) and (max-width: 766px) {
+  .ModalPhone {
+    top: 25%;
+    left: 15%;
+    width: 70%; } }
 
 .RequestReset {
   padding: 10%;
