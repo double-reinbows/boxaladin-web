@@ -13,12 +13,6 @@
   cursor: default;
 }
 
-@media (min-width: 200px ) and (max-width:500px ) {
-  .NavTabsHome{
-    font-size: 13px;
-  }
-}
-
 .TabsHome{
   width: 50%;
   // height: 5rem ; ntar diurusin
@@ -95,14 +89,6 @@
       letter-spacing: 1px;
       text-align: center;
       margin: 0rem;
-    }
-
-  }
-
-  @media (min-width: 320px ) and (max-width:767px ) {
-    .TabsPane1__label{
-      padding: 5%;
-      
     }
   }
 
@@ -272,4 +258,17 @@
 
 .rowz {
   margin: 0;
+}
+
+li{
+  margin-bottom: 15px;
+}
+
+@media (min-width: 200px ) and (max-width:767px ) {
+  .NavTabsHome{
+    font-size: 13px;
+  }
+  .TabsPane1__label{
+      padding: 5%;
+  }
 }

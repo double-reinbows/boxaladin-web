@@ -147,36 +147,21 @@
         padding-bottom: 5%;
         min-height: 500px;
     }
-}
-
-@media (min-width: 200px) and (max-width:768px) {
-  .User__Label{
+    .User__Label{
       font-size: 20px;
-  }
+    }
+    .User__show{
+        font-size: 18px;
+        padding: 2.5%;
+    }
+    .User__phone{
+        font-size: 18px;
+    }
+    .User__Phone__row2__verify__1__label{
+        font-size: 10px;
+    }
+    .User__Phone__row2__number{
+        font-size: 15px;
+    }
 }
 
-@media (min-width: 200px) and (max-width:768px) {
-  .User__show{
-      font-size: 18px;
-      padding: 2.5%;
-  }
-}
-
-@media (min-width: 200px) and (max-width:768px) {
-  .User__phone{
-      font-size: 18px;
-  }
-}
-
-@media (min-width: 200px) and (max-width:768px) {
-  .User__Phone__row2__verify__1__label{
-      font-size: 10px;
-  }
-}
-
-
-@media (min-width: 200px) and (max-width:768px) {
-  .User__Phone__row2__number{
-      font-size: 15px;
-  }
-}
