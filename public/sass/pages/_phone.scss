@@ -18,22 +18,6 @@
   align-items: center;
 }
 
-@media (min-width: 767px) and (max-width:1280px){
-  .ModalPhone{
-    top: 30%;
-    left: 30%;
-    width: 40%;
-  }
-} 
-
-@media (min-width: 200px) and (max-width:766px) {
-  .ModalPhone{
-    top: 25%;
-    left: 15%;
-    width: 70%;
-  }
-} 
-
 .ModalContent{
     display: flex;
     flex-direction: column;
@@ -64,3 +48,18 @@
     }
 }
 
+@media (min-width: 767px) and (max-width:1280px){
+  .ModalPhone{
+    top: 30%;
+    left: 30%;
+    width: 40%;
+  }
+} 
+
+@media (min-width: 200px) and (max-width:766px) {
+  .ModalPhone{
+    top: 25%;
+    left: 15%;
+    width: 70%;
+  }
+}
