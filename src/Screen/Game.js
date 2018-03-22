@@ -196,20 +196,7 @@ class Game extends React.Component {
 							</div>
 					</Modal>
 
-					<Modal isOpen={this.state.modalLose} className="gameModal">
-						<ModalHeader toggle={this.toggle} className="gameModal__Top"></ModalHeader>
-						<audio src={LoseSfx} autoPlay />
-						<div className="gameModal__Container">
-
-							<label className="gameModal__Container__text">
-								Maaf {this.props.userInfo.firstName}
-							</label>
-
-							<label className="gameModal__Container__text">
-								anda belum beruntung
-							</label>
-						</div>
-					</Modal>
+				if {this.state.modalLose ? <audio src={LoseSfx} autoPlay /> : null }
 			</div>
 		)
 	}
@@ -217,6 +204,7 @@ class Game extends React.Component {
 	componentDidMount() {
 		this.props.getUser()
 	}
+	// 
 
 	upCoin(e) {
 		e.preventDefault()
@@ -267,6 +255,7 @@ class Game extends React.Component {
 
 	submitResult(result) {
 		if (result === 0) {
+			this.state.modalLose
 			// this.reset()
 			this.setState({
 				modalLose: true,
@@ -308,7 +297,6 @@ class Game extends React.Component {
 	toggle() {
 		this.setState({ 
 			modalWin: false,
-			modalLose: false,
 			freeKey: 0
 		})
 		this.reset()
@@ -350,9 +338,8 @@ class Game extends React.Component {
 
 	start() {
 		if (this.props.userInfo.coin <= 0) {
-		
 			this.setState({
-        notif: "Maaf Anda tidak punya coin untuk bermain game.",
+				notif: "Maaf Anda tidak punya coin untuk bermain game."
       })
 		
 		} else {
@@ -379,7 +366,7 @@ class Game extends React.Component {
 			this.start2()
 			this.start3()
 
-			this.setState({ isRunning: true })
+			this.setState({ isRunning: true, modalLose: false })
 
 		}
 	}
@@ -388,7 +375,7 @@ class Game extends React.Component {
 		this.stop1()
 		this.stop2()
 		this.stop3()
-
+		console.log('modalLose')
 		// this.handleBingo()
 		this.submitResult(this.handleResult())
 
