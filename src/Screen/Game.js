@@ -174,8 +174,9 @@ class Game extends React.Component {
 
 					<Modal isOpen={this.state.modal} className="gameModal">
 						<ModalHeader toggle={this.toggle} className="gameModal__Top"></ModalHeader>
+						<audio src={WinSfx}  autoPlay />	
 							<div className="gameModal__Container">
-								<audio src={WinSfx} ref="win sfx"/>
+								
 								<div className="gameModal__Container__item">
 									<img className="gameModal__icon" src={Star} alt="Star image" />
 								</div>
