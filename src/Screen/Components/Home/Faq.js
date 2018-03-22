@@ -5,7 +5,7 @@ export default class BannerHome extends React.Component {
         return (
             <div>
                 <div className="BannerText3">
-                    <h1 className="BannerText3__text1">FAQ</h1>
+                    <h1 className="BannerText3__text1">Tanya jawab</h1>
                     <h1 className="BannerText3__text2">
                         
                             <li>
