@@ -210,12 +210,8 @@ class Bidding extends React.Component {
 					this.runTimer()
           
 				} else if (data.message === 'not enough aladin key') {
-          
-          this.props.history.push('/home')
-          this.setState({
-            notif: data.message,
-          })
-          
+          alert("Anda Tidak Memiliki Aladin Key")
+          this.props.history.push('/home')         
         } else {
           
           console.log(data)
@@ -229,11 +225,7 @@ class Bidding extends React.Component {
       })
 
 		} else {
-
-      this.setState({
-        notif: "Harus Login",
-      })
-
+      alert("Harus Login")
     }
   }
 

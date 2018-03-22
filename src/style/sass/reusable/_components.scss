@@ -118,14 +118,12 @@
   }
 }
 input:-webkit-autofill {
-  -webkit-text-fill-color: var(--color-yellow-1) !important;
+  -webkit-text-fill-color: var(--color-yellow-1) ;
   -webkit-box-shadow: 0 0 0 34px #3E3E3E inset !important;
 }
 
 .alert{
   color: #ff2323;
-
-
   &__dompetAladin{
     color: white;
     font-size: 14px;
@@ -141,6 +139,11 @@ input:-webkit-autofill {
   &__resetPassword{
     color: white;
     font-size: 14px;
+    display: flex;
+    justify-content: center;
+  }
+  &__user{
+    color: #ff2323;
     display: flex;
     justify-content: center;
   }

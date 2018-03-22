@@ -280,28 +280,28 @@ class Signup extends Component {
         <form className="form-horizontal" onSubmit={e => this.signUp(e)}>
           <div>
             <label className="Login__Title2">
-              Register
+              Daftar
             </label>
           </div>
 
           <div className="form-group Signup__Form">
-            <label>Email address</label>
-            <input name="email" required type="email" className="form-control inputz" aria-describedby="emailHelp" placeholder="Enter your email here" onChange={e => this.signUpInputToLowerHandler(e)} />
+            <label>Alamat Email</label>
+            <input name="email" required type="email" className="form-control inputz" aria-describedby="emailHelp" placeholder="Masukkan Email Anda" onChange={e => this.signUpInputToLowerHandler(e)} />
           </div>
 
           <div className="form-group Signup__Form">
-            <label>Phone Number</label>
-            <input name="phonenumber" required type="integer" className="form-control inputz" aria-describedby="phonenumberHelp" placeholder="Enter your phonenumber here" onChange={e => this.handlePhoneNum(e)}/>
+            <label>Nomor Handphone</label>
+            <input name="phonenumber" required type="integer" className="form-control inputz" aria-describedby="phonenumberHelp" placeholder="Masukkan No Handphone Anda" onChange={e => this.handlePhoneNum(e)}/>
           </div>
 
           <div className="form-group Signup__Form">
             <label>Password</label>
-            <input id="password" name="password" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Enter your password here" onChange={e => this.signUpInputHandler(e)} />
+            <input id="password" name="password" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Masukkan Password Anda" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
           <div className="form-group Signup__Form">
-            <label>Confirm Password</label>
-            <input id="confirm_password" name="confirm" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Confirm your password here" onChange={e => this.signUpInputHandler(e)} />
+            <label>Ketik Ulang Password</label>
+            <input id="confirm_password" name="confirm" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Ketik Ulang Password Anda" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
           <label className="alert">{this.state.notif}</label>
@@ -311,7 +311,7 @@ class Signup extends Component {
 
 
           <div className="form-group">
-            <button type="submit" className="Signup__ButtonLogin">Register</button>
+            <button type="submit" className="Signup__ButtonLogin">Daftar</button>
           </div>
 
 

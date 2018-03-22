@@ -68,6 +68,15 @@
   &__Link{
     color: var(--color-yellow-1);
     font-style: italic;
+    &:hover{
+      color: #007bff;
+      cursor: pointer
+    }
+    &:focus{
+      color: #007bff;
+      cursor: pointer
+    }
+
   }
 
 }
