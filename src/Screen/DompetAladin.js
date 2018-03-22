@@ -38,7 +38,7 @@ class Dompet extends React.Component {
                                     <label>Your Aladin Key : {this.props.userInfo.aladinKeys}</label>
                                 </div>
                                 <div className="game__slotCoin">
-                                    <img className="game__slotCoin__icon" src={Coin} alt="coin image" />
+                                    <img className="game__slotCoin__icon" src={Coin} alt="coin images" />
                                     <label className="game__slotCoin__label">Your Coin : {this.props.userInfo.coin}</label>
                                 </div>
 

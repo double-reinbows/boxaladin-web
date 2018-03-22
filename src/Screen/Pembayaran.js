@@ -97,7 +97,7 @@ class InvoiceDetail extends React.Component {
         <Modal isOpen={this.state.isOpen3dsModal} toggle={this.toggle3dsModal} className={this.props.className}>
           <ModalHeader toggle={this.toggle3dsModal}>Modal title</ModalHeader>
           <ModalBody>
-            <iframe src={this.state.payer_auth_url} />
+            <iframe src={this.state.payer_auth_url} title="modal3ds"/>
           </ModalBody>
         </Modal>
       </div>
