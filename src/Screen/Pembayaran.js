@@ -2,9 +2,18 @@ import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import {
-  TabContent, TabPane, Nav, NavItem, NavLink,
-  Button, Form, FormGroup, Input,
-  Modal, ModalHeader, ModalBody
+  TabContent, 
+  TabPane, 
+  Nav, 
+  NavItem, 
+  NavLink,
+  Button, 
+  Form, 
+  FormGroup, 
+  Input,
+  Modal, 
+  ModalHeader, 
+  ModalBody
 } from 'reactstrap';
 
 import classnames from 'classnames';
@@ -40,7 +49,7 @@ class InvoiceDetail extends React.Component {
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
-          <h1 className="pembayaran__title">Menunggu Pembayaran</h1>
+          <h1 className="pembayaran__title">Menunggu pembayaran</h1>
           {this.state.invoice ? (
               <div>
                 <h1 className="pembayaran__title">Jumlah yang harus di bayarkan {this.state.invoice.payment.amount}</h1>
