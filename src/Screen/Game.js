@@ -8,11 +8,11 @@ import Star from '../../src/asset/Game/star.svg'
 
 import boxaladin from '../../src/asset/Logo/LogoSmall.svg'
 
-import win1 from '../../src/asset/Game/win/300keys.png'
-import win2 from '../../src/asset/Game/win/250keys.png'
-import win3 from '../../src/asset/Game/win/200keys.png'
-import win4 from '../../src/asset/Game/win/150keys.png'
-import win5 from '../../src/asset/Game/win/100keys.png'
+import win1 from '../../src/asset/Game/win/100rb.png'
+import win2 from '../../src/asset/Game/win/50rb1.png'
+import win3 from '../../src/asset/Game/win/50rb2.png'
+import win4 from '../../src/asset/Game/win/25rb1.png'
+import win5 from '../../src/asset/Game/win/25rb2.png'
 
 import { getUser } from '../actions/userAction'
 import { getUserWins } from '../actions/winAction'
@@ -25,21 +25,21 @@ class Game extends React.Component {
 			si2: null,
 			si3: null,
 
-			slot1_atas: 5,
+			slot1_atas: 6,
 			slot2_atas: 5,
-			slot3_atas: 5,
+			slot3_atas: 4,
 
-			slot1: 6,
+			slot1: 0,
 			slot2: 6,
-			slot3: 6,
+			slot3: 5,
 
-			slot1_bawah: 0,
+			slot1_bawah: 1,
 			slot2_bawah: 0,
-			slot3_bawah: 0,
+			slot3_bawah: 6,
 
-			speed1: 70,
-			speed2: 100,
-			speed3: 50,
+			speed1: 700,
+			speed2: 700,
+			speed3: 700,
 
 			itemsdummy1: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 			itemsdummy2: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
@@ -126,42 +126,42 @@ class Game extends React.Component {
 					<h1 className="game__prize__title">Game Prize</h1>
 
 					<h1 className="game__prize__h1">
-						Dapatkan hadiah hingga 300 Aladin Keys dengan memainkan Aladin Games dengan mendapatkan pola tertentu seperti
+						Dapatkan hadiah hingga pulsa Rp. 100.000 dengan memainkan Aladin Games dengan mendapatkan pola tertentu seperti
 					</h1>
 
 					<div className="game__prize__row">
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win1} alt="coin image" />
 							<h1 className="game__prize__h1">
-								300 Aladin Keys
+								pulsa Rp. 100.000
 							</h1>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win2} alt="coin image" />
 							<h1 className="game__prize__h1">
-								250 Aladin Keys
+								pulsa Rp. 50.000
 							</h1>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win3} alt="coin image" />
 							<h1 className="game__prize__h1">
-								200 Aladin Keys
+								pulsa Rp. 50.000
 							</h1>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win4} alt="coin image" />
 							<h1 className="game__prize__h1">
-								150 Aladin Keys
+								pulsa Rp. 25.000
 							</h1>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win5} alt="coin image" />
 							<h1 className="game__prize__h1">
-								100 Aladin Keys
+								pulsa Rp. 25.000
 							</h1>
 						</div>
 					</div>
