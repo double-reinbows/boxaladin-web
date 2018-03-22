@@ -23,6 +23,10 @@
   &__button{
     display: flex;
     height: 100%;
+
+    &__invoice{
+      padding: 6px;
+    }
   }
 
   &__1{

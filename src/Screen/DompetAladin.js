@@ -35,19 +35,19 @@ class Dompet extends React.Component {
                         <div className="game__container2">
                             <div className="game__convert">
                                 <div className="game__convert__label">
-                                    <label>Your Aladin Key : {this.props.userInfo.aladinKeys}</label>
+                                    <label>Aladin Key : {this.props.userInfo.aladinKeys}</label>
                                 </div>
                                 <div className="game__slotCoin">
                                     <img className="game__slotCoin__icon" src={Coin} alt="coin images" />
                                     <label className="game__slotCoin__label">Your Coin : {this.props.userInfo.coin}</label>
                                 </div>
 
-                                <label className="game__slotLabel__paragraph">Convert your aladin key to coin here: </label>
+                                <label className="game__slotLabel__paragraph">Tukar Aladin Key Menjadi Koin :</label>
 
                                 <div>
                                     <form onSubmit={(e) => this.upCoin(e)}>
                                         <input className="game__convert__input" min="1" id="upcoin" onChange={(e) => this.setState({ key: parseInt(e.target.value) })} type="number" placeholder="1 aladin key = 10 coin" />
-                                        <button className="game__convert__buttonConvert">CONVERT</button>
+                                        <button className="game__convert__buttonConvert">TUKAR</button>
                                     </form>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@ class Dompet extends React.Component {
                     </div>
                     
                     <div className="TopupKey">
-                        <h1 className="TopupKey__text">Top Up Your Aladin Key</h1>
+                        <h1 className="TopupKey__text">Isi Ulang Aladin Key</h1>
                         {this.showForm()}
                     </div>
                 </div>
@@ -75,18 +75,18 @@ class Dompet extends React.Component {
                 <div>
                     <Form onSubmit={(e) => this.submitForm(e)}>
                         <FormGroup>
-                            <Input type="select" name="aladinTopup" onChange={(e) => this.setState({ idKeySelected: e.target.value })}>
+                            <Input className="TopupKey__dropdown" type="select" name="aladinTopup" onChange={(e) => this.setState({ idKeySelected: e.target.value })}>
                                 <option selected="true" disabled="true" value=''>-- Select --</option>
                                 {this.props.keys.map((data, i) => {
                                     return (
-                                        <option key={i} value={data.id}>{data.keyAmount} keys - Rp.{data.price}</option>
+                                        <option key={i} value={data.id}>{data.keyAmount} Kunci - Rp.{data.price}</option>
                                     )
                                 })}
                             </Input>
                         </FormGroup>
 
                         <FormGroup>
-                            <Button color="primary" type="submit" size="lg" block>Topup</Button>
+                            <Button color="primary" type="submit" size="lg" block>Beli</Button>
                         </FormGroup>
                     </Form>
                 </div>

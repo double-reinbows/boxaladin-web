@@ -68,8 +68,8 @@ class Game extends React.Component {
 			<div className="game">
 				<div className="game__container">
 					<div className="game__slotLabel">
-						<h1 className="game__slotLabel__h1">ALADIN GAMES</h1>
-						<p className="game__slotLabel__paragraph">Play Aladin Games with your Aladin Coin</p>
+						<h1 className="game__slotLabel__h1">ALADIN GAME</h1>
+						<p className="game__slotLabel__paragraph">Mainkan Game Menggunakan Coin Anda</p>
 					</div>
 					<div>
 						<div className="game__container2">
@@ -78,10 +78,10 @@ class Game extends React.Component {
 									<label className="game__convert__label">Aladin Key : {this.props.userInfo.aladinKeys}</label>
 								</div>
 								<div>
-									<p className="game__slotLabel__paragraph">Convert your Aladin Keys to Aladin Coin here</p>
+									<p className="game__slotLabel__paragraph">Tukar Aladin Key Menjadi Koin</p>
 									<form onSubmit={(e) => this.upCoin(e)}>
 										<input className="game__convert__input" min="1" id="upcoin" onChange={(e) => this.setState({ key: parseInt(e.target.value) })} type="number" placeholder="1 aladin key = 10 coin" />
-										<button className="game__convert__buttonConvert">CONVERT</button>
+										<button className="game__convert__buttonConvert">TUKAR</button>
 									</form>
 								</div>
 							</div>
@@ -89,7 +89,7 @@ class Game extends React.Component {
 						<label className="alert__game">{this.state.notif}</label>
 							<div className="game__slotCoin">
 								<img className="game__slotCoin__icon" src={Coin} alt="coin image"/>
-								<label className="game__slotCoin__label">Your Coin : {this.props.userInfo.coin}</label>
+								<label className="game__slotCoin__label">Koin Anda : {this.props.userInfo.coin}</label>
 							</div>
 						<div className="game__container3">
 							<div className="game__slotItems">
@@ -183,7 +183,7 @@ class Game extends React.Component {
 								</div>
 
 								<label className="gameModal__Container__text">
-									selamat {this.props.userInfo.firstName}
+									selamat
 								</label>
 
 								<label className="gameModal__Container__text">

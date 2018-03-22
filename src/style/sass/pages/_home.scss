@@ -230,6 +230,9 @@
     margin: 0;
     text-align: left;
   }
+  &__list{
+    margin-bottom: 4px;
+  }
 }
 
 .BannerText3{
@@ -245,23 +248,30 @@
     margin: 0;
     color: var(--color-yellow-1);
   }
-  &__text2{
+  &__Q{
     font-size: 2rem;
-    padding: 2rem;
     padding-left: 10%;
     padding-right: 10%;
     margin: 0;
     text-align: left;
     color: var(--color-grey-6);
   }
+  &__A{
+    font-size: 2rem;
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: left;
+    color: var(--color-grey-6);
+    margin-bottom: 10px;
+  }
 }
+
+ul{
+  list-style-type:none;
+  }
 
 .rowz {
   margin: 0;
-}
-
-li{
-  margin-bottom: 15px;
 }
 
 @media (min-width: 200px ) and (max-width:767px ) {

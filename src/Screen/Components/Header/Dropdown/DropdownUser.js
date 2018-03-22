@@ -36,7 +36,7 @@ class DropdownUser extends React.Component {
         <DropdownToggle className="ButtonHeader">
           <div className="ButtonHeader__devide">
             <div className="ButtonHeader__big">
-              Profile
+              Profil
             </div>
 
             <div className="ButtonHeader__small">
@@ -56,7 +56,7 @@ class DropdownUser extends React.Component {
           </DropdownItem> */}
           <a href="/me">
           <DropdownItem className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" to="/me">User Profile</Link>
+            <Link className="DropdownUser__inside__link" to="/me">Profile Saya</Link>
           </DropdownItem>
           </a>
 
@@ -68,13 +68,13 @@ class DropdownUser extends React.Component {
 
           <a href="/game">
           <DropdownItem className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" to="/game">Play Game</Link>
+            <Link className="DropdownUser__inside__link" to="/game">Game</Link>
           </DropdownItem>
           </a>
 
           <a href="/win">
           <DropdownItem className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" to="/gameresult">Game Result</Link>
+            <Link className="DropdownUser__inside__link" to="/gameresult">Hasil Game</Link>
           </DropdownItem>
           </a>
 
@@ -97,7 +97,7 @@ class DropdownUser extends React.Component {
           <DropdownItem divider />
 
           <DropdownItem className="DropdownUser__inside" onClick={() => this.logout()}>
-            Logout
+            Keluar
           </DropdownItem>
 
         </DropdownMenu>

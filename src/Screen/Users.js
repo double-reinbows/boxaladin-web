@@ -27,7 +27,8 @@ class User extends React.Component {
 			changePhoneModal: false,
 			changePrimaryPhoneModal: false,
 			idPhoneToChange: null,
-			changePrimaryPhoneOTPModal: false
+			changePrimaryPhoneOTPModal: false,
+			notif: ''
 		}
 	}
 
@@ -38,7 +39,7 @@ class User extends React.Component {
 			<div className="User">
 				<div className="User__container">
 					<label className="User__Label">
-						User Profile Page
+						Profil Saya
 					</label>
 					{ this.showDataUser() }
 					
@@ -71,14 +72,18 @@ class User extends React.Component {
 		.then(({data}) => {
       if (data.message === 'incorrect otp') {
 				console.log(data)
-      	alert(data.message)
+      	this.setState({
+					notif: data.message,
+				})
       } else if (data.message === 'phone verified') {
 				console.log(data)
 				this.props.getPhoneNumbers()
 				this.setState({phoneModal: false})
 				this.setState({numberId: null})
 				this.setState({OTP: null})
-				alert(data.message)
+				this.setState({
+					notif: data.message,
+				})
       }
 		})
 		.catch(err => console.log(err))
@@ -103,7 +108,9 @@ class User extends React.Component {
 			.then(({data}) => {
 				console.log(data.message)
 				this.props.getPhoneNumbers()
-				alert(data.message)
+				this.setState({
+					notif: data.message,
+				})
 				this.setState({numberId: null})
 				this.setState({changePrimaryPhoneOTPModal: false})
 				this.setState({OTP: null})
@@ -122,7 +129,7 @@ class User extends React.Component {
 					</div>
 
 					<div className="form-group ModalContent__button">
-						<Button type="button" color="secondary" onClick={ () => this.setState({ changePrimaryPhoneOTPModal: false }) }>Cancel</Button>
+						<Button type="button" color="secondary" onClick={ () => this.setState({ changePrimaryPhoneOTPModal: false }) }>Batal</Button>
 						<Button style={{ marginLeft: 5 }} type="submit" color="primary">Submit</Button>
 					</div>
 				</form>
@@ -138,7 +145,9 @@ class User extends React.Component {
 
 		if (this.state.numberId === null) {
 
-			alert('Harus pilih salah satu nomor.')
+			this.setState({
+				notif: 'Harus Pilih Salah Satu Nomor',
+			})
 
 		} else {
 
@@ -170,7 +179,7 @@ class User extends React.Component {
 					
 					<div className="form-group ModalContent__form">
 						<select className="ModalContent__select"onChange={ (e) => this.setState({numberId: e.target.value}) }>
-							<option value={null}>--Select Number--</option>
+							<option selected="true" disabled="true" value={null}>--Pilih No--</option>
 							{this.props.phoneNumbers.filter(phone => {
 								return phone.primary === false && phone.verified === true
 							}) 
@@ -183,8 +192,8 @@ class User extends React.Component {
 					</div>
 
 					<div className="form-group ModalContent__button">
-						<Button type="button" color="secondary" onClick={ () => this.setState({ changePrimaryPhoneModal: false }) }>Cancel</Button>
-						<Button style={{ marginLeft: 5 }} type="submit" color="primary">Set</Button>
+						<Button type="button" color="secondary" onClick={ () => this.setState({ changePrimaryPhoneModal: false }) }>Batal</Button>
+						<Button style={{ marginLeft: 5 }} type="submit" color="primary">Ubah</Button>
 					</div>
 				</form>
 
@@ -205,8 +214,8 @@ class User extends React.Component {
 					</div>
 
 					<div className="form-group ModalContent__button">
-						<Button type="button" color="secondary" onClick={ () => this.setState({ changePhoneModal: false }) }>Cancel</Button>
-						<Button style={{ marginLeft: 5 }} type="submit" color="primary">Change</Button>
+						<Button type="button" color="secondary" onClick={ () => this.setState({ changePhoneModal: false }) }>Batal</Button>
+						<Button style={{ marginLeft: 5 }} type="submit" color="primary">Ubah</Button>
 					</div>
 				</form>
 
@@ -226,8 +235,8 @@ class User extends React.Component {
 			  </div>
 			  
         <div className="form-group ModalContent__button">
-					<Button type="button" color="danger" onClick={() => this.setState({ addPhoneModal: false })}>Cancel</Button>
-					<Button style={{ marginLeft: 5 }} type="submit" color="primary">Confirm</Button>
+					<Button type="button" color="danger" onClick={() => this.setState({ addPhoneModal: false })}>Batal</Button>
+					<Button style={{ marginLeft: 5 }} type="submit" color="primary">Setuju</Button>
 			  </div>
 			  
       </form>
@@ -264,8 +273,8 @@ class User extends React.Component {
 					</div>
 
 					<div className="form-group ModalContent__button">
-						<Button type="button" color="secondary" onClick={ () => this.setState({ phoneModal: false }) }>Cancel</Button>
-						<Button style={{ marginLeft: 5 }} type="submit" color="primary">Confirm</Button>
+						<Button type="button" color="secondary" onClick={ () => this.setState({ phoneModal: false }) }>Batal</Button>
+						<Button style={{ marginLeft: 5 }} type="submit" color="primary">Setuju</Button>
 					</div>
 				</form>
 
@@ -302,7 +311,7 @@ class User extends React.Component {
         <div className="User__Phone__row1">
           <img src={IconPhone} className="User__show__logo" alt="Logo" />
           <label className="User__Label">
-            Your registered phone number
+            No Hp Terdaftar
           </label>
         </div>
         <div className="User__Phone__row2">
@@ -323,7 +332,7 @@ class User extends React.Component {
                                 type="button"
                                 className="User__Phone__row2__unverify__1__button1"
                               >
-                                verify
+                                Verifikasi
                               </Button>
                             </div>
                             <div className="User__Phone__row2__unverify__2">
@@ -333,7 +342,7 @@ class User extends React.Component {
                                 onClick={() => this.changePhone(phone)}
                                 className="User__Phone__row2__unverify__2__button2"
                               >
-                                change
+                                Ubah
                               </Button>
                             </div>
                             <div className="User__Phone__row2__unverify__3">
@@ -343,7 +352,7 @@ class User extends React.Component {
                                 onClick={() => this.removePhone(phone)}
                                 className="User__Phone__row2__unverify__3__button3"
                               >
-                                remove
+                                Hapus
                               </Button>
                             </div>
                           </div>
@@ -354,7 +363,7 @@ class User extends React.Component {
                                 className="User__Phone__row2__verify__1__label"
                                 style={{ color: "green" }}
                               >
-                                verified
+                                Verified
                               </label>
                             </div>
                             <div className="User__Phone__row2__verify__2">
@@ -364,7 +373,7 @@ class User extends React.Component {
                                 onClick={() => this.removePhone(phone)}
                                 className="User__Phone__row2__verify__2__button5"
                               >
-                                remove
+                                Hapus
                               </Button>
                             </div>
                             <div className="User__Phone__row2__verify__3">
@@ -391,15 +400,16 @@ class User extends React.Component {
                   }
                 ) : null}
           </ul>
+					<label className="alert__user">{this.state.notif}</label>
 
           <div className="User__Phone__row3">
             <Button color="success" onClick={() => this.addPhone()} className="User__Phone__row3__button1">
-              Add New Number
+              Tambah No Baru
             </Button>
             <Button color="danger" onClick={() => this.setState({
                   changePrimaryPhoneModal: true
                 })} className="User__Phone__row3__button2">
-              Select Primary Number
+              Pilih No Utama
             </Button>
           </div>
         </div>
@@ -411,7 +421,9 @@ class User extends React.Component {
 		// alert(this.state.numberToSend)
 
 		if (this.state.numberToSend[0] + this.state.numberToSend[1] !== '62') {
-			alert('Format nomor HP salah')
+			this.setState({
+        notif: "Format No Hp Salah",
+      })
 		} else {
 			axios({
 				method: 'POST',
@@ -428,9 +440,13 @@ class User extends React.Component {
 					this.props.getPhoneNumbers()
 					this.setState({addPhoneModal: false})
 				} else if (response.data.message === 'duplicate number') {
-					alert(response.data.message)
+					this.setState({
+						notif: response.data.message,
+					})
 				} else if (response.data.message === 'already use') {
-					alert(response.data.message)
+					this.setState({
+						notif: response.data.message,
+					})
 				}
 			})
 			.catch(err => console.log(err))
@@ -452,7 +468,9 @@ class User extends React.Component {
 		// console.log('Submit change phone!');
 
 		if (this.state.numberToSend[0] + this.state.numberToSend[1] !== '62') {
-			alert('Format nomor HP salah')
+			this.setState({
+        notif: "Format No Hp Salah",
+      })
 		} else {
 			axios({
 				method: 'PUT',
@@ -471,9 +489,13 @@ class User extends React.Component {
 					this.setState({numberToSend: null})
 					this.setState({idPhoneToChange: null})
 				} else if (response.data.message === 'duplicate number') {
-					alert(response.data.message)
+					this.setState({
+						notif: response.data.message,
+					})
 				} else if (response.data.message === 'already use') {
-					alert(response.data.message)
+					this.setState({
+						notif: response.data.message,
+					})
 				}
 			})
 			.catch(err => console.log(err))
@@ -501,7 +523,7 @@ class User extends React.Component {
 					<img src={IconEmail} className="User__show__logo" alt="Logo"/> 
 					{this.props.userInfo !== null ? this.props.userInfo.email : null} {this.props.userInfo !== null ? 
 						(this.props.userInfo.emailVerified ? '(verified)' : 
-						(<Button color= "success" onClick={() => this.resendEmailVerification()}> Resend Verification email </Button>)) : null
+						(<Button color= "success" onClick={() => this.resendEmailVerification()}> Kirim Verifikasi Email </Button>)) : null
 					}
 				</div>
 				<div className="User__show">
@@ -530,7 +552,9 @@ class User extends React.Component {
 		.then(response => {
 			console.log('RESPONSE:', response)
 			if (response.status === 200) {
-				return alert(response.data.message)
+				return this.setState({
+					notif: response.data.message,
+				})
 			}
 			return null
 		})
