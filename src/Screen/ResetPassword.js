@@ -7,7 +7,8 @@ class ResetPassword extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      password: null
+      password: null,
+      notif: ''
     }
   }
 
@@ -27,7 +28,7 @@ class ResetPassword extends React.Component {
             <Button color="success" size="lg" block>submit</Button>
           </FormGroup>
         </Form>
-
+        <label className="alert__resetPassword">{this.state.notif}</label>
       </div>
     )
   }
@@ -58,7 +59,9 @@ class ResetPassword extends React.Component {
       .catch(err => console.log(err))
 
     } else {
-      alert('tidak boleh kosong')
+      this.setState({
+        notif: "Password Baru Tidak Boleh Kosong",
+      })
     }
 
   }
