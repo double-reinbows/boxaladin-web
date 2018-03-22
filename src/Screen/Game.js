@@ -6,6 +6,8 @@ import axios from 'axios'
 import Coin from '../../src/asset/Game/coin.svg'
 import Star from '../../src/asset/Game/star.svg'
 
+import boxaladin from '../../src/asset/Logo/LogoSmall.svg'
+
 import win1 from '../../src/asset/Game/win/300keys.png'
 import win2 from '../../src/asset/Game/win/250keys.png'
 import win3 from '../../src/asset/Game/win/200keys.png'
