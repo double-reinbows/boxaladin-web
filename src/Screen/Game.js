@@ -14,6 +14,10 @@ import win3 from '../../src/asset/Game/win/50rb2.png'
 import win4 from '../../src/asset/Game/win/25rb1.png'
 import win5 from '../../src/asset/Game/win/25rb2.png'
 
+import WinSfx from '../../src/asset/sound/win-sfx.mp3'
+import LoseSfx from '../../src/asset/sound/lose-sfx.mp3'
+
+
 import { getUser } from '../actions/userAction'
 import { getUserWins } from '../actions/winAction'
 
@@ -25,17 +29,17 @@ class Game extends React.Component {
 			si2: null,
 			si3: null,
 
-			slot1_atas: 6,
+			slot1_atas: 5,
 			slot2_atas: 5,
-			slot3_atas: 4,
+			slot3_atas: 5,
 
-			slot1: 0,
+			slot1: 6,
 			slot2: 6,
-			slot3: 5,
+			slot3: 6,
 
-			slot1_bawah: 1,
+			slot1_bawah: 0,
 			slot2_bawah: 0,
-			slot3_bawah: 6,
+			slot3_bawah: 0,
 
 			speed1: 700,
 			speed2: 700,
@@ -171,7 +175,7 @@ class Game extends React.Component {
 					<Modal isOpen={this.state.modal} className="gameModal">
 						<ModalHeader toggle={this.toggle} className="gameModal__Top"></ModalHeader>
 							<div className="gameModal__Container">
-								
+								<audio src={WinSfx} ref="win sfx"/>
 								<div className="gameModal__Container__item">
 									<img className="gameModal__icon" src={Star} alt="Star image" />
 								</div>
