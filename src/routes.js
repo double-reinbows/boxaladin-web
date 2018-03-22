@@ -12,7 +12,7 @@ import Footer from './Screen/Components/Footer'
 //page non login
 import AboutUs from './Screen/AboutUs'
 import HowItWorks from './Screen/HowItWorks'
-import Product from './Screen/Product'
+// import Product from './Screen/Product'
 
 //page after login
 import Home from './Screen/Home'
@@ -34,7 +34,7 @@ import InsertPhone from './Screen/Components/InsertPhone/InsertPhone'
 import DompetAladin from './Screen/DompetAladin'
 import Game from './Screen/Game'
 import GameResult from './Screen/GameResult'
-import ClaimReward from './Screen/ClaimReward'
+// import ClaimReward from './Screen/ClaimReward'
 import RequestResetPassword from './Screen/RequestResetPassword'
 import ResetPassword from './Screen/ResetPassword'
 

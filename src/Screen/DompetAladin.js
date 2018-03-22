@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Modal, ModalHeader, Button, Form, FormGroup, Input  } from 'reactstrap'
+import { Button, Form, FormGroup, Input  } from 'reactstrap'
 import axios from 'axios'
 import Coin from '../../src/asset/Game/coin.svg'
-import Star from '../../src/asset/Game/star.svg'
+// import Star from '../../src/asset/Game/star.svg'
 import { getUser } from '../actions/userAction'
 import { getUserWins } from '../actions/winAction'
 import { getKeys } from '../actions/keyAction'
@@ -65,7 +65,7 @@ class Dompet extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getUser(),
+        this.props.getUser()
         this.props.getKeys()
     }
 

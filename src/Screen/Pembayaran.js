@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import {
-  Container, TabContent, TabPane, Nav, NavItem, NavLink,
+  TabContent, TabPane, Nav, NavItem, NavLink,
   Button, Form, FormGroup, Input,
   Modal, ModalHeader, ModalBody
 } from 'reactstrap';
@@ -10,9 +10,9 @@ import {
 import classnames from 'classnames';
 import Xendit from 'xendit-js-node'
 
-import MANDIRI from '../asset/Logo/MANDIRI.svg'
-import BNI from '../asset/Logo/BNI.svg'
-import BRI from '../asset/Logo/BRI.svg'
+// import MANDIRI from '../asset/Logo/MANDIRI.svg'
+// import BNI from '../asset/Logo/BNI.svg'
+// import BRI from '../asset/Logo/BRI.svg'
 
 class InvoiceDetail extends React.Component {
   constructor(props) {

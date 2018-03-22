@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'reactstrap';
 export default  class BannerHome extends React.Component {
 
   render() {

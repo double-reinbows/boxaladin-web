@@ -1,9 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-  Container,
-  Table,
-  Button
+  Table
 } from 'reactstrap'
 import moment from 'moment'
 

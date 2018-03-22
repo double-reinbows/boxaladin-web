@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, ModalHeader, Navbar, Button } from 'reactstrap';
+import { Modal, ModalHeader, Button } from 'reactstrap';
 import LoginIcon from '../../../../asset/Login/login.svg'
 import Signup from './Signup'
 import { connect } from 'react-redux'

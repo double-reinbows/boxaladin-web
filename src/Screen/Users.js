@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import jwt from 'jsonwebtoken'
 import Modal from 'react-modal'
 import axios from 'axios'
 import { Button } from 'reactstrap'
@@ -8,12 +7,12 @@ import { Button } from 'reactstrap'
 import { getPhoneNumbers } from '../actions/'
 import { getUser } from '../actions/userAction'
 
-import Logo from '../asset/TabsHome/IconTabs1.svg'
+// import Logo from '../asset/TabsHome/IconTabs1.svg'
 import IconCoin from '../asset/user/IconCoin.svg'
 import IconEmail from '../asset/user/IconEmail.svg'
 import IconKey from '../asset/user/IconKey.svg'
 import IconPhone from '../asset/user/IconPhone.svg'
-import IconUser from '../asset/user/IconUser.svg'
+// import IconUser from '../asset/user/IconUser.svg'
 import IconCheck from '../asset/user/IconCheck.svg'
 
 class User extends React.Component {
