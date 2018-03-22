@@ -50,7 +50,8 @@ class Game extends React.Component {
 			itemsdummy3: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 
 			isRunning: false,
-			modal: false,
+			modalWin: false,
+			modalLose: false,
 			key: null,
 			freeKey: 0,
 			notif: ''
@@ -172,7 +173,7 @@ class Game extends React.Component {
 
 				</div>
 
-					<Modal isOpen={this.state.modal} className="gameModal">
+					<Modal isOpen={this.state.modalWin} className="gameModal">
 						<ModalHeader toggle={this.toggle} className="gameModal__Top"></ModalHeader>
 						<audio src={WinSfx}  autoPlay />	
 							<div className="gameModal__Container">
@@ -193,6 +194,21 @@ class Game extends React.Component {
 									berupa {this.state.freeKey} key gratis
 								</label>
 							</div>
+					</Modal>
+
+					<Modal isOpen={this.state.modalLose} className="gameModal">
+						<ModalHeader toggle={this.toggle} className="gameModal__Top"></ModalHeader>
+						<audio src={LoseSfx} autoPlay />
+						<div className="gameModal__Container">
+
+							<label className="gameModal__Container__text">
+								Maaf {this.props.userInfo.firstName}
+							</label>
+
+							<label className="gameModal__Container__text">
+								anda belum beruntung
+							</label>
+						</div>
 					</Modal>
 			</div>
 		)
@@ -252,6 +268,9 @@ class Game extends React.Component {
 	submitResult(result) {
 		if (result === 0) {
 			// this.reset()
+			this.setState({
+				modalLose: true,
+			})
 			return			
 		} else {
 
@@ -273,7 +292,7 @@ class Game extends React.Component {
 			})
 			.then(({data}) => {
 				this.setState({
-					modal:true,
+					modalWin:true,
 					freeKey: data.freekey.amount
 				})
 
@@ -288,7 +307,8 @@ class Game extends React.Component {
 
 	toggle() {
 		this.setState({ 
-			modal: false,
+			modalWin: false,
+			modalLose: false,
 			freeKey: 0
 		})
 		this.reset()
