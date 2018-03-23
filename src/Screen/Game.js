@@ -454,13 +454,13 @@ class Game extends React.Component {
 				i=0
 			}
 
-  	}, this.setState.speed2)
+  	}, this.state.speed2)
 
 	}
 
 	stop2() {
 		console.log('STOP-2...')
-		clearInterval(this.state.si2)
+		clearInterval(this.setState.si2)
 	}
 
 	start3() {
@@ -483,13 +483,13 @@ class Game extends React.Component {
 				i=0
 			}
 
-  	}, this.setState.speed3)
+  	}, this.state.speed3)
 
 	}
 
 	stop3() {
 		console.log('STOP-3...')
-		clearInterval(this.state.si3)
+		clearInterval(this.setState.si3)
 	}
 
 
