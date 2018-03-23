@@ -14,8 +14,8 @@ import win3 from '../../src/asset/Game/win/50rb2.png'
 import win4 from '../../src/asset/Game/win/25rb1.png'
 import win5 from '../../src/asset/Game/win/25rb2.png'
 
-import WinSfx from '../../src/asset/sound/win-sfx.mp3'
-import LoseSfx from '../../src/asset/sound/lose-sfx.mp3'
+import WinSfx from '../../src/asset/sound/Win-sfx.mp3'
+import LoseSfx from '../../src/asset/sound/Lose-sfx.mp3'
 
 
 import { getUser } from '../actions/userAction'
@@ -42,7 +42,7 @@ class Game extends React.Component {
 			slot3_bawah: 0,
 
 			speed1: 70,
-			speed2: 100,
+			speed2: 10,
 			speed3: 50,
 
 			itemsdummy1: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
