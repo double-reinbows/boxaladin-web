@@ -373,7 +373,8 @@ class Game extends React.Component {
 
 			this.setState({ 
 				isRunning: true,
-				notif: '' 
+				notif: '', 
+				modalLose: false
 			})
 
 		}
