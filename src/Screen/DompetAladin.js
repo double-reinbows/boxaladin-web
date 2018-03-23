@@ -1,3 +1,4 @@
+//@flow
 import React from 'react'
 import { connect } from 'react-redux'
 import { Button, Form, FormGroup, Input  } from 'reactstrap'
@@ -54,7 +55,7 @@ class Dompet extends React.Component {
                         </div>
                         <label className="alert__dompetAladin">{this.state.notif2}</label>
                     </div>
-                    
+
                     <div className="TopupKey">
                         <h1 className="TopupKey__text">Isi Ulang Aladin Key</h1>
                         {this.showForm()}
@@ -138,7 +139,7 @@ class Dompet extends React.Component {
 
         if (this.state.key > this.props.userInfo.aladinKeys) {
             return this.setState({
-                notif2: "Aladin Key Tidak Cukup",  
+                notif2: "Aladin Key Tidak Cukup",
             })
         }
 
