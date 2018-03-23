@@ -14,8 +14,8 @@ import win3 from '../../src/asset/Game/win/50rb2.png'
 import win4 from '../../src/asset/Game/win/25rb1.png'
 import win5 from '../../src/asset/Game/win/25rb2.png'
 
-import WinSfx from '../../src/asset/sound/win-sfx.mp3'
-import LoseSfx from '../../src/asset/sound/lose-sfx.mp3'
+import WinSfx from '../../src/asset/sound/Win-sfx.mp3'
+import LoseSfx from '../../src/asset/sound/Lose-sfx.mp3'
 
 
 import { getUser } from '../actions/userAction'
