@@ -219,6 +219,10 @@ class Game extends React.Component {
 			return this.setState({
         notif: "Harus Lebih Besar Dari 0",
       })
+		}	else {
+			this.setState({
+				notif:""
+			})
 		}
 
 		if (this.state.key) {
@@ -235,7 +239,8 @@ class Game extends React.Component {
 			.then(response => {
 
 				this.setState({
-					coin: 0
+					coin: 0,
+					key: null
 				})
 
 				document.getElementById('upcoin').value = ''
@@ -366,7 +371,10 @@ class Game extends React.Component {
 			this.start2()
 			this.start3()
 
-			this.setState({ isRunning: true, modalLose: false })
+			this.setState({ 
+				isRunning: true,
+				notif: '' 
+			})
 
 		}
 	}
