@@ -326,7 +326,7 @@ class Game extends React.Component {
 
 			default:
 				return 0
-				// break;
+				//break;
 		}
 	}
 
@@ -431,7 +431,7 @@ class Game extends React.Component {
 
 	stop1() {
 		console.log('STOP-1...')
-		clearInterval(this.state.si1)
+		clearInterval(this.setState.si1)
 	}
 
 	start2() {
@@ -460,7 +460,7 @@ class Game extends React.Component {
 
 	stop2() {
 		console.log('STOP-2...')
-		clearInterval(this.state.si2)
+		clearInterval(this.setState.si2)
 	}
 
 	start3() {
@@ -489,7 +489,7 @@ class Game extends React.Component {
 
 	stop3() {
 		console.log('STOP-3...')
-		clearInterval(this.state.si3)
+		clearInterval(this.setState.si3)
 	}
 
 
