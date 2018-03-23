@@ -20,6 +20,10 @@ import {
 import classnames from 'classnames';
 import Xendit from 'xendit-js-node'
 
+import MANDIRI from '../asset/Logo/MANDIRI.svg'
+import BNI from '../asset/Logo/BNI.svg'
+import BRI from '../asset/Logo/BRI.svg'
+
 class TopupPayment extends React.Component {
   constructor(props) {
     super(props)
@@ -53,16 +57,38 @@ class TopupPayment extends React.Component {
 
                 <h5>Silahkan melakukan pembayaran ke salah satu virtual bank account di bawah ini:</h5>
                 
-                <ul>
+                <div className="bankz">
+                  <img src={MANDIRI} className="bankz__icon" alt="Logo" />
                   {this.state.invoice.payment.availableBanks.map((bank, idx) => {
                     return (
-                      <div key={idx}>
-                        <img src={[bank.bank_code]} className="pembayaran__logoBank" alt="logoBank" />
-                        <li key={idx}>{bank.bank_code}: {bank.bank_account_number}</li>
-                      </div>
+                      bank.bank_code === 'MANDIRI' ? (
+                        <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
+                      ) : null
                     )
                   })}
-                </ul>
+                </div>
+
+                <div className="bankz">
+                  <img src={BNI} className="bankz__icon" alt="Logo" />
+                  {this.state.invoice.payment.availableBanks.map((bank, idx) => {
+                      return (
+                        bank.bank_code === 'BNI' ? (
+                          <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
+                        ) : null
+                      )
+                    })}
+                </div>
+
+                <div className="bankz">
+                  <img src={BRI} className="bankz__icon" alt="Logo" />
+                  {this.state.invoice.payment.availableBanks.map((bank, idx) => {
+                      return (
+                        bank.bank_code === 'BRI' ? (
+                          <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
+                        ) : null
+                      )
+                  })}
+                </div>
               </div>
             ) : null
           }
