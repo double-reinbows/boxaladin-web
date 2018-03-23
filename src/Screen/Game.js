@@ -35,9 +35,9 @@ class Game extends React.Component {
 			slot2_bawah: 0,
 			slot3_bawah: 0,
 
-			speed1: 70,
-			speed2: 50,
-			speed3: 100,
+			speed1: 500,
+			speed2: 500,
+			speed3: 500,
 
 			itemsdummy1: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 			itemsdummy2: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
@@ -46,8 +46,9 @@ class Game extends React.Component {
 			isRunning: false,
 			modal: false,
 			key: null,
-			freeKey: 0,
-			notif: ''
+			pulsaAmount: 0,
+			notif: '',
+			winResult: null
 		}
 
 		this.toggle = this.toggle.bind(this)
@@ -183,7 +184,7 @@ class Game extends React.Component {
 								</label>
 
 								<label className="gameModal__Container__text">
-									berupa {this.state.freeKey} key gratis
+									berupa Rp.{this.state.pulsaAmount} pulsa gratis
 								</label>
 							</div>
 					</Modal>
@@ -267,12 +268,13 @@ class Game extends React.Component {
 			.then(({data}) => {
 				this.setState({
 					modal:true,
-					freeKey: data.freekey.amount
+					pulsaAmount: data.data.gamerule.pulsaAmount,
+					winResult: data.data
 				})
 
 				this.props.getUser()
 				this.props.getUserWins()
-				console.log(data)
+				console.log('DATA RESPONSE CREATE WIN:', data)
 			})
 			.catch(err => console.log(err))
 
@@ -282,9 +284,11 @@ class Game extends React.Component {
 	toggle() {
 		this.setState({ 
 			modal: false,
-			freeKey: 0
+			pulsaAmount: 0
 		})
 		this.reset()
+
+		this.props.history.push('/claimfreepulsa', this.state.winResult)
 	}
 
 	handleResult() {
