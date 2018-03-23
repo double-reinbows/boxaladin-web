@@ -45,7 +45,7 @@
 				flex-direction: column;
 				justify-content: space-around;
 				align-items: center;
-				margin: 5%;
+				margin: 3%;
 			}
 			&__title{
 				color: #FFCD05;	
@@ -110,9 +110,9 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		padding: 25px;
+		margin-bottom: 10px;
 		&__icon{
-			width: 10%;
+			width: 15%;
 			margin: 10px;
 		}
 
@@ -267,7 +267,7 @@
 
 
 .boxaladin {
-	background-image: url("https://steemit-production-imageproxy-thumbnail.s3.amazonaws.com/U5du7QzV9m547GdgFGVuh2ckhRKGL9Q_1680x8400");
+	background-image: url('../../asset/Logo/LogoSmall.svg');
 	width: 80%;
 	height: 100px;	
 	border-radius: 10px;
@@ -275,7 +275,7 @@
 	margin-bottom: 3px;
 	margin-left: 5px;
 	margin-right: 5px;
-	background-color: white;
+	background-color: black;
 	background-size: 100% 100%;
 }
 

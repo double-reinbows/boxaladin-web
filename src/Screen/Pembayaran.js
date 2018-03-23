@@ -2,9 +2,18 @@ import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import {
-  Container, TabContent, TabPane, Nav, NavItem, NavLink,
-  Button, Form, FormGroup, Input,
-  Modal, ModalHeader, ModalBody
+  TabContent, 
+  TabPane, 
+  Nav, 
+  NavItem, 
+  NavLink,
+  Button, 
+  Form, 
+  FormGroup, 
+  Input,
+  Modal, 
+  ModalHeader, 
+  ModalBody
 } from 'reactstrap';
 
 import classnames from 'classnames';
@@ -40,25 +49,49 @@ class InvoiceDetail extends React.Component {
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
-          <h1 className="pembayaran__title">Menunggu Pembayaran</h1>
+          <h1 className="pembayaran__title">Menunggu pembayaran</h1>
           {this.state.invoice ? (
               <div>
                 <h1 className="pembayaran__title">Jumlah yang harus di bayarkan {this.state.invoice.payment.amount}</h1>
 
-                <h5>Silahkan melakukan pembayaran ke salah satu virtual bank account di bawah ini:</h5>
+                <h5 className="pembayaran__title">Silahkan melakukan pembayaran ke salah satu virtual bank account di bawah ini:</h5>
+                
+                <div className="bankz">
+                  <img src={MANDIRI} className="bankz__icon" alt="Logo" />
+                    {this.state.invoice.payment.availableBanks.map((bank, idx) => {
+                      return (
+                        bank.bank_code === 'MANDIRI' ? (
+                          <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
+                        ) : null
+                      )
+                    })}
+                </div>
 
-                <ul>
+                <div className="bankz">
+                  <img src={BNI} className="bankz__icon" alt="Logo" />
                   {this.state.invoice.payment.availableBanks.map((bank, idx) => {
-                    return (
-                      <div key={idx}>
-                        <img src={[bank.bank_code]} className="pembayaran__logoBank" alt="logoBank" />
-                        <li key={idx}>{bank.bank_code}: {bank.bank_account_number}</li>
-                      </div>
-                    )
+                      return (
+                        bank.bank_code === 'BNI' ? (
+                          <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
+                        ) : null
+                      )
+                    })}
+                </div>
+
+                <div className="bankz">
+                  <img src={BRI} className="bankz__icon" alt="Logo" />
+                  {this.state.invoice.payment.availableBanks.map((bank, idx) => {
+                      return (
+                        bank.bank_code === 'BRI' ? (
+                          <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
+                        ) : null
+                      )
                   })}
-                </ul>
+                </div>
 
               </div>
+
+              
             ) : null
           }
         </div>
@@ -97,7 +130,7 @@ class InvoiceDetail extends React.Component {
         <Modal isOpen={this.state.isOpen3dsModal} toggle={this.toggle3dsModal} className={this.props.className}>
           <ModalHeader toggle={this.toggle3dsModal}>Modal title</ModalHeader>
           <ModalBody>
-            <iframe src={this.state.payer_auth_url} />
+            <iframe src={this.state.payer_auth_url} title="modal3ds"/>
           </ModalBody>
         </Modal>
       </div>

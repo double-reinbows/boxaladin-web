@@ -6,7 +6,6 @@ import {
 
 import axios from 'axios'
 
-import ModalConfirmation from './ModalConfirmation'
 import { getPhoneNumbers } from '../../../actions/'
 
 class InsertPhone extends React.Component {

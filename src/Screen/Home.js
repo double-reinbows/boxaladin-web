@@ -5,7 +5,7 @@ import {loginAction} from '../actions/'
 import { getProducts } from '../actions/productAction'
 
 import Carousel from './Components/Home/Carousel'
-import BannerText1 from './Components/Home/BannerText1'
+// import BannerText1 from './Components/Home/BannerText1'
 import BannerText2 from './Components/Home/BannerText2'
 import FAQ from './Components/Home/Faq'
 import TabsHome from './Components/Home/TabsHome'
@@ -24,7 +24,6 @@ class Home extends Component {
       <div>
         <Carousel />
         <TabsHome />
-        <BannerText1 />
         <BannerText2 />
         <FAQ />
       </div>

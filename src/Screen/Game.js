@@ -6,11 +6,15 @@ import axios from 'axios'
 import Coin from '../../src/asset/Game/coin.svg'
 import Star from '../../src/asset/Game/star.svg'
 
-import win1 from '../../src/asset/Game/win/300keys.png'
-import win2 from '../../src/asset/Game/win/250keys.png'
-import win3 from '../../src/asset/Game/win/200keys.png'
-import win4 from '../../src/asset/Game/win/150keys.png'
-import win5 from '../../src/asset/Game/win/100keys.png'
+import win1 from '../../src/asset/Game/win/100rb.png'
+import win2 from '../../src/asset/Game/win/50rb1.png'
+import win3 from '../../src/asset/Game/win/50rb2.png'
+import win4 from '../../src/asset/Game/win/25rb1.png'
+import win5 from '../../src/asset/Game/win/25rb2.png'
+
+import WinSfx from '../../src/asset/sound/Win-sfx.mp3'
+import LoseSfx from '../../src/asset/sound/Lose-sfx.mp3'
+
 
 import { getUser } from '../actions/userAction'
 import { getUserWins } from '../actions/winAction'
@@ -35,16 +39,17 @@ class Game extends React.Component {
 			slot2_bawah: 0,
 			slot3_bawah: 0,
 
-			speed1: 500,
-			speed2: 500,
-			speed3: 500,
+			speed1: 100,
+			speed2: 70,
+			speed3: 50,
 
 			itemsdummy1: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 			itemsdummy2: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 			itemsdummy3: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 
 			isRunning: false,
-			modal: false,
+			modalWin: false,
+			modalLose: false,
 			key: null,
 			pulsaAmount: 0,
 			notif: '',
@@ -62,8 +67,8 @@ class Game extends React.Component {
 			<div className="game">
 				<div className="game__container">
 					<div className="game__slotLabel">
-						<h1 className="game__slotLabel__h1">ALADIN GAMES</h1>
-						<p className="game__slotLabel__paragraph">Play Aladin Games with your Aladin Coin</p>
+						<h1 className="game__slotLabel__h1">ALADIN GAME</h1>
+						<p className="game__slotLabel__paragraph">Mainkan Game Menggunakan Coin Anda</p>
 					</div>
 					<div>
 						<div className="game__container2">
@@ -72,18 +77,18 @@ class Game extends React.Component {
 									<label className="game__convert__label">Aladin Key : {this.props.userInfo.aladinKeys}</label>
 								</div>
 								<div>
-									<p className="game__slotLabel__paragraph">Convert your Aladin Keys to Aladin Coin here</p>
+									<p className="game__slotLabel__paragraph">Tukar Aladin Key Menjadi Koin</p>
 									<form onSubmit={(e) => this.upCoin(e)}>
-										<input className="game__convert__input" min="1" id="upcoin" onChange={(e) => this.setState({ key: parseInt(e.target.value) })} type="number" placeholder="1 aladin key = 10 coin" />
-										<button className="game__convert__buttonConvert">CONVERT</button>
+										<input className="game__convert__input" min="1" id="upcoin" onChange={(e) => this.setState({ key: parseInt(e.target.value, 10) })} type="number" placeholder="1 aladin key = 10 coin" />
+										<button className="game__convert__buttonConvert">TUKAR</button>
 									</form>
 								</div>
 							</div>
 						</div>
 						<label className="alert__game">{this.state.notif}</label>
 							<div className="game__slotCoin">
-								<img className="game__slotCoin__icon" src={Coin} alt="coin image"/>
-								<label className="game__slotCoin__label">Your Coin : {this.props.userInfo.coin}</label>
+								<img className="game__slotCoin__icon" src={Coin} alt="coin"/>
+								<label className="game__slotCoin__label">Koin Anda : {this.props.userInfo.coin}</label>
 							</div>
 						<div className="game__container3">
 							<div className="game__slotItems">
@@ -125,58 +130,59 @@ class Game extends React.Component {
 					<h1 className="game__prize__title">Game Prize</h1>
 
 					<h1 className="game__prize__h1">
-						Dapatkan hadiah hingga 300 Aladin Keys dengan memainkan Aladin Games dengan mendapatkan pola tertentu seperti
+						Dapatkan hadiah hingga pulsa Rp. 100.000 dengan memainkan Aladin Games dengan mendapatkan pola tertentu seperti
 					</h1>
 
 					<div className="game__prize__row">
 						<div className="game__prize__container">
-							<img className="game__prize__img" src={win1} alt="coin image" />
+							<img className="game__prize__img" src={win1} alt="coin" />
 							<h1 className="game__prize__h1">
-								300 Aladin Keys
+								pulsa Rp. 100.000
 							</h1>
 						</div>
 
 						<div className="game__prize__container">
-							<img className="game__prize__img" src={win2} alt="coin image" />
+							<img className="game__prize__img" src={win2} alt="coin" />
 							<h1 className="game__prize__h1">
-								250 Aladin Keys
+								pulsa Rp. 50.000
 							</h1>
 						</div>
 
 						<div className="game__prize__container">
-							<img className="game__prize__img" src={win3} alt="coin image" />
+							<img className="game__prize__img" src={win3} alt="coin" />
 							<h1 className="game__prize__h1">
-								200 Aladin Keys
+								pulsa Rp. 50.000
 							</h1>
 						</div>
 
 						<div className="game__prize__container">
-							<img className="game__prize__img" src={win4} alt="coin image" />
+							<img className="game__prize__img" src={win4} alt="coin" />
 							<h1 className="game__prize__h1">
-								150 Aladin Keys
+								pulsa Rp. 25.000
 							</h1>
 						</div>
 
 						<div className="game__prize__container">
-							<img className="game__prize__img" src={win5} alt="coin image" />
+							<img className="game__prize__img" src={win5} alt="coin" />
 							<h1 className="game__prize__h1">
-								100 Aladin Keys
+								pulsa Rp. 25.000
 							</h1>
 						</div>
 					</div>
 
 				</div>
 
-					<Modal isOpen={this.state.modal} className="gameModal">
+					<Modal isOpen={this.state.modalWin} className="gameModal">
 						<ModalHeader toggle={this.toggle} className="gameModal__Top"></ModalHeader>
+						<audio src={WinSfx}  autoPlay />	
 							<div className="gameModal__Container">
 								
 								<div className="gameModal__Container__item">
-									<img className="gameModal__icon" src={Star} alt="Star image" />
+									<img className="gameModal__icon" src={Star} alt="Star" />
 								</div>
 
 								<label className="gameModal__Container__text">
-									selamat {this.props.userInfo.firstName}
+									selamat
 								</label>
 
 								<label className="gameModal__Container__text">
@@ -188,6 +194,8 @@ class Game extends React.Component {
 								</label>
 							</div>
 					</Modal>
+
+				if {this.state.modalLose ? <audio src={LoseSfx} autoPlay /> : null }
 			</div>
 		)
 	}
@@ -195,6 +203,7 @@ class Game extends React.Component {
 	componentDidMount() {
 		this.props.getUser()
 	}
+	// 
 
 	upCoin(e) {
 		e.preventDefault()
@@ -209,6 +218,10 @@ class Game extends React.Component {
 			return this.setState({
         notif: "Harus Lebih Besar Dari 0",
       })
+		}	else {
+			this.setState({
+				notif:""
+			})
 		}
 
 		if (this.state.key) {
@@ -225,7 +238,8 @@ class Game extends React.Component {
 			.then(response => {
 
 				this.setState({
-					coin: 0
+					coin: 0,
+					key: null
 				})
 
 				document.getElementById('upcoin').value = ''
@@ -246,6 +260,9 @@ class Game extends React.Component {
 	submitResult(result) {
 		if (result === 0) {
 			// this.reset()
+			this.setState({
+				modalLose: true,
+			})
 			return			
 		} else {
 
@@ -267,9 +284,9 @@ class Game extends React.Component {
 			})
 			.then(({data}) => {
 				this.setState({
-					modal:true,
 					pulsaAmount: data.data.gamerule.pulsaAmount,
-					winResult: data.data
+					winResult: data.data,
+					modalWin:true,
 				})
 
 				this.props.getUser()
@@ -283,8 +300,8 @@ class Game extends React.Component {
 
 	toggle() {
 		this.setState({ 
-			modal: false,
-			pulsaAmount: 0
+			pulsaAmount: 0,
+			modalWin: false,
 		})
 		this.reset()
 
@@ -295,27 +312,21 @@ class Game extends React.Component {
 		switch (this.state.slot1.toString() + this.state.slot2.toString() + this.state.slot3.toString()) {
 			case '666':
 				return 5
-				break;
 			
 			case '000':
 				return 4
-				break;
 
 			case '555':
 				return 3
-				break;
 
 			case '560':
 				return 2
-				break;
 
 			case '065':
 				return 1
-				break;
 		
 			default:
 				return 0
-				break;
 		}
 	}
 
@@ -327,9 +338,8 @@ class Game extends React.Component {
 
 	start() {
 		if (this.props.userInfo.coin <= 0) {
-		
 			this.setState({
-        notif: "Maaf Anda tidak punya coin untuk bermain game.",
+				notif: "Maaf Anda tidak punya coin untuk bermain game."
       })
 		
 		} else {
@@ -356,7 +366,11 @@ class Game extends React.Component {
 			this.start2()
 			this.start3()
 
-			this.setState({ isRunning: true })
+			this.setState({ 
+				isRunning: true,
+				notif: '', 
+				modalLose: false
+			})
 
 		}
 	}
@@ -365,7 +379,7 @@ class Game extends React.Component {
 		this.stop1()
 		this.stop2()
 		this.stop3()
-
+		console.log('modalLose')
 		// this.handleBingo()
 		this.submitResult(this.handleResult())
 
@@ -401,7 +415,7 @@ class Game extends React.Component {
 		var _this = this
 		var i = 0
 
-		this.state.si1 = setInterval(function() {
+		this.setState.si1 = setInterval(function() {
 
 			_this.setState({
 				slot1: i,
@@ -421,7 +435,7 @@ class Game extends React.Component {
 
 	stop1() {
 		console.log('STOP-1...')
-		clearInterval(this.state.si1)
+		clearInterval(this.setState.si1)
 	}
 
 	start2() {
@@ -430,7 +444,7 @@ class Game extends React.Component {
 		var _this = this
 		var i = 0
 
-		this.state.si2 = setInterval(function() {
+		this.setState.si2 = setInterval(function() {
 
 			_this.setState({
 				slot2: i,
@@ -450,7 +464,7 @@ class Game extends React.Component {
 
 	stop2() {
 		console.log('STOP-2...')
-		clearInterval(this.state.si2)
+		clearInterval(this.setState.si2)
 	}
 
 	start3() {
@@ -459,7 +473,7 @@ class Game extends React.Component {
 		var _this = this
 		var i = 0
 
-		this.state.si3 = setInterval(function() {
+		this.setState.si3 = setInterval(function() {
 
 			_this.setState({
 				slot3: i,
@@ -479,7 +493,7 @@ class Game extends React.Component {
 
 	stop3() {
 		console.log('STOP-3...')
-		clearInterval(this.state.si3)
+		clearInterval(this.setState.si3)
 	}
 
 

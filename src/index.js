@@ -1,9 +1,10 @@
+//@flow
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import * as firebase from 'firebase';
-import css from './style/css/style.css'
+import './style/css/style.css';
 // import 'bootstrap/dist/css/bootstrap.css';
 
 require('dotenv').config()

@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-  Container,
   Table,
   Button
 } from 'reactstrap'
@@ -34,8 +33,8 @@ class Invoice extends React.Component {
 
   showInvoice() {
     return (
-      <Table>
-        <thead>
+      <Table >
+        <thead className="invoice__table">
           <tr>
             <th>No.</th>
             <th>Barang</th>
@@ -44,7 +43,7 @@ class Invoice extends React.Component {
             <th></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="invoice__table">
           {this.props.userTransactions.map((data, idx) => {
             return (
               <tr key={idx}>
@@ -53,7 +52,7 @@ class Invoice extends React.Component {
                 <td>{data.payment.amount}</td>
                 <td>{data.payment.status}</td>
                 <td>{data.status === 'PENDING' ? (
-                  <Button color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button>
+                  <Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button>
                 ) : null}</td>
               </tr>
             )

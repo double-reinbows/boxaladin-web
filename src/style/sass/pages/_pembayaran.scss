@@ -16,33 +16,35 @@
 
   &__title{
     text-align: center;
-    background-color: var
   }
-
 
   &__button{
     display: flex;
     height: 100%;
+
+    &__invoice{
+      padding: 6px;
+    }
   }
 
-  &__1{
-    width: 50%;
-    display: flex;
-    justify-content: flex-end;
+}
+
+.bankz{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+
+  &__icon{
+    width: 125px;
+    height: 50px;
+    margin-right: 5%;
+    margin-left: 5%;
   }
 
-  &__2{
-    width: 50%;
-    display: flex;
-    justify-content: flex-end;
+  &__name{	
+    font-size: 24px;	
+    font-weight: 900;	
+    line-height: 56px;
   }
-
-  &__IconBank{
-
-    width: 25%;
-    height: 25%;
-    justify-content: flex-end;
-
-  }
-
 }

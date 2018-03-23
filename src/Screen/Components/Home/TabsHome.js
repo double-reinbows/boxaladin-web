@@ -1,13 +1,13 @@
 import React from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 //import iconTabs
 import IconTabs1 from '../../../asset/TabsHome/IconTabs1.svg';
 import IconTabs2 from '../../../asset/TabsHome/IconTabs2.svg';
-import IconTabs3 from '../../../asset/TabsHome/IconTabs3.svg';
-import IconTabs4 from '../../../asset/TabsHome/IconTabs4.svg';
+// import IconTabs3 from '../../../asset/TabsHome/IconTabs3.svg';
+// import IconTabs4 from '../../../asset/TabsHome/IconTabs4.svg';
 
 //import Dropdown
 import DropdownBolt from './Dropdown/DropdownBolt';

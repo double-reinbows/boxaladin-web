@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button } from 'reactstrap';
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import { loginAction, logoutAction, getPhoneNumbers, setModalLogin, setModalRegister, setIsLoading } from '../../../../actions'
 import { getUser } from '../../../../actions/userAction'
@@ -83,24 +83,24 @@ class Login extends Component {
 
           <div>
             <label className="Login__Title1">
-              Anda harus login terlebih dahulu untuk melihat harga
+              Anda harus masuk terlebih dahulu untuk melihat harga
             </label>
           </div>
 
           <div>
             <label className="Login__Title2">
-              Login
+              Masuk
             </label>
           </div>
 
           <div className="form-group Login__Form">
-            <label>Email address</label>
-            <input name="email" type="email" className="form-control inputz" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email here" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
+            <label>Alamat Email</label>
+            <input name="email" type="email" className="form-control inputz" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Masukkan Email" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
           </div>
 
           <div className="form-group Login__Form">
             <label>Password</label>
-            <input name="password" type="password"  className="form-control inputz" id="exampleInputPassword" aria-describedby="passwordHelp" placeholder="Enter your password" onChange={ (e) => this.logInInputHandler(e) }/>
+            <input name="password" type="password"  className="form-control inputz" id="exampleInputPassword" aria-describedby="passwordHelp" placeholder="Masukkan Password" onChange={ (e) => this.logInInputHandler(e) }/>
             <label className="Login__LupaPassword"><a className="lupapass" href="/requestresetpassword">lupa password?</a></label>
             {/* <Link to="/requestresetpassword" className="Login__LupaPassword lupapass">lupa password?</Link> */}
           </div>

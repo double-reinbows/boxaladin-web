@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, ModalHeader, Navbar, Button } from 'reactstrap';
+import { Modal, ModalHeader, Button } from 'reactstrap';
 import LoginIcon from '../../../../asset/Login/login.svg'
 import Signup from './Signup'
 import { connect } from 'react-redux'
@@ -24,7 +24,7 @@ class ModalSignup extends React.Component {
           <div className="ButtonHeader__devide">
             <div className="ButtonHeader__big">
               {this.props.buttonLabel}
-              Signup
+              Daftar
             </div>
 
             <div className="ButtonHeader__small">
