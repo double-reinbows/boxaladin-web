@@ -6,11 +6,11 @@ const claimReducer = (state=defaultState, action) => {
   switch (action.type) {
     case 'GET_USER_CLAIMS':
       return {...state, userClaims: action.payload}
-      break;
-  
+      // break;
+
     default:
       return state
-      break;
+      // break;
   }
 }
 

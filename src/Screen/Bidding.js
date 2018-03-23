@@ -39,7 +39,7 @@ class Bidding extends React.Component {
               <Loading />
             </div>
           ) : null}
-          
+
           <div className="bidding__1">
             <label className="bidding__1__Title">Bidding Time</label>
           </div>
@@ -144,7 +144,7 @@ class Bidding extends React.Component {
 
       const productsRef = firebase.database().ref().child('products')
       const productRef = productsRef.child(this.props.selectedProductID)
-      
+
       productRef.update({
         watching: 0
       })
@@ -167,8 +167,8 @@ class Bidding extends React.Component {
       return null
     }
 
-    const productsRef = firebase.database().ref().child('products')
-    const productRef = productsRef.child(productId)
+    // const productsRef = firebase.database().ref().child('products')
+    // const productRef = productsRef.child(productId)
 
 		if (localStorage.getItem('token') !== null) {
 
@@ -190,32 +190,32 @@ class Bidding extends React.Component {
 
           // biar update user info (jumlah aladin key)
           this.props.getUser()
-          
+
 					const productsRef = firebase.database().ref().child('products')
 					const productRef = productsRef.child(productId)
-          
+
 					productRef.once('value', snap => {
             productRef.update({
               watching: snap.val().watching +1
 						})
 					})
-          
+
 					productRef.on('value', snap => {
             this.setState({
               productUnlocked: snap.val(),
               isWatching: true
 						})
 					})
-          
+
 					this.runTimer()
-          
+
 				} else if (data.message === 'not enough aladin key') {
           alert("Anda Tidak Memiliki Aladin Key")
-          this.props.history.push('/home')         
+          this.props.history.push('/home')
         } else {
-          
+
           console.log(data)
-          
+
         }
         this.props.setIsLoading(false)
 			})
@@ -270,7 +270,7 @@ class Bidding extends React.Component {
 
     productRef.once('value', snap => {
 			if (snap.val().watching > 0) {
-        
+
         productRef.update({
           watching: snap.val().watching -1
         })

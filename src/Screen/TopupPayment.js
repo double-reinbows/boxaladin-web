@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import {
-  Container,
   TabContent,
   TabPane,
   Nav,
@@ -14,7 +13,7 @@ import {
   Input,
   Modal,
   ModalHeader,
-  ModalBody, 
+  ModalBody,
 } from 'reactstrap';
 
 import classnames from 'classnames';
@@ -52,7 +51,7 @@ class TopupPayment extends React.Component {
                 <h1 className="pembayaran__title">Jumlah yang harus di bayarkan {this.state.invoice.payment.amount}</h1>
 
                 <h5>Silahkan melakukan pembayaran ke salah satu virtual bank account di bawah ini:</h5>
-                
+
                 <ul>
                   {this.state.invoice.payment.availableBanks.map((bank, idx) => {
                     return (
@@ -102,7 +101,7 @@ class TopupPayment extends React.Component {
         <Modal isOpen={this.state.isOpen3dsModal} toggle={this.toggle3dsModal} className={this.props.className}>
           <ModalHeader toggle={this.toggle3dsModal}>Modal title</ModalHeader>
           <ModalBody>
-            <iframe src={this.state.payer_auth_url} />
+            <iframe title="CreditCard"  src={this.state.payer_auth_url} />
           </ModalBody>
         </Modal>
       </div>

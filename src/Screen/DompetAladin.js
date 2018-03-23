@@ -46,7 +46,7 @@ class Dompet extends React.Component {
 
                                 <div>
                                     <form onSubmit={(e) => this.upCoin(e)}>
-                                        <input className="game__convert__input" min="1" id="upcoin" onChange={(e) => this.setState({ key: parseInt(e.target.value) })} type="number" placeholder="1 aladin key = 10 coin" />
+                                        <input className="game__convert__input" min="1" id="upcoin" onChange={(e) => this.setState({ key: parseInt(e.target.value, 10) })} type="number" placeholder="1 aladin key = 10 coin" />
                                         <button className="game__convert__buttonConvert">TUKAR</button>
                                     </form>
                                 </div>
@@ -54,7 +54,7 @@ class Dompet extends React.Component {
                         </div>
                         <label className="alert__dompetAladin">{this.state.notif2}</label>
                     </div>
-                    
+
                     <div className="TopupKey">
                         <h1 className="TopupKey__text">Isi Ulang Aladin Key</h1>
                         {this.showForm()}
@@ -138,7 +138,7 @@ class Dompet extends React.Component {
 
         if (this.state.key > this.props.userInfo.aladinKeys) {
             return this.setState({
-                notif2: "Aladin Key Tidak Cukup",  
+                notif2: "Aladin Key Tidak Cukup",
             })
         }
 

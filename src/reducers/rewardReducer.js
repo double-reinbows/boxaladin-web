@@ -6,11 +6,11 @@ const rewardReducer = (state=defaultState, action) => {
   switch (action.type) {
     case 'GET_REWARDS':
       return {...state, rewards: action.payload}
-      break;
-  
+      // break;
+
     default:
       return state
-      break;
+      // break;
   }
 }
 
