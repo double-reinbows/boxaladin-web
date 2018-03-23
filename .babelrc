@@ -2,7 +2,7 @@
   "env": {
     "test": {
       "presets": ["env", "react"],
-      "plugins": ["transform-export-extensions"],
+      "plugins": ["transform-class-properties"],
       "only": [
         "./**/*.js",
         "node_modules/jest-runtime"
