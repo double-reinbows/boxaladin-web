@@ -32,7 +32,7 @@ class ClaimFreePulsa extends React.Component {
     console.log(pulsa)
 
 		return (
-			<div className="container">
+			<div className="Container">
 				<h1>Silahkan Masukan Nomor HP dan Jenis Pulsa</h1>
 
         <Form onSubmit={ (e) => this.submit(e) }>
