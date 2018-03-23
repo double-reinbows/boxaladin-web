@@ -6,8 +6,6 @@ import axios from 'axios'
 import Coin from '../../src/asset/Game/coin.svg'
 import Star from '../../src/asset/Game/star.svg'
 
-import boxaladin from '../../src/asset/Logo/LogoSmall.svg'
-
 import win1 from '../../src/asset/Game/win/100rb.png'
 import win2 from '../../src/asset/Game/win/50rb1.png'
 import win3 from '../../src/asset/Game/win/50rb2.png'
@@ -80,7 +78,7 @@ class Game extends React.Component {
 								<div>
 									<p className="game__slotLabel__paragraph">Tukar Aladin Key Menjadi Koin</p>
 									<form onSubmit={(e) => this.upCoin(e)}>
-										<input className="game__convert__input" min="1" id="upcoin" onChange={(e) => this.setState({ key: parseInt(e.target.value) })} type="number" placeholder="1 aladin key = 10 coin" />
+										<input className="game__convert__input" min="1" id="upcoin" onChange={(e) => this.setState({ key: parseInt(e.target.value, 10) })} type="number" placeholder="1 aladin key = 10 coin" />
 										<button className="game__convert__buttonConvert">TUKAR</button>
 									</form>
 								</div>
@@ -88,7 +86,7 @@ class Game extends React.Component {
 						</div>
 						<label className="alert__game">{this.state.notif}</label>
 							<div className="game__slotCoin">
-								<img className="game__slotCoin__icon" src={Coin} alt="coin image"/>
+								<img className="game__slotCoin__icon" src={Coin} alt="coin"/>
 								<label className="game__slotCoin__label">Koin Anda : {this.props.userInfo.coin}</label>
 							</div>
 						<div className="game__container3">
@@ -136,35 +134,35 @@ class Game extends React.Component {
 
 					<div className="game__prize__row">
 						<div className="game__prize__container">
-							<img className="game__prize__img" src={win1} alt="coin image" />
+							<img className="game__prize__img" src={win1} alt="coin" />
 							<h1 className="game__prize__h1">
 								pulsa Rp. 100.000
 							</h1>
 						</div>
 
 						<div className="game__prize__container">
-							<img className="game__prize__img" src={win2} alt="coin image" />
+							<img className="game__prize__img" src={win2} alt="coin" />
 							<h1 className="game__prize__h1">
 								pulsa Rp. 50.000
 							</h1>
 						</div>
 
 						<div className="game__prize__container">
-							<img className="game__prize__img" src={win3} alt="coin image" />
+							<img className="game__prize__img" src={win3} alt="coin" />
 							<h1 className="game__prize__h1">
 								pulsa Rp. 50.000
 							</h1>
 						</div>
 
 						<div className="game__prize__container">
-							<img className="game__prize__img" src={win4} alt="coin image" />
+							<img className="game__prize__img" src={win4} alt="coin" />
 							<h1 className="game__prize__h1">
 								pulsa Rp. 25.000
 							</h1>
 						</div>
 
 						<div className="game__prize__container">
-							<img className="game__prize__img" src={win5} alt="coin image" />
+							<img className="game__prize__img" src={win5} alt="coin" />
 							<h1 className="game__prize__h1">
 								pulsa Rp. 25.000
 							</h1>
@@ -179,7 +177,7 @@ class Game extends React.Component {
 							<div className="gameModal__Container">
 								
 								<div className="gameModal__Container__item">
-									<img className="gameModal__icon" src={Star} alt="Star image" />
+									<img className="gameModal__icon" src={Star} alt="Star" />
 								</div>
 
 								<label className="gameModal__Container__text">
@@ -260,7 +258,6 @@ class Game extends React.Component {
 
 	submitResult(result) {
 		if (result === 0) {
-			this.state.modalLose
 			// this.reset()
 			this.setState({
 				modalLose: true,
@@ -311,27 +308,21 @@ class Game extends React.Component {
 		switch (this.state.slot1.toString() + this.state.slot2.toString() + this.state.slot3.toString()) {
 			case '666':
 				return 5
-				break;
 			
 			case '000':
 				return 4
-				break;
 
 			case '555':
 				return 3
-				break;
 
 			case '560':
 				return 2
-				break;
 
 			case '065':
 				return 1
-				break;
 		
 			default:
 				return 0
-				break;
 		}
 	}
 
@@ -420,7 +411,7 @@ class Game extends React.Component {
 		var _this = this
 		var i = 0
 
-		this.state.si1 = setInterval(function() {
+		this.setState.si1 = setInterval(function() {
 
 			_this.setState({
 				slot1: i,
@@ -440,7 +431,7 @@ class Game extends React.Component {
 
 	stop1() {
 		console.log('STOP-1...')
-		clearInterval(this.state.si1)
+		clearInterval(this.setState.si1)
 	}
 
 	start2() {
@@ -449,7 +440,7 @@ class Game extends React.Component {
 		var _this = this
 		var i = 0
 
-		this.state.si2 = setInterval(function() {
+		this.setState.si2 = setInterval(function() {
 
 			_this.setState({
 				slot2: i,
@@ -463,7 +454,7 @@ class Game extends React.Component {
 				i=0
 			}
 
-  	}, this.state.speed2)
+  	}, this.setState.speed2)
 
 	}
 
@@ -478,7 +469,7 @@ class Game extends React.Component {
 		var _this = this
 		var i = 0
 
-		this.state.si3 = setInterval(function() {
+		this.setState.si3 = setInterval(function() {
 
 			_this.setState({
 				slot3: i,
@@ -492,7 +483,7 @@ class Game extends React.Component {
 				i=0
 			}
 
-  	}, this.state.speed3)
+  	}, this.setState.speed3)
 
 	}
 
