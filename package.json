@@ -66,7 +66,8 @@
     "devserver": "live-server",
     "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' src/style/css/style.css -o src/style/css/style.prefix.css",
     "compress:css": "node-sass-chokidar src/style/css/style.prefix.css > src/style/css/style.css --output-style compressed",
-    "build:css": "npm-run-all -s sass:compile prefix:css compress:css"
+    "build:css": "npm-run-all -s sass:compile prefix:css compress:css",
+    "flow": "flow"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>src/setupTests.js",
