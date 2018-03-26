@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-	Container,
 	Button,
 	Form,
 	FormGroup,
@@ -105,7 +104,7 @@ class ClaimFreePulsa extends React.Component {
   submit(e) {
     e.preventDefault()
 
-    let productSelected = this.props.products.filter(data => data.id === parseInt(this.state.productId))[0]
+    let productSelected = this.props.products.filter(data => data.id === parseInt(this.state.productId, 10))[0]
 
     if (validateProvider(detectProvider(this.state.phone), productSelected.brand) === false) {
       return alert('Nomor HP tidak sesuai dengan Provider.')

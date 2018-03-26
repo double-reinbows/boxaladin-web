@@ -1,7 +1,7 @@
 module.exports = {
 
   validateProvider: (detectedProvider, selectedProvider) => {
-    if (detectedProvider.toUpperCase() == selectedProvider.toUpperCase()) {
+    if (detectedProvider.toUpperCase() === selectedProvider.toUpperCase()) {
       return true;
     } else {
       return false;
@@ -9,7 +9,7 @@ module.exports = {
   },
 
   detectProvider: (phone) => {
-    if(phone[0] == '0') {
+    if(phone[0] === '0') {
       switch (phone.slice(0, 4)) {
         case '0812':
         case '0813':
@@ -64,7 +64,7 @@ module.exports = {
         default:
           return '';
       }
-    } else if (phone[0] == '6') {
+    } else if (phone[0] === '6') {
       switch (phone.slice(0, 5)) {
         case '62812':
         case '62813':
@@ -119,7 +119,7 @@ module.exports = {
         default:
           return '';
       }
-    } else if (phone[0] == '+') {
+    } else if (phone[0] === '+') {
       switch (phone.slice(0, 6)) {
         case '+62812':
         case '+62813':
