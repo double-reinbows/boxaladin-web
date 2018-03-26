@@ -74,11 +74,8 @@ class Login extends Component {
     return (
       <div className="Login">
 
-        {this.props.isLoading ? (
-          <div className="">
-            <Loading />
-          </div>
-        ) : null}
+        <Loading isLoading={ this.props.isLoading } />
+        
         <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
 
           <div>

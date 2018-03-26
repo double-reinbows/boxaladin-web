@@ -34,11 +34,7 @@ class Bidding extends React.Component {
       <div className="bidding">
         <div className="bidding__container">
 
-          {this.props.isLoading ? (
-            <div className="">
-              <Loading />
-            </div>
-          ) : null}
+          <Loading isLoading={ this.props.isLoading } />
 
           <div className="bidding__1">
             <label className="bidding__1__Title">Bidding Time</label>
