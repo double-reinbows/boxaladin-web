@@ -10,6 +10,7 @@ import {
 import axios from 'axios'
 
 import { getProducts } from '../actions/productAction'
+import { validateProvider, detectProvider } from '../utils/phone'
 
 class ClaimFreePulsa extends React.Component {
 	constructor(props) {
@@ -17,7 +18,7 @@ class ClaimFreePulsa extends React.Component {
 		this.state = {
       win: this.props.history.location.state || null,
       phone: null,
-      productId: null,
+      productId: null
     }
 
     this.checkWinToken()
@@ -104,24 +105,31 @@ class ClaimFreePulsa extends React.Component {
   submit(e) {
     e.preventDefault()
 
-    axios({
-      method: 'POST',
-      url: `${process.env.REACT_APP_API_HOST}/win/claimfreepulsa`,
-      headers: {
-        token: localStorage.getItem('token')
-      },
-      data: {
-        productId: this.state.productId,
-        phone: this.state.phone
-      }
-    })
-    .then(({data}) => {
-      console.log('DATA RESPONSE CLAIM FREE PULSA:', data)
-      this.props.history.push('/game')
-    })
-    .catch(err => {
-      console.log('ERROR CLAIM FREE PULSA:', err)
-    })
+    let productSelected = this.props.products.filter(data => data.id === parseInt(this.state.productId))[0]
+
+    if (validateProvider(detectProvider(this.state.phone), productSelected.brand) === false) {
+      return alert('Nomor HP tidak sesuai dengan Provider.')
+    } else {
+
+      axios({
+        method: 'POST',
+        url: `${process.env.REACT_APP_API_HOST}/win/claimfreepulsa`,
+        headers: {
+          token: localStorage.getItem('token')
+        },
+        data: {
+          productId: this.state.productId,
+          phone: this.state.phone
+        }
+      })
+      .then(({data}) => {
+        console.log('DATA RESPONSE CLAIM FREE PULSA:', data)
+        this.props.history.push('/game')
+      })
+      .catch(err => {
+        console.log('ERROR CLAIM FREE PULSA:', err)
+      })
+    }
   }
 
 }
