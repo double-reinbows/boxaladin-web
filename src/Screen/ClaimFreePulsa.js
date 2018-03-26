@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-	Container,
 	Button,
 	Form,
 	FormGroup,
@@ -32,7 +31,7 @@ class ClaimFreePulsa extends React.Component {
     console.log(pulsa)
 
 		return (
-			<div className="Container">
+			<div className="container">
 				<h1>Silahkan Masukan Nomor HP dan Jenis Pulsa</h1>
 
         <Form onSubmit={ (e) => this.submit(e) }>
