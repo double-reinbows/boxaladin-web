@@ -1,4 +1,4 @@
-//@flow
+
 import React from 'react'
 import { connect } from 'react-redux'
 import { Button, Form, FormGroup, Input  } from 'reactstrap'

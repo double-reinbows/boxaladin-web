@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-export default  class BannerHome extends React.Component {
+export default  class BannerHome extends Component <{}> {
 
   render() {
     return (

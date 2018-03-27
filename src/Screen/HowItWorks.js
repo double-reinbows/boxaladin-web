@@ -1,6 +1,7 @@
+// @flow
 import React, {Component} from 'react'
 
-export default class Howitworks extends Component {
+export default class Howitworks extends Component<{}> {
   render() {
     return (
       <div className="HowItWorks">

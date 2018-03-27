@@ -32,8 +32,8 @@ class ClaimFreePulsa extends React.Component {
     console.log(pulsa)
 
 		return (
-			<div className="container">
-				<h1>Silahkan Masukan Nomor HP dan Jenis Pulsa</h1>
+			<div className="TopupKey">
+        <h1 className="TopupKey__text">Silahkan Masukan Nomor HP dan Jenis Pulsa</h1>
 
         <Form onSubmit={ (e) => this.submit(e) }>
           <FormGroup>
