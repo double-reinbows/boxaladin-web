@@ -4,11 +4,11 @@ import './index.css'
 
 const Loading = (props) => {
   return (
-    props.isLoading ? (
+    props.isLoading === true ? (
       <div className="loader__container">
         <div className="loader" />
       </div>
-    ): null
+    ) : null
   )
 }
 
