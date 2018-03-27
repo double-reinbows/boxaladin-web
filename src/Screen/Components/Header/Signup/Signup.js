@@ -275,7 +275,7 @@ class Signup extends Component {
     return (
       <div className="Signup">
         
-        {this.props.isLoading ? <Loading /> : null}
+        <Loading isLoading={ this.props.isLoading } />
 
         <form className="form-horizontal" onSubmit={e => this.signUp(e)}>
           <div>

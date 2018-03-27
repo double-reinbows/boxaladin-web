@@ -7,6 +7,7 @@ import {
 import axios from 'axios'
 
 import { getPhoneNumbers } from '../../../actions/'
+import { validateProvider, detectProvider } from '../../../utils/phone'
 
 class InsertPhone extends React.Component {
   constructor(props) {
@@ -46,8 +47,9 @@ class InsertPhone extends React.Component {
     this.setState({productUnlocked: this.props.location.state.productUnlocked})
 		this.setState({
 			phone: this.props.location.state.phoneNumbers[0] ? this.props.location.state.phoneNumbers.filter(data => data.primary === true)[0].number : ''
-    })  }
-    
+    })
+  }
+
   handleBack() {
     if (this.props.history.action === 'POP') {
       this.props.history.replace('/')
@@ -58,23 +60,28 @@ class InsertPhone extends React.Component {
     e.preventDefault()
     console.log('submit now!')
 
-    axios({
-			method: 'POST',
-			url: `${process.env.REACT_APP_API_HOST}/payment`,
-			data: {
-				amount: this.state.productUnlocked.aladinPrice,
-				productId: this.state.productUnlocked.id,
-				phoneNumber: this.state.phone
-			},
-			headers: {
-				token: localStorage.getItem('token')
-			}
-		})
-		.then(({data}) => {
-			console.log('Data dari create transaction:', data)
-			this.props.history.push(`/payment/${data.id}`)
-		})
-		.catch(err => console.log(err))
+    if (validateProvider(detectProvider(this.state.phone), this.state.productUnlocked.brand) === false) {
+      return alert('Nomor HP tidak sesuai dengan Provider.')
+    } else {
+      
+      axios({
+        method: 'POST',
+        url: `${process.env.REACT_APP_API_HOST}/payment`,
+        data: {
+          amount: this.state.productUnlocked.aladinPrice,
+          productId: this.state.productUnlocked.id,
+          phoneNumber: this.state.phone
+        },
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      })
+      .then(({data}) => {
+        console.log('Data dari create transaction:', data)
+        this.props.history.push(`/payment/${data.id}`)
+      })
+      .catch(err => console.log(err))
+    }
   }
 
 }

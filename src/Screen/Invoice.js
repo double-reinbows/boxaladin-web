@@ -32,6 +32,7 @@ class Invoice extends React.Component {
   }
 
   showInvoice() {
+    let transactions = this.props.userTransactions.filter(data => data.description !== 'FREE')
     return (
       <Table >
         <thead className="invoice__table">
@@ -44,14 +45,14 @@ class Invoice extends React.Component {
           </tr>
         </thead>
         <tbody className="invoice__table">
-          {this.props.userTransactions.map((data, idx) => {
+          {transactions.map((data, idx) => {
             return (
               <tr key={idx}>
                 <th scope="row">{idx+1}</th>
-                <td>{data.product.productName}</td>
-                <td>{data.payment.amount}</td>
-                <td>{data.payment.status}</td>
-                <td>{data.status === 'PENDING' ? (
+                <td>{ data.product.productName }</td>
+                <td>{ data.payment ? data.payment.amount : null }</td>
+                <td>{ data.payment? data.payment.status : null }</td>
+                <td>{ data.status === 'PENDING' ? (
                   <Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button>
                 ) : null}</td>
               </tr>
