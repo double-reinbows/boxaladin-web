@@ -1,3 +1,4 @@
+//@flow
 import React, {Component} from 'react';
 
 export default  class BannerHome extends Component <{}> {
