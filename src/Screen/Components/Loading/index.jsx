@@ -1,19 +1,18 @@
+// @flow
+
 import React from 'react'
-import PropTypes from 'prop-types'
 import './index.css'
 
-const Loading = (props) => {
+type Props = {|
+  isLoading: boolean,
+|}
+
+export default const Loading = ({ isLoading }: Props) => {
   return (
-    props.isLoading === true ? (
+    Props.isLoading === true ? (
       <div className="loader__container">
         <div className="loader" />
       </div>
     ) : null
   )
 }
-
-Loading.propTypes = {
-  isLoading: PropTypes.bool,
-}
-
-export default Loading
