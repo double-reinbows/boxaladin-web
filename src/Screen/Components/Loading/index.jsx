@@ -7,12 +7,14 @@ type Props = {|
   isLoading: boolean,
 |}
 
-export default const Loading = ({ isLoading }: Props) => {
+const Loading = ({ isLoading }: Props) => {
   return (
-    Props.isLoading === true ? (
+    isLoading === true ? (
       <div className="loader__container">
         <div className="loader" />
       </div>
     ) : null
   )
 }
+
+export default Loading
