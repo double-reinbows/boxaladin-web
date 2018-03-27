@@ -1,7 +1,9 @@
-import React from 'react'
+// @flow
+
+import React, { Component } from 'react'
 import './index.css'
 
-class Loading extends React.Component {
+class Loading extends Component <{}> {
 
   render() {
     return (

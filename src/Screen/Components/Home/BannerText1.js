@@ -1,5 +1,6 @@
-import React from 'react';
-export default  class BannerHome extends React.Component {
+// @flow
+import React, {Component} from 'react';
+export default  class BannerHome extends Component <{}> {
 
   render() {
     return (
