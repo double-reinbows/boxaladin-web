@@ -1,11 +1,11 @@
-//@flow
-import React from 'react';
+// @flow
+import React, { Component } from 'react';
 import { Provider } from 'react-redux'
 
 import store from './store/'
 import RouteList from './routes'
 
-class App extends React.Component {
+export default class App extends Component<{}> {
   render() {
     return (
       <Provider store={store}>
@@ -15,4 +15,3 @@ class App extends React.Component {
   }
 }
 
-export default App;

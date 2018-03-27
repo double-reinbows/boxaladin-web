@@ -1,6 +1,10 @@
 [ignore]
 # Ignore compiled code.
 <PROJECT_ROOT>/assets/.*
+.*/node_modules/.*
+.*/src/registerServiceWorker\.js
+.*/src/index\.js.
+.*\.test\.js
 
 [include]
 
