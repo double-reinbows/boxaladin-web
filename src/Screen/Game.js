@@ -39,7 +39,7 @@ class Game extends React.Component {
 			slot2_bawah: 0,
 			slot3_bawah: 0,
 
-			speed1: 10,
+			speed1: 100,
 			speed2: 70,
 			speed3: 50,
 
