@@ -42,6 +42,7 @@ class ClaimFreePulsa extends React.Component {
 
           <FormGroup>
             <Input type="select" onChange={(e) => this.setState({ productId: e.target.value })}>
+              <option selected disabled value={ null }>-- Pilih Pulsa --</option>              
               {pulsa.map((data, i) => {
                 return (
                   <option key={i} value={data.id}>{data.productName}</option>
@@ -106,7 +107,11 @@ class ClaimFreePulsa extends React.Component {
 
     let productSelected = this.props.products.filter(data => data.id === parseInt(this.state.productId, 10))[0]
 
-    if (validateProvider(detectProvider(this.state.phone), productSelected.brand) === false) {
+    if (this.state.phone === null) {
+      return alert('Harus masukan nomor HP.')
+    } else if (this.state.productId === null) {
+      return alert('Harus pilih pulsa.')
+    } else if (validateProvider(detectProvider(this.state.phone), productSelected.brand) === false) {
       return alert('Nomor HP tidak sesuai dengan Provider.')
     } else {
 

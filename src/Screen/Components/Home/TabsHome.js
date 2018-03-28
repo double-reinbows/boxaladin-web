@@ -1,5 +1,13 @@
+// @flow
 import React from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
+import {
+  TabContent,
+  TabPane,
+  Nav,
+  NavItem,
+  NavLink
+} from 'reactstrap';
+
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -36,8 +44,6 @@ class Example extends React.Component {
   }
 
   render() {
-    console.log('Tabs Home Props:', this.props);
-    console.log('Tabs Home State:', this.state);
 
     return (
       <div className="tes">
@@ -58,23 +64,7 @@ class Example extends React.Component {
               Paket Data <img src={IconTabs2} className="TabsHome__icon1" alt="IconTabs1" />
             </NavLink>
           </NavItem>
-        {/* ini bagian evouher dan pulsa, kalo perlu baru di uncommenct */}
-          {/* <NavItem className="TabsHome">
-            <NavLink
-              className="TabsHome__link {classnames({ active: this.state.activeTab === '3' })}"
-              onClick={() => { this.toggle('3'); }}
-            >
-              E-Voucher <img src={IconTabs3} className="TabsHome__icon1" alt="IconTabs1" />
-            </NavLink>
-          </NavItem>
-          <NavItem className="TabsHome">
-            <NavLink
-              className="TabsHome__link {classnames({ active: this.state.activeTab === '4' })}"
-              onClick={() => { this.toggle('4'); }}
-            >
-              Voucher Game <img src={IconTabs4} className="TabsHome__icon1" alt="IconTabs1" />
-            </NavLink>
-          </NavItem> */}
+
         </Nav>
 
         <TabContent activeTab={this.state.activeTab}>

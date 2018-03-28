@@ -10,7 +10,8 @@
     },
     "development": {
       "plugins": [
-        "transform-class-properties"
+        "transform-class-properties",
+        "retainLines": true
       ],
       "presets": [
         "env",
@@ -21,3 +22,4 @@
     }
   }
 }
+
