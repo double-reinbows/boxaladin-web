@@ -174,7 +174,6 @@ class Game extends React.Component {
 
 					<Modal isOpen={this.state.modalWin} className="gameModal">
 						<ModalHeader toggle={this.toggle} className="gameModal__Top"></ModalHeader>
-						<audio src={WinSfx}  autoPlay />	
 							<div className="gameModal__Container">
 								
 								<div className="gameModal__Container__item">
@@ -195,7 +194,8 @@ class Game extends React.Component {
 							</div>
 					</Modal>
 
-				if {this.state.modalLose ? <audio src={LoseSfx} autoPlay /> : null }
+				{ this.state.modalLose ? <audio src={LoseSfx} autoPlay /> : null }
+				{ this.state.modalWin ? <audio src={WinSfx} autoPlay /> : null }
 			</div>
 		)
 	}
