@@ -116,7 +116,8 @@ class Bidding extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log('will unmount..........')
+    console.log('----------- WILL UNMOUNT --------------')
+    // this.props.history.replace('/')
     this.stopWatchProductPrice(this.props.selectedProductID)
     localStorage.removeItem('selectedProductId')
   }
