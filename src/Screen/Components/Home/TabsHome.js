@@ -137,7 +137,7 @@ class Example extends React.Component {
 
   handleNotLogin() {
     if (localStorage.getItem('token') === null) {
-      alert('Anda belum login')
+      alert('Anda belum masuk')
     }
   }
 

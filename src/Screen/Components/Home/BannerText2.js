@@ -35,7 +35,7 @@ export default  class BannerHome extends Component <{}> {
                 Barang yang dilelang tiap saat hanya berjumlah 1 maka pemenang atas barang tersebut juga hanya bisa 1 Angggota diantara banyak Anggota dalam Ruang Lelang. Anggota yang melakukan transaksi pertama yang akan dapat hak atas harga lelang terakhir.
               </p>
               <li className="Bannertext2__list">
-                Ruang Santai 
+                Ruang Game 
               </li>
               <p>
                 Situs Box Aladin juga menyediakan sebuah Ruang Santai yang hanya dapat diakses oleh para Anggotanya. Dalam Ruang ini, Anggota dapat bersantai dan menggunakan permainan game berhadiah yang telah disediakan.
