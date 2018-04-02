@@ -1,3 +1,4 @@
+// @flow
 import axios from 'axios'
 
 export const loginAction = (payload) => ({

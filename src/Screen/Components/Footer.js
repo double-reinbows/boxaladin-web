@@ -1,4 +1,5 @@
-import React from 'react';
+// @flow
+import React, {Component} from 'react';
 import { Button } from 'reactstrap';
 
 import logo from "../../asset/Logo/LogoBig.svg"
@@ -8,7 +9,7 @@ import instagram from "../../asset/SocialMedia/instagram.svg"
 import youtube from "../../asset/SocialMedia/youtube.svg"
 
 
-export default  class Footer extends React.Component {
+export default  class Footer extends Component <{}> {
 
   render() {
     return (
