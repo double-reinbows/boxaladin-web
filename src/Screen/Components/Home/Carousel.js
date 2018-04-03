@@ -9,7 +9,7 @@ import {
 
 const items = [
   {
-    src: 'https://img.okezone.com/content/2017/05/15/54/1691147/soal-ransomware-wannacry-ini-tanggapan-xl-axiata-hSYs6J5Kz9.jpg',
+    src: 'https://s3-ap-southeast-1.amazonaws.com/iconpulsa/Iklan.jpg',
   },
   {
     src: 'http://lh3.ggpht.com/-asY4HtC0iCk/U0qWewb1zRI/AAAAAAAAATw/zPAzDXNY_FY/produk-telkomsel-sangat-menjengkelkan-%25255B5%25255D.jpg?imgmax=800',
