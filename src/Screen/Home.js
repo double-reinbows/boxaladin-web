@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import { Container, Row, Col, Card } from 'reactstrap';
 
 import {loginAction} from '../actions/'
 import { getProducts } from '../actions/productAction'
@@ -22,7 +23,11 @@ class Home extends Component {
     console.log('Props:', this.props);
     return (
       <div>
-        <Carousel />
+        <div className="carousel__container">
+          <div className="carousel__wrapper">
+            <Carousel />
+          </div>
+        </div>
         <TabsHome />
         <BannerText2 />
         <FAQ />
