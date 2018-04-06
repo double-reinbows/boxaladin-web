@@ -30,7 +30,7 @@ body {
     min-height: 100vh;
     
 }
-body.modal-open { position: fixed; width: 100%; }
+body.modal-open { position: fixed; overflow: inherit; padding-right: inherit !important; }
 
 
 ////////////////////////////////////////
