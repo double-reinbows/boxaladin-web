@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { Container, Row, Col, Card } from 'reactstrap';
 
 import {loginAction} from '../actions/'
 import { getProducts } from '../actions/productAction'

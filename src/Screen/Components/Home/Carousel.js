@@ -4,22 +4,20 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption
 } from 'reactstrap';
 
 const items = [
   {
     src: 'https://s3-ap-southeast-1.amazonaws.com/iconpulsa/Iklan.jpg',
-
   },
   {
     src: 'https://s3-ap-southeast-1.amazonaws.com/iconpulsa/Iklan+(1).jpg',
-
   },
-  {
-    src: 'https://s3-ap-southeast-1.amazonaws.com/iconpulsa/Iklan.jpg',
-
-  }
+    // {
+    //   src: 'https://s3-ap-southeast-1.amazonaws.com/iconpulsa/Iklan.jpg',
+    //   altText: 'Slide 1',
+    //   caption: 'Slide 1'
+    // }
 ];
 
 class Example extends Component {
@@ -34,7 +32,7 @@ class Example extends Component {
   }
 
   onExiting() {
-    this.animating = false;
+    this.animating = true;
   }
 
   onExited() {
@@ -61,22 +59,24 @@ class Example extends Component {
   render() {
     const { activeIndex } = this.state;
 
-    const slides = items.map((item) => {
-      return (
-        <CarouselItem onExiting={this.onExiting} onExited={this.onExited} key={item.src} >
-          <img className="carouselHome" src={item.src} alt={item.altText} />
-          <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
-        </CarouselItem>
-      );
-    });
+    const slides = items.map((item) => (
+      <CarouselItem
+        onExiting={this.onExiting}
+        onExited={this.onExited}
+        key={item.src}
+        src={item.src}
+        altText={item.altText}
+      >
+      </CarouselItem>
+    ))
 
     return (
       <Carousel
         activeIndex={activeIndex}
-        // next={this.next}
-        // previous={this.previous}
+        next={this.next}
+        previous={this.previous}
       >
-        <CarouselIndicators className="carousel__content" items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
+        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
         {slides}
         <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
         <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
