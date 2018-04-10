@@ -296,12 +296,12 @@ class Signup extends Component {
 
           <div className="form-group Signup__Form">
             <label>Password</label>
-            <input id="password" name="password" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Masukkan Password Anda" onChange={e => this.signUpInputHandler(e)} />
+            <input name="password" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Masukkan Password Anda" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
           <div className="form-group Signup__Form">
             <label>Ketik Ulang Password</label>
-            <input id="confirm_password" name="confirm" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Ketik Ulang Password Anda" onChange={e => this.signUpInputHandler(e)} />
+            <input name="confirm" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Ketik Ulang Password Anda" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
           <label className="alert">{this.state.notif}</label>

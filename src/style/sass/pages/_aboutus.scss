@@ -1,9 +1,22 @@
 .AboutUs{
-  height: 75rem;
   width: 100%;
-  background-color: var(--danger);
-
+  height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  background-color: var(--color-grey-5);
+  &__container{
+    max-width: 800px;
+  }
+  &__label{
+    font-size: 25px;
+    color: var(--color-yellow-1);
+    padding: 1.5%;
+    &__header{
+      display: flex;
+      justify-content: center;   
+      padding-top: 10px; 
+      font-size: 35px;
+      color: var(--color-yellow-1);
+    }
+  }
 }

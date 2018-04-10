@@ -92,12 +92,12 @@ class Login extends Component {
 
           <div className="form-group Login__Form">
             <label>Alamat Email</label>
-            <input name="email" type="email" className="form-control inputz" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Masukkan Email" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
+            <input name="email" type="email" className="form-control inputz" aria-describedby="emailHelp" placeholder="Masukkan Email" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
           </div>
 
           <div className="form-group Login__Form">
             <label>Password</label>
-            <input name="password" type="password"  className="form-control inputz" id="exampleInputPassword" aria-describedby="passwordHelp" placeholder="Masukkan Password" onChange={ (e) => this.logInInputHandler(e) }/>
+            <input name="password" type="password"  className="form-control inputz" aria-describedby="passwordHelp" placeholder="Masukkan Password" onChange={ (e) => this.logInInputHandler(e) }/>
             <label className="Login__LupaPassword"><a className="lupapass" href="/requestresetpassword">lupa password?</a></label>
             {/* <Link to="/requestresetpassword" className="Login__LupaPassword lupapass">lupa password?</Link> */}
           </div>

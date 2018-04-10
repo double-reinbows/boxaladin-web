@@ -1,5 +1,6 @@
 import React from 'react';
-import { Modal, ModalHeader, Button } from 'reactstrap';
+import Modal from 'react-modal'
+import { ModalHeader, Button } from 'reactstrap';
 import LoginIcon from '../../../../asset/Login/login.svg'
 import Signup from './Signup'
 import { connect } from 'react-redux'
@@ -33,9 +34,17 @@ class ModalSignup extends React.Component {
           </div>
         </Button>
 
-        <Modal isOpen={this.props.modalRegister} toggle={this.toggle} className="{this.props.className} Modalz" backdrop="static">
+        {/* <Modal isOpen={this.props.modalRegister} toggle={this.toggle} className="{this.props.className} Modalz" backdrop="static">
           <ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>
-          <Signup />
+        </Modal> */}
+
+        <Modal ariaHideApp={false} isOpen={this.props.modalRegister} toggle={this.toggle} className="{this.props.className} modalz">
+          <div className="modal-content">
+          <ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>
+            <div className="modal-body">
+            <Signup />
+            </div>
+          </div>
         </Modal>
       </div>
     );

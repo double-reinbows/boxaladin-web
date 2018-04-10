@@ -1,6 +1,7 @@
 // @flow
 import React, {Component} from 'react';
 import { Button } from 'reactstrap';
+import { Link } from 'react-router-dom'
 
 import logo from "../../asset/Logo/LogoBig.svg"
 import facebook from "../../asset/SocialMedia/facebook.svg"
@@ -33,7 +34,7 @@ export default  class Footer extends Component <{}> {
               <div className="footerz__Top__Right__Row1">
                 <ul>
                   Tentang Box Aladin
-                  <li className="footerz__Top__Right__Row1__list">About</li>
+                  <li className="footerz__Top__Right__Row1__list"><Link className="footerz__Top__Right__Row1__list" to="/aboutus">About Us</Link></li>
                   <li className="footerz__Top__Right__Row1__list">FAQ</li>
                   <li className="footerz__Top__Right__Row1__list">Cara Membeli</li>
                 </ul>

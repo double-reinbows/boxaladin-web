@@ -69,10 +69,15 @@
         &__list{
           margin-top: 2rem;
           margin-bottom: 2rem;
-
+          color: var(--color-yellow-1);
+          text-decoration: none;
           font-size: 18px;
           font-weight: 300;
           line-height: 21px;
+          &:hover{
+            color: var(--color-yellow-1);
+            text-decoration: none;
+          }
         }
       }
 

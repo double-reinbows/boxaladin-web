@@ -30,8 +30,15 @@ body {
     min-height: 100vh;
     
 }
-body.modal-open { overflow:inherit; padding-right:inherit !important; position: fixed}
 
+@media(max-width:767px) {
+    body {
+        position:fixed !important;
+        overflow:auto !important;
+        height:100% !important;
+    }
+}
+// html,body{ -webkit-overflow-scrolling : touch !important; overflow: auto !important; height: 100% !important; }
 
 ////////////////////////////////////////
 // LOGO
