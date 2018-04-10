@@ -16,6 +16,7 @@ import {
   ModalBody
 } from 'reactstrap';
 
+import moment from 'moment'
 import classnames from 'classnames';
 import Xendit from 'xendit-js-node'
 
@@ -27,7 +28,7 @@ class InvoiceDetail extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      invoice: null,
+      invoice: '',
       activeTab: '1',
       // amount: 0,
       ccNumber: '',
@@ -35,16 +36,30 @@ class InvoiceDetail extends React.Component {
       ccExpiredYear: '',
       cvn: '',
       isOpen3dsModal: false,
-      payer_auth_url: ''
+      payer_auth_url: '',
+      time: ''
     }
 
     this.toggle = this.toggle.bind(this);
     this.toggle3dsModal = this.toggle3dsModal.bind(this)
   }
-
   render() {
     console.log('Props:', this.props);
     console.log('State:', this.state);
+
+    if (this.state.invoice.createdAt === ''){
+      console.log('kosong')
+    } else if ( this.state.invoice.createdAt === undefined){
+      console.log('undefined')
+    } else {
+      const time = this.state.invoice.createdAt
+      console.log(moment(time, moment.ISO_8601).format('D MMMM YYYY, h:mm:ss a'))
+      const date = moment(time, moment.ISO_8601).format('D MMMM YYYY')
+      const hour = moment(time, moment.ISO_8601).format('h')
+      const minute = moment(time, moment.ISO_8601).format('mm:ss')
+      const filterTime = parseInt(hour, 10) + 6
+      var finalTime = date + (' ') + filterTime + (':') + minute
+    }
 
     return (
       <div className="pembayaran">
@@ -52,8 +67,8 @@ class InvoiceDetail extends React.Component {
           <h1 className="pembayaran__title">Menunggu pembayaran</h1>
           {this.state.invoice ? (
               <div>
-                <h1 className="pembayaran__title">Jumlah yang harus di bayarkan {this.state.invoice.payment.amount}</h1>
-
+                <h1 className="pembayaran__title">Jumlah yang harus di bayarkan Rp {this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}</h1>
+                <h2 className="pembayaran__title">Selesaikan Pembayaran Sebelum {finalTime}</h2>
                 <h5 className="pembayaran__title">Silahkan melakukan pembayaran ke salah satu virtual bank account di bawah ini:</h5>
                 
                 <div className="bankz">
@@ -101,6 +116,12 @@ class InvoiceDetail extends React.Component {
 
   componentDidMount() {
     this.getInvoiceById()
+  }
+
+  getTime(){
+    if (this.state.invoice){
+
+    }
   }
 
   submitPaymentWithCC(token) {
@@ -265,7 +286,12 @@ class InvoiceDetail extends React.Component {
       method: 'GET',
       url: `${process.env.REACT_APP_API_HOST}/transaction/${this.props.match.params.id}`
     })
-    .then(({data}) => this.setState({invoice: data}))
+    .then(({data}) => {
+      console.log('dataaaaaaaaaaaaaa', data)
+    this.setState({
+      invoice: data
+    })
+  })
     .catch(err => console.log(err))
   }
 

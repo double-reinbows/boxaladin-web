@@ -4,8 +4,9 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import * as firebase from 'firebase';
-import './style/css/style.css';
 // import 'bootstrap/dist/css/bootstrap.css';
+
+import './style/css/style.css';
 
 require('dotenv').config()
 

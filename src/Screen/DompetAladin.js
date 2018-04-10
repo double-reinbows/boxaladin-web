@@ -79,8 +79,9 @@ class Dompet extends React.Component {
                             <Input className="TopupKey__dropdown" type="select" name="aladinTopup" onChange={(e) => this.setState({ idKeySelected: e.target.value })}>
                                 <option selected="true" disabled="true" value=''>-- Select --</option>
                                 {this.props.keys.map((data, i) => {
+                                    console.log('aaa', data.price.toLocaleString())
                                     return (
-                                        <option key={i} value={data.id}>{data.keyAmount} Kunci - Rp.{data.price}</option>
+                                        <option key={i} value={data.id}>{data.keyAmount} Kunci - Rp. {data.price.toLocaleString(['ban', 'id'])}</option>
                                     )
                                 })}
                             </Input>

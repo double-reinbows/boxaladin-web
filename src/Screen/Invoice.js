@@ -53,8 +53,8 @@ class Invoice extends React.Component {
                 <th scope="row">{idx+1}</th>
                 <td>{ data.product.productName }</td>
                 <td>{ data.payment ? data.payment.amount : null }</td>
-                <td>{ data.payment? data.payment.status : null }</td>
                 <td>{moment(data.createdAt, moment.ISO_8601).format('MMMM Do YYYY, h:mm:ss a')}</td>
+                <td>{ data.payment? data.payment.status : null }</td>
                 <td>{ data.status === 'PENDING' ? (
                   <Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button>
                 ) : null}</td>

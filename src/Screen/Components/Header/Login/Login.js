@@ -92,7 +92,7 @@ class Login extends Component {
 
           <div className="form-group Login__Form">
             <label>Alamat Email</label>
-            <input name="email" type="email" className="form-control inputz" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Masukkan Email" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
+            <input name="email" type="email" className="form-control inputz" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="asdasdsad Email" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
           </div>
 
           <div className="form-group Login__Form">

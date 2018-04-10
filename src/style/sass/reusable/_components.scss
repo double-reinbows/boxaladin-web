@@ -39,7 +39,7 @@
 @media (min-width: 296px ) and (max-width:767px) {
   .DropdownUser__item{
     top: 180px !important;
-    transform: translate3d(0px, -130px, 0px) !important;
+    // transform: translate3d(0px, -130px, 0px) !important;
   }
 }
 
@@ -53,8 +53,12 @@
 }
 
 .Modalz{
-  margin-top:8%;
   border-radius: 0;
+  position: fixed;
+  top: 15%;
+  left: 20%;
+  width: 60%;
+  z-index: 10;
   border: 5px solid var(--white);
 }
 

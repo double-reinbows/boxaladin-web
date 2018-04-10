@@ -20,8 +20,10 @@ export default  class Footer extends Component <{}> {
                 <img src={logo} alt="logo" className="LogoFooter"/>
               </a>
               <label className="footerz__Top__Left__label">LINE @boxaladin</label>
-              <Button className="footerz__Top__Left__button">Layanan Bantuan</Button>
-            
+              <a href="/layanan">
+                <Button className="footerz__Top__Left__button">Layanan Bantuan</Button>
+              </a>
+
           </div>
 
           <div className="footerz__Top__Right">

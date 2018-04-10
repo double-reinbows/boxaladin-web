@@ -26,7 +26,7 @@ class InsertPhone extends React.Component {
 
     return (
       <div className="InsertPhone">
-        <h1 className="InsertPhone__text">insert your phone number</h1>
+        <h1 className="InsertPhone__text">Masukkan No Handphone Anda</h1>
 
         <Form onSubmit={(e) => this.submitTransaction(e)}>
           <FormGroup>

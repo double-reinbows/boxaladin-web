@@ -12,6 +12,7 @@ import Footer from './Screen/Components/Footer'
 //page non login
 import AboutUs from './Screen/AboutUs'
 import HowItWorks from './Screen/HowItWorks'
+import Layanan from './Screen/Layanan'
 // import Product from './Screen/Product'
 
 //page after login
@@ -69,6 +70,7 @@ class RouteList extends React.Component {
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/howitworks" component={HowItWorks} />
             <Route exact path="/home" component={Home} />
+            <Route exact path='/layanan' component={Layanan} />
 
             <PrivateRoute exact path="/me" component={User} />
             <PrivateRoute exact path="/invoice" component={Invoice} />
