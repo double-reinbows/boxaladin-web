@@ -12,26 +12,26 @@
   width: 100%;
   display: table;
 }
-.carousel{
-  &__container{
-    width: 100%;
-  }
-  &__content{
-    height: 10px;
-  }
-  &__wrapper{
-    height: 450px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-@media (max-width:800px ) {
-  .carousel__wrapper{
-    height: 100%;
-  }
-}
+// .carousel{
+//   &__container{
+//     width: 100%;
+//   }
+//   &__content{
+//     height: 10px;
+//   }
+//   &__wrapper{
+//     height: 450px;
+//     overflow: hidden;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//   }
+// }
+// @media (max-width:800px ) {
+//   .carousel__wrapper{
+//     height: 100%;
+//   }
+// }
 
 
 

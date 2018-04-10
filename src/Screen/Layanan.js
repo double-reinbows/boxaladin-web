@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Container, Row, Col, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Container, Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios'
 
 class Layanan extends Component {
@@ -101,13 +101,13 @@ class Layanan extends Component {
                     <Input className="layanan__input__textarea"  value={this.state.content} onChange={this.handleChangeContent} type="textarea" name="text" placeholder="Tulis Keluhan Anda Disini" />
                   </FormGroup>
                   <label className="alert__dompetAladin">{this.state.notif}</label>
-                  <FormGroup>
+                  {/* <FormGroup>
                     <Label className="layanan__text" for="exampleFile">File</Label>
                     <Input type="file" name="file" id="exampleFile" />
                     <FormText className="layanan__text" color="white">
                       Max Size = 2mb
                     </FormText>
-                  </FormGroup>
+                  </FormGroup> */}
                   
                   <button className="layanan__button">Submit</button>
                 </Form>
