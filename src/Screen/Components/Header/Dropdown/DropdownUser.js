@@ -47,9 +47,11 @@ class DropdownUser extends React.Component {
 
         <DropdownMenu className="DropdownUser__item">
 
-          <DropdownItem disabled="true" className="DropdownUser__inside">
-            Hi, Sobat
+          <a href="/home">
+          <DropdownItem className="DropdownUser__inside">
+            Home
           </DropdownItem>
+          </a>
 
           {/* <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/pulsa">Pulsa</Link>
