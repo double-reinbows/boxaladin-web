@@ -95,23 +95,26 @@ class Signup extends Component {
   //   }
   // }
 
-  handlePhoneNum(e) {
+	handlePhoneNum(e) {
     var num = e.target.value.split('')
     if (num[0] === '0') {
-      num.splice(0, 1, '62')
-      this.setState({[e.target.name]: num.join('')})
+      num.splice(0, 1, '0')
+      this.setState({[e.target.name]: num.join(''), notif:''})
     } else if (num[0] + num[1] + num[2] === '+62') {
-      num.splice(0, 3, '62')
-      this.setState({[e.target.name]: num.join('')})
+      num.splice(0, 3, '0')
+      this.setState({[e.target.name]: num.join(''), notif:''})
     } else if (num[0] + num[1] === '62') {
-      this.setState({[e.target.name]: num.join('')})
+      num.splice(0, 2, '0')
+      this.setState({[e.target.name]: num.join(''), notif:''})
     } else if (num[0] === '8') {
-      this.setState({[e.target.name]: '62' + num.join('')})
+      num.splice(0, 0, '0')
+      this.setState({[e.target.name]: num.join(''), notif:''})
     } else if (num.length === 0) {
-      this.setState({[e.target.name]: num.join('')})
-    }
-    // console.log(e.target.value);
-  }
+      this.setState({[e.target.name]: num.join(''), notif:''})
+    } else {
+			this.setState({notif: 'Format No Hp Salah'})
+		}
+	}
 
   vPassword() {
     /**

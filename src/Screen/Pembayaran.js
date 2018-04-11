@@ -54,12 +54,7 @@ class InvoiceDetail extends React.Component {
       console.log('undefined')
     } else {
       const time = this.state.invoice.createdAt
-      console.log(moment(time, moment.ISO_8601).format('D MMMM YYYY, h:mm:ss a'))
-      const date = moment(time, moment.ISO_8601).format('D MMMM YYYY')
-      const hour = moment(time, moment.ISO_8601).format('h')
-      const minute = moment(time, moment.ISO_8601).format('mm:ss')
-      const filterTime = parseInt(hour, 10) + 6
-      var finalTime = date + (' ') + filterTime + (':') + minute
+      var finalTime = moment(time, moment.ISO_8601).add(6, 'hours').format('D MMMM YYYY, h:mm:ss a')
     }
 
     return (

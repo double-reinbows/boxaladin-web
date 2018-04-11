@@ -34,7 +34,7 @@ class User extends React.Component {
 
 	render() {
 		console.log('State:', this.state);
-		console.log('Props:', this.props);
+		// console.log('Props:', this.props);
 		return (
 			<div className="User">
 				<div className="User__container">
@@ -245,21 +245,24 @@ class User extends React.Component {
 	}
 
 	handlePhoneNum(e) {
-	  var num = e.target.value.split('')
-	  if (num[0] === '0') {
-	    num.splice(0, 1, '62')
-	    this.setState({numberToSend: num.join('')})
-	  } else if (num[0]+num[1]+num[2] === '+62') {
-	    num.splice(0, 3, '62')
-			this.setState({numberToSend: num.join('')})
-	  } else if (num[0]+num[1] === '62') {
-			this.setState({numberToSend: num.join('')})
-		} else if (num[0] === '8') {
-			this.setState({numberToSend: '62' + num.join('')})
-		} else if (num.length === 0) {
-			this.setState({numberToSend: num.join('')})
+    var num = e.target.value.split('')
+    if (num[0] === '0') {
+      num.splice(0, 1, '0')
+      this.setState({[e.target.name]: num.join(''), notif:''})
+    } else if (num[0] + num[1] + num[2] === '+62') {
+      num.splice(0, 3, '0')
+      this.setState({[e.target.name]: num.join(''), notif:''})
+    } else if (num[0] + num[1] === '62') {
+      num.splice(0, 2, '0')
+      this.setState({[e.target.name]: num.join(''), notif:''})
+    } else if (num[0] === '8') {
+      num.splice(0, 0, '0')
+      this.setState({[e.target.name]: num.join(''), notif:''})
+    } else if (num.length === 0) {
+      this.setState({[e.target.name]: num.join(''), notif:''})
+    } else {
+			this.setState({notif: 'Format No Hp Salah'})
 		}
-		// console.log(e.target.value);
 	}
 //Modal for verify number
 	showPhoneModal() {
@@ -420,11 +423,6 @@ class User extends React.Component {
 		e.preventDefault()
 		// alert(this.state.numberToSend)
 
-		if (this.state.numberToSend[0] + this.state.numberToSend[1] !== '62') {
-			this.setState({
-        notif: "Format No Hp Salah",
-      })
-		} else {
 			axios({
 				method: 'POST',
 				url: `${process.env.REACT_APP_API_HOST}/phonenumber`,
@@ -450,7 +448,7 @@ class User extends React.Component {
 				}
 			})
 			.catch(err => console.log(err))
-		}
+		
 	}
 
 	addPhone() {
