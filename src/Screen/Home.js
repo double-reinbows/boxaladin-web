@@ -22,11 +22,7 @@ class Home extends Component {
     console.log('Props:', this.props);
     return (
       <div>
-        // <div className="carousel__container">
-        //   <div className="carousel__wrapper">
             <Carousel />
-        //   </div>
-        // </div>
         <TabsHome />
         <BannerText2 />
         <FAQ />
