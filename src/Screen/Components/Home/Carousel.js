@@ -68,7 +68,7 @@ class Example extends Component {
     ))
 
     return (
-      <Carousel
+      <Carousel className='carouselHome'
         activeIndex={activeIndex}
         next={this.next}
         previous={this.previous}
