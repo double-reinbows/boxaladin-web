@@ -2,17 +2,17 @@ import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import {
-  TabContent, 
-  TabPane, 
-  Nav, 
-  NavItem, 
+  TabContent,
+  TabPane,
+  Nav,
+  NavItem,
   NavLink,
-  Button, 
-  Form, 
-  FormGroup, 
+  Button,
+  Form,
+  FormGroup,
   Input,
-  Modal, 
-  ModalHeader, 
+  Modal,
+  ModalHeader,
   ModalBody
 } from 'reactstrap';
 
@@ -22,6 +22,7 @@ import Xendit from 'xendit-js-node'
 import MANDIRI from '../asset/Logo/MANDIRI.svg'
 import BNI from '../asset/Logo/BNI.svg'
 import BRI from '../asset/Logo/BRI.svg'
+import FormatRupiah from '../utils/FormatRupiah'
 
 class InvoiceDetail extends React.Component {
   constructor(props) {
@@ -52,10 +53,10 @@ class InvoiceDetail extends React.Component {
           <h1 className="pembayaran__title">Menunggu pembayaran</h1>
           {this.state.invoice ? (
               <div>
-                <h1 className="pembayaran__title">Jumlah yang harus di bayarkan {this.state.invoice.payment.amount}</h1>
+                <h1 className="pembayaran__title">Jumlah yang harus di bayarkan {FormatRupiah(this.state.invoice.payment.amount)}</h1>
 
                 <h5 className="pembayaran__title">Silahkan melakukan pembayaran ke salah satu virtual bank account di bawah ini:</h5>
-                
+
                 <div className="bankz">
                   <img src={MANDIRI} className="bankz__icon" alt="Logo" />
                     {this.state.invoice.payment.availableBanks.map((bank, idx) => {
@@ -91,7 +92,7 @@ class InvoiceDetail extends React.Component {
 
               </div>
 
-              
+
             ) : null
           }
         </div>
