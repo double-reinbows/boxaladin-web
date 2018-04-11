@@ -41,8 +41,8 @@ class Invoice extends React.Component {
             <th>No.</th>
             <th>Barang</th>
             <th>Nominal Transfer</th>
-            <th>Tanggal</th>
             <th>Status</th>
+            <th>Tanggal</th>
             <th></th>
           </tr>
         </thead>

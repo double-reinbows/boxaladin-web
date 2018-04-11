@@ -8,6 +8,7 @@ import Coin from '../../src/asset/Game/coin.svg'
 import { getUser } from '../actions/userAction'
 import { getUserWins } from '../actions/winAction'
 import { getKeys } from '../actions/keyAction'
+import FormatRupiah from '../utils/FormatRupiah'
 class Dompet extends React.Component {
     constructor(props) {
         super(props)
