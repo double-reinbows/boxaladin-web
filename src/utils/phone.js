@@ -174,6 +174,61 @@ module.exports = {
         default:
           return '';
       }
+    } else if (phone[0] === '8') {
+      switch (phone.slice(0, 3)) {
+        case '812':
+        case '813':
+        case '852':
+        case '853':
+        case '821':
+        case '823':
+        case '822':
+        case '851':
+          return 'TELKOMSEL';
+      
+        case '814':
+        case '815':
+        case '816':
+        case '855':
+        case '856':
+        case '857':
+        case '858':
+          return 'INDOSAT';
+          
+        case '817':
+        case '818':
+        case '819':
+        case '859':
+        case '878':
+        case '877':
+          return 'XL';
+          
+        case '838':
+        case '837':
+        case '831':
+        case '832':
+          return 'AXIS';
+          
+        case '881':
+        case '882':
+        case '883':
+        case '884':
+        case '885':
+        case '886':
+        case '887':
+        case '888':
+          return 'SMARTFREN';
+          
+        case '896':
+        case '897':
+        case '898':
+        case '899':
+        case '895':
+          return 'TRI';
+        
+        default:
+          return '';
+      }
     }
   },
 

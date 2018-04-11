@@ -41,8 +41,8 @@ class Invoice extends React.Component {
             <th>No.</th>
             <th>Barang</th>
             <th>Nominal Transfer</th>
-            <th>Status</th>
             <th>Tanggal</th>
+            <th>Status</th>
             <th></th>
           </tr>
         </thead>
@@ -79,7 +79,9 @@ class Invoice extends React.Component {
                     <td>{ data.payment ? data.payment.amount : null }</td>
                     <td>{moment(data.createdAt, moment.ISO_8601).format('MMMM Do YYYY, h:mm:ss a')}</td>
                     <td>{ data.payment? data.payment.status : null }</td>
-                    <td>Expired</td>
+                    <td>{ data.status === 'PENDING'  ? (
+                  <label>Expired</label>
+                ) : null}</td>
                     
                   </tr>
                 )

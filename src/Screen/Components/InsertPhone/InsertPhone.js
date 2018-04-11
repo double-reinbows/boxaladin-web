@@ -21,8 +21,8 @@ class InsertPhone extends React.Component {
   }
 
   render() {
-    console.log('InsertPhone Props:', this.props);
-    console.log('InsertPhone State:', this.state);
+    // console.log('InsertPhone Props:', this.props);
+    console.log('InsertPhone State:', this.state.phone);
 
     return (
       <div className="InsertPhone">
@@ -32,7 +32,8 @@ class InsertPhone extends React.Component {
           <FormGroup>
             <Label for="selectNumber"></Label>
 
-						<Input type="tel" value={ this.state.phone } onChange={ (e) => this.setState({phone: e.target.value}) } />
+						<Input type="tel" value={ this.state.phone } onChange={ (e) => this.setState({
+              phone: e.target.value}) } />
           </FormGroup>
 
           <Button type="submit" color="primary" size="lg" block>Confirm</Button>
@@ -56,6 +57,26 @@ class InsertPhone extends React.Component {
     }
   }
 
+  axiosTransaction(){
+    axios({
+      method: 'POST',
+      url: `${process.env.REACT_APP_API_HOST}/payment`,
+      data: {
+        amount: this.state.productUnlocked.aladinPrice,
+        productId: this.state.productUnlocked.id,
+        phoneNumber: this.state.phone
+      },
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
+    .then(({data}) => {
+      console.log('Data dari create transaction:', data)
+      this.props.history.push(`/payment/${data.id}`)
+    })
+    .catch(err => console.log(err))
+  }
+
   submitTransaction(e) {
     e.preventDefault()
     console.log('submit now!')
@@ -63,24 +84,32 @@ class InsertPhone extends React.Component {
     if (validateProvider(detectProvider(this.state.phone), this.state.productUnlocked.brand) === false) {
       return alert('Nomor HP tidak sesuai dengan Provider.')
     } else {
-      
-      axios({
-        method: 'POST',
-        url: `${process.env.REACT_APP_API_HOST}/payment`,
-        data: {
-          amount: this.state.productUnlocked.aladinPrice,
-          productId: this.state.productUnlocked.id,
-          phoneNumber: this.state.phone
+      var num = this.state.phone.split('')
+      if (num[0] === '0') {
+        num.splice(0, 1, '0')
+        this.setState({
+          phone: num.join('')
         },
-        headers: {
-          token: localStorage.getItem('token')
-        }
-      })
-      .then(({data}) => {
-        console.log('Data dari create transaction:', data)
-        this.props.history.push(`/payment/${data.id}`)
-      })
-      .catch(err => console.log(err))
+        () => {this.axiosTransaction()})
+      } else if (num[0] + num[1] + num[2] === '+62') {
+        num.splice(0, 3, '0')
+        this.setState({
+          phone: num.join('')
+        },
+        () => {this.axiosTransaction()})
+      } else if (num[0] + num[1] === '62') {
+        num.splice(0, 2, '0')
+        this.setState({
+          phone: num.join('')
+        },
+        () => {this.axiosTransaction()})
+      } else if (num[0] === '8') {
+        num.splice(0, 0, '0')
+        this.setState({
+          phone: num.join('')
+        },
+        () => {this.axiosTransaction()})
+      }
     }
   }
 
