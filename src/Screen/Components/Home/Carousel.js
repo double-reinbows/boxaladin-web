@@ -9,9 +9,9 @@ const items = [
   {
     src: 'https://s3-ap-southeast-1.amazonaws.com/iconpulsa/Iklan.jpg',
   },
-  {
-    src: 'http://lh3.ggpht.com/-asY4HtC0iCk/U0qWewb1zRI/AAAAAAAAATw/zPAzDXNY_FY/produk-telkomsel-sangat-menjengkelkan-%25255B5%25255D.jpg?imgmax=800',
-  },
+//   {
+    // src: 'http://lh3.ggpht.com/-asY4HtC0iCk/U0qWewb1zRI/AAAAAAAAATw/zPAzDXNY_FY/produk-telkomsel-sangat-menjengkelkan-%25255B5%25255D.jpg?imgmax=800',
+//   },
   {
     src: 'https://s3-ap-southeast-1.amazonaws.com/iconpulsa/Iklan+(1).jpg',
   }
