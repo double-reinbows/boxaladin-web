@@ -63,7 +63,7 @@ class Invoice extends React.Component {
               <tr key={idx}>
                 <th scope="row">{idx+1}</th>
                 <td>{ data.product.productName }</td>
-                <td>{ data.payment ? data.payment.amount : null }</td>
+                <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
                 <td>{moment(data.createdAt, moment.ISO_8601).format('MMMM Do YYYY, h:mm:ss a')}</td>
                 <td>{ data.payment? data.payment.status : null }</td>
                 <td>{ data.status === 'PENDING'  ? (
@@ -76,7 +76,7 @@ class Invoice extends React.Component {
                   <tr key={idx}>
                     <th scope="row">{idx+1}</th>
                     <td>{ data.product.productName }</td>
-                    <td>{ data.payment ? data.payment.amount : null }</td>
+                    <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
                     <td>{moment(data.createdAt, moment.ISO_8601).format('MMMM Do YYYY, h:mm:ss a')}</td>
                     <td>{ data.payment? data.payment.status : null }</td>
                     <td>{ data.status === 'PENDING'  ? (
@@ -87,6 +87,7 @@ class Invoice extends React.Component {
                 )
               }
             }
+            return null
           })}
         </tbody>
       </Table>

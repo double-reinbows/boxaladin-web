@@ -7,13 +7,12 @@ import {connect} from 'react-redux'
 //component page
 // import NavBar from './Screen/Components/NavBar'
 import Header from './Screen/Components/Header/Header'
-import Footer from './Screen/Components/Footer'
+import FooterBot from './Screen/Components/Footer/FooterBot'
 
 //page non login
 import AboutUs from './Screen/AboutUs'
 import HowItWorks from './Screen/HowItWorks'
 import Layanan from './Screen/Layanan'
-// import Product from './Screen/Product'
 
 //page after login
 import Home from './Screen/Home'
@@ -61,38 +60,43 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 class RouteList extends React.Component {
   render() {
     return (
-      <div>
+      <div className="mainContainer">
         <Router>
           <div>
             <Header />
+              <div classname = "bodyContainer">
+                <Route exact path="/" component={Home} />
+                <Route exact path="/aboutus" component={AboutUs} />
+                <Route exact path="/howitworks" component={HowItWorks} />
+                <Route exact path="/home" component={Home} />
+                <Route exact path='/layanan' component={Layanan} />
 
-            <Route exact path="/" component={Home} />
-            <Route exact path="/aboutus" component={AboutUs} />
-            <Route exact path="/howitworks" component={HowItWorks} />
-            <Route exact path="/home" component={Home} />
-            <Route exact path='/layanan' component={Layanan} />
+                <PrivateRoute exact path="/me" component={User} />
+                <PrivateRoute exact path="/invoice" component={Invoice} />
+                <PrivateRoute exact path="/payment/:id" component={Pembayaran} />
+                <PrivateRoute exact path="/topup" component={TopupKey} />
+                <PrivateRoute exact path="/topupinvoice" component={TopupInvoice} />
+                <PrivateRoute exact path="/topupinvoice/:id" component={TopupPayment} />
+                <PrivateRoute exact path="/bidding" component={Bidding} />
+                <PrivateRoute exact path="/insertphone" component={InsertPhone} />
+                {/* <PrivateRoute exact path="/pulsa" component={Pulsa} /> */}
+                <PrivateRoute exact path="/game" component={ Game } />
+                <PrivateRoute exact path="/dompetaladin" component={DompetAladin} />
+                <PrivateRoute exact path="/gameresult" component={ GameResult } />
+                <PrivateRoute exact path="/claimfreepulsa" component={ ClaimFreePulsa } />
+                {/* <PrivateRoute exact path="/claimreward" component={ ClaimReward } /> */}
 
-            <PrivateRoute exact path="/me" component={User} />
-            <PrivateRoute exact path="/invoice" component={Invoice} />
-            <PrivateRoute exact path="/payment/:id" component={Pembayaran} />
-            <PrivateRoute exact path="/topup" component={TopupKey} />
-            <PrivateRoute exact path="/topupinvoice" component={TopupInvoice} />
-            <PrivateRoute exact path="/topupinvoice/:id" component={TopupPayment} />
-            <PrivateRoute exact path="/bidding" component={Bidding} />
-            <PrivateRoute exact path="/insertphone" component={InsertPhone} />
-            {/* <PrivateRoute exact path="/pulsa" component={Pulsa} /> */}
-            <PrivateRoute exact path="/game" component={ Game } />
-            <PrivateRoute exact path="/dompetaladin" component={DompetAladin} />
-            <PrivateRoute exact path="/gameresult" component={ GameResult } />
-            <PrivateRoute exact path="/claimfreepulsa" component={ ClaimFreePulsa } />
-            {/* <PrivateRoute exact path="/claimreward" component={ ClaimReward } /> */}
+                <Route exact path="/emailVerification" component={EmailVerificationDone} />
+                {/* <Route exact path="/product" component={Product} /> */}
+                <Route exact path="/requestresetpassword" component={RequestResetPassword} />
+                <Route exact path="/resetpassword" component={ResetPassword} />
+              </div>
+              <div className="phantom">
 
-            <Route exact path="/emailVerification" component={EmailVerificationDone} />
-            {/* <Route exact path="/product" component={Product} /> */}
-            <Route exact path="/requestresetpassword" component={RequestResetPassword} />
-            <Route exact path="/resetpassword" component={ResetPassword} />
-
-            <Footer/>
+              </div>
+            <div className = "footerContainer">
+              <FooterBot/>
+            </div>
           </div>
         </Router>
       </div>

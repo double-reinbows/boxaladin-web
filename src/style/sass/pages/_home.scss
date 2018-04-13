@@ -73,12 +73,7 @@
 // for component TabsPane1 at TabsHome
   .TabsPane1{
     margin: 0rem;
-    background-color: var;
-
-    &:hover{
-      color: black ;
-      background-color: white;
-    }
+    background-color: white;
 
     &__text{
       text-align: center ;
@@ -102,14 +97,17 @@
     }
 
     &__selectedProduct{
+      margin-bottom: 0;
       text-align: center;
       padding: 20px;
       color: var(--color-grey-5);
+      background-color: white;
     }
 
     &__button{
       color: var(--color-yellow-1);
       background-color: var(--color-grey-5);
+
       width: 100%;
       padding: 20px;
       font-family: Raleway;

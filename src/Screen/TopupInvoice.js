@@ -5,6 +5,8 @@ import {
   Button
 } from 'reactstrap'
 
+import moment from 'moment'
+
 import { getUserPendingTopupTransactions, getUserTopupTransactions } from '../actions/topupAction'
 
 class TopupInvoice extends React.Component {
@@ -45,17 +47,46 @@ class TopupInvoice extends React.Component {
         </thead>
         <tbody>
           {this.props.userTopupTransactions.map((data, idx) => {
-            return (
+            if (data.createdAt === ''){
+              console.log('kosong')
+            } else if ( data.createdAt === undefined){
+              console.log('undefined')
+            } else {
+              const time = moment()
+              const now = time.valueOf()
+
+              const limitTime = moment(data.createdAt, moment.ISO_8601).add(6, 'hours')
+              const limitTimeFinal = limitTime.valueOf()
+              console.log(now)
+              console.log(limitTimeFinal)
+              if (now <= limitTimeFinal) {
+              return (
               <tr key={idx}>
                 <th scope="row">{idx+1}</th>
                 <td>{data.key.keyAmount}</td>
-                <td>{data.payment.amount}</td>
-                <td>{data.payment.status}</td>
-                <td>{data.payment.status === 'PENDING' ? (
-                  <Button color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button>
+                <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
+                <td>{ data.payment? data.payment.status : null }</td>
+                <td>{ data.payment.status === 'PENDING'  ? (
+                  <Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button>
                 ) : null}</td>
               </tr>
             )
+              } else {
+                return (
+                  <tr key={idx}>
+                    <th scope="row">{idx+1}</th>
+                    <td>{data.key.keyAmount}</td>
+                    <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
+                    <td>{ data.payment? data.payment.status : null }</td>
+                    <td>{ data.payment.status === 'PENDING'  ? (
+                  <label>Expired</label>
+                ) : null}</td>
+                    
+                  </tr>
+                )
+              }
+            }
+            return null
           })}
         </tbody>
       </Table>

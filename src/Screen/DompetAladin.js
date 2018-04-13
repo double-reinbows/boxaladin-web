@@ -8,7 +8,6 @@ import Coin from '../../src/asset/Game/coin.svg'
 import { getUser } from '../actions/userAction'
 import { getUserWins } from '../actions/winAction'
 import { getKeys } from '../actions/keyAction'
-import FormatRupiah from '../utils/FormatRupiah'
 class Dompet extends React.Component {
     constructor(props) {
         super(props)
@@ -80,7 +79,6 @@ class Dompet extends React.Component {
                             <Input className="TopupKey__dropdown" type="select" name="aladinTopup" onChange={(e) => this.setState({ idKeySelected: e.target.value })}>
                                 <option selected="true" disabled="true" value=''>-- Select --</option>
                                 {this.props.keys.map((data, i) => {
-                                    console.log('aaa', data.price.toLocaleString())
                                     return (
                                         <option key={i} value={data.id}>{data.keyAmount} Kunci - Rp. {data.price.toLocaleString(['ban', 'id'])}</option>
                                     )
@@ -120,9 +118,7 @@ class Dompet extends React.Component {
                 }
             })
                 .then(({ data }) => {
-
                     console.log('Response.data:', data)
-
                     if (data.msg === 'not verified user') {
                         return this.setState({
                             notif: "Silahkan Verifikasi Email Untuk Membeli Kunci.",

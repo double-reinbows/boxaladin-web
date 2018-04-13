@@ -99,18 +99,18 @@ class Signup extends Component {
     var num = e.target.value.split('')
     if (num[0] === '0') {
       num.splice(0, 1, '0')
-      this.setState({[e.target.name]: num.join(''), notif:''})
+      this.setState({[e.target.name]: num.join('')})
     } else if (num[0] + num[1] + num[2] === '+62') {
       num.splice(0, 3, '0')
-      this.setState({[e.target.name]: num.join(''), notif:''})
+      this.setState({[e.target.name]: num.join('')})
     } else if (num[0] + num[1] === '62') {
       num.splice(0, 2, '0')
-      this.setState({[e.target.name]: num.join(''), notif:''})
+      this.setState({[e.target.name]: num.join('')})
     } else if (num[0] === '8') {
       num.splice(0, 0, '0')
-      this.setState({[e.target.name]: num.join(''), notif:''})
+      this.setState({[e.target.name]: num.join('')})
     } else if (num.length === 0) {
-      this.setState({[e.target.name]: num.join(''), notif:''})
+      this.setState({[e.target.name]: num.join('')})
     } else {
 			this.setState({notif: 'Format No Hp Salah'})
 		}
@@ -270,7 +270,18 @@ class Signup extends Component {
   }
 
   signUpInputToLowerHandler(e) {
-    this.setState({ [e.target.name]: e.target.value.trim().toLowerCase() })
+    var email = e.target.value
+    var user = email.split('@')[0]
+    var provider = email.split('@')[1]
+    
+    if (provider === 'gmail.com') {
+      let userWithoutDot = user.split('.').join('')
+      var result = userWithoutDot + '@gmail.com'
+    } 
+    // else {
+    //   var result = e.target.value
+    // } 
+    this.setState({ email : result.trim().toLowerCase() })
   }
 
   render() {

@@ -39,9 +39,9 @@ class Game extends React.Component {
 			slot2_bawah: 0,
 			slot3_bawah: 0,
 
-			speed1: 100,
-			speed2: 70,
-			speed3: 50,
+			speed1: 490,
+			speed2: 510,
+			speed3: 530,
 
 			itemsdummy1: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 			itemsdummy2: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
@@ -189,7 +189,7 @@ class Game extends React.Component {
 								</label>
 
 								<label className="gameModal__Container__text">
-									berupa Rp.{this.state.pulsaAmount} pulsa gratis
+									berupa Rp.{this.state.pulsaAmount.toLocaleString(['ban', 'id'])} pulsa gratis
 								</label>
 							</div>
 					</Modal>

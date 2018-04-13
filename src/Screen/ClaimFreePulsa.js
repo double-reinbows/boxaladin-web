@@ -115,25 +115,54 @@ class ClaimFreePulsa extends React.Component {
       return alert('Nomor HP tidak sesuai dengan Provider.')
     } else {
 
-      axios({
-        method: 'POST',
-        url: `${process.env.REACT_APP_API_HOST}/win/claimfreepulsa`,
-        headers: {
-          token: localStorage.getItem('token')
+      var num = this.state.phone.split('')
+      if (num[0] === '0') {
+        num.splice(0, 1, '0')
+        this.setState({
+          phone: num.join('')
         },
-        data: {
-          productId: this.state.productId,
-          phone: this.state.phone
-        }
-      })
-      .then(({data}) => {
-        console.log('DATA RESPONSE CLAIM FREE PULSA:', data)
-        this.props.history.push('/game')
-      })
-      .catch(err => {
-        console.log('ERROR CLAIM FREE PULSA:', err)
-      })
+        () => {this.axiosTransaction()})
+      } else if (num[0] + num[1] + num[2] === '+62') {
+        num.splice(0, 3, '0')
+        this.setState({
+          phone: num.join('')
+        },
+        () => {this.axiosTransaction()})
+      } else if (num[0] + num[1] === '62') {
+        num.splice(0, 2, '0')
+        this.setState({
+          phone: num.join('')
+        },
+        () => {this.axiosTransaction()})
+      } else if (num[0] === '8') {
+        num.splice(0, 0, '0')
+        this.setState({
+          phone: num.join('')
+        },
+        () => {this.axiosTransaction()})
+      }
     }
+  }
+
+  axiosTransaction(){
+    axios({
+      method: 'POST',
+      url: `${process.env.REACT_APP_API_HOST}/win/claimfreepulsa`,
+      headers: {
+        token: localStorage.getItem('token')
+      },
+      data: {
+        productId: this.state.productId,
+        phone: this.state.phone
+      }
+    })
+    .then(({data}) => {
+      console.log('DATA RESPONSE CLAIM FREE PULSA:', data)
+      this.props.history.push('/game')
+    })
+    .catch(err => {
+      console.log('ERROR CLAIM FREE PULSA:', err)
+    })
   }
 
 }

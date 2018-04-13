@@ -34,7 +34,7 @@ class ModalLogin extends React.Component {
           </div>
         </Button>
         <Modal ariaHideApp={false} isOpen={this.props.modalLogin} toggle={this.toggle} className="{this.props.className} modalz">
-          <div className="modal-content">
+          <div className="modalContent">
           <ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>
             <div className="modal-body">
             <Login />

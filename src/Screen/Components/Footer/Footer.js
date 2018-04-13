@@ -3,11 +3,11 @@ import React, {Component} from 'react';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
-import logo from "../../asset/Logo/LogoBig.svg"
-import facebook from "../../asset/SocialMedia/facebook.svg"
-import twitter from "../../asset/SocialMedia/twitter.svg"
-import instagram from "../../asset/SocialMedia/instagram.svg"
-import youtube from "../../asset/SocialMedia/youtube.svg"
+import logo from "../../../asset/Logo/LogoBig.svg"
+import facebook from "../../../asset/SocialMedia/facebook.svg"
+import twitter from "../../../asset/SocialMedia/twitter.svg"
+import instagram from "../../../asset/SocialMedia/instagram.svg"
+import youtube from "../../../asset/SocialMedia/youtube.svg"
 
 
 export default  class Footer extends Component <{}> {
@@ -72,14 +72,6 @@ export default  class Footer extends Component <{}> {
 
         </div>
 
-        <div className="footerz__Bot">
-          <div className="footerz__Bot__labelTop">
-            <label className="footerz__Bot__label">Dilindungi oleh Hak Cipta dan berbadan hukum resmi.</label>
-          </div>
-          <div className="footerz__Bot__labelBot">
-            <label className="footerz__Bot__label">Est.2016 PT BOX ALADIN ASIAPASIFIC</label>
-          </div>
-        </div>
 
 
       </div>

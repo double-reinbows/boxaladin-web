@@ -9,6 +9,7 @@ import Carousel from './Components/Home/Carousel'
 import BannerText2 from './Components/Home/BannerText2'
 import FAQ from './Components/Home/Faq'
 import TabsHome from './Components/Home/TabsHome'
+import Footer from './Components/Footer/Footer'
 
 
 class Home extends Component {
@@ -26,6 +27,7 @@ class Home extends Component {
         <TabsHome />
         <BannerText2 />
         <FAQ />
+        <Footer/>
       </div>
     )
   }

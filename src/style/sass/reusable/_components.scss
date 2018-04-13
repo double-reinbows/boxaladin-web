@@ -68,7 +68,7 @@
 //---------------------
 
 /* Modal Content */
-.modal-content {
+.modalContent {
   position: relative;
   margin: auto;
   padding: 0;
@@ -110,12 +110,12 @@
 //----------------------
 
 @media (min-width: 767px ) {
-  .modal-content{
+  .modalContent{
     font-size: 14px;
   }
 }
 @media (min-width: 200px ) and (max-width:766px ) {
-  .modal-content{
+  .modalContent{
     font-size: 14px;
     width: 80%
   }

@@ -248,18 +248,18 @@ class User extends React.Component {
     var num = e.target.value.split('')
     if (num[0] === '0') {
       num.splice(0, 1, '0')
-      this.setState({[e.target.name]: num.join(''), notif:''})
+      this.setState({[e.target.name]: num.join('')})
     } else if (num[0] + num[1] + num[2] === '+62') {
       num.splice(0, 3, '0')
-      this.setState({[e.target.name]: num.join(''), notif:''})
+      this.setState({[e.target.name]: num.join('')})
     } else if (num[0] + num[1] === '62') {
       num.splice(0, 2, '0')
-      this.setState({[e.target.name]: num.join(''), notif:''})
+      this.setState({[e.target.name]: num.join('')})
     } else if (num[0] === '8') {
       num.splice(0, 0, '0')
-      this.setState({[e.target.name]: num.join(''), notif:''})
+      this.setState({[e.target.name]: num.join('')})
     } else if (num.length === 0) {
-      this.setState({[e.target.name]: num.join(''), notif:''})
+      this.setState({[e.target.name]: num.join('')})
     } else {
 			this.setState({notif: 'Format No Hp Salah'})
 		}

@@ -26,19 +26,10 @@ body {
     font-weight: 400;
     line-height: 1.6;
     color: var(--color-grey-dark-2);
-
+    background-color: #3E3E3E;
     min-height: 100vh;
     
 }
-
-@media(max-width:767px) {
-    body {
-        position:fixed !important;
-        overflow:auto !important;
-        height:100% !important;
-    }
-}
-// html,body{ -webkit-overflow-scrolling : touch !important; overflow: auto !important; height: 100% !important; }
 
 ////////////////////////////////////////
 // LOGO

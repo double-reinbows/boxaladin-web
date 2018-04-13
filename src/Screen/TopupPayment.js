@@ -16,6 +16,7 @@ import {
   ModalBody,
 } from 'reactstrap';
 
+import moment from 'moment'
 import classnames from 'classnames';
 import Xendit from 'xendit-js-node'
 
@@ -46,15 +47,25 @@ class TopupPayment extends React.Component {
     console.log('Props:', this.props);
     console.log('State:', this.state);
 
+    if (this.state.invoice === null){
+      console.log('kosong')
+    } else if ( this.state.invoice === undefined){
+      console.log('undefined')
+    } else {
+      const time = this.state.invoice.createdAt
+      var finalTime = moment(time, moment.ISO_8601).add(6, 'hours').format('D MMMM YYYY, h:mm:ss a')
+    }
+
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
 					<h1 className="pembayaran__title">Menunggu pembayaran Topup Aladin Keys</h1>
           {this.state.invoice ? (
               <div>
-                <h1 className="pembayaran__title">Jumlah yang harus di bayarkan {this.state.invoice.payment.amount}</h1>
+                <h1 className="pembayaran__title">Jumlah yang harus di bayarkan Rp {this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}</h1>
+                <h2 className="pembayaran__title">Selesaikan Pembayaran Sebelum {finalTime}</h2>
 
-                <h5>Silahkan melakukan pembayaran ke salah satu virtual bank account di bawah ini:</h5>
+                <h5 className="pembayaran__title">Silahkan melakukan pembayaran ke salah satu virtual bank account di bawah ini:</h5>
                 
                 <div className="bankz">
                   <img src={MANDIRI} className="bankz__icon" alt="Logo" />
@@ -98,6 +109,11 @@ class TopupPayment extends React.Component {
 
   componentDidMount() {
     this.getInvoiceById()
+    this.gettime()
+  }
+
+  gettime(){
+
   }
 
   submitPaymentWithCC(token) {

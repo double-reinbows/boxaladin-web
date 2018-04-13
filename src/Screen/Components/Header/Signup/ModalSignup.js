@@ -39,7 +39,7 @@ class ModalSignup extends React.Component {
         </Modal> */}
 
         <Modal ariaHideApp={false} isOpen={this.props.modalRegister} toggle={this.toggle} className="{this.props.className} modalz">
-          <div className="modal-content">
+          <div className="modalContent">
           <ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>
             <div className="modal-body">
             <Signup />

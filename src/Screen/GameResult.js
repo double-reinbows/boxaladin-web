@@ -47,7 +47,7 @@ class GameResult extends React.Component {
               <tr key={idx}>
                 <th scope="row">{idx+1}</th>
                 {/* <td>{data.gamerule.star}</td> */}
-                <td>{data.gamerule.pulsaAmount}</td>
+                <td>{data.gamerule.pulsaAmount.toLocaleString(['ban', 'id'])}</td>
                 <td>{moment(data.createdAt, moment.ISO_8601).format('MMMM Do YYYY, h:mm:ss a')}</td>
               </tr>
             )
