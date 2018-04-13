@@ -23,7 +23,7 @@ import Xendit from 'xendit-js-node'
 import MANDIRI from '../asset/Logo/MANDIRI.svg'
 import BNI from '../asset/Logo/BNI.svg'
 import BRI from '../asset/Logo/BRI.svg'
-import FormatRupiah from '../utils/FormatRupiah'
+// import FormatRupiah from '../utils/FormatRupiah'
 
 class InvoiceDetail extends React.Component {
   constructor(props) {

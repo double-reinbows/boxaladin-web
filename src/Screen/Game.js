@@ -39,9 +39,9 @@ class Game extends React.Component {
 			slot2_bawah: 0,
 			slot3_bawah: 0,
 
-			speed1: 100,
-			speed2: 70,
-			speed3: 50,
+			speed1: 30,
+			speed2: 20,
+			speed3: 15,
 
 			itemsdummy1: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
 			itemsdummy2: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'boxaladin'],
@@ -53,7 +53,9 @@ class Game extends React.Component {
 			key: null,
 			pulsaAmount: 0,
 			notif: '',
-			winResult: null
+			winResult: null,
+			gameCount: 1,
+			mustWin: false
 		}
 
 		this.toggle = this.toggle.bind(this)
@@ -123,7 +125,7 @@ class Game extends React.Component {
 						</div> */}
 						</div>
 					</div>
-					
+
 				</div>
 
 				<div className="game__prize">
@@ -175,7 +177,7 @@ class Game extends React.Component {
 					<Modal isOpen={this.state.modalWin} className="gameModal">
 						<ModalHeader toggle={this.toggle} className="gameModal__Top"></ModalHeader>
 							<div className="gameModal__Container">
-								
+
 								<div className="gameModal__Container__item">
 									<img className="gameModal__icon" src={Star} alt="Star" />
 								</div>
@@ -185,7 +187,7 @@ class Game extends React.Component {
 								</label>
 
 								<label className="gameModal__Container__text">
-									anda mendapatkan hadiah 
+									anda mendapatkan hadiah
 								</label>
 
 								<label className="gameModal__Container__text">
@@ -202,8 +204,32 @@ class Game extends React.Component {
 
 	componentDidMount() {
 		this.props.getUser()
+		this.getGameCount()
 	}
-	// 
+	//
+
+	async getGameCount() {
+		axios({
+			method: 'GET',
+			url: `${process.env.REACT_APP_API_HOST}/lose`
+		})
+		.then( async ({data}) => {
+			await this.setState({gameCount: data[0].count})
+		})
+		.catch(err => console.log(err))
+	}
+
+	// increaseGameCount() {
+	// 	axios({
+	// 		method: 'GET',
+	// 		url: `${process.env.REACT_APP_API_HOST}/lose/increase`
+	// 	})
+	// 	.then(({data}) => {
+	// 		this.getGameCount()
+	// 		return console.log(data)
+	// 	})
+	// 	.catch(err => console.log(err))
+	// }
 
 	upCoin(e) {
 		e.preventDefault()
@@ -245,7 +271,7 @@ class Game extends React.Component {
 				document.getElementById('upcoin').value = ''
 				this.props.getUser()
 				return console.log(response.data)
-			
+
 			})
 			.catch(err => console.log(err))
 
@@ -263,7 +289,7 @@ class Game extends React.Component {
 			this.setState({
 				modalLose: true,
 			})
-			return			
+			return
 		} else {
 
 			console.log('Anda menang dengan star =', result)
@@ -299,7 +325,7 @@ class Game extends React.Component {
 	}
 
 	toggle() {
-		this.setState({ 
+		this.setState({
 			pulsaAmount: 0,
 			modalWin: false,
 		})
@@ -312,7 +338,7 @@ class Game extends React.Component {
 		switch (this.state.slot1.toString() + this.state.slot2.toString() + this.state.slot3.toString()) {
 			case '666':
 				return 5
-			
+
 			case '000':
 				return 4
 
@@ -324,7 +350,7 @@ class Game extends React.Component {
 
 			case '065':
 				return 1
-		
+
 			default:
 				return 0
 		}
@@ -336,12 +362,19 @@ class Game extends React.Component {
 		}
 	}
 
-	start() {
+	async start() {
+		// this.increaseGameCount()
+		this.getGameCount()
+
+		if (((this.state.gameCount-1) >= 20) && ((this.state.gameCount-1) % 20 === 0)) {
+			await this.setState({mustWin: true})
+		}
+
 		if (this.props.userInfo.coin <= 0) {
 			this.setState({
 				notif: "Maaf Anda tidak punya coin untuk bermain game."
       })
-		
+
 		} else {
 
 			axios({
@@ -366,28 +399,54 @@ class Game extends React.Component {
 			this.start2()
 			this.start3()
 
-			this.setState({ 
+			this.setState({
 				isRunning: true,
-				notif: '', 
+				notif: '',
 				modalLose: false
 			})
 
 		}
 	}
 
-	stop() {
+	async stop() {
 		this.stop1()
 		this.stop2()
 		this.stop3()
 		console.log('modalLose')
 		// this.handleBingo()
+
+    // HANDLE PEMAIN KE 21 OTOMATIS WIN
+		if (this.state.mustWin === true) {
+			console.log(' --------------- !!! ------------------------')
+			console.log(' --------------- !!! ------------------------')
+			console.log(' --------------- !!! ------------------------')
+			console.log(' --------------- !!! ------------------------')
+			console.log(' --------------- !!! ------------------------')
+			await this.setState({
+				slot1_atas: 6,
+				slot2_atas: 5,
+				slot3_atas: 4,
+
+				slot1: 0,
+				slot2: 6,
+				slot3: 5,
+
+				slot1_bawah: 1,
+				slot2_bawah: 0,
+				slot3_bawah: 6,
+			})
+		}
+
+		this.getGameCount()
+
 		this.submitResult(this.handleResult())
 
 		this.setState({
 			si1: null,
 			si2: null,
 			si3: null,
-			isRunning: false
+			isRunning: false,
+			mustWin: false
 		})
 
 		// this.toggle()
