@@ -132,7 +132,7 @@ class Game extends React.Component {
 					<h1 className="game__prize__title">Game Prize</h1>
 
 					<h1 className="game__prize__h1">
-						Dapatkan hadiah hingga pulsa Rp. 100.000 dengan memainkan Aladin Games dengan mendapatkan pola tertentu seperti
+						Dapatkan hadiah pulsa Rp. 10.000 dengan memainkan Aladin Games
 					</h1>
 
 					<div className="game__prize__row">

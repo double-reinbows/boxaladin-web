@@ -17,7 +17,8 @@ class ClaimFreePulsa extends React.Component {
 		this.state = {
       win: this.props.history.location.state || null,
       phone: null,
-      productId: null
+      // productId: null,
+      pulsaCode: null
     }
 
     this.checkWinToken()
@@ -41,13 +42,19 @@ class ClaimFreePulsa extends React.Component {
           </FormGroup>
 
           <FormGroup>
-            <Input type="select" onChange={(e) => this.setState({ productId: e.target.value })}>
-              <option selected disabled value={ null }>-- Pilih Pulsa --</option>              
-              {pulsa.map((data, i) => {
+            <Input type="select" onChange={(e) => this.setState({ pulsaCode: e.target.value })}>
+              <option selected disabled value={ null }>-- Pilih Pulsa --</option>           
+              <option value= 'htelkomsel10000'>Pulsa Telkomsel 10.000</option>    
+              <option value= 'xld10000' >Pulsa XL 10.000</option>                
+              <option value= 'hindosat10000' >Pulsa Indosat 10.000</option>                
+              <option value= 'hthree10000' >Pulsa Three 10.000</option>                
+              <option value= 'hsmart10000' >Pulsa Smart 10.000</option>                
+
+              {/* {pulsa.map((data, i) => {
                 return (
                   <option key={i} value={data.id}>{data.productName}</option>
                 )
-              })}
+              })} */}
             </Input>
           </FormGroup>
 
@@ -105,14 +112,14 @@ class ClaimFreePulsa extends React.Component {
   submit(e) {
     e.preventDefault()
 
-    let productSelected = this.props.products.filter(data => data.id === parseInt(this.state.productId, 10))[0]
+    let productSelected = this.props.products.filter(data => data.id === parseInt(this.state.pulsaCode, 10))[0]
 
     if (this.state.phone === null) {
       return alert('Harus masukan nomor HP.')
-    } else if (this.state.productId === null) {
+    } else if (this.state.pulsaCode === null) {
       return alert('Harus pilih pulsa.')
-    } else if (validateProvider(detectProvider(this.state.phone), productSelected.brand) === false) {
-      return alert('Nomor HP tidak sesuai dengan Provider.')
+    // } else if (validateProvider(detectProvider(this.state.phone), productSelected.pulsaCode) === false) {
+    //   return alert('Nomor HP tidak sesuai dengan Provider.')
     } else {
 
       var num = this.state.phone.split('')
@@ -152,8 +159,9 @@ class ClaimFreePulsa extends React.Component {
         token: localStorage.getItem('token')
       },
       data: {
-        productId: this.state.productId,
-        phone: this.state.phone
+        // productId: this.state.productId,
+        phone: this.state.phone,
+        pulsaCode: this.state.pulsaCode
       }
     })
     .then(({data}) => {
