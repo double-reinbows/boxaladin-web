@@ -81,7 +81,7 @@ class Game extends React.Component {
 								<div>
 									<p className="game__slotLabel__paragraph">Tukar Aladin Key Menjadi Koin</p>
 									<form onSubmit={(e) => this.upCoin(e)}>
-										<input className="game__convert__input" min="1" id="upcoin" onChange={(e) => this.setState({ key: parseInt(e.target.value, 10) })} type="number" placeholder="1 aladin key = 10 coin" />
+										<input className="game__convert__input" min="1" id="upcoin" onChange={(e) => this.setState({ key: parseInt(e.target.value, 10) })} type="number" placeholder="1 aladin key = 5 coin" />
 										<button className="game__convert__buttonConvert">TUKAR</button>
 									</form>
 								</div>
