@@ -277,11 +277,13 @@ class Signup extends Component {
     if (provider === 'gmail.com') {
       let userWithoutDot = user.split('.').join('')
       var result = userWithoutDot + '@gmail.com'
+      this.setState({ email : result.trim().toLowerCase() })
     } 
-    // else {
-    //   var result = e.target.value
-    // } 
-    this.setState({ email : result.trim().toLowerCase() })
+    else {
+      var result = e.target.value
+      this.setState({ email : result.trim().toLowerCase() })
+
+    } 
   }
 
   render() {

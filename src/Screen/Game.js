@@ -139,35 +139,35 @@ class Game extends React.Component {
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win1} alt="coin" />
 							<h1 className="game__prize__h1">
-								pulsa Rp. 100.000
+								pulsa Rp. 10.000
 							</h1>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win2} alt="coin" />
 							<h1 className="game__prize__h1">
-								pulsa Rp. 50.000
+								pulsa Rp. 10.000
 							</h1>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win3} alt="coin" />
 							<h1 className="game__prize__h1">
-								pulsa Rp. 50.000
+								pulsa Rp. 10.000
 							</h1>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win4} alt="coin" />
 							<h1 className="game__prize__h1">
-								pulsa Rp. 25.000
+								pulsa Rp. 10.000
 							</h1>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win5} alt="coin" />
 							<h1 className="game__prize__h1">
-								pulsa Rp. 25.000
+								pulsa Rp. 10.000
 							</h1>
 						</div>
 					</div>
