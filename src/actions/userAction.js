@@ -31,10 +31,10 @@ export const refreshToken = () => {
 			}
 		})
 		.then(({data}) => {
-			console.log('TOKEN LAMA:', localStorage.getItem('token'))
+			//console.log('TOKEN LAMA:', localStorage.getItem('token'))
 			localStorage.removeItem('token')
 			localStorage.setItem('token', data.token)
-			console.log('TOKEN BARU:', localStorage.getItem('token'))
+			//console.log('TOKEN BARU:', localStorage.getItem('token'))
 		})
 		.catch(err => console.log(err))
 	}

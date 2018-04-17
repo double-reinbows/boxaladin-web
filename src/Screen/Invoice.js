@@ -15,8 +15,7 @@ class Invoice extends React.Component {
   }
 
   render() {
-    console.log('Props:', this.props)
-    console.log('State:', this.state)
+    
     return (
       <div className="invoice">
         <div className="invoice__container">
@@ -82,7 +81,7 @@ class Invoice extends React.Component {
                     <td>{ data.status === 'PENDING'  ? (
                   <label>Expired</label>
                 ) : null}</td>
-                    
+
                   </tr>
                 )
               }

@@ -16,8 +16,7 @@ class TopupInvoice extends React.Component {
   }
 
   render() {
-    console.log('Props:', this.props)
-    console.log('State:', this.state)
+
     return (
       <div className="invoice">
         <div className="invoice__container">
@@ -57,8 +56,7 @@ class TopupInvoice extends React.Component {
 
               const limitTime = moment(data.createdAt, moment.ISO_8601).add(6, 'hours')
               const limitTimeFinal = limitTime.valueOf()
-              console.log(now)
-              console.log(limitTimeFinal)
+              
               if (now <= limitTimeFinal) {
               return (
               <tr key={idx}>
@@ -81,7 +79,7 @@ class TopupInvoice extends React.Component {
                     <td>{ data.payment.status === 'PENDING'  ? (
                   <label>Expired</label>
                 ) : null}</td>
-                    
+
                   </tr>
                 )
               }

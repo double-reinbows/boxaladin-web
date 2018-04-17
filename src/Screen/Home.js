@@ -17,10 +17,9 @@ class Home extends Component {
     super(props)
     this.state = {}
   }
-  
+
   render() {
-    console.log('State:', this.state);
-    console.log('Props:', this.props);
+    
     return (
       <div>
             <Carousel />
@@ -49,7 +48,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loginAction: () => dispatch(loginAction()),
-    getProducts: () => dispatch(getProducts())    
+    getProducts: () => dispatch(getProducts())
   }
 }
 

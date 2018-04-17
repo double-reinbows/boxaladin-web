@@ -20,8 +20,7 @@ class Pulsa extends React.Component {
   }
 
   render() {
-    console.log('Pulsa Props:', this.props);
-    console.log('Pulsa State:', this.state);
+  
 
     return (
       <div className="container">

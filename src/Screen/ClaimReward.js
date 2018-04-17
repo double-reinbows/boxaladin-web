@@ -16,8 +16,7 @@ class ClaimReward extends React.Component {
   }
 
   render() {
-    console.log('State:', this.state)
-    console.log('Props:', this.props)
+
 
     return (
       <div className="container">
@@ -44,7 +43,7 @@ class ClaimReward extends React.Component {
                   <CardBody>
                     <CardText>{data.description}.</CardText>
                     <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                    <CardText>{data.aladinKey} Aladin Key</CardText>    
+                    <CardText>{data.aladinKey} Aladin Key</CardText>
                     <Button onClick={() => this.claim(data)} size="lg" color="success">TUKAR | {data.aladinKey}</Button>
                   </CardBody>
                 </Card>
@@ -95,7 +94,7 @@ class ClaimReward extends React.Component {
     if (this.props.userInfo.aladinKeys < reward.aladinKey) {
 
       alert('Maaf, Aladin Key Anda tidak cukup.')
-      
+
     } else {
 
       axios({
@@ -114,7 +113,7 @@ class ClaimReward extends React.Component {
         this.props.getUserClaims()
         alert('Claim on progress')
         console.log(response)
-        
+
       })
       .catch(err => console.log(err))
 

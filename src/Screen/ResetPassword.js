@@ -13,8 +13,7 @@ class ResetPassword extends React.Component {
   }
 
   render() {
-    console.log('Props:', this.props)
-    console.log('State:', this.state)
+    
 
     return (
       <div className="resetPassword">
@@ -38,9 +37,9 @@ class ResetPassword extends React.Component {
 
     const email = this.props.location.search.split('&')[0].split('=')[1]
     const email_token = this.props.location.search.split('&')[1].split('=')[1]
-    
+
     if (this.state.password !== null) {
-      
+
       axios({
         method: 'POST',
         url: `${process.env.REACT_APP_API_HOST}/resetpassword?email=${email}&encoded=${email_token}`,
@@ -70,13 +69,13 @@ class ResetPassword extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    // 
+    //
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // 
+    //
   }
 }
 

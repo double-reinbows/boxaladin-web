@@ -14,8 +14,7 @@ class GameResult extends React.Component {
   }
 
   render() {
-    console.log('Props:', this.props)
-    console.log('State:', this.state)
+    
     return (
       <div className="invoice">
         <div className="invoice__container">

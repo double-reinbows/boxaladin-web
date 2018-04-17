@@ -4,7 +4,7 @@ import {
 	Button,
 	Form,
 	FormGroup,
-	Input 
+	Input
 } from 'reactstrap'
 import axios from 'axios'
 
@@ -20,9 +20,6 @@ class TopupKey extends React.Component {
 	}
 
 	render() {
- 
- 
-
 		return (
 			<div className="TopupKey">
 				<h1 className="TopupKey__text">Top Up Your Aladin Key</h1>
