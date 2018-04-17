@@ -357,8 +357,48 @@ class Game extends React.Component {
 	}
 
 	handleBingo() {
-		if (this.state.slot3 === this.state.itemsdummy3.length - 1 && (this.state.slot1 === this.state.slot2 && this.state.slot2 === this.state.slot3) ) {
-			this.setState({ slot3: this.state.slot3 - (this.state.itemsdummy3.length - 1) })
+		// if (this.state.slot3 === this.state.itemsdummy3.length - 1 && (this.state.slot1 === this.state.slot2 && this.state.slot2 === this.state.slot3) ) {
+		// 	this.setState({ slot3: this.state.slot3 - (this.state.itemsdummy3.length - 1) })
+		// }
+
+		switch (this.handleResult()) {
+			case 5:
+				return this.setState({
+					slot3_atas: 6,
+					slot3: 0,
+					slot3_bawah: 1
+				})
+
+			case 4:
+				return this.setState({
+					slot3_atas: 0,
+					slot3: 1,
+					slot3_bawah: 2
+				})
+
+			case 3:
+				return this.setState({
+					slot3_atas: 5,
+					slot3: 6,
+					slot3_bawah: 0
+				})
+
+			case 2:
+				return this.setState({
+					slot3_atas: 0,
+					slot3: 1,
+					slot3_bawah: 2
+				})
+
+			case 1:
+				return this.setState({
+					slot3_atas: 5,
+					slot3: 6,
+					slot3_bawah: 0
+				})
+
+			default:
+				return null
 		}
 	}
 
@@ -366,7 +406,7 @@ class Game extends React.Component {
 		// this.increaseGameCount()
 		this.getGameCount()
 
-		if (((this.state.gameCount-1) >= 20) && ((this.state.gameCount-1) % 20 === 0)) {
+		if (((this.state.gameCount) >= 25) && ((this.state.gameCount) % 25 === 0)) {
 			await this.setState({mustWin: true})
 		}
 
@@ -413,7 +453,7 @@ class Game extends React.Component {
 		this.stop2()
 		this.stop3()
 		console.log('modalLose')
-		// this.handleBingo()
+		await this.handleBingo()
 
     // HANDLE PEMAIN KE 21 OTOMATIS WIN
 		if (this.state.mustWin === true) {
