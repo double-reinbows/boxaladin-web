@@ -33,7 +33,7 @@ class User extends React.Component {
 	}
 
 	render() {
-		console.log('State:', this.state);
+	
 		// console.log('Props:', this.props);
 		return (
 			<div className="User">
@@ -42,7 +42,7 @@ class User extends React.Component {
 						Profil Saya
 					</label>
 					{ this.showDataUser() }
-					
+
 					{ this.showPhoneModal() }
 					{ this.showAddPhoneModal() }
 					{ this.showChangePhoneModal(this.state.numberToSend) }
@@ -123,7 +123,7 @@ class User extends React.Component {
 		return (
 			<Modal isOpen={this.state.changePrimaryPhoneOTPModal} className="ModalPhone">
 				<form className="modalContent" onSubmit={ (e) => this.finalSubmitChangePrimaryPhone(e) }>
-					
+
 					<div className="form-group ModalContent__form">
 						<input name="OTP" required autoFocus type="text" maxLength={6} className="form-control" id="inputUsername" placeholder="Masukan 6 digit OTP" onChange={ (e) => this.setState({OTP: e.target.value}) } />
 					</div>
@@ -176,13 +176,13 @@ class User extends React.Component {
 		return (
 			<Modal isOpen={this.state.changePrimaryPhoneModal} className="ModalPhone">
 				<form className="ModalContent" onSubmit={ (e) => this.submitChangePrimaryPhone(e) }>
-					
+
 					<div className="form-group ModalContent__form">
 						<select className="ModalContent__select"onChange={ (e) => this.setState({numberId: e.target.value}) }>
 							<option selected="true" disabled="true" value={null}>--Pilih No--</option>
 							{this.props.phoneNumbers.filter(phone => {
 								return phone.primary === false && phone.verified === true
-							}) 
+							})
 							.map((phone, idx) => {
 								return (
 									<option key={idx} value={phone.id}>{phone.number}</option>
@@ -206,9 +206,9 @@ class User extends React.Component {
 		// var numValue = this.state.numberToSend
 		return (
 			<Modal isOpen={this.state.changePhoneModal} className="ModalPhone">
-			
+
 				<form className="ModalContent" onSubmit={ (e) => this.submitChangePhone(e) }>
-					
+
 					<div className="form-group ModalContent__form">
 						<input value={numValue} name="numberToSend" required autoFocus type="text" maxLength={14} className="form-control" placeholder="Number to change" onChange={ (e) => this.handlePhoneNum(e) } />
 					</div>
@@ -227,18 +227,18 @@ class User extends React.Component {
 	showAddPhoneModal() {
 		return (
 		<Modal isOpen={this.state.addPhoneModal} className="ModalPhone">
-		
+
 			<form className="ModalContent" onSubmit={e => this.submitPhone(e)}>
-			
+
 				<div className="form-group ModalContent__form">
 					<input name="numberToSend" required autoFocus type="text" maxLength={14} className="form-control" placeholder="Phone Number" onChange={e => this.handlePhoneNum(e)} />
 			  </div>
-			  
+
         <div className="form-group ModalContent__button">
 					<Button type="button" color="danger" onClick={() => this.setState({ addPhoneModal: false })}>Batal</Button>
 					<Button style={{ marginLeft: 5 }} type="submit" color="primary">Setuju</Button>
 			  </div>
-			  
+
       </form>
 		</Modal>
 		)
@@ -270,7 +270,7 @@ class User extends React.Component {
 			<Modal isOpen={this.state.phoneModal} className="ModalPhone">
 
 				<form className="ModalContent" onSubmit={ (e) => this.submitOTP(e) }>
-					
+
 					<div className="form-group ModalContent__form">
 						<input name="otp" required autoFocus type="text" maxLength={6} className="form-control" id="inputUsername" placeholder="Masukan 6 digit OTP" onChange={ (e) => this.setState({OTP: e.target.value}) } />
 					</div>
@@ -448,7 +448,7 @@ class User extends React.Component {
 				}
 			})
 			.catch(err => console.log(err))
-		
+
 	}
 
 	addPhone() {
@@ -518,9 +518,9 @@ class User extends React.Component {
 			<div>
 				<h3>{this.props.userInfo !== null ? this.props.userInfo.first_name : null} {this.props.userInfo !== null ? this.props.userInfo.family_name : null}</h3>
 				<div className="User__show">
-					<img src={IconEmail} className="User__show__logo" alt="Logo"/> 
-					{this.props.userInfo !== null ? this.props.userInfo.email : null} {this.props.userInfo !== null ? 
-						(this.props.userInfo.emailVerified ? '(verified)' : 
+					<img src={IconEmail} className="User__show__logo" alt="Logo"/>
+					{this.props.userInfo !== null ? this.props.userInfo.email : null} {this.props.userInfo !== null ?
+						(this.props.userInfo.emailVerified ? '(verified)' :
 						(<Button color= "success" onClick={() => this.resendEmailVerification()}> Kirim Verifikasi Email </Button>)) : null
 					}
 				</div>

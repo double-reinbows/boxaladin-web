@@ -22,9 +22,6 @@ class Dompet extends React.Component {
     }
 
     render() {
-        console.log('State:', this.state)
-        console.log('Props:', this.props)
-
         return (
             <div className="game">
                 <div className="game__container">
@@ -118,7 +115,7 @@ class Dompet extends React.Component {
                 }
             })
                 .then(({ data }) => {
-                    console.log('Response.data:', data)
+              
                     if (data.msg === 'not verified user') {
                         return this.setState({
                             notif: "Silahkan Verifikasi Email Untuk Membeli Kunci.",
@@ -132,50 +129,112 @@ class Dompet extends React.Component {
         }
     }
 
+    // upCoin(e) {
+    //     e.preventDefault()
+
+    //     if (this.state.key > this.props.userInfo.aladinKeys) {
+    //         return this.setState({
+    //             notif2: "Aladin Key Tidak Cukup",
+    //         })
+    //     }
+
+    //     if (this.state.key <= 0) {
+    //         return this.setState({
+    //             notif2: "Harus Lebih Besar Dari 0",
+    //         })
+    //     }
+
+    //     if (this.state.key) {
+    //         axios({
+    //             method: 'PUT',
+    //             url: `${process.env.REACT_APP_API_HOST}/users/upcoin`,
+    //             data: {
+    //                 key: this.state.key
+    //             },
+    //             headers: {
+    //                 token: localStorage.getItem('token')
+    //             }
+    //         })
+    //             .then(response => {
+
+    //                 this.setState({
+    //                     coin: 0
+    //                 })
+
+    //                 document.getElementById('upcoin').value = ''
+    //                 this.props.getUser()
+    //                 return console.log(response.data)
+
+    //             })
+    //             .catch(err => console.log(err))
+
+    //     } else {
+    //         return alert('tidak boleh kosong')
+    //     }
+
+    // }
+
     upCoin(e) {
-        e.preventDefault()
+		e.preventDefault()
 
-        if (this.state.key > this.props.userInfo.aladinKeys) {
-            return this.setState({
-                notif2: "Aladin Key Tidak Cukup",
-            })
-        }
+		if (this.state.key <= 0) {
+			return this.setState({
+        notif2: "Harus Lebih Besar Dari 0",
+      })
+		} else if (this.state.key === null || this.state.key === '') {
+			return this.setState({
+				notif2: "Tidak Boleh Kosong",
+			})
+		}	else {
+			this.setState({
+				notif2:""
+			})
+		}
 
-        if (this.state.key <= 0) {
-            return this.setState({
-                notif2: "Harus Lebih Besar Dari 0",
-            })
-        }
+		// CEK SISA ALADIN KEY LANGSUNG DARI API
+		axios({
+			method: 'GET',
+			url: `${process.env.REACT_APP_API_HOST}/users/info`,
+			headers: {
+				token: localStorage.getItem('token')
+			}
+		})
+		.then(({data}) => {
+			if (this.state.key > data.aladinKeys) {
+				return this.setState({
+					notif2: "Aladin Key Tidak Cukup",
+				})
+			} else {
 
-        if (this.state.key) {
-            axios({
-                method: 'PUT',
-                url: `${process.env.REACT_APP_API_HOST}/users/upcoin`,
-                data: {
-                    key: this.state.key
-                },
-                headers: {
-                    token: localStorage.getItem('token')
-                }
-            })
-                .then(response => {
+				// REQUEST UPDATE ALADIN KEY DAN COIN KE API
+				axios({
+					method: 'PUT',
+					url: `${process.env.REACT_APP_API_HOST}/users/upcoin`,
+					data: {
+						key: this.state.key
+					},
+					headers: {
+						token: localStorage.getItem('token')
+					}
+				})
+				.then(response => {
 
-                    this.setState({
-                        coin: 0
-                    })
+					this.setState({
+						coin: 0,
+						key: null
+					})
 
-                    document.getElementById('upcoin').value = ''
-                    this.props.getUser()
-                    return console.log(response.data)
+					document.getElementById('upcoin').value = ''
+					this.props.getUser()
+					return console.log(response.data)
 
-                })
-                .catch(err => console.log(err))
+				})
+				.catch(err => console.log(err))
 
-        } else {
-            return alert('tidak boleh kosong')
-        }
-
-    }
+			}
+		})
+		.catch(err => console.log(err))
+	}
 }
 
 const mapStateToProps = (state) => {
