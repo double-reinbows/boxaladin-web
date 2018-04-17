@@ -17,7 +17,6 @@ class ClaimReward extends React.Component {
 
   render() {
 
-
     return (
       <div className="container">
 
@@ -42,7 +41,7 @@ class ClaimReward extends React.Component {
                   <img width="100%" src={data.image} alt="Card image cap" />
                   <CardBody>
                     <CardText>{data.description}.</CardText>
-                    <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                    <CardText>Some quick example text to build on the card title and make up the bulk of the cards content.</CardText>
                     <CardText>{data.aladinKey} Aladin Key</CardText>
                     <Button onClick={() => this.claim(data)} size="lg" color="success">TUKAR | {data.aladinKey}</Button>
                   </CardBody>
