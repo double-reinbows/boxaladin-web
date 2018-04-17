@@ -25,8 +25,8 @@ class ClaimFreePulsa extends React.Component {
 	}
 
 	render() {
-		console.log('State:', this.state)
-		console.log('Props:', this.props)
+ 
+ 
     const pulsa = this.props.products.filter(product => {
       return product.category === 'Pulsa' && product.price === this.state.win.gamerule.pulsaAmount
     })

@@ -62,8 +62,8 @@ class Game extends React.Component {
 	}
 
 	render() {
-		console.log('State:', this.state)
-		console.log('Props:', this.props)
+ 
+ 
 
 		return (
 			<div className="game">
@@ -226,9 +226,9 @@ class Game extends React.Component {
 	// 	})
 	// 	.then(({data}) => {
 	// 		this.getGameCount()
-	// 		return console.log(data)
+			// return console.log(data)
 	// 	})
-	// 	.catch(err => console.log(err))
+		// .catch(err => console.log(err))
 	// }
 
 	upCoin(e) {

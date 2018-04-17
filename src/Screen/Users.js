@@ -33,7 +33,7 @@ class User extends React.Component {
 	}
 
 	render() {
-		console.log('State:', this.state);
+ ;
 		// console.log('Props:', this.props);
 		return (
 			<div className="User">
