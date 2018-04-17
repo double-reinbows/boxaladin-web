@@ -224,9 +224,9 @@ class Game extends React.Component {
 	// 	})
 	// 	.then(({data}) => {
 	// 		this.getGameCount()
-	// 		return console.log(data)
+			// return console.log(data)
 	// 	})
-	// 	.catch(err => console.log(err))
+		// .catch(err => console.log(err))
 	// }
 
 	upCoin(e) {
