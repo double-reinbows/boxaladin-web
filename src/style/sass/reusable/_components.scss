@@ -50,6 +50,12 @@
   span{
     color: #FFCD05;
   }
+  &__otp{
+    background-color: white;
+    span{
+      color: black;
+    }
+  }
 }
 
 .modalz{
@@ -68,6 +74,23 @@
 //---------------------
 
 /* Modal Content */
+.modalOtp{
+  position: relative;
+  margin: auto;
+  padding: 0;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  overflow: auto; /* Enable scroll if needed */
+  border: 5px solid var(--white);
+  height: 60%;
+  background-color: white;
+}
+
+
 .modalContent {
   position: relative;
   margin: auto;
@@ -105,7 +128,39 @@
   cursor: pointer;
 }
 
-.modal-body {padding: 0;}
+.modal-body {
+  padding: 0;
+  &__otp{
+    text-align: center;
+    &__input{
+      padding: 5px;
+      font-size: 14px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    &__button{
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    &__label{
+      font-size: 18px;
+    }
+    &__resend{
+      // border: none;
+      // background: white;
+      // cursor: pointer;
+      // &:hover{
+      //   color: blue;
+      // }
+      // &:active{
+      //   color: blue;
+      // }
+      // &:focus{
+      //   color: blue;
+      // }
+    }
+  }
+}
 
 //----------------------
 

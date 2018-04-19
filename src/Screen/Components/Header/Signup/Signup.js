@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import Modal from 'react-modal'
+import { ModalHeader, ModalFooter, Button } from 'reactstrap';
 
 import { setModalLogin, setModalRegister, setIsLoading, loginAction } from '../../../../actions/'
 
@@ -15,9 +17,28 @@ class Signup extends Component {
       _formIsValid: false,
       phonenumber: '',
       notif: '',
+      modal: false,
+      notifOtp: '',
+      otp: '',
+      dataUser: {},
+      disabled: true,
+      count: 4,
     }
     this.signUpInputHandler = this.signUpInputHandler.bind(this)
+    this.toggle = this.toggle.bind(this);
+
   }
+
+  toggle() {
+    this.setState({
+      modal: !this.state.modal,
+    })
+  }
+
+  // console(){
+  //   this.setState({
+  //   })
+  // }
 
   //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   /**
@@ -37,7 +58,6 @@ class Signup extends Component {
   gmailDotCheck(obj) {
     let pattern = /(\w+)\.(\w+)@gmail.com/
     if (pattern.test(obj.email)) {
-      console.log('dotted gmail')
       this.setState({
         typedEmail: obj.email,
         email: obj.email.replace(pattern, `$1$2@gmail.com`)
@@ -203,7 +223,6 @@ class Signup extends Component {
     this.props.setIsLoading(true)
 
     await this.formIsValid()
-    console.log('SETELAH FORMISVALID')
 
     if (this.state._formIsValid) {
       console.log('FORM VALID')
@@ -217,10 +236,6 @@ class Signup extends Component {
       axios
         .post(URL + 'signup', payload)
         .then(({data}) => {
-          console.log('MASUK THEN')
-          console.log(data)
-          // console.log(data)
-          // localStorage.setItem('token', data)
           if (data.hasOwnProperty('isUsed')) {
             if (data.isUsed.username) {
               this.setState({
@@ -228,26 +243,34 @@ class Signup extends Component {
               })
             } else if (data.isUsed.email) {  
               this.setState({
-                notif: "Email Sudah digunakan",
+              notif: "Email Sudah digunakan",
+              })
+            } 
+          }  else if (data.hasOwnProperty('phoneIsUsed')) {  
+            this.setState({
+              notif: "No Hp Sudah digunakan",
             })
-          }
-          } else {
+          }   else {
 
             if (data.errors) {
               this.setState({
                 notif: "Email Sudah digunakan",
               })
             } else {
-
               localStorage.setItem('token', data.token)
-              console.log('>>>Signed up', data)
-              this.props.loginAction()
+              this.setState({
+                dataUser: payload,
+                modal: true
+              })
+              console.log('datauser hp', data)
+              console.log(data)
+              // this.props.loginAction()
               /**
                * Tinggal tambah, kalau udah sukses signup mau ngapain lagi
                * selain terima token.
                * Redirect ke home misalnya? Atau dilempar lagi ke halaman login?
                */
-              this.props.setModalRegister(false)
+              // this.props.setModalRegister(false)
 
             }
 
@@ -260,7 +283,6 @@ class Signup extends Component {
           return this.props.setIsLoading(false)
         })
     } else {
-      console.log('FORM NOT VALID!')
       return this.props.setIsLoading(false)
     }
   }
@@ -276,18 +298,87 @@ class Signup extends Component {
     
     if (provider === 'gmail.com') {
       let userWithoutDot = user.split('.').join('')
-      var result = userWithoutDot + '@gmail.com'
+      const result = userWithoutDot + '@gmail.com'
       this.setState({ email : result.trim().toLowerCase() })
     } 
     else {
-      var result = e.target.value
+      const result = e.target.value
       this.setState({ email : result.trim().toLowerCase() })
 
     } 
   }
 
+  handleOtp(e){
+    this.setState({
+      otp: e.target.value
+    })
+  }
+
+  sendOtp(e){
+    e.preventDefault()
+
+    if (this.state.otp === '') {
+      this.setState({
+        notifOtp: 'OTP Tidak Boleh Kosong'
+      })
+    } else {
+    axios({
+      method: 'POST',
+      url: `${process.env.REACT_APP_API_HOST}/signupverification`,
+      data: {
+        phonenumber: this.state.phonenumber,
+        otp : this.state.otp
+      }
+    })
+    .then((dataOtp) => {
+      console.log(dataOtp)
+      if (dataOtp.data.message === 'Phone Terverifikasi') {
+        alert('No Hp Telah Diverifikasi')
+        this.toggle()
+        this.props.loginAction()
+        this.props.setModalRegister(false)
+
+      }	else if ( dataOtp.data.message === 'incorrect otp') {
+        this.setState({
+          notifOtp: "OTP Salah"
+        })
+      } else if ( dataOtp.data.message === 'phone verified'){
+        console.log('data signup', this.state.dataUser)
+        this.toggle()
+        this.props.loginAction()
+        this.props.setModalRegister(false)
+      }
+    })
+    .catch(err => console.log(err))
+  }
+}
+
+  resentOtp(){
+
+      if (this.state.count > 0 ){
+      this.setState({
+        count : this.state.count - 1,
+        notifOtp: `${this.state.count} OTP Sisa Yang Dapat Dikirim`
+      })
+      axios({
+        method: 'POST',
+        url: `${process.env.REACT_APP_API_HOST}/otp`,
+        data: {
+          phonenumber: this.state.phonenumber,
+        }
+      })
+      .then((dataOtp) => {
+        console.log('otp sent')
+      })
+    } else {
+      this.toggle()
+      this.props.loginAction()
+      this.props.setModalRegister(false)
+    }
+
+}
+
   render() {
-    console.log(this.state)
     return (
       <div className="Signup">
         
@@ -324,14 +415,41 @@ class Signup extends Component {
           <br/>
           <input name="condition" type="checkbox"/>
           <label className="Signup__Condition">Saya telah membaca syarat dan kondisi yang berlaku</label>
-
-
+          
           <div className="form-group">
             <button type="submit" className="Signup__ButtonLogin">Daftar</button>
           </div>
-
+          <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
 
         </form>
+
+          <div>
+            <Modal ariaHideApp={false} isOpen={this.state.modal} toggle={this.toggle} className="modalz">
+              <form onSubmit={e => this.sendOtp(e)}>
+                <div className="modalOtp">
+                <ModalHeader toggle={this.toggle} className="ModalTop__otp"></ModalHeader>
+                  <div className="modal-body__otp">
+                    <div>
+                    <label className="modal-body__otp__label">Anda Akan di Missed Call Oleh Sistem Kami</label>
+                      <label className="modal-body__otp__label">Masukkan 4 Angka Terakhir Dari no yang Menelpon Anda</label>
+                    </div>
+                    <div>
+                      <input className="modal-body__otp__input" value={this.state.otp} onChange={e => this.handleOtp(e)} placeholder="otp"/>
+                    </div>
+                    <div>
+                      <Button className="modal-body__otp__button" color="primary" type="submit" >Submit</Button>{' '}
+                    </div>
+                    <div>
+                    </div>
+                    <label className="alert">{this.state.notifOtp}</label>
+                  </div>
+                  <ModalFooter>
+                  <Button onClick={() => this.resentOtp()} className="modal-body__otp__resend">Kirim Ulang OTP</Button>
+                  </ModalFooter>
+                </div>
+              </form>
+          </Modal>
+        </div>
       </div>
     )
   }

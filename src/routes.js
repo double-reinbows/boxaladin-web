@@ -64,7 +64,7 @@ class RouteList extends React.Component {
         <Router>
           <div>
             <Header />
-              <div classname = "bodyContainer">
+              <div className = "bodyContainer">
                 <Route exact path="/" component={Home} />
                 <Route exact path="/aboutus" component={AboutUs} />
                 <Route exact path="/howitworks" component={HowItWorks} />
@@ -92,7 +92,6 @@ class RouteList extends React.Component {
                 <Route exact path="/resetpassword" component={ResetPassword} />
               </div>
               <div className="phantom">
-
               </div>
             <div className = "footerContainer">
               <FooterBot/>
