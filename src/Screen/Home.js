@@ -19,10 +19,10 @@ class Home extends Component {
   }
 
   render() {
-    
+
     return (
       <div>
-            <Carousel />
+        <Carousel />
         <TabsHome />
         <BannerText2 />
         <FAQ />
