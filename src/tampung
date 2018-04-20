@@ -45,9 +45,7 @@
 
 
 render() {
-    console.log('InsertPhone Props:', this.props);
-    console.log('InsertPhone State:', this.state);
-
+  
     return (
       <div>
         <h1>insert phone</h1>

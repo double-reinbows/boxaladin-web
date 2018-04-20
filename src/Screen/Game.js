@@ -62,8 +62,6 @@ class Game extends React.Component {
 	}
 
 	render() {
- 
- 
 
 		return (
 			<div className="game">
@@ -234,52 +232,69 @@ class Game extends React.Component {
 	upCoin(e) {
 		e.preventDefault()
 
-		if (this.state.key > this.props.userInfo.aladinKeys) {
-			return this.setState({
-        notif: "Aladin Key Tidak Cukup",
-      })
-		}
-
 		if (this.state.key <= 0) {
 			return this.setState({
         notif: "Harus Lebih Besar Dari 0",
       })
+		} else if (this.state.key === null || this.state.key === '') {
+			return this.setState({
+				notif: "Tidak Boleh Kosong",
+			})
 		}	else {
 			this.setState({
 				notif:""
 			})
 		}
 
-		if (this.state.key) {
-			axios({
-				method: 'PUT',
-				url: `${process.env.REACT_APP_API_HOST}/users/upcoin`,
-				data: {
-					key: this.state.key
-				},
-				headers: {
-					token: localStorage.getItem('token')
-				}
-			})
-			.then(response => {
-
-				this.setState({
-					coin: 0,
-					key: null
+		// CEK SISA ALADIN KEY LANGSUNG DARI API
+		axios({
+			method: 'GET',
+			url: `${process.env.REACT_APP_API_HOST}/users/info`,
+			headers: {
+				token: localStorage.getItem('token')
+			}
+		})
+		.then(({data}) => {
+			if (this.state.key > data.aladinKeys) {
+				return this.setState({
+					notif: "Aladin Key Tidak Cukup",
 				})
+			} else {
 
-				document.getElementById('upcoin').value = ''
-				this.props.getUser()
-				return console.log(response.data)
+				// REQUEST UPDATE ALADIN KEY DAN COIN KE API
+				axios({
+					method: 'PUT',
+					url: `${process.env.REACT_APP_API_HOST}/users/upcoin`,
+					data: {
+						key: this.state.key
+					},
+					headers: {
+						token: localStorage.getItem('token')
+					}
+				})
+				.then(response => {
 
-			})
-			.catch(err => console.log(err))
+					this.setState({
+						coin: 0,
+						key: null
+					})
 
-		} else {
-			return this.setState({
-        notif: "Tidak Boleh Kosong",
-      })
-		}
+					document.getElementById('upcoin').value = ''
+					this.props.getUser()
+					return console.log(response.data)
+
+				})
+				.catch(err => console.log(err))
+
+			}
+		})
+		.catch(err => console.log(err))
+
+		// if (this.state.key > this.props.userInfo.aladinKeys) {
+		// 	return this.setState({
+    //     notif: "Aladin Key Tidak Cukup",
+    //   })
+		// }
 
 	}
 
@@ -452,16 +467,12 @@ class Game extends React.Component {
 		this.stop1()
 		this.stop2()
 		this.stop3()
-		console.log('modalLose')
+
 		await this.handleBingo()
 
     // HANDLE PEMAIN KE 21 OTOMATIS WIN
 		if (this.state.mustWin === true) {
-			console.log(' --------------- !!! ------------------------')
-			console.log(' --------------- !!! ------------------------')
-			console.log(' --------------- !!! ------------------------')
-			console.log(' --------------- !!! ------------------------')
-			console.log(' --------------- !!! ------------------------')
+
 			await this.setState({
 				slot1_atas: 6,
 				slot2_atas: 5,
@@ -509,7 +520,7 @@ class Game extends React.Component {
 	}
 
 	start1() {
-		console.log('START-1...')
+
 
 		var _this = this
 		var i = 0
@@ -533,12 +544,12 @@ class Game extends React.Component {
 	}
 
 	stop1() {
-		console.log('STOP-1...')
+
 		clearInterval(this.setState.si1)
 	}
 
 	start2() {
-		console.log('START-2...')
+
 
 		var _this = this
 		var i = 0
@@ -562,12 +573,12 @@ class Game extends React.Component {
 	}
 
 	stop2() {
-		console.log('STOP-2...')
+
 		clearInterval(this.setState.si2)
 	}
 
 	start3() {
-		console.log('START-3...')
+
 
 		var _this = this
 		var i = 0
@@ -591,7 +602,7 @@ class Game extends React.Component {
 	}
 
 	stop3() {
-		console.log('STOP-3...')
+
 		clearInterval(this.setState.si3)
 	}
 

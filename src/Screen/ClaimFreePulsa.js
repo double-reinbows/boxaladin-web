@@ -4,7 +4,7 @@ import {
 	Button,
 	Form,
 	FormGroup,
-	Input 
+	Input
 } from 'reactstrap'
 import axios from 'axios'
 
@@ -25,12 +25,9 @@ class ClaimFreePulsa extends React.Component {
 	}
 
 	render() {
- 
- 
     const pulsa = this.props.products.filter(product => {
       return product.category === 'Pulsa' && product.price === this.state.win.gamerule.pulsaAmount
     })
-    console.log(pulsa)
 
 		return (
 			<div className="TopupKey">
@@ -43,12 +40,12 @@ class ClaimFreePulsa extends React.Component {
 
           <FormGroup>
             <Input type="select" onChange={(e) => this.setState({ pulsaCode: e.target.value })}>
-              <option selected disabled value={ null }>-- Pilih Pulsa --</option>           
-              <option value= 'htelkomsel10000'>Pulsa Telkomsel 10.000</option>    
-              <option value= 'xld10000' >Pulsa XL 10.000</option>                
-              <option value= 'hindosat10000' >Pulsa Indosat 10.000</option>                
-              <option value= 'hthree10000' >Pulsa Three 10.000</option>                
-              <option value= 'hsmart10000' >Pulsa Smart 10.000</option>                
+              <option selected disabled value={ null }>-- Pilih Pulsa --</option>
+              <option value= 'htelkomsel10000'>Pulsa Telkomsel 10.000</option>
+              <option value= 'xld10000' >Pulsa XL 10.000</option>
+              <option value= 'hindosat10000' >Pulsa Indosat 10.000</option>
+              <option value= 'hthree10000' >Pulsa Three 10.000</option>
+              <option value= 'hsmart10000' >Pulsa Smart 10.000</option>
 
               {/* {pulsa.map((data, i) => {
                 return (
@@ -81,7 +78,7 @@ class ClaimFreePulsa extends React.Component {
         url: `${process.env.REACT_APP_API_HOST}/win/resettoken/${this.state.win.id}`
       })
       .then(({data}) => {
-        console.log('DATA RESPONSE RESET TOKEN:',data)
+
       })
       .catch(err => console.log(err))
     }
@@ -99,7 +96,7 @@ class ClaimFreePulsa extends React.Component {
         url: `${process.env.REACT_APP_API_HOST}/win/${this.state.win.id}`
       })
       .then(({data}) => {
-        console.log('DATA RESPONSE GET WIN BY ID:', data)
+
         if (this.state.win.winToken !== data.winToken) {
           alert('EXPIRED!')
           this.props.history.replace('/')
@@ -165,11 +162,11 @@ class ClaimFreePulsa extends React.Component {
       }
     })
     .then(({data}) => {
-      console.log('DATA RESPONSE CLAIM FREE PULSA:', data)
+
       this.props.history.push('/game')
     })
     .catch(err => {
-      console.log('ERROR CLAIM FREE PULSA:', err)
+      
     })
   }
 

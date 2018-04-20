@@ -26,8 +26,6 @@ class DropdownUser extends React.Component {
   }
 
   render() {
-    console.log('State DropDown:', this.state)
-    console.log('Props DropDown:', this.props)
 
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
@@ -46,7 +44,7 @@ class DropdownUser extends React.Component {
         </DropdownToggle>
 
         <DropdownMenu className="DropdownUser__item">
-          
+
             <DropdownItem  className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/home">Home</Link>
             </DropdownItem>

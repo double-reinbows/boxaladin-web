@@ -28,24 +28,24 @@ export const getFilteredProducts = (brand, category) => {
 				// fetch all products
 				let filteredProducts = dataProducts
 				dispatch(getFilteredProductsAction(filteredProducts))
-				console.log('All here......................');
-	
+
+
 			} else if (brand === 'all') {
 				// filter products by category
 				let filteredProducts = dataProducts.filter(product => {
 					return product.categoryId === category
 				})
 				dispatch(getFilteredProductsAction(filteredProducts))
-				console.log('By category here......................');
-	
+
+
 			} else if (category === 'all') {
 				// filter products by brand
 				let filteredProducts = dataProducts.filter(product => {
 					return product.brandId.toString() === brand
 				})
 				dispatch(getFilteredProductsAction(filteredProducts))
-				console.log('By brand here......................');
-	
+
+
 			} else {
 				// filter products by category & brand
 				const filteredByBrand = dataProducts.filter(product => {
@@ -55,9 +55,9 @@ export const getFilteredProducts = (brand, category) => {
 					return product.categoryId === category
 				})
 				dispatch(getFilteredProductsAction(filteredProducts))
-				console.log('By both here......................');
+				
 			}
-			
+
 		})
 	}
 }

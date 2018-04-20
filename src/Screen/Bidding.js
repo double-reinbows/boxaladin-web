@@ -27,9 +27,6 @@ class Bidding extends React.Component {
   }
 
   render() {
-    console.log('Bidding Props:', this.props);
-    console.log('Bidding State:', this.state);
-
     return (
       <div className="bidding">
         <div className="bidding__container">
@@ -116,7 +113,7 @@ class Bidding extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log('----------- WILL UNMOUNT --------------')
+
     // this.props.history.replace('/')
     this.stopWatchProductPrice(this.props.selectedProductID)
     localStorage.removeItem('selectedProductId')
@@ -132,7 +129,7 @@ class Bidding extends React.Component {
   }
 
   buy() {
-    console.log('Buy Now!!!!!')
+  
 
 		axios({
 			method: 'PUT',

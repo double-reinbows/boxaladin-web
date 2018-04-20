@@ -44,8 +44,7 @@ class TopupPayment extends React.Component {
   }
 
   render() {
-    console.log('Props:', this.props);
-    console.log('State:', this.state);
+
 
     if (this.state.invoice === null){
       console.log('kosong')
@@ -66,7 +65,7 @@ class TopupPayment extends React.Component {
                 <h2 className="pembayaran__title">Selesaikan Pembayaran Sebelum {finalTime}</h2>
 
                 <h5 className="pembayaran__title">Silahkan melakukan pembayaran ke salah satu virtual bank account di bawah ini:</h5>
-                
+
                 <div className="bankz">
                   <img src={MANDIRI} className="bankz__icon" alt="Logo" />
                   {this.state.invoice.payment.availableBanks.map((bank, idx) => {

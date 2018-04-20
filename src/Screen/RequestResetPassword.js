@@ -13,8 +13,7 @@ class RequestResetPassword extends React.Component {
   }
 
   render() {
-    console.log('Props:', this.props)
-    console.log('State:', this.state)
+  
 
     return (
       <div className="RequestReset">
@@ -37,7 +36,7 @@ class RequestResetPassword extends React.Component {
     e.preventDefault()
 
     if (this.state.email !== null) {
-      
+
       axios({
         method: 'POST',
         url: `${process.env.REACT_APP_API_HOST}/forgotpassword`,
@@ -69,13 +68,13 @@ class RequestResetPassword extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    // 
+    //
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // 
+    //
   }
 }
 
