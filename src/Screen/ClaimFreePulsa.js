@@ -9,7 +9,7 @@ import {
 import axios from 'axios'
 
 import { getProducts } from '../actions/productAction'
-import { validateProvider, detectProvider } from '../utils/phone'
+// import { validateProvider, detectProvider } from '../utils/phone'
 
 class ClaimFreePulsa extends React.Component {
 	constructor(props) {
@@ -112,7 +112,7 @@ class ClaimFreePulsa extends React.Component {
   submit(e) {
     e.preventDefault()
 
-    let productSelected = this.props.products.filter(data => data.id === parseInt(this.state.pulsaCode, 10))[0]
+    // let productSelected = this.props.products.filter(data => data.id === parseInt(this.state.pulsaCode, 10))[0]
 
     if (this.state.phone === null) {
       return alert('Harus masukan nomor HP.')

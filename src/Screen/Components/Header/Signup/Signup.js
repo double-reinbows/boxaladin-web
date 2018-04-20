@@ -3,7 +3,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Modal from 'react-modal'
 import { ModalHeader, ModalFooter, Button } from 'reactstrap';
-
 import { setModalLogin, setModalRegister, setIsLoading, loginAction } from '../../../../actions/'
 
 import Loading from '../../Loading/'
@@ -23,6 +22,7 @@ class Signup extends Component {
       dataUser: {},
       disabled: true,
       count: 4,
+      time: ''
     }
     this.signUpInputHandler = this.signUpInputHandler.bind(this)
     this.toggle = this.toggle.bind(this);
@@ -211,7 +211,6 @@ class Signup extends Component {
   //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   async signUp(e) {
-    console.log('SIGNUP')
     e.preventDefault()
 
     if (this.state.password !== this.state.confirm) {
@@ -225,7 +224,6 @@ class Signup extends Component {
     await this.formIsValid()
 
     if (this.state._formIsValid) {
-      console.log('FORM VALID')
       let payload = {
         email: this.state.email,
         phonenumber: this.state.phonenumber,
@@ -260,10 +258,9 @@ class Signup extends Component {
               localStorage.setItem('token', data.token)
               this.setState({
                 dataUser: payload,
-                modal: true
+                modal: true,
+                time : data.time
               })
-              console.log('datauser hp', data)
-              console.log(data)
               // this.props.loginAction()
               /**
                * Tinggal tambah, kalau udah sukses signup mau ngapain lagi
@@ -278,7 +275,6 @@ class Signup extends Component {
           return this.props.setIsLoading(false)
         })
         .catch(e => {
-          console.log('MASUK CATCH')          
           console.log(e)
           return this.props.setIsLoading(false)
         })
@@ -331,7 +327,6 @@ class Signup extends Component {
       }
     })
     .then((dataOtp) => {
-      console.log(dataOtp)
       if (dataOtp.data.message === 'Phone Terverifikasi') {
         alert('No Hp Telah Diverifikasi')
         this.toggle()
@@ -343,7 +338,6 @@ class Signup extends Component {
           notifOtp: "OTP Salah"
         })
       } else if ( dataOtp.data.message === 'phone verified'){
-        console.log('data signup', this.state.dataUser)
         this.toggle()
         this.props.loginAction()
         this.props.setModalRegister(false)
@@ -354,7 +348,6 @@ class Signup extends Component {
 }
 
   resentOtp(){
-
       if (this.state.count > 0 ){
       this.setState({
         count : this.state.count - 1,
@@ -375,7 +368,6 @@ class Signup extends Component {
       this.props.loginAction()
       this.props.setModalRegister(false)
     }
-
 }
 
   render() {
@@ -419,8 +411,6 @@ class Signup extends Component {
           <div className="form-group">
             <button type="submit" className="Signup__ButtonLogin">Daftar</button>
           </div>
-          <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
-
         </form>
 
           <div>
