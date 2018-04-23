@@ -34,7 +34,7 @@ class User extends React.Component {
 
 	render() {
 
-		
+
 		return (
 			<div className="User">
 				<div className="User__container">
@@ -285,7 +285,7 @@ class User extends React.Component {
 	}
 
 	requestOTP(phone) {
-		console.log(phone);
+
 
 		this.setState({numberId: phone.id})
 		this.setState({phoneModal: true})
@@ -319,7 +319,10 @@ class User extends React.Component {
 									<div>{phone.primary === false ? null : <h1>{phone.number}</h1>}</div>
 								</div>
 							)
-						}) :  <button> null </button> }
+						}) : <button className="ButtonTopUP">
+										<label className="ButtonTopUP__label">Verifikasi</label>{' '}
+										<label className="ButtonTopUP__label__italic"></label>
+							 	 </button>}
 						</div>
 	          <label className="User__Label">
 	            No Hp Terdaftar
