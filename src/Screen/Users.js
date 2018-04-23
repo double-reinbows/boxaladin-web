@@ -34,7 +34,7 @@ class User extends React.Component {
 
 	render() {
 
-
+		// console.log('Props:', this.props);
 		return (
 			<div className="User">
 				<div className="User__container">
@@ -42,6 +42,7 @@ class User extends React.Component {
 						Profil Saya
 					</label>
 					{ this.showDataUser() }
+
 					{ this.showPhoneModal() }
 					{ this.showAddPhoneModal() }
 					{ this.showChangePhoneModal(this.state.numberToSend) }
@@ -285,7 +286,7 @@ class User extends React.Component {
 	}
 
 	requestOTP(phone) {
-
+		console.log(phone);
 
 		this.setState({numberId: phone.id})
 		this.setState({phoneModal: true})
@@ -313,16 +314,19 @@ class User extends React.Component {
         <div className="User__Phone__row1">
 					<div className="User__Phone__row1__PhoneNumber">
 	          <img src={IconPhone} className="User__show__logo" alt="Logo" />
-						{this.props.phoneNumbers.length !== 0 ? this.props.phoneNumbers.map((phone, idx) => {
-							return (
-								<div className="User__Phone__row1__PhoneInfo">
-									<div>{phone.primary === false ? null : <h1>{phone.number}</h1>}</div>
-								</div>
-							)
-						}) : <button className="ButtonTopUP">
-										<label className="ButtonTopUP__label">Verifikasi</label>{' '}
-										<label className="ButtonTopUP__label__italic"></label>
-							 	 </button>}
+						<div className = "User__Phone__row1__PhoneWidth">
+							{this.props.phoneNumbers.length !== 0 ? this.props.phoneNumbers.map((phone, idx) => {
+								return (
+									<div>
+										{phone.primary === false ? null :
+											<div className="User__Phone__row1__PhoneInfo">
+													 <h1>{phone.number}</h1>
+													 <h1>Verified</h1>
+											</div>}
+									</div>
+								)
+							}) :  <button> null </button> }
+						</div>
 						</div>
 	          <label className="User__Label">
 	            No Hp Terdaftar
@@ -335,10 +339,20 @@ class User extends React.Component {
                     return (
                       <li key={idx} className="User__Phone__row2__li">
                         <div className="User__Phone__row2__number">
-                          {phone.number }
+                          {phone.primary === false ? phone.number : null }
                         </div>
                         {phone.verified === false ? (
                           <div className="User__Phone__row2__unverify">
+                            <div className="User__Phone__row2__unverify__1">
+                              <Button
+                                onClick={() => this.requestOTP(phone)}
+                                color="success"
+                                type="button"
+                                className="User__Phone__row2__unverify__1__button1"
+                              >
+                                Verifikasi
+                              </Button>
+                            </div>
                             <div className="User__Phone__row2__unverify__2">
                               <Button
                                 type="button"
@@ -360,45 +374,7 @@ class User extends React.Component {
                               </Button>
                             </div>
                           </div>
-                        ) : (
-                          <div className="User__Phone__row2__verify">
-                            <div className="User__Phone__row2__verify__1">
-                              <label
-                                className="User__Phone__row2__verify__1__label"
-                                style={{ color: "green" }}
-                              >
-                                Verified
-                              </label>
-                            </div>
-                            <div className="User__Phone__row2__verify__2">
-                              <Button
-                                type="button"
-                                color="danger"
-                                onClick={() => this.removePhone(phone)}
-                                className="User__Phone__row2__verify__2__button5"
-                              >
-                                Hapus
-                              </Button>
-                            </div>
-                            <div className="User__Phone__row2__verify__3">
-															{/* {
-																phone.primary && (
-																	<img
-                                  src={IconCheck}
-                                  className="User__Phone__row2__verify__3__check"
-																	alt="Logo"/>
-																)
-															} */}
-															{phone.primary === true ? (
-                                <img
-                                  src={IconCheck}
-                                  className="User__Phone__row2__verify__3__check"
-                                  alt="Logo"
-                                />
-                              ) : null}
-                            </div>
-                          </div>
-                        )}
+                        ) : null }
                       </li>
                     );
                   }
