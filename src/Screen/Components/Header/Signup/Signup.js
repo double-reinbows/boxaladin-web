@@ -153,7 +153,7 @@ class Signup extends Component {
       document.getElementById('confirm_password').value = "";
     } else if (!/^[A-Za-z0-9!@#$%^&*()_]{8,20}$/.test(this.state.password)) {
       this.setState({
-        password: undefined, 
+        password: undefined,
         _vPassword: false,
         notif : "Password Harus Terdiri Dari 8 Huruf/Angka atau Lebih"
       })
@@ -239,12 +239,12 @@ class Signup extends Component {
               this.setState({
                 notif: "Email Sudah digunakan",
               })
-            } else if (data.isUsed.email) {  
+            } else if (data.isUsed.email) {
               this.setState({
               notif: "Email Sudah digunakan",
               })
-            } 
-          }  else if (data.hasOwnProperty('phoneIsUsed')) {  
+            }
+          }  else if (data.hasOwnProperty('phoneIsUsed')) {
             this.setState({
               notif: "No Hp Sudah digunakan",
             })
@@ -291,17 +291,17 @@ class Signup extends Component {
     var email = e.target.value
     var user = email.split('@')[0]
     var provider = email.split('@')[1]
-    
+
     if (provider === 'gmail.com') {
       let userWithoutDot = user.split('.').join('')
       const result = userWithoutDot + '@gmail.com'
       this.setState({ email : result.trim().toLowerCase() })
-    } 
+    }
     else {
       const result = e.target.value
       this.setState({ email : result.trim().toLowerCase() })
 
-    } 
+    }
   }
 
   handleOtp(e){
@@ -373,7 +373,7 @@ class Signup extends Component {
   render() {
     return (
       <div className="Signup">
-        
+
         <Loading isLoading={ this.props.isLoading } />
 
         <form className="form-horizontal" onSubmit={e => this.signUp(e)}>
@@ -405,9 +405,7 @@ class Signup extends Component {
 
           <label className="alert">{this.state.notif}</label>
           <br/>
-          <input name="condition" type="checkbox"/>
-          <label className="Signup__Condition">Saya telah membaca syarat dan kondisi yang berlaku</label>
-          
+
           <div className="form-group">
             <button type="submit" className="Signup__ButtonLogin">Daftar</button>
           </div>
