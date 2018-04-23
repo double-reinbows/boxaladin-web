@@ -312,11 +312,20 @@ class User extends React.Component {
 	showPhoneNumbers() {
 		return <div className="User__Phone">
         <div className="User__Phone__row1">
-          <img src={IconPhone} className="User__show__logo" alt="Logo" />
-          <label className="User__Label">
-            No Hp Terdaftar
-          </label>
-        </div>
+					<div className="User__Phone__row1__PhoneNumber">
+	          <img src={IconPhone} className="User__show__logo" alt="Logo" />
+						{this.props.phoneNumbers.length !== 0 ? this.props.phoneNumbers.map((phone, idx) => {
+							return (
+								<div className="User__Phone__row1__PhoneInfo">
+									<div>{phone.primary === false ? null : <h1>{phone.number}</h1>}</div>
+								</div>
+							)
+						}) :  <button> null </button> }
+						</div>
+	          <label className="User__Label">
+	            No Hp Terdaftar
+	          </label>
+	        </div>
         <div className="User__Phone__row2">
           <ul>
             {this.props.phoneNumbers !== null ? this.props.phoneNumbers.map(
