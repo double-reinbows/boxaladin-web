@@ -1,0 +1,148 @@
+.ModalTop{
+  border-bottom: none;
+  border-radius: 0;
+  background-color: var(--color-grey-5);
+  span{
+    color: #FFCD05;
+  }
+  &__otp{
+    background-color: white;
+    span{
+      color: black;
+    }
+  }
+}
+
+.modalz{
+  position: fixed; /* Stay in place */
+  z-index: 10; /* Sit on top */
+  left: 0;
+  top: 0;
+  padding-top: 100px;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.containerModalOtp{
+  position: fixed; /* Stay in place */
+  z-index: 10; /* Sit on top */
+  left: 0;
+  top: 0;
+  padding-top: 100px;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: disabled; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+//---------------------
+
+/* Modal Content */
+.modalOtp{
+  position: relative;
+  margin: auto;
+  padding: 0;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  overflow: auto; /* Enable scroll if needed */
+  border: 5px solid var(--white);
+  height: 60%;
+  width: 50%;
+  margin-top: 5%;
+  background-color: white;
+}
+
+
+.modalContent {
+  position: relative;
+  margin: auto;
+  padding: 0;
+  width: 60%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  overflow: auto; /* Enable scroll if needed */
+  border: 5px solid var(--white);
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 0;
+  &__otp{
+    text-align: center;
+    &__input{
+      padding: 5px;
+      font-size: 14px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    &__button{
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    &__label{
+      font-size: 18px;
+    }
+    &__resend{
+      // border: none;
+      // background: white;
+      // cursor: pointer;
+      // &:hover{
+      //   color: blue;
+      // }
+      // &:active{
+      //   color: blue;
+      // }
+      // &:focus{
+      //   color: blue;
+      // }
+    }
+  }
+}
+
+//----------------------
+
+@media (min-width: 767px ) {
+  .modalContent{
+    font-size: 14px;
+  }
+}
+@media (min-width: 200px ) and (max-width:766px ) {
+  .modalContent{
+    font-size: 14px;
+    width: 90%
+  }
+  .modalOtp{
+    font-size: 14px;
+    width: 85%
+  }
+}

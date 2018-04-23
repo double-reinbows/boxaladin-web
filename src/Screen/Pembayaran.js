@@ -14,9 +14,6 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  Card,
-  CardTitle,
-  CardText,
   Row,
   Col
 } from 'reactstrap';
@@ -456,7 +453,6 @@ class InvoiceDetail extends React.Component {
       url: `${process.env.REACT_APP_API_HOST}/transaction/${this.props.match.params.id}`
     })
     .then(({data}) => {
-      console.log('dataaaaaaaaaaaaaa', data)
     this.setState({
       invoice: data
     })

@@ -1,11 +1,10 @@
-import axios from 'axios'
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import Modal from 'react-modal'
-import { ModalHeader, ModalFooter, Button } from 'reactstrap';
 import { setModalLogin, setModalRegister, setIsLoading, loginAction } from '../../../../actions/'
+import axios from 'axios'
 
 import Loading from '../../Loading/'
+import ModalOtp from './ModalOtp'
 
 const URL = `${process.env.REACT_APP_API_HOST}/`
 
@@ -17,12 +16,8 @@ class Signup extends Component {
       phonenumber: '',
       notif: '',
       modal: false,
-      notifOtp: '',
-      otp: '',
       dataUser: {},
-      disabled: true,
-      count: 4,
-      time: ''
+
     }
     this.signUpInputHandler = this.signUpInputHandler.bind(this)
     this.toggle = this.toggle.bind(this);
@@ -33,12 +28,10 @@ class Signup extends Component {
     this.setState({
       modal: !this.state.modal,
     })
+    this.toggle()
+    this.props.loginAction()
+    this.props.setModalRegister(false)
   }
-
-  // console(){
-  //   this.setState({
-  //   })
-  // }
 
   //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   /**
@@ -259,7 +252,6 @@ class Signup extends Component {
               this.setState({
                 dataUser: payload,
                 modal: true,
-                time : data.time
               })
               // this.props.loginAction()
               /**
@@ -304,72 +296,6 @@ class Signup extends Component {
     } 
   }
 
-  handleOtp(e){
-    this.setState({
-      otp: e.target.value
-    })
-  }
-
-  sendOtp(e){
-    e.preventDefault()
-
-    if (this.state.otp === '') {
-      this.setState({
-        notifOtp: 'OTP Tidak Boleh Kosong'
-      })
-    } else {
-    axios({
-      method: 'POST',
-      url: `${process.env.REACT_APP_API_HOST}/signupverification`,
-      data: {
-        phonenumber: this.state.phonenumber,
-        otp : this.state.otp
-      }
-    })
-    .then((dataOtp) => {
-      if (dataOtp.data.message === 'Phone Terverifikasi') {
-        alert('No Hp Telah Diverifikasi')
-        this.toggle()
-        this.props.loginAction()
-        this.props.setModalRegister(false)
-
-      }	else if ( dataOtp.data.message === 'incorrect otp') {
-        this.setState({
-          notifOtp: "OTP Salah"
-        })
-      } else if ( dataOtp.data.message === 'phone verified'){
-        this.toggle()
-        this.props.loginAction()
-        this.props.setModalRegister(false)
-      }
-    })
-    .catch(err => console.log(err))
-  }
-}
-
-  resentOtp(){
-      if (this.state.count > 0 ){
-      this.setState({
-        count : this.state.count - 1,
-        notifOtp: `${this.state.count} OTP Sisa Yang Dapat Dikirim`
-      })
-      axios({
-        method: 'POST',
-        url: `${process.env.REACT_APP_API_HOST}/otp`,
-        data: {
-          phonenumber: this.state.phonenumber,
-        }
-      })
-      .then((dataOtp) => {
-        console.log('otp sent')
-      })
-    } else {
-      this.toggle()
-      this.props.loginAction()
-      this.props.setModalRegister(false)
-    }
-}
-
   render() {
     return (
       <div className="Signup">
@@ -412,34 +338,7 @@ class Signup extends Component {
             <button type="submit" className="Signup__ButtonLogin">Daftar</button>
           </div>
         </form>
-
-          <div>
-            <Modal ariaHideApp={false} isOpen={this.state.modal} toggle={this.toggle} className="modalz">
-              <form onSubmit={e => this.sendOtp(e)}>
-                <div className="modalOtp">
-                <ModalHeader toggle={this.toggle} className="ModalTop__otp"></ModalHeader>
-                  <div className="modal-body__otp">
-                    <div>
-                    <label className="modal-body__otp__label">Anda Akan di Missed Call Oleh Sistem Kami</label>
-                      <label className="modal-body__otp__label">Masukkan 4 Angka Terakhir Dari no yang Menelpon Anda</label>
-                    </div>
-                    <div>
-                      <input className="modal-body__otp__input" value={this.state.otp} onChange={e => this.handleOtp(e)} placeholder="otp"/>
-                    </div>
-                    <div>
-                      <Button className="modal-body__otp__button" color="primary" type="submit" >Submit</Button>{' '}
-                    </div>
-                    <div>
-                    </div>
-                    <label className="alert">{this.state.notifOtp}</label>
-                  </div>
-                  <ModalFooter>
-                  <Button onClick={() => this.resentOtp()} className="modal-body__otp__resend">Kirim Ulang OTP</Button>
-                  </ModalFooter>
-                </div>
-              </form>
-          </Modal>
-        </div>
+          <ModalOtp open={this.state.modal} buttongToggle={this.toggle} phone={this.state.phonenumber}/>
       </div>
     )
   }
