@@ -34,7 +34,7 @@ class User extends React.Component {
 
 	render() {
 
-		// console.log('Props:', this.props);
+		
 		return (
 			<div className="User">
 				<div className="User__container">
@@ -42,7 +42,6 @@ class User extends React.Component {
 						Profil Saya
 					</label>
 					{ this.showDataUser() }
-
 					{ this.showPhoneModal() }
 					{ this.showAddPhoneModal() }
 					{ this.showChangePhoneModal(this.state.numberToSend) }
