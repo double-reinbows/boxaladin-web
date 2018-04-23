@@ -335,20 +335,10 @@ class User extends React.Component {
                     return (
                       <li key={idx} className="User__Phone__row2__li">
                         <div className="User__Phone__row2__number">
-                          {phone.number}
+                          {phone.number }
                         </div>
                         {phone.verified === false ? (
                           <div className="User__Phone__row2__unverify">
-                            <div className="User__Phone__row2__unverify__1">
-                              <Button
-                                onClick={() => this.requestOTP(phone)}
-                                color="success"
-                                type="button"
-                                className="User__Phone__row2__unverify__1__button1"
-                              >
-                                Verifikasi
-                              </Button>
-                            </div>
                             <div className="User__Phone__row2__unverify__2">
                               <Button
                                 type="button"
