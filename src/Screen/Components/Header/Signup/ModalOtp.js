@@ -45,10 +45,13 @@ class ModalOtp extends Component {
       url: `${process.env.REACT_APP_API_HOST}/signupverification`,
       data: {
         phonenumber: this.props.phone,
-        otp : this.state.otp
+        otp : this.state.otp,
+        email : this.props.emailUser
       }
     })
     .then((dataOtp) => {
+      console.log('email', this.props.emailUser)
+      console.log(dataOtp)
       if (dataOtp.data.message === 'Phone Terverifikasi') {
         alert('No Hp Telah Diverifikasi')
         this.props.buttongToggle()
@@ -92,6 +95,7 @@ resendOtp(){
           url: `${process.env.REACT_APP_API_HOST}/otp`,
           data: {
             phonenumber: this.props.phone,
+            email: this.props.emailUser
           }
         })
         .then((dataOtp) => {

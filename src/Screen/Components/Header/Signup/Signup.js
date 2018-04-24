@@ -17,6 +17,7 @@ class Signup extends Component {
       notif: '',
       modal: false,
       dataUser: {},
+      email: ''
 
     }
     this.signUpInputHandler = this.signUpInputHandler.bind(this)
@@ -28,9 +29,7 @@ class Signup extends Component {
     this.setState({
       modal: !this.state.modal,
     })
-    this.toggle()
-    this.props.loginAction()
-    this.props.setModalRegister(false)
+    window.location.reload(true); 
   }
 
   //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -249,9 +248,11 @@ class Signup extends Component {
               })
             } else {
               localStorage.setItem('token', data.token)
+              console.log('email', payload.email)
               this.setState({
                 dataUser: payload,
                 modal: true,
+                email: payload.email
               })
               // this.props.loginAction()
               /**
@@ -338,7 +339,7 @@ class Signup extends Component {
             <button type="submit" className="Signup__ButtonLogin">Daftar</button>
           </div>
         </form>
-          <ModalOtp open={this.state.modal} buttongToggle={this.toggle} phone={this.state.phonenumber}/>
+          <ModalOtp open={this.state.modal} buttongToggle={this.toggle} phone={this.state.phonenumber} emailUser={this.state.email}/>
       </div>
     )
   }
