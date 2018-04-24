@@ -325,7 +325,10 @@ class User extends React.Component {
 											</div>}
 									</div>
 								)
-							}) :  <button> null </button> }
+							}) : <button className="ButtonTopUP">
+									 		<label className="ButtonTopUP__label">Verifikasi</label>{' '}
+									 		<label className="ButtonTopUP__label__italic"></label>
+									 </button>  }
 						</div>
 						</div>
 	          <label className="User__Label">
@@ -343,16 +346,6 @@ class User extends React.Component {
                         </div>
                         {phone.verified === false ? (
                           <div className="User__Phone__row2__unverify">
-                            <div className="User__Phone__row2__unverify__1">
-                              <Button
-                                onClick={() => this.requestOTP(phone)}
-                                color="success"
-                                type="button"
-                                className="User__Phone__row2__unverify__1__button1"
-                              >
-                                Verifikasi
-                              </Button>
-                            </div>
                             <div className="User__Phone__row2__unverify__2">
                               <Button
                                 type="button"
@@ -385,11 +378,6 @@ class User extends React.Component {
           <div className="User__Phone__row3">
             <Button color="success" onClick={() => this.addPhone()} className="User__Phone__row3__button1">
               Tambah No Baru
-            </Button>
-            <Button color="danger" onClick={() => this.setState({
-                  changePrimaryPhoneModal: true
-                })} className="User__Phone__row3__button2">
-              Pilih No Utama
             </Button>
           </div>
         </div>
