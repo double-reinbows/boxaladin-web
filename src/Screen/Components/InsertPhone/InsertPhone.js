@@ -21,8 +21,7 @@ class InsertPhone extends React.Component {
   }
 
   render() {
-    // console.log('InsertPhone Props:', this.props);
-    console.log('InsertPhone State:', this.state.phone);
+
 
     return (
       <div className="InsertPhone">

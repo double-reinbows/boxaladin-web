@@ -25,9 +25,9 @@ class ClaimFreePulsa extends React.Component {
 	}
 
 	render() {
-    const pulsa = this.props.products.filter(product => {
-      return product.category === 'Pulsa' && product.price === this.state.win.gamerule.pulsaAmount
-    })
+    // const pulsa = this.props.products.filter(product => {
+    //   return product.category === 'Pulsa' && product.price === this.state.win.gamerule.pulsaAmount
+    // })
 
 		return (
 			<div className="TopupKey">
@@ -166,7 +166,7 @@ class ClaimFreePulsa extends React.Component {
       this.props.history.push('/game')
     })
     .catch(err => {
-      
+
     })
   }
 

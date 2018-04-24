@@ -53,7 +53,7 @@ class DropdownUser extends React.Component {
           </DropdownItem> */}
           <a href="/me">
           <DropdownItem className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" to="/me">Profile Saya</Link>
+            <Link className="DropdownUser__inside__link" to="/me"><a>Profile Saya</a></Link>
           </DropdownItem>
           </a>
 

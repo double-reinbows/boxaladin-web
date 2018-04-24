@@ -13,7 +13,7 @@ import IconEmail from '../asset/user/IconEmail.svg'
 import IconKey from '../asset/user/IconKey.svg'
 import IconPhone from '../asset/user/IconPhone.svg'
 // import IconUser from '../asset/user/IconUser.svg'
-import IconCheck from '../asset/user/IconCheck.svg'
+// import IconCheck from '../asset/user/IconCheck.svg'
 
 class User extends React.Component {
 	constructor() {

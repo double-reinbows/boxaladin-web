@@ -14,9 +14,6 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  Card,
-  CardTitle,
-  CardText,
   Row,
   Col
 } from 'reactstrap';
@@ -58,8 +55,6 @@ class InvoiceDetail extends React.Component {
   }
 
   render() {
-    console.log('Props:', this.props);
-    console.log('State:', this.state);
 
     if (this.state.invoice.createdAt === ''){
       console.log('kosong')
@@ -438,7 +433,7 @@ class InvoiceDetail extends React.Component {
       }
     })
     .then(({data}) => {
-      console.log(data)
+    
     })
     .catch(err => console.log(err))
   }
@@ -577,11 +572,11 @@ class InvoiceDetail extends React.Component {
     )
   }
 
-  toggle(tab) {
-    if (this.state.activeTab !== tab) {
-      this.setState({activeTab: tab})
-    }
-  }
+  // toggle(tab) {
+  //   if (this.state.activeTab !== tab) {
+  //     this.setState({activeTab: tab})
+  //   }
+  // }
 
   getInvoiceById() {
     axios({
@@ -589,7 +584,6 @@ class InvoiceDetail extends React.Component {
       url: `${process.env.REACT_APP_API_HOST}/transaction/${this.props.match.params.id}`
     })
     .then(({data}) => {
-      console.log('dataaaaaaaaaaaaaa', data)
     this.setState({
       invoice: data
     })
