@@ -22,7 +22,8 @@ class ModalOtp extends Component {
       notifOtp: '',
       disabled: false,
       count: 5,
-      time: 20,
+      time: 60,
+      show: true
     }
   }
 
@@ -76,45 +77,58 @@ resendOtp(){
   this.setState({
     count : this.state.count - 1,
   })
+  if (this.state.count > 0 ){
+    axios({
+      method: 'POST',
+      url: `${process.env.REACT_APP_API_HOST}/otp`,
+      data: {
+        phonenumber: this.props.phone,
+        email: this.props.emailUser
+      }
+    })
+    .then((dataOtp) => {
+      if (dataOtp.data === 'error'){
+        alert("Terjadi Kesalahan di Sistem Kami, Silahkan Hubungi Customer Service Untuk Menverifikasi No Anda")
+        this.setState({
+          show: 'hidden'
+        })
+        this.props.buttongToggle()
+        this.props.loginAction()
+        this.props.setModalRegister(false)
+      } else if (dataOtp.data === 'retry'){
+        this.setState({
+          notifOtp: 'otp Tidak Terkirim, Silahkan Kirim Ulang'
+        })
+      } else {
+        console.log('otp sent')
+      }
+    })
+  } else {
+    this.props.buttongToggle()
+    this.props.loginAction()
+    this.props.setModalRegister(false)
+  }
   this.timer = setInterval(() => {
     this.setState({
       time: this.state.time - 1,
       disabled: true,
-      notifOtp: `${this.state.count} OTP Sisa Yang Dapat Dikirim`
+      notifCount: `${this.state.count} OTP Sisa Yang Dapat Dikirim`
     })
 
     if(this.state.time <= 0) {
       clearInterval(this.timer);
       this.setState({
-        time: 20,
+        time: 60,
         disabled: false
       })
-      if (this.state.count > 0 ){
-        axios({
-          method: 'POST',
-          url: `${process.env.REACT_APP_API_HOST}/otp`,
-          data: {
-            phonenumber: this.props.phone,
-            email: this.props.emailUser
-          }
-        })
-        .then((dataOtp) => {
-          if (dataOtp.data === 'error'){
-            this.setState({
-              notifOtp: 'Terjadi Kesalahan di Sistem Kami, Silahkan Hubungi Customer Service Untuk Menverifikasi No Anda'
-            })
-          } else {
-            console.log('otp sent')
-          }
-        })
-      } else {
-        this.props.buttongToggle()
-        this.props.loginAction()
-        this.props.setModalRegister(false)
-      }
     }
   }, 1000)
 }
+  // show(){
+  //   this.setState({
+  //     show: 'hidden'
+  //   })
+  // }
 
   render() { 
     return ( 
@@ -135,10 +149,16 @@ resendOtp(){
               </div>
               <div>
               </div>
-              <label className="alert">{this.state.notifOtp}</label>
+              <div className='otpLabel'>
+                <label className="alert__otp">{this.state.notifCount}</label>
+                <label className="alert__otp">{this.state.notifOtp}</label>
+              </div>
+
             </div>
             <ModalFooter>
-            <Button disabled={this.state.disabled} onClick={() => this.resendOtp()} className="modal-body__otp__resend">Kirim Ulang OTP</Button>
+            {/* <Button onClick={() => this.show()}></Button> */}
+
+            <Button style ={{visibility:this.state.show}} disabled={this.state.disabled} onClick={() => this.resendOtp()} className="modal-body__otp__resend">Kirim Ulang OTP</Button>
             </ModalFooter>
           </div>
         </form>

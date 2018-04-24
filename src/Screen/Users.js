@@ -13,7 +13,7 @@ import IconEmail from '../asset/user/IconEmail.svg'
 import IconKey from '../asset/user/IconKey.svg'
 import IconPhone from '../asset/user/IconPhone.svg'
 // import IconUser from '../asset/user/IconUser.svg'
-import IconCheck from '../asset/user/IconCheck.svg'
+// import IconCheck from '../asset/user/IconCheck.svg'
 
 class User extends React.Component {
 	constructor() {
@@ -44,10 +44,14 @@ class User extends React.Component {
 					{ this.showDataUser() }
 
 					{ this.showPhoneModal() }
+
 					{ this.showAddPhoneModal() }
 					{ this.showChangePhoneModal(this.state.numberToSend) }
+
 					{ this.showChangePrimaryPhone() }
+
 					{ this.showChangePrimaryPhoneOTP() }
+
 				</div>
 			</div>
 		)
@@ -92,7 +96,6 @@ class User extends React.Component {
 	finalSubmitChangePrimaryPhone(e) {
 		e.preventDefault()
 		// alert('Final submit!')
-		console.log(`Data buat confirm change primary phone: ID=${this.state.numberId}, OTP=${this.state.OTP}`);
 
 		axios({
 				method: 'POST',
@@ -312,11 +315,29 @@ class User extends React.Component {
 	showPhoneNumbers() {
 		return <div className="User__Phone">
         <div className="User__Phone__row1">
-          <img src={IconPhone} className="User__show__logo" alt="Logo" />
-          <label className="User__Label">
-            No Hp Terdaftar
-          </label>
-        </div>
+					<div className="User__Phone__row1__PhoneNumber">
+	          <img src={IconPhone} className="User__show__logo" alt="Logo" />
+						<div className = "User__Phone__row1__PhoneWidth">
+							{this.props.phoneNumbers.length !== 0 ? this.props.phoneNumbers.map((phone, idx) => {
+								return (
+									<div>
+										{phone.primary === false ? null :
+											<div className="User__Phone__row1__PhoneInfo">
+													 <h1>{phone.number}</h1>
+													 <h1>(Verified)</h1>
+											</div>}
+									</div>
+								)
+							}) : <button className="ButtonTopUP">
+									 		<label className="ButtonTopUP__label">Verifikasi</label>{' '}
+									 		<label className="ButtonTopUP__label__italic"></label>
+									 </button>  }
+						</div>
+						</div>
+	          <label className="User__Label">
+	            No Hp Terdaftar
+	          </label>
+	        </div>
         <div className="User__Phone__row2">
           <ul>
             {this.props.phoneNumbers !== null ? this.props.phoneNumbers.map(
@@ -324,20 +345,10 @@ class User extends React.Component {
                     return (
                       <li key={idx} className="User__Phone__row2__li">
                         <div className="User__Phone__row2__number">
-                          {phone.number}
+                          {phone.primary === false ? phone.number : null }
                         </div>
                         {phone.verified === false ? (
                           <div className="User__Phone__row2__unverify">
-                            <div className="User__Phone__row2__unverify__1">
-                              <Button
-                                onClick={() => this.requestOTP(phone)}
-                                color="success"
-                                type="button"
-                                className="User__Phone__row2__unverify__1__button1"
-                              >
-                                Verifikasi
-                              </Button>
-                            </div>
                             <div className="User__Phone__row2__unverify__2">
                               <Button
                                 type="button"
@@ -359,45 +370,7 @@ class User extends React.Component {
                               </Button>
                             </div>
                           </div>
-                        ) : (
-                          <div className="User__Phone__row2__verify">
-                            <div className="User__Phone__row2__verify__1">
-                              <label
-                                className="User__Phone__row2__verify__1__label"
-                                style={{ color: "green" }}
-                              >
-                                Verified
-                              </label>
-                            </div>
-                            <div className="User__Phone__row2__verify__2">
-                              <Button
-                                type="button"
-                                color="danger"
-                                onClick={() => this.removePhone(phone)}
-                                className="User__Phone__row2__verify__2__button5"
-                              >
-                                Hapus
-                              </Button>
-                            </div>
-                            <div className="User__Phone__row2__verify__3">
-															{/* {
-																phone.primary && (
-																	<img
-                                  src={IconCheck}
-                                  className="User__Phone__row2__verify__3__check"
-																	alt="Logo"/>
-																)
-															} */}
-															{phone.primary === true ? (
-                                <img
-                                  src={IconCheck}
-                                  className="User__Phone__row2__verify__3__check"
-                                  alt="Logo"
-                                />
-                              ) : null}
-                            </div>
-                          </div>
-                        )}
+                        ) : null }
                       </li>
                     );
                   }
@@ -406,13 +379,9 @@ class User extends React.Component {
 					<label className="alert__user">{this.state.notif}</label>
 
           <div className="User__Phone__row3">
+
             <Button color="success" onClick={() => this.addPhone()} className="User__Phone__row3__button1">
               Tambah No Baru
-            </Button>
-            <Button color="danger" onClick={() => this.setState({
-                  changePrimaryPhoneModal: true
-                })} className="User__Phone__row3__button2">
-              Pilih No Utama
             </Button>
           </div>
         </div>
@@ -434,12 +403,13 @@ class User extends React.Component {
 				}
 			})
 			.then(response => {
+				console.log(response)
 				if (response.data.message === 'data added') {
 					this.props.getPhoneNumbers()
 					this.setState({addPhoneModal: false})
-				} else if (response.data.message === 'duplicate number') {
+				} else if (response.data === 'duplicate number') {
 					this.setState({
-						notif: response.data.message,
+						notif: 'No Hp Sudah Ada',
 					})
 				} else if (response.data.message === 'already use') {
 					this.setState({
@@ -533,6 +503,7 @@ class User extends React.Component {
 					{this.props.userInfo !== null ? this.props.userInfo.coin : null}
 				</div>
 				{ this.showPhoneNumbers() }
+
 			</div>
 		)
 	}

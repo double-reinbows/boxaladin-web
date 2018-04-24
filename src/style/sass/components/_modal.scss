@@ -129,6 +129,11 @@
   }
 }
 
+.otpLabel{
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+}
 //----------------------
 
 @media (min-width: 767px ) {
