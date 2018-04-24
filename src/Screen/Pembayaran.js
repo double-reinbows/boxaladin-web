@@ -165,33 +165,87 @@ class InvoiceDetail extends React.Component {
                           <Col sm="12">
                             <center><h1 style = { { padding: '10px'} }><b>ATM</b></h1></center>
                             <div>
-                              <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>1.</div> Masukkan kartu ATM dan pilih "Bahasa Indonesia"</h4>
-                              <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>2.</div> Ketik nomor PIN kartu ATM</h4>
-                              <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>3.</div> Pilih menu BAYAR/BELI, kemudian pilih menu MULTI PAYMENT</h4>
-                              <h4  style = { { padding: '10px', paddingLeft: '0px' } }><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>4.</div> Masukkan nomor Virtual Account {this.state.invoice.payment.availableBanks[0].bank_account_number}</h4>
-                              <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>5.</div> Isi NOMINAL sebesar Rp.{this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}, kemudian tekan "BENAR"</h4>
-                              <h4  style = { { padding: '10px', paddingLeft: '0px' } }><div style = { { float : 'left', padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>6.</div> Muncul konfirmasi data customer. Pilih Nomor 1 sesuai tagihan yang akan dibayar, <div style = { { paddingLeft : '16px'}}> kemudian tekan "YA" </div></h4>
-                              <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>7.</div> Muncul konfirmasi pembayaran. Tekan "YA" untuk melakukan pembayaran</h4>
-                              <h4  style = { { padding: '10px', paddingLeft: '0px' } }><div style = { { float : 'left', padding: '10px', paddingTop: '0px',  paddingRight: '15px' } }>8.</div> Bukti pembayaran dalam bentuk struk agar disimpan sebagai bukti pembayaran yang sah <div style = { { paddingLeft : '16px'}}> dari Bank Mandiri </div></h4>
-                              <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>9.</div> Transaksi Anda sudah selesai</h4>
-                              <h4  style = { { padding: '10px', paddingLeft: '0px' } }><div style = { { float : 'left', padding: '10px', paddingTop: '0px' } }>10.</div> Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis. Ini bisa memakan waktu hingga 5 menit.</h4>
+                              <div style = {{ fontSize: "15px", padding: '20px' }}>
+                                <ol>
+                                  <li>
+                                    Masukkan kartu ATM dan pilih "Bahasa Indonesia"
+                                  </li>
+                                  <li>
+                                    Ketik nomor PIN kartu ATM
+                                  </li>
+                                  <li>
+                                    Pilih menu BAYAR/BELI, kemudian pilih menu MULTI PAYMENT
+                                  </li>
+                                  <li>
+                                    Masukkan nomor Virtual Account {this.state.invoice.payment.availableBanks[0].bank_account_number}
+                                  </li>
+                                  <li>
+                                    Isi NOMINAL sebesar Rp.{this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}, kemudian tekan "BENAR"
+                                  </li>
+                                  <li>
+                                    Muncul konfirmasi data customer. Pilih Nomor 1 sesuai tagihan yang akan dibayar, kemudian tekan "YA"
+                                  </li>
+                                  <li>
+                                    Muncul konfirmasi pembayaran. Tekan "YA" untuk melakukan pembayaran
+                                  </li>
+                                  <li>
+                                    Bukti pembayaran dalam bentuk struk agar disimpan sebagai bukti pembayaran yang sah dari Bank Mandiri
+                                  </li>
+                                  <li>
+                                    Transaksi Anda sudah selesai
+                                  </li>
+                                  <li>
+                                    Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis. Ini bisa memakan waktu hingga 5 menit.
+                                  </li>
+                                </ol>
+                              </div>
                             </div>
 
                             <center><h1 style = { { padding: '10px'} }><b>ONLINE</b></h1></center>
                             <div>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>1.</div> Kunjungi website Mandiri Internet Banking dengan alamat <a href="https://ib.bankmandiri.co.id/" target="_blank" rel="noopener noreferrer">https://ib.bankmandiri.co.id/</a> </h4>
-                                <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>2.</div> Login dengan memasukkan USER ID dan PIN </h4>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>3.</div> Masuk ke halaman Beranda, lalu pilih "Bayar" </h4>
-                                <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>4.</div> Pilih "Multi Payment" </h4>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>5.</div> Pilih "No Rekening Anda" </h4>
-                                <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>6.</div> Pilih "No Virtual Account" </h4>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>7.</div> Masukkan nomor Virtual Account {this.state.invoice.payment.availableBanks[0].bank_account_number} </h4>
-                                <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>8.</div> Masuk ke halaman konfirmasi 1 </h4>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>9.</div> Apabila benar/sesuai, klik tombol tagihan TOTAL, kemudian klik "Lanjutkan" </h4>
-                                <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px' } }>10.</div> Masuk ke halaman konfirmasi 2 </h4>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px' } }>11.</div> Masukkan Challenge Code yang dikirimkan ke Token Internet Banking Anda, kemudian klik "Kirim" </h4>
-                                <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px' } }>12.</div> Masuk ke halaman konfirmasi pembayaran telah selesai </h4>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px' } }>13.</div> Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis. Ini bisa memakan waktu hingga 5 menit.</h4>
+                              <div style = {{ fontSize: "15px", padding: '20px' }}>
+                                <ol>
+                                  <li>
+                                    Kunjungi website Mandiri Internet Banking dengan alamat <a href="https://ib.bankmandiri.co.id/" target="_blank" rel="noopener noreferrer">https://ib.bankmandiri.co.id/</a>
+                                  </li>
+                                  <li>
+                                    Login dengan memasukkan USER ID dan PIN
+                                  </li>
+                                  <li>
+                                    Masuk ke halaman Beranda, lalu pilih "Bayar"
+                                  </li>
+                                  <li>
+                                    "Multi Payment"
+                                  </li>
+                                  <li>
+                                    Pilih "No Rekening Anda"
+                                  </li>
+                                  <li>
+                                    Pilih "No Virtual Account"
+                                  </li>
+                                  <li>
+                                    Masukkan nomor Virtual Account {this.state.invoice.payment.availableBanks[0].bank_account_number}
+                                  </li>
+                                  <li>
+                                    Masuk ke halaman konfirmasi 1
+                                  </li>
+                                  <li>
+                                    Apabila benar/sesuai, klik tombol tagihan TOTAL, kemudian klik "Lanjutkan"
+                                  </li>
+                                  <li>
+                                    Masuk ke halaman konfirmasi 2
+                                  </li>
+                                  <li>
+                                    Masukkan Challenge Code yang dikirimkan ke Token Internet Banking Anda, kemudian klik "Kirim"
+                                  </li>
+                                  <li>
+                                    Masuk ke halaman konfirmasi pembayaran telah selesai
+                                  </li>
+                                  <li>
+                                    Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis. Ini bisa memakan waktu hingga 5 menit.
+                                  </li>
+                                </ol>
+                              </div>
                             </div>
                           </Col>
                         </Row>
@@ -200,37 +254,83 @@ class InvoiceDetail extends React.Component {
                         <Row>
                           <Col sm="12">
                             <center><h1 style = { { padding: '10px'} }><b>ATM</b></h1></center>
-                            <div>
-                              <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>1.</div> Masukkan kartu, pilih bahasa kemudian masukkan PIN Anda</h4>
-                              <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>2.</div> Pilih "Menu Lainnya" lalu pilih "Transfer"</h4>
-                              <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>3.</div> Pilih "Tabungan" lalu "Rekening BNI Virtual Account"</h4>
-                              <h4  style = { { padding: '10px', paddingLeft: '0px' } }><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>4.</div> Masukkan nomor Virtual Account {this.state.invoice.payment.availableBanks[1].bank_account_number} dan nominal yang Anda bayar sebesar Rp.{this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}</h4>
-                              <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>5.</div> Periksa kembali data transaksi kemudian tekan "YA"</h4>
-                              <h4  style = { { padding: '10px', paddingLeft: '0px' } }><div style = { { float : 'left', padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>6.</div> Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis. Ini bisa memakan waktu hingga 5 menit</h4>
+                            <div style = {{ fontSize: "15px", padding: '20px' }}>
+                              <ol>
+                                <li>
+                                  Masukkan kartu, pilih bahasa kemudian masukkan PIN Anda
+                                </li>
+                                <li>
+                                  Pilih "Menu Lainnya" lalu pilih "Transfer"
+                                </li>
+                                <li>
+                                  Pilih "Tabungan" lalu "Rekening BNI Virtual Account"
+                                </li>
+                                <li>
+                                  Masukkan nomor Virtual Account {this.state.invoice.payment.availableBanks[1].bank_account_number} dan nominal yang Anda bayar sebesar Rp.{this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}
+                                </li>
+                                <li>
+                                  Periksa kembali data transaksi kemudian tekan "YA"
+                                </li>
+                                <li>
+                                  Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis. Ini bisa memakan waktu hingga 5 menit
+                                </li>
+                              </ol>
                             </div>
 
+
                             <center><h1 style = { { padding: '10px'} }><b>ONLINE</b></h1></center>
-                            <div>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>1.</div> Login di <a href="https://ibank.bni.co.id" target="_blank" rel="noopener noreferrer">https://ibank.bni.co.id</a>, masukkan USER ID dan PASSWORD </h4>
-                                <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>2.</div> Pilih "TRANSFER" lalu pilih "Tambah Rekening Favorit" </h4>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>3.</div> Jika Anda menggunakan desktop untuk menambah rekening, pilih "Transaksi", pilih "Info & Administrasi Transfer" lalu pilih "Atur Rekening Tujuan" kemudian "Tambah Rekening Tujuan" </h4>
-                                <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>4.</div> Masukkan nama dan nomor Virtual Account Anda {this.state.invoice.payment.availableBanks[1].bank_account_number}, lalu masukkan Kode Otentikasi Token </h4>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>5.</div> Jika Nomor rekening tujuan berhasil ditambahkan, kembali ke menu "TRANSFER" </h4>
-                                <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>6.</div> Pilih "TRANSFER ANTAR REKENING BNI", kemudian pilih rekening tujuan </h4>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>7.</div> Pilih Rekening Debit dan ketik nominal, lalu masukkan kode otentikasi token </h4>
-                                <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>8.</div> Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis. Ini bisa memakan waktu hingga 5 menit. </h4>
+                            <div style = {{ fontSize: "15px", padding: '20px' }}>
+                              <ol>
+                                <li>
+                                  Login di <a href="https://ibank.bni.co.id" target="_blank" rel="noopener noreferrer">https://ibank.bni.co.id</a>, masukkan USER ID dan PASSWORD
+                                </li>
+                                <li>
+                                  Pilih "TRANSFER" lalu pilih "Tambah Rekening Favorit"
+                                </li>
+                                <li>
+                                  Jika Anda menggunakan desktop untuk menambah rekening, pilih "Transaksi", pilih "Info & Administrasi Transfer" lalu pilih "Atur Rekening Tujuan" kemudian "Tambah Rekening Tujuan"
+                                </li>
+                                <li>
+                                  Masukkan nama dan nomor Virtual Account Anda {this.state.invoice.payment.availableBanks[1].bank_account_number}, lalu masukkan Kode Otentikasi Token
+                                </li>
+                                <li>
+                                   Jika Nomor rekening tujuan berhasil ditambahkan, kembali ke menu "TRANSFER"
+                                </li>
+                                <li>
+                                   Pilih "TRANSFER ANTAR REKENING BNI", kemudian pilih rekening tujuan
+                                </li>
+                                <li>
+                                   Pilih Rekening Debit dan ketik nominal, lalu masukkan kode otentikasi token
+                                </li>
+                                <li>
+                                  Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis. Ini bisa memakan waktu hingga 5 menit.
+                                </li>
+                              </ol>
                             </div>
 
                             <center><h1 style = { { padding: '10px'} }><b>MBANKING</b></h1></center>
-                            <div>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>1.</div> Login ke BNI Mobile Banking, masukkan USER ID dan MPIN </h4>
-                                <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>2.</div> Pilih menu "Transfer", lalu pilih "Antar Rekening BNI" </h4>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>3.</div> Pilih "Input Rekening Baru" </h4>
-                                <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>4.</div> Masukkan "Rekening Debet", "Rekening Tujuan ({this.state.invoice.payment.availableBanks[1].bank_account_number})" dan "Nominal sebesar Rp.{this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}" kemudian klik "Lanjut" </h4>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>5.</div> Periksa kembali data transaksi Anda, masukkan "Password Transaksi", kemudian klik "Lanjut" </h4>
-                                <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>6.</div> Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis. Ini bisa memakan waktu hingga 5 menit. </h4>
+                            <div style = {{ fontSize: "15px", padding: '20px' }}>
+                              <ol>
+                                <li>
+                                  Login ke BNI Mobile Banking, masukkan USER ID dan MPIN
+                                </li>
+                                <li>
+                                  Pilih menu "Transfer", lalu pilih "Antar Rekening BNI"
+                                </li>
+                                <li>
+                                  Pilih "Input Rekening Baru"
+                                </li>
+                                <li>
+                                  Masukkan "Rekening Debet", "Rekening Tujuan ({this.state.invoice.payment.availableBanks[1].bank_account_number})" dan "Nominal sebesar Rp.{this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}" kemudian klik "Lanjut"
+                                </li>
+                                <li>
+                                  Periksa kembali data transaksi Anda, masukkan "Password Transaksi", kemudian klik "Lanjut"
+                                </li>
+                                <li>
+                                  Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis. Ini bisa memakan waktu hingga 5 menit.
+                                </li>
+                              </ol>
                             </div>
-
                           </Col>
                         </Row>
                       </TabPane>
@@ -239,43 +339,76 @@ class InvoiceDetail extends React.Component {
                         <Row>
                           <Col sm="12">
                             <center><h1 style = { { padding: '10px'} }><b>ATM</b></h1></center>
-                            <div>
-                              <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>1.</div> Masukkan kartu, pilih bahasa kemudian masukkan PIN Anda </h4>
-                              <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>2.</div> Pilih Pilih "Transaksi Lain" lalu pilih "Pembayaran" </h4>
-                              <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>3.</div> Pilih "Lainnya" lalu pilih "Briva" </h4>
-                              <h4  style = { { padding: '10px', paddingLeft: '0px' } }><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>4.</div> Masukkan nomor Virtual Account {this.state.invoice.payment.availableBanks[2].bank_account_number} dan nominal yang ingin Anda bayar sebesar Rp.{this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])} </h4>
-                              <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>5.</div> Periksa kembali data transaksi kemudian tekan "YA" </h4>
-                              <h4  style = { { padding: '10px', paddingLeft: '0px' } }><div style = { { float : 'left', padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>6.</div> Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis. Ini bisa memakan waktu hingga 5 menit</h4>
+                            <div style = {{ fontSize: "15px", padding: '20px' }}>
+                              <ol>
+                                <li>
+                                  Masukkan kartu, pilih bahasa kemudian masukkan PIN Anda
+                                </li>
+                                <li>
+                                  Pilih "Transaksi Lain" lalu pilih "Pembayaran"
+                                </li>
+                                <li>
+                                  Pilih "Lainnya" lalu pilih "Briva"
+                                </li>
+                                <li>
+                                  Masukkan nomor Virtual Account {this.state.invoice.payment.availableBanks[2].bank_account_number} dan nominal yang ingin Anda bayar sebesar Rp.{this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}
+                                </li>
+                                <li>
+                                  Periksa kembali data transaksi kemudian tekan "YA"
+                                </li>
+                                <li>
+                                  Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis. Ini bisa memakan waktu hingga 5 menit.
+                                </li>
+                              </ol>
                             </div>
 
                             <center><h1 style = { { padding: '10px'} }><b>ONLINE</b></h1></center>
-                            <div>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>1.</div> Login di <a href="https://ib.bri.co.id/" target="_blank" rel="noopener noreferrer">https://ib.bri.co.id/</a> , masukkan USER ID dan PASSWORD </h4>
-                                <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>2.</div> Pilih "Pembayaran" lalu pilih "Briva" </h4>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>3.</div> Masukkan nomor Virtual Account Anda {this.state.invoice.payment.availableBanks[2].bank_account_number}, nominal yang akan dibayar sebesar Rp.{this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}, lalu klik kirim </h4>
-                                <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>4.</div> Masukkan kembali PASSWORD anda serta kode otentikasi mToken internet banking </h4>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>5.</div> Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis. Ini bisa memakan waktu hingga 5 menit. </h4>
+                            <div style = {{ fontSize: "15px", padding: '20px' }}>
+                              <ol>
+                                <li>
+                                  Login di <a href="https://ib.bri.co.id/" target="_blank" rel="noopener noreferrer">https://ib.bri.co.id/</a> , masukkan USER ID dan PASSWORD
+                                </li>
+                                <li>
+                                  Pilih "Pembayaran" lalu pilih "Briva"
+                                </li>
+                                <li>
+                                  Masukkan nomor Virtual Account Anda {this.state.invoice.payment.availableBanks[2].bank_account_number}, nominal yang akan dibayar sebesar Rp.{this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}, lalu klik kirim
+                                </li>
+                                <li>
+                                  Masukkan kembali PASSWORD anda serta kode otentikasi mToken internet banking
+                                </li>
+                                <li>
+                                  Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis. Ini bisa memakan waktu hingga 5 menit.
+                                </li>
+                              </ol>
                             </div>
-
                             <center><h1 style = { { padding: '10px'} }><b>MBANKING</b></h1></center>
-                            <div>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>1.</div> Login ke BRI Mobile Banking, masukkan USER ID dan PIN anda </h4>
-                                <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>2.</div> Pilih "Pembayaran" lalu pilih "Briva" </h4>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>3.</div> Masukkan nomor Virtual Account anda {this.state.invoice.payment.availableBanks[2].bank_account_number}, serta nominal yang akan dibayar sebesar Rp.{this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])} </h4>
-                                <h4  style = { { padding: '10px', paddingLeft: '0px' } } ><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>4.</div> Masukkan nomor PIN anda dan klik "Kirim" </h4>
-                                <h4><div style = { { float: 'left',  padding: '10px', paddingTop: '0px', paddingRight: '15px' } }>6.</div> Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis. Ini bisa memakan waktu hingga 5 menit. </h4>
+                            <div style = {{ fontSize: "15px", padding: '20px' }}>
+                              <ol>
+                                <li>
+                                  Login ke BRI Mobile Banking, masukkan USER ID dan PIN anda
+                                </li>
+                                <li>
+                                  Pilih "Pembayaran" lalu pilih "Briva"
+                                </li>
+                                <li>
+                                  Masukkan nomor Virtual Account anda {this.state.invoice.payment.availableBanks[2].bank_account_number}, serta nominal yang akan dibayar sebesar Rp.{this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}
+                                </li>
+                                <li>
+                                  Masukkan nomor PIN anda dan klik "Kirim"
+                                </li>
+                                <li>
+                                  Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis. Ini bisa memakan waktu hingga 5 menit.
+                                </li>
+                              </ol>
                             </div>
 
                           </Col>
                         </Row>
                       </TabPane>
-
                     </TabContent>
                   </div>
-
               </div>
-
-
             ) : null
           }
         </div>
