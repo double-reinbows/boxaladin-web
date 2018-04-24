@@ -24,6 +24,8 @@ import MANDIRI from '../asset/Logo/MANDIRI.svg'
 import BNI from '../asset/Logo/BNI.svg'
 import BRI from '../asset/Logo/BRI.svg'
 
+import Guide from './PaymentGuide'
+
 class TopupPayment extends React.Component {
   constructor(props) {
     super(props)
@@ -97,6 +99,50 @@ class TopupPayment extends React.Component {
                         ) : null
                       )
                   })}
+                </div>
+                <div>
+                <Nav tabs>
+                  <NavItem>
+                    <NavLink
+                      className={classnames({ active: this.state.activeTab === '1' })}
+                      onClick={() => { this.toggle('1'); }}
+                    >
+                      <h4><button style = {{  backgroundColor: "Transparent",
+                        backgroundRepeat: "no-repeat",
+                        border: "none",
+                        cursor: "pointer",
+                        overflow: "hidden",
+                        outline: "none" }}>Mandiri</button></h4>
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink
+                      className={classnames({ active: this.state.activeTab === '2' })}
+                      onClick={() => { this.toggle('2'); }}
+                    >
+                      <h4><button style = {{  backgroundColor: "Transparent",
+                        backgroundRepeat: "no-repeat",
+                        border: "none",
+                        cursor: "pointer",
+                        overflow: "hidden",
+                        outline: "none" }}>BNI</button></h4>
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink
+                      className={classnames({ active: this.state.activeTab === '3' })}
+                      onClick={() => { this.toggle('3'); }}
+                    >
+                      <h4><button style = {{  backgroundColor: "Transparent",
+                        backgroundRepeat: "no-repeat",
+                        border: "none",
+                        cursor: "pointer",
+                        overflow: "hidden",
+                        outline: "none" }}>BRI</button></h4>
+                    </NavLink>
+                  </NavItem>
+                </Nav>
+                <Guide activeTab= {this.state.activeTab} invoice={this.state.invoice} />
                 </div>
               </div>
             ) : null
