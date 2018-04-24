@@ -321,7 +321,7 @@ class User extends React.Component {
 										{phone.primary === false ? null :
 											<div className="User__Phone__row1__PhoneInfo">
 													 <h1>{phone.number}</h1>
-													 <h1>Verified</h1>
+													 <h1>(Verified)</h1>
 											</div>}
 									</div>
 								)
