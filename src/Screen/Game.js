@@ -332,7 +332,7 @@ class Game extends React.Component {
 
 				this.props.getUser()
 				this.props.getUserWins()
-				console.log('DATA RESPONSE CREATE WIN:', data)
+				
 			})
 			.catch(err => console.log(err))
 
