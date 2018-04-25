@@ -100,7 +100,6 @@ class ClaimFreePulsa extends React.Component {
       })
       
       .then(({data}) => {
-        console.log(data)
         if (!data.winToken) {
           alert('EXPIRED!')
           this.props.history.replace('/')
