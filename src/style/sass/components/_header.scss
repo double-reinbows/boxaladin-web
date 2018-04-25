@@ -1,0 +1,252 @@
+//Header
+.HeaderTop {
+    background-color: #3E3E3E;
+    border-bottom: 4px solid #FFCD05;
+
+    &__Right{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      margin: 0rem;
+      padding: 0rem;
+    }
+}
+
+@media (max-width: 767px)  {
+  .HeaderTop{
+    display: none;
+  }
+}
+
+.HeaderTopM {
+    background-color: #3E3E3E;
+    border-bottom: 4px solid #FFCD05;
+    
+    &__logo{
+      margin: 0px auto;
+      padding-right: 5%;
+    }
+    &__Right{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      margin: 0rem;
+      padding: 0rem;
+    }
+}
+
+@media (min-width: 768px)  {
+  .HeaderTopM{
+    display: none;
+  }
+}
+
+
+//Button for navgar toggle
+.IconBurger{
+  background-color: var(--color-yellow-1);
+}
+
+
+
+//link lupa password
+.lupapass{
+    color: var(--color-yellow-1);
+}
+
+.header-margin{
+  margin-right: 15px;
+}
+
+@media (max-width: 767px)  {
+  .header-margin{
+    margin: 0%;
+  }
+}
+
+//Botton for top up aladinkey
+.ButtonTopUP{
+  cursor:inherit;
+  height: 40px;
+  width: 200px;
+  border: 2px solid #FFCD05;
+  color: #FFCD05;
+  background-color: #3E3E3E;
+  box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.5);
+  font-family: Raleway;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+  margin-right: 20px;
+
+  &:hover{
+    color: #FFCD05;
+    background-color: #3E3E3E;
+  }
+
+  &__label{
+    font-size: 18px;
+    cursor:inherit;
+    margin: 0rem;
+
+    &__italic{
+      font-size: 18px;
+      font-style: italic;
+      cursor:inherit;
+      margin: 0rem;
+    }
+    
+  }
+
+}
+
+//media query resposive header for button top up
+@media (max-width: 767px) {
+  .ButtonTopUP{
+    border: transparent;
+    box-shadow: none;
+    margin-right: 0px;
+  }
+}
+
+//Botton for user login
+.ButtonHeader{
+  width: 205px;
+  height: 44px;
+  padding: 0;
+  border-radius: 10px;
+  background-color: var(--color-yellow-1);
+  &:active{
+    background-color: var(--color-yellow-1) !important;
+    border-color: transparent;
+  }
+  &:hover{
+    background-color: var(--color-yellow-1);
+  }
+  // &:focus{
+  //   box-shadow: transparent !important;
+  // }
+  &__devide{
+    width: 100%;
+    height: 100%;
+    margin: 0rem;
+    padding: 0rem;
+    border: none;
+    display: flex;
+    outline: none;
+    &:active{
+      border-radius: 10px;
+    }
+  }
+
+  &__big{
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-yellow-1);
+    color: var(--color-grey-5);
+    font-family: Raleway;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 11px;
+    text-align: center;
+    border-right: 2px solid var(--color-grey-5);
+    margin: 0rem;
+    padding: 0rem;
+    margin-left: 10px;
+    padding-right: 10px;
+  }
+
+  &__small{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-yellow-1);
+    width: 16%;
+    height: 100%;
+    justify-content: center;
+    margin: 0rem;
+    padding: 0rem;
+  }
+  &__img{
+    width: 6rem;
+    height: 3rem;
+  }
+  &__iconLogin{
+    width: 50%;
+    height: 50%;
+  }
+}
+
+@media (max-width: 767px)  {
+  .ButtonHeader {
+    background-color: transparent !important;
+    background: transparent;
+    color: var(--color-yellow-1);
+    border: none;
+    padding-left: 10%;
+      &:active{
+        background-color: transparent !important;
+        box-shadow: var(--color-grey-5) !important
+      }
+      &:focus{
+        box-shadow: var(--color-grey-5) !important;
+      }
+  }
+  .ButtonHeader__devide {
+    &:active{
+      background-color: transparent !important;
+    }
+  }
+  .ButtonHeader__big {
+    background-color: transparent !important;
+    background: transparent;
+    color: var(--color-yellow-1);
+    border: none;
+    margin-left: 15px;
+  }
+  .ButtonHeader__small{
+    width: 0px;
+    height: 0px;
+  }
+  .ButtonHeader__iconLogin{
+    width: 0px;
+    height: 0px;
+  }
+}
+// @media (max-width: 767px)  {
+//   .ButtonHeader__devide {
+//     :active{
+//       background-color: transparent !important;
+//     }
+//   }
+// }
+
+// @media (max-width: 767px)  {
+//   .ButtonHeader__big {
+//     background-color: transparent !important;
+//     background: transparent;
+//     color: var(--color-yellow-1);
+//     border: none;
+//     margin-left: 15px;
+//   }
+// }
+
+// @media (max-width: 767px)  {
+//   .ButtonHeader__small{
+//     width: 0px;
+//     height: 0px;
+//   }
+// }
+
+// @media (max-width: 767px)  {
+//   .ButtonHeader__iconLogin{
+//     width: 0px;
+//     height: 0px;
+//   }
+// }
+

@@ -1,0 +1,131 @@
+////////////////////////////////////////
+// LOGO
+.BoxAladinLogo-Big {
+  height: 50px;
+  width: 200px;
+  margin: 2rem;
+}
+
+.DropdownUser{
+  &__item{
+    background-color: #FFCD05 ;
+    border-radius: 10px ;
+    min-width: 205px;
+    font-family: Raleway;
+
+  }
+  &__inside{
+    color: #3E3E3E !important;
+    background-color: #FFCD05 ;
+    height: 50px ;
+    font-family: Raleway;
+  	font-size: 22px;
+    font-weight: 600;
+    &:hover{
+      background-color: #FFCD05 ;
+    }
+    &__link{
+      font-family: Raleway;
+      font-size: 22px;
+      font-weight: 600;
+      color: #3E3E3E;
+      &:hover{
+        color: #3E3E3E ;
+        // text-decoration: none;
+      }
+    }
+  }
+}
+@media (min-width: 296px ) and (max-width:767px) {
+  .DropdownUser__item{
+    top: 180px !important;
+    transform: translate3d(0px, -130px, 0px) !important;
+  }
+}
+
+.form-horizontal{
+  width: 100%;
+  font-size: 20px;
+}
+
+.inputz{
+  border: transparent;
+  border-bottom: 2px solid var(--color-yellow-1);
+  background: transparent;
+  font-family: Raleway;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--color-yellow-1);
+  box-shadow: none ;
+  &:focus{
+    border: transparent;
+    border-bottom: 2px solid var(--color-yellow-1);
+    background: transparent;
+    font-family: Raleway;
+    font-style: italic;
+    color: var(--color-yellow-1);
+    box-shadow: var(--color-grey-5);
+  }
+  &:hover{
+    border: transparent;
+    border-bottom: 2px solid var(--color-yellow-1);
+    background: transparent;
+    font-family: Raleway;
+    font-style: italic;
+    color: var(--color-yellow-1);
+  }
+  &::placeholder{
+    background: transparent;
+    font-family: Raleway;
+    font-style: italic;
+    color: var(--color-yellow-1);
+  }
+  &:active{
+    border: transparent;
+    border-bottom: 2px solid var(--color-yellow-1);
+    background: transparent;
+    font-family: Raleway;
+    font-style: italic;
+    color: var(--color-yellow-1);
+  }
+}
+.form-group.Login__Form input:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-yellow-1) ;
+  -webkit-box-shadow: 0 0 0 34px #3E3E3E inset !important;
+}
+
+.form-group.Signup__Form input:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-yellow-1) ;
+  -webkit-box-shadow: 0 0 0 34px #3E3E3E inset !important;
+}
+
+.alert{
+  color: #ff2323;
+  &__dompetAladin{
+    color: white;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+  }
+  &__game{
+    color: #ff2323;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+  }
+  &__resetPassword{
+    color: white;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+  }
+  &__user{
+    color: #ff2323;
+    display: flex;
+    justify-content: center;
+  }
+  &__otp{
+    color: #ff2323;
+    
+  }
+}

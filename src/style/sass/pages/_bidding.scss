@@ -1,0 +1,205 @@
+.bidding{
+  background-color: var(--color-grey-5);
+  display: flex;
+  justify-content: center;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 5%;
+
+  &__container{
+    width: 100%;
+    background-color: var(--color-grey-5);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+  }
+
+  &__1{
+    width: 100%;
+    padding-bottom: 30px;
+
+    &__Title{
+      width: 100%;
+      text-align: center;
+      color: #FFCD05;
+      font-family: Raleway;
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 30px;
+    }
+  }
+
+  &__2{
+    width: 100%;
+    display: flex;
+    padding-bottom: 30px;
+
+    &__col1{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &__logo{
+        width: 50%;
+      }
+    }
+
+    &__col2{
+
+      &__pulsa{
+        color: #FFFFFF;
+        font-family: Raleway;
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 26px;
+      }
+
+      &__coret{
+        color: #FFFFFF;
+        font-family: Raleway;
+        font-size: 22px;
+        font-weight: 900;
+        line-height: 26px;
+        text-decoration: line-through;
+        text-align: center;
+      }
+
+      &__newPrice{
+      	color: #FFCD05;
+      	font-family: Raleway;
+      	font-size: 42px;
+      	font-weight: 900;
+      	line-height: 49px;
+
+      }
+
+      &__live{
+        color: #FFCD05;
+        font-family: Raleway;
+        font-size: 20px;
+        font-weight: 900;
+        line-height: 24px;
+      }
+
+      &__text {
+      	color: #FFFFFF;
+      	font-family: Raleway;
+      	font-size: 14px;
+      	font-weight: 600;
+      	line-height: 16px;
+      }
+
+    }
+
+  }
+
+  &__3{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 30px;
+
+    &__col{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      text-align: center;
+
+      &__text{
+      	color: #FFCD05;
+      	font-family: Raleway;
+      	font-size: 36px;
+      	font-weight: 800;
+      	line-height: 42px;
+      }
+
+      &__logoWatch{
+        height: 75px;
+        width: 100px;
+        padding: 10px;
+      }
+
+      &__logoTimer{
+        height: 75px;
+        width: 100px;
+        padding: 10px;
+      }
+    }
+
+  }
+
+  &__4{
+    width: 100%;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+
+    &__btnBuy{
+      // display: flex;
+      // flex-direction: row;
+      // justify-content: center;
+
+      width: 80%;
+      height: 75px;
+      border-radius: 8px;
+
+      background-color: var(--color-yellow-1);
+    	color: #3E3E3E;
+    	font-family: Raleway;
+    	font-size: 30px;
+    	font-weight: bold;
+    	line-height: 35px;
+    }
+  }
+
+  &__5{
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 8px;
+
+    &__btnCancel{
+      // display: flex;
+      // flex-direction: row;
+      // justify-content: center;
+
+      width: 80%;
+      height: 75px;
+      border: none;
+
+      background-color: var(--color-grey-5);
+    	color: #FFFFFF;
+    	font-family: Raleway;
+    	font-size: 18px;
+    	font-weight: bold;
+    	line-height: 21px;
+
+
+    }
+  }
+
+}
+
+@media (min-width: 200px ) and (max-width:767px) {
+  .bidding__2{
+    display: block;
+  }
+  .bidding__2__col1{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .bidding__3__col{
+    font-size: 20px;
+  }
+  .bidding__3{
+    display: block;
+  }
+}

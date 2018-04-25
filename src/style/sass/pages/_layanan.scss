@@ -1,0 +1,47 @@
+.layanan {
+  background-color: #3E3E3E;
+  color: #FFCD05;
+  &__container{
+    min-height: 30rem;
+    padding: 2.5%;
+    padding-bottom: 40px;
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+  &__text{
+    font-size: 15px;
+    &__header{
+      font-size: 30px;
+      text-align: center;
+    }
+  }
+  &__input{
+    color: black;
+    font-size: 13px;
+    &:focus{
+      color: black ;
+    }
+    &__textarea{
+      color: black;
+      height: 200px;
+      font-size: 13px;
+      resize: all; 
+      &:focus{
+        color: black ;
+      }
+    }
+  }
+  &__button{
+    padding: 7px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: var(--color-yellow-1);
+    color: var(--color-dark-3);
+    font-weight: bold;
+    line-height: 21px;
+    font-family: Raleway;
+
+  }
+}
+
+textarea { resize: none; }

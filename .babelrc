@@ -1,0 +1,28 @@
+{
+  "env": {
+    "test": {
+      "presets": ["env", "react"],
+      "plugins": ["transform-class-properties", "transform-remove-console"],
+      "only": [
+        "./**/*.js",
+        "node_modules/jest-runtime"
+      ]
+    },
+    "development": {
+      "plugins": [
+        "transform-class-properties",
+        "retainLines": true,
+        "transform-remove-console"
+      ],
+      "presets": [
+        "env",
+        "es2015",
+        "react",
+        "stage-2"
+      ]
+    },
+    "production": {
+      "plugins": ["transform-remove-console"]
+    }
+  }
+}

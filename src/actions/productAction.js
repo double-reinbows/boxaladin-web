@@ -28,24 +28,24 @@ export const getFilteredProducts = (brand, category) => {
 				// fetch all products
 				let filteredProducts = dataProducts
 				dispatch(getFilteredProductsAction(filteredProducts))
-				console.log('All here......................');
-	
+
+
 			} else if (brand === 'all') {
 				// filter products by category
 				let filteredProducts = dataProducts.filter(product => {
 					return product.categoryId === category
 				})
 				dispatch(getFilteredProductsAction(filteredProducts))
-				console.log('By category here......................');
-	
+
+
 			} else if (category === 'all') {
 				// filter products by brand
 				let filteredProducts = dataProducts.filter(product => {
 					return product.brandId.toString() === brand
 				})
 				dispatch(getFilteredProductsAction(filteredProducts))
-				console.log('By brand here......................');
-	
+
+
 			} else {
 				// filter products by category & brand
 				const filteredByBrand = dataProducts.filter(product => {
@@ -55,15 +55,20 @@ export const getFilteredProducts = (brand, category) => {
 					return product.categoryId === category
 				})
 				dispatch(getFilteredProductsAction(filteredProducts))
-				console.log('By both here......................');
+				
 			}
-			
+
 		})
-
-		
-
 	}
 }
+
+// export const addToCart = (cart, product) => {
+// 	return (dispatch) => {
+// 		product.qty = 1
+// 		cart.push(product)
+// 		dispatch(updateCartAction(cart))
+// 	}
+// }
 
 export const getProductsAction = (payload) => ({
 	type: 'GET_PRODUCTS',
@@ -72,5 +77,15 @@ export const getProductsAction = (payload) => ({
 
 export const getFilteredProductsAction = (payload) => ({
 	type: 'GET_FILTERED_PRODUCTS',
+	payload
+})
+
+// export const updateCartAction = (payload) => ({
+// 	type: 'UPDATE_CART',
+// 	payload
+// })
+
+export const selectProductID = (payload) => ({
+	type: 'SELECT_PRODUCT_ID',
 	payload
 })

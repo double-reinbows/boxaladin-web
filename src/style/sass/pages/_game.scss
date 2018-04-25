@@ -1,0 +1,365 @@
+.game{
+	background-color: var(--color-grey-5);
+
+	&__container{
+		padding: 2.5%;
+		margin: auto;
+		width: 100%;
+		max-width: 600px;
+		background-color: var(--color-grey-5);
+
+	}
+
+	&__slotLabel{
+		text-align: center;
+		font-family: raleway;
+		padding-bottom: 25px;
+			&__h1{
+				color: #FFCD05;	
+				font-size: 48px;	
+				font-weight: 900;	
+				line-height: 56px;
+			}
+
+			&__paragraph{
+				color: white;
+				font-size: 20px;
+				font-weight: 500;	
+				line-height: 16px;
+			}
+	}
+
+	&__prize{
+		margin-top: 5%;
+		text-align: center;
+		font-family: raleway;
+			&__row{
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				justify-content: space-around;
+				align-items: center;
+				margin-bottom: 30px;
+			}
+			&__container{
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				align-items: center;
+				margin: 3%;
+			}
+			&__title{
+				color: #FFCD05;	
+				font-size: 48px;	
+				font-weight: 900;	
+				line-height: 56px;
+			}
+			&__h1{
+				color: #FFCD05;	
+				font-size: 20px;
+				margin-top: 25px;	
+			}
+
+			&__img{
+				width: 150px;
+				height: 150px;
+			}
+	}
+
+	&__container2{
+		display: flex;
+		justify-content: center;
+	}
+
+	&__convert{
+		text-align: center;
+		&__label{
+			margin: 10px;
+			color: #FFCD05;
+			font-family: Raleway;
+			font-size: 24px;
+			font-weight: bold;	
+			line-height: 29px;
+
+		}
+		&__input{
+			border-radius: 5px;
+			margin-right: 10px;
+			height: 30px;
+			font-family: Raleway;
+			line-height: 29px;
+			font-size: 21px;
+			padding-left: 10px;
+
+		}
+
+		&__buttonConvert{
+			margin-top: 10px;
+			margin-bottom: 10px;	
+			color: #FFFFFF;	
+			font-family: Raleway;	
+			font-size: 15px;
+			font-weight: 900;	
+			letter-spacing: 3px;	
+			line-height: 33px;
+			border-radius: 8px;
+			background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%)		
+		}
+	}
+
+	&__slotCoin{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 10px;
+		&__icon{
+			width: 15%;
+			margin: 10px;
+		}
+
+		&__label{
+			margin: 10px;
+			color: #FFFFFF;
+			font-family: Raleway;
+			font-size: 24px;
+			font-weight: bold;	
+			line-height: 29px;
+		}
+	}
+
+	&__container3{
+		display: flex;
+		justify-content: center;
+	}
+
+	&__slotItems{
+		// display: flex;
+		// justify-content: center;
+		width: 70%;
+		border-radius: 30px;
+		background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%);		
+		padding: 20px;
+		margin-bottom: 10px;
+
+			&__boxContainer {
+				background-color: black;
+				width: 100%;
+				border-radius: 10px;
+				border: 3px solid;
+				&__box{
+					display: flex;
+				}
+			}
+		}
+
+	&__slotButton {
+		display: flex;
+		justify-content: center;
+
+		&__container3{
+			width: 40%;
+		}
+
+		&__start{
+			width: 100%;
+			margin-top: 10px;
+			margin-bottom: 10px;	
+			color: #FFFFFF;	
+			font-family: Raleway;	
+			font-size: 25px;
+			font-weight: 900;	
+			letter-spacing: 3px;	
+			line-height: 33px;
+			border-radius: 8px;
+			background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%)		
+		}
+	}
+	
+}
+
+
+@media (min-width: 275px )  {
+  .game__slotItems{
+		padding: 15px;
+		width: 310px;
+  }
+}
+
+@media (min-width: 350px ) and (max-width:500px ) {
+  .game__slotItems{
+		padding: 15px;
+		width: 90%;
+  }
+}
+
+
+
+.box1 {
+	width: 80%;
+	height: 100px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: white;
+}
+
+
+
+.box2 {
+	width: 80%;
+	height: 100px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: yellow;
+}
+
+
+.box3 {
+	width: 80%;
+	height: 100px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: green;
+}
+
+
+.box4 {
+	width: 80%;
+	height: 100px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: grey;
+}
+
+
+.box5 {
+	width: 80%;
+	height: 100px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: blue;
+}
+
+
+.box6 {
+	width: 80%;
+	height: 100px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: purple;
+}
+
+
+.boxaladin {
+	background-image: url('../../asset/Logo/LogoSmall.svg');
+	width: 80%;
+	height: 100px;	
+	border-radius: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: black;
+	background-size: 100% 100%;
+}
+
+
+.gameModal{
+	color: var(--color-yellow-1);
+	background-color: black;
+	border: 5px solid var(--color-yellow-1);
+	top: 25%;
+
+	&__Top{
+		border-bottom: none;
+		border-radius: 0;
+		background-color: black;
+	}
+
+	&__Container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		background-color: black;
+		
+		&__item{
+			display: flex;
+			justify-content: center;
+		}
+		&__text{
+			margin: 2.5%;
+			text-align: center;
+			font-family: raleway;
+			// color: var(--color-yellow-1);
+			font-size: 20px;
+			font-weight: 500;	
+			line-height: 16px;
+		}
+	}
+	&__icon{
+		width: 250px;
+		height: 250px;
+	}
+}
+
+
+
+
+@media (min-width: 200px) and (max-width: 766px) {
+    .gameModal__icon {
+        width: 150px;
+        height: 150px
+	}
+	.gameModal__Container__text {
+        margin: 2.5%;
+        text-align: center;
+        font-family: raleway;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 16px
+    }
+}
+
+@media (min-width: 767px) and (max-width: 1280px) {
+    .gameModal__icon {
+        width: 200px;
+    	height: 200px
+	}
+	.gameModal__Container__text {
+		margin: 2.5%;
+		text-align: center;
+		font-family: raleway;
+		font-size: 30px;
+		font-weight: 500;
+		line-height: 16px
+    }
+}
+
+
+.close{
+	color: var(--color-yellow-1);
+	&:hover{
+		color: var(--color-yellow-1);
+	}
+	&:focus{
+		color: var(--color-yellow-1);
+		outline: none;
+	}
+}

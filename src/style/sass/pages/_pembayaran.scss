@@ -1,0 +1,55 @@
+.pembayaran{
+  width: 100%;
+  padding: 5%;
+  background-color: var(--color-grey-8);
+
+  &__container{
+    margin: auto;
+    max-width: 700px;
+    width: 100%;
+    background-color: var(--color-white);
+    padding: 10px;
+
+    a.nav-link {
+      padding: 1rem 9.565rem;
+    }
+  }
+
+  &__title{
+    text-align: center;
+  }
+
+  &__button{
+    display: flex;
+    height: 100%;
+
+    &__invoice{
+      padding: 6px;
+    }
+  }
+
+}
+
+.bankz{
+  display: flex;
+
+  &__icon{
+    width: 125px;
+    height: 50px;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+
+  &__name{
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 56px;
+  }
+}
+
+@media (max-width: 500px)  {
+  .bankz{
+    display: block;
+    text-align: center
+  }
+}

@@ -1,0 +1,44 @@
+:root {
+  $desktop: "(min-width: 1024px)";
+  $desktop2: "(min-width: 1024px)";
+  $tablet: "(min-width: 1024px)";
+  $BigPhone: "(min-width: 1024px)";
+  $SmallPhone: "(min-width: 1024px)";
+
+
+    --color-yellow-1: #FFCD05;
+    --color-yellow-2: #FEC40C;
+    --color-yellow-3: #F5A623;
+    --color-yellow-4: #ffc300;
+
+    --color-dark-1: #171717;
+    --color-dark-2: #2f2f2f;
+    --color-dark-3: #3e3e3e;
+    --color-dark-4: #4a4a4a;
+
+    --color-white: #ffffff;
+
+    --color-grey-1: #989898;
+    --color-grey-2: #979797;
+    --color-grey-3: #D8D8D8;
+    --color-grey-4: #f2f2f3;
+    --color-grey-5: #3E3E3E;
+    --color-grey-6: #BBBBBB;
+    --color-grey-7: #000000;
+    --color-grey-8: #959493;
+    --color-grey-8: #BABABA;
+
+    --color-blue-1 : #4A90E2;
+    --color-blue-2 : #3C5193;
+
+    --color-red-1 : #ED3014;
+    --color-red-2 : #F34817;
+    --color-red-3 : #D0021B;
+    --color-red-4 : #DA4733;
+
+    --shadow-dark: 0 2rem 6rem rgba(0,0,0,.3);
+    --shadow-light: 0 2rem 5rem rgba(0,0,0,.06);
+
+    --linear-game : linear-gradient(180deg, #FAD961 0%, #F76B1C 100%);
+    --line: 1px solid var(--color-grey-light-2);
+}

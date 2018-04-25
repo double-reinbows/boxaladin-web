@@ -1,0 +1,29 @@
+//components
+@import "components/footer";
+@import "components/header";
+@import "components/modal";
+
+//pages
+@import "pages/signup";
+@import "pages/login";
+@import "pages/aboutus";
+@import "pages/howitworks";
+@import "pages/bidding";
+@import "pages/product";
+@import "pages/home";
+@import "pages/insertphone";
+@import "pages/pembayaran";
+@import "pages/game";
+@import "pages/topupkey";
+@import "pages/user";
+@import "pages/phone";
+@import "pages/requestResetPassword";
+@import "pages/emailVerification";
+@import "pages/resetPassword";
+@import "pages/invoice";
+@import "pages/layanan";
+
+// reuseable components
+@import "reusable/base";
+@import "reusable/components";
+@import "reusable/variables";
