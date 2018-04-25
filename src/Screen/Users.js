@@ -42,7 +42,6 @@ class User extends React.Component {
 						Profil Saya
 					</label>
 					{ this.showDataUser() }
-
 					{ this.showPhoneModal() }
 					{ this.showAddPhoneModal() }
 					{ this.showChangePhoneModal(this.state.numberToSend) }
@@ -325,15 +324,14 @@ class User extends React.Component {
 											</div>}
 									</div>
 								)
-							}) : <button className="ButtonTopUP">
-									 		<label className="ButtonTopUP__label">Verifikasi</label>{' '}
-									 		<label className="ButtonTopUP__label__italic"></label>
-									 </button>  }
+							}) : <Button color="success" style = { { paddingTop: '15px', paddingBottom: '15px' , fontSize: '20px' }} > Verifikasi Nomor </Button>}
 						</div>
 						</div>
-	          <label className="User__Label">
-	            No Hp Terdaftar
-	          </label>
+							{ this.props.phoneNumbers.length !== 0 ?
+								<label className="User__Label">
+	            		No Hp Terdaftar
+	          		</label> :
+									null }
 	        </div>
         <div className="User__Phone__row2">
           <ul>
@@ -344,7 +342,7 @@ class User extends React.Component {
                         <div className="User__Phone__row2__number">
                           {phone.primary === false ? phone.number : null }
                         </div>
-                        {phone.verified === false ? (
+                        {phone.verified === false && phone.primary === false ? (
                           <div className="User__Phone__row2__unverify">
                             <div className="User__Phone__row2__unverify__2">
                               <Button
@@ -376,9 +374,10 @@ class User extends React.Component {
 					<label className="alert__user">{this.state.notif}</label>
 
           <div className="User__Phone__row3">
-            <Button color="success" onClick={() => this.addPhone()} className="User__Phone__row3__button1">
-              Tambah No Baru
-            </Button>
+					{this.props.phoneNumbers.length === 0 ? null :
+					<Button color="success" onClick={() => this.addPhone()} className="User__Phone__row3__button1">
+						Tambah No Baru
+					</Button>}
           </div>
         </div>
       </div>;
