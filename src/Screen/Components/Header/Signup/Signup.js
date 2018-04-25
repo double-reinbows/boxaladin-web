@@ -340,7 +340,6 @@ class Signup extends Component {
           </div>
         </form>
           <ModalOtp open={this.state.modal} buttongToggle={this.toggle} phone={this.state.phonenumber} emailUser={this.state.email}/>
-          <Button color="danger" onClick={this.toggle}></Button>
 
       </div>
     )
