@@ -281,7 +281,6 @@ class Game extends React.Component {
 
 					document.getElementById('upcoin').value = ''
 					this.props.getUser()
-					return console.log(response.data)
 
 				})
 				.catch(err => console.log(err))
@@ -307,7 +306,6 @@ class Game extends React.Component {
 			return
 		} else {
 
-			console.log('Anda menang dengan star =', result)
 
 			// const slots = [ slot1, slot2, slot3 ]
 			// const stars = slots.filter(data => data === 6)
@@ -443,7 +441,6 @@ class Game extends React.Component {
 				}
 			})
 			.then(({data}) => {
-				console.log(data)
 				this.props.getUser()
 			})
 			.catch(err => {
