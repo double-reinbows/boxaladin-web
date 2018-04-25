@@ -57,6 +57,46 @@
   background-color: white;
 }
 
+.modalPrimary{
+
+  &__phone{
+    top: 35%;
+    &__content{
+      border-radius: 0;
+      border: 5px solid var(--color-yellow-1);
+      top: 35%;
+      z-index: 10;
+      background-color: black;
+      justify-content: center;
+      align-items: center;  
+      &__form{
+        margin-top: 20px;
+        text-align: center;
+      }
+      &__buttonContainer{
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+
+    &__input{
+      border-radius: 4px;
+      width: 50%;
+      padding: 4px;
+    }
+    &__button{
+      width: 20%;
+    }
+    &__alert{
+      color: red;
+      font-size: 17px;
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+  }
+}
 
 .modalContent {
   position: relative;

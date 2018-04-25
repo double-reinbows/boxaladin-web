@@ -17,7 +17,7 @@ import Layanan from './Screen/Layanan'
 //page after login
 import Home from './Screen/Home'
 import EmailVerificationDone from './Screen/EmailVerificationDone'
-import User from './Screen/Users'
+import User from './Screen/User/Users'
 
 //page pembelian
 import Invoice from './Screen/Invoice'

@@ -4,16 +4,17 @@ import Modal from 'react-modal'
 import axios from 'axios'
 import { Button } from 'reactstrap'
 
-import { getPhoneNumbers } from '../actions/'
-import { getUser } from '../actions/userAction'
+import { getPhoneNumbers } from '../../actions/'
+import { getUser } from '../../actions/userAction'
 
 // import Logo from '../asset/TabsHome/IconTabs1.svg'
-import IconCoin from '../asset/user/IconCoin.svg'
-import IconEmail from '../asset/user/IconEmail.svg'
-import IconKey from '../asset/user/IconKey.svg'
-import IconPhone from '../asset/user/IconPhone.svg'
+import IconCoin from '../../asset/user/IconCoin.svg'
+import IconEmail from '../../asset/user/IconEmail.svg'
+import IconKey from '../../asset/user/IconKey.svg'
+import IconPhone from '../../asset/user/IconPhone.svg'
 // import IconUser from '../asset/user/IconUser.svg'
 // import IconCheck from '../asset/user/IconCheck.svg'
+import ModalPrimaryPhone from './ModalPrimary'
 
 class User extends React.Component {
 	constructor() {
@@ -28,8 +29,12 @@ class User extends React.Component {
 			changePrimaryPhoneModal: false,
 			idPhoneToChange: null,
 			changePrimaryPhoneOTPModal: false,
-			notif: ''
+			notif: '',
+			oldUserModal: false,
+
 		}
+		this.toggle = this.toggle.bind(this);
+
 	}
 
 	render() {
@@ -42,7 +47,6 @@ class User extends React.Component {
 						Profil Saya
 					</label>
 					{ this.showDataUser() }
-
 					{ this.showPhoneModal() }
 
 					{ this.showAddPhoneModal() }
@@ -51,7 +55,7 @@ class User extends React.Component {
 					{ this.showChangePrimaryPhone() }
 
 					{ this.showChangePrimaryPhoneOTP() }
-
+					<ModalPrimaryPhone open={this.state.oldUserModal} buttongToggle={this.toggle}/>
 				</div>
 			</div>
 		)
@@ -312,6 +316,13 @@ class User extends React.Component {
 		.catch(err => console.log(err))
 	}
 
+	toggle() {
+    this.setState({
+			oldUserModal: !this.state.oldUserModal,
+			notif: '',
+    })
+  }
+
 	showPhoneNumbers() {
 		return <div className="User__Phone">
         <div className="User__Phone__row1">
@@ -323,20 +334,20 @@ class User extends React.Component {
 									<div>
 										{phone.primary === false ? null :
 											<div className="User__Phone__row1__PhoneInfo">
-													 <h1>{phone.number}</h1>
-													 <h1>(Verified)</h1>
+												<h1>{phone.number}</h1>
+												<h1>(Verified)</h1>
 											</div>}
 									</div>
 								)
-							}) : <button className="ButtonTopUP">
-									 		<label className="ButtonTopUP__label">Verifikasi</label>{' '}
-									 		<label className="ButtonTopUP__label__italic"></label>
-									 </button>  }
+							}) : 
+							<Button color="success" onClick={() => this.toggle()} className="User__Phone__row1__buttonverification" > Verifikasi Nomor </Button>}
 						</div>
 						</div>
-	          <label className="User__Label">
-	            No Hp Terdaftar
-	          </label>
+							{ this.props.phoneNumbers.length !== 0 ?
+								<label className="User__Label">
+	            		No Hp Terdaftar
+	          		</label> :
+									null }
 	        </div>
         <div className="User__Phone__row2">
           <ul>
@@ -347,7 +358,7 @@ class User extends React.Component {
                         <div className="User__Phone__row2__number">
                           {phone.primary === false ? phone.number : null }
                         </div>
-                        {phone.verified === false ? (
+                        {phone.verified === false && phone.primary === false ? (
                           <div className="User__Phone__row2__unverify">
                             <div className="User__Phone__row2__unverify__2">
                               <Button
@@ -379,10 +390,10 @@ class User extends React.Component {
 					<label className="alert__user">{this.state.notif}</label>
 
           <div className="User__Phone__row3">
-
-            <Button color="success" onClick={() => this.addPhone()} className="User__Phone__row3__button1">
-              Tambah No Baru
-            </Button>
+					{this.props.phoneNumbers.length === 0 ? null :
+					<Button color="success" onClick={() => this.addPhone()} className="User__Phone__row3__button1">
+						Tambah No Baru
+					</Button>}
           </div>
         </div>
       </div>;

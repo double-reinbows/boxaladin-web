@@ -68,7 +68,7 @@ class ClaimFreePulsa extends React.Component {
   }
 
   componentWillUnmount() {
-    this.resetWinToken()
+    // this.resetWinToken()
   }
 
   resetWinToken() {
@@ -158,7 +158,8 @@ class ClaimFreePulsa extends React.Component {
       data: {
         // productId: this.state.productId,
         phone: this.state.phone,
-        pulsaCode: this.state.pulsaCode
+        pulsaCode: this.state.pulsaCode,
+        winToken: this.state.win.winToken
       }
     })
     .then(({data}) => {

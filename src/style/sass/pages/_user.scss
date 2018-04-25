@@ -36,7 +36,9 @@
 
         &__row1{
             width: 100%;
-
+            &__buttonverification{
+              display: flex;
+            }
             &__PhoneNumber{
               display: flex;
               padding-top: 10px;
