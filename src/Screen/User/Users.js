@@ -38,7 +38,6 @@ class User extends React.Component {
 	}
 
 	render() {
-
 		return (
 			<div className="User">
 				<div className="User__container">
@@ -54,7 +53,7 @@ class User extends React.Component {
 					{ this.showChangePrimaryPhone() }
 
 					{ this.showChangePrimaryPhoneOTP() }
-					<ModalPrimaryPhone open={this.state.oldUserModal} buttongToggle={this.toggle}/>
+					<ModalPrimaryPhone open={this.state.oldUserModal} buttongToggle={this.toggle} emailUser={this.props.userInfo.email}/>
 				</div>
 			</div>
 		)

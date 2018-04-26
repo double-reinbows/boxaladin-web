@@ -29,9 +29,8 @@ class Signup extends Component {
     this.setState({
       modal: !this.state.modal,
     })
-    // this.props.loginAction()
-    // this.props.setModalRegister(false)
-    // window.location.reload(true); 
+    this.props.loginAction()
+    this.props.setModalRegister(false)
   }
 
   //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

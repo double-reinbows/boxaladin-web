@@ -191,3 +191,32 @@
     width: 85%
   }
 }
+
+
+.modalOtpUser{
+  top: 35%;
+  &__modalHeader{
+    border-bottom: none;
+  }
+  &__container{
+    background-color: var(--color-grey-5);
+    border: 5px solid #FFCD05;
+    text-align: center;
+  }
+  &__input{
+    width: 20%;
+    margin: 10px;
+    padding: 3px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+  }
+  &__label{
+    font-size: 14px;
+    color: white
+  }
+  &__button{
+    margin: 10px;
+    font-size: 12px;
+  }
+}
