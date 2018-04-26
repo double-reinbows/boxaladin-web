@@ -162,11 +162,11 @@ class ClaimFreePulsa extends React.Component {
         // productId: this.state.productId,
         phone: this.state.phone,
         pulsaCode: this.state.pulsaCode,
-        winToken: this.state.win.winToken
+        winToken: this.state.win.winToken,
+        authentication: process.env.REACT_APP_GAME_PASSWORD
       }
     })
     .then(({data}) => {
-
       this.props.history.push('/game')
     })
     .catch(err => {
