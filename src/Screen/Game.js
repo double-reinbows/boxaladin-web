@@ -56,7 +56,6 @@ class Game extends React.Component {
 			winResult: null,
 			gameCount: 1,
 			mustWin: false,
-			coinUser: ''
 		}
 
 		this.toggle = this.toggle.bind(this)
