@@ -80,7 +80,7 @@ class RouteList extends React.Component {
                 <PrivateRoute exact path="/bidding" component={Bidding} />
                 <PrivateRoute exact path="/insertphone" component={InsertPhone} />
                 {/* <PrivateRoute exact path="/pulsa" component={Pulsa} /> */}
-                <PrivateRoute exact path="/game" component={ Game } />
+                {/*<PrivateRoute exact path="/game" component={ Game } /> */}
                 <PrivateRoute exact path="/dompetaladin" component={DompetAladin} />
                 <PrivateRoute exact path="/gameresult" component={ GameResult } />
                 <PrivateRoute exact path="/claimfreepulsa" component={ ClaimFreePulsa } />
