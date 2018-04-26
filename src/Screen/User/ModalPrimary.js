@@ -11,11 +11,6 @@ class ModalPrimaryPhone extends Component {
       oldUserModal: false
     }
   }
-  toggle(){
-    this.setState({
-      oldUserModal: true
-    })
-  }
 
   handleOldUserPhone(e) {
     this.setState({
@@ -91,8 +86,6 @@ class ModalPrimaryPhone extends Component {
               <Button className="modalPrimary__phone__button" type="submit" color="primary">Setuju</Button>
             </div>
           </form>
-          <Button onClick={() => this.toggle()}>label</Button>
-
         </Modal>
         <ModalOtpUser openOtpUser={this.state.oldUserModal} userEmail={this.props.emailUser} userPhone={this.state.phone}/>
       </div>

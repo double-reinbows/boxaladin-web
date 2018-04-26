@@ -65,7 +65,7 @@ class ModalOtpUser extends Component {
     if (this.state.count > 0 ){
       axios({
         method: 'POST',
-        url: `${process.env.REACT_APP_API_HOST}/oldusersentotp`,
+        url: `${process.env.REACT_APP_API_HOST}/otp`,
         data: {
           phonenumber: this.props.userPhone,
           email: this.props.userEmail,
