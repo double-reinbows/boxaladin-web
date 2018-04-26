@@ -419,7 +419,7 @@ class Game extends React.Component {
 		// this.increaseGameCount()
 		this.getGameCount()
 
-		if (((this.state.gameCount) >= 2) && ((this.state.gameCount) % 2 === 0)) {
+		if (((this.state.gameCount) >= 50) && ((this.state.gameCount) % 50 === 0)) {
 			await this.setState({mustWin: true})
 		}
 
