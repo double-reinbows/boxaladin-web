@@ -55,7 +55,8 @@ class Game extends React.Component {
 			notif: '',
 			winResult: null,
 			gameCount: 1,
-			mustWin: false
+			mustWin: false,
+			coinUser: ''
 		}
 
 		this.toggle = this.toggle.bind(this)
@@ -212,6 +213,7 @@ class Game extends React.Component {
 			url: `${process.env.REACT_APP_API_HOST}/lose`
 		})
 		.then( async ({data}) => {
+			console.log(data)
 			await this.setState({gameCount: data[0].count})
 		})
 		.catch(err => console.log(err))
@@ -417,47 +419,67 @@ class Game extends React.Component {
 
 	async start() {
 		// this.increaseGameCount()
-		this.getGameCount()
-
-		if (((this.state.gameCount) >= 50) && ((this.state.gameCount) % 50 === 0)) {
-			await this.setState({mustWin: true})
-		}
-
-		if (this.props.userInfo.coin <= 0) {
-			this.setState({
-				notif: "Maaf Anda tidak punya coin untuk bermain game."
-      })
-
-		} else {
-
+		axios({
+			method: 'GET',
+			url: `${process.env.REACT_APP_API_HOST}/lose`
+		})
+		.then( async ({data}) => {
+			if (((data[0].count) >= 50) && ((data[0].count) % 50 === 0)) {
+				await this.setState({mustWin: true})
+			}
+	
 			axios({
-				method: 'PUT',
-				url: `${process.env.REACT_APP_API_HOST}/users/coin`,
-				headers: {
+				method: 'GET',
+				url: `${process.env.REACT_APP_API_HOST}/user`,
+				headers:{
 					token: localStorage.getItem('token')
 				},
-				data: {
-					coin: this.props.userInfo.coin
+			})
+			.then(data => {
+				var coinUser = data.data.coin
+				if ( coinUser <= 0 || coinUser === -1 )  {
+					this.setState({
+						notif: "Maaf Anda tidak punya coin untuk bermain game."
+					})
+	
+				}
+				else {
+					axios({
+						method: 'PUT',
+						url: `${process.env.REACT_APP_API_HOST}/users/coin`,
+						headers: {
+							token: localStorage.getItem('token')
+						},
+						data: {
+							coin: this.props.userInfo.coin
+						}
+					})
+					.then(({data}) => {
+						this.props.getUser()
+					})
+					.catch(err => {
+						console.log(err)
+					})
+		
+					this.start1()
+					this.start2()
+					this.start3()
+		
+					this.setState({
+						isRunning: true,
+						notif: '',
+						modalLose: false
+					})
+		
 				}
 			})
-			.then(({data}) => {
-				this.props.getUser()
-			})
-			.catch(err => {
-				console.log(err)
-			})
+			.catch(err => console.log(err))
+	
+		})
+		.catch(err => console.log(err))
 
-			this.start1()
-			this.start2()
-			this.start3()
-
-			this.setState({
-				isRunning: true,
-				notif: '',
-				modalLose: false
-			})
-
-		}
+	
+	
 	}
 
 	async stop() {
