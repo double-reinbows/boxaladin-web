@@ -39,7 +39,6 @@ class User extends React.Component {
 
 	render() {
 
-		console.log('Props:', this.props);
 		return (
 			<div className="User">
 				<div className="User__container">
@@ -79,12 +78,10 @@ class User extends React.Component {
 		})
 		.then(({data}) => {
       if (data.message === 'incorrect otp') {
-				console.log(data)
       	this.setState({
 					notif: data.message,
 				})
       } else if (data.message === 'phone verified') {
-				console.log(data)
 				this.props.getPhoneNumbers()
 				this.setState({phoneModal: false})
 				this.setState({numberId: null})
@@ -113,7 +110,6 @@ class User extends React.Component {
 				}
 			})
 			.then(({data}) => {
-				console.log(data.message)
 				this.props.getPhoneNumbers()
 				this.setState({
 					notif: data.message,
@@ -293,7 +289,6 @@ class User extends React.Component {
 	}
 
 	requestOTP(phone) {
-		console.log(phone);
 
 		this.setState({numberId: phone.id})
 		this.setState({phoneModal: true})
@@ -414,7 +409,6 @@ class User extends React.Component {
 				}
 			})
 			.then(response => {
-				console.log(response)
 				if (response.data.message === 'data added') {
 					this.props.getPhoneNumbers()
 					this.setState({addPhoneModal: false})
@@ -488,7 +482,6 @@ class User extends React.Component {
 			url: `${process.env.REACT_APP_API_HOST}/phone/${phone.id}`
 		})
 		.then(({data}) => {
-			console.log('Data remove phone:', data)
 			this.props.getPhoneNumbers()
 		})
 		.catch(err => console.log(err))
@@ -530,7 +523,6 @@ class User extends React.Component {
 			}
 		})
 		.then(response => {
-			console.log('RESPONSE:', response)
 			if (response.status === 200) {
 				return this.setState({
 					notif: response.data.message,

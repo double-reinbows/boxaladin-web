@@ -250,7 +250,6 @@ class Signup extends Component {
               })
             } else {
               localStorage.setItem('token', data.token)
-              console.log('email', payload.email)
               this.setState({
                 dataUser: payload,
                 modal: true,

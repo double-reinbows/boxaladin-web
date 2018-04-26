@@ -51,8 +51,6 @@ class ModalOtp extends Component {
       }
     })
     .then((dataOtp) => {
-      console.log('email', this.props.emailUser)
-      console.log(dataOtp)
       if (dataOtp.data.message === 'Phone Terverifikasi') {
         alert('No Hp Telah Diverifikasi')
         this.props.buttongToggle()

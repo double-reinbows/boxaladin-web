@@ -111,7 +111,6 @@ class ClaimReward extends React.Component {
         this.props.getUser()
         this.props.getUserClaims()
         alert('Claim on progress')
-        console.log(response)
 
       })
       .catch(err => console.log(err))

@@ -210,7 +210,7 @@ class Bidding extends React.Component {
           this.props.history.push('/home')
         } else {
 
-          console.log(data)
+          console.log('data')
 
         }
         this.props.setIsLoading(false)

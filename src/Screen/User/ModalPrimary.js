@@ -54,8 +54,7 @@ class ModalPrimaryPhone extends Component {
       }
     })
     .then((data) => {
-      console.log('Data create phone', data)
-      console.log(this.state.phone)
+      console.log('Data create phone')
       if (data.data === 'ada no hp verified/primary'){
         this.setState({
           notif: 'No Hp Sudah Terverifikasi, Masukkan No Lain'
@@ -68,7 +67,6 @@ class ModalPrimaryPhone extends Component {
   }
 
   render() { 
-    console.log(this.state)
     return (  
       <Modal isOpen={this.props.open} className="modalPrimary__phone">
         <form className="modalPrimary__phone__content" onSubmit={(e) => this.submitOldUserPhone(e)}>

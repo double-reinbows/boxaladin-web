@@ -34,7 +34,7 @@ class EmailVerificationDone extends React.Component {
       method: 'GET',
       url: `${BA_API_HOST}/emailVerification?email=${email}&encoded=${email_token}`
     })
-    .then(response => console.log(response))
+    .then(response => console.log('response'))
     .catch(err => console.log(err))
   }
 

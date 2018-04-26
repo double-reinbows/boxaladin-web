@@ -32,17 +32,14 @@ class Login extends Component {
     .then(({data}) => {
       this.props.setIsLoading(false)
       if (data.message === 'username or email not found') {
-        console.log(data)
         this.setState({
           notif: "Email Tidak Terdaftar, Silakan Register Jika Belum Memiliki Akun",
         })
       } else if (data.message === 'password incorrect') {
-        console.log(data)
         this.setState({
           notif: "Password Yang Anda Masukkan Salah",
         })
       } else if (data.message === 'login success') {
-        console.log(data)
         localStorage.setItem('token', data.token)
 
         // const decoded = jwt.verify(data.token, 'satekambing')
@@ -69,8 +66,6 @@ class Login extends Component {
   }
 
   render () {
-    console.log('Login State:', this.state);
-    console.log('Login Props:', this.props);
     return (
       <div className="Login">
 

@@ -226,7 +226,6 @@ class Dompet extends React.Component {
 
 					document.getElementById('upcoin').value = ''
 					this.props.getUser()
-					return console.log(response.data)
 
 				})
 				.catch(err => console.log(err))

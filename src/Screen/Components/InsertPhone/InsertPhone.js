@@ -70,7 +70,6 @@ class InsertPhone extends React.Component {
       }
     })
     .then(({data}) => {
-      console.log('Data dari create transaction:', data)
       this.props.history.push(`/payment/${data.id}`)
     })
     .catch(err => console.log(err))
@@ -78,7 +77,6 @@ class InsertPhone extends React.Component {
 
   submitTransaction(e) {
     e.preventDefault()
-    console.log('submit now!')
 
     if (validateProvider(detectProvider(this.state.phone), this.state.productUnlocked.brand) === false) {
       return alert('Nomor HP tidak sesuai dengan Provider.')

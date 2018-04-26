@@ -25,17 +25,13 @@ class Login extends Component {
     })
     .then(({data}) => {
       if (data.message === 'username not found') {
-        console.log(data)
         alert(data.message)
       } else if (data.message === 'password incorrect') {
-        console.log(data)
         alert(data.message)
       } else if (data.message === 'login success') {
-        console.log(data)
         localStorage.setItem('token', localStorage.getItem('token') || data.token)
 
         const decoded = jwt.verify(data.token, 'satekambing')
-        console.log('Data decoded:', decoded);
         this.props.loginAction(decoded)
         this.props.getPhoneNumbers()
       }
@@ -50,7 +46,6 @@ class Login extends Component {
   }
 
   render () {
-    console.log('Props:', this.props);
     return (
       <div className="Login">
         <div className="Login__container">

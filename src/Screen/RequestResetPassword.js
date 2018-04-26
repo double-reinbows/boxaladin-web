@@ -51,7 +51,7 @@ class RequestResetPassword extends React.Component {
           })
           this.props.history.push('/')
         } else {
-          console.log(data)
+          console.log('data')
         }
       })
       .catch(err => console.log(err))
