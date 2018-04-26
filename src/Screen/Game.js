@@ -213,7 +213,6 @@ class Game extends React.Component {
 			url: `${process.env.REACT_APP_API_HOST}/lose`
 		})
 		.then( async ({data}) => {
-			console.log(data)
 			await this.setState({gameCount: data[0].count})
 		})
 		.catch(err => console.log(err))
