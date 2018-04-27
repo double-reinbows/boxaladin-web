@@ -428,47 +428,84 @@ class Game extends React.Component {
 	
 			axios({
 				method: 'GET',
-				url: `${process.env.REACT_APP_API_HOST}/user`,
+				url: `${process.env.REACT_APP_API_HOST}/win/checkcoin/user`,
 				headers:{
 					token: localStorage.getItem('token')
 				},
 			})
 			.then(data => {
-				var coinUser = data.data.coin
-				if ( coinUser <= 0 || coinUser === -1 )  {
-					this.setState({
-						notif: "Maaf Anda tidak punya coin untuk bermain game."
-					})
-	
-				}
-				else {
-					axios({
-						method: 'PUT',
-						url: `${process.env.REACT_APP_API_HOST}/users/coin`,
-						headers: {
-							token: localStorage.getItem('token')
-						},
-						data: {
-							coin: this.props.userInfo.coin
-						}
-					})
-					.then(({data}) => {
-						this.props.getUser()
-					})
-					.catch(err => {
-						console.log(err)
-					})
-		
-					this.start1()
-					this.start2()
-					this.start3()
-		
-					this.setState({
-						isRunning: true,
-						notif: '',
-						modalLose: false
-					})
-		
+				if (data.data.message === 'limit habis') {
+					var coinUser = data.data.coin
+					if ( coinUser <= 0 || coinUser === -1 )  {
+						this.setState({
+							notif: "Maaf Anda tidak punya coin untuk bermain game."
+						})
+					}
+						axios({
+							method: 'PUT',
+							url: `${process.env.REACT_APP_API_HOST}/users/coin`,
+							headers: {
+								token: localStorage.getItem('token')
+							},
+							data: {
+								coin: this.props.userInfo.coin
+							}
+						})
+						.then(({data}) => {
+							this.props.getUser()
+						})
+						.catch(err => {
+							console.log(err)
+						})
+			
+						this.start1()
+						this.start2()
+						this.start3()
+			
+						this.setState({
+							isRunning: true,
+							notif: '',
+							modalLose: false,
+							mustWin: false
+						})
+						
+				} else if (data.data.result <=5 && data.data.result > 0) {
+					var coinUser = data.data.coin
+					var check = data.data.result
+					if ( coinUser <= 0 || coinUser === -1 )  {
+						this.setState({
+							notif: "Maaf Anda tidak punya coin untuk bermain game."
+						})
+					}
+					else if ( check <= 5 ) {
+						axios({
+							method: 'PUT',
+							url: `${process.env.REACT_APP_API_HOST}/users/coin`,
+							headers: {
+								token: localStorage.getItem('token')
+							},
+							data: {
+								coin: this.props.userInfo.coin
+							}
+						})
+						.then(({data}) => {
+							this.props.getUser()
+						})
+						.catch(err => {
+							console.log(err)
+						})
+			
+						this.start1()
+						this.start2()
+						this.start3()
+			
+						this.setState({
+							isRunning: true,
+							notif: '',
+							modalLose: false
+						})
+			
+					}
 				}
 			})
 			.catch(err => console.log(err))

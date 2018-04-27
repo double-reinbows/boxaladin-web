@@ -105,8 +105,6 @@ class ModalOtpUser extends Component {
   }
 
   render() { 
-    console.log('asdsaf', this.props)
-
     return ( 
       <Modal ariaHideApp={false} isOpen={this.props.openOtpUser} className="modalOtpUser">
         <form onSubmit={e => this.sendOtp(e)}>
