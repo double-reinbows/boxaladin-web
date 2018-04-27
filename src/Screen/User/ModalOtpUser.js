@@ -42,7 +42,6 @@ class ModalOtpUser extends Component {
       }
     })
     .then((dataOtp) => {
-      console.log('dataotp', dataOtp)
       if (dataOtp.data.message === 'Phone Terverifikasi') {
         alert('No Hp Telah Diverifikasi')
       }	else if ( dataOtp.data.message === 'incorrect otp') {
@@ -105,7 +104,7 @@ class ModalOtpUser extends Component {
   }
 
   render() { 
-    console.log('asdsaf', this.props)
+   
 
     return ( 
       <Modal ariaHideApp={false} isOpen={this.props.openOtpUser} className="modalOtpUser">
