@@ -19,10 +19,18 @@ class Login extends Component {
 
   logIn(e) {
     e.preventDefault()
-    axios.post(URL + 'signin', {
-      username: this.state.username,
-      password: this.state.password
-    })
+    this.props.setIsLoading(true)
+    axios({
+      method: 'POST',
+      url: `${process.env.REACT_APP_API_HOST}/signin`,
+			headers: {
+        key: process.env.REACT_APP_KEY
+      },
+      data: {
+        email: this.state.email,
+        password: this.state.password
+      },
+		})
     .then(({data}) => {
       if (data.message === 'username not found') {
         alert(data.message)

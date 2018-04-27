@@ -24,11 +24,17 @@ class Login extends Component {
   logIn(e) {
     e.preventDefault()
     this.props.setIsLoading(true)
-    
-    axios.post(URL + 'signin', {
-      email: this.state.email,
-      password: this.state.password
-    })
+    axios({
+      method: 'POST',
+      url: `${process.env.REACT_APP_API_HOST}/signin`,
+			headers: {
+        key: process.env.REACT_APP_KEY
+      },
+      data: {
+        email: this.state.email,
+        password: this.state.password
+      },
+		})
     .then(({data}) => {
       this.props.setIsLoading(false)
       if (data.message === 'username or email not found') {

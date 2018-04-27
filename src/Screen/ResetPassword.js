@@ -43,6 +43,9 @@ class ResetPassword extends React.Component {
       axios({
         method: 'POST',
         url: `${process.env.REACT_APP_API_HOST}/resetpassword?email=${email}&encoded=${email_token}`,
+        headers: {
+          key: process.env.REACT_APP_KEY
+        },
         data: {
           password: this.state.password
         }

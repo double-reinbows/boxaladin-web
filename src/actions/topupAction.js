@@ -16,7 +16,8 @@ import axios from 'axios'
         method: 'GET',
         url: `${process.env.REACT_APP_API_HOST}/topup/userPending`,
         headers: {
-          token: localStorage.getItem('token')
+          token: localStorage.getItem('token'),
+          key: process.env.REACT_APP_KEY
         }
       })
       .then(({data}) => {
@@ -32,7 +33,8 @@ import axios from 'axios'
         method: 'GET',
         url: `${process.env.REACT_APP_API_HOST}/topup/user`,
         headers: {
-          token: localStorage.getItem('token')
+          token: localStorage.getItem('token'),
+          key: process.env.REACT_APP_KEY
         }
       })
       .then(({data}) => {

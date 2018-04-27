@@ -165,6 +165,9 @@ class TopupPayment extends React.Component {
     axios({
       method: 'POST',
       url: `${process.env.REACT_APP_API_HOST}/creditCardTopup`,
+      headers: {
+        key: process.env.REACT_APP_KEY
+      },
       data: {
         tokenId: token,
         externalId: this.state.invoice.paymentId.toString(),
@@ -311,7 +314,10 @@ class TopupPayment extends React.Component {
   getInvoiceById() {
     axios({
       method: 'GET',
-      url: `${process.env.REACT_APP_API_HOST}/topup/${this.props.match.params.id}`
+      url: `${process.env.REACT_APP_API_HOST}/topup/${this.props.match.params.id}`,
+      headers: {
+        key: process.env.REACT_APP_KEY
+      },
     })
     .then(({data}) => this.setState({invoice: data}))
     .catch(err => console.log(err))

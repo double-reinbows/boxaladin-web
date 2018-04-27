@@ -68,7 +68,8 @@ class TopupKey extends React.Component {
 					keyId: this.state.idKeySelected
 				},
 				headers: {
-					token: localStorage.getItem('token')
+					token: localStorage.getItem('token'),
+						key: process.env.REACT_APP_KEY
 				}
 			})
 			.then(({data}) => {

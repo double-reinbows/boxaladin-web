@@ -57,6 +57,9 @@ class Layanan extends Component {
       axios({
         method: 'POST',
         url: `${process.env.REACT_APP_API_HOST}/serviceemail`,
+        headers: {
+          key: process.env.REACT_APP_KEY
+        },
         data: {
           email: this.state.email,
           subject: this.state.subject,

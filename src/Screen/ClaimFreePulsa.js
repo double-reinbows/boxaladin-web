@@ -75,6 +75,9 @@ class ClaimFreePulsa extends React.Component {
     if (this.state.win) {
       axios({
         method: 'PUT',
+        headers: {
+          key: process.env.REACT_APP_KEY
+        },
         url: `${process.env.REACT_APP_API_HOST}/win/resettoken/${this.state.win.id}`
       })
       .then(({data}) => {
@@ -93,6 +96,9 @@ class ClaimFreePulsa extends React.Component {
 
       axios({
         method: 'GET',
+        headers: {
+          key: process.env.REACT_APP_KEY
+        },
         url: `${process.env.REACT_APP_API_HOST}/win/${this.state.win.id}`,
         headers: {
           token: localStorage.getItem('token')
@@ -156,7 +162,8 @@ class ClaimFreePulsa extends React.Component {
       method: 'POST',
       url: `${process.env.REACT_APP_API_HOST}/win/claimfreepulsa`,
       headers: {
-        token: localStorage.getItem('token')
+        token: localStorage.getItem('token'),
+        key: process.env.REACT_APP_KEY
       },
       data: {
         // productId: this.state.productId,

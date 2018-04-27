@@ -40,6 +40,9 @@ class RequestResetPassword extends React.Component {
       axios({
         method: 'POST',
         url: `${process.env.REACT_APP_API_HOST}/forgotpassword`,
+        headers: {
+          key: process.env.REACT_APP_KEY
+        },
         data: {
           email: this.state.email
         }

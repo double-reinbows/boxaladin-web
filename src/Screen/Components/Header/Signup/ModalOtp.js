@@ -44,6 +44,9 @@ class ModalOtp extends Component {
     axios({
       method: 'POST',
       url: `${process.env.REACT_APP_API_HOST}/signupverification`,
+      headers: {
+        key: process.env.REACT_APP_KEY
+      },
       data: {
         phonenumber: this.props.phone,
         otp : this.state.otp,
@@ -79,6 +82,9 @@ resendOtp(){
     axios({
       method: 'POST',
       url: `${process.env.REACT_APP_API_HOST}/otp`,
+      headers: {
+        key: process.env.REACT_APP_KEY
+      },
       data: {
         phonenumber: this.props.phone,
         email: this.props.emailUser

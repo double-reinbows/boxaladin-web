@@ -35,6 +35,9 @@ class ModalOtpUser extends Component {
     axios({
       method: 'POST',
       url: `${process.env.REACT_APP_API_HOST}/olduserverification`,
+      headers: {
+        key: process.env.REACT_APP_KEY
+      },
       data: {
         phonenumber: this.props.userPhone,
         otp : this.state.otpUser,
@@ -65,6 +68,9 @@ class ModalOtpUser extends Component {
       axios({
         method: 'POST',
         url: `${process.env.REACT_APP_API_HOST}/otp`,
+        headers: {
+          key: process.env.REACT_APP_KEY
+        },
         data: {
           phonenumber: this.props.userPhone,
           email: this.props.userEmail,

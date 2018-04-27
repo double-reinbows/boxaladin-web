@@ -9,6 +9,9 @@ export const getBrands = () => {
 	return (dispatch) => {
 		axios({
 			method: 'GET',
+			headers: {
+        key: process.env.REACT_APP_KEY
+      },
 			url: `${process.env.REACT_APP_API_HOST}/api/brand`
 		})
 		.then(({data}) => {

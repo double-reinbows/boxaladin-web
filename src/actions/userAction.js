@@ -11,7 +11,8 @@ export const getUser = () => {
 			method: 'GET',
 			url: `${process.env.REACT_APP_API_HOST}/users/info`,
 			headers: {
-				token: localStorage.getItem('token')
+				token: localStorage.getItem('token'),
+				key: process.env.REACT_APP_KEY
 			}
 		})
 		.then(({data}) => {
@@ -27,7 +28,8 @@ export const refreshToken = () => {
 			method: 'GET',
 			url: `${process.env.REACT_APP_API_HOST}/users/token`,
 			headers: {
-				token: localStorage.getItem('token')
+				token: localStorage.getItem('token'),
+				key: process.env.REACT_APP_KEY
 			}
 		})
 		.then(({data}) => {

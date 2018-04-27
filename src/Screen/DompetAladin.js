@@ -106,16 +106,16 @@ class Dompet extends React.Component {
         } else {
             axios({
                 method: 'POST',
+                headers: {
+                    token: localStorage.getItem('token'),
+                    key: process.env.REACT_APP_KEY
+                    },
                 url: `${process.env.REACT_APP_API_HOST}/topupKey`,
                 data: {
                     keyId: this.state.idKeySelected
-                },
-                headers: {
-                    token: localStorage.getItem('token')
                 }
             })
                 .then(({ data }) => {
-              
                     if (data.msg === 'not verified user') {
                         return this.setState({
                             notif: "Silahkan Verifikasi Email Untuk Membeli Kunci.",
@@ -196,7 +196,8 @@ class Dompet extends React.Component {
 			method: 'GET',
 			url: `${process.env.REACT_APP_API_HOST}/users/info`,
 			headers: {
-				token: localStorage.getItem('token')
+                token: localStorage.getItem('token'),
+                key: process.env.REACT_APP_KEY
 			}
 		})
 		.then(({data}) => {
@@ -209,13 +210,14 @@ class Dompet extends React.Component {
 				// REQUEST UPDATE ALADIN KEY DAN COIN KE API
 				axios({
 					method: 'PUT',
-					url: `${process.env.REACT_APP_API_HOST}/users/upcoin`,
+                    url: `${process.env.REACT_APP_API_HOST}/users/upcoin`,
+                    headers: {
+                        token: localStorage.getItem('token'),
+                        key: process.env.REACT_APP_KEY
+                    },
 					data: {
 						key: this.state.key
 					},
-					headers: {
-						token: localStorage.getItem('token')
-					}
 				})
 				.then(response => {
 

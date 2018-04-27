@@ -9,6 +9,9 @@ export const getKeys = (keyId) => {
 	return (dispatch) => {
 		axios({
 			method: 'GET',
+			headers: {
+        key: process.env.REACT_APP_KEY
+      },
 			url: `${process.env.REACT_APP_API_HOST}/voucheraladinkey`
 		})
 		.then(({data}) => {

@@ -224,9 +224,16 @@ class Signup extends Component {
         confirm: this.state.confirm,
         typedEmail: this.state.typedEmail
       }
-      axios
-        .post(URL + 'signup', payload)
+      axios({
+        method: 'POST',
+        url: `${process.env.REACT_APP_API_HOST}/signup`,
+        headers: {
+          key: process.env.REACT_APP_KEY
+        },
+        data: payload
+      })
         .then(({data}) => {
+          console.log(data)
           if (data.hasOwnProperty('isUsed')) {
             if (data.isUsed.username) {
               this.setState({

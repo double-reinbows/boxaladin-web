@@ -209,7 +209,10 @@ class Game extends React.Component {
 	async getGameCount() {
 		axios({
 			method: 'GET',
-			url: `${process.env.REACT_APP_API_HOST}/lose`
+			url: `${process.env.REACT_APP_API_HOST}/lose`,
+			headers: {
+				key: process.env.REACT_APP_KEY
+			}
 		})
 		.then( async ({data}) => {
 			await this.setState({gameCount: data[0].count})
@@ -251,7 +254,8 @@ class Game extends React.Component {
 			method: 'GET',
 			url: `${process.env.REACT_APP_API_HOST}/users/info`,
 			headers: {
-				token: localStorage.getItem('token')
+				token: localStorage.getItem('token'),
+				key: process.env.REACT_APP_KEY
 			}
 		})
 		.then(({data}) => {
@@ -269,7 +273,8 @@ class Game extends React.Component {
 						key: this.state.key
 					},
 					headers: {
-						token: localStorage.getItem('token')
+						token: localStorage.getItem('token'),
+						key: process.env.REACT_APP_KEY
 					}
 				})
 				.then(response => {
@@ -316,7 +321,10 @@ class Game extends React.Component {
 			axios({
 				method: 'POST',
 				url: `${process.env.REACT_APP_API_HOST}/win`,
-				headers: { token: localStorage.getItem('token') },
+				headers: {
+					token: localStorage.getItem('token'),
+					key: process.env.REACT_APP_KEY 
+					},
 				data: {
 					star: result
 				}
@@ -419,7 +427,10 @@ class Game extends React.Component {
 		// this.increaseGameCount()
 		axios({
 			method: 'GET',
-			url: `${process.env.REACT_APP_API_HOST}/lose`
+			url: `${process.env.REACT_APP_API_HOST}/lose`,
+			headers: {
+				key: process.env.REACT_APP_KEY
+			}
 		})
 		.then( async ({data}) => {
 			if (((data[0].count) >= 50) && ((data[0].count) % 50 === 0)) {
@@ -430,7 +441,8 @@ class Game extends React.Component {
 				method: 'GET',
 				url: `${process.env.REACT_APP_API_HOST}/win/checkcoin/user`,
 				headers:{
-					token: localStorage.getItem('token')
+					token: localStorage.getItem('token'),
+					key: process.env.REACT_APP_KEY
 				},
 			})
 			.then(data => {
@@ -445,7 +457,8 @@ class Game extends React.Component {
 							method: 'PUT',
 							url: `${process.env.REACT_APP_API_HOST}/users/coin`,
 							headers: {
-								token: localStorage.getItem('token')
+								token: localStorage.getItem('token'),
+								key: process.env.REACT_APP_KEY
 							},
 							data: {
 								coin: this.props.userInfo.coin
@@ -482,7 +495,8 @@ class Game extends React.Component {
 							method: 'PUT',
 							url: `${process.env.REACT_APP_API_HOST}/users/coin`,
 							headers: {
-								token: localStorage.getItem('token')
+								token: localStorage.getItem('token'),
+								key: process.env.REACT_APP_KEY
 							},
 							data: {
 								coin: this.props.userInfo.coin

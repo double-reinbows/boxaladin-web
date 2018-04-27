@@ -70,6 +70,9 @@ class User extends React.Component {
 		axios({
 			method: 'POST',
 			url: `${process.env.REACT_APP_API_HOST}/phoneVerification`,
+			headers: {
+        key: process.env.REACT_APP_KEY
+      },
 			data: {
 				numberId: this.state.numberId,
 				otp: this.state.OTP
@@ -101,7 +104,8 @@ class User extends React.Component {
 				method: 'POST',
 				url: `${process.env.REACT_APP_API_HOST}/changePrimary`,
 				headers: {
-					token: localStorage.getItem('token')
+					token: localStorage.getItem('token'),
+					key: process.env.REACT_APP_KEY
 				},
 				data: {
 					numberId: this.state.numberId,
@@ -160,7 +164,8 @@ class User extends React.Component {
 					phoneId: this.state.numberId
 				},
 				headers: {
-					token: localStorage.getItem('token')
+					token: localStorage.getItem('token'),
+					key: process.env.REACT_APP_KEY
 				}
 			})
 			.then(response => {
@@ -299,7 +304,8 @@ class User extends React.Component {
 				phoneId: phone.id
 			},
 			headers: {
-				token: localStorage.getItem('token')
+				token: localStorage.getItem('token'),
+				key: process.env.REACT_APP_KEY
 			}
 		})
 		.then(response => {
@@ -404,7 +410,8 @@ class User extends React.Component {
 					phonenumber: this.state.numberToSend
 				},
 				headers: {
-					token: localStorage.getItem('token')
+					token: localStorage.getItem('token'),
+					key: process.env.REACT_APP_KEY
 				}
 			})
 			.then(response => {
@@ -451,7 +458,8 @@ class User extends React.Component {
 					phonenumber: this.state.numberToSend
 				},
 				headers: {
-					token: localStorage.getItem('token')
+					token: localStorage.getItem('token'),
+					key: process.env.REACT_APP_KEY
 				}
 			})
 			.then(response => {
@@ -478,7 +486,10 @@ class User extends React.Component {
 		// alert('Remove phone here!')
 		axios({
 			method: 'DELETE',
-			url: `${process.env.REACT_APP_API_HOST}/phone/${phone.id}`
+			url: `${process.env.REACT_APP_API_HOST}/phone/${phone.id}`,
+			headers: {
+				key: process.env.REACT_APP_KEY
+			}
 		})
 		.then(({data}) => {
 			this.props.getPhoneNumbers()
@@ -518,7 +529,8 @@ class User extends React.Component {
 			method: 'POST',
 			url: `${process.env.REACT_APP_API_HOST}/resendemailverification`,
 			headers: {
-				token: localStorage.getItem('token')
+				token: localStorage.getItem('token'),
+				key: process.env.REACT_APP_KEY
 			}
 		})
 		.then(response => {

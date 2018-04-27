@@ -37,7 +37,8 @@ export const getPhoneNumbers = () => {
       method: 'GET',
       url: `${process.env.REACT_APP_API_HOST}/phoneNumbers`,
       headers: {
-        token: localStorage.getItem('token')
+        token: localStorage.getItem('token'),
+        key: process.env.REACT_APP_KEY
       }
     })
     .then(({data}) => {

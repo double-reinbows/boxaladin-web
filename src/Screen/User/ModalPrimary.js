@@ -47,6 +47,9 @@ class ModalPrimaryPhone extends Component {
     axios({
       method: 'POST',
       url: `${process.env.REACT_APP_API_HOST}/olduserotp`,
+      headers: {
+        key: process.env.REACT_APP_KEY
+      },
       data: {
         phonenumber: this.state.phone,
         email: this.props.emailUser

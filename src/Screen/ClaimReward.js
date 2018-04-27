@@ -100,7 +100,8 @@ class ClaimReward extends React.Component {
         method: 'POST',
         url: `${process.env.REACT_APP_API_HOST}/claim`,
         headers: {
-          token: localStorage.getItem('token')
+          token: localStorage.getItem('token'),
+          key: process.env.REACT_APP_KEY
         },
         data: {
           rewardId: reward.id

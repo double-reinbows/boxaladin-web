@@ -132,7 +132,10 @@ class Bidding extends React.Component {
   
 
 		axios({
-			method: 'PUT',
+      method: 'PUT',
+      headers: {
+        key: process.env.REACT_APP_KEY
+      },
 			url: `${process.env.REACT_APP_API_HOST}/api/product/${this.props.selectedProductID}`
 		})
 		.then(({data}) => {
@@ -177,7 +180,8 @@ class Bidding extends React.Component {
 					productId: this.props.selectedProductID
 				},
 				headers: {
-					token: localStorage.getItem('token')
+          token: localStorage.getItem('token'),
+          key: process.env.REACT_APP_KEY
 				}
 			})
 			.then(({data}) => {

@@ -32,6 +32,9 @@ class EmailVerificationDone extends React.Component {
     // console.log('verify email:', email_token, email)
     axios({
       method: 'GET',
+      headers: {
+        key: process.env.REACT_APP_KEY
+      },
       url: `${BA_API_HOST}/emailVerification?email=${email}&encoded=${email_token}`
     })
     .then(response => console.log('response'))
