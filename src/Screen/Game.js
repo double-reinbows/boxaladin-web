@@ -482,7 +482,7 @@ class Game extends React.Component {
 							mustWin: false
 						})
 						
-				} else if (data.data.result <=5 && data.data.result > 0) {
+				} else if (data.data.result <=3 && data.data.result > 0) {
 					var coinUser = data.data.coin
 					var check = data.data.result
 					if ( coinUser <= 0 || coinUser === -1 )  {
@@ -490,7 +490,7 @@ class Game extends React.Component {
 							notif: "Maaf Anda tidak punya coin untuk bermain game."
 						})
 					}
-					else if ( check <= 5 ) {
+					else if ( check <= 3 ) {
 						axios({
 							method: 'PUT',
 							url: `${process.env.REACT_APP_API_HOST}/users/coin`,
