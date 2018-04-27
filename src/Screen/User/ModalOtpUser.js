@@ -42,7 +42,6 @@ class ModalOtpUser extends Component {
       }
     })
     .then((dataOtp) => {
-      console.log('dataotp', dataOtp)
       if (dataOtp.data.message === 'Phone Terverifikasi') {
         alert('No Hp Telah Diverifikasi')
       }	else if ( dataOtp.data.message === 'incorrect otp') {
