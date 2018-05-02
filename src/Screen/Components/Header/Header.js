@@ -68,7 +68,7 @@ class NavBar extends React.Component {
   showRightButton() {
     if (localStorage.getItem('token') !== null) {
       return (
-        <Nav navbar className="HeaderTop__Right" style={{ display:"flex", width: "35%", justifyContent: "space-around"  }}>
+        <Nav navbar className="HeaderTop__Right">
           <div>
           <h4> <b style={{ fontSize: '25px'}}>Hello, Boedjangan</b> </h4>
           </div>
