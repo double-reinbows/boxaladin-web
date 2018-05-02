@@ -2,10 +2,10 @@ import React from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { connect } from 'react-redux'
 
-import LogoBolt from '../../../../asset/LandingPage/pulsa/Bolt.svg'
-import expand from '../../../../asset/TabsHome/expandDrop.svg'
+import LogoTri from '../../../asset/LandingPage/pulsa/Tri.svg'
+import expand from '../../../asset/TabsHome/expandDrop.svg'
 
-import { selectProductID } from '../../../../actions/productAction'
+import { selectProductID } from '../../../actions/productAction'
 
 class Example extends React.Component {
   constructor(props) {
@@ -28,26 +28,24 @@ class Example extends React.Component {
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
 
         <DropdownToggle className="dropz">
-        
           <div className="dropz__devide">
             <div className="dropz__big">
-              <img src={LogoBolt} className="dropz__img" alt="Logo Smart" />
+              <img src={LogoTri} className="dropz__img" alt="Logo Tri" />
             </div>
             <div className="dropz__small">
               <img src={expand} className="dropz__icon" alt="Logo expand" />
             </div>
           </div>
-
         </DropdownToggle>
 
         <DropdownMenu className="dropz__item">
 
           {this.props.products.filter(data => {
-            return data.brand === 'Bolt' && data.category === 'Paket Data'
+            return data.brand === 'Tri' && data.category === 'Pulsa'
           })
           .map((data, i) => {
             return (
-              <DropdownItem key={i} value={data.id} className="dropz__item__inside" onClick={(e) => this.props.selectProductID(e.target.value)}>{data.productName}</DropdownItem>
+              <DropdownItem key={i} value={data.id} className="dropz__item__inside" onClick={(e) => this.props.selectProductID(e.target.value)}>{data.price}</DropdownItem>
             )
           })}
 
@@ -56,7 +54,6 @@ class Example extends React.Component {
       </Dropdown>
     );
   }
-
 }
 
 const mapStateToProps = (state) => {

@@ -96,16 +96,15 @@ class ClaimFreePulsa extends React.Component {
 
       axios({
         method: 'GET',
-        headers: {
-          key: process.env.REACT_APP_KEY
-        },
         url: `${process.env.REACT_APP_API_HOST}/win/${this.state.win.id}`,
         headers: {
-          token: localStorage.getItem('token')
+          token: localStorage.getItem('token'),
+          key: process.env.REACT_APP_KEY
         }
       })
       
       .then(({data}) => {
+        console.log('claim pulsa', data)
         if (!data.winToken) {
           alert('EXPIRED!')
           this.props.history.replace('/')

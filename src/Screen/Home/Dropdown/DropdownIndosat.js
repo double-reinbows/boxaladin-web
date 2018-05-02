@@ -2,10 +2,10 @@ import React from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { connect } from 'react-redux'
 
-import LogoIndosat from '../../../../asset/LandingPage/pulsa/Indosat.svg'
-import expand from '../../../../asset/TabsHome/expandDrop.svg'
+import LogoIndosat from '../../../asset/LandingPage/pulsa/Indosat.svg'
+import expand from '../../../asset/TabsHome/expandDrop.svg'
 
-import { selectProductID } from '../../../../actions/productAction'
+import { selectProductID } from '../../../actions/productAction'
 
 class Example extends React.Component {
   constructor(props) {

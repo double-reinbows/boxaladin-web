@@ -1,12 +1,9 @@
 import React,{Component} from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Button, Modal, ModalHeader, ModalFooter} from 'reactstrap'
 import axios from 'axios'
 
 class ModalOtpUser extends Component {
-  static propTypes = {
-
-  }
   constructor(props) {
     super(props);
     this.state = { 
