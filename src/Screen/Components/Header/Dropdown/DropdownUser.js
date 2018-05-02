@@ -37,7 +37,7 @@ class DropdownUser extends React.Component {
               Profil
             </div>
 
-            <div className="ButtonHeader__small">
+            <div className="ButtonHeader__small" style= {{ backgroundColor: "transparent", borderLeftStyle: "solid", borderLeftWidth: "3px", borderColor: "yellow"}}>
               <img src={ExpandIcon} alt="LoginIcon" className="ButtonHeader__iconLogin" href="/home"/>
             </div>
           </div>
@@ -51,7 +51,7 @@ class DropdownUser extends React.Component {
           {/* <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/pulsa">Pulsa</Link>
           </DropdownItem> */}
-          
+
           <a href="/me">
           <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/me">Profile Saya</Link>
@@ -68,7 +68,7 @@ class DropdownUser extends React.Component {
           <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/game">Ruang Game</Link>
           </DropdownItem>
-          </a> 
+          </a>
 
           <a href="/win">
           <DropdownItem className="DropdownUser__inside">

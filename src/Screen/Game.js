@@ -323,7 +323,7 @@ class Game extends React.Component {
 				url: `${process.env.REACT_APP_API_HOST}/win`,
 				headers: {
 					token: localStorage.getItem('token'),
-					key: process.env.REACT_APP_KEY 
+					key: process.env.REACT_APP_KEY
 					},
 				data: {
 					star: result
@@ -338,7 +338,7 @@ class Game extends React.Component {
 
 				this.props.getUser()
 				this.props.getUserWins()
-				
+
 			})
 			.catch(err => console.log(err))
 
@@ -427,16 +427,13 @@ class Game extends React.Component {
 		// this.increaseGameCount()
 		axios({
 			method: 'GET',
-			url: `${process.env.REACT_APP_API_HOST}/lose`,
-			headers: {
-				key: process.env.REACT_APP_KEY
-			}
+			url: `${process.env.REACT_APP_API_HOST}/lose`
 		})
 		.then( async ({data}) => {
 			if (((data[0].count) >= 50) && ((data[0].count) % 50 === 0)) {
 				await this.setState({mustWin: true})
 			}
-	
+
 			axios({
 				method: 'GET',
 				url: `${process.env.REACT_APP_API_HOST}/win/checkcoin/user`,
@@ -446,7 +443,9 @@ class Game extends React.Component {
 				},
 			})
 			.then(data => {
+				console.log(data)
 				if (data.data.message === 'limit habis') {
+					console.log("masuk ke limit habis")
 					var coinUser = data.data.coin
 					if ( coinUser <= 0 || coinUser === -1 )  {
 						this.setState({
@@ -470,19 +469,20 @@ class Game extends React.Component {
 						.catch(err => {
 							console.log(err)
 						})
-			
+
 						this.start1()
 						this.start2()
 						this.start3()
-			
+
 						this.setState({
 							isRunning: true,
 							notif: '',
 							modalLose: false,
 							mustWin: false
 						})
-						
+
 				} else if (data.data.result <=3 && data.data.result > 0) {
+					console.log("cek koin")
 					var coinUser = data.data.coin
 					var check = data.data.result
 					if ( coinUser <= 0 || coinUser === -1 )  {
@@ -508,27 +508,27 @@ class Game extends React.Component {
 						.catch(err => {
 							console.log(err)
 						})
-			
+
 						this.start1()
 						this.start2()
 						this.start3()
-			
+
 						this.setState({
 							isRunning: true,
 							notif: '',
 							modalLose: false
 						})
-			
+
 					}
 				}
 			})
 			.catch(err => console.log(err))
-	
+
 		})
 		.catch(err => console.log(err))
 
-	
-	
+
+
 	}
 
 	async stop() {

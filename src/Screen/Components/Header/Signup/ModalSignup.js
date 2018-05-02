@@ -22,16 +22,10 @@ class ModalSignup extends React.Component {
     return (
       <div className="header-margin">
         <Button className="ButtonHeader" onClick={this.toggle}>
-          <div className="ButtonHeader__devide">
             <div className="ButtonHeader__big">
               {this.props.buttonLabel}
               Daftar
             </div>
-
-            <div className="ButtonHeader__small">
-              <img src={LoginIcon} alt="LoginIcon" className="ButtonHeader__iconLogin" href="/home"/>
-            </div>
-          </div>
         </Button>
 
         {/* <Modal isOpen={this.props.modalRegister} toggle={this.toggle} className="{this.props.className} Modalz" backdrop="static">

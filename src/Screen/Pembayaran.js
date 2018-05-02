@@ -55,7 +55,6 @@ class InvoiceDetail extends React.Component {
   }
 
   render() {
-
     if (this.state.invoice.createdAt === ''){
       console.log('kosong')
     } else if ( this.state.invoice.createdAt === undefined){
