@@ -60,16 +60,14 @@ class InsertPhone extends React.Component {
     axios({
       method: 'POST',
       url: `${process.env.REACT_APP_API_HOST}/payment`,
-      headers: {
-        key: process.env.REACT_APP_KEY
-      },
       data: {
         amount: this.state.productUnlocked.aladinPrice,
         productId: this.state.productUnlocked.id,
         phoneNumber: this.state.phone
       },
       headers: {
-        token: localStorage.getItem('token')
+        token: localStorage.getItem('token'),
+        key: process.env.REACT_APP_KEY
       }
     })
     .then(({data}) => {
