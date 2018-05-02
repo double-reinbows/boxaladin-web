@@ -482,7 +482,7 @@ class Game extends React.Component {
 							mustWin: false
 						})
 						
-				} else if (data.data.result <=3 && data.data.result > 0) {
+				} else if (data.data.result <=3 && data.data.result >= 0) {
 					var coinUser = data.data.coin
 					var check = data.data.result
 					if ( coinUser <= 0 || coinUser === -1 )  {
