@@ -288,7 +288,9 @@ ul {
     background-color: var(--color-yellow-1) !important;
     border-color: transparent; }
   .ButtonHeader:hover {
-    background-color: var(--color-yellow-1); }
+    background-color: var(--color-yellow-1);
+    border-color: yellow;
+  }
   .ButtonHeader__devide {
     width: 100%;
     height: 100%;

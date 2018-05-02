@@ -10,14 +10,20 @@
       align-items: center;
       margin: 0rem;
       padding: 0rem;
-      width: 35%;
-      justify-content: space-around
+      justify-content: flex-end;
+      width: 100%;
     }
 }
 
 @media (max-width: 767px)  {
   .HeaderTop{
     display: none;
+  }
+}
+
+@media (max-width: 1024) {
+  .HeaderTop__Right {
+    width: 70%
   }
 }
 
