@@ -12,6 +12,24 @@
   width: 100%;
   display: table;
 }
+
+.modalText{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.modal-title{
+  width: 100%
+}
+
+.h4ModalTitle{
+  padding-top: 15px;
+}
 // .carousel{
 //   &__container{
 //     width: 100%;

@@ -1,9 +1,12 @@
 .ModalTop{
   border-bottom: none;
   border-radius: 0;
-  background-color: var(--color-grey-5);
+  background-color: var(--color-white);
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
   span{
-    color: #FFCD05;
+    color: black;
   }
   &__otp{
     background-color: white;
@@ -68,7 +71,7 @@
       z-index: 10;
       background-color: black;
       justify-content: center;
-      align-items: center;  
+      align-items: center;
       &__form{
         margin-top: 20px;
         text-align: center;
@@ -109,12 +112,13 @@
   animation-name: animatetop;
   animation-duration: 0.4s;
   overflow: auto; /* Enable scroll if needed */
-  border: 5px solid var(--white);
+  border: 1px solid var(--none);
+  border-radius: 5px;
 }
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
+  from {top:-300px; opacity:0}
   to {top:0; opacity:1}
 }
 
