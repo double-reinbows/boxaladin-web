@@ -18,6 +18,11 @@ class ModalLogin extends React.Component {
     this.props.setModalLogin(!this.props.modalLogin)
   }
 
+  openRegisterModal() {
+    this.props.setModalLogin(!this.props.modalLogin)
+    this.props.setModalRegister(!this.props.modalRegister)
+  }
+
   render() {
     return (
       <div className="header-margin">
@@ -42,8 +47,8 @@ class ModalLogin extends React.Component {
               <Login />
             </div>
             <div className="footerModal">
-              <text className="borderFloat">Lupa Password</text>
-              <text>Buat Akun Baru</text>
+              <text className="borderFloat" ><a className="lupapass"style={{ textDecoration: "none"}} href="/requestresetpassword">Lupa Password</a></text>
+              <text onClick={() => this.openRegisterModal()} >Buat Akun Baru</text>
             </div>
           </div>
         </Modal>
@@ -51,6 +56,7 @@ class ModalLogin extends React.Component {
     );
   }
 }
+
 
 const mapStateToProps = (state) => {
   return {
