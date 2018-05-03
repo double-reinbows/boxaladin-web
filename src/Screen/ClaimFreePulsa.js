@@ -99,7 +99,7 @@ class ClaimFreePulsa extends React.Component {
         url: `${process.env.REACT_APP_API_HOST}/win/${this.state.win.id}`,
         headers: {
           token: localStorage.getItem('token'),
-          key: process.env.REACT_APP_KEY
+           key: process.env.REACT_APP_KEY
         }
       })
       

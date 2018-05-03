@@ -85,7 +85,7 @@ export default class BannerHome extends Component <{}> {
               <div>
                 <h3 className="BannerText__content__title">Ruang Game</h3>
                 <div>
-                  <p className="BannerText__content__paragraph">Tapi tenang aja, buat kalian yang belum berhasil membeli barangnya, kalian bisa menukarkan kuni aladin kalian ke coin dan memainkannya di ruang game kami. Di ruang game ini kalian bisa menangin hadiah-hadiah menarik loh! SELAMAT MENCOBA.</p>
+                  <p className="BannerText__content__paragraph">Tapi tenang aja, buat kalian yang belum berhasil membeli barangnya, kalian bisa menukarkan kunci aladin kalian ke coin dan memainkannya di ruang game kami. Di ruang game ini kalian bisa menangin hadiah-hadiah menarik loh! SELAMAT MENCOBA.</p>
                 </div>
               </div>
             </div>

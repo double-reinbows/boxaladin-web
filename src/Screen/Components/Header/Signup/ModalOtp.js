@@ -157,11 +157,8 @@ resendOtp(){
                 <label className="alert__otp">{this.state.notifCount}</label>
                 <label className="alert__otp">{this.state.notifOtp}</label>
               </div>
-
             </div>
             <ModalFooter>
-            {/* <Button onClick={() => this.show()}></Button> */}
-
             <Button style ={{visibility:this.state.show}} disabled={this.state.disabled} onClick={() => this.resendOtp()} className="modal-body__otp__resend">Kirim Ulang OTP</Button>
             </ModalFooter>
           </div>

@@ -1,18 +1,43 @@
 import React, { Component } from 'react';
 
-import LogoIndosat from '../../asset/LandingPage/pulsa/Indosat.svg'
-import LogoSmart from '../../asset/LandingPage/pulsa/Smart.svg'
-import LogoTelkomsel from '../../asset/LandingPage/pulsa/Telkomsel.svg'
-import LogoTri from '../../asset/LandingPage/pulsa/Tri.svg'
-import LogoXL from '../../asset/LandingPage/pulsa/Xl.svg'
+import ProviderModal from './Modal/ProviderModal';
+import ModalXL from './Modal/ModalXL';
+
+import LogoIndosat from '../../asset/LandingPage/pulsa/Indosat.svg';
+import LogoSmart from '../../asset/LandingPage/pulsa/Smart.svg';
+import LogoTelkomsel from '../../asset/LandingPage/pulsa/Telkomsel.svg';
+import LogoTri from '../../asset/LandingPage/pulsa/Tri.svg';
+import LogoXL from '../../asset/LandingPage/pulsa/Xl.svg';
 
 class HomeContent extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-
+      providerModal: false,
+      modalXL : false,
+      modalTelkomsel: false,
+      modalIndosat: false,
+      modalSmart: false,
+      modalTri: false
     }
+
+    // this.toggle = this.toggle.bind(this)
+
   }
+  
+
+  toggle = () =>  {
+    this.setState({
+      providerModal: !this.state.providerModal
+    })
+  }
+
+  toggleXL = () => {
+    this.setState({
+      modalXL: !this.state.modalXL
+    })
+  }
+  
   render() { 
     return (  
       <div className="homecontent__container">
@@ -36,15 +61,17 @@ class HomeContent extends Component {
         </div>
         <div className="homecontent__bottom">
           <div className="homecontent__bottom__pulsa">
-            <button className="homecontent__bottom__pulsa__button"><img className="homecontent__bottom__pulsa__button__image" src={LogoXL} alt="Logo XL"/></button>
-            <button className="homecontent__bottom__pulsa__button"><img className="homecontent__bottom__pulsa__button__image" src={LogoTelkomsel} alt="Logo Telkomsel"/></button>
-            <button className="homecontent__bottom__pulsa__button"><img className="homecontent__bottom__pulsa__button__image" src={LogoSmart} alt="Logo Smart"/></button>
-            <button className="homecontent__bottom__pulsa__button"><img className="homecontent__bottom__pulsa__button__image" src={LogoIndosat} alt="Logo Indosat"/></button>
-            <button className="homecontent__bottom__pulsa__button"><img className="homecontent__bottom__pulsa__button__image" src={LogoTri} alt="Logo Tri"/></button>
+            <button onClick={this.toggleXL} className="homecontent__bottom__pulsa__button"><img className="homecontent__bottom__pulsa__button__image" src={LogoXL} alt="Logo XL"/></button>
+            <button onClick={this.toggleTelkomsel} className="homecontent__bottom__pulsa__button"><img className="homecontent__bottom__pulsa__button__image" src={LogoTelkomsel} alt="Logo Telkomsel"/></button>
+            <button onClick={this.toggleSmart} className="homecontent__bottom__pulsa__button"><img className="homecontent__bottom__pulsa__button__image" src={LogoSmart} alt="Logo Smart"/></button>
+            <button onClick={this.toggleIndosat} className="homecontent__bottom__pulsa__button"><img className="homecontent__bottom__pulsa__button__image" src={LogoIndosat} alt="Logo Indosat"/></button>
+            <button onClick={ this.toggleTri} className="homecontent__bottom__pulsa__button"><img className="homecontent__bottom__pulsa__button__image" src={LogoTri} alt="Logo Tri"/></button>
           </div>
           <div className="homecontent__bottom__check">
-            <button className="homecontent__bottom__check__button">CEK PROVIDER-MU</button>
+            <button onClick={this.toggle} className="homecontent__bottom__check__button">CEK PROVIDER-MU</button>
           </div>
+          <ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
+          <ModalXL open={this.state.modalXL} buttonToggle={this.toggleXL} />
         </div>
       </div>
     )
