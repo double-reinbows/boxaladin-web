@@ -13,6 +13,10 @@
       justify-content: flex-end;
       width: 100%;
     }
+    .TextStyle{
+      font-size: 25px;
+      margin-right: 50px;
+    }
 }
 
 @media (max-width: 767px)  {
@@ -28,8 +32,8 @@
 }
 
 .HeaderTopM {
-    background-color: #3E3E3E;
-    border-bottom: 4px solid #FFCD05;
+    background-color: white;
+    border-bottom: 4px solid white;
 
     &__logo{
       margin: 0px auto;
@@ -49,19 +53,24 @@
   .HeaderTopM{
     display: none;
   }
+  .TextStyle{
+    font-size: 25px;
+    margin-right: 50px;
+  }
 }
 
 
 //Button for navgar toggle
 .IconBurger{
-  background-color: var(--color-yellow-1);
+  background-color: white;
+  border-width: 3px;
 }
 
 
 
 //link lupa password
 .lupapass{
-    color: var(--color-yellow-1);
+    color: var(--color-black-1);
 }
 
 .header-margin{
@@ -218,7 +227,6 @@
   .ButtonHeader__big {
     background-color: transparent !important;
     background: transparent;
-    color: var(--color-yellow-1);
     border: none;
     margin-left: 15px;
   }

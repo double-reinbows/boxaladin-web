@@ -460,7 +460,8 @@ ul {
     font-weight: bold;
     line-height: 16px;
     text-align: center;
-    margin: 1rem; }
+    margin: 1rem;
+  }
   .Login__Daftar {
     margin-bottom: 3rem;
     color: var(--white); }

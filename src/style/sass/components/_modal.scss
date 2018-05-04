@@ -1,12 +1,16 @@
 .ModalTop{
   border-bottom: none;
   border-radius: 0;
-  background-color: var(--color-grey-5);
+  background-color: var(--color-white);
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
   span{
-    color: #FFCD05;
+    color: black;
   }
   &__otp{
     background-color: white;
+    border-bottom: none;
     span{
       color: black;
     }
@@ -57,6 +61,12 @@
   background-color: white;
 }
 
+@media (min-width: 1250px) {
+  .modalOtp {
+    width: 30%;
+  }
+}
+
 .modalPrimary{
 
   &__phone{
@@ -68,7 +78,7 @@
       z-index: 10;
       background-color: black;
       justify-content: center;
-      align-items: center;  
+      align-items: center;
       &__form{
         margin-top: 20px;
         text-align: center;
@@ -109,12 +119,13 @@
   animation-name: animatetop;
   animation-duration: 0.4s;
   overflow: auto; /* Enable scroll if needed */
-  border: 5px solid var(--white);
+  border: 1px solid var(--none);
+  border-radius: 5px;
 }
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
+  from {top:-300px; opacity:0}
   to {top:0; opacity:1}
 }
 
@@ -149,6 +160,11 @@
     &__button{
       font-size: 14px;
       margin-bottom: 10px;
+      background-color: lightgrey;
+      color: black;
+      border: 2px;
+      border-style: solid;
+      border-color: lightslategrey;
     }
     &__label{
       font-size: 18px;
@@ -219,139 +235,5 @@
   &__button{
     margin: 10px;
     font-size: 12px;
-  }
-}
-
-
-.modal__provider{
-  top: 20%;
-  max-width: 70%;
-  margin: 1.75rem auto;
-  border: solid 1px lightgrey;
-  &__header{
-    border-bottom: none;
-  }
-  &__container{
-    display: flex;
-    justify-content: space-evenly;
-    font-size: 20px;
-  }
-  &__content{
-    width: 100%;
-    text-align: -webkit-center;
-    border: solid 1px lightgrey;
-    &__x{
-      display: flex;
-      justify-content: flex-end;
-    }
-  }
-  &__logo{
-    width: 80px;
-    height: 80px;
-    display: flex;  
-    justify-content: center;
-    &__image{
-      width: 100%
-    }
-  }
-  &__list{
-    text-align: center;
-    border-top: solid 1px lightgrey;
-  }
-  &__button{
-    background-color: transparent;
-    font-size: 10px;
-    color: #FFCD05;
-  }
-}
-
-@media (min-width: 200px ) and (max-width:560px ) {
-  .modal__provider{
-    max-width: 90%;
-
-    &__content{
-      font-size: 14px;
-    }
-    &__logo{
-      width: 50px;
-      height: 50px;
-      &__image{
-        width: 100%
-      }
-    }
-  }
-}
-
-.modal__pulsa{
-  top: 10%;
-  max-width: 80%;
-  font-size: 20px;
-
-  &__container{
-    width: 100%;
-    display: flex;
-  }
-
-  &__content{
-    width: 65%;
-    &__1{
-      &__logo{
-        text-align: center;
-        border: solid 1px lightgrey;
-        &__image{
-          width: 70%;
-        }
-      }
-    }
-    &__2{
-      display: flex;
-      justify-content: space-evenly;
-      border: solid 1px lightgrey;
-
-      &__button{
-        background-color: white;
-        width: 33.33%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        &:hover{
-          cursor: pointer;
-        }
-      }
-      &__map{
-        display: flex;
-        flex-direction: column;
-      }
-    }
-    &__3{
-      width: 35%;
-      border: solid 1px lightgrey;
-
-      &__button{
-        display: flex;
-        justify-content: flex-end;
-        &__x{
-          color: #FFCD05;
-          border: none;
-          background: white;
-          &:hover{
-            cursor: pointer;
-          }
-        }
-        &__price{
-          right: 0;
-          width: 35.2%;
-          position: absolute;
-          bottom: 0;
-          border: 0;
-          color: white;
-          background-color: grey;
-          height: 15%;
-          &:hover{
-            cursor: pointer;
-          }
-        }
-      }
-    }
   }
 }

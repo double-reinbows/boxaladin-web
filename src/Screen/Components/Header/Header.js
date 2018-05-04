@@ -70,7 +70,7 @@ class NavBar extends React.Component {
       return (
         <Nav navbar className="HeaderTop__Right">
           <div>
-          <h4> <b style={{ fontSize: '25px', marginRight: '50px'}}>Hello, Boedjangan</b> </h4>
+          <h4> <b className="TextStyle"> Hello, Boedjangan </b> </h4>
           </div>
           <NavItem>
             <DropdownUser />

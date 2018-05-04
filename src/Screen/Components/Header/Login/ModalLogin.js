@@ -18,6 +18,11 @@ class ModalLogin extends React.Component {
     this.props.setModalLogin(!this.props.modalLogin)
   }
 
+  openRegisterModal() {
+    this.props.setModalLogin(!this.props.modalLogin)
+    this.props.setModalRegister(!this.props.modalRegister)
+  }
+
   render() {
     return (
       <div className="header-margin">
@@ -32,9 +37,18 @@ class ModalLogin extends React.Component {
         </Button>
         <Modal ariaHideApp={false} isOpen={this.props.modalLogin} toggle={this.toggle} className="{this.props.className} modalz">
           <div className="modalContent">
-          <ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>
+          <ModalHeader toggle={this.toggle} className="ModalTop">
+          <div className="modalText" >
+            <h2  style={{textAlign: 'center', width:"100%"}}> Selamat Datang di Boxaladin</h2>
+            <h4 className="h4ModalTitle"> Daftar dengan akun baru </h4>
+          </div>
+          </ModalHeader>
             <div className="modal-body">
-            <Login />
+              <Login />
+            </div>
+            <div className="footerModal">
+              <text className="borderFloat" ><a className="lupapass"style={{ textDecoration: "none"}} href="/requestresetpassword"><button className="buttonModalLogin">Lupa Password</button></a></text>
+              <text onClick={() => this.openRegisterModal()} ><button className="buttonModalLogin">Buat Akun Baru</button></text>
             </div>
           </div>
         </Modal>
@@ -42,6 +56,7 @@ class ModalLogin extends React.Component {
     );
   }
 }
+
 
 const mapStateToProps = (state) => {
   return {

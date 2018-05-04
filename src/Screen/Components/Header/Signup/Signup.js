@@ -17,11 +17,13 @@ class Signup extends Component {
       notif: '',
       modal: false,
       dataUser: {},
-      email: ''
+      email: '',
+      modalOtp: false
 
     }
     this.signUpInputHandler = this.signUpInputHandler.bind(this)
     this.toggle = this.toggle.bind(this);
+    this.toggleOtp = this.toggleOtp.bind(this);
 
   }
 
@@ -31,6 +33,12 @@ class Signup extends Component {
     })
     this.props.loginAction()
     this.props.setModalRegister(false)
+  }
+
+  toggleOtp() {
+    this.setState({
+      modalOtp: !this.state.modalOtp
+    })
   }
 
   //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -311,31 +319,36 @@ class Signup extends Component {
         <Loading isLoading={ this.props.isLoading } />
 
         <form className="form-horizontal" onSubmit={e => this.signUp(e)}>
-          <div>
+        { /*<div>
             <label className="Login__Title2">
               Daftar
             </label>
-          </div>
+          </div>*/ }
 
           <div className="form-group Signup__Form">
             <label>Alamat Email</label>
-            <input name="email" required type="email" className="form-control inputz" aria-describedby="emailHelp" placeholder="Masukkan Email Anda" onChange={e => this.signUpInputToLowerHandler(e)} />
+            <input name="email" required type="email" className="form-control inputz" aria-describedby="emailHelp" placeholder="Masukkan Email Kamu*" onChange={e => this.signUpInputToLowerHandler(e)} />
           </div>
 
           <div className="form-group Signup__Form">
             <label>Nomor Handphone</label>
-            <input name="phonenumber" required type="integer" className="form-control inputz" aria-describedby="phonenumberHelp" placeholder="Masukkan No Handphone Anda" onChange={e => this.handlePhoneNum(e)}/>
+            <input name="phonenumber" required type="integer" className="form-control inputz" aria-describedby="phonenumberHelp" placeholder="Masukkan No Handphone Kamu*" onChange={e => this.handlePhoneNum(e)}/>
           </div>
 
           <div className="form-group Signup__Form">
             <label>Password</label>
-            <input name="password" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Masukkan Password Anda" onChange={e => this.signUpInputHandler(e)} />
+            <input name="password" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Masukkan Password Kamu*" onChange={e => this.signUpInputHandler(e)} />
           </div>
 
           <div className="form-group Signup__Form">
             <label>Ketik Ulang Password</label>
-            <input name="confirm" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Ketik Ulang Password Anda" onChange={e => this.signUpInputHandler(e)} />
+            <input name="confirm" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Ketik Ulang Password Kamu*" onChange={e => this.signUpInputHandler(e)} />
+            <div className="labelSignUp">
+              <label className= "labelFont">(*)wajib diisi </label>
+            </div>
           </div>
+
+
 
           <label className="alert">{this.state.notif}</label>
           <br/>
@@ -343,8 +356,11 @@ class Signup extends Component {
           <div className="form-group">
             <button type="submit" className="Signup__ButtonLogin">Daftar</button>
           </div>
+
+            <button onClick={this.toggleOtp}> otp </button>
+
         </form>
-          <ModalOtp open={this.state.modal} buttongToggle={this.toggle} phone={this.state.phonenumber} emailUser={this.state.email}/>
+          <ModalOtp open={this.state.modalOtp} buttonToggle={this.toggleOtp} phone={this.state.phonenumber} emailUser={this.state.email}/>
 
       </div>
     )
