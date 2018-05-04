@@ -76,7 +76,7 @@ class RequestResetPassword<Props, State> extends React.Component {
     return (
       <div className="RequestReset">
         <div className="RequestReset__box">
-          <h1 className="RequestReset__text">Lupa Password ?</h1>
+          <h1 className="RequestReset__text">Lupa Password?</h1>
           <h2 className="RequestReset__text">Tolong masukkan email kamu di kolom bawah ini. Kami akan mengirimkan link ke
             email tersebut untuk meng-reset password kamu.</h2>
           <Form onSubmit={ (e: SyntheticInputEvent<HTMLInputElement>) => this.sendLink(e) }>
