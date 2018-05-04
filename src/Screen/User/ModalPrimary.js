@@ -48,14 +48,12 @@ class ModalPrimaryPhone extends Component {
       method: 'POST',
       url: `${process.env.REACT_APP_API_HOST}/olduserotp`,
       headers: {
-        key: process.env.REACT_APP_KEY
+        key: process.env.REACT_APP_KEY,
+        token: localStorage.getItem('token')
       },
       data: {
         phonenumber: this.state.phone,
         email: this.props.emailUser
-      },
-      headers: {
-        token: localStorage.getItem('token')
       }
     })
     .then((data) => {

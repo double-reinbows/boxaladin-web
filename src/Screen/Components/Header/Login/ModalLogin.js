@@ -28,9 +28,6 @@ class ModalLogin extends React.Component {
               Masuk
             </div>
 
-            <div className="ButtonHeader__small">
-              <img src={LoginIcon} alt="LoginIcon" className="ButtonHeader__iconLogin" href="/home"/>
-            </div>
           </div>
         </Button>
         <Modal ariaHideApp={false} isOpen={this.props.modalLogin} toggle={this.toggle} className="{this.props.className} modalz">

@@ -196,7 +196,9 @@ ul {
         -ms-flex-align: center;
             align-items: center;
     margin: 0rem;
-    padding: 0rem; }
+    padding: 0rem;
+    margin-right: 50px;
+  }
 
 @media (max-width: 767px) {
   .HeaderTop {
@@ -250,8 +252,8 @@ ul {
   border: 2px solid #FFCD05;
   color: #FFCD05;
   background-color: #3E3E3E;
-  -webkit-box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
-          box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  /* -webkit-box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+             box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.5); */
   font-family: Raleway;
   font-size: 22px;
   font-weight: 600;
@@ -286,7 +288,9 @@ ul {
     background-color: var(--color-yellow-1) !important;
     border-color: transparent; }
   .ButtonHeader:hover {
-    background-color: var(--color-yellow-1); }
+    background-color: var(--color-yellow-1);
+    border-color: yellow;
+  }
   .ButtonHeader__devide {
     width: 100%;
     height: 100%;
@@ -332,7 +336,6 @@ ul {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    background-color: var(--color-yellow-1);
     width: 16%;
     height: 100%;
     justify-content: center;

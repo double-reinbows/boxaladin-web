@@ -12,8 +12,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 //import iconTabs
-import IconTabs1 from '../../../asset/TabsHome/IconTabs1.svg';
-import IconTabs2 from '../../../asset/TabsHome/IconTabs2.svg';
+import IconTabs1 from '../../asset/TabsHome/IconTabs1.svg';
+import IconTabs2 from '../../asset/TabsHome/IconTabs2.svg';
 // import IconTabs3 from '../../../asset/TabsHome/IconTabs3.svg';
 // import IconTabs4 from '../../../asset/TabsHome/IconTabs4.svg';
 
