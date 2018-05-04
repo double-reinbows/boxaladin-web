@@ -1,13 +1,15 @@
 import React from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { Button, Form, FormGroup, Input } from 'reactstrap'
+import { Button, Form, FormGroup, Input, FormFeedback, Label } from 'reactstrap'
 
 export default class ResetPassword extends React.Component {
   state = {
     password: null,
     confirmPassword: null,
-    notif: ''
+    notif: '',
+    label: null,
+    validity: null,
   }
 
   resetPassword(e) {
@@ -47,7 +49,11 @@ export default class ResetPassword extends React.Component {
         }
       });
     } else {
-      this.setState({notif: "Mohon isi form dengan password baru Anda."});
+      // this.setState({label:
+        // (<FormGroup><label color="black"
+        // >Mohon isi form dan pastikan passwordnya persis sama.</label></FormGroup>)
+
+      // });
     }
   }
 
@@ -56,27 +62,33 @@ export default class ResetPassword extends React.Component {
       <div className="resetPassword">
         <div className="resetPassword__box">
           <h1 className="resetPassword__text">Mohon masukkan password Anda</h1>
-
           <Form onSubmit={ (e) => this.resetPassword(e) }>
             <FormGroup>
+              <Label>Password Baru:</Label>
               <Input className="resetPassword__input"
                 onChange={(e) => this.setState({ password: e.target.value })}
                 minLength="8" type="password"
                 name="password"
                 id="password"
                 placeholder="Password Baru" />
-
             </FormGroup>
             <FormGroup>
+              <Label>Konfirmasi Password Baru:</Label>
               <Input className="resetPassword__input"
-                onChange={(e) => this.setState({ password: e.target.value })}
+                onChange={(e) => this.setState({ confirmPassword: e.target.value })}
                 minLength="8" type="password"
                 name="password"
                 id="password"
                 placeholder="Konfirmasi Password Baru" />
+              {/* <FormFeedback invalid>Example help text that remains unchanged.</FormFeedback> */}
+            </FormGroup>
+            <FormGroup>
+              <Button className="resetPassword__button"
+               size="lg" block>Reset
+              </Button>
             </FormGroup>
           </Form>
-          <label className="alert__resetPassword">{this.state.notif}</label>
+
         </div>
       </div>
     )

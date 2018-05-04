@@ -58,7 +58,7 @@ class RequestResetPassword<Props, State> extends React.Component {
 
     } else {
       this.setState({
-        notif: 'Email Harus diisi',
+        notif: 'Email wajib diisi',
       })
     }
   }
@@ -82,10 +82,11 @@ class RequestResetPassword<Props, State> extends React.Component {
                  name="email"
                  id="email"
                  bsSize="lg"
+                 placeholder={notif}
                />
             </FormGroup>
           </Form>
-          <label className="alert__resetPassword">{notif}</label>
+          {/* <label className="RequestReset__text">{notif}</label> */}
           <a href="#">
             <h2 className="RequestReset__text"
               onClick={()=>this.openLoginModal()}
