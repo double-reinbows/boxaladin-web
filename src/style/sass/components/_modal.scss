@@ -10,6 +10,7 @@
   }
   &__otp{
     background-color: white;
+    border-bottom: none;
     span{
       color: black;
     }
@@ -58,6 +59,12 @@
   width: 50%;
   margin-top: 5%;
   background-color: white;
+}
+
+@media (min-width: 1250px) {
+  .modalOtp {
+    width: 30%;
+  }
 }
 
 .modalPrimary{
@@ -153,6 +160,11 @@
     &__button{
       font-size: 14px;
       margin-bottom: 10px;
+      background-color: lightgrey;
+      color: black;
+      border: 2px;
+      border-style: solid;
+      border-color: lightslategrey;
     }
     &__label{
       font-size: 18px;
