@@ -94,7 +94,7 @@ class RequestResetPassword<Props, State> extends React.Component {
           <a href="#">
             <h2 className="RequestReset__text"
               onClick={()=>this.openLoginModal()}
-              style={{color: 'black'}}>atau kembali ke login
+              >atau kembali ke login
             </h2>
           </a>
         </div>
