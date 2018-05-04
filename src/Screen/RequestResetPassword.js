@@ -8,7 +8,6 @@ import { Button, Form, FormGroup, Input } from 'reactstrap';
 type State = {
   email: string,
   notif: string,
-  // buttonText: string,
 };
 type Props = {
   history: Array,
@@ -17,7 +16,6 @@ class RequestResetPassword<Props, State> extends React.Component {
   state: State = {
     email: '',
     notif: '',
-    // buttonText: 'Kirim email',
   }
 
   sendLink(e: SyntheticInputEvent<HTMLInputElement>): void {
@@ -38,7 +36,6 @@ class RequestResetPassword<Props, State> extends React.Component {
         if (data.msg === 'email sent') {
           this.setState({
             notif: 'Email reset password ulang terkirim!',
-            // buttonText: 'Terkirim!',
           });
           this.props.history.push('/');
         } else {
@@ -49,12 +46,10 @@ class RequestResetPassword<Props, State> extends React.Component {
         if (err.message == 'Network Error') {
           this.setState({
             notif: 'Mohon chek koneksi internet Anda.',
-            // buttonText: 'Kirim email',
           });
         } else {
           this.setState({
             notif: 'Mohon maaf ada masalah dengan sistem kami. Mohon coba ulang beberapa saat lagi',
-            // buttonText: 'Kirim email',
           })
         }
       });
@@ -106,17 +101,12 @@ class RequestResetPassword<Props, State> extends React.Component {
 const mapStateToProps = (state) => {
   return {
     modalLogin: state.modalReducer.modalLogin,
-    // modalRegister: state.modalReducer.modalRegister,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     setModalLogin: (payload) => dispatch(setModalLogin(payload)),
-    // setModalRegister: (payload) => dispatch(setModalRegister(payload)),
-    // loginAction: () => dispatch(loginAction()),
-    // getUser: () => dispatch(getUser()),
-    // refreshToken: () => dispatch(refreshToken()),
   }
 }
 
