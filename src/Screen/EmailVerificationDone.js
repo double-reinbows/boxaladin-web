@@ -53,7 +53,6 @@ class EmailVerificationDone extends React.Component {
   openLoginModal() {
     this.props.setModalLogin(!this.props.modalLogin)
   }
-
 }
 
 const mapStateToProps = (state) => {
