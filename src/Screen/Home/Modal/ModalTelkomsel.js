@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 import { Button, Modal , ModalHeader} from 'reactstrap'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 import RegisterIcon from '../../../asset/user/IconCheck.svg'
-import LogoXL from '../../../asset/LandingPage/pulsa/Xl.svg';
+import LogoTelkomsel from '../../../asset/LandingPage/pulsa/Telkomsel.svg';
 import { selectProductID } from '../../../actions/productAction'
 
-class ModalXL extends Component {
+class ModalTelkomsel extends Component {
   constructor(props) {
     super(props);
     this.pulsa = this.pulsa.bind(this)
@@ -36,12 +37,12 @@ class ModalXL extends Component {
     } else {
       return(
         this.props.products.filter(data => {
-          return data.brand === 'XL' && data.category === 'Pulsa'
+          return data.brand === 'Telkomsel' && data.category === 'Pulsa'
         })
         .map((data, i) => {
           return (
             <button onClick={(e) => this.pulsa(data.id, data)} className="modal__pulsa__content__2__button" value={data.id} key={i}>
-              <img className="modal__pulsa__content__2__logo__image"  src={LogoXL} alt="Logo XL"/>
+              <img className="modal__pulsa__content__2__logo__image"  src={LogoTelkomsel} alt="Logo Telkomsel"/>
               {data.price.toLocaleString(['ban', 'id'])}
             </button>
           )
@@ -64,7 +65,7 @@ class ModalXL extends Component {
             <div className="modal__pulsa__content__1">
               <div className="modal__pulsa__content__1__logo">
                 <div>
-                  <img className="modal__pulsa__content__1__logo__image" src={LogoXL} alt="Logo XL"/>
+                  <img className="modal__pulsa__content__1__logo__image" src={LogoTelkomsel} alt="Logo Telkomsel"/>
                 </div>
                 <label>{this.state.pulsaPrice.toLocaleString(['ban', 'id'])}</label>
               </div>
@@ -74,12 +75,12 @@ class ModalXL extends Component {
             </div>
           </div>
           <div className="modal__pulsa__content__3">
-          <div>
-          <div className="modal__pulsa__content__3__button">
-              <button className="modal__pulsa__content__3__button__x" onClick={this.props.buttonToggle}>X</button>
+            <div>
+            <div className="modal__pulsa__content__3__button">
+                <button className="modal__pulsa__content__3__button__x" onClick={this.props.buttonToggle}>X</button>
+              </div>
+              <label>{this.state.pulsaName}</label>
             </div>
-            <label>{this.state.pulsaName}</label>
-          </div>
 
               <div >
               <Link to="/bidding">
@@ -111,6 +112,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(ModalXL)
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(ModalTelkomsel)
 
 export default connectComponent

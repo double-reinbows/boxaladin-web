@@ -191,6 +191,9 @@
     font-size: 14px;
     width: 85%
   }
+  .modal__pulsa{
+    font-size: 10px;
+  }
 }
 
 
@@ -284,22 +287,27 @@
 
 .modal__pulsa{
   top: 10%;
-  max-width: 80%;
+  max-width: 70%;
   font-size: 20px;
-
+  margin: 1.75rem auto;
   &__container{
     width: 100%;
     display: flex;
   }
 
   &__content{
-    width: 65%;
+    width: 75%;
     &__1{
       &__logo{
         text-align: center;
         border: solid 1px lightgrey;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        min-height: 250px;
+
         &__image{
-          width: 70%;
+          width: 30%;
         }
       }
     }
@@ -307,9 +315,17 @@
       display: flex;
       justify-content: space-evenly;
       border: solid 1px lightgrey;
+      &__logo{
+        &__image{
+          width: 100%;
+        }
+      }
 
       &__button{
         background-color: white;
+        border-top: none;
+        border-right: none;
+        border-bottom: none;
         width: 33.33%;
         display: flex;
         flex-direction: column;
@@ -324,9 +340,11 @@
       }
     }
     &__3{
-      width: 35%;
-      border: solid 1px lightgrey;
-
+      width: 25%;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       &__button{
         display: flex;
         justify-content: flex-end;
@@ -339,19 +357,33 @@
           }
         }
         &__price{
-          right: 0;
-          width: 35.2%;
-          position: absolute;
-          bottom: 0;
-          border: 0;
+          width: 100%;
           color: white;
           background-color: grey;
-          height: 15%;
+          border: none;
           &:hover{
             cursor: pointer;
+          }
+          &__image{
+            width: 20%;
+            margin-left: 10%;
           }
         }
       }
     }
   }
+}
+
+@media (min-width: 200px ) and (max-width:766px ) {
+  .modal__pulsa{
+    font-size: 10px;
+    max-width: 90%;
+    &__content__1__logo{
+      min-height: 110px;
+    }
+  }
+}
+
+.modal-open {
+  overflow: scroll;
 }

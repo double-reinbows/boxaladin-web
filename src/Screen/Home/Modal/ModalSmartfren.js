@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import RegisterIcon from '../../../asset/user/IconCheck.svg'
-import LogoXL from '../../../asset/LandingPage/pulsa/Xl.svg';
+import LogoSmart from '../../../asset/LandingPage/pulsa/Smart.svg';
 import { selectProductID } from '../../../actions/productAction'
 
-class ModalXL extends Component {
+class ModalSmart extends Component {
   constructor(props) {
     super(props);
     this.pulsa = this.pulsa.bind(this)
@@ -36,12 +36,12 @@ class ModalXL extends Component {
     } else {
       return(
         this.props.products.filter(data => {
-          return data.brand === 'XL' && data.category === 'Pulsa'
+          return data.brand === 'Smartfren' && data.category === 'Pulsa'
         })
         .map((data, i) => {
           return (
             <button onClick={(e) => this.pulsa(data.id, data)} className="modal__pulsa__content__2__button" value={data.id} key={i}>
-              <img className="modal__pulsa__content__2__logo__image"  src={LogoXL} alt="Logo XL"/>
+              <img className="modal__pulsa__content__2__logo__image"  src={LogoSmart} alt="Logo Smart"/>
               {data.price.toLocaleString(['ban', 'id'])}
             </button>
           )
@@ -56,6 +56,16 @@ class ModalXL extends Component {
     }
   }
 
+  checkDisabled = () =>{
+    if (this.props.selectedProductID === undefined ){
+      return true
+    } else if ( this.props.selectedProductID === ''){
+      return true
+    } else if (this.props.selectedProductID !== ''){
+      return false
+    }
+  }
+
   render() { 
     return (  
       <Modal isOpen={this.props.open} className="modal__pulsa">
@@ -64,7 +74,7 @@ class ModalXL extends Component {
             <div className="modal__pulsa__content__1">
               <div className="modal__pulsa__content__1__logo">
                 <div>
-                  <img className="modal__pulsa__content__1__logo__image" src={LogoXL} alt="Logo XL"/>
+                  <img className="modal__pulsa__content__1__logo__image" src={LogoSmart} alt="Logo Smart"/>
                 </div>
                 <label>{this.state.pulsaPrice.toLocaleString(['ban', 'id'])}</label>
               </div>
@@ -84,7 +94,7 @@ class ModalXL extends Component {
               <div >
               <Link to="/bidding">
 
-                <button onClick={() => this.handleNotLogin()} disabled={this.props.selectedProductID !== '' ? false : true} type="button" className="modal__pulsa__content__3__button__price">
+                <button onClick={() => this.handleNotLogin()} disabled={()=> this.checkDisabled()} type="button" className="modal__pulsa__content__3__button__price">
                 Intip Harga
                 <img src={RegisterIcon} alt="RegisterIcon" className="modal__pulsa__content__3__button__price__image"/>
                 </button>
@@ -111,6 +121,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(ModalXL)
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(ModalSmart)
 
 export default connectComponent

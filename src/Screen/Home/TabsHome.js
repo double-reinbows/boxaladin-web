@@ -44,7 +44,6 @@ class Example extends React.Component {
   }
 
   render() {
-
     return (
       <div className="tes">
         <Nav className="NavTabsHome" tabs>
