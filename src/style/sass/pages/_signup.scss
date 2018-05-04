@@ -1,8 +1,8 @@
 .Signup {
   display: flex;
   justify-content: center;
-  background-color: var(--color-grey-5);
-  color: var(--color-yellow-1);
+  background-color: var(--color-white);
+  color: var(--color-black-1);
   text-align: center;
   padding: 2rem;
 
@@ -36,16 +36,15 @@
   }
 
   &__ButtonLogin{
-    color: var(--color-grey-5);
+    color: black;
     background-color: var(--color-yellow-1);
     border-color: var(--color-yellow-1);
-    width: 100px;
-    height: 25px;
+    width: 100%;
     font-family: Raleway;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
-    line-height: 16px;
     text-align: center;
+    border-radius: 5px;
   }
 
   &__Condition{
@@ -53,4 +52,18 @@
     margin: 1rem;
   }
 
+}
+
+.labelSignUp{
+  display: flex;
+  flex-direction: column;
+}
+
+.labelOtp{
+  display: flex;
+  flex-direction: column;
+}
+
+.otpModalFooter {
+  border: none;
 }

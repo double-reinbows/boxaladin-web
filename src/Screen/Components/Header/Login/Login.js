@@ -9,8 +9,6 @@ import { getUser } from '../../../../actions/userAction'
 
 import Loading from '../../Loading/'
 
-const URL = `${process.env.REACT_APP_API_HOST}/`
-
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -76,31 +74,21 @@ class Login extends Component {
       <div className="Login">
 
         <Loading isLoading={ this.props.isLoading } />
-        
+
         <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
 
-          <div>
-            <label className="Login__Title1">
-              Anda harus masuk terlebih dahulu untuk melihat harga
-            </label>
-          </div>
-
-          <div>
-            <label className="Login__Title2">
-              Masuk
-            </label>
+          <div className="form-group Login__Form">
+            <label>Email : </label>
+            <input name="email" type="email" className="form-control inputz" aria-describedby="emailHelp" placeholder="Masukkan email kamu*" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
           </div>
 
           <div className="form-group Login__Form">
-            <label>Alamat Email</label>
-            <input name="email" type="email" className="form-control inputz" aria-describedby="emailHelp" placeholder="Masukkan Email" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
-          </div>
-
-          <div className="form-group Login__Form">
-            <label>Password</label>
-            <input name="password" type="password"  className="form-control inputz" aria-describedby="passwordHelp" placeholder="Masukkan Password" onChange={ (e) => this.logInInputHandler(e) }/>
-            <label className="Login__LupaPassword"><a className="lupapass" href="/requestresetpassword">lupa password?</a></label>
+            <label>Password :</label>
+            <input name="password" type="password"  className="form-control inputz" aria-describedby="passwordHelp" placeholder="Masukkan password kamu*" onChange={ (e) => this.logInInputHandler(e) }/>
+            <label className= "labelFont">(*)wajib diisi </label>
+            { /*<label className="Login__LupaPassword"><a className="lupapass" href="/requestresetpassword">lupa password?</a></label> */}
             {/* <Link to="/requestresetpassword" className="Login__LupaPassword lupapass">lupa password?</Link> */}
+
           </div>
 
           <label className="alert">{this.state.notif}</label>
@@ -110,7 +98,8 @@ class Login extends Component {
               <Button type="submit" className="Login__ButtonLogin">Login</Button>
           </div>
 
-          <label className="Login__Daftar">Belum memiliki akun? daftar <text onClick={() => this.openRegisterModal()} className="Login__Link"> disini</text></label>
+          { /*<label className="Login__Daftar">Belum memiliki akun? daftar <text onClick={() => this.openRegisterModal()} className="Login__Link"> disini</text></label>*/}
+
 
         </form>
       </div>

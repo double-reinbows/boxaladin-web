@@ -6,6 +6,7 @@ import { setModalRegister, setIsLoading, loginAction } from '../../../../actions
 import Modal from 'react-modal'
 import { Button, ModalHeader, ModalFooter} from 'reactstrap'
 import axios from 'axios'
+import TextInput from 'react-otp'
 
 class ModalOtp extends Component {
   static propTypes = {
@@ -17,7 +18,7 @@ class ModalOtp extends Component {
   }
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       otp: '',
       notifOtp: '',
       disabled: false,
@@ -134,19 +135,20 @@ resendOtp(){
   //   })
   // }
 
-  render() { 
-    return ( 
-      <Modal ariaHideApp={false} isOpen={this.props.open} toggle={this.props.buttongToggle} className='containerModalOtp' >
+  render() {
+    return (
+      <Modal ariaHideApp={false} isOpen={this.props.open} toggle={this.props.buttonToggle} className='containerModalOtp' >
         <form onSubmit={e => this.sendOtp(e)}>
           <div className="modalOtp">
-          <ModalHeader toggle={this.props.buttongToggle} className="ModalTop__otp"></ModalHeader>
+          <ModalHeader toggle={this.props.buttonToggle} className="ModalTop__otp"></ModalHeader>
             <div className="modal-body__otp">
-              <div>
+              <div className="labelOtp">
               <label className="modal-body__otp__label">Anda Akan di Missed Call Oleh Sistem Kami</label>
-                <label className="modal-body__otp__label">Masukkan 4 Angka Terakhir Dari no yang Menelpon Anda</label>
+                <label className="modal-body__otp__label"> Masukkan 4 Angka Terakhir Dari no yang Menelpon Anda</label>
               </div>
               <div>
-                <input className="modal-body__otp__input" value={this.state.otp} onChange={e => this.handleOtp(e)} placeholder="otp"/>
+                { /*<input className="modal-body__otp__input" value={this.state.otp} onChange={e => this.handleOtp(e)} placeholder="otp"/> */ }
+                <TextInput value={this.state.otp} onChange={e => this.handleOtp(e)} ></TextInput>
               </div>
               <div>
                 <Button className="modal-body__otp__button" color="primary" type="submit" >Submit</Button>{' '}
@@ -157,8 +159,12 @@ resendOtp(){
                 <label className="alert__otp">{this.state.notifCount}</label>
                 <label className="alert__otp">{this.state.notifOtp}</label>
               </div>
+
+
             </div>
-            <ModalFooter>
+            <ModalFooter className="otpModalFooter">
+            {/* <Button onClick={() => this.show()}></Button> */}
+
             <Button style ={{visibility:this.state.show}} disabled={this.state.disabled} onClick={() => this.resendOtp()} className="modal-body__otp__resend">Kirim Ulang OTP</Button>
             </ModalFooter>
           </div>

@@ -49,55 +49,52 @@
 }
 
 .inputz{
-  border: transparent;
-  border-bottom: 2px solid var(--color-yellow-1);
+  border: 2px solid var(--color-yellow-1);
   background: transparent;
   font-family: Raleway;
   font-style: italic;
   font-size: 17px;
-  color: var(--color-yellow-1);
+  color: var(--color-black-1);
   box-shadow: none ;
+  border-radius: 8px;
   &:focus{
-    border: transparent;
-    border-bottom: 2px solid var(--color-yellow-1);
+    border: 2px solid var(--color-yellow-1);
     background: transparent;
     font-family: Raleway;
     font-style: italic;
-    color: var(--color-yellow-1);
+    color: var(--color-black-1);
     box-shadow: var(--color-grey-5);
   }
   &:hover{
-    border: transparent;
-    border-bottom: 2px solid var(--color-yellow-1);
+    border: 2px solid var(--color-yellow-1);
     background: transparent;
     font-family: Raleway;
     font-style: italic;
-    color: var(--color-yellow-1);
+    color: var(--color-black-1);
   }
   &::placeholder{
     background: transparent;
     font-family: Raleway;
     font-style: italic;
-    color: var(--color-yellow-1);
+    color: var(--color-black-1);
   }
   &:active{
-    border: transparent;
-    border-bottom: 2px solid var(--color-yellow-1);
+    border: 2px solid var(--color-yellow-1);
     background: transparent;
     font-family: Raleway;
     font-style: italic;
-    color: var(--color-yellow-1);
+    color: var(--color-black-1);
   }
 }
-.form-group.Login__Form input:-webkit-autofill {
-  -webkit-text-fill-color: var(--color-yellow-1) ;
-  -webkit-box-shadow: 0 0 0 34px #3E3E3E inset !important;
-}
+// .form-group.Login__Form input:-webkit-autofill {
+//   -webkit-text-fill-color: var(--color-black-1) ;
+//   -webkit-box-shadow: 0 0 0 34px #3E3E3E inset !important;
+// }
 
-.form-group.Signup__Form input:-webkit-autofill {
-  -webkit-text-fill-color: var(--color-yellow-1) ;
-  -webkit-box-shadow: 0 0 0 34px #3E3E3E inset !important;
-}
+// .form-group.Signup__Form input:-webkit-autofill {
+//   -webkit-text-fill-color: var(--color-yellow-1) ;
+//   -webkit-box-shadow: 0 0 0 34px #3E3E3E inset !important;
+// }
 
 .alert{
   color: #ff2323;
@@ -126,6 +123,6 @@
   }
   &__otp{
     color: #ff2323;
-    
+
   }
 }

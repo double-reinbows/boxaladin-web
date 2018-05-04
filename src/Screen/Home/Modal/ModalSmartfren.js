@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import { Button, Modal , ModalHeader} from 'reactstrap'
+import { Modal } from 'reactstrap'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
+import ModalConfirm from './ModalConfirm'
 import RegisterIcon from '../../../asset/user/IconCheck.svg'
 import LogoSmart from '../../../asset/LandingPage/pulsa/Smart.svg';
 import { selectProductID } from '../../../actions/productAction'
@@ -11,19 +11,27 @@ import { selectProductID } from '../../../actions/productAction'
 class ModalSmart extends Component {
   constructor(props) {
     super(props);
-    this.pulsa = this.pulsa.bind(this)
     this.state = {  
       pulsaPrice : '',
-      pulsaName: ''
+      pulsaName: '',
+      modalConfirm : false,
+      pulsaId: ''
     }
   }
 
+  toggleConfirm = () => {
+    this.setState({
+      modalConfirm: !this.state.modalConfirm
+    })
+  }
+
   pulsa(e, data){
-    this.props.selectProductID(e),
-    console.log('data', e)
+    this.props.selectProductID(e)
     this.setState({
       pulsaPrice: data.price,
-      pulsaName: data.productName
+      pulsaName: data.productName,
+      pulsaId : this.props.selectProductID(e)
+
     })
 
   }
@@ -53,16 +61,10 @@ class ModalSmart extends Component {
   handleNotLogin() {
     if (localStorage.getItem('token') === null) {
       alert('Anda belum masuk')
-    }
-  }
-
-  checkDisabled = () =>{
-    if (this.props.selectedProductID === undefined ){
-      return true
-    } else if ( this.props.selectedProductID === ''){
-      return true
-    } else if (this.props.selectedProductID !== ''){
-      return false
+    } else {
+      this.setState({
+        modalConfirm: !this.state.modalConfirm
+      })
     }
   }
 
@@ -84,24 +86,20 @@ class ModalSmart extends Component {
             </div>
           </div>
           <div className="modal__pulsa__content__3">
-          <div>
-          <div className="modal__pulsa__content__3__button">
-              <button className="modal__pulsa__content__3__button__x" onClick={this.props.buttonToggle}>X</button>
+            <div>
+              <div className="modal__pulsa__content__3__button">
+                <button className="modal__pulsa__content__3__button__x" onClick={this.props.buttonToggle}>X</button>
+              </div>
+              <label>{this.state.pulsaName}</label>
             </div>
-            <label>{this.state.pulsaName}</label>
-          </div>
-
-              <div >
-              <Link to="/bidding">
-
-                <button onClick={() => this.handleNotLogin()} disabled={()=> this.checkDisabled()} type="button" className="modal__pulsa__content__3__button__price">
+            <div >
+              <button onClick={() => this.handleNotLogin()} disabled={this.props.selectedProductID !== '' ? false : true} type="button" className="modal__pulsa__content__3__button__price">
                 Intip Harga
                 <img src={RegisterIcon} alt="RegisterIcon" className="modal__pulsa__content__3__button__price__image"/>
-                </button>
-                </Link>
-
-              </div>
+              </button>
+            </div>
           </div>
+          <ModalConfirm open={this.state.modalConfirm} toggle={this.toggleConfirm} idPulsa={this.state.pulsaId}/>
         </div>
       </Modal>
     )

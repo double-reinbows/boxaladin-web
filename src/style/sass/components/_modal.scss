@@ -1,12 +1,16 @@
 .ModalTop{
   border-bottom: none;
   border-radius: 0;
-  background-color: var(--color-grey-5);
+  background-color: var(--color-white);
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
   span{
-    color: #FFCD05;
+    color: black;
   }
   &__otp{
     background-color: white;
+    border-bottom: none;
     span{
       color: black;
     }
@@ -57,6 +61,12 @@
   background-color: white;
 }
 
+@media (min-width: 1250px) {
+  .modalOtp {
+    width: 30%;
+  }
+}
+
 .modalPrimary{
 
   &__phone{
@@ -68,7 +78,7 @@
       z-index: 10;
       background-color: black;
       justify-content: center;
-      align-items: center;  
+      align-items: center;
       &__form{
         margin-top: 20px;
         text-align: center;
@@ -109,12 +119,13 @@
   animation-name: animatetop;
   animation-duration: 0.4s;
   overflow: auto; /* Enable scroll if needed */
-  border: 5px solid var(--white);
+  border: 1px solid var(--none);
+  border-radius: 5px;
 }
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
+  from {top:-300px; opacity:0}
   to {top:0; opacity:1}
 }
 
@@ -149,6 +160,11 @@
     &__button{
       font-size: 14px;
       margin-bottom: 10px;
+      background-color: lightgrey;
+      color: black;
+      border: 2px;
+      border-style: solid;
+      border-color: lightslategrey;
     }
     &__label{
       font-size: 18px;
@@ -308,6 +324,9 @@
 
         &__image{
           width: 30%;
+          &__tri{
+            width: 20%;
+          }
         }
       }
     }
@@ -376,7 +395,7 @@
 
 @media (min-width: 200px ) and (max-width:766px ) {
   .modal__pulsa{
-    font-size: 10px;
+    font-size: 12px;
     max-width: 90%;
     &__content__1__logo{
       min-height: 110px;
@@ -386,4 +405,80 @@
 
 .modal-open {
   overflow: scroll;
+}
+
+.modalText{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.modal-title{
+  width: 100%
+}
+
+.h4ModalTitle{
+  padding-top: 15px;
+}
+
+.modal__confirm{
+  top: 30%;
+  max-width: 60%;
+  font-size: 15px;
+  margin: 1.75rem auto;
+  &__container{
+    background-color: rgb(175, 193, 203);
+    padding: 3%;
+    display: flex
+  }
+  &__label{
+    width: 100%;
+    margin-right: 40px;
+  }
+  &__button{
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+
+    &__yes{
+      width: 100px;
+      border-radius: 5px;
+      border: solid 2px #FFCD05;
+      background-color: white;
+    }
+    &__no{
+      width: 100px;
+      border-radius: 5px;
+      border: solid 2px #FFCD05;
+      background-color: white;
+
+    }
+  }
+}
+@media (min-width: 767px ) and (max-width:882px ) {
+  .modal__confirm{
+    top: 23%;
+    font-size: 12px;
+    max-width: 60%;
+    &__container{
+      display: block;
+      text-align: center;
+    }
+  }
+}
+
+@media (min-width: 200px ) and (max-width:766px ) {
+  .modal__confirm{
+    top: 23%;
+    font-size: 12px;
+    max-width: 80%;
+    &__container{
+      display: block;
+      text-align: center;
+    }
+  }
 }

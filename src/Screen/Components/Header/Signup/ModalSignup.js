@@ -1,7 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal'
 import { ModalHeader, Button } from 'reactstrap';
-import LoginIcon from '../../../../asset/Login/login.svg'
 import Signup from './Signup'
 import { connect } from 'react-redux'
 
@@ -17,6 +16,12 @@ class ModalSignup extends React.Component {
   toggle() {
     this.props.setModalRegister(!this.props.modalRegister)
   }
+
+  openRegisterModal() {
+    this.props.setModalLogin(!this.props.modalLogin)
+    this.props.setModalRegister(!this.props.modalRegister)
+  }
+
 
   render() {
     return (
@@ -34,9 +39,17 @@ class ModalSignup extends React.Component {
 
         <Modal ariaHideApp={false} isOpen={this.props.modalRegister} toggle={this.toggle} className="{this.props.className} modalz">
           <div className="modalContent">
-          <ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>
+          <ModalHeader toggle={this.toggle} className="ModalTop">
+            <div className="modalText" >
+              <h2  style={{textAlign: 'center', width:"100%"}}> Selamat Datang di Boxaladin</h2>
+              <h4 className="h4ModalTitle"> Daftar dengan akun baru </h4>
+            </div>
+          </ModalHeader>
             <div className="modal-body">
             <Signup />
+            </div>
+            <div className="footerModal">
+              <text onClick={() => this.openRegisterModal()} ><button className="buttonModalLogin">Sudah Terdaftar ?</button></text>
             </div>
           </div>
         </Modal>
