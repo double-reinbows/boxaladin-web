@@ -5,19 +5,22 @@ import * as firebase from 'firebase'
 
 import timer from '../asset/bidding/timer.svg'
 import watch from '../asset/bidding/watch.svg'
+import coin  from '../asset/Game/coin.svg'
+
 
 import Loading from './Components/Loading/'
 
 import { getPhoneNumbers, setIsLoading } from '../actions/'
 import { getUser } from '../actions/userAction'
+import  priceProduct  from '../utils/splitPrice'
 
 class Bidding extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       productUnlocked: {},
-			count: 100,
-      initCount: 100,
+			count: 10000,
+      initCount: 10000,
       isWatching: false,
       notif:''
     }
@@ -26,46 +29,21 @@ class Bidding extends React.Component {
     localStorage.setItem('selectedProductId', this.props.selectedProductID)
   }
 
+
+
   render() {
     return (
+<div>
+      <div className="bidding__2__col1">
+        <img src={this.state.productUnlocked.brandLogo} className="bidding__2__col1__logo" alt="Logo pulsa"/>
+        <h2 className="bidding__2__col1__text">{this.state.productUnlocked.productName}</h2>
+        <h2>{this.state.productUnlocked.productName !== null ? priceProduct(this.state.productUnlocked.productName) : null }</h2>
+      </div>
+
       <div className="bidding">
         <div className="bidding__container">
 
           <Loading isLoading={ this.props.isLoading } />
-
-          <div className="bidding__1">
-            <label className="bidding__1__Title">Bidding Time</label>
-          </div>
-
-          <div className="bidding__2">
-            <div className="bidding__2__col1">
-              <img src={this.state.productUnlocked.brandLogo} className="bidding__2__col1__logo" alt="Logo pulsa"/>
-            </div>
-
-            <div className="bidding__2__col2">
-              <div>
-                <label className="bidding__2__col2__pulsa">{this.state.productUnlocked.productName}</label>
-              </div>
-
-              <div className="bidding__2__col2__mid">
-                <label className="bidding__2__col2__coret">Rp{this.state.productUnlocked.price}</label>
-              </div>
-
-              <div className="bidding__2__col2__mid">
-                <label className="bidding__2__col2__newPrice">Rp{this.state.productUnlocked.aladinPrice}</label>
-              </div>
-
-              <div>
-                <label className="bidding__2__col2__live">Harga Live</label>
-              </div>
-
-              <div>
-                <label className="bidding__2__col2__text">
-                  Harga akan makin murah seiring banyaknya user lain yang masuk hingga ada user yang membeli.
-                </label>
-              </div>
-            </div>
-          </div>
 
           <div className="bidding__3">
 
@@ -89,6 +67,25 @@ class Bidding extends React.Component {
 
           </div>
 
+          <div className="bidding__2">
+
+          <div>
+            <img src={coin} className="bidding__3__col__logoWatch" alt="Logo Watch"/>
+          </div>
+
+            <div className="bidding__2__col2">
+              <div className="bidding__2__col2__mid">
+                <label className="bidding__2__col2__newPrice">Rp{this.state.productUnlocked.aladinPrice}</label>
+              </div>
+
+              <div>
+                <label className="bidding__2__col2__text">
+                  harga yang ditampilkan adalah harga live.
+                </label>
+              </div>
+            </div>
+          </div>
+          <div className="bidding__container__button">
           <div className="bidding__4">
             <button className="bidding__4__btnBuy" onClick={() => this.buy()}>Beli</button>
           </div>
@@ -96,8 +93,10 @@ class Bidding extends React.Component {
           <div className="bidding__5">
             <button className="bidding__5__btnCancel" onClick={() => this.cancel()}>Batal</button>
           </div>
+          </div>
         </div>
       </div>
+</div>
     )
   }
 
