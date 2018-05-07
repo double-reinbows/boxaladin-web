@@ -148,7 +148,7 @@ resendOtp(){
               </div>
               <div>
                 { /*<input className="modal-body__otp__input" value={this.state.otp} onChange={e => this.handleOtp(e)} placeholder="otp"/> */ }
-                <TextInput value={this.state.otp} onChange={e => this.handleOtp(e)} ></TextInput>
+                <TextInput value={this.state.otp} onChange={e => this.handleOtp(e)}></TextInput>
               </div>
               <div>
                 <Button className="modal-body__otp__button" color="primary" type="submit" >Submit</Button>{' '}
