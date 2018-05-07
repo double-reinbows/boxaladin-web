@@ -1,26 +1,35 @@
 .invoice{
-    background-color: #3E3E3E;
-    color: #FFCD05;
-    &__container{
-        min-height: 30rem;
-        padding: 2.5%;
-        padding-left: 15%;
-        padding-right: 15%;
-    }
-    &__text{
-        text-align: center;
-        margin-bottom: 20px;
-        font-size: 30px;
-    }
+  background-color: white;
+  width: 100%;
+  &__container{
+    padding: 2.5%;
+    text-align: center;
+  }
+  &__text{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+  &__tab{
+    width: 50%;
+    font-size: 25px;
+    text-align: center;
+  }
 }
 
 tr{
-    font-size: 20px;
+  font-size: 20px;
 }
 td{
-    font-size: 15px;
+  font-size: 15px;
 }
 
-#root {
-    height: 100%;
+@media (min-width: 200px ) and (max-width:680px ) {
+  .invoice{
+    overflow: hidden;
+    &__container{
+      overflow: scroll;
+    }
   }
+  
+}

@@ -76,15 +76,9 @@ class DropdownUser extends React.Component {
           </DropdownItem>
           </a>
 
-          <a href="/invoice">
+          <a href="/tabsinvoice">
             <DropdownItem className="DropdownUser__inside">
-              <Link className="DropdownUser__inside__link" to="/invoice">Invoice</Link>
-            </DropdownItem>
-          </a>
-
-          <a href="/topupinvoice">
-            <DropdownItem className="DropdownUser__inside">
-              <Link className="DropdownUser__inside__link" to="/topupinvoice">Topup-Invoice</Link>
+              <Link className="DropdownUser__inside__link" to="/tabsinvoice">Invoice</Link>
             </DropdownItem>
           </a>
 
