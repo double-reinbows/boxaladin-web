@@ -16,8 +16,8 @@ class Bidding extends React.Component {
     super(props)
     this.state = {
       productUnlocked: {},
-			count: 15,
-      initCount: 15,
+			count: 100,
+      initCount: 100,
       isWatching: false,
       notif:''
     }
@@ -129,7 +129,7 @@ class Bidding extends React.Component {
   }
 
   buy() {
-  
+
 
 		axios({
       method: 'PUT',
