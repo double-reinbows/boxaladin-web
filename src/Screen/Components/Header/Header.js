@@ -36,7 +36,7 @@ class NavBar extends React.Component {
     return (
       <div>
         <Navbar light expand="md" className="HeaderTop">
-          <Link to="/home">
+          <Link to="/home" className="logoHeader">
             <img src={logo} alt="logo" className="BoxAladinLogo-Big" href="/home"/>
           </Link>
 

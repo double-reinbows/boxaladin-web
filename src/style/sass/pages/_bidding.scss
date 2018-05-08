@@ -1,5 +1,5 @@
 .bidding{
-  background-color: var(--color-grey-5);
+  background-color: white;
   display: flex;
   justify-content: center;
   padding-left: 20%;
@@ -8,11 +8,13 @@
 
   &__container{
     width: 100%;
-    background-color: var(--color-grey-5);
+    background-color: white;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-
+      &__button{
+        display: flex;
+      }
   }
 
   &__1{
@@ -34,15 +36,23 @@
     width: 100%;
     display: flex;
     padding-bottom: 30px;
+    justify-content: center;
 
     &__col1{
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
+      background-color: yellow;
+      padding-top: 15px;
+      padding-bottom: 15px;
 
       &__logo{
-        width: 50%;
+        width: 10%;
+      }
+
+      &__text{
+        font-weight: bold;
       }
     }
 
@@ -69,7 +79,7 @@
       &__newPrice{
       	color: #FFCD05;
       	font-family: Raleway;
-      	font-size: 42px;
+      	font-size: 70px;
       	font-weight: 900;
       	line-height: 49px;
 
@@ -84,11 +94,15 @@
       }
 
       &__text {
-      	color: #FFFFFF;
+      	color: black;
       	font-family: Raleway;
       	font-size: 14px;
       	font-weight: 600;
       	line-height: 16px;
+        padding-top: 10px;
+        width:100%;
+        display: flex;
+        flex-direction: row-reverse;
       }
 
     }
@@ -160,11 +174,10 @@
 
   &__5{
     width: 100%;
-    padding: 30px;
+    padding-bottom: 30px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border-radius: 8px;
 
     &__btnCancel{
       // display: flex;
@@ -173,14 +186,14 @@
 
       width: 80%;
       height: 75px;
-      border: none;
+      border-radius: 8px;
 
-      background-color: var(--color-grey-5);
-    	color: #FFFFFF;
-    	font-family: Raleway;
-    	font-size: 18px;
-    	font-weight: bold;
-    	line-height: 21px;
+      background-color: #85e0e0;
+      color: #3E3E3E;
+      font-family: Raleway;
+      font-size: 30px;
+      font-weight: bold;
+      line-height: 35px;
 
 
     }
