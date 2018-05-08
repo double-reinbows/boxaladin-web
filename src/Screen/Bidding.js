@@ -5,7 +5,9 @@ import * as firebase from 'firebase'
 
 import timer from '../asset/bidding/timer.svg'
 import watch from '../asset/bidding/watch.svg'
-import coin  from '../asset/Game/coin.svg'
+import coin  from '../asset/bidding/coins.png'
+import buy from '../asset/bidding/cart-of-ecommerce.png'
+import cancel from '../asset/bidding/cancel.png'
 
 
 import Loading from './Components/Loading/'
@@ -19,8 +21,8 @@ class Bidding extends React.Component {
     super(props)
     this.state = {
       productUnlocked: {},
-			count: 10000,
-      initCount: 10000,
+			count: 1000,
+      initCount: 1000,
       isWatching: false,
       notif:''
     }
@@ -37,7 +39,7 @@ class Bidding extends React.Component {
       <div className="bidding__2__col1">
         <img src={this.state.productUnlocked.brandLogo} className="bidding__2__col1__logo" alt="Logo pulsa"/>
         <h2 className="bidding__2__col1__text">{this.state.productUnlocked.productName}</h2>
-        <h2>{this.state.productUnlocked.productName !== null ? priceProduct(this.state.productUnlocked.productName) : null }</h2>
+        {this.priceProduct()}
       </div>
 
       <div className="bidding">
@@ -69,8 +71,8 @@ class Bidding extends React.Component {
 
           <div className="bidding__2">
 
-          <div>
-            <img src={coin} className="bidding__3__col__logoWatch" alt="Logo Watch"/>
+          <div className="biddingIconPriceStyle">
+            <img src={coin} className="bidding__3__col__logoPrice" alt="Logo Watch"/>
           </div>
 
             <div className="bidding__2__col2">
@@ -87,17 +89,29 @@ class Bidding extends React.Component {
           </div>
           <div className="bidding__container__button">
           <div className="bidding__4">
-            <button className="bidding__4__btnBuy" onClick={() => this.buy()}>Beli</button>
+            <button className="bidding__4__btnBuy" onClick={() => this.buy()}>
+              <img src={buy} className="bidding__3__col__logoBuy" alt="Logo Watch"/>Beli
+            </button>
           </div>
 
           <div className="bidding__5">
-            <button className="bidding__5__btnCancel" onClick={() => this.cancel()}>Batal</button>
+            <button className="bidding__5__btnCancel" onClick={() => this.cancel()}><img src={cancel} className="bidding__3__col__logoCancel" alt="Logo Watch"/>Batal</button>
           </div>
           </div>
         </div>
       </div>
 </div>
     )
+  }
+
+  priceProduct() {
+    if (this.state.productUnlocked.productName !== null) {
+      null
+    } else {
+      return (
+      <h2>{priceProduct(this.state.productUnlocked.productName)}</h2>
+      )
+    }
   }
 
   componentDidMount() {

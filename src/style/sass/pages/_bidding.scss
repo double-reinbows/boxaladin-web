@@ -4,7 +4,7 @@
   justify-content: center;
   padding-left: 20%;
   padding-right: 20%;
-  padding-top: 5%;
+  padding-top: 2%;
 
   &__container{
     width: 100%;
@@ -79,9 +79,8 @@
       &__newPrice{
       	color: #FFCD05;
       	font-family: Raleway;
-      	font-size: 70px;
+      	font-size: 80px;
       	font-weight: 900;
-      	line-height: 49px;
 
       }
 
@@ -99,7 +98,6 @@
       	font-size: 14px;
       	font-weight: 600;
       	line-height: 16px;
-        padding-top: 10px;
         width:100%;
         display: flex;
         flex-direction: row-reverse;
@@ -142,6 +140,16 @@
         width: 100px;
         padding: 10px;
       }
+      &__logoPrice{
+        padding: 10px;
+      }
+      &__logoBuy{
+        padding-right: 15px;
+      }
+      &__logoCancel{
+        height: 50%;
+        padding-right: 15px
+      }
     }
 
   }
@@ -169,6 +177,8 @@
     	font-size: 30px;
     	font-weight: bold;
     	line-height: 35px;
+      display: flex;
+      justify-content: center;
     }
   }
 
@@ -193,7 +203,6 @@
       font-family: Raleway;
       font-size: 30px;
       font-weight: bold;
-      line-height: 35px;
 
 
     }
@@ -214,5 +223,28 @@
   }
   .bidding__3{
     display: block;
+  }
+}
+
+@media (max-width:450px) {
+  .bidding__2__col2__newPrice {
+    color: #FFCD05;
+    font-family: Raleway;
+    font-size: 60px;
+    font-weight: 900;
+  }
+  .bidding__3__col__logoCancel {
+    height: 0;
+    width:0;
+    padding-right: 0px;
+  }
+  .bidding__3__col__logoBuy {
+    height: 0;
+    width: 0;
+    padding-right: 0px;
+  }
+  .biddingIconPriceStyle {
+    display: flex;
+    justify-content: center;
   }
 }
