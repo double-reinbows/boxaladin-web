@@ -11,7 +11,7 @@
       margin: 0rem;
       padding: 0rem;
       justify-content: flex-end;
-      width: 100%;
+      width: 65%;
     }
     .TextStyle{
       font-size: 25px;
@@ -271,3 +271,8 @@
 //     height: 0px;
 //   }
 // }
+
+.navbar-nav{
+  display: flex;
+  justify-content: center;
+}

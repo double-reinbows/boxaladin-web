@@ -24,6 +24,7 @@ class InsertPhone extends React.Component {
 
 
     return (
+		<div>
       <div className="InsertPhone">
         <h1 className="InsertPhone__text">Masukkan No Handphone Anda</h1>
 
@@ -38,7 +39,8 @@ class InsertPhone extends React.Component {
           <Button type="submit" color="primary" size="lg" block>Confirm</Button>
 
 				</Form>
-      </div>
+		  </div>
+		</div>
     )
   }
 
