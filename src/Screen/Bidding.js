@@ -51,10 +51,10 @@ class Bidding extends React.Component {
 
             <div className="bidding__3__col">
               <div>
-                <label className="bidding__3__col__text">{this.state.count < 10 ? `00:0${this.state.count}` : `00:${this.state.count}`} detik</label>
+                <img src={timer} className="bidding__3__col__logoTimer" alt="Logo Timer"/>
               </div>
               <div>
-                <img src={timer} className="bidding__3__col__logoTimer" alt="Logo Timer"/>
+                <label className="bidding__3__col__text">{this.state.count < 10 ? `00:0${this.state.count}` : `00:${this.state.count}`} detik</label>
               </div>
             </div>
 
