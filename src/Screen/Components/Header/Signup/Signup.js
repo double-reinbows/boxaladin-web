@@ -2,11 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import { setModalLogin, setModalRegister, setIsLoading, loginAction } from '../../../../actions/'
 import axios from 'axios'
-import {Button} from 'reactstrap'
 import Loading from '../../Loading/'
 import ModalOtp from './ModalOtp'
-
-const URL = `${process.env.REACT_APP_API_HOST}/`
 
 class Signup extends Component {
   constructor(props) {

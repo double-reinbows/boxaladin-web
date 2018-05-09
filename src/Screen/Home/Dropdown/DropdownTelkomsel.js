@@ -2,10 +2,10 @@ import React from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { connect } from 'react-redux'
 
-import LogoSmart from '../../../../asset/LandingPage/pulsa/Smart.svg'
-import expand from '../../../../asset/TabsHome/expandDrop.svg'
+import LogoTelkomsel from '../../../asset/LandingPage/pulsa/Telkomsel.svg'
+import expand from '../../../asset/TabsHome/expandDrop.svg'
 
-import { selectProductID } from '../../../../actions/productAction'
+import { selectProductID } from '../../../actions/productAction'
 
 class Example extends React.Component {
   constructor(props) {
@@ -28,20 +28,22 @@ class Example extends React.Component {
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
 
         <DropdownToggle className="dropz">
+        
           <div className="dropz__devide">
             <div className="dropz__big">
-              <img src={LogoSmart} className="dropz__img" alt="Logo Smart" />
+              <img src={LogoTelkomsel} className="dropz__img" alt="Logo Smart" />
             </div>
             <div className="dropz__small">
               <img src={expand} className="dropz__icon" alt="Logo expand" />
             </div>
           </div>
+
         </DropdownToggle>
 
         <DropdownMenu className="dropz__item">
 
           {this.props.products.filter(data => {
-            return data.brand === 'Smartfren' && data.category === 'Pulsa'
+            return data.brand === 'Telkomsel' && data.category === 'Pulsa'
           })
           .map((data, i) => {
             return (
@@ -54,6 +56,7 @@ class Example extends React.Component {
       </Dropdown>
     );
   }
+
 }
 
 const mapStateToProps = (state) => {

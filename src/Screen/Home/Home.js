@@ -1,15 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import {loginAction} from '../actions/'
-import { getProducts } from '../actions/productAction'
+import {loginAction} from '../../actions/'
+import { getProducts } from '../../actions/productAction'
 
-import Carousel from './Components/Home/Carousel'
-// import BannerText1 from './Components/Home/BannerText1'
-import BannerText2 from './Components/Home/BannerText2'
-import FAQ from './Components/Home/Faq'
-import TabsHome from './Components/Home/TabsHome'
-import Footer from './Components/Footer/Footer'
+import HomeContent from './HomeContent'
+import BannerHome from './BannerHome'
+// import TabsHome from './TabsHome'
 
 
 class Home extends Component {
@@ -22,11 +19,9 @@ class Home extends Component {
 
     return (
       <div>
-        <Carousel />
-        <TabsHome />
-        <BannerText2 />
-        <FAQ />
-        <Footer/>
+        {/* <TabsHome /> */}
+        <HomeContent/>
+        <BannerHome />
       </div>
     )
   }

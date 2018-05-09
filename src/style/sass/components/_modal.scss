@@ -212,6 +212,9 @@
     font-size: 14px;
     width: 85%
   }
+  .modal__pulsa{
+    font-size: 10px;
+  }
 }
 
 
@@ -240,5 +243,247 @@
   &__button{
     margin: 10px;
     font-size: 12px;
+  }
+}
+
+
+.modal__provider{
+  top: 20%;
+  max-width: 70%;
+  margin: 1.75rem auto;
+  border: solid 1px lightgrey;
+  &__header{
+    border-bottom: none;
+  }
+  &__container{
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 20px;
+  }
+  &__content{
+    width: 100%;
+    text-align: -webkit-center;
+    border: solid 1px lightgrey;
+    &__x{
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  &__logo{
+    width: 80px;
+    height: 80px;
+    display: flex;  
+    justify-content: center;
+    &__image{
+      width: 100%
+    }
+  }
+  &__list{
+    text-align: center;
+    border-top: solid 1px lightgrey;
+  }
+  &__button{
+    background-color: transparent;
+    font-size: 10px;
+    color: #FFCD05;
+  }
+}
+
+@media (min-width: 200px ) and (max-width:560px ) {
+  .modal__provider{
+    max-width: 90%;
+
+    &__content{
+      font-size: 14px;
+    }
+    &__logo{
+      width: 50px;
+      height: 50px;
+      &__image{
+        width: 100%
+      }
+    }
+  }
+}
+
+.modal__pulsa{
+  top: 10%;
+  max-width: 70%;
+  font-size: 20px;
+  margin: 1.75rem auto;
+  &__container{
+    width: 100%;
+    display: flex;
+  }
+
+  &__content{
+    width: 75%;
+    &__1{
+      &__logo{
+        text-align: center;
+        border: solid 1px lightgrey;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        min-height: 250px;
+
+        &__image{
+          width: 30%;
+          &__tri{
+            width: 20%;
+          }
+        }
+      }
+    }
+    &__2{
+      display: flex;
+      justify-content: space-evenly;
+      border: solid 1px lightgrey;
+      &__logo{
+        &__image{
+          width: 100%;
+        }
+      }
+
+      &__button{
+        background-color: white;
+        border-top: none;
+        border-right: none;
+        border-bottom: none;
+        width: 33.33%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &:hover{
+          cursor: pointer;
+        }
+      }
+      &__map{
+        display: flex;
+        flex-direction: column;
+      }
+    }
+    &__3{
+      width: 25%;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      &__button{
+        display: flex;
+        justify-content: flex-end;
+        &__x{
+          color: #FFCD05;
+          border: none;
+          background: white;
+          &:hover{
+            cursor: pointer;
+          }
+        }
+        &__price{
+          width: 100%;
+          color: white;
+          background-color: grey;
+          border: none;
+          &:hover{
+            cursor: pointer;
+          }
+          &__image{
+            width: 20%;
+            margin-left: 10%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 200px ) and (max-width:766px ) {
+  .modal__pulsa{
+    font-size: 12px;
+    max-width: 90%;
+    &__content__1__logo{
+      min-height: 110px;
+    }
+  }
+}
+
+.modal-open {
+  overflow: scroll;
+}
+
+.modalText{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.modal-title{
+  width: 100%
+}
+
+.h4ModalTitle{
+  padding-top: 15px;
+}
+
+.modal__confirm{
+  top: 30%;
+  max-width: 60%;
+  font-size: 15px;
+  margin: 1.75rem auto;
+  &__container{
+    background-color: rgb(175, 193, 203);
+    padding: 3%;
+    display: flex
+  }
+  &__label{
+    width: 100%;
+    margin-right: 40px;
+  }
+  &__button{
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+
+    &__yes{
+      width: 100px;
+      border-radius: 5px;
+      border: solid 2px #FFCD05;
+      background-color: white;
+    }
+    &__no{
+      width: 100px;
+      border-radius: 5px;
+      border: solid 2px #FFCD05;
+      background-color: white;
+
+    }
+  }
+}
+@media (min-width: 767px ) and (max-width:882px ) {
+  .modal__confirm{
+    top: 23%;
+    font-size: 12px;
+    max-width: 60%;
+    &__container{
+      display: block;
+      text-align: center;
+    }
+  }
+}
+
+@media (min-width: 200px ) and (max-width:766px ) {
+  .modal__confirm{
+    top: 23%;
+    font-size: 12px;
+    max-width: 80%;
+    &__container{
+      display: block;
+      text-align: center;
+    }
   }
 }

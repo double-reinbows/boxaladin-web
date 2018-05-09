@@ -443,10 +443,8 @@ class Game extends React.Component {
 				},
 			})
 			.then(data => {
-				console.log(data)
+				var coinUser = data.data.coin
 				if (data.data.message === 'limit habis') {
-					console.log("masuk ke limit habis")
-					var coinUser = data.data.coin
 					if ( coinUser <= 0 || coinUser === -1 )  {
 						this.setState({
 							notif: "Maaf Anda tidak punya coin untuk bermain game."
@@ -480,10 +478,8 @@ class Game extends React.Component {
 							modalLose: false,
 							mustWin: false
 						})
-
-				} else if (data.data.result <=3 && data.data.result > 0) {
-					console.log("cek koin")
-					var coinUser = data.data.coin
+						
+				} else if (data.data.result <=5 && data.data.result >= 0) {
 					var check = data.data.result
 					if ( coinUser <= 0 || coinUser === -1 )  {
 						this.setState({

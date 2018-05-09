@@ -9,8 +9,6 @@ import { getUser } from '../../../../actions/userAction'
 
 import Loading from '../../Loading/'
 
-const URL = `${process.env.REACT_APP_API_HOST}/`
-
 class Login extends Component {
   constructor(props) {
     super(props)

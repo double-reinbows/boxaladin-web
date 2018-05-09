@@ -167,7 +167,7 @@ class Bidding extends React.Component {
 		.then(({data}) => {
       // this.stopWatchProductPrice(this.props.selectedProductID)
 
-      const productsRef = firebase.database().ref().child('products')
+      const productsRef = firebase.database().ref().child('productsdummy')
       const productRef = productsRef.child(this.props.selectedProductID)
 
       productRef.update({
@@ -192,7 +192,7 @@ class Bidding extends React.Component {
       return null
     }
 
-    // const productsRef = firebase.database().ref().child('products')
+    // const productsRef = firebase.database().ref().child('productsdummy')
     // const productRef = productsRef.child(productId)
 
 		if (localStorage.getItem('token') !== null) {
@@ -217,7 +217,7 @@ class Bidding extends React.Component {
           // biar update user info (jumlah aladin key)
           this.props.getUser()
 
-					const productsRef = firebase.database().ref().child('products')
+					const productsRef = firebase.database().ref().child('productsdummy')
 					const productRef = productsRef.child(productId)
 
 					productRef.once('value', snap => {
@@ -288,7 +288,7 @@ class Bidding extends React.Component {
       return null
     }
 
-    const productsRef = firebase.database().ref().child('products')
+    const productsRef = firebase.database().ref().child('productsdummy')
 		const productRef = productsRef.child(productId)
 
     productRef.off()

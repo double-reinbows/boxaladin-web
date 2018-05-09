@@ -15,23 +15,22 @@ import HowItWorks from './Screen/HowItWorks'
 import Layanan from './Screen/Layanan'
 
 //page after login
-import Home from './Screen/Home'
+import Home from './Screen/Home/Home'
 import EmailVerificationDone from './Screen/EmailVerificationDone'
 import User from './Screen/User/Users'
 
 //page pembelian
-import Invoice from './Screen/Invoice'
-import Pembayaran from './Screen/Pembayaran'
-import TopupKey from './Screen/TopupKey'
-import TopupInvoice from './Screen/TopupInvoice'
-import TopupPayment from './Screen/TopupPayment'
+import TabsInvoice from './Screen/Invoice/TabsInvoice'
+import Pembayaran from './Screen/Invoice/Pembayaran'
+import TopupInvoice from './Screen/Invoice/TopupInvoice'
+import TopupPayment from './Screen/Invoice/TopupPayment'
 // import Cart from './screen/Cart'
 
 import Bidding from './Screen/Bidding'
 import InsertPhone from './Screen/Components/InsertPhone/InsertPhone'
 // import Pulsa from './Screen/Pulsa'
 
-import DompetAladin from './Screen/DompetAladin'
+import DompetAladin from './Screen/DompetAladin/DompetAladin'
 import Game from './Screen/Game'
 import GameResult from './Screen/GameResult'
 // import ClaimReward from './Screen/ClaimReward'
@@ -72,9 +71,8 @@ class RouteList extends React.Component {
                 <Route exact path='/layanan' component={Layanan} />
 
                 <PrivateRoute exact path="/me" component={User} />
-                <PrivateRoute exact path="/invoice" component={Invoice} />
+                <PrivateRoute exact path="/tabsinvoice" component={TabsInvoice} />
                 <PrivateRoute exact path="/payment/:id" component={Pembayaran} />
-                <PrivateRoute exact path="/topup" component={TopupKey} />
                 <PrivateRoute exact path="/topupinvoice" component={TopupInvoice} />
                 <PrivateRoute exact path="/topupinvoice/:id" component={TopupPayment} />
                 <PrivateRoute exact path="/bidding" component={Bidding} />
