@@ -23,8 +23,6 @@
         padding-left: 5%;
         &__top{
 
-
-
         }
         &__bot{
 
@@ -227,65 +225,9 @@
     }
   }
 }
-//for page home component carousel
-// .carousel{
-//   &__container{
-//   width: 100%;
-//   }
-//   &__content{
 
-//   }
-// }
-//////////////////////////////////
-.carouselHome{
- width: 100%;
- display: table;
-}
-
-.modalText{
- display: flex;
- justify-content: center;
- width: 100%;
- flex-direction: column;
- text-align: center;
- padding-top: 10px;
- padding-bottom: 10px;
-}
-
-.modal-title{
- width: 100%
-}
-
-.h4ModalTitle{
- padding-top: 15px;
-}
-// .carousel{
-//   &__container{
-//     width: 100%;
-//   }
-//   &__content{
-//     height: 10px;
-//   }
-//   &__wrapper{
-//     height: 450px;
-//     overflow: hidden;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//   }
-// }
-// @media (max-width:800px ) {
-//   .carousel__wrapper{
-//     height: 100%;
-//   }
-// }
-
-
-
-//for page home component TabsHome
-.NavTabsHome{
- background-color: var(--color-dark-3);
- color: var(--color-yellow-1);
- font-size: 20px;
- cursor: default;
+.logoHeader{
+  width: 30%;
+  display: flex;
+  justify-content: center;
 }
