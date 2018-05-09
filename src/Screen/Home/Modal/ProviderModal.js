@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Button, Modal , ModalHeader} from 'reactstrap'
+import { Modal , ModalHeader} from 'reactstrap'
 
 import LogoIndosat from '../../../asset/LandingPage/pulsa/Indosat.svg';
 import LogoSmart from '../../../asset/LandingPage/pulsa/Smart.svg';

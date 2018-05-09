@@ -15,7 +15,7 @@ class Invoice extends React.Component {
   }
 
   render() {
-    
+
     return (
       <div className="invoice">
         <div className="invoice__container">

@@ -53,6 +53,7 @@
         height: 200px;
         border-radius: 10px;
         background-color: white;
+        border: 5px solid var(--color-yellow-1);
         &:hover {
           cursor: pointer;
         }

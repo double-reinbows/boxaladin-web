@@ -8,12 +8,12 @@ import { getPhoneNumbers } from '../../actions/'
 import { getUser } from '../../actions/userAction'
 
 // import Logo from '../asset/TabsHome/IconTabs1.svg'
-import IconCoin from '../../asset/user/IconCoin.svg'
-import IconEmail from '../../asset/user/IconEmail.svg'
-import IconKey from '../../asset/user/IconKey.svg'
-import IconPhone from '../../asset/user/IconPhone.svg'
-// import IconUser from '../asset/user/IconUser.svg'
-// import IconCheck from '../asset/user/IconCheck.svg'
+import IconCoin from '../../asset/user/coin.png'
+import IconEmail from '../../asset/user//mail.png'
+import IconKey from '../../asset/user/key.png'
+import IconPhone from '../../asset/user/phone.png'
+import IconUser from '../../asset/user/user.png'
+import IconCheck from '../../asset/user/checked.png'
 import ModalPrimaryPhone from './ModalPrimary'
 
 class User extends React.Component {
@@ -39,12 +39,20 @@ class User extends React.Component {
 
 	render() {
 		return (
-			<div className="User">
-				<div className="User__container">
-					<label className="User__Label">
+			<div className="user">
+				<div className="user__container">
+					<label className="user__title">
 						Profil Saya
 					</label>
+					<div className="user__info__container">
+						<div>
+							<img src={IconUser} className="user__show__logo__user" alt="User" />
+
+						</div>
+
 					{ this.showDataUser() }
+
+					</div>
 					{ this.showPhoneModal() }
 
 					{ this.showAddPhoneModal() }
@@ -324,58 +332,58 @@ class User extends React.Component {
   }
 
 	showPhoneNumbers() {
-		return <div className="User__Phone">
-        <div className="User__Phone__row1">
-					<div className="User__Phone__row1__PhoneNumber">
-	          <img src={IconPhone} className="User__show__logo" alt="Logo" />
-						<div className = "User__Phone__row1__PhoneWidth">
+		return <div className="user__phone">
+        <div className="user__phone__row1">
+					<div className="user__phone__row1__phoneNumber">
+	          <img src={IconPhone} className="user__show__logo" alt="Logo" />
+						<div className = "user__phone__row1__phoneWidth">
 							{this.props.phoneNumbers.length !== 0 ? this.props.phoneNumbers.map((phone, idx) => {
 								return (
 									<div>
 										{phone.primary === false ? null :
-											<div className="User__Phone__row1__PhoneInfo">
-												<h1>{phone.number}</h1>
-												<h1>(Verified)</h1>
+											<div className="user__phone__row1__phoneInfo">
+												<label>{phone.number}</label>
+												<label>(Verified)</label>
 											</div>}
 									</div>
 								)
 							}) : 
-							<Button color="success" onClick={() => this.toggle()} className="User__Phone__row1__buttonverification" > Verifikasi Nomor </Button>}
+							<Button color="success" onClick={() => this.toggle()} className="user__phone__row1__buttonVerification" > Verifikasi Nomor </Button>}
 						</div>
 						</div>
 							{ this.props.phoneNumbers.length !== 0 ?
-								<label className="User__Label">
+								<label className="user__title">
 	            		No Hp Terdaftar
 	          		</label> :
 									null }
 	        </div>
-        <div className="User__Phone__row2">
+        <div className="user__phone__row2">
           <ul>
             {this.props.phoneNumbers !== null ? this.props.phoneNumbers.map(
                   (phone, idx) => {
                     return (
-                      <li key={idx} className="User__Phone__row2__li">
-                        <div className="User__Phone__row2__number">
+                      <li key={idx} className="user__phone__row2__li">
+                        <div className="user__phone__row2__number">
                           {phone.primary === false ? phone.number : null }
                         </div>
                         {phone.verified === false && phone.primary === false ? (
-                          <div className="User__Phone__row2__unverify">
-                            <div className="User__Phone__row2__unverify__2">
+                          <div className="user__phone__row2__unverify">
+                            <div className="user__phone__row2__unverify__2">
                               <Button
                                 type="button"
                                 color="secondary"
                                 onClick={() => this.changePhone(phone)}
-                                className="User__Phone__row2__unverify__2__button2"
+                                className="user__phone__row2__unverify__2__button2"
                               >
                                 Ubah
                               </Button>
                             </div>
-                            <div className="User__Phone__row2__unverify__3">
+                            <div className="user__phone__row2__unverify__3">
                               <Button
                                 type="button"
                                 color="danger"
                                 onClick={() => this.removePhone(phone)}
-                                className="User__Phone__row2__unverify__3__button3"
+                                className="user__phone__row2__unverify__3__button3"
                               >
                                 Hapus
                               </Button>
@@ -389,9 +397,9 @@ class User extends React.Component {
           </ul>
 					<label className="alert__user">{this.state.notif}</label>
 
-          <div className="User__Phone__row3">
+          <div className="user__phone__row3">
 					{this.props.phoneNumbers.length === 0 ? null :
-					<Button color="success" onClick={() => this.addPhone()} className="User__Phone__row3__button1">
+					<Button color="success" onClick={() => this.addPhone()} className="user__phone__row3__button1">
 						Tambah No Baru
 					</Button>}
           </div>
@@ -499,21 +507,28 @@ class User extends React.Component {
 
 	showDataUser() {
 		return (
-			<div>
+			<div className="user__show__container">
 				<h3>{this.props.userInfo !== null ? this.props.userInfo.first_name : null} {this.props.userInfo !== null ? this.props.userInfo.family_name : null}</h3>
-				<div className="User__show">
-					<img src={IconEmail} className="User__show__logo" alt="Logo"/>
-					{this.props.userInfo !== null ? this.props.userInfo.email : null} {this.props.userInfo !== null ?
-						(this.props.userInfo.emailVerified ? '(verified)' :
-						(<Button color= "success" onClick={() => this.resendEmailVerification()}> Kirim Verifikasi Email </Button>)) : null
-					}
+				<div className="user__show">
+					<img src={IconEmail} className="user__show__logo" alt="Logo"/>
+					<div className="user__show__email">
+					{this.props.userInfo !== null ? this.props.userInfo.email : null} 
+						<div>
+							{this.props.userInfo !== null ? (this.props.userInfo.emailVerified ? <img src={IconCheck} className="user__show__logo__verified" alt="Logo"/>
+								:
+								(<Button color= "success" onClick={() => this.resendEmailVerification()}> Kirim Verifikasi Email </Button>)) : null
+							}	
+						</div>
+					</div>
+
+
 				</div>
-				<div className="User__show">
-					<img src={IconKey} className="User__show__logo" alt="Logo"/>
+				<div className="user__show">
+					<img src={IconKey} className="user__show__logo" alt="Logo"/>
 					{this.props.userInfo !== null ? this.props.userInfo.aladinKeys : null}
 				</div>
-				<div className="User__show">
-					<img src={IconCoin} className="User__show__logo" alt="Logo"/>
+				<div className="user__show">
+					<img src={IconCoin} className="user__show__logo" alt="Logo"/>
 					{this.props.userInfo !== null ? this.props.userInfo.coin : null}
 				</div>
 				{ this.showPhoneNumbers() }

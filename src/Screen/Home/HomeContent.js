@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 
 import ProviderModal from './Modal/ProviderModal';
 import ModalXL from './Modal/ModalXL';
+import ModalTelkomsel from './Modal/ModalTelkomsel';
+import ModalSmart from './Modal/ModalSmartfren';
+import ModalIndosat from './Modal/ModalIndosat';
+import ModalTri from './Modal/ModalTri';
 
 import LogoIndosat from '../../asset/LandingPage/pulsa/Indosat.svg';
 import LogoSmart from '../../asset/LandingPage/pulsa/Smart.svg';
 import LogoTelkomsel from '../../asset/LandingPage/pulsa/Telkomsel.svg';
 import LogoTri from '../../asset/LandingPage/pulsa/Tri.svg';
 import LogoXL from '../../asset/LandingPage/pulsa/Xl.svg';
+
 
 class HomeContent extends Component {
   constructor(props) {
@@ -38,7 +43,32 @@ class HomeContent extends Component {
     })
   }
   
+  toggleTelkomsel = () => {
+    this.setState({
+      modalTelkomsel: !this.state.modalTelkomsel
+    })
+  }
+  
+  toggleSmart = () => {
+    this.setState({
+      modalSmart: !this.state.modalSmart
+    })
+  }
+
+  toggleIndosat = () => {
+    this.setState({
+      modalIndosat: !this.state.modalIndosat
+    })
+  }
+
+  toggleTri = () => {
+    this.setState({
+      modalTri: !this.state.modalTri
+    })
+  }
+
   render() { 
+    console.log(this.props)
     return (  
       <div className="homecontent__container">
         <div className="homecontent__top">
@@ -72,6 +102,11 @@ class HomeContent extends Component {
           </div>
           <ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
           <ModalXL open={this.state.modalXL} buttonToggle={this.toggleXL} />
+          <ModalTelkomsel open={this.state.modalTelkomsel} buttonToggle={this.toggleTelkomsel} />
+          <ModalSmart open={this.state.modalSmart} buttonToggle={this.toggleSmart} />
+          <ModalIndosat open={this.state.modalIndosat} buttonToggle={this.toggleIndosat} />
+          <ModalTri open={this.state.modalTri} buttonToggle={this.toggleTri} />
+
         </div>
       </div>
     )

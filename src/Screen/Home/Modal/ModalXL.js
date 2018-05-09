@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
-import { Button, Modal , ModalHeader} from 'reactstrap'
+import { Modal } from 'reactstrap'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
+import ModalConfirm from './ModalConfirm'
+import RegisterIcon from '../../../asset/user/IconCheck.svg'
 import LogoXL from '../../../asset/LandingPage/pulsa/Xl.svg';
 import { selectProductID } from '../../../actions/productAction'
 
@@ -12,16 +13,27 @@ class ModalXL extends Component {
     super(props);
     this.state = {  
       pulsaPrice : '',
-      pulsaName: ''
+      pulsaName: '',
+      modalConfirm : false,
+      pulsaId: ''
     }
   }
 
-  pulsa =(e, data) => {
-    this.props.selectProductID(e.target.value) 
+  toggleConfirm = () => {
+    this.setState({
+      modalConfirm: !this.state.modalConfirm
+    })
+  }
+
+  pulsa(e, data){
+    this.props.selectProductID(e)
     this.setState({
       pulsaPrice: data.price,
-      pulsaName: data.productName
+      pulsaName: data.productName,
+      pulsaId : this.props.selectProductID(e)
+
     })
+
   }
 
   choicePulsa=()=>{
@@ -36,7 +48,7 @@ class ModalXL extends Component {
         })
         .map((data, i) => {
           return (
-            <button onClick={(e) => this.pulsa(e, data)} className="modal__pulsa__content__2__button" value={data.id} key={i}>
+            <button onClick={(e) => this.pulsa(data.id, data)} className="modal__pulsa__content__2__button" value={data.id} key={i}>
               <img className="modal__pulsa__content__2__logo__image"  src={LogoXL} alt="Logo XL"/>
               {data.price.toLocaleString(['ban', 'id'])}
             </button>
@@ -49,15 +61,17 @@ class ModalXL extends Component {
   handleNotLogin() {
     if (localStorage.getItem('token') === null) {
       alert('Anda belum masuk')
+    } else {
+      this.setState({
+        modalConfirm: !this.state.modalConfirm
+      })
     }
   }
 
   render() { 
+    console.log('id', this.state.pulsaId)
     return (  
       <Modal isOpen={this.props.open} className="modal__pulsa">
-        {/* <div>
-          <ModalHeader toggle={this.props.buttonToggle}></ModalHeader>
-        </div> */}
         <div className="modal__pulsa__container">
           <div className="modal__pulsa__content">
             <div className="modal__pulsa__content__1">
@@ -73,16 +87,20 @@ class ModalXL extends Component {
             </div>
           </div>
           <div className="modal__pulsa__content__3">
-            <div className="modal__pulsa__content__3__button">
-              <button className="modal__pulsa__content__3__button__x" onClick={this.props.buttonToggle}>X</button>
+            <div>
+              <div className="modal__pulsa__content__3__button">
+                <button className="modal__pulsa__content__3__button__x" onClick={this.props.buttonToggle}>X</button>
+              </div>
+              <label>{this.state.pulsaName}</label>
             </div>
-            <label>{this.state.pulsaName}</label>
             <div >
-              <Link to="/bidding">
-                <button onClick={() => this.handleNotLogin()} disabled={this.props.selectedProductID !== '' ? false : true} type="button" className="modal__pulsa__content__3__button__price">Intip Harga</button>
-              </Link>
+              <button onClick={() => this.handleNotLogin()} disabled={this.props.selectedProductID !== '' ? false : true} type="button" className="modal__pulsa__content__3__button__price">
+                Intip Harga
+                <img src={RegisterIcon} alt="RegisterIcon" className="modal__pulsa__content__3__button__price__image"/>
+              </button>
             </div>
           </div>
+          <ModalConfirm open={this.state.modalConfirm} toggle={this.toggleConfirm} idPulsa={this.state.pulsaId}/>
         </div>
       </Modal>
     )

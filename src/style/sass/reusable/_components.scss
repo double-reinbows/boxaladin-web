@@ -86,20 +86,10 @@
     color: var(--color-black-1);
   }
 }
-.form-group.Login__Form input:-webkit-autofill {
-  -webkit-text-fill-color: var(--color-black-1) ;
-  -webkit-box-shadow: 0 0 0 34px #3E3E3E inset !important;
-}
-
-.form-group.Signup__Form input:-webkit-autofill {
-  -webkit-text-fill-color: var(--color-yellow-1) ;
-  -webkit-box-shadow: 0 0 0 34px #3E3E3E inset !important;
-}
 
 .alert{
   color: #ff2323;
   &__dompetAladin{
-    color: white;
     font-size: 14px;
     display: flex;
     justify-content: center;
