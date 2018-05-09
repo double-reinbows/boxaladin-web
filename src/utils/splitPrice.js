@@ -1,7 +1,6 @@
 const priceProduct = function(product){
-    var pulsa_split = product.split(' ')
-    var pulsa_splice= pulsa_split.splice(0, 2)
+    var pulsa_split = product.split(' ').splice(2, 3)
     return pulsa_split
   }
 
-module.exports = priceProduct;
+ export default priceProduct;

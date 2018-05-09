@@ -53,6 +53,10 @@
 
       &__text{
         font-weight: bold;
+        font-size: 30px;
+      }
+      &__textDistance{
+        padding-left: 10px;
       }
     }
 
@@ -247,4 +251,9 @@
     display: flex;
     justify-content: center;
   }
+}
+
+biddingImage{
+  width: 100%;
+  height:50%;
 }

@@ -15,6 +15,9 @@ import Loading from './Components/Loading/'
 import { getPhoneNumbers, setIsLoading } from '../actions/'
 import { getUser } from '../actions/userAction'
 import  priceProduct  from '../utils/splitPrice'
+import  productName from '../utils/splitProduct'
+import FormatRupiah from '../utils/formatRupiah'
+
 
 class Bidding extends React.Component {
   constructor(props) {
@@ -37,9 +40,11 @@ class Bidding extends React.Component {
     return (
 <div>
       <div className="bidding__2__col1">
-        <img src={this.state.productUnlocked.brandLogo} className="bidding__2__col1__logo" alt="Logo pulsa"/>
-        <h2 className="bidding__2__col1__text">{this.state.productUnlocked.productName}</h2>
-        {this.priceProduct()}
+        <img className="biddingImage" src={this.state.productUnlocked.brandLogo} className="bidding__2__col1__logo" alt="Logo pulsa"/>
+        <div className="bidding__2__col1__textDistance">
+          {this.productName()}
+          {this.priceProduct()}
+        </div>
       </div>
 
       <div className="bidding">
@@ -77,7 +82,7 @@ class Bidding extends React.Component {
 
             <div className="bidding__2__col2">
               <div className="bidding__2__col2__mid">
-                <label className="bidding__2__col2__newPrice">Rp{this.state.productUnlocked.aladinPrice}</label>
+                <label className="bidding__2__col2__newPrice">{this.formatRupiah()}</label>
               </div>
 
               <div>
@@ -104,14 +109,22 @@ class Bidding extends React.Component {
     )
   }
 
+  formatRupiah() {
+    return this.state.productUnlocked.aladinPrice && (
+      FormatRupiah(this.state.productUnlocked.aladinPrice)
+    )
+  }
+
   priceProduct() {
-    if (this.state.productUnlocked.productName !== null) {
-      null
-    } else {
-      return (
-      <h2>{priceProduct(this.state.productUnlocked.productName)}</h2>
-      )
-    }
+    return this.state.productUnlocked.productName && (
+      <h2 className="bidding__2__col1__text">{priceProduct(this.state.productUnlocked.productName)}</h2>
+    )
+  }
+
+  productName() {
+    return this.state.productUnlocked.productName && (
+      <h2 className="bidding__2__col1__text">{productName(this.state.productUnlocked.productName)}</h2>
+    )
   }
 
   componentDidMount() {
