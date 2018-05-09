@@ -40,7 +40,7 @@ class Bidding extends React.Component {
     return (
 <div>
       <div className="bidding__2__col1">
-        <img className="biddingImage" src={this.state.productUnlocked.brandLogo} className="bidding__2__col1__logo" alt="Logo pulsa"/>
+        <img src={this.state.productUnlocked.brandLogo} className="bidding__2__col1__logo" alt="Logo pulsa"/>
         <div className="bidding__2__col1__textDistance">
           {this.productName()}
           {this.priceProduct()}
@@ -167,7 +167,7 @@ class Bidding extends React.Component {
 		.then(({data}) => {
       // this.stopWatchProductPrice(this.props.selectedProductID)
 
-      const productsRef = firebase.database().ref().child('productsdummy')
+      const productsRef = firebase.database().ref().child('products')
       const productRef = productsRef.child(this.props.selectedProductID)
 
       productRef.update({
@@ -217,7 +217,7 @@ class Bidding extends React.Component {
           // biar update user info (jumlah aladin key)
           this.props.getUser()
 
-					const productsRef = firebase.database().ref().child('productsdummy')
+					const productsRef = firebase.database().ref().child('products')
 					const productRef = productsRef.child(productId)
 
 					productRef.once('value', snap => {
@@ -288,7 +288,7 @@ class Bidding extends React.Component {
       return null
     }
 
-    const productsRef = firebase.database().ref().child('productsdummy')
+    const productsRef = firebase.database().ref().child('products')
 		const productRef = productsRef.child(productId)
 
     productRef.off()
