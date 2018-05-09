@@ -111,19 +111,26 @@ class ModalOtpUser extends Component {
       <Modal ariaHideApp={false} isOpen={this.props.openOtpUser} className="modalOtpUser">
         <form onSubmit={e => this.sendOtp(e)}>
           <div className="modalOtpUser__container">
-          <ModalHeader className="modalOtpUser__modalHeader" toggle={this.props.buttongToggle}></ModalHeader>
+          <ModalHeader className="modalOtpUser__modalHeader" toggle={this.props.buttonToggle}></ModalHeader>
             <div>
               <label className="modalOtpUser__label">Anda Akan di Missed Call Oleh Sistem Kami</label>
               <label className="modalOtpUser__label">Masukkan 4 Angka Terakhir Dari no yang Menelpon Anda</label>
             </div>
             <input type="text" maxLength={4} className="modalOtpUser__input" placeholder="OTP" value={this.state.otpUser} onChange={(e) => this.handleOtpUser(e)} />
-            <label className="modalPrimary__phone__alert">{this.state.notifOtp}</label>
-            <label className="modalPrimary__phone__alert">{this.state.notifCount}</label>
             <div>
-              <Button className="modalOtpUser__button" color="primary" type="submit" >Submit</Button>{' '}
+              <div>
+                <label className="modalPrimary__phone__alert">{this.state.notifOtp}</label>
+              </div>
+              <div>
+                <label className="modalPrimary__phone__alert">{this.state.notifCount}</label>
+              </div>
+            </div>
+
+            <div>
+              <button className="modalOtpUser__button" color="primary" type="submit" >Submit</button>{' '}
             </div>
             <ModalFooter>
-              <Button style ={{visibility:this.state.show}} disabled={this.state.disabled} onClick={() => this.resendOtp()} className="modal-body__otp__resend">Kirim Ulang OTP</Button>
+              <button style ={{visibility:this.state.show}} disabled={this.state.disabled} onClick={() => this.resendOtp()} className="modal-body__otp__resend">Kirim Ulang OTP</button>
             </ModalFooter>
           </div>
         </form>

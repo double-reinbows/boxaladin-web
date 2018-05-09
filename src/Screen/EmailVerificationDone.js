@@ -12,7 +12,7 @@ class EmailVerificationDone extends React.Component {
   render() {
     return (
       <div className="emailVerification">
-        <h1 className="emailVerification__text">Your email is verified.</h1>
+        <h1 className="emailVerification__text">Email Telah Terverifikasi</h1>
         { this.showLoginLink() }
       </div>
     )
@@ -45,7 +45,7 @@ class EmailVerificationDone extends React.Component {
     if (localStorage.getItem('token') == null) {
       return (
         // <h3 className="emailVerification__text">Click <Link to="/login">here</Link> to login</h3>
-        <h3 className="emailVerification__text">Click <text onClick={() => this.openLoginModal()}>here</text> to login</h3>
+        <h3 className="emailVerification__text">Tekan <text onClick={() => this.openLoginModal()}><b>disini</b></text> untuk masuk</h3>
       )
     }
   }

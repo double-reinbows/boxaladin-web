@@ -10,7 +10,7 @@ import TextInput from 'react-otp'
 
 class ModalOtp extends Component {
   static propTypes = {
-    buttongToggle: PropTypes.func,
+    buttonToggle: PropTypes.func,
     open: PropTypes.bool,
     phone: PropTypes.string,
     loginAction: PropTypes.func,
@@ -57,7 +57,7 @@ class ModalOtp extends Component {
     .then((dataOtp) => {
       if (dataOtp.data.message === 'Phone Terverifikasi') {
         alert('No Hp Telah Diverifikasi')
-        this.props.buttongToggle()
+        this.props.buttonToggle()
         this.props.loginAction()
         this.props.setModalRegister(false)
 
@@ -66,7 +66,7 @@ class ModalOtp extends Component {
           notifOtp: "OTP Salah"
         })
       } else if ( dataOtp.data.message === 'phone verified'){
-        this.props.buttongToggle()
+        this.props.buttonToggle()
         this.props.loginAction()
         this.props.setModalRegister(false)
       }
@@ -97,7 +97,7 @@ resendOtp(){
         this.setState({
           show: 'hidden'
         })
-        this.props.buttongToggle()
+        this.props.buttonToggle()
         this.props.loginAction()
         this.props.setModalRegister(false)
       } else if (dataOtp.data === 'retry'){
@@ -109,7 +109,7 @@ resendOtp(){
       }
     })
   } else {
-    this.props.buttongToggle()
+    this.props.buttonToggle()
     this.props.loginAction()
     this.props.setModalRegister(false)
   }

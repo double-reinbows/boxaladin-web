@@ -70,17 +70,20 @@
 .modalPrimary{
 
   &__phone{
+    margin: 1.75rem auto;
+    max-width: 60%;
     top: 35%;
     &__content{
+      font-size: 20px;
+      text-align: center;
       border-radius: 0;
-      border: 5px solid var(--color-yellow-1);
+      border: 2px solid grey;
       top: 35%;
       z-index: 10;
-      background-color: black;
+      background-color: lightgrey;
       justify-content: center;
       align-items: center;
       &__form{
-        margin-top: 20px;
         text-align: center;
       }
       &__buttonContainer{
@@ -94,18 +97,37 @@
       border-radius: 4px;
       width: 50%;
       padding: 4px;
+      font-size: 20px;
+      background-color: white;
+      border: 1px solid #FFCD05;
+      &:focus{
+        outline: none;
+      }
     }
     &__button{
+      cursor: pointer;
       width: 20%;
-    }
-    &__alert{
-      color: red;
-      font-size: 17px;
-      display: flex;
-      justify-content: center;
-      margin-top: 10px;
+      font-size: 15px;
+      background-color: white;
+      border: 2px solid #FFCD05;
+      border-radius: 5px;
     }
   }
+}
+
+@media (min-width: 200px ) and (max-width:766px ) {
+  .modalPrimary{
+    &__phone{
+      max-width: 80%;
+      &__content{
+        font-size: 17px;
+      }
+      &__input{
+        font-size: 14px;
+      }
+    }
+  }
+
 }
 
 .modalContent {
@@ -170,18 +192,7 @@
       font-size: 18px;
     }
     &__resend{
-      // border: none;
-      // background: white;
-      // cursor: pointer;
-      // &:hover{
-      //   color: blue;
-      // }
-      // &:active{
-      //   color: blue;
-      // }
-      // &:focus{
-      //   color: blue;
-      // }
+      cursor: pointer;
       background-color: lightgrey;
       color: black;
       border: 2px;
@@ -224,8 +235,8 @@
     border-bottom: none;
   }
   &__container{
-    background-color: var(--color-grey-5);
-    border: 5px solid #FFCD05;
+    background-color: lightgrey;
+    border: 2px solid black;
     text-align: center;
   }
   &__input{
@@ -235,14 +246,22 @@
     border-radius: 4px;
     text-align: center;
     font-size: 14px;
+    background-color: white;
+    border: 2px solid #FFCD05
   }
   &__label{
     font-size: 14px;
-    color: white
+    color: black
   }
   &__button{
-    margin: 10px;
+    cursor: pointer;
+    width: 15%;
+    background-color: lightgrey;
+    border: 1px solid #FFCD05;
+    color: black;
     font-size: 12px;
+    border-radius: 4px;
+    margin-bottom: 5%;
   }
 }
 
@@ -308,7 +327,7 @@
 
 .modal__pulsa{
   top: 10%;
-  max-width: 70%;
+  max-width: 55%;
   font-size: 20px;
   margin: 1.75rem auto;
   &__container{
@@ -357,6 +376,9 @@
         &:hover{
           cursor: pointer;
         }
+        &:focus{
+          background-color: lightgrey;
+        }
       }
       &__map{
         display: flex;
@@ -372,6 +394,7 @@
       &__button{
         display: flex;
         justify-content: flex-end;
+
         &__x{
           color: #FFCD05;
           border: none;
@@ -401,7 +424,7 @@
 @media (min-width: 200px ) and (max-width:766px ) {
   .modal__pulsa{
     font-size: 12px;
-    max-width: 90%;
+    max-width: 70%;
     &__content__1__logo{
       min-height: 110px;
     }
@@ -484,6 +507,85 @@
     &__container{
       display: block;
       text-align: center;
+    }
+  }
+}
+
+.modal{
+  &__check{
+    margin: 1.75rem auto;
+    top: 30%;
+    border-radius: 2px;
+    max-width: 60%;
+    &__container{
+      text-align: center;
+      background-color: lightgrey;
+      &__header{
+        display: flex;
+        justify-content: flex-end;
+      }
+      &__content{
+      }
+    }
+    &__button{
+      cursor: pointer;
+      width: 3%;
+      background-color: lightgrey;
+      border: 1px solid grey;
+      color: #FFCD05;
+    }
+    &__label{
+      font-size: 30px;
+      margin-bottom: 3%;
+    }
+
+
+    &__delete{
+      display: flex;
+      justify-content: space-evenly;
+      &__content{
+
+      }
+      &__label{
+        font-size: 20px;
+      }
+      &__button{
+        cursor: pointer;
+        width: 20%;
+        font-size: 15px;
+        border-radius: 4px;
+        background-color: white;
+        border: 1px solid #FFCD05;
+        color: black;
+        margin-bottom: 3%;
+      }
+    }
+
+
+    &__add{
+      &__input{
+        width: 50%;
+        font-size: 15px;
+        margin-bottom: 2%;
+        border: 2px solid #FFCD05;
+        background-color: white;
+      }
+    }
+  }
+}
+
+@media (min-width: 200px ) and (max-width:766px ) {
+  .modal__check{
+    max-width: 80%;
+    &__button{
+      width: 5%;
+      background-color: lightgrey;
+      border: 1px solid grey;
+      color: #FFCD05;
+    }
+    &__label{
+      font-size: 20px;
+      margin-bottom: 3%;
     }
   }
 }
