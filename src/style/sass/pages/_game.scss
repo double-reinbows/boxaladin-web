@@ -12,7 +12,7 @@
 
 	&__slotLabel{
 		text-align: center;
-		font-family: raleway;
+		font-family: Helvetica;
 		padding-bottom: 25px;
 			&__h1{
 				color: #FFCD05;	
@@ -32,7 +32,7 @@
 	&__prize{
 		margin-top: 5%;
 		text-align: center;
-		font-family: raleway;
+		font-family: Helvetica;
 			&__row{
 				display: flex;
 				flex-direction: row;
@@ -76,7 +76,7 @@
 		&__label{
 			margin: 10px;
 			color: #FFCD05;
-			font-family: Raleway;
+			font-family: Helvetica;
 			font-size: 24px;
 			font-weight: bold;	
 			line-height: 29px;
@@ -86,7 +86,7 @@
 			border-radius: 5px;
 			margin-right: 10px;
 			height: 30px;
-			font-family: Raleway;
+			font-family: Helvetica;
 			line-height: 29px;
 			font-size: 21px;
 			padding-left: 10px;
@@ -97,7 +97,7 @@
 			margin-top: 10px;
 			margin-bottom: 10px;	
 			color: #FFFFFF;	
-			font-family: Raleway;	
+			font-family: Helvetica;	
 			font-size: 15px;
 			font-weight: 900;	
 			letter-spacing: 3px;	
@@ -120,7 +120,7 @@
 		&__label{
 			margin: 10px;
 			color: #FFFFFF;
-			font-family: Raleway;
+			font-family: Helvetica;
 			font-size: 24px;
 			font-weight: bold;	
 			line-height: 29px;
@@ -165,7 +165,7 @@
 			margin-top: 10px;
 			margin-bottom: 10px;	
 			color: #FFFFFF;	
-			font-family: Raleway;	
+			font-family: Helvetica;	
 			font-size: 25px;
 			font-weight: 900;	
 			letter-spacing: 3px;	
@@ -306,7 +306,7 @@
 		&__text{
 			margin: 2.5%;
 			text-align: center;
-			font-family: raleway;
+			font-family: Helvetica;
 			// color: var(--color-yellow-1);
 			font-size: 20px;
 			font-weight: 500;	
@@ -330,7 +330,7 @@
 	.gameModal__Container__text {
         margin: 2.5%;
         text-align: center;
-        font-family: raleway;
+        font-family: Helvetica;
         font-size: 20px;
         font-weight: 500;
         line-height: 16px
@@ -345,7 +345,7 @@
 	.gameModal__Container__text {
 		margin: 2.5%;
 		text-align: center;
-		font-family: raleway;
+		font-family: Helvetica;
 		font-size: 30px;
 		font-weight: 500;
 		line-height: 16px

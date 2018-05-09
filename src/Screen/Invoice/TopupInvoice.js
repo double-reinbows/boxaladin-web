@@ -4,7 +4,7 @@ import {
   Table,
   Button
 } from 'reactstrap'
-import {withRouter} from 'react-router-dom' 
+import {withRouter} from 'react-router-dom'
 
 import moment from 'moment'
 
@@ -21,7 +21,6 @@ class TopupInvoice extends React.Component {
     return (
       <div className="invoice">
         <div className="invoice__container">
-          <h1 className="invoice__text">Topup Invoice</h1>
 					{ this.showInvoice() }
         </div>
       </div>
@@ -58,7 +57,7 @@ class TopupInvoice extends React.Component {
 
               const limitTime = moment(data.createdAt, moment.ISO_8601).add(12, 'hours')
               const limitTimeFinal = limitTime.valueOf()
-              
+
               if (now <= limitTimeFinal) {
               return (
               <tr key={idx}>

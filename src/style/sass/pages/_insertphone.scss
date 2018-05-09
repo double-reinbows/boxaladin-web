@@ -4,6 +4,18 @@
   padding-right: 20%;
   background-color: white;
 
+  &__inputHead{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    &__text{
+      display: flex;
+      justify-content: center
+    }
+  }
+
   &__text{
     text-align: center;
     color: black;
@@ -13,9 +25,10 @@
   &__textHead{
     display: flex;
     justify-content: center;
+    padding-top: 40px;
 
     &__font{
-      font-size: 30px;
+      font-size: 40px;
     }
   }
 

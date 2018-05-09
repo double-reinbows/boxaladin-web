@@ -8,7 +8,7 @@ const FormatRupiah = function (amount) {
   }
  }
 
- return 'Rp. ' + result.reverse().join('') + ',-'
+ return 'Rp ' + result.reverse().join('') + ',-'
 }
 
 module.exports = FormatRupiah;
