@@ -15,7 +15,7 @@ import IconPhone from '../../asset/user/phone.png'
 import IconUser from '../../asset/user/user.png'
 import IconCheck from '../../asset/user/checked.png'
 import ModalPrimaryPhone from './ModalPrimary'
-
+import ModalDelete from './ModalDelete'
 class User extends React.Component {
 	constructor() {
 		super()
@@ -39,7 +39,6 @@ class User extends React.Component {
 	}
 
 	render() {
-		console.log(this.state.openModalDelete)
 		return (
 			<div className="user">
 				<div className="user__container">
@@ -59,7 +58,6 @@ class User extends React.Component {
 
 					{ this.showAddPhoneModal() }
 					{ this.showChangePhoneModal(this.state.numberToSend) }
-					{this.modalRemove()}
 					{ this.showChangePrimaryPhone() }
 
 					{ this.showChangePrimaryPhoneOTP() }
@@ -390,13 +388,15 @@ class User extends React.Component {
                               >
                                 Hapus
                               </button>
+
                             </div>
                           </div>
                         ) : null }
                       </li>
                     );
                   }
-                ) : null}
+								) : null}
+							<ModalDelete phone={this.state.idPhoneToDelete} openModalDelete={this.state.openModalDelete} buttonToggle={this.toggleModalDelete}/>
           </ul>
 					<label className="alert__user">{this.state.notif}</label>
 
@@ -507,63 +507,10 @@ class User extends React.Component {
 		})
 	}
 
-	modalRemove(phone){
-		return ( 
-      <Modal ariaHideApp={false} isOpen={this.state.openModalDelete} className="modal__check">
-      <div className="modal__check__container">
-        <div className="modal__check__container__header">
-          <button className="modal__check__button" onClick={this.toggleRemove}>X</button>
-        </div>
-        <div className="modal__check__delete__content">
-          <label className="modal__check__delete__label"><b>Hapus Nomor Hape Anda ?</b></label>
-        </div>
-        <div className="modal__check__delete">
-          <button className="modal__check__delete__button" onClick ={this.removePhone}>Ya</button>
-          <button className="modal__check__delete__button" onClick={this.toggleRemove}>Tidak</button>
-        </div>
-      </div>
-      </Modal>
-    )
-	}
-
-	// showAddPhoneModal() {
-	// 	return (
-	// 	<Modal isOpen={this.state.addPhoneModal} className="modal__check">
-	// 		<div className="modal__check__container">
-	// 			<form onSubmit={e => this.submitPhone(e)}>
-	// 				<div className="modal__check__delete__content">
-	// 					<label className="modal__check__delete__label"><b>Masukan Nomor Hape:</b></label>
-	// 				</div>
-	// 				<div className="modal__check__add">
-	// 					<input name="numberToSend" maxLength={14} className="modal__check__add__input" placeholder="Phone Number" onChange={e => this.handlePhoneNum(e)} />
-	// 				</div>
-	// 				<div className="modal__check__delete">
-	// 					<button className="modal__check__delete__button" type="submit" color="primary">Setuju</button>
-	// 					<button className="modal__check__delete__button" onClick={() => this.addPhone()} >Batal</button>
-	// 				</div>
-	// 			</form>
-	// 		</div>
-	// 	</Modal>
-	// 	)
-	// }
-
-	removePhone = () => {
-		// alert('Remove phone here!')
-		axios({
-			method: 'DELETE',
-			url: `${process.env.REACT_APP_API_HOST}/phone/${this.state.idPhoneToDelete}`,
-			headers: {
-				key: process.env.REACT_APP_KEY
-			}
+	toggleModalDelete = () => {
+		this.setState({
+			openModalDelete: !this.state.openModalDelete
 		})
-		.then(({data}) => {
-			this.setState({
-				openModalDelete: false
-			},
-			this.props.getPhoneNumbers()
-		)
-		})
-		.catch(err => console.log(err))
 	}
 
 	showDataUser() {

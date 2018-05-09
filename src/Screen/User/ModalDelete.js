@@ -25,14 +25,14 @@ class ModalDelete extends Component {
 			}
 		})
 		.then(({data}) => {
-      // this.props.getPhoneNumbers()
-      window.location.reload();
+      this.props.getPhoneNumbers()
+      this.props.buttonToggle()
+      // window.location.reload();
 		})
 		.catch(err => console.log(err))
 	}
 
   render() { 
-    console.log(this.props)
     return ( 
       <Modal ariaHideApp={false} isOpen={this.props.openModalDelete} className="modal__check">
       <div className="modal__check__container">
