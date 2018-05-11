@@ -17,7 +17,7 @@ export default class PasswordChanged extends React.Component<Props, State> {
             <img src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/checked.png" />
           </div>
           <h1 className="resetPassword__textSuccess">INGAT PULSA ? INGAT
-            <img className="resetPassword__logo" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/logo.png" />
+            <img className="resetPassword__logo" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/logoTextOnly.png" />
           </h1>
         </div>
       </div>

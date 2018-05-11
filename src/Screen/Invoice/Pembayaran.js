@@ -13,24 +13,24 @@ import {
   Input,
   Modal,
   ModalHeader,
-  ModalBody,
+  ModalBody
 } from 'reactstrap';
 
 import moment from 'moment'
 import classnames from 'classnames';
 import Xendit from 'xendit-js-node'
 
-import MANDIRI from '../asset/Logo/MANDIRI.svg'
-import BNI from '../asset/Logo/BNI.svg'
-import BRI from '../asset/Logo/BRI.svg'
+import MANDIRI from '../../asset/Logo/MANDIRI.svg'
+import BNI from '../../asset/Logo/BNI.svg'
+import BRI from '../../asset/Logo/BRI.svg'
 
 import Guide from './PaymentGuide'
 
-class TopupPayment extends React.Component {
+class InvoiceDetail extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      invoice: null,
+      invoice: '',
       activeTab: '1',
       // amount: 0,
       ccNumber: '',
@@ -38,19 +38,26 @@ class TopupPayment extends React.Component {
       ccExpiredYear: '',
       cvn: '',
       isOpen3dsModal: false,
-      payer_auth_url: ''
+      payer_auth_url: '',
+      time: ''
     }
 
     this.toggle = this.toggle.bind(this);
     this.toggle3dsModal = this.toggle3dsModal.bind(this)
   }
 
+  toggle(tab) {
+    if (this.state.activeTab !== tab) {
+      this.setState({
+        activeTab: tab
+      });
+    }
+  }
+
   render() {
-
-
-    if (this.state.invoice === null){
+    if (this.state.invoice.createdAt === ''){
       console.log('kosong')
-    } else if ( this.state.invoice === undefined){
+    } else if ( this.state.invoice.createdAt === undefined){
       console.log('undefined')
     } else {
       const time = this.state.invoice.createdAt
@@ -60,23 +67,22 @@ class TopupPayment extends React.Component {
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
-					<h1 className="pembayaran__title">Menunggu pembayaran Topup Aladin Keys</h1>
+          <h1 className="pembayaran__title">Menunggu pembayaran</h1>
           {this.state.invoice ? (
               <div>
                 <h1 className="pembayaran__title">Jumlah yang harus di bayarkan Rp {this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}</h1>
                 <h2 className="pembayaran__title">Selesaikan Pembayaran Sebelum {finalTime}</h2>
-
                 <h5 className="pembayaran__title">Silahkan melakukan pembayaran ke salah satu virtual bank account di bawah ini:</h5>
 
                 <div className="bankz">
                   <img src={MANDIRI} className="bankz__icon" alt="Logo" />
-                  {this.state.invoice.payment.availableBanks.map((bank, idx) => {
-                    return (
-                      bank.bank_code === 'MANDIRI' ? (
-                        <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
-                      ) : null
-                    )
-                  })}
+                    {this.state.invoice.payment.availableBanks.map((bank, idx) => {
+                      return (
+                        bank.bank_code === 'MANDIRI' ? (
+                          <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
+                        ) : null
+                      )
+                    })}
                 </div>
 
                 <div className="bankz">
@@ -100,50 +106,55 @@ class TopupPayment extends React.Component {
                       )
                   })}
                 </div>
-                <div>
-                <Nav tabs>
-                  <NavItem>
-                    <NavLink
-                      className={classnames({ active: this.state.activeTab === '1' })}
-                      onClick={() => { this.toggle('1'); }}
-                    >
-                      <h4><button style = {{  backgroundColor: "Transparent",
-                        backgroundRepeat: "no-repeat",
-                        border: "none",
-                        cursor: "pointer",
-                        overflow: "hidden",
-                        outline: "none" }}>Mandiri</button></h4>
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={classnames({ active: this.state.activeTab === '2' })}
-                      onClick={() => { this.toggle('2'); }}
-                    >
-                      <h4><button style = {{  backgroundColor: "Transparent",
-                        backgroundRepeat: "no-repeat",
-                        border: "none",
-                        cursor: "pointer",
-                        overflow: "hidden",
-                        outline: "none" }}>BNI</button></h4>
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={classnames({ active: this.state.activeTab === '3' })}
-                      onClick={() => { this.toggle('3'); }}
-                    >
-                      <h4><button style = {{  backgroundColor: "Transparent",
-                        backgroundRepeat: "no-repeat",
-                        border: "none",
-                        cursor: "pointer",
-                        overflow: "hidden",
-                        outline: "none" }}>BRI</button></h4>
-                    </NavLink>
-                  </NavItem>
-                </Nav>
-                <Guide activeTab= {this.state.activeTab} invoice={this.state.invoice} />
+
+                <div style = { { padding: '10px'} }>
+                  <h1 className="pembayaran__title" ><b> CARA PEMBAYARAN </b></h1>
                 </div>
+
+                  <div>
+                    <Nav tabs>
+                      <NavItem>
+                        <NavLink
+                          className={classnames({ active: this.state.activeTab === '1' })}
+                          onClick={() => { this.toggle('1'); }}
+                        >
+                          <h4><button style = {{  backgroundColor: "Transparent",
+                            backgroundRepeat: "no-repeat",
+                            border: "none",
+                            cursor: "pointer",
+                            overflow: "hidden",
+                            outline: "none" }}>Mandiri</button></h4>
+                        </NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink
+                          className={classnames({ active: this.state.activeTab === '2' })}
+                          onClick={() => { this.toggle('2'); }}
+                        >
+                          <h4><button style = {{  backgroundColor: "Transparent",
+                            backgroundRepeat: "no-repeat",
+                            border: "none",
+                            cursor: "pointer",
+                            overflow: "hidden",
+                            outline: "none" }}>BNI</button></h4>
+                        </NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink
+                          className={classnames({ active: this.state.activeTab === '3' })}
+                          onClick={() => { this.toggle('3'); }}
+                        >
+                          <h4><button style = {{  backgroundColor: "Transparent",
+                            backgroundRepeat: "no-repeat",
+                            border: "none",
+                            cursor: "pointer",
+                            overflow: "hidden",
+                            outline: "none" }}>BRI</button></h4>
+                        </NavLink>
+                      </NavItem>
+                    </Nav>
+                    <Guide activeTab= {this.state.activeTab} invoice={this.state.invoice} />
+                  </div>
               </div>
             ) : null
           }
@@ -154,29 +165,31 @@ class TopupPayment extends React.Component {
 
   componentDidMount() {
     this.getInvoiceById()
-    this.gettime()
   }
 
-  gettime(){
+  getTime(){
+    if (this.state.invoice){
 
+    }
   }
 
   submitPaymentWithCC(token) {
     axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_API_HOST}/creditCardTopup`,
       headers: {
         key: process.env.REACT_APP_KEY
       },
+      url: `${process.env.REACT_APP_API_HOST}/creditcard`,
+
       data: {
         tokenId: token,
         externalId: this.state.invoice.paymentId.toString(),
-        amount: this.state.invoice.payment.amount,
+        amount: this.state.invoice.aladinPrice,
         cardCvn: this.state.cvn
       }
     })
     .then(({data}) => {
-      console.log('data')
+
     })
     .catch(err => console.log(err))
   }
@@ -191,7 +204,7 @@ class TopupPayment extends React.Component {
         <Modal isOpen={this.state.isOpen3dsModal} toggle={this.toggle3dsModal} className={this.props.className}>
           <ModalHeader toggle={this.toggle3dsModal}>Modal title</ModalHeader>
           <ModalBody>
-            <iframe title="CreditCard"  src={this.state.payer_auth_url} />
+            <iframe src={this.state.payer_auth_url} title="modal3ds"/>
           </ModalBody>
         </Modal>
       </div>
@@ -201,7 +214,7 @@ class TopupPayment extends React.Component {
   createCCToken() {
     Xendit.setPublishableKey('xnd_public_development_OImFfL0l07evlc5rd+AaEmTDb9L38NJ8lXbg+Rxi/Gbe8LGkBQ93hg==')
     Xendit.card.createToken({
-      amount: this.state.invoice.payment.amount,
+      amount: this.state.invoice.aladinPrice,
 			card_number: this.state.ccNumber,
 			card_exp_month: this.state.ccExpiredMonth,
 			card_exp_year: this.state.ccExpiredYear,
@@ -216,16 +229,26 @@ class TopupPayment extends React.Component {
 
     	if (creditCardCharge.status === 'VERIFIED') {
 
+        console.log(creditCardCharge.status);
         var token = creditCardCharge.id;
+    		console.log(token);
         this.submitPaymentWithCC(token)
 
     	} else if (creditCardCharge.status === 'IN_REVIEW') {
+
+        console.log(creditCardCharge.status);
+        console.log(creditCardCharge);
+        console.log(creditCardCharge.payer_authentication_url);
         this.setState({payer_auth_url: creditCardCharge.payer_authentication_url})
         this.toggle3dsModal()
 
+        // console.log(creditCardCharge.status);
+        // var token = creditCardCharge.id;
+    		// console.log(token);
+        // this.submitPaymentWithCC(token)
 
       } else if (creditCardCharge.status === 'FAILED') {
-        console.log('status');
+        console.log(creditCardCharge.status);
       }
     }
 
@@ -274,7 +297,7 @@ class TopupPayment extends React.Component {
           <Form>
 
             <FormGroup>
-              <Input type="text" value={this.state.invoice !== null ? this.state.invoice.payment.amount : ''} disabled />
+              <Input type="text" value={this.state.invoice !== null ? this.state.invoice.aladinPrice : ''} disabled />
             </FormGroup>
 
             <FormGroup>
@@ -305,21 +328,25 @@ class TopupPayment extends React.Component {
     )
   }
 
-  toggle(tab) {
-    if (this.state.activeTab !== tab) {
-      this.setState({activeTab: tab})
-    }
-  }
+  // toggle(tab) {
+  //   if (this.state.activeTab !== tab) {
+  //     this.setState({activeTab: tab})
+  //   }
+  // }
 
   getInvoiceById() {
     axios({
       method: 'GET',
-      url: `${process.env.REACT_APP_API_HOST}/topup/${this.props.match.params.id}`,
       headers: {
         key: process.env.REACT_APP_KEY
       },
+      url: `${process.env.REACT_APP_API_HOST}/transaction/${this.props.match.params.id}`
     })
-    .then(({data}) => this.setState({invoice: data}))
+    .then(({data}) => {
+    this.setState({
+      invoice: data
+    })
+  })
     .catch(err => console.log(err))
   }
 
@@ -337,6 +364,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(TopupPayment)
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(InvoiceDetail)
 
 export default connectComponent

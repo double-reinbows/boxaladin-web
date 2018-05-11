@@ -4,10 +4,11 @@ import {
   Table,
   Button
 } from 'reactstrap'
+import {withRouter} from 'react-router-dom' 
 
 import moment from 'moment'
 
-import { getUserPendingTopupTransactions, getUserTopupTransactions } from '../actions/topupAction'
+import { getUserPendingTopupTransactions, getUserTopupTransactions } from '../../actions/topupAction'
 
 class TopupInvoice extends React.Component {
   constructor(props) {
@@ -46,6 +47,7 @@ class TopupInvoice extends React.Component {
         </thead>
         <tbody>
           {this.props.userTopupTransactions.map((data, idx) => {
+            console.log('awal', data.id)
             if (data.createdAt === ''){
               console.log('kosong')
             } else if ( data.createdAt === undefined){
@@ -54,7 +56,7 @@ class TopupInvoice extends React.Component {
               const time = moment()
               const now = time.valueOf()
 
-              const limitTime = moment(data.createdAt, moment.ISO_8601).add(6, 'hours')
+              const limitTime = moment(data.createdAt, moment.ISO_8601).add(12, 'hours')
               const limitTimeFinal = limitTime.valueOf()
               
               if (now <= limitTimeFinal) {
@@ -91,11 +93,10 @@ class TopupInvoice extends React.Component {
     )
   }
 
-	showMetodePembayaran(id) {
+  showMetodePembayaran(id) {
+    console.log('id topup', id)
     this.props.history.push(`/topupinvoice/${id}`)
-		// console.log('Redirect ke detail invoice!')
   }
-
 }
 
 const mapStateToProps = (state) => {
@@ -112,6 +113,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(TopupInvoice)
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(withRouter(TopupInvoice))
 
 export default connectComponent

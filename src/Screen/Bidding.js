@@ -5,19 +5,27 @@ import * as firebase from 'firebase'
 
 import timer from '../asset/bidding/timer.svg'
 import watch from '../asset/bidding/watch.svg'
+import coin  from '../asset/bidding/coins.png'
+import buy from '../asset/bidding/cart-of-ecommerce.png'
+import cancel from '../asset/bidding/cancel.png'
+
 
 import Loading from './Components/Loading/'
 
 import { getPhoneNumbers, setIsLoading } from '../actions/'
 import { getUser } from '../actions/userAction'
+import  priceProduct  from '../utils/splitPrice'
+import  productName from '../utils/splitProduct'
+import FormatRupiah from '../utils/formatRupiah'
+
 
 class Bidding extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       productUnlocked: {},
-			count: 15,
-      initCount: 15,
+			count: 1000,
+      initCount: 1000,
       isWatching: false,
       notif:''
     }
@@ -26,55 +34,32 @@ class Bidding extends React.Component {
     localStorage.setItem('selectedProductId', this.props.selectedProductID)
   }
 
+
+
   render() {
     return (
+<div>
+      <div className="bidding__2__col1">
+        <img src={this.state.productUnlocked.brandLogo} className="bidding__2__col1__logo" alt="Logo pulsa"/>
+        <div className="bidding__2__col1__textDistance">
+          {this.productName()}
+          {this.priceProduct()}
+        </div>
+      </div>
+
       <div className="bidding">
         <div className="bidding__container">
 
           <Loading isLoading={ this.props.isLoading } />
 
-          <div className="bidding__1">
-            <label className="bidding__1__Title">Bidding Time</label>
-          </div>
-
-          <div className="bidding__2">
-            <div className="bidding__2__col1">
-              <img src={this.state.productUnlocked.brandLogo} className="bidding__2__col1__logo" alt="Logo pulsa"/>
-            </div>
-
-            <div className="bidding__2__col2">
-              <div>
-                <label className="bidding__2__col2__pulsa">{this.state.productUnlocked.productName}</label>
-              </div>
-
-              <div className="bidding__2__col2__mid">
-                <label className="bidding__2__col2__coret">Rp{this.state.productUnlocked.price}</label>
-              </div>
-
-              <div className="bidding__2__col2__mid">
-                <label className="bidding__2__col2__newPrice">Rp{this.state.productUnlocked.aladinPrice}</label>
-              </div>
-
-              <div>
-                <label className="bidding__2__col2__live">Harga Live</label>
-              </div>
-
-              <div>
-                <label className="bidding__2__col2__text">
-                  Harga akan makin murah seiring banyaknya user lain yang masuk hingga ada user yang membeli.
-                </label>
-              </div>
-            </div>
-          </div>
-
           <div className="bidding__3">
 
             <div className="bidding__3__col">
               <div>
-                <label className="bidding__3__col__text">{this.state.count < 10 ? `00:0${this.state.count}` : `00:${this.state.count}`} detik</label>
+                <img src={timer} className="bidding__3__col__logoTimer" alt="Logo Timer"/>
               </div>
               <div>
-                <img src={timer} className="bidding__3__col__logoTimer" alt="Logo Timer"/>
+                <label className="bidding__3__col__text">{this.state.count < 10 ? `00:0${this.state.count}` : `00:${this.state.count}`} detik</label>
               </div>
             </div>
 
@@ -89,15 +74,56 @@ class Bidding extends React.Component {
 
           </div>
 
+          <div className="bidding__2">
+
+          <div className="biddingIconPriceStyle">
+            <img src={coin} className="bidding__3__col__logoPrice" alt="Logo Watch"/>
+          </div>
+
+            <div className="bidding__2__col2">
+              <div className="bidding__2__col2__mid">
+                <label className="bidding__2__col2__newPrice">{this.formatRupiah()}</label>
+              </div>
+
+              <div>
+                <label className="bidding__2__col2__text">
+                  harga yang ditampilkan adalah harga live.
+                </label>
+              </div>
+            </div>
+          </div>
+          <div className="bidding__container__button">
           <div className="bidding__4">
-            <button className="bidding__4__btnBuy" onClick={() => this.buy()}>Beli</button>
+            <button className="bidding__4__btnBuy" onClick={() => this.buy()}>
+              <img src={buy} className="bidding__3__col__logoBuy" alt="Logo Watch"/>Beli
+            </button>
           </div>
 
           <div className="bidding__5">
-            <button className="bidding__5__btnCancel" onClick={() => this.cancel()}>Batal</button>
+            <button className="bidding__5__btnCancel" onClick={() => this.cancel()}><img src={cancel} className="bidding__3__col__logoCancel" alt="Logo Watch"/>Batal</button>
+          </div>
           </div>
         </div>
       </div>
+</div>
+    )
+  }
+
+  formatRupiah() {
+    return this.state.productUnlocked.aladinPrice && (
+      FormatRupiah(this.state.productUnlocked.aladinPrice)
+    )
+  }
+
+  priceProduct() {
+    return this.state.productUnlocked.productName && (
+      <h2 className="bidding__2__col1__text">{priceProduct(this.state.productUnlocked.productName)}</h2>
+    )
+  }
+
+  productName() {
+    return this.state.productUnlocked.productName && (
+      <h2 className="bidding__2__col1__text">{productName(this.state.productUnlocked.productName)}</h2>
     )
   }
 
@@ -129,7 +155,7 @@ class Bidding extends React.Component {
   }
 
   buy() {
-  
+
 
 		axios({
       method: 'PUT',
@@ -141,7 +167,7 @@ class Bidding extends React.Component {
 		.then(({data}) => {
       // this.stopWatchProductPrice(this.props.selectedProductID)
 
-      const productsRef = firebase.database().ref().child('productsdummy')
+      const productsRef = firebase.database().ref().child('products')
       const productRef = productsRef.child(this.props.selectedProductID)
 
       productRef.update({
@@ -191,7 +217,7 @@ class Bidding extends React.Component {
           // biar update user info (jumlah aladin key)
           this.props.getUser()
 
-					const productsRef = firebase.database().ref().child('productsdummy')
+					const productsRef = firebase.database().ref().child('products')
 					const productRef = productsRef.child(productId)
 
 					productRef.once('value', snap => {
@@ -262,7 +288,7 @@ class Bidding extends React.Component {
       return null
     }
 
-    const productsRef = firebase.database().ref().child('productsdummy')
+    const productsRef = firebase.database().ref().child('products')
 		const productRef = productsRef.child(productId)
 
     productRef.off()

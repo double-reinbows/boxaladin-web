@@ -4,7 +4,6 @@ import Modal from 'react-modal'
 import { ModalHeader, Button } from 'reactstrap';
 import { connect } from 'react-redux'
 
-import LoginIcon from '../../../../asset/Login/login.svg'
 import Login from './Login'
 import { setModalLogin, setModalRegister } from '../../../../actions/'
 

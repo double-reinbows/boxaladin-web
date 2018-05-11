@@ -1,7 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal'
 import { ModalHeader, Button } from 'reactstrap';
-import LoginIcon from '../../../../asset/Login/login.svg'
 import Signup from './Signup'
 import { connect } from 'react-redux'
 
