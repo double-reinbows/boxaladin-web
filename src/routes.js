@@ -86,8 +86,8 @@ class RouteList extends React.Component {
 
                 <Route exact path="/emailVerification" component={EmailVerificationDone} />
                 {/* <Route exact path="/product" component={Product} /> */}
-                <Route exact path="/requestresetpassword" component={RequestResetPassword} />
-                <Route exact path="/resetpassword" component={ResetPassword} />
+                <Route exact path="/requestresetpassword" component={RequestResetPassword } />
+                <Route exact path="/resetpassword/:email/:email_token" component={ResetPassword}/>
               </div>
               <div className="footer__container">
                 <FooterBot/>
