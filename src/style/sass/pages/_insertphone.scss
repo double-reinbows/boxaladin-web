@@ -4,15 +4,39 @@
   padding-right: 20%;
   background-color: white;
 
+  &__inputNumber{
+    display: flex;
+    justify-content: center;
+  }
+
   &__inputHead{
     width: 50%;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    padding-top: 3%;
 
     &__text{
       display: flex;
-      justify-content: center
+      font-size: 30px;
+      justify-content: center;
+      width: 72%;
+    }
+
+    &__inputBox{
+      width: 50%;
+      font-size: 2rem;
+      border: 2px solid black;
+      border-radius: 10px
+    }
+    &__checkBox{
+      display: flex;
+      justify-content: center;
+    }
+    &__label{
+      display: flex;
+      justify-content: center;
+      width: 40%;
     }
   }
 
@@ -29,6 +53,108 @@
 
     &__font{
       font-size: 40px;
+    }
+  }
+
+  &__contentContainer{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    &__logo{
+      width: 17%;
+      height: 100%;
+    }
+
+    &__text{
+      font-size: 35px;
+    }
+
+    &__textDistance{
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      padding-left: 2%;
+    }
+
+    &__label{
+      font-size: 16px;
+    }
+
+    &__priceDistance{
+      display: flex;
+      flex-direction: column;
+      align-self: flex-end;
+      padding-left: 3%;
+    }
+
+    &__price{
+      width: 100%;
+      font-size: 50px
+    }
+
+    &__labelPercentage{
+      display: flex;
+      flex-direction: row-reverse;
+      font-size: 15px;
+      color: #FFCD06
+    }
+  }
+
+  &__buttonContainer{
+
+    width: 45%;
+    margin: auto;
+    display: flex;
+    flex-direction: row-reverse;
+    padding-top: 4%;
+    justify-content: space-around;
+
+    &__buttonDistance{
+      width: 30%;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row-reverse;
+    }
+
+    &__buttonBatal{
+      background: white;
+      border-color: #FFCD06;
+      border-style: solid;
+      border-width: 2px;
+      color: black;
+      font-size: 25px;
+      border-radius: 10px;
+      padding-left: 7%;
+      padding-right: 7%;
+      &:active{
+        background-color: white;
+        color:black;
+      }
+      &:hover{
+        background-color: white;
+        color:black;
+      }
+    }
+
+    &__buttonLanjut{
+      background: white;
+      border-color: #FFCD06;
+      border-style: solid;
+      border-width: 2px;
+      color: black;
+      font-size: 25px;
+      border-radius: 10px;
+      padding-left: 7%;
+      padding-right: 7%;
+      &:active{
+        background-color: white;
+        color: black;
+      }
+      &:hover{
+        background-color: white;
+        color: black;
+      }
     }
   }
 
