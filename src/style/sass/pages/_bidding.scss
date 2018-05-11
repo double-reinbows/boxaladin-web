@@ -4,7 +4,7 @@
   justify-content: center;
   padding-left: 20%;
   padding-right: 20%;
-  padding-top: 5%;
+  padding-top: 2%;
 
   &__container{
     width: 100%;
@@ -25,7 +25,7 @@
       width: 100%;
       text-align: center;
       color: #FFCD05;
-      font-family: Raleway;
+      font-family: Helvetica;
       font-size: 26px;
       font-weight: 600;
       line-height: 30px;
@@ -43,7 +43,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: yellow;
+      background-color: #FFCD06;
       padding-top: 15px;
       padding-bottom: 15px;
 
@@ -53,6 +53,10 @@
 
       &__text{
         font-weight: bold;
+        font-size: 30px;
+      }
+      &__textDistance{
+        padding-left: 10px;
       }
     }
 
@@ -60,7 +64,7 @@
 
       &__pulsa{
         color: #FFFFFF;
-        font-family: Raleway;
+        font-family: Helvetica;
         font-size: 22px;
         font-weight: 600;
         line-height: 26px;
@@ -68,7 +72,7 @@
 
       &__coret{
         color: #FFFFFF;
-        font-family: Raleway;
+        font-family: Helvetica;
         font-size: 22px;
         font-weight: 900;
         line-height: 26px;
@@ -78,16 +82,15 @@
 
       &__newPrice{
       	color: #FFCD05;
-      	font-family: Raleway;
-      	font-size: 70px;
+      	font-family: Helvetica;
+      	font-size: 80px;
       	font-weight: 900;
-      	line-height: 49px;
 
       }
 
       &__live{
         color: #FFCD05;
-        font-family: Raleway;
+        font-family: Helvetica;
         font-size: 20px;
         font-weight: 900;
         line-height: 24px;
@@ -95,11 +98,10 @@
 
       &__text {
       	color: black;
-      	font-family: Raleway;
+      	font-family: Helvetica;
       	font-size: 14px;
       	font-weight: 600;
       	line-height: 16px;
-        padding-top: 10px;
         width:100%;
         display: flex;
         flex-direction: row-reverse;
@@ -125,7 +127,7 @@
 
       &__text{
       	color: #FFCD05;
-      	font-family: Raleway;
+      	font-family: Helvetica;
       	font-size: 36px;
       	font-weight: 800;
       	line-height: 42px;
@@ -141,6 +143,16 @@
         height: 75px;
         width: 100px;
         padding: 10px;
+      }
+      &__logoPrice{
+        padding: 10px;
+      }
+      &__logoBuy{
+        padding-right: 15px;
+      }
+      &__logoCancel{
+        height: 50%;
+        padding-right: 15px
       }
     }
 
@@ -161,14 +173,16 @@
 
       width: 80%;
       height: 75px;
-      border-radius: 8px;
+      border-radius: 50px;
 
-      background-color: var(--color-yellow-1);
+      background-color: #FFCD06;
     	color: #3E3E3E;
-    	font-family: Raleway;
+    	font-family: Helvetica;
     	font-size: 30px;
     	font-weight: bold;
     	line-height: 35px;
+      display: flex;
+      justify-content: center;
     }
   }
 
@@ -186,14 +200,12 @@
 
       width: 80%;
       height: 75px;
-      border-radius: 8px;
-
-      background-color: #85e0e0;
+      border-radius: 50px;
+      background-color: #989898;
       color: #3E3E3E;
-      font-family: Raleway;
+      font-family: Helvetica;
       font-size: 30px;
       font-weight: bold;
-      line-height: 35px;
 
 
     }
@@ -215,4 +227,32 @@
   .bidding__3{
     display: block;
   }
+}
+
+@media (max-width:450px) {
+  .bidding__2__col2__newPrice {
+    color: #FFCD05;
+    font-family: Helvetica;
+    font-size: 60px;
+    font-weight: 900;
+  }
+  .bidding__3__col__logoCancel {
+    height: 0;
+    width:0;
+    padding-right: 0px;
+  }
+  .bidding__3__col__logoBuy {
+    height: 0;
+    width: 0;
+    padding-right: 0px;
+  }
+  .biddingIconPriceStyle {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+biddingImage{
+  width: 100%;
+  height:50%;
 }

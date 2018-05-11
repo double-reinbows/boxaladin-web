@@ -8,22 +8,44 @@ import axios from 'axios'
 
 import { getPhoneNumbers } from '../../../actions/'
 import { validateProvider, detectProvider } from '../../../utils/phone'
+import ProviderModal from '../../Home/Modal/ProviderModal';
 
 class InsertPhone extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       phone: '',
-      productUnlocked: {}
+      productUnlocked: {},
+			providerModal: false
     }
 
     this.handleBack()
   }
 
+	toggle = () =>  {
+		this.setState({
+			providerModal: !this.state.providerModal
+		})
+	}
+
   render() {
 
 
     return (
+		<div>
+		<div className="InsertPhone__textHead">
+			<h1 className="InsertPhone__textHead__font">LELANG KAMU BERHASIL, BOEDJANGAN!</h1>
+		</div>
+		<div>
+			<div className="InsertPhone__inputHead">
+				<h4 className="InsertPhone__inputHead_text">Masukkan nomor hape kamu</h4>
+				<Input />
+				<label>Ex: 08x-xxx-xxx-xxx</label>
+			</div>
+			<div className="homecontent__bottom__check">
+				<button onClick={this.toggle} className="homecontent__bottom__check__button">CEK PROVIDER-MU</button>
+			</div>
+		</div>
       <div className="InsertPhone">
         <h1 className="InsertPhone__text">Masukkan No Handphone Anda</h1>
 
@@ -38,7 +60,9 @@ class InsertPhone extends React.Component {
           <Button type="submit" color="primary" size="lg" block>Confirm</Button>
 
 				</Form>
-      </div>
+		  </div>
+			<ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
+		</div>
     )
   }
 

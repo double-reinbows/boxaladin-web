@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 // import PropTypes from 'prop-types';
-import { Button, Modal, ModalHeader, ModalFooter} from 'reactstrap'
+import { Modal, ModalHeader, ModalFooter} from 'reactstrap'
 import axios from 'axios'
 
 class ModalOtpUser extends Component {

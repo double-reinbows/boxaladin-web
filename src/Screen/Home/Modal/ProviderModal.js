@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-
-import { Modal , ModalHeader} from 'reactstrap'
+import Modal from 'react-modal'
+import { ModalHeader} from 'reactstrap'
 
 import LogoIndosat from '../../../asset/LandingPage/pulsa/Indosat.svg';
-import LogoSmart from '../../../asset/LandingPage/pulsa/Smart.svg';
+import LogoSmart from '../../../asset/LandingPage/pulsa/Smartfren.svg';
 import LogoTelkomsel from '../../../asset/LandingPage/pulsa/Telkomsel.svg';
 import LogoTri from '../../../asset/LandingPage/pulsa/Tri.svg';
-import LogoXL from '../../../asset/LandingPage/pulsa/Xl.svg';
+import LogoXL from '../../../asset/LandingPage/pulsa/XL.svg';
 
 class ProviderModal extends Component {
   constructor(props) {

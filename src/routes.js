@@ -89,11 +89,10 @@ class RouteList extends React.Component {
                 <Route exact path="/requestresetpassword" component={RequestResetPassword} />
                 <Route exact path="/resetpassword" component={ResetPassword} />
               </div>
-              <div className="phantom">
+              <div className="footer__container">
+                <FooterBot/>
+
               </div>
-            <div className = "footerContainer">
-              <FooterBot/>
-            </div>
           </div>
         </Router>
       </div>

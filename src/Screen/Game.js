@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Modal, ModalHeader } from 'reactstrap'
+import { Modal, ModalHeader, Form, FormGroup, Input } from 'reactstrap'
 import axios from 'axios'
 
-import Coin from '../../src/asset/Game/coin.svg'
-import Star from '../../src/asset/Game/star.svg'
+import Coin from '../../src/asset/Game/win/token.png'
+import Star from '../../src/asset/Game/win/star.svg'
 
 import win1 from '../../src/asset/Game/win/100rb.png'
 import win2 from '../../src/asset/Game/win/50rb1.png'
@@ -50,7 +50,7 @@ class Game extends React.Component {
 			isRunning: false,
 			modalWin: false,
 			modalLose: false,
-			key: null,
+			key: 0,
 			pulsaAmount: 0,
 			notif: '',
 			winResult: null,
@@ -61,36 +61,52 @@ class Game extends React.Component {
 		this.toggle = this.toggle.bind(this)
 	}
 
+	dropdownConvert=()=>{
+		return(
+		<div>
+			<div>
+				<Form onSubmit={this.upCoin}>
+					<FormGroup>
+						<Input className="dompet__content__key__topup__dropdown" type="select" id="upcoin" name="aladinConvert" onChange={(e) => this.setState({ key: parseInt(e.target.value, 10) })}>
+							<option selected="true" disabled="true" value=''>-- Select --</option>
+							<option value={1}>1</option>                  
+							<option value={2}>2</option>
+							<option value={5}>5</option>
+							<option value={this.props.userInfo.aladinKeys}>max</option>
+						</Input>
+					</FormGroup>
+					<label>1 Kunci Aladin  = 5 Koin</label>
+					<FormGroup>
+							<button className="dompet__content__key__button" color="primary" type="submit">Tukar</button>
+					</FormGroup>
+				</Form>
+			</div>
+		<div>
+			<label className="alert__dompetAladin">{this.state.notif2}</label>
+		</div>
+	</div>
+		)
+	}
+
+	
+
 	render() {
 
 		return (
 			<div className="game">
 				<div className="game__container">
-					<div className="game__slotLabel">
-						<h1 className="game__slotLabel__h1">ALADIN GAME</h1>
-						<p className="game__slotLabel__paragraph">Mainkan Game Menggunakan Coin Anda</p>
-					</div>
+					<label>ALADIN GAME</label>
+					<label>1 Koin = 1x Main</label>
 					<div>
-						<div className="game__container2">
-							<div className="game__convert">
-								<div>
-									<label className="game__convert__label">Aladin Key : {this.props.userInfo.aladinKeys}</label>
-								</div>
-								<div>
-									<p className="game__slotLabel__paragraph">Tukar Aladin Key Menjadi Koin</p>
-									<form onSubmit={(e) => this.upCoin(e)}>
-										<input className="game__convert__input" min="1" id="upcoin" onChange={(e) => this.setState({ key: parseInt(e.target.value, 10) })} type="number" placeholder="1 aladin key = 5 coin" />
-										<button className="game__convert__buttonConvert">TUKAR</button>
-									</form>
-								</div>
+						<div className="game__convert">
+								<label>Tukar Kunci Jadi Koin</label>
+								{this.dropdownConvert()}
 							</div>
-						</div>
 						<label className="alert__game">{this.state.notif}</label>
-							<div className="game__slotCoin">
+							<div  className="game__slotCoin">
 								<img className="game__slotCoin__icon" src={Coin} alt="coin"/>
-								<label className="game__slotCoin__label">Koin Anda : {this.props.userInfo.coin}</label>
+								<label> <b> : {this.props.userInfo.coin}</b></label>
 							</div>
-						<div className="game__container3">
 							<div className="game__slotItems">
 								<div className="game__slotItems__boxContainer">
 									<div className="game__slotItems__boxContainer__box">
@@ -110,63 +126,40 @@ class Game extends React.Component {
 									</div>
 								</div>
 							</div>
-						</div>
+
 					</div>
 					<div className="game__slotButton">
-						<div className="game__slotButton__container3">
 							<button disabled={this.state.isRunning} className="game__slotButton__start" onClick={ () => this.start() }>START</button>
-						<div>
 							<button disabled={!this.state.isRunning} className="game__slotButton__start" onClick={ () => this.stop() }>STOP</button>
-						</div>
-						{/* <div>
-							<button disabled={this.state.isRunning} className="game__slotButton__start" onClick={ () => this.reset() }>RESET</button>
-						</div> */}
-						</div>
 					</div>
 
 				</div>
 
 				<div className="game__prize">
-					<h1 className="game__prize__title">Game Prize</h1>
-
-					<h1 className="game__prize__h1">
-						Dapatkan hadiah pulsa Rp. 10.000 dengan memainkan Aladin Games
-					</h1>
+					<label className="game__prize__title">Game Prize</label>
+					<label>
+						Dapatkan hadiah pulsa Rp. 10.000,- dengan mendapatkan salah satu kombinasi bawah ini GRATIS!
+					</label>
 
 					<div className="game__prize__row">
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win1} alt="coin" />
-							<h1 className="game__prize__h1">
-								pulsa Rp. 10.000
-							</h1>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win2} alt="coin" />
-							<h1 className="game__prize__h1">
-								pulsa Rp. 10.000
-							</h1>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win3} alt="coin" />
-							<h1 className="game__prize__h1">
-								pulsa Rp. 10.000
-							</h1>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win4} alt="coin" />
-							<h1 className="game__prize__h1">
-								pulsa Rp. 10.000
-							</h1>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win5} alt="coin" />
-							<h1 className="game__prize__h1">
-								pulsa Rp. 10.000
-							</h1>
 						</div>
 					</div>
 
@@ -232,7 +225,7 @@ class Game extends React.Component {
 		// .catch(err => console.log(err))
 	// }
 
-	upCoin(e) {
+	upCoin = (e) => {
 		e.preventDefault()
 
 		if (this.state.key <= 0) {

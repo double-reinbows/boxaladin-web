@@ -28,20 +28,25 @@ class TabsInvoice extends React.Component {
   }
 
   render() {
-    
+
     return (
 
       <div>
         <Nav tabs>
           <NavItem className="invoice__tab">
             <NavLink
+            activeStyle={{
+              fontWeight: 'bold',
+              backgroundColor: 'yellow',
+              border:"10px"
+            }}
               className={classnames({ active: this.state.activeTab === '1' })}
               onClick={() => { this.toggle('1'); }}
             >
-              Invoice Pulsa
+              <a className="invoice__active">Invoice Pulsa</a>
             </NavLink>
           </NavItem>
-          <NavItem className="invoice__tab"> 
+          <NavItem className="invoice__tab">
             <NavLink
               className={classnames({ active: this.state.activeTab === '2' })}
               onClick={() => { this.toggle('2'); }}

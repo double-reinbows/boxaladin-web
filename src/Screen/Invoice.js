@@ -4,13 +4,11 @@ import {
   Table,
   Button
 } from 'reactstrap'
-import {withRouter} from 'react-router-dom'
-
 import moment from 'moment'
 
-import { getUserPendingTopupTransactions, getUserTopupTransactions } from '../../actions/topupAction'
+import { getUserPendingTransactions, getUserTransactions } from '../actions/transactionAction'
 
-class TopupInvoice extends React.Component {
+class Invoice extends React.Component {
   constructor(props) {
     super(props)
     this.state = {}
@@ -21,32 +19,34 @@ class TopupInvoice extends React.Component {
     return (
       <div className="invoice">
         <div className="invoice__container">
-					{ this.showInvoice() }
+          <h1 className="invoice__text">Invoice</h1>
+          {this.showInvoice()}
         </div>
       </div>
     )
   }
 
   componentDidMount() {
-    this.props.getUserPendingTopupTransactions()
-    this.props.getUserTopupTransactions()
+    this.props.getUserPendingTransactions()
+    this.props.getUserTransactions()
   }
 
-	showInvoice() {
+  showInvoice() {
+    let transactions = this.props.userTransactions.filter(data => data.description !== 'FREE')
     return (
-      <Table>
-        <thead>
+      <Table >
+        <thead className="invoice__table">
           <tr>
             <th>No.</th>
-            <th>Key</th>
+            <th>Barang</th>
             <th>Nominal Transfer</th>
+            <th>Tanggal</th>
             <th>Status</th>
             <th></th>
           </tr>
         </thead>
-        <tbody>
-          {this.props.userTopupTransactions.map((data, idx) => {
-            console.log('awal', data.id)
+        <tbody className="invoice__table">
+          {transactions.map((data, idx) => {
             if (data.createdAt === ''){
               console.log('kosong')
             } else if ( data.createdAt === undefined){
@@ -55,17 +55,17 @@ class TopupInvoice extends React.Component {
               const time = moment()
               const now = time.valueOf()
 
-              const limitTime = moment(data.createdAt, moment.ISO_8601).add(12, 'hours')
+              const limitTime = moment(data.createdAt, moment.ISO_8601).add(6, 'hours')
               const limitTimeFinal = limitTime.valueOf()
-
               if (now <= limitTimeFinal) {
               return (
               <tr key={idx}>
                 <th scope="row">{idx+1}</th>
-                <td>{data.key.keyAmount}</td>
+                <td>{ data.product.productName }</td>
                 <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
+                <td>{moment(data.createdAt, moment.ISO_8601).format('MMMM Do YYYY, h:mm:ss a')}</td>
                 <td>{ data.payment? data.payment.status : null }</td>
-                <td>{ data.payment.status === 'PENDING'  ? (
+                <td>{ data.status === 'PENDING'  ? (
                   <Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button>
                 ) : null}</td>
               </tr>
@@ -74,10 +74,11 @@ class TopupInvoice extends React.Component {
                 return (
                   <tr key={idx}>
                     <th scope="row">{idx+1}</th>
-                    <td>{data.key.keyAmount}</td>
+                    <td>{ data.product.productName }</td>
                     <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
+                    <td>{moment(data.createdAt, moment.ISO_8601).format('MMMM Do YYYY, h:mm:ss a')}</td>
                     <td>{ data.payment? data.payment.status : null }</td>
-                    <td>{ data.payment.status === 'PENDING'  ? (
+                    <td>{ data.status === 'PENDING'  ? (
                   <label>Expired</label>
                 ) : null}</td>
 
@@ -93,25 +94,25 @@ class TopupInvoice extends React.Component {
   }
 
   showMetodePembayaran(id) {
-    console.log('id topup', id)
-    this.props.history.push(`/topupinvoice/${id}`)
+    this.props.history.push(`/payment/${id}`)
   }
+
 }
 
 const mapStateToProps = (state) => {
   return {
-    userPendingTopupTransactions: state.topupReducer.userPendingTopupTransactions,
-    userTopupTransactions: state.topupReducer.userTopupTransactions
+    userPendingTransactions: state.transactionReducer.userPendingTransactions,
+    userTransactions: state.transactionReducer.userTransactions
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUserPendingTopupTransactions: () => dispatch(getUserPendingTopupTransactions()),
-    getUserTopupTransactions: () => dispatch(getUserTopupTransactions())
+    getUserPendingTransactions: () => dispatch(getUserPendingTransactions()),
+    getUserTransactions: () => dispatch(getUserTransactions())
   }
 }
 
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(withRouter(TopupInvoice))
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(Invoice)
 
 export default connectComponent

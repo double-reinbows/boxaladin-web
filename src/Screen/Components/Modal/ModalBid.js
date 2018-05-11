@@ -1,14 +1,22 @@
-import React, { Component } from 'react';
+//@flow
 
-import { Modal } from 'reactstrap'
-import { connect } from 'react-redux'
+import React,{Component} from 'react';
+import PropTypes from 'prop-types';
+import Modal from 'react-modal';
+import { connect } from 'react-redux';
 
-import ModalConfirm from './ModalConfirm'
-import RegisterIcon from '../../../asset/user/IconCheck.svg'
-import LogoIndosat from '../../../asset/LandingPage/pulsa/Indosat.svg';
-import { selectProductID } from '../../../actions/productAction'
+import ModalConfirm from '../../Home/Modal/ModalConfirm';
+import RegisterIcon from '../../../asset/user/IconCheck.svg';
+import { selectProductID } from '../../../actions/productAction';
 
-class ModalIndosat extends Component {
+class ModalCheck extends Component {
+  static propTypes = {
+    buttonToggle: PropTypes.func,
+    open: PropTypes.bool,
+    phone: PropTypes.string,
+    loginAction: PropTypes.func,
+    setModalRegister: PropTypes.func
+  }
   constructor(props) {
     super(props);
     this.state = {  
@@ -24,17 +32,7 @@ class ModalIndosat extends Component {
       modalConfirm: !this.state.modalConfirm
     })
   }
-
-  pulsa(e, data){
-    this.props.selectProductID(e)
-    this.setState({
-      pulsaPrice: data.price,
-      pulsaName: data.productName,
-      pulsaId : this.props.selectProductID(e)
-
-    })
-
-  }
+  
 
   choicePulsa=()=>{
     if (this.props.products.length === 0) {
@@ -44,18 +42,27 @@ class ModalIndosat extends Component {
     } else {
       return(
         this.props.products.filter(data => {
-          return data.brand === 'Indosat' && data.category === 'Pulsa'
+          return data.brand === `${this.props.pulsaValue}` && data.category === 'Pulsa'
         })
         .map((data, i) => {
           return (
-            <button onClick={(e) =>this.pulsa(data.id, data)} className="modal__pulsa__content__2__button" value={data.id} key={i}>
-              <img className="modal__pulsa__content__2__logo__image"  src={LogoIndosat} alt="Logo Indosat"/>
+            <button onClick={(e) => this.pulsa(data.id, data)} className="modal__pulsa__content__2__button" value={data.id} key={i}>
+              <img className="modal__pulsa__content__2__logo__image"  src={require('../../../asset/LandingPage/pulsa/' + this.props.pulsaValue + '.svg')} alt={`Logo ${this.props.pulsaValue}`}/>
               {data.price.toLocaleString(['ban', 'id'])}
             </button>
           )
         })
       )
     }
+  }
+
+  pulsa(e, data){
+    this.props.selectProductID(e)
+    this.setState({
+      pulsaPrice: data.price,
+      pulsaName: data.productName,
+      pulsaId : this.props.selectProductID(e)
+    })
   }
 
   handleNotLogin() {
@@ -68,15 +75,26 @@ class ModalIndosat extends Component {
     }
   }
 
+  imageProps = () => {
+    if ( this.props.pulsaValue === null || this.props.pulsaValue === undefined || this.props.pulsaValue === ''){
+      return (<h1>Loading</h1>)
+    } else {
+      return (
+        <img className="modal__pulsa__content__1__logo__image" src={require('../../../asset/LandingPage/pulsa/' + this.props.pulsaValue + '.svg')} alt={`Logo ${this.props.pulsaValue}`}/>
+      )
+    }
+  }
+
   render() { 
-    return (  
-      <Modal isOpen={this.props.open} className="modal__pulsa">
+    console.log('render', this.props.pulsaValue)
+    return ( 
+      <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__pulsa">
         <div className="modal__pulsa__container">
           <div className="modal__pulsa__content">
             <div className="modal__pulsa__content__1">
               <div className="modal__pulsa__content__1__logo">
                 <div>
-                  <img className="modal__pulsa__content__1__logo__image" src={LogoIndosat} alt="Logo Indosat"/>
+                  {this.imageProps()}
                 </div>
                 <label>{this.state.pulsaPrice.toLocaleString(['ban', 'id'])}</label>
               </div>
@@ -86,9 +104,9 @@ class ModalIndosat extends Component {
             </div>
           </div>
           <div className="modal__pulsa__content__3">
-            <div>
+            <div className="modal__pulsa__content__3__top">
               <div className="modal__pulsa__content__3__button">
-                <button className="modal__pulsa__content__3__button__x" onClick={this.props.buttonToggle}>X</button>
+                <button className="modal__pulsa__content__3__button__x" onClick={() => this.props.toggle('XL')}>X</button>
               </div>
               <label>{this.state.pulsaName}</label>
             </div>
@@ -119,6 +137,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(ModalIndosat)
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(ModalCheck)
 
 export default connectComponent
+

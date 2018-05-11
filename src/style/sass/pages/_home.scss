@@ -7,14 +7,12 @@
     display: flex;
     padding-bottom: 4%;
     &__text{
+      font-size: 25px;
       padding-top: 2%;
       padding-left: 5%;
       margin-bottom: 20px;
       &__top{
         font-size: 35px;
-      }
-      &__bot{
-        font-size: 25px;
       }
       &__remember{
         display: flex;
@@ -66,9 +64,9 @@
     &__check{
       text-align: right;
       &__button{
-        font-size: 20px;
-        padding-left: 10px;
-        padding-right: 10px;
+        font-size: 15px;
+        padding-left: 5%;
+        padding-right: 5%;
         border-radius: 10px;
         &:hover {
           cursor: pointer;
@@ -103,13 +101,17 @@
     &__left{
       display: flex;
       margin-right: 15px;
+      display: flex;
+      align-self: center;
     }
     &__right{
       display: flex;
       margin-left: 15px;
+      display: flex;
+      align-self: center;
     }
-    &__register{
-      width: 60px;
+    &__image{
+      margin-bottom: 3%;
     }
     &__footer{
       display: flex;
@@ -208,7 +210,7 @@
   }
   .BannerText__icon{
     margin: 0;
-      &__register{
+      &__image{
         width: 0;
         height: 0;
     }

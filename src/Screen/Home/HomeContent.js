@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 
 import ProviderModal from './Modal/ProviderModal';
-import ModalXL from './Modal/ModalXL';
-import ModalTelkomsel from './Modal/ModalTelkomsel';
-import ModalSmart from './Modal/ModalSmartfren';
-import ModalIndosat from './Modal/ModalIndosat';
-import ModalTri from './Modal/ModalTri';
+import ModalBid from '../Components/Modal/ModalBid'
 
 import LogoIndosat from '../../asset/LandingPage/pulsa/Indosat.svg';
-import LogoSmart from '../../asset/LandingPage/pulsa/Smart.svg';
+import LogoSmart from '../../asset/LandingPage/pulsa/Smartfren.svg';
 import LogoTelkomsel from '../../asset/LandingPage/pulsa/Telkomsel.svg';
 import LogoTri from '../../asset/LandingPage/pulsa/Tri.svg';
-import LogoXL from '../../asset/LandingPage/pulsa/Xl.svg';
+import LogoXL from '../../asset/LandingPage/pulsa/XL.svg';
 
 
 class HomeContent extends Component {
@@ -19,15 +15,10 @@ class HomeContent extends Component {
     super(props);
     this.state = { 
       providerModal: false,
-      modalXL : false,
-      modalTelkomsel: false,
-      modalIndosat: false,
-      modalSmart: false,
-      modalTri: false
+      openModal: false,
+      pulsaValue: '',
+      logo: ''
     }
-
-    // this.toggle = this.toggle.bind(this)
-
   }
   
 
@@ -37,52 +28,41 @@ class HomeContent extends Component {
     })
   }
 
-  toggleXL = () => {
+  toggleBid = (pulsa) => {
     this.setState({
-      modalXL: !this.state.modalXL
+      openModal: !this.state.openModal,
+      pulsaValue: pulsa,
     })
   }
   
-  toggleTelkomsel = () => {
-    this.setState({
-      modalTelkomsel: !this.state.modalTelkomsel
-    })
-  }
-  
-  toggleSmart = () => {
-    this.setState({
-      modalSmart: !this.state.modalSmart
-    })
-  }
 
-  toggleIndosat = () => {
-    this.setState({
-      modalIndosat: !this.state.modalIndosat
-    })
-  }
 
-  toggleTri = () => {
-    this.setState({
-      modalTri: !this.state.modalTri
-    })
-  }
+  pulsaItem = () => {
+    const pulsaItems = [
+      {onClick: () => this.toggleBid('XL'), img: LogoXL, alt:"Logo XL"},
+      {onClick: () => this.toggleBid('Telkomsel'), img: LogoTelkomsel, alt:"Logo Telkomsel"},
+      {onClick: () => this.toggleBid('Smartfren'), img: LogoSmart, alt:"Logo Smart"},
+      {onClick: () => this.toggleBid('Indosat'), img: LogoIndosat, alt:"Logo Indosat"},
+      {onClick: () => this.toggleBid('Tri'), img: LogoTri, alt:"Logo Tri"}
+    ]
 
+    return pulsaItems.map(data => (
+        <button onClick={data.onClick} className="homecontent__bottom__pulsa__button">
+          <img className="homecontent__bottom__pulsa__button__image" src={data.img} alt={data.alt}/>
+        </button>
+      ) 
+    )         
+  }
   render() { 
-    console.log(this.props)
     return (  
       <div className="homecontent__container">
         <div className="homecontent__top">
           <div className="homecontent__top__text">
-            <div className="homecontent__top__text">
-              <label className="homecontent__top__text__top"><b>Semakin Dilihat, Semakin Murah</b></label>
-              <label className="homecontent__top__text__bot">sistem lelang terbalik pertama yang menyajikan harga pulsa termurah sedunia!</label>
-            </div>
-            <div className="homecontent__top__text__remember">
-              <label className="homecontent__top__text__remember__top">Ingat  <b>PULSA ?</b></label>
-              <div>
-              <label className="homecontent__top__text__remember__bot">Ingat  <b>Boxaladin</b></label>
-
-              </div>
+            <label className="homecontent__top__text__top"><b>Semakin Dilihat, Semakin Murah</b></label>
+            <label className="homecontent__top__text__bot">sistem lelang terbalik pertama yang menyajikan harga pulsa termurah sedunia!</label>
+            <label>Ingat  <b>PULSA ?</b></label>
+            <div>
+            <label>Ingat  <b>Boxaladin</b></label>
             </div>
           </div>
           <div className="homecontent__top__youtube">
@@ -91,23 +71,14 @@ class HomeContent extends Component {
         </div>
         <div className="homecontent__bottom">
           <div className="homecontent__bottom__pulsa">
-            <button onClick={this.toggleXL} className="homecontent__bottom__pulsa__button"><img className="homecontent__bottom__pulsa__button__image" src={LogoXL} alt="Logo XL"/></button>
-            <button onClick={this.toggleTelkomsel} className="homecontent__bottom__pulsa__button"><img className="homecontent__bottom__pulsa__button__image" src={LogoTelkomsel} alt="Logo Telkomsel"/></button>
-            <button onClick={this.toggleSmart} className="homecontent__bottom__pulsa__button"><img className="homecontent__bottom__pulsa__button__image" src={LogoSmart} alt="Logo Smart"/></button>
-            <button onClick={this.toggleIndosat} className="homecontent__bottom__pulsa__button"><img className="homecontent__bottom__pulsa__button__image" src={LogoIndosat} alt="Logo Indosat"/></button>
-            <button onClick={ this.toggleTri} className="homecontent__bottom__pulsa__button"><img className="homecontent__bottom__pulsa__button__image" src={LogoTri} alt="Logo Tri"/></button>
+          {this.pulsaItem()}
           </div>
           <div className="homecontent__bottom__check">
             <button onClick={this.toggle} className="homecontent__bottom__check__button">CEK PROVIDER-MU</button>
           </div>
-          <ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
-          <ModalXL open={this.state.modalXL} buttonToggle={this.toggleXL} />
-          <ModalTelkomsel open={this.state.modalTelkomsel} buttonToggle={this.toggleTelkomsel} />
-          <ModalSmart open={this.state.modalSmart} buttonToggle={this.toggleSmart} />
-          <ModalIndosat open={this.state.modalIndosat} buttonToggle={this.toggleIndosat} />
-          <ModalTri open={this.state.modalTri} buttonToggle={this.toggleTri} />
-
         </div>
+        <ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
+        <ModalBid isOpen={this.state.openModal} toggle={this.toggleBid} pulsaValue={this.state.pulsaValue} logo={this.state.logo}/>
       </div>
     )
   }

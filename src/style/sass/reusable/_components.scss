@@ -11,21 +11,21 @@
     background-color: #FFCD05 ;
     border-radius: 10px ;
     min-width: 205px;
-    font-family: Raleway;
+    font-family: Helvetica;
 
   }
   &__inside{
     color: #3E3E3E !important;
     background-color: #FFCD05 ;
     height: 50px ;
-    font-family: Raleway;
+    font-family: Helvetica;
   	font-size: 22px;
     font-weight: 600;
     &:hover{
       background-color: #FFCD05 ;
     }
     &__link{
-      font-family: Raleway;
+      font-family: Helvetica;
       font-size: 22px;
       font-weight: 600;
       color: #3E3E3E;
@@ -51,7 +51,7 @@
 .inputz{
   border: 2px solid var(--color-yellow-1);
   background: transparent;
-  font-family: Raleway;
+  font-family: Helvetica;
   font-style: italic;
   font-size: 17px;
   color: var(--color-black-1);
@@ -60,7 +60,7 @@
   &:focus{
     border: 2px solid var(--color-yellow-1);
     background: transparent;
-    font-family: Raleway;
+    font-family: Helvetica;
     font-style: italic;
     color: var(--color-black-1);
     box-shadow: var(--color-grey-5);
@@ -68,20 +68,20 @@
   &:hover{
     border: 2px solid var(--color-yellow-1);
     background: transparent;
-    font-family: Raleway;
+    font-family: Helvetica;
     font-style: italic;
     color: var(--color-black-1);
   }
   &::placeholder{
     background: transparent;
-    font-family: Raleway;
+    font-family: Helvetica;
     font-style: italic;
     color: var(--color-black-1);
   }
   &:active{
     border: 2px solid var(--color-yellow-1);
     background: transparent;
-    font-family: Raleway;
+    font-family: Helvetica;
     font-style: italic;
     color: var(--color-black-1);
   }

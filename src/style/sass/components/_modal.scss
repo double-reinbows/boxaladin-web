@@ -267,10 +267,10 @@
 
 
 .modal__provider{
-  top: 20%;
   max-width: 70%;
   margin: 1.75rem auto;
   border: solid 1px lightgrey;
+  background-color: white;
   &__header{
     border-bottom: none;
   }
@@ -289,12 +289,11 @@
     }
   }
   &__logo{
-    width: 80px;
     height: 80px;
-    display: flex;  
+    display: flex;
     justify-content: center;
     &__image{
-      width: 100%
+      width: 100%;
     }
   }
   &__list{
@@ -325,115 +324,7 @@
   }
 }
 
-.modal__pulsa{
-  top: 10%;
-  max-width: 55%;
-  font-size: 20px;
-  margin: 1.75rem auto;
-  &__container{
-    width: 100%;
-    display: flex;
-  }
 
-  &__content{
-    width: 75%;
-    &__1{
-      &__logo{
-        text-align: center;
-        border: solid 1px lightgrey;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        min-height: 250px;
-
-        &__image{
-          width: 30%;
-          &__tri{
-            width: 20%;
-          }
-        }
-      }
-    }
-    &__2{
-      display: flex;
-      justify-content: space-evenly;
-      border: solid 1px lightgrey;
-      &__logo{
-        &__image{
-          width: 100%;
-        }
-      }
-
-      &__button{
-        background-color: white;
-        border-top: none;
-        border-right: none;
-        border-bottom: none;
-        width: 33.33%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        &:hover{
-          cursor: pointer;
-        }
-        &:focus{
-          background-color: lightgrey;
-        }
-      }
-      &__map{
-        display: flex;
-        flex-direction: column;
-      }
-    }
-    &__3{
-      width: 25%;
-      border: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      &__button{
-        display: flex;
-        justify-content: flex-end;
-
-        &__x{
-          color: #FFCD05;
-          border: none;
-          background: white;
-          &:hover{
-            cursor: pointer;
-          }
-        }
-        &__price{
-          width: 100%;
-          color: white;
-          background-color: grey;
-          border: none;
-          &:hover{
-            cursor: pointer;
-          }
-          &__image{
-            width: 20%;
-            margin-left: 10%;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media (min-width: 200px ) and (max-width:766px ) {
-  .modal__pulsa{
-    font-size: 12px;
-    max-width: 70%;
-    &__content__1__logo{
-      min-height: 110px;
-    }
-  }
-}
-
-.modal-open {
-  overflow: scroll;
-}
 
 .modalText{
   display: flex;
@@ -454,11 +345,11 @@
 }
 
 .modal__confirm{
-  top: 30%;
   max-width: 60%;
   font-size: 15px;
   margin: 1.75rem auto;
   &__container{
+    margin-top: 40%;
     background-color: rgb(175, 193, 203);
     padding: 3%;
     display: flex
@@ -487,7 +378,7 @@
     }
   }
 }
-@media (min-width: 767px ) and (max-width:882px ) {
+@media (min-width: 767px ) and (max-width:886px ) {
   .modal__confirm{
     top: 23%;
     font-size: 12px;
@@ -588,4 +479,153 @@
       margin-bottom: 3%;
     }
   }
+}
+
+.modal{
+  &__pulsa{
+  margin: 1.75rem auto;
+    &__container{
+      background-color: white;
+      font-size: 20px;
+      position: fixed;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      overflow: auto;
+      width: 55%;
+      display: flex;
+    }
+
+    &__content{
+      width: 75%;
+      &__1{
+        &__logo{
+          text-align: center;
+          border: solid 1px lightgrey;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          min-height: 250px;
+
+          &__image{
+            width: 30%;
+            &__tri{
+              width: 20%;
+            }
+          }
+        }
+      }
+      &__2{
+        display: flex;
+        justify-content: space-evenly;
+        border: solid 1px lightgrey;
+        &__logo{
+          &__image{
+            width: 100%;
+          }
+        }
+
+        &__button{
+          background-color: white;
+          border-top: none;
+          border-right: none;
+          border-bottom: none;
+          width: 33.33%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          &:hover{
+            cursor: pointer;
+          }
+          &:focus{
+            background-color: lightgrey;
+          }
+        }
+        &__map{
+          display: flex;
+          flex-direction: column;
+        }
+      }
+      &__3{
+        width: 25%;
+        border: 1px solid lightgrey;
+        border-left: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        &__top{
+          padding-left: 5px;
+        }
+        &__button{
+          display: flex;
+          justify-content: flex-end;
+
+          &__x{
+            color: #FFCD05;
+            border: none;
+            background: white;
+            &:hover{
+              cursor: pointer;
+            }
+          }
+          &__price{
+            width: 100%;
+            color: white;
+            background-color: grey;
+            border: none;
+            &:hover{
+              cursor: pointer;
+            }
+            &__image{
+              width: 20%;
+              margin-left: 10%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.modal-open {
+  overflow: scroll;
+}
+
+@media (min-width: 500px ) and (max-width:766px ) {
+  .modal__pulsa{
+    &__container{
+      font-size: 12px;
+      width: 60%;
+    }
+    &__content__1__logo{
+      min-height: 110px;
+    }
+  }
+}
+
+@media (min-width: 200px ) and (max-width:499px ) {
+  .modal__pulsa{
+    &__container{
+      font-size: 12px;
+      width: 70%;
+    }
+    &__content__1__logo{
+      min-height: 110px;
+    }
+  }
+}
+
+.ReactModalPortal > div {
+  opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+transition: opacity 200ms ease-in-out;
+background: rgba(0, 0, 0, 0.15);
+&--after-open {
+  opacity: 1;
+}
+&--before-close {
+    opacity: 0;
+}
 }

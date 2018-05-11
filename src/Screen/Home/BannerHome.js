@@ -1,6 +1,14 @@
 //@flow
 import React, {Component} from 'react';
-import RegisterIcon from '../../asset/user/IconCheck.svg'
+import CheckIcon from '../../asset/LandingPage/home/checkmark.png'
+import MoneyIcon from '../../asset/LandingPage/home/cursor.png'
+import KeyIcon from '../../asset/LandingPage/home/key.png'
+import ClockIcon from '../../asset/LandingPage/home/clock-circular-outline.png'
+import HandphoneIcon from '../../asset/LandingPage/home/handphone.png'
+import CardIcon from '../../asset/LandingPage/home/credit-card.png'
+import CoinIcon from '../../asset/LandingPage/home/token.png'
+import DangerIcon from '../../asset/LandingPage/home/danger.png'
+
 
 export default class BannerHome extends Component <{}> {
 
@@ -14,7 +22,7 @@ export default class BannerHome extends Component <{}> {
           <div>
             <div className="BannerText__content">
               <div className="BannerText__icon__left">
-                <img src={RegisterIcon} alt="RegisterIcon" className="BannerText__icon__register"/>
+                <img src={CheckIcon} alt="Check Icon" className="BannerText__icon__image"/>
               </div>
               <div>
                 <h3 className="BannerText__content__title">Registrasi</h3>
@@ -31,12 +39,12 @@ export default class BannerHome extends Component <{}> {
                 </div>
               </div>
               <div className="BannerText__icon__right">
-                <img src={RegisterIcon} alt="RegisterIcon" className="BannerText__icon__register"/>
+                <img src={MoneyIcon} alt="Money Icon" className="BannerText__icon__image"/>
               </div>
             </div>
             <div className="BannerText__content">
               <div className="BannerText__icon__left">
-                <img src={RegisterIcon} alt="RegisterIcon" className="BannerText__icon__register"/>
+                <img src={KeyIcon} alt="Key Icon" className="BannerText__icon__image"/>
               </div>
               <div>
                 <h3 className="BannerText__content__title">Pembelian Kunci</h3>
@@ -53,12 +61,12 @@ export default class BannerHome extends Component <{}> {
                 </div>
               </div>
               <div className="BannerText__icon__right">
-                <img src={RegisterIcon} alt="RegisterIcon" className="BannerText__icon__register"/>
+                <img src={ClockIcon} alt="Clock Icon" className="BannerText__icon__image"/>
               </div>
             </div>
             <div className="BannerText__content">
               <div className="BannerText__icon__left">
-                <img src={RegisterIcon} alt="RegisterIcon" className="BannerText__icon__register"/>
+                <img src={HandphoneIcon} alt="Phone Icon" className="BannerText__icon__image"/>
               </div>
               <div>
                 <h3 className="BannerText__content__title">Masukkan Nomor Hape</h3>
@@ -75,12 +83,12 @@ export default class BannerHome extends Component <{}> {
                 </div>
               </div>
               <div className="BannerText__icon__right">
-                <img src={RegisterIcon} alt="RegisterIcon" className="BannerText__icon__register"/>
+                <img src={CardIcon} alt="Card Icon" className="BannerText__icon__image"/>
               </div>
             </div>
             <div className="BannerText__content">
               <div className="BannerText__icon__left">
-                <img src={RegisterIcon} alt="RegisterIcon" className="BannerText__icon__register"/>
+                <img src={CoinIcon} alt="Coin Icon" className="BannerText__icon__image"/>
               </div>
               <div>
                 <h3 className="BannerText__content__title">Ruang Game</h3>
@@ -93,7 +101,7 @@ export default class BannerHome extends Component <{}> {
 
           <div className="BannerText__content__footer">
             <div className="BannerText__icon__footer">
-              <img src={RegisterIcon} alt="RegisterIcon" className="BannerText__icon__danger"/>
+              <img src={DangerIcon} alt="Danger Icon" className="BannerText__icon__danger"/>
             </div>
             <label><b>HATI-HATI KETAGIHAN</b></label>
           </div>

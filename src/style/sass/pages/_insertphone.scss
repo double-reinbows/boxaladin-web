@@ -2,10 +2,34 @@
   padding: 10%;
   padding-left: 20%;
   padding-right: 20%;
-  background-color: var(--color-grey-5);
+  background-color: white;
+
+  &__inputHead{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    &__text{
+      display: flex;
+      justify-content: center
+    }
+  }
 
   &__text{
     text-align: center;
-    color: var(--color-yellow-1);
+    color: black;
+    font-size: 35px;
   }
+
+  &__textHead{
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+
+    &__font{
+      font-size: 40px;
+    }
+  }
+
 }
