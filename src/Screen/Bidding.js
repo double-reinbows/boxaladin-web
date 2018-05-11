@@ -37,6 +37,7 @@ class Bidding extends React.Component {
 
 
   render() {
+    console.log(this.props)
     return (
   <div>
       <div className="bidding__2__col1">
@@ -167,7 +168,7 @@ class Bidding extends React.Component {
 		.then(({data}) => {
       // this.stopWatchProductPrice(this.props.selectedProductID)
 
-      const productsRef = firebase.database().ref().child('products')
+      const productsRef = firebase.database().ref().child('productsdummy')
       const productRef = productsRef.child(this.props.selectedProductID)
 
       productRef.update({
@@ -217,7 +218,7 @@ class Bidding extends React.Component {
           // biar update user info (jumlah aladin key)
           this.props.getUser()
 
-					const productsRef = firebase.database().ref().child('products')
+					const productsRef = firebase.database().ref().child('productsdummy')
 					const productRef = productsRef.child(productId)
 
 					productRef.once('value', snap => {
@@ -240,7 +241,7 @@ class Bidding extends React.Component {
           this.props.history.push('/home')
         } else {
 
-          console.log('data')
+          console.log('data',data)
 
         }
         this.props.setIsLoading(false)
@@ -288,7 +289,7 @@ class Bidding extends React.Component {
       return null
     }
 
-    const productsRef = firebase.database().ref().child('products')
+    const productsRef = firebase.database().ref().child('productsdummy')
 		const productRef = productsRef.child(productId)
 
     productRef.off()

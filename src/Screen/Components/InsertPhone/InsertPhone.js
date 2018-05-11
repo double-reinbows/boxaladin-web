@@ -35,8 +35,8 @@ class InsertPhone extends React.Component {
   render() {
 
 		console.log(this.props)
-		console.log(this.state.productUnlocked)
-
+		console.log('unlock', this.state.productUnlocked)
+    console.log('phone', this.props.location.state.phoneNumbers[0])
     return (
 		<div>
 		<div className="InsertPhone__textHead">
@@ -136,9 +136,9 @@ class InsertPhone extends React.Component {
 
   componentDidMount() {
     this.props.getPhoneNumbers()
-    this.setState({productUnlocked: this.props.location.state.productUnlocked})
-		this.setState({
-			phone: this.props.location.state.phoneNumbers[0] ? this.props.location.state.phoneNumbers.filter(data => data.primary === true)[0].number : ''
+    this.setState({
+      productUnlocked: this.props.location.state.productUnlocked,
+      phone: this.props.location.state.phoneNumbers[0] ? '' : ''
     })
   }
 
