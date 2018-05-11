@@ -38,7 +38,7 @@ class Bidding extends React.Component {
 
   render() {
     return (
-<div>
+  <div>
       <div className="bidding__2__col1">
         <img src={this.state.productUnlocked.brandLogo} className="bidding__2__col1__logo" alt="Logo pulsa"/>
         <div className="bidding__2__col1__textDistance">
