@@ -45,7 +45,7 @@ class Dompet extends React.Component {
                 <label className="dompet__content__info__label">: {this.props.userInfo.coin}</label>
               </div>
             </div>
-            
+
           </div>
           <div className="dompet__content__key">
             <div className="dompet__content__key__topup">
@@ -62,39 +62,37 @@ class Dompet extends React.Component {
     )
   }
 
-    componentDidMount() {
-        this.props.getUser()
-        this.props.getKeys()
-    }
+  componentDidMount() {
+      this.props.getUser()
+      this.props.getKeys()
+  }
 
-    
-
-    showForm() {
-      return (
+  showForm() {
+    return (
+      <div>
         <div>
-          <div>
-            <Form onSubmit={(e) => this.submitForm(e)}>
-              <FormGroup>
-                <Input className="dompet__content__key__topup__dropdown" type="select" name="aladinTopup" onChange={(e) => this.setState({ idKeySelected: e.target.value })}>
-                  <option selected="true" disabled="true" value=''>-- Select --</option>
-                  {this.props.keys.map((data, i) => {
-                    return (
-                      <option key={i} value={data.id}>{data.keyAmount} Kunci - Rp. {data.price.toLocaleString(['ban', 'id'])}</option>
-                    )
-                  })}
-                </Input>
-              </FormGroup>
-              <FormGroup>
-                  <button className="dompet__content__key__button" color="primary" type="submit">Beli</button>
-              </FormGroup>
-            </Form>
+          <Form onSubmit={(e) => this.submitForm(e)}>
+            <FormGroup>
+              <Input className="dompet__content__key__topup__dropdown" type="select" name="aladinTopup" onChange={(e) => this.setState({ idKeySelected: e.target.value })}>
+                <option selected="true" disabled="true" value=''>-- Select --</option>
+                {this.props.keys.map((data, i) => {
+                  return (
+                    <option key={i} value={data.id}>{data.keyAmount} Kunci - Rp. {data.price.toLocaleString(['ban', 'id'])}</option>
+                  )
+                })}
+              </Input>
+            </FormGroup>
+            <FormGroup>
+                <button className="dompet__content__key__button" color="primary" type="submit">Beli</button>
+            </FormGroup>
+          </Form>
+      </div>
+        <div>
+          <label className="alert__dompetAladin">{this.state.notif}</label>
         </div>
-          <div>
-            <label className="alert__dompetAladin">{this.state.notif}</label>
-          </div>
-        </div>
-      )
-    }
+      </div>
+    )
+  }
 
   submitForm(e) {
     e.preventDefault()
@@ -123,7 +121,8 @@ class Dompet extends React.Component {
               this.props.history.push(`/topupinvoice/${data.id}`)
           }
       })
-      .catch(err => console.log('error'))
+      // .catch(err => console.log('error'))
+      .catch(err => console.log(err))
       }
     }
 
@@ -142,7 +141,7 @@ class Dompet extends React.Component {
             <FormGroup>
               <Input className="dompet__content__key__topup__dropdown" type="select" id="upcoin" name="aladinConvert" onChange={(e) => this.setState({ key: parseInt(e.target.value, 10) })}>
                 <option selected="true" disabled="true" value=''>-- Select --</option>
-                <option value={1}>1</option>                  
+                <option value={1}>1</option>
                 <option value={2}>2</option>
                 <option value={5}>5</option>
                 <option value={this.props.userInfo.aladinKeys}>max</option>
@@ -209,7 +208,7 @@ class Dompet extends React.Component {
 						coin: 0,
 						key: null
 					})
-          this.props.getUser()
+          this.props.getUser();
           window.location.reload();
 
 				})
