@@ -63,6 +63,7 @@
     }
     &__check{
       text-align: right;
+      padding-right: 4%;
       &__button{
         font-size: 15px;
         border-radius: 10px;
@@ -110,6 +111,9 @@
     }
     &__image{
       margin-bottom: 3%;
+      &__key{
+
+      }
     }
     &__footer{
       display: flex;
@@ -130,7 +134,7 @@
     }
     &__paragraph{
       font-size: 20px;
-      text-align: left;
+      text-align: justify;
       margin-left: 10px;
     }
 

@@ -2,6 +2,10 @@
   display: flex;
   justify-content: center;
   margin-top: 8%;
+  background-image: url(https://s3-ap-southeast-1.amazonaws.com/iconpulsa/vectorpaint.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   &__container{
     font-size: 24px;
     display: flex;
@@ -19,11 +23,10 @@
     &__info{
       margin-bottom: 5%;
       &__icon{
-        width: 20px;
         margin-right: 2%;
       }
       &__label{
-  
+
       }
     }
     &__key{

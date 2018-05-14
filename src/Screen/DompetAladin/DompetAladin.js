@@ -12,6 +12,8 @@ import { getUser } from '../../actions/userAction'
 import { getUserWins } from '../../actions/winAction'
 import { getKeys } from '../../actions/keyAction'
 
+import FormatRupiah from '../../utils/formatRupiah'
+
 class Dompet extends React.Component {
   constructor(props) {
     super(props)
@@ -77,7 +79,7 @@ class Dompet extends React.Component {
                 <option selected="true" disabled="true" value=''>-- Select --</option>
                 {this.props.keys.map((data, i) => {
                   return (
-                    <option key={i} value={data.id}>{data.keyAmount} Kunci - Rp. {data.price.toLocaleString(['ban', 'id'])}</option>
+                    <option key={i} value={data.id}>{data.keyAmount} Kunci - {FormatRupiah(data.price)}</option>
                   )
                 })}
               </Input>
@@ -147,6 +149,7 @@ class Dompet extends React.Component {
                 <option value={this.props.userInfo.aladinKeys}>max</option>
               </Input>
             </FormGroup>
+            <label style = {{fontSize: "18px"}}>1 Kunci Aladin = 5 Koin</label>
             <FormGroup>
                 <button className="dompet__content__key__button" color="primary" type="submit">Tukar</button>
             </FormGroup>

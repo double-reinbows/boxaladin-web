@@ -44,7 +44,7 @@ export default class BannerHome extends Component <{}> {
             </div>
             <div className="BannerText__content">
               <div className="BannerText__icon__left">
-                <img src={KeyIcon} alt="Key Icon" className="BannerText__icon__image"/>
+                <img src={KeyIcon} alt="Key Icon" className="BannerText__icon__image__key"/>
               </div>
               <div>
                 <h3 className="BannerText__content__title">Pembelian Kunci</h3>
