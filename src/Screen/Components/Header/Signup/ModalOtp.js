@@ -29,13 +29,17 @@ class ModalOtp extends Component {
       time: 60,
       show: true,
       formTimer: false,
+      clear: false
     }
   }
 
   handleOtp(e){
-    this.setState({
-      otp: e.target.value
-    })
+    if (this.state.otp.length < 4) {
+      this.setState({
+        otp: e.target.value,
+      });
+    }
+    // console.log(this.state.otp);
   }
 
   sendOtp(e){
@@ -81,13 +85,14 @@ class ModalOtp extends Component {
     }
   }
 
-  resendOtp(){
+  resendOtp() {
     let {count, time} = this.state;
     let {phone, emailUser, buttonToggle, loginAction, setModalRegister} = this.props;
     let notifyResendOtp = this.props.resendOtp;
     notifyResendOtp();
     this.setState({
-      count : count - 1,
+      count: count - 1,
+      otp: '',
     })
     if (count > 0 ){
       axios({
@@ -144,41 +149,45 @@ class ModalOtp extends Component {
     clearInterval(this.timer);
   }
 
+  clearOtp() {
+    console.log('jalan clear otp')
+    this.setState({otp: ''},()=>{
+      console.log(this.state.otp)
+    });
+  }
+
   render() {
     let {createdAt, otp, notifCount, notifOtp, show, disabled} = this.state;
     let {text, submit, buttonToggle, open, otpForm} = this.props;
     let otpFormJSX = null;
+    let hardcore = '123'
     if (otpForm) {
-      otpFormJSX = (<TextInput value={otp} onChange={e => this.handleOtp(e)}></TextInput>);
+      otpFormJSX = (<TextInput value={otp} backspaceOnly autoClear={this.state.clear} onChange={e => this.handleOtp(e)}></TextInput>);
     }
-    // console.log('Current time on render ', Date.now()+0);
-    // console.log('STATE state ', this.state);
     return (
-      <Modal ariaHideApp={false} isOpen={open} toggle={buttonToggle} className='containerModalOtp' >
+      <Modal ariaHideApp={false} isOpen={open} toggle={buttonToggle} className='modal__otp' >
         <form onSubmit={e => this.sendOtp(e)}>
-          <div className="modalOtp">
-          <ModalHeader toggle={buttonToggle} className="ModalTop__otp"></ModalHeader>
-            <div className="modal-body__otp">
-              <div className="labelOtp">
-                <label className="modal-body__otp__label">Verify Nomor Anda Untuk Dapat 5 AladinKey Gratis!</label>
-                <label className="modal-body__otp__label">Anda Akan di Missed Call Oleh Sistem Kami. Mohon Jangan Angkat.</label>
-                <label className="modal-body__otp__label">{text}</label>
-              </div>
+          <div className="modal__otp__container">
+          <ModalHeader toggle={buttonToggle} className="modal__otp__header"></ModalHeader>
+            <div className="modal__otp__content">
+              <label>Verify Nomor Anda Untuk Dapat 5 AladinKey Gratis!</label>
+              <label>Anda Akan di Missed Call Oleh Sistem Kami. Mohon Jangan Angkat.</label>
+              <label>{text}</label>
             <div>
               {otpFormJSX}
             </div>
             <div>
+              <Button className="body__otp__button" color="primary" onClick={() => this.clearOtp()}>Clear</Button>
               {submit}
             </div>
-            <div className='otpLabel'>
+            <div className='modal__otp__content__alert'>
               <label className="alert__otp">{notifCount}</label>
               <label className="alert__otp">{notifOtp}</label>
             </div>
 
             </div>
-            <ModalFooter className="otpModalFooter">
-
-            <Button style ={{visibility:show}} disabled={disabled} onClick={() => this.resendOtp()} className="modal-body__otp__resend">Kirim Ulang OTP</Button>
+            <ModalFooter className="modal__otp__footer">
+            <Button style ={{visibility:show}} disabled={disabled} onClick={() => this.resendOtp()} className="modal__otp__content__button">Kirim Ulang OTP</Button>
             </ModalFooter>
           </div>
         </form>

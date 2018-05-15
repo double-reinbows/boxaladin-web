@@ -13,7 +13,6 @@ class Signup extends Component {
       _formIsValid: false,
       phonenumber: '08',
       notif: '',
-      // modal: false,
       dataUser: {},
       email: '',
       typedEmail: '',
@@ -84,26 +83,10 @@ class Signup extends Component {
 
 	handlePhoneNum(e) {
     var num = e.target.value.split('');
-    // console.log(num);
     if (num.length < 2) {
       this.setState({notif: 'Nomor Handphone harus mulai dengan 08.'});
     } else {//(num[0] === '0') {
-      // num.splice(0,? 1, '0');
-      // console.log(typeof num.join(''));
       this.setState({[e.target.name]: num.join(''), notif: ''});
-    // } else if (num[0] + num[1] + num[2] === '+62') {
-    //   num.splice(0, 3, '0');
-    //   this.setState({[e.target.name]: num.join(''), notif: ''});
-    // } else if (num[0] + num[1] === '62') {
-    //   num.splice(0, 2, '0');
-    //   this.setState({[e.target.name]: num.join(''), notif: ''});
-    // } else if (num[0] === '8') {
-    //   num.splice(0, 0, '0');
-    //   this.setState({[e.target.name]: num.join(''), notif: ''});
-    // } else if (num.length === 0) {
-    //   this.setState({[e.target.name]: num.join(''), notif: ''});
-    // } else {
-		// 	this.setState({notif: 'Format No Hp Salah'});
 		}
 	}
 
@@ -199,13 +182,11 @@ class Signup extends Component {
     setIsLoading(true);
 
     await this.formIsValid();
-
     if (_formIsValid) {
       let payload = {
         email: email,
         phonenumber: phonenumber,
         password: password,
-        // confirm_password: confirm_password,
         typedEmail: typedEmail,
       }
       axios({
@@ -247,7 +228,6 @@ class Signup extends Component {
               }, () => {
                 this.toggleOtp();
               });
-              // this.props.loginAction()
               /**
                * Tinggal tambah, kalau udah sukses signup mau ngapain lagi
                * selain terima token.
@@ -288,7 +268,6 @@ class Signup extends Component {
       this.setState({ email : result.trim().toLowerCase(), typedEmail: email})
 
     }
-    // console.log(this.state.email);
   }
   resendOtp() {
     this.setState({
