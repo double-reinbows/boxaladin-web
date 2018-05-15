@@ -1,8 +1,6 @@
 //@flow
 import React from 'react';
-import axios from 'axios';
 // import { connect } from 'react-redux';
-import { Button, Form, FormGroup, Input, FormFeedback, Label } from 'reactstrap';
 import ResetPasswordForm from './Components/ResetPassword/ResetPasswordForm';
 import PasswordChanged from './Components/ResetPassword/PasswordChanged'
 

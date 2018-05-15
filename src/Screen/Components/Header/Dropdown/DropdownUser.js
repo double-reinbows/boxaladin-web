@@ -34,7 +34,7 @@ class DropdownUser extends React.Component {
         <DropdownToggle className="ButtonHeader">
           <div className="ButtonHeader__devide">
             <div className="ButtonHeader__big">
-              Profil
+              Home
             </div>
 
             <div className="ButtonHeader__small" style= {{ backgroundColor: "transparent", borderLeftStyle: "solid", borderLeftWidth: "3px", borderColor: "#FFCD06"}}>
@@ -52,35 +52,40 @@ class DropdownUser extends React.Component {
             <Link className="DropdownUser__inside__link" to="/pulsa">Pulsa</Link>
           </DropdownItem> */}
 
-          <a href="/me">
+          {/* <a href="/me"> */}
           <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/me">Profile Saya</Link>
           </DropdownItem>
-          </a>
+          {/* </a> */}
 
-          <a href="/dompetaladin">
+          {/* <a href="/dompetaladin"> */}
           <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/dompetaladin">Dompet Aladin</Link>
           </DropdownItem>
-          </a>
+          {/* </a> */}
 
-          <a href="/game">
+          {/* <a href="/game"> */}
           <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/game">Ruang Game</Link>
           </DropdownItem>
-          </a>
+          {/* </a> */}
 
-          <a href="/win">
+          {/* <a href="/win"> */}
           <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/gameresult">Hasil Game</Link>
           </DropdownItem>
-          </a>
+          {/* </a> */}
 
-          <a href="/tabsinvoice">
+          {/* <a href="/tabsinvoice"> */}
             <DropdownItem className="DropdownUser__inside">
               <Link className="DropdownUser__inside__link" to="/tabsinvoice">Invoice</Link>
             </DropdownItem>
-          </a>
+          {/* </a> */}
+
+            <DropdownItem className="DropdownUser__inside">
+              <Link className="DropdownUser__inside__link" to="/about">FAQ</Link>
+            </DropdownItem>
+          
 
           {/* <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/claimreward">Claim Reward</Link>

@@ -2,8 +2,8 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { setModalLogin, loginAction } from '../actions/';
-import { Button, Form, FormGroup, Input } from 'reactstrap';
+import { setModalLogin } from '../actions/';
+import { Form, FormGroup, Input } from 'reactstrap';
 
 type State = {
   email: string,
@@ -43,7 +43,7 @@ class RequestResetPassword<Props, State> extends React.Component {
         }
       })
       .catch(err => {
-        if (err.message == 'Network Error') {
+        if (err.message === 'Network Error') {
           this.setState({
             notif: 'Mohon chek koneksi internet Anda.',
           });
@@ -76,14 +76,14 @@ class RequestResetPassword<Props, State> extends React.Component {
             email tersebut untuk meng-reset password kamu.</h2>
           <Form onSubmit={ (e: SyntheticInputEvent<HTMLInputElement>) => this.sendLink(e) }>
             <FormGroup>
-               <Input className="RequestReset__input"
-                 onChange={(e: SyntheticInputEvent<HTMLInputElement>) => this.setState({email: e.target.value}) }
-                 type="email"
-                 name="email"
-                 id="email"
-                 bsSize="lg"
-                 placeholder={notif}
-               />
+              <Input className="RequestReset__input"
+                onChange={(e: SyntheticInputEvent<HTMLInputElement>) => this.setState({email: e.target.value}) }
+                type="email"
+                name="email"
+                id="email"
+                bsSize="lg"
+                placeholder={notif}
+              />
             </FormGroup>
           </Form>
           {/* <label className="RequestReset__text">{notif}</label> */}

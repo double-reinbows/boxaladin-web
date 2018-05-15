@@ -336,7 +336,6 @@ class Signup extends Component {
             <label>Password</label>
             <input name="password" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Masukkan Password Kamu*" onChange={e => this.signUpInputHandler(e)} />
           </div>
-
           <div className="form-group Signup__Form">
             <label>Ketik Ulang Password</label>
             <input name="confirm" required type="password" className="form-control inputz" aria-describedby="passwordHelp" placeholder="Ketik Ulang Password Kamu*" onChange={e => this.signUpInputHandler(e)} />

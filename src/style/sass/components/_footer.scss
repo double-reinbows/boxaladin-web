@@ -13,3 +13,62 @@
 .footerContainer{
     height: 50px;
 }
+
+.footer{
+  &__info{
+    display: flex;
+    justify-content: space-between;
+    margin: 1.75rem;
+    
+    &__button{
+      width: 40%;
+      display: flex;
+      justify-content: center;
+      &__content{
+        border: none;
+        background-color: #FFCD05;
+        font-size: 20px;
+        width: 50%;
+        border-radius: 9px;
+        color: black;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:hover{
+          color: black;
+          text-decoration: none;
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+
+        }
+        &:active{
+          color: black;
+          text-decoration: none;
+        }
+        &:focus{
+          color: black;
+          text-decoration: none;
+        }
+      }
+    }
+    &__logo{
+      width: 20%;
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+}
+
+@media (min-width: 200px ) and (max-width:813px) {
+  .footer__info{
+    &__button{
+      &__content{
+        width: 100%;
+        font-size: 14px;
+      }
+    }
+    &__logo{
+      width: 40%;
+    }
+  }
+}

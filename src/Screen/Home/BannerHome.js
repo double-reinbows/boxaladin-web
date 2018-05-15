@@ -11,7 +11,6 @@ import DangerIcon from '../../asset/LandingPage/home/danger.png'
 
 
 export default class BannerHome extends Component <{}> {
-
   render() {
     return (
       <div className="BannerText__container">
@@ -49,7 +48,7 @@ export default class BannerHome extends Component <{}> {
               <div>
                 <h3 className="BannerText__content__title">Pembelian Kunci</h3>
                 <div>
-                  <p className="BannerText__content__paragraph">Tapi tenang aja, untuk kalian yang penasaran tinggal beli kunci aladin terus buka deh harganya. <b>Dijamin paling murah 1 dunia!</b> Oh iya, 1x mengintip harga berarti menggunakan 1 kunci aladin yah.</p>
+                  <p className="BannerText__content__paragraph">Kunci aladin dapat anda beli kapanpun. Tinggal klik “beli kunci” di halaman dompet aladin dan tinggal anda isi ulang</p>
                 </div>
               </div>
             </div>
@@ -57,7 +56,7 @@ export default class BannerHome extends Component <{}> {
               <div>
                 <h3 className="BannerText__content__title">Waktu Lelang</h3>
                 <div>
-                  <p className="BannerText__content__paragraph">Jangan kebanyakan mikir, karena siapa cepat dia dapat. Waktu kalian cuman <b>15 detik</b> nih untuk memutuskan apakah kalian akan membeli harga spesial pulsa tersebut atau tidak. Kalau tidak, kalian akan nyesel deh pasti karena kalian akan kembali ke halaman awal lagi.</p>
+                  <p className="BannerText__content__paragraph">Karena ini adalah sistem lelang, pastinya siapa yang cepat ia yang akan dapat. Waktu anda hanya ada <b>15 detik</b> atau saat pulsanya telah diambil oleh member lainnya tergantung yang mana yang duluan. Makanya, jangan terlalu lama mikirnya karena banyak member lain juga minat beli loh.......</p>
                 </div>
               </div>
               <div className="BannerText__icon__right">
@@ -71,7 +70,7 @@ export default class BannerHome extends Component <{}> {
               <div>
                 <h3 className="BannerText__content__title">Masukkan Nomor Hape</h3>
                 <div>
-                  <p className="BannerText__content__paragraph">Yeay! Kalian udah dapat harga spesial pulsa tersebut nih. Tinggal masukkin aja nomor hape kalian dan lakukan pembayarannya.</p>
+                  <p className="BannerText__content__paragraph">yeay!!! Selamat, anda telah menang lelangnya dan dapatkan pulsa dengan harga spesial. Tinggal masukin nomor ponsel tujuan dan lakukan pembayaran utk terima pulsanya</p>
                 </div>
               </div>
             </div>
@@ -79,7 +78,7 @@ export default class BannerHome extends Component <{}> {
               <div>
                 <h3 className="BannerText__content__title">Pembayaran</h3>
                 <div>
-                  <p className="BannerText__content__paragraph">Ingat! <b>12 jam</b> itu batas waktu kalian untuk melakukan pembayarannya. Jika melebihi <b>12 jam</b> itu, pulsa kalian akan hangus dan kami lelang kembali. Pulsa kalian akan langsung masuk ke nomor hape tujuan setelah pembayaran berhasil dilakukan ya. </p>
+                  <p className="BannerText__content__paragraph">Jika anda melewati batas waktu yang telah di berikan, hak menang anda akan hilang dan akan di lelang ulang kepada member lainnya. Pulsa akan segera masuk ke nomor ponsel tujuan setelah kami terima pembayaran anda</p>
                 </div>
               </div>
               <div className="BannerText__icon__right">
@@ -93,7 +92,7 @@ export default class BannerHome extends Component <{}> {
               <div>
                 <h3 className="BannerText__content__title">Ruang Game</h3>
                 <div>
-                  <p className="BannerText__content__paragraph">Tapi tenang aja, buat kalian yang belum berhasil membeli barangnya, kalian bisa menukarkan kunci aladin kalian ke coin dan memainkannya di ruang game kami. Di ruang game ini kalian bisa menangin hadiah-hadiah menarik loh! SELAMAT MENCOBA.</p>
+                  <p className="BannerText__content__paragraph">Sebagai tanda appresiasi, anda akan terima sebuah token tiap kali anda intip harga pulsa. Token tersebut bisa anda adukan nasib untuk dapatkan hadiah berupa pulsa gratis choy........”Atau jika anda kehabisan token, kunci aladin anda bisa ditukar menjadi token juga. Biar lebih seru nih.......</p>
                 </div>
               </div>
             </div>
