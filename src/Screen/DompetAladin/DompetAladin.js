@@ -6,6 +6,8 @@ import axios from 'axios'
 
 import Koin from '../../../src/asset/Dompet Aladin/Koin.png'
 import Key from '../../../src/asset/Dompet Aladin/Key.png'
+import Troly from '../../../src/asset/Dompet Aladin/troly.png'
+import Switch from '../../../src/asset/Dompet Aladin/circle.png'
 // import TopUpKey from './TopupKey'
 
 import { getUser } from '../../actions/userAction'
@@ -85,7 +87,9 @@ class Dompet extends React.Component {
               </Input>
             </FormGroup>
             <FormGroup>
-                <button className="dompet__content__key__button" color="primary" type="submit">Beli</button>
+                <button className="dompet__content__key__button" color="primary" type="submit">
+                <img className="dompet__content__info__icon" src={Troly} alt="troly" />
+                Beli</button>
             </FormGroup>
           </Form>
       </div>
@@ -151,7 +155,9 @@ class Dompet extends React.Component {
             </FormGroup>
             <label style = {{fontSize: "18px"}}>1 Kunci Aladin = 5 Koin</label>
             <FormGroup>
-                <button className="dompet__content__key__button" color="primary" type="submit">Tukar</button>
+                <button className="dompet__content__key__button" color="primary" type="submit">
+                <img className="dompet__content__info__icon" src={Switch} alt="Switch" />
+                Tukar</button>
             </FormGroup>
           </Form>
         </div>

@@ -69,7 +69,7 @@ class Game extends React.Component {
 					<FormGroup>
 						<Input className="dompet__content__key__topup__dropdown" type="select" id="upcoin" name="aladinConvert" onChange={(e) => this.setState({ key: parseInt(e.target.value, 10) })}>
 							<option selected="true" disabled="true" value=''>-- Select --</option>
-							<option value={1}>1</option>                  
+							<option value={1}>1</option>
 							<option value={2}>2</option>
 							<option value={5}>5</option>
 							<option value={this.props.userInfo.aladinKeys}>max</option>
@@ -88,18 +88,18 @@ class Game extends React.Component {
 		)
 	}
 
-	
+
 
 	render() {
 
 		return (
 			<div className="game">
 				<div className="game__container">
-					<label>ALADIN GAME</label>
+					<label className="game__textHeader">ALADIN GAME</label>
 					<label>1 Koin = 1x Main</label>
 					<div>
 						<div className="game__convert">
-								<label>Tukar Kunci Jadi Koin</label>
+								<label className="game__textKeytoCoin">Tukar Kunci Jadi Koin</label>
 								{this.dropdownConvert()}
 							</div>
 						<label className="alert__game">{this.state.notif}</label>
@@ -136,10 +136,13 @@ class Game extends React.Component {
 				</div>
 
 				<div className="game__prize">
-					<label className="game__prize__title">Game Prize</label>
-					<label>
-						Dapatkan hadiah pulsa Rp. 10.000,- dengan mendapatkan salah satu kombinasi bawah ini GRATIS!
-					</label>
+					<div className="game__prize__textDistance">
+						<label className="game__prize__title">Game Prize</label>
+						<label>
+							Dapatkan hadiah pulsa Rp. 10.000,- dengan mendapatkan salah satu kombinasi bawah ini
+						</label>
+						<label>GRATIS!</label>
+					</div>
 
 					<div className="game__prize__row">
 						<div className="game__prize__container">
@@ -471,7 +474,7 @@ class Game extends React.Component {
 							modalLose: false,
 							mustWin: false
 						})
-						
+
 				} else if (data.data.result <=5 && data.data.result >= 0) {
 					var check = data.data.result
 					if ( coinUser <= 0 || coinUser === -1 )  {
