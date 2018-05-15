@@ -33,23 +33,19 @@ class ModalSignup extends React.Component {
             </div>
         </Button>
 
-        {/* <Modal isOpen={this.props.modalRegister} toggle={this.toggle} className="{this.props.className} Modalz" backdrop="static">
-          <ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>
-        </Modal> */}
-
-        <Modal ariaHideApp={false} isOpen={this.props.modalRegister} toggle={this.toggle} className="{this.props.className} modalz">
-          <div className="modalContent">
-          <ModalHeader toggle={this.toggle} className="ModalTop">
-            <div className="modalText" >
-              <h2  style={{textAlign: 'center', width:"100%"}}> Selamat Datang di Boxaladin</h2>
-              <h4 className="h4ModalTitle"> Daftar dengan akun baru </h4>
+        <Modal ariaHideApp={false} isOpen={this.props.modalRegister} toggle={this.toggle} className="modal__login">
+          <div className="modal__login__container">
+          <ModalHeader toggle={this.toggle} className="modal__login__header">
+            <div className="modal__login__header__title">
+              <h2> Selamat Datang di Boxaladin</h2>
+              <h4> Daftar dengan akun baru </h4>
             </div>
           </ModalHeader>
-            <div className="modal-body">
+            <div>
             <Signup />
             </div>
-            <div className="footerModal">
-              <text onClick={() => this.openRegisterModal()} ><button className="buttonModalLogin">Sudah Terdaftar ?</button></text>
+            <div className="modal__login__footer">
+              <text onClick={() => this.openRegisterModal()} ><button className="modal__login__footer__button">Sudah Terdaftar ?</button></text>
             </div>
           </div>
         </Modal>

@@ -34,20 +34,21 @@ class ModalLogin extends React.Component {
 
           </div>
         </Button>
-        <Modal ariaHideApp={false} isOpen={this.props.modalLogin} toggle={this.toggle} className="{this.props.className} modalz">
-          <div className="modalContent">
-          <ModalHeader toggle={this.toggle} className="ModalTop">
-          <div className="modalText" >
-            <h2  style={{textAlign: 'center', width:"100%"}}> Selamat Datang di Boxaladin</h2>
-            <h4 className="h4ModalTitle"> Daftar dengan akun baru </h4>
+        
+        <Modal ariaHideApp={false} isOpen={this.props.modalLogin} toggle={this.toggle} className="modal__login">
+          <div className="modal__login__container">
+          <ModalHeader toggle={this.toggle} className="modal__login__header">
+          <div className="modal__login__header__title" >
+            <h2>Selamat Datang di Boxaladin</h2>
+            <h4> Daftar dengan akun baru </h4>
           </div>
           </ModalHeader>
-            <div className="modal-body">
+            <div>
               <Login />
             </div>
-            <div className="footerModal">
-              <text className="borderFloat" ><a className="lupapass"style={{ textDecoration: "none"}} href="/requestresetpassword"><button className="buttonModalLogin">Lupa Password</button></a></text>
-              <text onClick={() => this.openRegisterModal()} ><button className="buttonModalLogin">Buat Akun Baru</button></text>
+            <div className="modal__login__footer">
+              <text className="modal__login__footer__text" ><a className="lupapass"style={{ textDecoration: "none"}} href="/requestresetpassword"><button className="modal__login__footer__button">Lupa Password</button></a></text>
+              <text onClick={() => this.openRegisterModal()} ><button className="modal__login__footer__button">Buat Akun Baru</button></text>
             </div>
           </div>
         </Modal>

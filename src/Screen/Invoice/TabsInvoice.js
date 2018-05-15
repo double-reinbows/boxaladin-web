@@ -22,11 +22,6 @@ class TabsInvoice extends React.Component {
       });
     }
   }
-
-  showMetodePembayaran = (id) => {
-    this.props.history.push(`/payment/${id}`)
-  }
-
   render() {
 
     return (

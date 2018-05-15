@@ -92,11 +92,11 @@ class Layanan extends Component {
                 <Form onSubmit={ (e) => this.sentContent(e) }>
                   <FormGroup>
                     <Label className="layanan__text" for="exampleUrl">Email</Label>
-                    <Input className="layanan__input" value={this.state.email} onChange={this.handleChangeEmail} type="email" name="email" placeholder="Email" />
+                    <Input className="layanan__input" value={this.state.email} onChange={this.handleChangeEmail} type="email" name="email" />
                   </FormGroup>
                   <FormGroup>
                     <Label className="layanan__text" for="exampleUrl">Subject</Label>
-                    <Input className="layanan__input" value={this.state.subject} onChange={this.handleChangeSubject} type="label" name="label" placeholder="Subject" />
+                    <Input className="layanan__input" value={this.state.subject} onChange={this.handleChangeSubject} type="label" name="label"/>
                   </FormGroup>
                   
                   <FormGroup>

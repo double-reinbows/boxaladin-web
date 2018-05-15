@@ -66,7 +66,7 @@ class HomeContent extends Component {
             </div>
           </div>
           <div className="homecontent__top__youtube">
-            <label>youtube</label>
+          <iframe title="boxaladin intro" width="100%" height="100%" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
           </div>
         </div>
         <div className="homecontent__bottom">

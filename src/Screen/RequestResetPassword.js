@@ -53,7 +53,7 @@ class RequestResetPassword<Props, State> extends React.Component {
         }
       })
       .catch(err => {
-        if (err.message == 'Network Error') {
+        if (err.message === 'Network Error') {
           this.setState({
             feedback: (<FormFeedback>Mohon chek koneksi internet Anda.</FormFeedback>),
           });

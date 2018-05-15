@@ -334,7 +334,6 @@ class Signup extends Component {
               onChange={e => this.signUpInputHandler(e)}
             />
           </div>
-
           <div className="form-group Signup__Form">
             <label>Ketik Ulang Password</label>
             <input name="confirm_password" required
