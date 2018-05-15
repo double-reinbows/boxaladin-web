@@ -23,11 +23,12 @@ class Signup extends Component {
       submit: null,
       password: '',
       confirm_password: '',
+      otpForm: false,
     }
     this.signUpInputHandler = this.signUpInputHandler.bind(this)
     this.toggle = this.toggle.bind(this);
     this.toggleOtp = this.toggleOtp.bind(this);
-
+    this.resendOtp = this.resendOtp.bind(this);
   }
 
   toggle() {
@@ -186,6 +187,7 @@ class Signup extends Component {
         this.setState({
           text: 'Masukkan 4 angka terakhir dari no yang menelpon anda',
           submit: (<Button className="modal-body__otp__button" color="primary" type="submit" >Submit</Button>),
+          otpForm: true,
         });
     }, 20000);
     if (password !== confirm_password) {
@@ -215,7 +217,7 @@ class Signup extends Component {
         data: payload
       })
         .then(({data}) => {
-          console.log(data)
+          // console.log(data)
           if (data.hasOwnProperty('isUsed')) {
             if (data.isUsed.username) {
               this.setState({
@@ -259,7 +261,7 @@ class Signup extends Component {
           return this.props.setIsLoading(false)
         })
         .catch(e => {
-          console.log(e)
+          // console.log(e)
           return this.props.setIsLoading(false)
         })
     } else {
@@ -286,12 +288,27 @@ class Signup extends Component {
       this.setState({ email : result.trim().toLowerCase(), typedEmail: email})
 
     }
-    console.log(this.state.email);
+    // console.log(this.state.email);
+  }
+  resendOtp() {
+    this.setState({
+      text: 'Silakan tunggu sampai miscallnya selesai sebelum masukkan kode.',
+      submit: null,
+      otpForm: false,
+    });
+    setTimeout(() => {
+        this.setState({
+          text: 'Masukkan 4 angka terakhir dari no yang menelpon anda',
+          submit: (<Button className="modal-body__otp__button" color="primary" type="submit" >Submit</Button>),
+          otpForm: true,
+        });
+    }, 20000);
   }
 
   render() {
     let {isLoading} = this.props;
-    let {notif, open, phonenumber, email, submit, text, modalOtp, password, confirm_password, typedEmail} = this.state;
+    let {notif, open, phonenumber, email, submit, text, modalOtp, password,
+      confirm_password, typedEmail, otpForm} = this.state;
     return (
       <div className="Signup">
 
@@ -364,7 +381,9 @@ class Signup extends Component {
             phone={phonenumber}
             emailUser={email}
             text={text}
-            submit={submit}/>
+            submit={submit}
+            otpForm={otpForm}
+            resendOtp={this.resendOtp}/>
       </div>
     )
   }

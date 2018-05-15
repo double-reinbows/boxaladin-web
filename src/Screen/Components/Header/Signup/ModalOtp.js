@@ -16,6 +16,8 @@ class ModalOtp extends Component {
     setModalRegister: PropTypes.func,
     text: PropTypes.string,
     submit: PropTypes.JSX,
+    otpForm: PropTypes.JSX,
+    resendOtp: PropTypes.func,
   }
   constructor(props) {
     super(props);
@@ -59,7 +61,8 @@ class ModalOtp extends Component {
       })
       //--------------------- ask about difference between 'phone verified' and 'phone Terverifikasi'
       .then((dataOtp) => {
-        if (dataOtp.data.message === 'Phone Terverifikasi') {
+        console.log(dataOtp);
+        if (dataOtp.data.message === 'phone verified') {
           alert('Selamat! Anda mendapat 5 Kunci Gratis!')
           buttonToggle();
           loginAction();
@@ -68,10 +71,10 @@ class ModalOtp extends Component {
           this.setState({
             notifOtp: "OTP Salah",
           });
-        } else if ( dataOtp.data.message === 'phone verified'){
-          buttonToggle();
-          loginAction();
-          setModalRegister(false);
+        // } else if ( dataOtp.data.message === 'phone verified'){
+        //   buttonToggle();
+        //   loginAction();
+        //   setModalRegister(false);
         }
       // }).catch(err => console.log(err));
       }).catch(err => console.log('error'));
@@ -81,6 +84,8 @@ class ModalOtp extends Component {
   resendOtp(){
     let {count, time} = this.state;
     let {phone, emailUser, buttonToggle, loginAction, setModalRegister} = this.props;
+    let notifyResendOtp = this.props.resendOtp;
+    notifyResendOtp();
     this.setState({
       count : count - 1,
     })
@@ -141,7 +146,11 @@ class ModalOtp extends Component {
 
   render() {
     let {createdAt, otp, notifCount, notifOtp, show, disabled} = this.state;
-    let {text, submit, buttonToggle, open} = this.props;
+    let {text, submit, buttonToggle, open, otpForm} = this.props;
+    let otpFormJSX = null;
+    if (otpForm) {
+      otpFormJSX = (<TextInput value={otp} onChange={e => this.handleOtp(e)}></TextInput>);
+    }
     // console.log('Current time on render ', Date.now()+0);
     // console.log('STATE state ', this.state);
     return (
@@ -156,7 +165,7 @@ class ModalOtp extends Component {
                 <label className="modal-body__otp__label">{text}</label>
               </div>
             <div>
-              <TextInput value={otp} onChange={e => this.handleOtp(e)}></TextInput>
+              {otpFormJSX}
             </div>
             <div>
               {submit}
