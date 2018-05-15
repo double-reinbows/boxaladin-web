@@ -41,7 +41,7 @@ class User extends React.Component {
 		return (
 			<div className="user">
 				<div className="user__container">
-					<label className="user__title">
+					<label className="user__title__header">
 						Profil Saya
 					</label>
 					<div className="user__info__container">
@@ -329,7 +329,7 @@ class User extends React.Component {
 			notif: '',
     })
 	}
-	
+
 	addPhone = () => {
 		this.setState({
 			addPhoneModal: !this.state.addPhoneModal
@@ -352,7 +352,7 @@ class User extends React.Component {
 											</div>}
 									</div>
 								)
-							}) : 
+							}) :
 							<button className="user__show__button" onClick={() => this.toggle()}> Verifikasi Nomor </button>}
 						</div>
 						</div>
@@ -519,12 +519,12 @@ class User extends React.Component {
 				<div className="user__show">
 					<img src={IconEmail} className="user__show__logo" alt="Logo"/>
 					<div className="user__show__email">
-					{this.props.userInfo !== null ? this.props.userInfo.email : null} 
-						<div>
+					{this.props.userInfo !== null ? this.props.userInfo.email : null}
+						<div style= {{ width:"16%" }}>
 							{this.props.userInfo !== null ? (this.props.userInfo.emailVerified ? <img src={IconCheck} className="user__show__logo__verified" alt="Logo"/>
 								:
-								(<button className="user__show__button" onClick={() => this.resendEmailVerification()}> Verifikasi </button>)) : null
-							}	
+								(<button  className="user__show__button" onClick={() => this.resendEmailVerification()}> Verifikasi </button>)) : null
+							}
 						</div>
 					</div>
 
