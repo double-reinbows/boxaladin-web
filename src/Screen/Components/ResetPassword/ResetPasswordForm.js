@@ -1,7 +1,6 @@
 //@flow
 import React from 'react'
 import axios from 'axios'
-import { connect } from 'react-redux'
 import { Button, Form, FormGroup, Input, FormFeedback, Label } from 'reactstrap'
 import {withRouter} from 'react-router-dom';
 
@@ -35,7 +34,7 @@ class ResetPasswordForm extends React.Component<Props, State> {
 
   resetPassword(e) {
     e.preventDefault();
-    const {email, email_token, passwordChanged, history} = this.props;
+    const {email, email_token, passwordChanged} = this.props;
     const {password, confirmPassword} = this.state;
     // const email_token:string = this.props.location.search.split('&')[1].split('=')[1];
     console.log(email, email_token);
@@ -98,7 +97,7 @@ class ResetPasswordForm extends React.Component<Props, State> {
         }
       })
       .catch(err => {
-        if (err.message == 'Network Error') {
+        if (err.message === 'Network Error') {
           this.setState({
             notif: 'Mohon chek koneksi internet Anda.',
           });
@@ -143,7 +142,7 @@ class ResetPasswordForm extends React.Component<Props, State> {
               </FormGroup>
               <FormGroup>
                 <Button className="resetPassword__button"
-                 size="lg" block>Reset
+                  size="lg" block>Reset
                 </Button>
               </FormGroup>
             </Form>

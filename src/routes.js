@@ -10,7 +10,7 @@ import Header from './Screen/Components/Header/Header'
 import FooterBot from './Screen/Components/Footer/FooterBot'
 
 //page non login
-import AboutUs from './Screen/AboutUs'
+// import AboutUs from './Screen/AboutUs'
 import HowItWorks from './Screen/HowItWorks'
 import Layanan from './Screen/Layanan'
 
@@ -37,6 +37,7 @@ import GameResult from './Screen/GameResult'
 import RequestResetPassword from './Screen/RequestResetPassword'
 import ResetPassword from './Screen/ResetPassword'
 import ClaimFreePulsa from './Screen/ClaimFreePulsa'
+import About from './Screen/About/About'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -65,7 +66,7 @@ class RouteList extends React.Component {
             <Header />
               <div className = "bodyContainer">
                 <Route exact path="/" component={Home} />
-                <Route exact path="/aboutus" component={AboutUs} />
+                {/* <Route exact path="/aboutus" component={AboutUs} /> */}
                 <Route exact path="/howitworks" component={HowItWorks} />
                 <Route exact path="/home" component={Home} />
                 <Route exact path='/layanan' component={Layanan} />
@@ -83,7 +84,7 @@ class RouteList extends React.Component {
                 <PrivateRoute exact path="/gameresult" component={ GameResult } />
                 <PrivateRoute exact path="/claimfreepulsa" component={ ClaimFreePulsa } />
                 {/* <PrivateRoute exact path="/claimreward" component={ ClaimReward } /> */}
-
+                <Route exact path="/About" component={About} />
                 <Route exact path="/emailVerification" component={EmailVerificationDone} />
                 {/* <Route exact path="/product" component={Product} /> */}
                 <Route exact path="/requestresetpassword" component={RequestResetPassword } />
@@ -91,7 +92,6 @@ class RouteList extends React.Component {
               </div>
               <div className="footer__container">
                 <FooterBot/>
-
               </div>
           </div>
         </Router>

@@ -1,74 +1,95 @@
-.ModalTop{
-  border-bottom: none;
-  border-radius: 0;
-  background-color: var(--color-white);
-  border-bottom-color: black;
-  border-bottom-style: solid;
-  border-bottom-width: 3px;
-  span{
-    color: black;
-  }
-  &__otp{
-    background-color: white;
-    border-bottom: none;
-    span{
-      color: black;
+.modal{
+  overflow: scroll;
+  &__login{
+    padding-top: 3%;
+    margin: 1.75rem auto;
+    &__container{
+      margin: auto;
+      padding: 0;
+      width: 60%;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    &__header{
+      background-color: var(--color-white);
+      border-bottom-color: black;
+      border-bottom-width: 3px;
+      text-align: center;
+      span{
+        color: black;
+      }
+      &__title{
+        width: 100%;
+      }
+    }
+    &__footer{
+      font-size: 15px;
+      display: flex;
+      justify-content: space-around;
+      background-color: lightgrey;
+      border-top: 1px;
+      border-top-style: solid;
+      height: 50px;
+      align-items: center;
+      &__text{
+        border: 2px;
+        border-right-style: solid;
+        border-width: 2px;
+        width: 38%;
+      }
+      &__button{
+        background-color: Transparent;
+        background-repeat:no-repeat;
+        border: none;
+        cursor:pointer;
+        overflow: hidden;
+        outline:none;
+      }
     }
   }
 }
 
-.modalz{
-  position: fixed; /* Stay in place */
-  z-index: 10; /* Sit on top */
-  left: 0;
-  top: 0;
-  padding-top: 100px;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+.modal{
+  &__otp{
+    padding-top: 3%;
+    margin: 1.75rem auto;
+    height: 100%;
+    overflow: disabled;
+    background-color: rgba(0, 0, 0, 0.4);
+    &__header{
+      display: flex;
+    }
+    &__container{
+      margin: auto;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      border: 5px solid var(--white);
+      width: 50%;
+      margin-top: 5%;
+      background-color: white;
+    }
+    &__content{
+      text-align: center;
+      font-size: 18px;
+      &__button{
+        cursor: pointer;
+        border: 1px solid lightgrey;
+        width: 30%;
+        border-radius: 4px;
+      }
+    }
+    &__alert{
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
 
-.containerModalOtp{
-  position: fixed; /* Stay in place */
-  z-index: 10; /* Sit on top */
-  left: 0;
-  top: 0;
-  padding-top: 100px;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: disabled; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-//---------------------
-
-/* Modal Content */
-.modalOtp{
-  position: relative;
-  margin: auto;
-  padding: 0;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s;
-  overflow: auto; /* Enable scroll if needed */
-  border: 5px solid var(--white);
-  height: 60%;
-  width: 50%;
-  margin-top: 5%;
-  background-color: white;
-}
-
-@media (min-width: 1250px) {
-  .modalOtp {
-    width: 30%;
+    }
+    &__footer{
+      font-size: 12px;
+      border: none;
+    }
   }
 }
 
 .modalPrimary{
-
   &__phone{
     margin: 1.75rem auto;
     max-width: 60%;
@@ -131,41 +152,11 @@
 }
 
 .modalContent {
-  position: relative;
   margin: auto;
   padding: 0;
   width: 60%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s;
-  overflow: auto; /* Enable scroll if needed */
-  border: 1px solid var(--none);
-  border-radius: 5px;
-}
 
-/* Add Animation */
-@-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-
-/* The Close Button */
-.close {
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  text-decoration: none;
-  cursor: pointer;
 }
 
 .modal-body {
@@ -202,24 +193,17 @@
   }
 }
 
-.otpLabel{
-  font-size: 12px;
-  display: flex;
-  flex-direction: column;
-}
-//----------------------
-
 @media (min-width: 767px ) {
   .modalContent{
     font-size: 14px;
   }
 }
 @media (min-width: 200px ) and (max-width:766px ) {
-  .modalContent{
+  .modal__login__container{
     font-size: 14px;
     width: 90%
   }
-  .modalOtp{
+  .modal__otp__container{
     font-size: 14px;
     width: 85%
   }
@@ -324,17 +308,6 @@
   }
 }
 
-
-
-.modalText{
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  flex-direction: column;
-  text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
 
 .modal-title{
   width: 100%
@@ -623,6 +596,7 @@
 transition: opacity 200ms ease-in-out;
 background: rgba(0, 0, 0, 0.15);
 &--after-open {
+  overflow: scroll;
   opacity: 1;
 }
 &--before-close {

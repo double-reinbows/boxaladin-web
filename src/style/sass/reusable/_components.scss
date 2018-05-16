@@ -8,15 +8,14 @@
 
 .DropdownUser{
   &__item{
-    background-color: #FFCD05 ;
+    background-color: lightgrey;
     border-radius: 10px ;
     min-width: 205px;
     font-family: Helvetica;
 
   }
   &__inside{
-    color: #3E3E3E !important;
-    background-color: #FFCD05 ;
+    background-color: lightgrey;
     height: 50px ;
     font-family: Helvetica;
   	font-size: 22px;
@@ -24,15 +23,22 @@
     &:hover{
       background-color: #FFCD05 ;
     }
+    &:active{
+      background-color: #FFCD05 ;
+    }
+    &:focus{
+      background-color: #FFCD05 ;
+
+    }
     &__link{
       font-family: Helvetica;
       font-size: 22px;
       font-weight: 600;
-      color: #3E3E3E;
+      color: black;
       &:hover{
-        color: #3E3E3E ;
+        color: black ;
         // text-decoration: none;
-      }
+      }      
     }
   }
 }

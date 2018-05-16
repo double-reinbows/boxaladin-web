@@ -15,7 +15,6 @@ type Props = {
 class RequestResetPassword<Props, State> extends React.Component {
   state: State = {
     email: '',
-    // notif: '',
     valid: false,
     invalid: false,
     feedback: null,
@@ -54,7 +53,7 @@ class RequestResetPassword<Props, State> extends React.Component {
         }
       })
       .catch(err => {
-        if (err.message == 'Network Error') {
+        if (err.message === 'Network Error') {
           this.setState({
             feedback: (<FormFeedback>Mohon chek koneksi internet Anda.</FormFeedback>),
           });
@@ -107,7 +106,6 @@ class RequestResetPassword<Props, State> extends React.Component {
               </FormGroup>
             </Form>
           </div>
-          {/* <label className="RequestReset__text">{notif}</label> */}
           <a href="#">
             <h2 className="RequestReset__text" onClick={()=>this.openLoginModal()}>atau kembali ke login</h2>
           </a>

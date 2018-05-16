@@ -81,29 +81,6 @@
   font-size: 13px;
 }
 
-.footerModal{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  background-color: lightgrey;
-  border-top: 1px;
-  border-top-style: solid;
-  height: 50px;
-  align-items: center
-}
 
-.borderFloat{
-  border: 2px;
-  border-right-style: solid;
-  border-width: 2px;
-  width: 38%;
-}
 
-.buttonModalLogin{
-  background-color: Transparent;
-  background-repeat:no-repeat;
-  border: none;
-  cursor:pointer;
-  overflow: hidden;
-  outline:none;
-}
+

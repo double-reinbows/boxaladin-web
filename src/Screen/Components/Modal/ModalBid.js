@@ -6,7 +6,7 @@ import Modal from 'react-modal';
 import { connect } from 'react-redux';
 
 import ModalConfirm from '../../Home/Modal/ModalConfirm';
-import RegisterIcon from '../../../asset/user/IconCheck.svg';
+import LockIcon from '../../../asset/LandingPage/pulsa/lock.png';
 import { selectProductID } from '../../../actions/productAction';
 
 class ModalCheck extends Component {
@@ -114,7 +114,7 @@ class ModalCheck extends Component {
             <div >
               <button onClick={() => this.handleNotLogin()} disabled={this.props.selectedProductID !== '' ? false : true} type="button" className="modal__pulsa__content__3__button__price">
                 Intip Harga
-                <img src={RegisterIcon} alt="RegisterIcon" className="modal__pulsa__content__3__button__price__image"/>
+                <img src={LockIcon} alt="LockIcon" className="modal__pulsa__content__3__button__price__image"/>
               </button>
             </div>
           </div>
