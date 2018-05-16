@@ -223,7 +223,6 @@ class Signup extends Component {
               localStorage.setItem('token', data.token)
               this.setState({
                 dataUser: payload,
-                // modal: true,
                 email: payload.email
               }, () => {
                 this.toggleOtp();

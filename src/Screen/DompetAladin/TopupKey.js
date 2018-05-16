@@ -8,6 +8,7 @@ import {
 import axios from 'axios'
 
 import { getKeys } from '../../actions/keyAction'
+import FormatRupiah from '../../utils/formatRupiah'
 
 class TopupKey extends React.Component {
 	constructor(props) {
@@ -40,7 +41,7 @@ class TopupKey extends React.Component {
 								<option selected="true" disabled="true" value=''>-- Select --</option>
 								{this.props.keys.map((data, i) => {
 									return (
-										<option key={i} value={data.id}>{data.keyAmount} Kunci - Rp. {data.price.toLocaleString(['ban', 'id'])}</option>
+										<option key={i} value={data.id}>{data.keyAmount} Kunci - {FormatRupiah(data.price)}</option>
 									)
 								})}
 							</Input>

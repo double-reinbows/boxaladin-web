@@ -1,12 +1,26 @@
 .game{
 	background-color: white;
 	font-size: 20px;
+	background-image: url(https://s3-ap-southeast-1.amazonaws.com/iconpulsa/opacityLogo.svg);
+	background-size: 54% 75%;
+	background-repeat: no-repeat;
+	background-position: center;
+
+	&__textHeader{
+		font-size: 34px;
+	}
+
+	&__textKeytoCoin{
+		font-size: 23px;
+	}
+
 	&__container{
 		margin: auto;
 		width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
+		padding-top: 4%;
 	}
 	&__convert{
 		text-align: center;
@@ -32,14 +46,13 @@
 	}
 
 	&__slotItems{
-		width: 70%;
 		border-radius: 10px;
-		border: 1px solid rgb(186, 171, 171);
+		border: 11px solid rgb(186, 171, 171);
 		margin-bottom: 10px;
 		background-color: rgb(186, 171, 171);
 			&__boxContainer {
 				background-color: black;
-				width: 100%;
+				width: 266px;
 				border-radius: 10px;
 				&__box{
 					display: flex;
@@ -51,6 +64,11 @@
 		margin-top: 5%;
 		text-align: center;
 		font-family: Helvetica;
+			&__textDistance{
+				display: flex;
+				flex-direction: column;
+			}
+
 			&__row{
 				display: flex;
 				flex-wrap: wrap;
@@ -64,7 +82,7 @@
 				margin: 3%;
 			}
 			&__title{
-				font-size: 25px;	
+				font-size: 30px;
 			}
 
 			&__img{
@@ -81,31 +99,32 @@
 			font-size: 15px;
 			background-color: white;
 			border: 2px solid #FFCD05;
-			border-radius: 5px;		
+			border-radius: 5px;
 			margin-bottom: 5%;
+			color: black;
 		}
 	}
 }
 
-@media (min-width: 275px )  {
-  .game__slotItems{
-		padding: 15px;
-		width: 310px;
-  }
-}
+// @media (min-width: 349px )  {
+//   .game__slotItems{
+// 		padding: 15px;
+// 		width: 310px;
+//   }
+// }
 
-@media (min-width: 350px ) and (max-width:500px ) {
-  .game__slotItems{
-		padding: 15px;
-		width: 90%;
-  }
-}
+// @media (min-width: 350px ) and (max-width:500px ) {
+//   .game__slotItems{
+// 		padding: 15px;
+// 		width: 90%;
+//   }
+// }
 
 
 
 .box1 {
 	width: 80%;
-	height: 100px;	
+	height: 100px;
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -118,7 +137,7 @@
 
 .box2 {
 	width: 80%;
-	height: 100px;	
+	height: 100px;
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -130,7 +149,7 @@
 
 .box3 {
 	width: 80%;
-	height: 100px;	
+	height: 100px;
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -142,7 +161,7 @@
 
 .box4 {
 	width: 80%;
-	height: 100px;	
+	height: 100px;
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -154,7 +173,7 @@
 
 .box5 {
 	width: 80%;
-	height: 100px;	
+	height: 100px;
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -166,7 +185,7 @@
 
 .box6 {
 	width: 80%;
-	height: 100px;	
+	height: 100px;
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -179,7 +198,7 @@
 .boxaladin {
 	background-image: url('../../asset/Logo/LogoSmall.svg');
 	width: 80%;
-	height: 100px;	
+	height: 100px;
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -207,7 +226,7 @@
 		flex-direction: column;
 		justify-content: center;
 		background-color: black;
-		
+
 		&__item{
 			display: flex;
 			justify-content: center;
@@ -218,7 +237,7 @@
 			font-family: Helvetica;
 			// color: var(--color-yellow-1);
 			font-size: 20px;
-			font-weight: 500;	
+			font-weight: 500;
 			line-height: 16px;
 		}
 	}

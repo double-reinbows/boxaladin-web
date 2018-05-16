@@ -14,11 +14,11 @@ class GameResult extends React.Component {
   }
 
   render() {
-    
+
     return (
       <div className="invoice">
         <div className="invoice__container">
-          <h1 className="invoice__text">Game Result</h1>
+          <h1 className="invoice__text">Hasil Game</h1>
           {this.showWin()}
         </div>
       </div>

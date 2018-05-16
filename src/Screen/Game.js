@@ -6,11 +6,11 @@ import axios from 'axios'
 import Coin from '../../src/asset/Game/win/token.png'
 import Star from '../../src/asset/Game/win/star.svg'
 
-import win1 from '../../src/asset/Game/win/100rb.png'
-import win2 from '../../src/asset/Game/win/50rb1.png'
-import win3 from '../../src/asset/Game/win/50rb2.png'
-import win4 from '../../src/asset/Game/win/25rb1.png'
-import win5 from '../../src/asset/Game/win/25rb2.png'
+import win1 from '../../src/asset/Game/win/win1.png'
+import win2 from '../../src/asset/Game/win/win2.png'
+import win3 from '../../src/asset/Game/win/win3.png'
+import win4 from '../../src/asset/Game/win/win4.png'
+import win5 from '../../src/asset/Game/win/win5.png'
 
 import WinSfx from '../../src/asset/sound/Win-sfx.mp3'
 import LoseSfx from '../../src/asset/sound/Lose-sfx.mp3'
@@ -27,17 +27,17 @@ class Game extends React.Component {
 			si2: null,
 			si3: null,
 
-			slot1_atas: 5,
-			slot2_atas: 5,
-			slot3_atas: 5,
+			slot1_atas: 3,
+			slot2_atas: 1,
+			slot3_atas: 6,
 
-			slot1: 6,
+			slot1: 2,
 			slot2: 6,
-			slot3: 6,
+			slot3: 0,
 
-			slot1_bawah: 0,
-			slot2_bawah: 0,
-			slot3_bawah: 0,
+			slot1_bawah: 6,
+			slot2_bawah: 5,
+			slot3_bawah: 4,
 
 			speed1: 30,
 			speed2: 20,
@@ -69,7 +69,7 @@ class Game extends React.Component {
 					<FormGroup>
 						<Input className="dompet__content__key__topup__dropdown" type="select" id="upcoin" name="aladinConvert" onChange={(e) => this.setState({ key: parseInt(e.target.value, 10) })}>
 							<option selected="true" disabled="true" value=''>-- Select --</option>
-							<option value={1}>1</option>                  
+							<option value={1}>1</option>
 							<option value={2}>2</option>
 							<option value={5}>5</option>
 							<option value={this.props.userInfo.aladinKeys}>max</option>
@@ -88,18 +88,18 @@ class Game extends React.Component {
 		)
 	}
 
-	
+
 
 	render() {
 
 		return (
 			<div className="game">
 				<div className="game__container">
-					<label>ALADIN GAME</label>
+					<label className="game__textHeader">ALADIN GAME</label>
 					<label>1 Koin = 1x Main</label>
 					<div>
 						<div className="game__convert">
-								<label>Tukar Kunci Jadi Koin</label>
+								<label className="game__textKeytoCoin">Tukar Kunci Jadi Koin</label>
 								{this.dropdownConvert()}
 							</div>
 						<label className="alert__game">{this.state.notif}</label>
@@ -136,10 +136,13 @@ class Game extends React.Component {
 				</div>
 
 				<div className="game__prize">
-					<label className="game__prize__title">Game Prize</label>
-					<label>
-						Dapatkan hadiah pulsa Rp. 10.000,- dengan mendapatkan salah satu kombinasi bawah ini GRATIS!
-					</label>
+					<div className="game__prize__textDistance">
+						<label className="game__prize__title">Game Prize</label>
+						<label>
+							Dapatkan hadiah pulsa Rp. 10.000,- dengan mendapatkan salah satu kombinasi bawah ini
+						</label>
+						<label>GRATIS!</label>
+					</div>
 
 					<div className="game__prize__row">
 						<div className="game__prize__container">
@@ -471,7 +474,7 @@ class Game extends React.Component {
 							modalLose: false,
 							mustWin: false
 						})
-						
+
 				} else if (data.data.result <=5 && data.data.result >= 0) {
 					var check = data.data.result
 					if ( coinUser <= 0 || coinUser === -1 )  {

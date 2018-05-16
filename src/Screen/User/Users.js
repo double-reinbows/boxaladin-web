@@ -15,6 +15,7 @@ import IconPhone from '../../asset/user/phone.png'
 import IconCheck from '../../asset/user/checked.png'
 import ModalPrimaryPhone from './ModalPrimary'
 import ModalDelete from './ModalDelete'
+import ModalText from '../Components/Modal/ModalText'
 class User extends React.Component {
 	constructor() {
 		super()
@@ -31,7 +32,8 @@ class User extends React.Component {
 			changePrimaryPhoneOTPModal: false,
 			notif: '',
 			oldUserModal: false,
-			openModalDelete: false
+			openModalDelete: false,
+			modalCheck: false
 		}
 		this.toggle = this.toggle.bind(this);
 
@@ -41,7 +43,7 @@ class User extends React.Component {
 		return (
 			<div className="user">
 				<div className="user__container">
-					<label className="user__title">
+					<label className="user__title__header">
 						Profil Saya
 					</label>
 					<div className="user__info__container">
@@ -329,7 +331,7 @@ class User extends React.Component {
 			notif: '',
     })
 	}
-	
+
 	addPhone = () => {
 		this.setState({
 			addPhoneModal: !this.state.addPhoneModal
@@ -352,7 +354,7 @@ class User extends React.Component {
 											</div>}
 									</div>
 								)
-							}) : 
+							}) :
 							<button className="user__show__button" onClick={() => this.toggle()}> Verifikasi Nomor </button>}
 						</div>
 						</div>
@@ -406,6 +408,7 @@ class User extends React.Component {
 					</button>}
           </div>
         </div>
+				<ModalText isOpen={this.state.modalCheck} toggle={this.state.toggle} props="Cek Hape Anda"/>
       </div>;
 	}
 
@@ -512,6 +515,13 @@ class User extends React.Component {
 		})
 	}
 
+	toggleCheck = () => {
+		this.setState({
+			modalCheck: !this.state.modalCheck,
+			notif: ''
+		})
+	}
+
 	showDataUser() {
 		return (
 			<div className="user__show__container">
@@ -519,13 +529,14 @@ class User extends React.Component {
 				<div className="user__show">
 					<img src={IconEmail} className="user__show__logo" alt="Logo"/>
 					<div className="user__show__email">
-					{this.props.userInfo !== null ? this.props.userInfo.email : null} 
-						<div>
+					{this.props.userInfo !== null ? this.props.userInfo.email : null}
+						<div style= {{ width:"16%" }}>
 							{this.props.userInfo !== null ? (this.props.userInfo.emailVerified ? <img src={IconCheck} className="user__show__logo__verified" alt="Logo"/>
 								:
-								(<button className="user__show__button" onClick={() => this.resendEmailVerification()}> Verifikasi </button>)) : null
-							}	
+								(<button  className="user__show__button" onClick={() => this.resendEmailVerification()}> Verifikasi </button>)) : null
+							}
 						</div>
+
 					</div>
 
 
@@ -539,7 +550,8 @@ class User extends React.Component {
 					{this.props.userInfo !== null ? this.props.userInfo.coin : null}
 				</div>
 				{ this.showPhoneNumbers() }
-
+				
+				<ModalText isOpen={this.state.modalCheck} toggle={this.toggleCheck} text="Cek Email Anda"/>
 			</div>
 		)
 	}
@@ -558,7 +570,7 @@ class User extends React.Component {
 		.then(response => {
 			if (response.status === 200) {
 				return this.setState({
-					notif: response.data.message,
+					modalCheck: !this.state.modalCheck
 				})
 			}
 			return null

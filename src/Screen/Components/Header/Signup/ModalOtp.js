@@ -34,13 +34,12 @@ class ModalOtp extends Component {
   }
 
   handleOtp(e){
-    console.log(e.target.value);
+    // console.log(e.target.value);
     if (this.state.otp.length < 4 || e.target.value.length < 4) {
       this.setState({
         otp: e.target.value,
       });
     }
-    // console.log(this.state.otp);
   }
 
   sendOtp(e){
@@ -81,7 +80,7 @@ class ModalOtp extends Component {
         //   loginAction();
         //   setModalRegister(false);
         }
-      // }).catch(err => console.log(err));
+      //.catch(err => console.log(err));
       }).catch(err => console.log('error'));
     }
   }
@@ -151,10 +150,7 @@ class ModalOtp extends Component {
   }
 
   clearOtp() {
-    // console.log('jalan clear otp')
-    this.setState({otp: ''},()=>{
-      console.log(this.state.otp)
-    });
+    this.setState({otp: ''});
   }
 
   render() {

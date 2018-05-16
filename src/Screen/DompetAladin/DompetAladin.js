@@ -6,11 +6,15 @@ import axios from 'axios'
 
 import Koin from '../../../src/asset/Dompet Aladin/Koin.png'
 import Key from '../../../src/asset/Dompet Aladin/Key.png'
+import Troly from '../../../src/asset/Dompet Aladin/troly.png'
+import Switch from '../../../src/asset/Dompet Aladin/circle.png'
 // import TopUpKey from './TopupKey'
 
 import { getUser } from '../../actions/userAction'
 import { getUserWins } from '../../actions/winAction'
 import { getKeys } from '../../actions/keyAction'
+
+import FormatRupiah from '../../utils/formatRupiah'
 
 class Dompet extends React.Component {
   constructor(props) {
@@ -77,13 +81,15 @@ class Dompet extends React.Component {
                 <option selected="true" disabled="true" value=''>-- Select --</option>
                 {this.props.keys.map((data, i) => {
                   return (
-                    <option key={i} value={data.id}>{data.keyAmount} Kunci - Rp. {data.price.toLocaleString(['ban', 'id'])}</option>
+                    <option key={i} value={data.id}>{data.keyAmount} Kunci - {FormatRupiah(data.price)}</option>
                   )
                 })}
               </Input>
             </FormGroup>
             <FormGroup>
-                <button className="dompet__content__key__button" color="primary" type="submit">Beli</button>
+                <button className="dompet__content__key__button" color="primary" type="submit">
+                <img className="dompet__content__info__icon" src={Troly} alt="troly" />
+                Beli</button>
             </FormGroup>
           </Form>
       </div>
@@ -147,8 +153,11 @@ class Dompet extends React.Component {
                 <option value={this.props.userInfo.aladinKeys}>max</option>
               </Input>
             </FormGroup>
+            <label style = {{fontSize: "18px"}}>1 Kunci Aladin = 5 Koin</label>
             <FormGroup>
-                <button className="dompet__content__key__button" color="primary" type="submit">Tukar</button>
+                <button className="dompet__content__key__button" color="primary" type="submit">
+                <img className="dompet__content__info__icon" src={Switch} alt="Switch" />
+                Tukar</button>
             </FormGroup>
           </Form>
         </div>
