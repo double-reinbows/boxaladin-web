@@ -66,7 +66,7 @@ class ModalOtp extends Component {
       })
       //--------------------- ask about difference between 'phone verified' and 'phone Terverifikasi'
       .then((dataOtp) => {
-        console.log(dataOtp);
+        // console.log(dataOtp);
         if (dataOtp.data.message === 'phone verified') {
           alert('Selamat! Anda mendapat 5 Kunci Gratis!')
           buttonToggle();
