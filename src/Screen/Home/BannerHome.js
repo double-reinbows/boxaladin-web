@@ -48,7 +48,7 @@ export default class BannerHome extends Component <{}> {
               <div>
                 <h3 className="BannerText__content__title">Pembelian Kunci</h3>
                 <div>
-                  <p className="BannerText__content__paragraph">Kunci aladin dapat anda beli kapanpun. Tinggal klik “beli kunci” di halaman dompet aladin dan tinggal anda isi ulang</p>
+                  <p className="BannerText__content__paragraph">Kunci aladin dapat anda beli kapanpun. Tinggal beli di halaman Dompet Aladin dan tinggal anda isi ulang</p>
                 </div>
               </div>
             </div>
@@ -92,7 +92,7 @@ export default class BannerHome extends Component <{}> {
               <div>
                 <h3 className="BannerText__content__title">Ruang Game</h3>
                 <div>
-                  <p className="BannerText__content__paragraph">Sebagai tanda appresiasi, anda akan terima sebuah token tiap kali anda intip harga pulsa. Token tersebut bisa anda adukan nasib untuk dapatkan hadiah berupa pulsa gratis choy........”Atau jika anda kehabisan token, kunci aladin anda bisa ditukar menjadi token juga. Biar lebih seru nih.......</p>
+                  <p className="BannerText__content__paragraph">Sebagai tanda appresiasi, anda akan menerima sebuah token tiap kali anda intip harga pulsa. Token tersebut bisa anda adukan nasib untuk dapatkan hadiah berupa pulsa gratis choy........atau jika anda kehabisan token, kunci aladin anda bisa ditukar menjadi token juga. Biar lebih seru nih.......</p>
                 </div>
               </div>
             </div>

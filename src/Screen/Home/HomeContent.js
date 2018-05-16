@@ -59,7 +59,7 @@ class HomeContent extends Component {
         <div className="homecontent__top">
           <div className="homecontent__top__text">
             <label className="homecontent__top__text__top"><b>Semakin Dilihat, Semakin Murah</b></label>
-            <label className="homecontent__top__text__bot">sistem lelang terbalik pertama yang menyajikan harga pulsa termurah sedunia!</label>
+            <label className="homecontent__top__text__bot">sistem lelang terbalik pertama yang menyajikan harga pulsa termurah Setanah air!</label>
             <label>Ingat  <b>PULSA ?</b></label>
             <div>
             <label>Ingat  <b>Boxaladin</b></label>

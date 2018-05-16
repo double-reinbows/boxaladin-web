@@ -35,7 +35,7 @@ class Advantage extends Component {
                 Tinggal beli kunci, liat
                 harga pulsa, beli, dan
                 pulsa akan masuk ke
-                hape km!
+                hape kamu!
               </p>
             </div>
             <div className="advantage__content__mid__3">
