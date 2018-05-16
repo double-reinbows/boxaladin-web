@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux'
 import {setModalRegister, setIsLoading, loginAction } from '../../../../actions/'
 import Modal from 'react-modal'
-import {Button, ModalHeader, ModalFooter} from 'reactstrap'
+import {Button, ModalHeader, ModalFooter, InputGroup, InputGroupText, InputGroupAddon, Input} from 'reactstrap'
 import axios from 'axios'
 import TextInput from 'react-otp'
 
@@ -173,22 +173,69 @@ class ModalOtp extends Component {
               <label>Verify Nomor Anda Untuk Dapat 5 AladinKey Gratis!</label>
               <label>Anda Akan di Missed Call Oleh Sistem Kami. Mohon Jangan Angkat.</label>
               <label>{text}</label>
-            <div>
-              {otpFormJSX}
-            </div>
-            <div>
-              <Button className="body__otp__button" color="primary" onClick={() => this.clearOtp()}>Clear</Button>
-              {submit}
-            </div>
-            <div className='modal__otp__content__alert'>
-              <label className="alert__otp">{notifCount}</label>
-              <label className="alert__otp">{notifOtp}</label>
-            </div>
-
+              <div>
+              <TextInput value={otp} backspaceOnly autoClear={this.state.clear} onChange={e => this.handleOtp(e)}></TextInput>
+              </div>
+              <div>
+              <InputGroup size="lg" style={{height: '50px', justifyContent: 'center'}}>
+                <Input type={'search'} value={1} style={{
+                      width: '9%',
+                      marginRight: '10px',
+                      borderRadius: '5px !important',
+                      backgroundColor: '#F7F7FA',
+                      color: '#A5AEB6',
+                      borderRadius: '5px',
+                      padding: '2rem',
+                      fontSize: '19px',
+                      flex: 'inherit'
+                }}></Input>
+                <Input style={{
+                      width: '9%',
+                      marginRight: '10px',
+                      borderRadius: '5px !important',
+                      backgroundColor: '#F7F7FA',
+                      color: '#A5AEB6',
+                      borderRadius: '5px',
+                      padding: '2rem',
+                      fontSize: '19px',
+                      flex: 'inherit'
+                }}></Input>
+                <Input style={{
+                      width: '9%',
+                      marginRight: '10px',
+                      borderRadius: '5px !important',
+                      backgroundColor: '#F7F7FA',
+                      color: '#A5AEB6',
+                      borderRadius: '5px',
+                      padding: '2rem',
+                      fontSize: '19px',
+                      flex: 'inherit'
+                }}></Input>
+                <Input style={{
+                      width: '9%',
+                      marginRight: '10px',
+                      borderRadius: '5px !important',
+                      backgroundColor: '#F7F7FA',
+                      color: '#A5AEB6',
+                      borderRadius: '5px',
+                      flex: 'inherit',
+                      padding: '2rem',
+                      fontSize: '19px'
+                }}></Input>
+              </InputGroup>
+              </div>
+              <div>
+                <Button className="body__otp__button" color="primary" onClick={() => this.clearOtp()}>Clear</Button>
+                {submit}
+              </div>
+              <div className='modal__otp__content__alert'>
+                <label className="alert__otp">{notifCount}</label>
+                <label className="alert__otp">{notifOtp}</label>
+              </div>
             </div>
             <ModalFooter className="modal__otp__footer">
             <Button style ={{visibility:show}} disabled={disabled} onClick={() => this.resendOtp()} className="modal__otp__content__button">Kirim Ulang OTP</Button>
-            </ModalFooter>
+          </ModalFooter>
           </div>
         </form>
       </Modal>
