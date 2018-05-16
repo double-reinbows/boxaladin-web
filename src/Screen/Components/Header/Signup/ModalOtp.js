@@ -1,11 +1,11 @@
 import React,{Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux'
-import {setModalRegister, setIsLoading, loginAction } from '../../../../actions/'
-import Modal from 'react-modal'
-import {Button, ModalHeader, ModalFooter} from 'reactstrap'
-import axios from 'axios'
-import TextInput from 'react-otp'
+import {setModalRegister, setIsLoading, loginAction } from '../../../../actions/';
+import Modal from 'react-modal';
+import {Button, ModalHeader, ModalFooter} from 'reactstrap';
+import axios from 'axios';
+import TextInput from 'react-otp';
 
 class ModalOtp extends Component {
   static propTypes = {
@@ -16,7 +16,7 @@ class ModalOtp extends Component {
     setModalRegister: PropTypes.func,
     text: PropTypes.string,
     submit: PropTypes.JSX,
-    otpForm: PropTypes.JSX,
+    otpForm: PropTypes.bool,
     resendOtp: PropTypes.func,
   }
   constructor(props) {
@@ -34,7 +34,8 @@ class ModalOtp extends Component {
   }
 
   handleOtp(e){
-    if (this.state.otp.length < 4) {
+    console.log(e.target.value);
+    if (this.state.otp.length < 4 || e.target.value.length < 4) {
       this.setState({
         otp: e.target.value,
       });
@@ -150,7 +151,7 @@ class ModalOtp extends Component {
   }
 
   clearOtp() {
-    console.log('jalan clear otp')
+    // console.log('jalan clear otp')
     this.setState({otp: ''},()=>{
       console.log(this.state.otp)
     });
@@ -159,11 +160,12 @@ class ModalOtp extends Component {
   render() {
     let {createdAt, otp, notifCount, notifOtp, show, disabled} = this.state;
     let {text, submit, buttonToggle, open, otpForm} = this.props;
-    let otpFormJSX = null;
-    let hardcore = '123'
-    if (otpForm) {
-      otpFormJSX = (<TextInput value={otp} backspaceOnly autoClear={this.state.clear} onChange={e => this.handleOtp(e)}></TextInput>);
-    }
+    // let otpFormJSX = null;
+    let otpFormJSX = otpForm ? (<input required className="form-control inputz" value={otp} type="text" pattern="[0-9]*"
+                              onChange={e => this.handleOtp(e)} style={{width: "50%", margin: 'auto'}}/>
+                            ) : null;
+
+    let clear = otp.length >= 4 ? (<Button className="body__otp__button" color="primary" onClick={() => this.clearOtp()}>Clear</Button>): null
     return (
       <Modal ariaHideApp={false} isOpen={open} toggle={buttonToggle} className='modal__otp' >
         <form onSubmit={e => this.sendOtp(e)}>
@@ -173,11 +175,11 @@ class ModalOtp extends Component {
               <label>Verify Nomor Anda Untuk Dapat 5 AladinKey Gratis!</label>
               <label>Anda Akan di Missed Call Oleh Sistem Kami. Mohon Jangan Angkat.</label>
               <label>{text}</label>
-            <div>
+            <div className="form-group Signup__Form">
               {otpFormJSX}
             </div>
             <div>
-              <Button className="body__otp__button" color="primary" onClick={() => this.clearOtp()}>Clear</Button>
+              {clear}
               {submit}
             </div>
             <div className='modal__otp__content__alert'>
