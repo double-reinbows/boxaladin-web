@@ -263,7 +263,7 @@ class Signup extends Component {
               localStorage.setItem('token', data.token)
               this.setState({
                 dataUser: payload,
-                modal: true,
+                modalOtp: true,
                 email: payload.email
               })
               // this.props.loginAction()

@@ -111,13 +111,11 @@
     }
     &__image{
       margin-bottom: 3%;
-      &__key{
-
-      }
     }
     &__footer{
       display: flex;
       justify-content: center;
+      margin-bottom: 2%;
     }
   }
 
@@ -195,7 +193,7 @@
   }
 }
 
-@media (min-width: 100px ) and (max-width:396px ) {
+@media (min-width: 100px ) and (max-width:598px ) {
   .BannerText__content{
     margin-top: 3%;
     padding-left: 10%;

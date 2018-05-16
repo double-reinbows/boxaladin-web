@@ -55,8 +55,8 @@ class ModalOtp extends Component {
       }
     })
     .then((dataOtp) => {
-      if (dataOtp.data.message === 'Phone Terverifikasi') {
-        alert('No Hp Telah Diverifikasi')
+      if (dataOtp.data.message === 'Hp pernah diverifikasi') {
+        alert('No Hp Sudah Pernah Diverifikasi')
         this.props.buttonToggle()
         this.props.loginAction()
         this.props.setModalRegister(false)

@@ -69,9 +69,6 @@ class NavBar extends React.Component {
     if (localStorage.getItem('token') !== null) {
       return (
         <Nav navbar className="HeaderTop__Right">
-          <div>
-          <h4> <b className="TextStyle"> Hello, Boedjangan </b> </h4>
-          </div>
           <NavItem>
             <DropdownUser />
           </NavItem>
