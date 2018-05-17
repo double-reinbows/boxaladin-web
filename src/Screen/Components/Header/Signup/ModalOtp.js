@@ -149,6 +149,10 @@ class ModalOtp extends Component {
     clearInterval(this.timer);
   }
 
+ //  componentDidUpdate(){
+ //   this.refs.nameInput.getDOMNode().focus();
+ // }
+
   clearOtp() {
     this.setState({otp: ''});
   }
@@ -186,7 +190,7 @@ class ModalOtp extends Component {
             </div>
             <ModalFooter className="modal__otp__footer">
             <Button style ={{visibility:show}} disabled={disabled} onClick={() => this.resendOtp()} className="modal__otp__content__button">Kirim Ulang OTP</Button>
-            </ModalFooter>
+          </ModalFooter>
           </div>
         </form>
       </Modal>

@@ -1,4 +1,29 @@
 .modal{
+
+  &__invoice{
+
+    &__detailText{
+      font-size: 30px
+    }
+
+    &__container{
+      background-color: lightgrey;
+      width: 48%;
+      margin: auto;
+      &__detail{
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+
+    &__header{
+      font-size: 30px;
+      padding-left: 4%;
+      &__label{
+        border-bottom: 4px orange solid
+      }
+    }
+  }
   overflow: scroll;
   &__login{
     padding-top: 3%;
