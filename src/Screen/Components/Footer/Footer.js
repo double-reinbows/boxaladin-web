@@ -7,22 +7,21 @@ import line from "../../../asset/SocialMedia/line.png";
 import { Link } from 'react-router-dom';
 import ModalLineInfo from '../Modal/ModalLineInfo'
 
-export default  class Footer extends Component <{}> {
+type State = {
+  modalLineOpen: boolean,
+}
+export default  class Footer extends Component <Props, State> {
 
-  state = {
+  state: State = {
     modalLineOpen: false,
   }
 
-  // changePage = () => {
-  //   this.props.history.push('/layanan')
-  // }
-
-  toggleLineModal = (e) => {
+  toggleLineModal = (e: Event) => {
     e.preventDefault();
     this.setState({
       modalLineOpen: !this.state.modalLineOpen
     })
-}
+  }
 
   render() {
     return (
@@ -33,7 +32,7 @@ export default  class Footer extends Component <{}> {
 
         </div>
         <div className="footer__info__logo">
-          <a href="#" onClick={(e)=>this.toggleLineModal(e)}>
+          <a href="#" onClick={(e: HTMLInputElement)=>this.toggleLineModal(e)}>
             <img className="footer__info__logo__content" src={line} alt="logo"/>
           </a>
           <a href="https://www.facebook.com/boxaladin/">
