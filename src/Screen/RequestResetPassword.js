@@ -4,6 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { setModalLogin, loginAction } from '../actions/';
 import { Button, Form, FormGroup, Input, FormFeedback } from 'reactstrap';
+import formatEmail from '../utils/formatEmail';
 
 type State = {
   email: string,
@@ -31,7 +32,7 @@ class RequestResetPassword<Props, State> extends React.Component {
           key: process.env.REACT_APP_KEY
         },
         data: {
-          email: this.state.email
+          email: formatEmail(this.state.email)
         }
       })
       .then(({data}) => {
@@ -39,11 +40,11 @@ class RequestResetPassword<Props, State> extends React.Component {
           this.setState({
             invalid: false,
             valid: true,
-            feedback: (<FormFeedback>Email reset password ulang terkirim!</FormFeedback>),
-          });
-          setTimeout(() => {
-            this.props.history.push('/');
-          }, 3000);
+            feedback: (<FormFeedback valid>Email reset password ulang terkirim!</FormFeedback>),
+          }, () => {setTimeout(() => {
+                this.props.history.push('/');
+            }, 3000)}
+          );
         } else {
           this.setState({
             invalid: true,
