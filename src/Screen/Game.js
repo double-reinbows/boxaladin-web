@@ -6,11 +6,11 @@ import axios from 'axios'
 import Coin from '../../src/asset/Game/win/token.png'
 import Star from '../../src/asset/Game/win/star.svg'
 
-import win1 from '../../src/asset/Game/win/100rb.png'
-import win2 from '../../src/asset/Game/win/50rb1.png'
-import win3 from '../../src/asset/Game/win/50rb2.png'
-import win4 from '../../src/asset/Game/win/25rb1.png'
-import win5 from '../../src/asset/Game/win/25rb2.png'
+import win1 from '../../src/asset/Game/win/win1.png'
+import win2 from '../../src/asset/Game/win/win2.png'
+import win3 from '../../src/asset/Game/win/win3.png'
+import win4 from '../../src/asset/Game/win/win4.png'
+import win5 from '../../src/asset/Game/win/win5.png'
 
 import WinSfx from '../../src/asset/sound/Win-sfx.mp3'
 import LoseSfx from '../../src/asset/sound/Lose-sfx.mp3'
@@ -27,17 +27,17 @@ class Game extends React.Component {
 			si2: null,
 			si3: null,
 
-			slot1_atas: 5,
-			slot2_atas: 5,
-			slot3_atas: 5,
+			slot1_atas: 3,
+			slot2_atas: 1,
+			slot3_atas: 6,
 
-			slot1: 6,
+			slot1: 2,
 			slot2: 6,
-			slot3: 6,
+			slot3: 0,
 
-			slot1_bawah: 0,
-			slot2_bawah: 0,
-			slot3_bawah: 0,
+			slot1_bawah: 6,
+			slot2_bawah: 5,
+			slot3_bawah: 4,
 
 			speed1: 30,
 			speed2: 20,

@@ -1,4 +1,29 @@
 .modal{
+
+  &__invoice{
+
+    &__detailText{
+      font-size: 30px
+    }
+
+    &__container{
+      background-color: lightgrey;
+      width: 48%;
+      margin: auto;
+      &__detail{
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+
+    &__header{
+      font-size: 30px;
+      padding-left: 4%;
+      &__label{
+        border-bottom: 4px orange solid
+      }
+    }
+  }
   overflow: scroll;
   &__login{
     padding-top: 3%;
@@ -75,13 +100,14 @@
         width: 30%;
         border-radius: 4px;
       }
-    }
-    &__alert{
-      font-size: 12px;
-      display: flex;
-      flex-direction: column;
+      &__alert{
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
 
+      }
     }
+
     &__footer{
       font-size: 12px;
       border: none;
@@ -378,7 +404,7 @@
 .modal{
   &__check{
     margin: 1.75rem auto;
-    top: 30%;
+    margin-top: 30%;
     border-radius: 2px;
     max-width: 60%;
     &__container{
@@ -494,7 +520,7 @@
         border: solid 1px lightgrey;
         &__logo{
           &__image{
-
+            width: 100%;
           }
         }
 
@@ -507,6 +533,7 @@
           display: flex;
           flex-direction: column;
           align-items: center;
+          font-size: 18px;
           &:hover{
             cursor: pointer;
           }
@@ -570,8 +597,22 @@
       font-size: 12px;
       width: 60%;
     }
-    &__content__1__logo{
-      min-height: 110px;
+    &__content{
+      &__1{
+        &__logo{
+          min-height: 110px;
+        }
+      }
+      &__2{
+        &__button{
+          font-size: 14px;
+        }
+        &__logo{
+          &__image{
+            width: 60%;
+          }
+        }
+      }
     }
   }
 }
@@ -580,10 +621,24 @@
   .modal__pulsa{
     &__container{
       font-size: 12px;
-      width: 70%;
+      width: 85%;
     }
-    &__content__1__logo{
-      min-height: 110px;
+    &__content{
+      &__1{
+        &__logo{
+          min-height: 110px;
+        }
+      }
+      &__2{
+        &__button{
+          font-size: 10px;
+        }
+        &__logo{
+          &__image{
+            width: 60%;
+          }
+        }
+      }
     }
   }
 }

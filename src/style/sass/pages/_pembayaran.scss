@@ -3,13 +3,25 @@
   padding: 5%;
   background-color: white;
 
+  &__buttonDetail{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    font-size: 21px;
+    color: lightgreen;
+  }
+
   &__content{
     &__textDistance{
       display: flex;
       justify-content: space-around;
+      padding-top: 5%;
+      padding-bottom: 1%;
     }
   }
-  
+
   &__container{
     margin: auto;
     max-width: 720px;
@@ -18,17 +30,29 @@
     border: 2px grey solid;
 
     a.nav-link {
-      padding: 1rem 9.565rem;
+      padding: 1rem 4.565rem;
     }
   }
 
   &__title{
     text-align: center;
+    padding-top: 1%;
+    &__infoTime{
+      text-align: center;
+      padding-top: 1%;
+      padding-bottom: 5%;
+    }
+
+    &__metodeBayar{
+      padding-left: 3%;
+      font-size: 19px
+    }
     &__header{
       padding-top: 3%;
       padding-bottom: 3%;
-      background-color: darkseagreen;
+      background-color: lightgreen;
       padding-left: 2%;
+      font-size: 21px;
     }
   }
 
