@@ -19,7 +19,7 @@ export default class ResetPassword extends React.Component<Props, State> {
     this.passwordChanged = this.passwordChanged.bind(this);
   }
   state = {
-    render: false,
+    render: true,
   }
 
   passwordChanged = () => {

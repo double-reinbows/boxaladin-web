@@ -11,6 +11,7 @@
       margin: 0rem;
       padding: 0rem;
       justify-content: flex-end;
+      margin-right: 50px;
     }
     .TextStyle{
       font-size: 25px;
@@ -26,7 +27,7 @@
 
 @media (max-width: 1024) {
   .HeaderTop__Right {
-    width: 70%
+    width: 70%;
   }
 }
 

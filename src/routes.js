@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 // import NavBar from './Screen/Components/NavBar'
 import Header from './Screen/Components/Header/Header'
 import FooterBot from './Screen/Components/Footer/FooterBot'
+import Footer from './Screen/Components/Footer/Footer'
 
 //page non login
 // import AboutUs from './Screen/AboutUs'
@@ -91,6 +92,7 @@ class RouteList extends React.Component {
                 <Route exact path="/resetpassword/:email/:email_token" component={ResetPassword}/>
               </div>
               <div className="footer__container">
+                <Footer />
                 <FooterBot/>
               </div>
           </div>

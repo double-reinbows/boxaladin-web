@@ -6,7 +6,6 @@ import { getProducts } from '../../actions/productAction'
 
 import HomeContent from './HomeContent'
 import BannerHome from './BannerHome'
-// import TabsHome from './TabsHome'
 
 
 class Home extends Component {
@@ -19,7 +18,6 @@ class Home extends Component {
 
     return (
       <div>
-        {/* <TabsHome /> */}
         <HomeContent/>
         <BannerHome />
       </div>
