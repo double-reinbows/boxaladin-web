@@ -20,16 +20,15 @@ export default  class Footer extends Component <{}> {
         <div className="footer__info__button">
         <Link className="footer__info__button__content" to="/layanan"><b>Layanan Bantuan</b></Link>
 
-        {/* <button className="footer__info__button__content" onClick={this.changePage}><b>Layanan Bantuan</b></button> */}
         </div>
         <div className="footer__info__logo">
           <a href="/line.com">
             <img className="footer__info__logo__content" src={line} alt="logo"/>
           </a>
-          <a href="/facebook.com">
+          <a href="https://www.facebook.com/boxaladin/">
             <img className="footer__info__logo__content" src={facebook} alt="logo"/>
           </a>
-          <a href="/instagram.com">
+          <a href="https://www.instagram.com/boxaladin/">
             <img className="footer__info__logo__content" src={instagram} alt="logo"/>
           </a>
         </div>

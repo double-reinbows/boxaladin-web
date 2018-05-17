@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 
 class Advantage extends Component {
-  render() { 
-    return (  
+  render() {
+    return (
       <div className="advantage">
         <div>
           <div className="advantage__title">
@@ -41,10 +41,7 @@ class Advantage extends Component {
             <div className="advantage__content__mid__3">
               <label className="advantage__title">AMAN</label>
               <p>
-                Setiap transaksi di
-                boxaladin dijamin aman Dan yang paling gila...bisa dapet
-                gratis pulsa dari ruang game
-                dari penipuan.
+                Setiap transaksi di boxaladin dijamin aman dari penipuan.
               </p>
             </div>
           </div>
@@ -65,6 +62,14 @@ class Advantage extends Component {
                 kami. Cekidot!
               </p>
             </div>
+          </div>
+        </div>
+        <div className="resetPassword__wrapper__about">
+          <div className="resetPassword__textWarning">
+            <h1>INGAT PULSA ? INGAT</h1>
+          </div>
+          <div className="resetPassword__image">
+            <img className="resetPassword__logo" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/logoTextOnly.png" alt="Boxaladin"/>
           </div>
         </div>
       </div>
