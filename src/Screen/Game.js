@@ -423,13 +423,16 @@ class Game extends React.Component {
 		// this.increaseGameCount()
 		axios({
 			method: 'GET',
-			url: `${process.env.REACT_APP_API_HOST}/lose`
+			url: `${process.env.REACT_APP_API_HOST}/lose`,
+			headers:{
+				token: localStorage.getItem('token'),
+				key: process.env.REACT_APP_KEY
+			},
 		})
 		.then( async ({data}) => {
-			if (((data[0].count) >= 50) && ((data[0].count) % 50 === 0)) {
-				await this.setState({mustWin: true})
-			}
-
+			// if (((data[0].count) >= 50) && ((data[0].count) % 50 === 0)) {
+			// 	await this.setState({mustWin: true})
+			console.log(data);
 			axios({
 				method: 'GET',
 				url: `${process.env.REACT_APP_API_HOST}/win/checkcoin/user`,
