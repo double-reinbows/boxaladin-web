@@ -67,7 +67,7 @@ class InvoiceDetail extends React.Component {
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
-          <h1 className="pembayaran__title">Menunggu pembayaran</h1>
+          <h1 className="pembayaran__title__header">Menunggu pembayaran</h1>
           {this.state.invoice ? (
               <div>
                 <h1 className="pembayaran__title">Jumlah yang harus di bayarkan Rp {this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}</h1>

@@ -1,14 +1,21 @@
 .pembayaran{
   width: 100%;
   padding: 5%;
-  background-color: var(--color-grey-8);
+  background-color: white;
 
+  &__content{
+    &__textDistance{
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+  
   &__container{
     margin: auto;
-    max-width: 700px;
+    max-width: 720px;
     width: 100%;
     background-color: var(--color-white);
-    padding: 10px;
+    border: 2px grey solid;
 
     a.nav-link {
       padding: 1rem 9.565rem;
@@ -17,6 +24,12 @@
 
   &__title{
     text-align: center;
+    &__header{
+      padding-top: 3%;
+      padding-bottom: 3%;
+      background-color: darkseagreen;
+      padding-left: 2%;
+    }
   }
 
   &__button{
@@ -52,4 +65,9 @@
     display: block;
     text-align: center
   }
+}
+
+.nav-tabs{
+  display: flex;
+  justify-content: center;
 }

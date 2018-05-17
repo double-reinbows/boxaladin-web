@@ -67,45 +67,15 @@ class InvoiceDetail extends React.Component {
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
-          <h1 className="pembayaran__title">Menunggu pembayaran</h1>
+          <h1 className="pembayaran__title__header">Pembayaran</h1>
           {this.state.invoice ? (
               <div>
-                <h1 className="pembayaran__title">Jumlah yang harus di bayarkan Rp {this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}</h1>
+                <div className="pembayaran__content__textDistance">
+                  <h1 className="pembayaran__title"> Rp {this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}</h1>
+                  <h1 className="pembayaran__title"> Detail Tagihan</h1>
+                </div>
                 <h2 className="pembayaran__title">Selesaikan Pembayaran Sebelum {finalTime}</h2>
-                <h5 className="pembayaran__title">Silahkan melakukan pembayaran ke salah satu virtual bank account di bawah ini:</h5>
 
-                <div className="bankz">
-                  <img src={MANDIRI} className="bankz__icon" alt="Logo" />
-                    {this.state.invoice.payment.availableBanks.map((bank, idx) => {
-                      return (
-                        bank.bank_code === 'MANDIRI' ? (
-                          <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
-                        ) : null
-                      )
-                    })}
-                </div>
-
-                <div className="bankz">
-                  <img src={BNI} className="bankz__icon" alt="Logo" />
-                  {this.state.invoice.payment.availableBanks.map((bank, idx) => {
-                      return (
-                        bank.bank_code === 'BNI' ? (
-                          <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
-                        ) : null
-                      )
-                    })}
-                </div>
-
-                <div className="bankz">
-                  <img src={BRI} className="bankz__icon" alt="Logo" />
-                  {this.state.invoice.payment.availableBanks.map((bank, idx) => {
-                      return (
-                        bank.bank_code === 'BRI' ? (
-                          <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
-                        ) : null
-                      )
-                  })}
-                </div>
 
                 <div style = { { padding: '10px'} }>
                   <h1 className="pembayaran__title" ><b> CARA PEMBAYARAN </b></h1>

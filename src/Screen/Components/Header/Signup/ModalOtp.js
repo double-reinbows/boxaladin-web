@@ -149,6 +149,10 @@ class ModalOtp extends Component {
     clearInterval(this.timer);
   }
 
+  componentDidUpdate(){
+   this.refs.nameInput.getDOMNode().focus();
+ }
+
   clearOtp() {
     console.log('jalan clear otp')
     this.setState({otp: ''},()=>{
@@ -178,7 +182,7 @@ class ModalOtp extends Component {
               </div>
               <div>
               <InputGroup size="lg" style={{height: '50px', justifyContent: 'center'}}>
-                <Input type={'search'} value={1} style={{
+                <Input type={'search'} style={{
                       width: '9%',
                       marginRight: '10px',
                       borderRadius: '5px !important',
@@ -189,7 +193,7 @@ class ModalOtp extends Component {
                       fontSize: '19px',
                       flex: 'inherit'
                 }}></Input>
-                <Input style={{
+                <Input ref={(input) => { this.nameInput = input; }} style={{
                       width: '9%',
                       marginRight: '10px',
                       borderRadius: '5px !important',
