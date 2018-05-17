@@ -157,7 +157,7 @@ class InsertPhone extends React.Component {
       data: {
         amount: this.state.productUnlocked.aladinPrice,
         productId: this.state.productUnlocked.id,
-        phoneNumber: this.state.phone
+        phoneNumber: this.state.phone,
       },
     })
     .then(({data}) => {
