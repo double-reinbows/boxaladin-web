@@ -17,7 +17,7 @@ class Signup extends Component {
       dataUser: {},
       email: '',
       typedEmail: '',
-      modalOtp: false,
+      modalOtp: true, //false
       state: null,
       text: 'Silakan tunggu sampai miscallnya selesai sebelum masukkan kode.',
       submit: null,

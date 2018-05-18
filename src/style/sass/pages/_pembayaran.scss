@@ -1,22 +1,59 @@
 .pembayaran{
   width: 100%;
   padding: 5%;
-  background-color: var(--color-grey-8);
+  background-color: white;
+
+  &__buttonDetail{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    font-size: 21px;
+    color: lightgreen;
+  }
+
+  &__content{
+    &__textDistance{
+      display: flex;
+      justify-content: space-around;
+      padding-top: 5%;
+      padding-bottom: 1%;
+    }
+  }
 
   &__container{
     margin: auto;
-    max-width: 700px;
+    max-width: 720px;
     width: 100%;
     background-color: var(--color-white);
-    padding: 10px;
+    border: 2px grey solid;
 
     a.nav-link {
-      padding: 1rem 9.565rem;
+      padding: 1rem 4.565rem;
     }
   }
 
   &__title{
     text-align: center;
+    padding-top: 1%;
+    &__infoTime{
+      text-align: center;
+      padding-top: 1%;
+      padding-bottom: 5%;
+    }
+
+    &__metodeBayar{
+      padding-left: 3%;
+      font-size: 19px
+    }
+    &__header{
+      padding-top: 3%;
+      padding-bottom: 3%;
+      background-color: lightgreen;
+      padding-left: 2%;
+      font-size: 21px;
+    }
   }
 
   &__button{
@@ -52,4 +89,9 @@
     display: block;
     text-align: center
   }
+}
+
+.nav-tabs{
+  display: flex;
+  justify-content: center;
 }

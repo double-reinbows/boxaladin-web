@@ -70,7 +70,6 @@ class InsertPhone extends React.Component {
 		</div>
 
 		<div className="InsertPhone__buttonContainer">
-      <button onClick={this.togglePayment}>toggle</button>
 				<Button type="submit" className = "InsertPhone__buttonContainer__buttonBatal" onClick={() => this.cancel()}>Batal</Button>
 				<Button type="submit" className = "InsertPhone__buttonContainer__buttonLanjut" onClick={(e) => this.submitTransaction(e)} >Lanjut</Button>
 

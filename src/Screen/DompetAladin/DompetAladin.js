@@ -58,7 +58,6 @@ class Dompet extends React.Component {
               <h1 className="dompet__content__key__label">Top Up Kunci Aladin</h1>
               {this.showForm()}
               <label className="alert__dompetAladin">{this.state.notif}</label>
-              <button onClick={this.togglePayment}>toggle</button>
             </div>
 
             <div>
