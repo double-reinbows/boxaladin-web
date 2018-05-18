@@ -55,6 +55,8 @@ class InvoiceDetail extends React.Component {
   }
 
   render() {
+    console.log('props', this.props)
+    console.log('state', this.state.invoice)
     if (this.state.invoice.createdAt === ''){
       console.log('kosong')
     } else if ( this.state.invoice.createdAt === undefined){
@@ -76,35 +78,38 @@ class InvoiceDetail extends React.Component {
 
                 <div className="bankz">
                   <img src={MANDIRI} className="bankz__icon" alt="Logo" />
-                    {this.state.invoice.payment.availableBanks.map((bank, idx) => {
+                  {this.state.invoice.payment.availableBanks}
+                    {/* {this.state.invoice.payment.availableBanks.map((bank, idx) => {
                       return (
                         bank.bank_code === 'MANDIRI' ? (
                           <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
                         ) : null
                       )
-                    })}
+                    })} */}
                 </div>
 
                 <div className="bankz">
                   <img src={BNI} className="bankz__icon" alt="Logo" />
-                  {this.state.invoice.payment.availableBanks.map((bank, idx) => {
+                  {this.state.invoice.payment.availableBanks}
+                  {/* {this.state.invoice.payment.availableBanks.map((bank, idx) => {
                       return (
                         bank.bank_code === 'BNI' ? (
                           <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
                         ) : null
                       )
-                    })}
+                    })} */}
                 </div>
 
                 <div className="bankz">
                   <img src={BRI} className="bankz__icon" alt="Logo" />
-                  {this.state.invoice.payment.availableBanks.map((bank, idx) => {
+                  {this.state.invoice.payment.availableBanks}
+                  {/* {this.state.invoice.payment.availableBanks.map((bank, idx) => {
                       return (
                         bank.bank_code === 'BRI' ? (
                           <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
                         ) : null
                       )
-                  })}
+                  })} */}
                 </div>
 
                 <div style = { { padding: '10px'} }>

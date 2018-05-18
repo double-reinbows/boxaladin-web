@@ -2,15 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Input, Button } from 'reactstrap'
 
-import axios from 'axios'
-
-import { getPhoneNumbers } from '../../../actions/'
-import { validateProvider, detectProvider } from '../../../utils/phone'
-import ProviderModal from '../../Home/Modal/ProviderModal';
-import  priceProduct  from '../../../utils/splitPrice'
-import  productName from '../../../utils/splitProduct'
-import FormatRupiah from '../../../utils/formatRupiah'
-import percentagePrice from '../../../utils/percentagePrice'
+import ModalPayment from './ModalPayment'
+import { getPhoneNumbers } from '../../actions/'
+import { validateProvider, detectProvider } from '../../utils/phone'
+import ProviderModal from '../Home/Modal/ProviderModal';
+import  priceProduct  from '../../utils/splitPrice'
+import  productName from '../../utils/splitProduct'
+import FormatRupiah from '../../utils/formatRupiah'
+import percentagePrice from '../../utils/percentagePrice'
 
 class InsertPhone extends React.Component {
   constructor(props) {
@@ -18,7 +17,8 @@ class InsertPhone extends React.Component {
     this.state = {
       phone: '',
       productUnlocked: {},
-			providerModal: false
+      providerModal: false,
+      modalPayment: false
     }
 
     this.handleBack()
@@ -28,13 +28,15 @@ class InsertPhone extends React.Component {
 		this.setState({
 			providerModal: !this.state.providerModal
 		})
-	}
+  }
+  
+  togglePayment = () => {
+    this.setState({
+      modalPayment: !this.state.modalPayment
+    })
+  }
 
   render() {
-
-		console.log(this.props)
-		console.log('unlock', this.state.productUnlocked)
-    console.log('phone', this.props.location.state.phoneNumbers[0])
     return (
 		<div>
 		<div className="InsertPhone__textHead">
@@ -68,7 +70,7 @@ class InsertPhone extends React.Component {
 		</div>
 
 		<div className="InsertPhone__buttonContainer">
-
+      <button onClick={this.togglePayment}>toggle</button>
 				<Button type="submit" className = "InsertPhone__buttonContainer__buttonBatal" onClick={() => this.cancel()}>Batal</Button>
 				<Button type="submit" className = "InsertPhone__buttonContainer__buttonLanjut" onClick={(e) => this.submitTransaction(e)} >Lanjut</Button>
 
@@ -91,6 +93,7 @@ class InsertPhone extends React.Component {
 				</Form>
 		  </div> */}
 			<ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
+      <ModalPayment isOpen={this.state.modalPayment} data={this.state} toggle={this.togglePayment} />
 		</div>
     )
   }
@@ -146,24 +149,10 @@ class InsertPhone extends React.Component {
     }
   }
 
-  axiosTransaction(){
-    axios({
-      method: 'POST',
-      url: `${process.env.REACT_APP_API_HOST}/payment`,
-      headers: {
-        key: process.env.REACT_APP_KEY,
-        token: localStorage.getItem('token')
-      },
-      data: {
-        amount: this.state.productUnlocked.aladinPrice,
-        productId: this.state.productUnlocked.id,
-        phoneNumber: this.state.phone,
-      },
+  openPayment(){
+    this.setState({
+      modalPayment: !this.state.modalPayment
     })
-    .then(({data}) => {
-      this.props.history.push(`/payment/${data.id}`)
-    })
-    .catch(err => console.log(err))
   }
 
   submitTransaction(e) {
@@ -178,25 +167,25 @@ class InsertPhone extends React.Component {
         this.setState({
           phone: num.join('')
         },
-        () => {this.axiosTransaction()})
+        () => {this.openPayment()})
       } else if (num[0] + num[1] + num[2] === '+62') {
         num.splice(0, 3, '0')
         this.setState({
           phone: num.join('')
         },
-        () => {this.axiosTransaction()})
+        () => {this.openPayment()})
       } else if (num[0] + num[1] === '62') {
         num.splice(0, 2, '0')
         this.setState({
           phone: num.join('')
         },
-        () => {this.axiosTransaction()})
+        () => {this.openPayment()})
       } else if (num[0] === '8') {
         num.splice(0, 0, '0')
         this.setState({
           phone: num.join('')
         },
-        () => {this.axiosTransaction()})
+        () => {this.openPayment()})
       }
     }
   }

@@ -70,35 +70,35 @@ class TopupPayment extends React.Component {
 
                 <div className="bankz">
                   <img src={MANDIRI} className="bankz__icon" alt="Logo" />
-                  {this.state.invoice.payment.availableBanks.map((bank, idx) => {
+                  {/* {this.state.invoice.payment.availableBanks.map((bank, idx) => {
                     return (
                       bank.bank_code === 'MANDIRI' ? (
                         <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
                       ) : null
                     )
-                  })}
+                  })} */}
                 </div>
 
                 <div className="bankz">
                   <img src={BNI} className="bankz__icon" alt="Logo" />
-                  {this.state.invoice.payment.availableBanks.map((bank, idx) => {
+                  {/* {this.state.invoice.payment.availableBanks.map((bank, idx) => {
                       return (
                         bank.bank_code === 'BNI' ? (
                           <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
                         ) : null
                       )
-                    })}
+                    })} */}
                 </div>
 
                 <div className="bankz">
                   <img src={BRI} className="bankz__icon" alt="Logo" />
-                  {this.state.invoice.payment.availableBanks.map((bank, idx) => {
+                  {/* {this.state.invoice.payment.availableBanks.map((bank, idx) => {
                       return (
                         bank.bank_code === 'BRI' ? (
                           <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
                         ) : null
                       )
-                  })}
+                  })} */}
                 </div>
                 <div>
                 <Nav tabs>

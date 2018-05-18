@@ -26,8 +26,8 @@ import TopupInvoice from './Screen/Invoice/TopupInvoice'
 import TopupPayment from './Screen/Invoice/TopupPayment'
 // import Cart from './screen/Cart'
 
-import Bidding from './Screen/Bidding'
-import InsertPhone from './Screen/Components/InsertPhone/InsertPhone'
+import Bidding from './Screen/Bidding/Bidding'
+import InsertPhone from './Screen/Bidding/InsertPhone'
 // import Pulsa from './Screen/Pulsa'
 
 import DompetAladin from './Screen/DompetAladin/DompetAladin'
