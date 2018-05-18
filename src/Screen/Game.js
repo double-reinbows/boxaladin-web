@@ -1,23 +1,23 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Modal, ModalHeader, Form, FormGroup, Input } from 'reactstrap'
-import axios from 'axios'
+import React from 'react';
+import { connect } from 'react-redux';
+import { Modal, ModalHeader, Form, FormGroup, Input } from 'reactstrap';
+import axios from 'axios';
 
-import Coin from '../../src/asset/Game/win/token.png'
-import Star from '../../src/asset/Game/win/star.svg'
+import Coin from '../../src/asset/Game/win/token.png';
+import Star from '../../src/asset/Game/win/star.svg';
 
-import win1 from '../../src/asset/Game/win/win1.png'
-import win2 from '../../src/asset/Game/win/win2.png'
-import win3 from '../../src/asset/Game/win/win3.png'
-import win4 from '../../src/asset/Game/win/win4.png'
-import win5 from '../../src/asset/Game/win/win5.png'
+import win1 from '../../src/asset/Game/win/win1.png';
+import win2 from '../../src/asset/Game/win/win2.png';
+import win3 from '../../src/asset/Game/win/win3.png';
+import win4 from '../../src/asset/Game/win/win4.png';
+import win5 from '../../src/asset/Game/win/win5.png';
 
-import WinSfx from '../../src/asset/sound/Win-sfx.mp3'
-import LoseSfx from '../../src/asset/sound/Lose-sfx.mp3'
+import WinSfx from '../../src/asset/sound/Win-sfx.mp3';
+import LoseSfx from '../../src/asset/sound/Lose-sfx.mp3';
 
 
-import { getUser } from '../actions/userAction'
-import { getUserWins } from '../actions/winAction'
+import { getUser } from '../actions/userAction';
+import { getUserWins } from '../actions/winAction';
 
 class Game extends React.Component {
 	constructor(props) {
@@ -53,7 +53,7 @@ class Game extends React.Component {
 			key: 0,
 			pulsaAmount: 0,
 			notif: '',
-			winResult: null,
+			winToken: null,
 			gameCount: 1,
 			mustWin: false,
 			gameResult: null,
@@ -150,7 +150,7 @@ class Game extends React.Component {
 					<div className="game__prize__textDistance">
 						<label className="game__prize__title">Game Prize</label>
 						<label>
-							Dapatkan hadiah pulsa Rp. 10.000,- dengan mendapatkan salah satu kombinasi bawah ini
+							Dapatkan hadiah pulsa dengan mendapatkan salah satu kombinasi bawah ini
 						</label>
 						<label>GRATIS!</label>
 					</div>
@@ -369,7 +369,7 @@ class Game extends React.Component {
 	// 			// console.log('OLD SHIT ', data);
 	// 			this.setState({
 	// 				pulsaAmount: data.data.gamerule.pulsaAmount,
-	// 				winResult: data.data, //the whole row in database
+	// 				winToken: data.data, //the whole row in database
 	// 				modalWin:true,
 	// 			})
 	//
@@ -389,7 +389,7 @@ class Game extends React.Component {
 		})
 		this.reset()
 
-		this.props.history.push('/claimfreepulsa', this.state.winResult);
+		this.props.history.push('/claimfreepulsa', this.state.winToken);
 	}
 
 	// handleResult() {
@@ -419,7 +419,7 @@ class Game extends React.Component {
 		// 	this.setState({ slot3: this.state.slot3 - (this.state.itemsdummy3.length - 1) })
 		// }
 		// let winType
-		console.log('received ', winType);
+		// console.log('received ', winType);
 		switch (winType) {
 			case 5:
 				return this.setState({
@@ -518,28 +518,33 @@ class Game extends React.Component {
 
 	async start() {
 		// this.increaseGameCount()
-		this.start1();
-		this.start2();
-		this.start3();
 
 		let gameResult =
 			axios({
 				method: 'GET',
-				url: `${process.env.REACT_APP_API_HOST}/lose`,
+				url: `${process.env.REACT_APP_API_HOST}/game`,
 				headers:{
 					token: localStorage.getItem('token'),
 					// key: process.env.REACT_APP_KEY
 				},
 			});
-		this.setState({gameResult, startButton: null,
-			stopButton: (<button className="game__slotButton__start" onClick={ () => this.stop() }>STOP</button>),
-		});
 
 		gameResult.then((data) => {
-			// if (((data[0].count) >= 50) && ((data[0].count) % 50 === 0)) {
-			// 	await this.setState({mustWin: true})
-			// console.log('response ', data);
-			this.setState({winResult: data.data.winToken});
+			// console.log('FUCK', data.data.message);
+			if (data.data.message === 'Cannot Play') {
+				this.setState({startButton: (<label className="game__textHeader">ANDA TIDAK MEMILIKI COIN</label>)});
+			} else {
+				this.start1();
+				this.start2();
+				this.start3();
+				this.setState({gameResult, startButton: null,
+					stopButton: (<button className="game__slotButton__start" onClick={ () => this.stop() }>STOP</button>),
+				});
+				// if (((data[0].count) >= 50) && ((data[0].count) % 50 === 0)) {
+				// 	await this.setState({mustWin: true})
+				// console.log('response ', data);
+				this.setState({winToken: data.data.winToken});
+			}
 			// this.setState({winType: data.winType});
 			// axios({
 			// 	method: 'GET',
