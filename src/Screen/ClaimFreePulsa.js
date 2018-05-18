@@ -11,7 +11,7 @@ import axios from 'axios';
 
 import { getProducts } from '../actions/productAction';
 
-class ClaimFreePulsa extends React.Component {
+class ClaimFreePulsa extends React.Component<Props, State> {
 
 	state = {
     win: this.props.history.location.state || null,

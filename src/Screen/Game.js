@@ -1,3 +1,4 @@
+//@flow
 import React from 'react';
 import { connect } from 'react-redux';
 import { Modal, ModalHeader, Form, FormGroup, Input } from 'reactstrap';
@@ -5,6 +6,7 @@ import axios from 'axios';
 
 import Coin from '../../src/asset/Game/win/token.png';
 import Star from '../../src/asset/Game/win/star.svg';
+import Key from '../../src/asset/Dompet Aladin/Key.png';
 
 import win1 from '../../src/asset/Game/win/win1.png';
 import win2 from '../../src/asset/Game/win/win2.png';
@@ -19,9 +21,51 @@ import LoseSfx from '../../src/asset/sound/Lose-sfx.mp3';
 import { getUser } from '../actions/userAction';
 import { getUserWins } from '../actions/winAction';
 
-class Game extends React.Component {
-	constructor(props) {
-		super(props)
+type Props = {
+
+}
+type State = {
+	si1: null | number,
+	si2: null | number,
+	si3: null | number,
+	slot1_atas: number,
+	slot2_atas: number,
+	slot3_atas: number,
+	slot1: number,
+	slot2: number,
+	slot3: number,
+	slot1_bawah: number,
+	slot2_bawah: number,
+	slot3_bawah: number,
+	speed1: number,
+	speed2: number,
+	speed3: number,
+	itemsdummy1: Array<String>,
+	itemsdummy2: Array<String>,
+	itemsdummy3: Array<String>,
+	// isRunning: false,
+	modalWin: boolean,
+	loseSfx: boolean,
+	key: number,
+	pulsaAmount: number,
+	notif: string,
+	winToken: null | string,
+	// gameCount: 1,
+	// mustWin: false,
+	gameResult: null | Promise,
+	// winType: null,
+	startButton: null | JSX,
+	stopButton: null | JSX,
+	prize1: null | string,
+	prize2: null | string,
+	prize3: null | string,
+	prize4: null | string,
+	prize5: null | string,
+}
+class Game extends React.Component<Props, State> {
+	constructor(props: Props) {
+		super(props);
+		this.toggle = this.toggle.bind(this);
 		this.state = {
 			si1: null,
 			si2: null,
@@ -49,7 +93,7 @@ class Game extends React.Component {
 
 			isRunning: false,
 			modalWin: false,
-			modalLose: false,
+			loseSfx: false,
 			key: 0,
 			pulsaAmount: 0,
 			notif: '',
@@ -66,8 +110,6 @@ class Game extends React.Component {
 			prize4: null,
 			prize5: null,
 		}
-
-		this.toggle = this.toggle.bind(this)
 	}
 
 	dropdownConvert=()=>{
@@ -113,6 +155,8 @@ class Game extends React.Component {
 							</div>
 						<label className="alert__game">{this.state.notif}</label>
 							<div  className="game__slotCoin">
+								<img className="game__slotCoin__icon" src={Key} alt="coin"/>
+								<label> <b> : {this.props.userInfo.aladinKeys}</b></label>
 								<img className="game__slotCoin__icon" src={Coin} alt="coin"/>
 								<label> <b> : {this.props.userInfo.coin}</b></label>
 							</div>
@@ -206,7 +250,7 @@ class Game extends React.Component {
 							</div>
 					</Modal>
 
-				{ this.state.modalLose ? <audio src={LoseSfx} autoPlay /> : null }
+				{ this.state.loseSfx ? <audio src={LoseSfx} autoPlay /> : null }
 				{ this.state.modalWin ? <audio src={WinSfx} autoPlay /> : null }
 			</div>
 		)
@@ -268,22 +312,48 @@ class Game extends React.Component {
 		// .catch(err => console.log(err))
 	// }
 
-	// upCoin = (e) => {
-	// 	e.preventDefault()
-	//
-	// 	if (this.state.key <= 0) {
-	// 		return this.setState({
-  //       notif: "Harus Lebih Besar Dari 0",
-  //     })
-	// 	} else if (this.state.key === null || this.state.key === '') {
-	// 		return this.setState({
-	// 			notif: "Tidak Boleh Kosong",
-	// 		})
-	// 	}	else {
-	// 		this.setState({
-	// 			notif:""
-	// 		})
-	// 	}
+	upCoin = (e) => {
+		e.preventDefault();
+
+		console.log('DICK', this.state.key);
+		if (this.state.key <= 0) {
+			return this.setState({
+        notif: "Harus Lebih Besar Dari 0",
+      })
+		} else if (this.state.key === null || this.state.key === '') {
+			return this.setState({
+				notif: "Tidak Boleh Kosong",
+			})
+		}	else {
+			this.setState({notif: ""});
+			// REQUEST UPDATE ALADIN KEY DAN COIN KE API
+			axios({
+				method: 'PUT',
+				url: `${process.env.REACT_APP_API_HOST}/users/upcoin`,
+				data: {
+					key: this.state.key
+				},
+				headers: {
+					token: localStorage.getItem('token'),
+					// key: process.env.REACT_APP_KEY
+				}
+			})
+			.then(response => {
+				console.log('CUNT', response.data.message);
+				if (response.data.message === 'coin updated') {
+					this.setState({
+						notif: "Aladin Key berhasil di tukar!",
+						key: null,
+					})
+					document.getElementById('upcoin').value = '';
+					this.props.getUser();
+				} else {
+						this.setState({notif: "Aladin Key Tidak Cukup", key: null});
+						document.getElementById('upcoin').value = '';
+				}
+			})
+			.catch(err => console.log('err'));
+		}
 
 		// CEK SISA ALADIN KEY LANGSUNG DARI API
 		// axios({
@@ -310,7 +380,7 @@ class Game extends React.Component {
 		// 			},
 		// 			headers: {
 		// 				token: localStorage.getItem('token'),
-		// 				key: process.env.REACT_APP_KEY
+		// 				// key: process.env.REACT_APP_KEY
 		// 			}
 		// 		})
 		// 		.then(response => {
@@ -329,20 +399,21 @@ class Game extends React.Component {
 		// 	}
 		// })
 		// .catch(err => console.log(err))
-
+		//
 		// if (this.state.key > this.props.userInfo.aladinKeys) {
 		// 	return this.setState({
     //     notif: "Aladin Key Tidak Cukup",
     //   })
 		// }
-	//
-	// }
+
+
+	}
 	//
 	// submitResult(result) {
 	// 	if (result === 0) {
 	// 		// this.reset()
 	// 		this.setState({
-	// 			modalLose: true,
+	// 			loseSfx: true,
 	// 		})
 	// 		return
 	// 	} else {
@@ -587,7 +658,7 @@ class Game extends React.Component {
 			// 			this.setState({
 			// 				isRunning: true,
 			// 				notif: '',
-			// 				modalLose: false,
+			// 				loseSfx: false,
 			// 				mustWin: false
 			// 			})
 			//
@@ -624,7 +695,7 @@ class Game extends React.Component {
 			// 			this.setState({
 			// 				isRunning: true,
 			// 				notif: '',
-			// 				modalLose: false
+			// 				loseSfx: false
 			// 			})
 			//
 			// 		}
@@ -664,34 +735,34 @@ class Game extends React.Component {
 
 
     // HANDLE PEMAIN KE 21 OTOMATIS WIN
-		if (this.state.mustWin === true) {
-
-			await this.setState({
-				slot1_atas: 6,
-				slot2_atas: 5,
-				slot3_atas: 4,
-
-				slot1: 0,
-				slot2: 6,
-				slot3: 5,
-
-				slot1_bawah: 1,
-				slot2_bawah: 0,
-				slot3_bawah: 6,
-			})
-		}
-
-		// this.getGameCount()
-
-
-
-		this.setState({
-			si1: null,
-			si2: null,
-			si3: null,
-			isRunning: false,
-			mustWin: false
-		})
+		// if (this.state.mustWin === true) {
+		//
+		// 	await this.setState({
+		// 		slot1_atas: 6,
+		// 		slot2_atas: 5,
+		// 		slot3_atas: 4,
+		//
+		// 		slot1: 0,
+		// 		slot2: 6,
+		// 		slot3: 5,
+		//
+		// 		slot1_bawah: 1,
+		// 		slot2_bawah: 0,
+		// 		slot3_bawah: 6,
+		// 	})
+		// }
+		//
+		// // this.getGameCount()
+		//
+		//
+		//
+		// this.setState({
+		// 	si1: null,
+		// 	si2: null,
+		// 	si3: null,
+		// 	isRunning: false,
+		// 	mustWin: false
+		// })
 
 		// this.toggle();
 	}
