@@ -25,6 +25,7 @@ class ClaimFreePulsa extends React.Component {
 	}
 
 	render() {
+		console.log('FAGGOT', this.state.win);
     // const pulsa = this.props.products.filter(product => {
     //   return product.category === 'Pulsa' && product.price === this.state.win.gamerule.pulsaAmount
     // })
@@ -102,7 +103,7 @@ class ClaimFreePulsa extends React.Component {
            key: process.env.REACT_APP_KEY
         }
       })
-      
+
       .then(({data}) => {
         console.log('claim pulsa', data)
         if (!data.winToken) {
@@ -162,7 +163,7 @@ class ClaimFreePulsa extends React.Component {
       url: `${process.env.REACT_APP_API_HOST}/win/claimfreepulsa`,
       headers: {
         token: localStorage.getItem('token'),
-        key: process.env.REACT_APP_KEY
+        // key: process.env.REACT_APP_KEY
       },
       data: {
         // productId: this.state.productId,

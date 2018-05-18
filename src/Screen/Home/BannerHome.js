@@ -70,7 +70,7 @@ export default class BannerHome extends Component <{}> {
               <div>
                 <h3 className="BannerText__content__title">Masukkan Nomor Hape</h3>
                 <div>
-                  <p className="BannerText__content__paragraph">yeay!!! Selamat, anda telah menang lelangnya dan dapatkan pulsa dengan harga spesial. Tinggal masukin nomor ponsel tujuan dan lakukan pembayaran utk terima pulsanya</p>
+                  <p className="BannerText__content__paragraph">yeay!!! Selamat, anda telah menang lelangnya dan dapatkan pulsa dengan harga spesial. Tinggal masukin nomor hape tujuan dan lakukan pembayaran utk terima pulsanya</p>
                 </div>
               </div>
             </div>
@@ -78,7 +78,7 @@ export default class BannerHome extends Component <{}> {
               <div>
                 <h3 className="BannerText__content__title">Pembayaran</h3>
                 <div>
-                  <p className="BannerText__content__paragraph">Jika anda melewati batas waktu yang telah di berikan, hak menang anda akan hilang dan akan di lelang ulang kepada member lainnya. Pulsa akan segera masuk ke nomor ponsel tujuan setelah kami terima pembayaran anda</p>
+                  <p className="BannerText__content__paragraph">Jika anda melewati batas waktu yang telah di berikan, hak menang anda akan hilang dan akan di lelang ulang kepada member lainnya. Pulsa akan segera masuk ke nomor hape tujuan setelah kami terima pembayaran anda</p>
                 </div>
               </div>
               <div className="BannerText__icon__right">
