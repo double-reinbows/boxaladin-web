@@ -60,36 +60,34 @@
   font-family: Helvetica;
   font-style: italic;
   font-size: 17px;
-  color: var(--color-black-1);
   box-shadow: none ;
+  color: black;
   border-radius: 8px;
   &:focus{
     border: 2px solid var(--color-yellow-1);
     background: transparent;
     font-family: Helvetica;
     font-style: italic;
-    color: var(--color-black-1);
     box-shadow: var(--color-grey-5);
+    color: black;
+
   }
   &:hover{
     border: 2px solid var(--color-yellow-1);
     background: transparent;
     font-family: Helvetica;
     font-style: italic;
-    color: var(--color-black-1);
   }
   &::placeholder{
     background: transparent;
     font-family: Helvetica;
     font-style: italic;
-    color: var(--color-black-1);
   }
   &:active{
     border: 2px solid var(--color-yellow-1);
     background: transparent;
     font-family: Helvetica;
     font-style: italic;
-    color: var(--color-black-1);
   }
 }
 

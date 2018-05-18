@@ -1,11 +1,11 @@
 import React,{Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux'
-import {setModalRegister, setIsLoading, loginAction } from '../../../../actions/'
-import Modal from 'react-modal'
-import {Button, ModalHeader, ModalFooter, InputGroup, InputGroupText, InputGroupAddon, Input} from 'reactstrap'
-import axios from 'axios'
-import TextInput from 'react-otp'
+import {setModalRegister, setIsLoading, loginAction } from '../../../../actions/';
+import Modal from 'react-modal';
+import {Button, ModalHeader, ModalFooter} from 'reactstrap';
+import axios from 'axios';
+import TextInput from 'react-otp';
 
 class ModalOtp extends Component {
   static propTypes = {
@@ -16,7 +16,7 @@ class ModalOtp extends Component {
     setModalRegister: PropTypes.func,
     text: PropTypes.string,
     submit: PropTypes.JSX,
-    otpForm: PropTypes.JSX,
+    otpForm: PropTypes.bool,
     resendOtp: PropTypes.func,
   }
   constructor(props) {
@@ -34,12 +34,12 @@ class ModalOtp extends Component {
   }
 
   handleOtp(e){
-    if (this.state.otp.length < 4) {
+    // console.log(e.target.value);
+    if (this.state.otp.length < 4 || e.target.value.length < 4) {
       this.setState({
         otp: e.target.value,
       });
     }
-    // console.log(this.state.otp);
   }
 
   sendOtp(e){
@@ -65,7 +65,7 @@ class ModalOtp extends Component {
       })
       //--------------------- ask about difference between 'phone verified' and 'phone Terverifikasi'
       .then((dataOtp) => {
-        console.log(dataOtp);
+        // console.log(dataOtp);
         if (dataOtp.data.message === 'phone verified') {
           alert('Selamat! Anda mendapat 5 Kunci Gratis!')
           buttonToggle();
@@ -80,7 +80,7 @@ class ModalOtp extends Component {
         //   loginAction();
         //   setModalRegister(false);
         }
-      // }).catch(err => console.log(err));
+      //.catch(err => console.log(err));
       }).catch(err => console.log('error'));
     }
   }
@@ -149,25 +149,23 @@ class ModalOtp extends Component {
     clearInterval(this.timer);
   }
 
-  componentDidUpdate(){
-   this.refs.nameInput.getDOMNode().focus();
- }
+ //  componentDidUpdate(){
+ //   this.refs.nameInput.getDOMNode().focus();
+ // }
 
   clearOtp() {
-    console.log('jalan clear otp')
-    this.setState({otp: ''},()=>{
-      console.log(this.state.otp)
-    });
+    this.setState({otp: ''});
   }
 
   render() {
     let {createdAt, otp, notifCount, notifOtp, show, disabled} = this.state;
     let {text, submit, buttonToggle, open, otpForm} = this.props;
-    let otpFormJSX = null;
-    let hardcore = '123'
-    if (otpForm) {
-      otpFormJSX = (<TextInput value={otp} backspaceOnly autoClear={this.state.clear} onChange={e => this.handleOtp(e)}></TextInput>);
-    }
+    // let otpFormJSX = null;
+    let otpFormJSX = otpForm ? (<input required className="form-control inputz" value={otp} type="text" pattern="[0-9]*"
+                              onChange={e => this.handleOtp(e)} style={{width: "50%", margin: 'auto'}}/>
+                            ) : null;
+
+    let clear = otp.length >= 4 ? (<Button className="body__otp__button" color="primary" onClick={() => this.clearOtp()}>Clear</Button>): null
     return (
       <Modal ariaHideApp={false} isOpen={open} toggle={buttonToggle} className='modal__otp' >
         <form onSubmit={e => this.sendOtp(e)}>
@@ -177,65 +175,18 @@ class ModalOtp extends Component {
               <label>Verify Nomor Anda Untuk Dapat 5 AladinKey Gratis!</label>
               <label>Anda Akan di Missed Call Oleh Sistem Kami. Mohon Jangan Angkat.</label>
               <label>{text}</label>
-              <div>
-              <TextInput value={otp} backspaceOnly autoClear={this.state.clear} onChange={e => this.handleOtp(e)}></TextInput>
-              </div>
-              <div>
-              <InputGroup size="lg" style={{height: '50px', justifyContent: 'center'}}>
-                <Input type={'search'} style={{
-                      width: '9%',
-                      marginRight: '10px',
-                      borderRadius: '5px !important',
-                      backgroundColor: '#F7F7FA',
-                      color: '#A5AEB6',
-                      borderRadius: '5px',
-                      padding: '2rem',
-                      fontSize: '19px',
-                      flex: 'inherit'
-                }}></Input>
-                <Input ref={(input) => { this.nameInput = input; }} style={{
-                      width: '9%',
-                      marginRight: '10px',
-                      borderRadius: '5px !important',
-                      backgroundColor: '#F7F7FA',
-                      color: '#A5AEB6',
-                      borderRadius: '5px',
-                      padding: '2rem',
-                      fontSize: '19px',
-                      flex: 'inherit'
-                }}></Input>
-                <Input style={{
-                      width: '9%',
-                      marginRight: '10px',
-                      borderRadius: '5px !important',
-                      backgroundColor: '#F7F7FA',
-                      color: '#A5AEB6',
-                      borderRadius: '5px',
-                      padding: '2rem',
-                      fontSize: '19px',
-                      flex: 'inherit'
-                }}></Input>
-                <Input style={{
-                      width: '9%',
-                      marginRight: '10px',
-                      borderRadius: '5px !important',
-                      backgroundColor: '#F7F7FA',
-                      color: '#A5AEB6',
-                      borderRadius: '5px',
-                      flex: 'inherit',
-                      padding: '2rem',
-                      fontSize: '19px'
-                }}></Input>
-              </InputGroup>
-              </div>
-              <div>
-                <Button className="body__otp__button" color="primary" onClick={() => this.clearOtp()}>Clear</Button>
-                {submit}
-              </div>
-              <div className='modal__otp__content__alert'>
-                <label className="alert__otp">{notifCount}</label>
-                <label className="alert__otp">{notifOtp}</label>
-              </div>
+            <div className="form-group Signup__Form">
+              {otpFormJSX}
+            </div>
+            <div>
+              {clear}
+              {submit}
+            </div>
+            <div className='modal__otp__content__alert'>
+              <label className="alert__otp">{notifCount}</label>
+              <label className="alert__otp">{notifOtp}</label>
+            </div>
+
             </div>
             <ModalFooter className="modal__otp__footer">
             <Button style ={{visibility:show}} disabled={disabled} onClick={() => this.resendOtp()} className="modal__otp__content__button">Kirim Ulang OTP</Button>

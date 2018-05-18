@@ -5,6 +5,7 @@ import axios from 'axios'
 import Loading from '../../Loading/'
 import ModalOtp from './ModalOtp'
 import {Button} from 'reactstrap';
+import formatEmail from '../../../../utils/formatEmail';
 
 class Signup extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class Signup extends Component {
       dataUser: {},
       email: '',
       typedEmail: '',
-      modalOtp: true, //false
+      modalOtp: false,
       state: null,
       text: 'Silakan tunggu sampai miscallnya selesai sebelum masukkan kode.',
       submit: null,
@@ -69,7 +70,7 @@ class Signup extends Component {
 
   vEmail() {
     let patt = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-    if (this.state.email === '' || this.state.email === undefined) {
+    if (!this.state.email) {
       this.setState({email: undefined, _vEmail: false});
     } else if (!patt.test(this.state.email)) {
       this.setState({email: undefined, _vEmail: false});
@@ -85,8 +86,10 @@ class Signup extends Component {
     var num = e.target.value.split('');
     if (num.length < 2) {
       this.setState({notif: 'Nomor Handphone harus mulai dengan 08.'});
+    } else if(num[0] !== '0' || num[1] !== '8') {
+      this.setState({phonenumber: '08'});
     } else {//(num[0] === '0') {
-      this.setState({[e.target.name]: num.join(''), notif: ''});
+      this.setState({phonenumber: num.join(''), notif: ''});
 		}
 	}
 
@@ -252,22 +255,7 @@ class Signup extends Component {
     this.setState({[e.target.name]: e.target.value.trim()});
   }
 
-  signUpInputToLowerHandler(e) {
-    var email = e.target.value
-    var user = email.split('@')[0]
-    var provider = email.split('@')[1]
 
-    if (provider === 'gmail.com') {
-      let userWithoutDot = user.split('.').join('')
-      const result = userWithoutDot + '@gmail.com'
-      this.setState({ email : result.trim().toLowerCase(), typedEmail: email })
-    }
-    else {
-      const result = e.target.value
-      this.setState({ email : result.trim().toLowerCase(), typedEmail: email})
-
-    }
-  }
   resendOtp() {
     this.setState({
       text: 'Silakan tunggu sampai miscallnya selesai sebelum masukkan kode.',
@@ -281,6 +269,23 @@ class Signup extends Component {
           otpForm: true,
         });
     }, 20000);
+  }
+
+  signUpInputToLowerHandler(e) {
+    var email = e.target.value;
+    var formatted = formatEmail(e.target.value);
+    // var user = email.split('@')[0]
+    // var provider = email.split('@')[1]
+    //
+    // if (provider === 'gmail.com') {
+    //   let userWithoutDot = user.split('.').join('')
+    //   const result = userWithoutDot + '@gmail.com'
+      this.setState({ email : formatted, typedEmail: email });
+    // }
+    // else {
+    //   const result = e.target.value
+      // this.setState({ email : result.trim().toLowerCase(), typedEmail: email})
+    // }
   }
 
   render() {
@@ -358,7 +363,6 @@ class Signup extends Component {
     )
   }
 }
-
 const mapStateToProps = state => {
   return {
     isLogin: state.userReducer.isLogin,
