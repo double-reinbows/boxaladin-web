@@ -267,13 +267,13 @@ class Game extends React.Component<Props, State> {
 		.then(({data}) => {
 
 			if (data.msg !== 'Unverified') {
-				// console.log('VERIFIED', data);
+				console.log('VERIFIED', data);
 				this.setState({
 					startButton:(<button className="game__slotButton__start" onClick={ () => this.start() }>START</button>),
 				});
 			} else {
-				// console.log('CUNTVERIFIED', data);
-				this.setState({startButton: (<label className="game__textHeader">VERIFY NOMOR HAPE DAHULU UNTUK MAIN GAME</label>)});
+				console.log('CUNTVERIFIED', data);
+				this.setState({startButton: (<label className="game__textHeader">VERIFY NOMOR HAPE DAN EMAIL DAHULU UNTUK MAIN GAME</label>)});
 			}
 			this.setState({...data})
 		});
@@ -601,9 +601,11 @@ class Game extends React.Component<Props, State> {
 			});
 
 		gameResult.then((data) => {
-			// console.log('FUCK', data.data.message);
+			console.log('FUCK', data.data.message);
 			if (data.data.message === 'Cannot Play') {
 				this.setState({startButton: (<label className="game__textHeader">ANDA TIDAK MEMILIKI COIN</label>)});
+			} else if (data.data.message === 'Verify Email') {
+				this.setState({startButton: (<label className="game__textHeader">VERIFY EMAIL DAHULU</label>)});
 			} else {
 				this.start1();
 				this.start2();
