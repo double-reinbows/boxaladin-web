@@ -13,7 +13,7 @@ import LogoXL from '../../asset/LandingPage/pulsa/XL.svg';
 class HomeContent extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       providerModal: false,
       openModal: false,
       pulsaValue: '',
@@ -22,7 +22,7 @@ class HomeContent extends Component {
       defaultId: 0
     }
   }
-  
+
 
   toggle = () =>  {
     this.setState({
@@ -39,7 +39,7 @@ class HomeContent extends Component {
       defaultId: id
     })
   }
-  
+
 
 
   pulsaItem = () => {
@@ -55,11 +55,11 @@ class HomeContent extends Component {
         <button onClick={data.onClick} className="homecontent__bottom__pulsa__button">
           <img className="homecontent__bottom__pulsa__button__image" src={data.img} alt={data.alt}/>
         </button>
-      ) 
-    )         
+      )
+    )
   }
-  render() { 
-    return (  
+  render() {
+    return (
       <div className="homecontent__container">
         <div className="homecontent__top">
           <div className="homecontent__top__text">
@@ -71,7 +71,7 @@ class HomeContent extends Component {
             </div>
           </div>
           <div className="homecontent__top__youtube">
-          <iframe title="boxaladin intro" width="100%" height="100%" src="https://www.youtube.com/embed/N1S_Z0gww18" ></iframe>
+          <iframe title="boxaladin intro" width="100%" height="100%" src="https://www.youtube.com/embed/DR0bccmd3b0" ></iframe>
           </div>
         </div>
         <div className="homecontent__bottom">
