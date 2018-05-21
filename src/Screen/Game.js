@@ -184,8 +184,6 @@ class Game extends React.Component<Props, State> {
 					<div className="game__slotButton">
 						{startButton}
 						{stopButton}
-						{/* <button disabled={this.state.gameResult} className="game__slotButton__start" onClick={ () => this.start() }>START</button>
-						<button disabled={!this.state.isRunning} className="game__slotButton__start" onClick={ () => this.stop() }>STOP</button> */}
 					</div>
 
 				</div>
@@ -265,57 +263,27 @@ class Game extends React.Component<Props, State> {
 			}
 		})
 		.then(({data}) => {
-
 			if (data.msg !== 'Unverified') {
-				console.log('VERIFIED', data);
+				// console.log('VERIFIED', data);
 				this.setState({
 					startButton:(<button className="game__slotButton__start" onClick={ () => this.start() }>START</button>),
 				});
 			} else {
-				console.log('CUNTVERIFIED', data);
+				// console.log('UNVERIFIED');
 				this.setState({startButton: (<label className="game__textHeader">VERIFY NOMOR HAPE DAN EMAIL DAHULU UNTUK MAIN GAME</label>)});
 			}
-			this.setState({...data})
+			this.setState({...data});
 		});
 	}
 
 	componentDidMount() {
 		this.props.getUser()
-		// this.getGameCount()
 		this.getRules();
 	}
-	//
-
-	// async getGameCount() {
-	// 	axios({
-	// 		method: 'GET',
-	// 		url: `${process.env.REACT_APP_API_HOST}/lose`,
-	// 		headers: {
-	// 			key: process.env.REACT_APP_KEY
-	// 		}
-	// 	})
-	// 	.then( async ({data}) => {
-	// 		await this.setState({gameCount: data[0].count})
-	// 	})
-	// 	.catch(err => console.log(err))
-	// }
-
-	// increaseGameCount() {
-	// 	axios({
-	// 		method: 'GET',
-	// 		url: `${process.env.REACT_APP_API_HOST}/lose/increase`
-	// 	})
-	// 	.then(({data}) => {
-	// 		this.getGameCount()
-			// return console.log(data)
-	// 	})
-		// .catch(err => console.log(err))
-	// }
 
 	upCoin = (e) => {
 		e.preventDefault();
 
-		console.log('DICK', this.state.key);
 		if (this.state.key <= 0) {
 			return this.setState({
         notif: "Harus Lebih Besar Dari 0",
@@ -335,11 +303,9 @@ class Game extends React.Component<Props, State> {
 				},
 				headers: {
 					token: localStorage.getItem('token'),
-					// key: process.env.REACT_APP_KEY
 				}
 			})
 			.then(response => {
-				console.log('CUNT', response.data.message);
 				if (response.data.message === 'coin updated') {
 					this.setState({
 						notif: "Aladin Key berhasil di tukar!",
@@ -354,104 +320,7 @@ class Game extends React.Component<Props, State> {
 			})
 			.catch(err => console.log('err'));
 		}
-
-		// CEK SISA ALADIN KEY LANGSUNG DARI API
-		// axios({
-		// 	method: 'GET',
-		// 	url: `${process.env.REACT_APP_API_HOST}/users/info`,
-		// 	headers: {
-		// 		token: localStorage.getItem('token'),
-		// 		key: process.env.REACT_APP_KEY
-		// 	}
-		// })
-		// .then(({data}) => {
-		// 	if (this.state.key > data.aladinKeys) {
-		// 		return this.setState({
-		// 			notif: "Aladin Key Tidak Cukup",
-		// 		})
-		// 	} else {
-		//
-		// 		// REQUEST UPDATE ALADIN KEY DAN COIN KE API
-		// 		axios({
-		// 			method: 'PUT',
-		// 			url: `${process.env.REACT_APP_API_HOST}/users/upcoin`,
-		// 			data: {
-		// 				key: this.state.key
-		// 			},
-		// 			headers: {
-		// 				token: localStorage.getItem('token'),
-		// 				// key: process.env.REACT_APP_KEY
-		// 			}
-		// 		})
-		// 		.then(response => {
-		//
-		// 			this.setState({
-		// 				coin: 0,
-		// 				key: null
-		// 			})
-		//
-		// 			document.getElementById('upcoin').value = ''
-		// 			this.props.getUser()
-		//
-		// 		})
-		// 		.catch(err => console.log(err))
-		//
-		// 	}
-		// })
-		// .catch(err => console.log(err))
-		//
-		// if (this.state.key > this.props.userInfo.aladinKeys) {
-		// 	return this.setState({
-    //     notif: "Aladin Key Tidak Cukup",
-    //   })
-		// }
-
-
 	}
-	//
-	// submitResult(result) {
-	// 	if (result === 0) {
-	// 		// this.reset()
-	// 		this.setState({
-	// 			loseSfx: true,
-	// 		})
-	// 		return
-	// 	} else {
-
-
-			// const slots = [ slot1, slot2, slot3 ]
-			// const stars = slots.filter(data => data === 6)
-
-			// console.log('starts:', stars)
-			// console.log('Total bintang: ', stars.length)
-
-	// 		axios({
-	// 			method: 'POST',
-	// 			url: `${process.env.REACT_APP_API_HOST}/win`,
-	// 			headers: {
-	// 				token: localStorage.getItem('token'),
-	// 				key: process.env.REACT_APP_KEY
-	// 				},
-	// 			data: {
-	// 				star: result
-	// 			}
-	// 		})
-	// 		.then(({data}) => {
-	// 			// console.log('OLD SHIT ', data);
-	// 			this.setState({
-	// 				pulsaAmount: data.data.gamerule.pulsaAmount,
-	// 				winToken: data.data, //the whole row in database
-	// 				modalWin:true,
-	// 			})
-	//
-	// 			this.props.getUser()
-	// 			this.props.getUserWins()
-	//
-	// 		})
-	// 		.catch(err => console.log(err))
-	//
-	// 	}
-	// }
 
 	toggle() {
 		this.setState({
@@ -463,34 +332,7 @@ class Game extends React.Component<Props, State> {
 		this.props.history.push('/claimfreepulsa', this.state.winToken);
 	}
 
-	// handleResult() {
-	// 	switch (this.state.slot1.toString() + this.state.slot2.toString() + this.state.slot3.toString()) {
-	// 		case '666':
-	// 			return 5
-	//
-	// 		case '000':
-	// 			return 4
-	//
-	// 		case '555':
-	// 			return 3
-	//
-	// 		case '560':
-	// 			return 2
-	//
-	// 		case '065':
-	// 			return 1
-	//
-	// 		default:
-	// 			return 0
-	// 	}
-	// }
-
 	handleBingo(winType) {
-		// if (this.state.slot3 === this.state.itemsdummy3.length - 1 && (this.state.slot1 === this.state.slot2 && this.state.slot2 === this.state.slot3) ) {
-		// 	this.setState({ slot3: this.state.slot3 - (this.state.itemsdummy3.length - 1) })
-		// }
-		// let winType
-		// console.log('received ', winType);
 		switch (winType) {
 			case 5:
 				return this.setState({
@@ -596,12 +438,10 @@ class Game extends React.Component<Props, State> {
 				url: `${process.env.REACT_APP_API_HOST}/game`,
 				headers:{
 					token: localStorage.getItem('token'),
-					// key: process.env.REACT_APP_KEY
 				},
 			});
 
 		gameResult.then((data) => {
-			console.log('FUCK', data.data.message);
 			if (data.data.message === 'Cannot Play') {
 				this.setState({startButton: (<label className="game__textHeader">ANDA TIDAK MEMILIKI COIN</label>)});
 			} else if (data.data.message === 'Verify Email') {
@@ -613,98 +453,8 @@ class Game extends React.Component<Props, State> {
 				this.setState({gameResult, startButton: null,
 					stopButton: (<button className="game__slotButton__start" onClick={ () => this.stop() }>STOP</button>),
 				});
-				// if (((data[0].count) >= 50) && ((data[0].count) % 50 === 0)) {
-				// 	await this.setState({mustWin: true})
-				// console.log('response ', data);
 				this.setState({winToken: data.data.winToken});
 			}
-			// this.setState({winType: data.winType});
-			// axios({
-			// 	method: 'GET',
-			// 	url: `${process.env.REACT_APP_API_HOST}/win/checkcoin/user`,
-			// 	headers:{
-			// 		token: localStorage.getItem('token'),
-			// 		// key: process.env.REACT_APP_KEY
-			// 	},
-			// })
-			// .then(data => {
-			// 	var coinUser = data.data.coin
-			// 	if (data.data.message === 'limit habis') {
-			// 		if ( coinUser <= 0 || coinUser === -1 )  {
-			// 			this.setState({
-			// 				notif: "Maaf Anda tidak punya coin untuk bermain game."
-			// 			})
-			// 		}
-			// 			axios({
-			// 				method: 'PUT',
-			// 				url: `${process.env.REACT_APP_API_HOST}/users/coin`,
-			// 				headers: {
-			// 					token: localStorage.getItem('token'),
-			// 					key: process.env.REACT_APP_KEY
-			// 				},
-			// 				data: {
-			// 					coin: this.props.userInfo.coin
-			// 				}
-			// 			})
-			// 			.then(({data}) => {
-			// 				this.props.getUser()
-			// 			})
-			// 			.catch(err => {
-			// 				console.log(err)
-			// 			})
-			//
-			// 			this.start1()
-			// 			this.start2()
-			// 			this.start3()
-			//
-			// 			this.setState({
-			// 				isRunning: true,
-			// 				notif: '',
-			// 				loseSfx: false,
-			// 				mustWin: false
-			// 			})
-			//
-			// 	} else if (data.data.result <=5 && data.data.result >= 0) {
-			// 		var check = data.data.result
-			// 		if ( coinUser <= 0 || coinUser === -1 )  {
-			// 			this.setState({
-			// 				notif: "Maaf Anda tidak punya coin untuk bermain game."
-			// 			})
-			// 		}
-			// 		else if ( check <= 3 ) {
-			// 			axios({
-			// 				method: 'PUT',
-			// 				url: `${process.env.REACT_APP_API_HOST}/users/coin`,
-			// 				headers: {
-			// 					token: localStorage.getItem('token'),
-			// 					key: process.env.REACT_APP_KEY
-			// 				},
-			// 				data: {
-			// 					coin: this.props.userInfo.coin
-			// 				}
-			// 			})
-			// 			.then(({data}) => {
-			// 				this.props.getUser()
-			// 			})
-			// 			.catch(err => {
-			// 				console.log(err)
-			// 			})
-			//
-			// 			this.start1()
-			// 			this.start2()
-			// 			this.start3()
-			//
-			// 			this.setState({
-			// 				isRunning: true,
-			// 				notif: '',
-			// 				loseSfx: false
-			// 			})
-			//
-			// 		}
-			// 	}
-			// })
-			// .catch(err => console.log(err))
-
 		})
 		// .catch(err => console.log(err));
 		.catch(err => console.log('err'));
@@ -714,9 +464,7 @@ class Game extends React.Component<Props, State> {
 	}
 
 	async stop() {
-		// console.log("FUCK ME CUNT");
 		let resolvedResult = await this.state.gameResult;
-		// console.log('resolved ',resolvedResult);
 		if (resolvedResult.data.message === 'Win') {
 			this.stop1();
 			this.stop2();
@@ -725,7 +473,6 @@ class Game extends React.Component<Props, State> {
 			setTimeout(() => {
 				this.setState({modalWin: !this.state.modalWin});
 			}, 2000);
-			// this.submitResult(this.handleResult());
 		} else {
 				this.stop1();
 				this.stop2();
@@ -734,39 +481,6 @@ class Game extends React.Component<Props, State> {
 					this.setState({slot1: 1}); //TODO: how to test this?
 				}
 		}
-
-
-    // HANDLE PEMAIN KE 21 OTOMATIS WIN
-		// if (this.state.mustWin === true) {
-		//
-		// 	await this.setState({
-		// 		slot1_atas: 6,
-		// 		slot2_atas: 5,
-		// 		slot3_atas: 4,
-		//
-		// 		slot1: 0,
-		// 		slot2: 6,
-		// 		slot3: 5,
-		//
-		// 		slot1_bawah: 1,
-		// 		slot2_bawah: 0,
-		// 		slot3_bawah: 6,
-		// 	})
-		// }
-		//
-		// // this.getGameCount()
-		//
-		//
-		//
-		// this.setState({
-		// 	si1: null,
-		// 	si2: null,
-		// 	si3: null,
-		// 	isRunning: false,
-		// 	mustWin: false
-		// })
-
-		// this.toggle();
 	}
 
 	reset() {
@@ -786,8 +500,6 @@ class Game extends React.Component<Props, State> {
 	}
 
 	start1() {
-
-
 		var _this = this
 		var i = 0
 
@@ -810,7 +522,6 @@ class Game extends React.Component<Props, State> {
 	}
 
 	stop1() {
-
 		clearInterval(this.setState.si1)
 	}
 
@@ -839,13 +550,10 @@ class Game extends React.Component<Props, State> {
 	}
 
 	stop2() {
-
 		clearInterval(this.setState.si2)
 	}
 
 	start3() {
-
-
 		var _this = this
 		var i = 0
 
@@ -868,13 +576,8 @@ class Game extends React.Component<Props, State> {
 	}
 
 	stop3() {
-
 		clearInterval(this.setState.si3)
 	}
-
-
-
-
 }
 
 const mapStateToProps = (state) => {
