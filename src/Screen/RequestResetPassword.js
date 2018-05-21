@@ -2,9 +2,10 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { setModalLogin, loginAction } from '../actions/';
+import { setModalLogin } from '../actions/';
 import { Button, Form, FormGroup, Input, FormFeedback } from 'reactstrap';
 import formatEmail from '../utils/formatEmail';
+import Footer from './Components/Footer/Footer';
 
 type State = {
   email: string,

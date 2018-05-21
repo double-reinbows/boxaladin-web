@@ -1,3 +1,4 @@
+//@flow
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
@@ -6,30 +7,25 @@ import { getProducts } from '../../actions/productAction'
 
 import HomeContent from './HomeContent'
 import BannerHome from './BannerHome'
-// import TabsHome from './TabsHome'
 
+type Props = {
+  getProducts: Function,
+};
+type State = {
+};
+class Home extends Component<Props, State> {
 
-class Home extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
+  componentDidMount() {
+    this.props.getProducts();
   }
-
   render() {
-
     return (
       <div>
-        {/* <TabsHome /> */}
         <HomeContent/>
         <BannerHome />
       </div>
     )
   }
-
-  componentDidMount() {
-    this.props.getProducts()
-  }
-
 }
 
 const mapStateToProps = state => {
@@ -47,6 +43,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(Home)
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(Home);
 
-export default connectComponent
+export default connectComponent;

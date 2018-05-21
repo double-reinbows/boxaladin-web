@@ -6,14 +6,12 @@ const defaultState = {
 const modalReducer = (state=defaultState, action) => {
   switch (action.type) {
     case 'SET_MODAL_LOGIN':
-      return {...state, modalLogin: action.payload}
-
+      return {...state, modalLogin: action.payload};
     case 'SET_MODAL_REGISTER':
-      return {...state, modalRegister: action.payload}
-
+      return {...state, modalRegister: action.payload};
   default:
-    return state
+    return state;
   }
 }
 
-export default modalReducer
+export default modalReducer;

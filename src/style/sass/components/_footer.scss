@@ -20,7 +20,8 @@
     display: flex;
     justify-content: space-between;
     margin: 1.75rem;
-    
+    border-top: 5px solid #FFCD05;
+    padding-top: 15px;
     &__button{
       width: 40%;
       display: flex;

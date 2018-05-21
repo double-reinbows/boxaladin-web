@@ -34,14 +34,14 @@ class ModalLogin extends React.Component {
 
           </div>
         </Button>
-        
+
         <Modal ariaHideApp={false} isOpen={this.props.modalLogin} toggle={this.toggle} className="modal__login">
           <div className="modal__login__container">
           <ModalHeader toggle={this.toggle} className="modal__login__header">
-          <div className="modal__login__header__title" >
-            <h2>Selamat Datang di Boxaladin</h2>
-            <h4> Daftar dengan akun baru </h4>
-          </div>
+            <div className="modal__login__header__title" >
+              <h2>Selamat Datang di Boxaladin</h2>
+              <h4> Daftar dengan akun baru </h4>
+            </div>
           </ModalHeader>
             <div>
               <Login />

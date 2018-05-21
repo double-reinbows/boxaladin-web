@@ -358,15 +358,15 @@ class Signup extends Component {
             <button type="submit" className="Signup__ButtonLogin">Daftar</button>
           </div>
         </form>
-          <ModalOtp
-            open={modalOtp}
-            buttonToggle={this.toggleOtp}
-            phone={phonenumber}
-            emailUser={email}
-            text={text}
-            submit={submit}
-            otpForm={otpForm}
-            resendOtp={this.resendOtp}/>
+        <ModalOtp
+          open={modalOtp}
+          buttonToggle={this.toggleOtp}
+          phone={phonenumber}
+          emailUser={email}
+          text={text}
+          submit={submit}
+          otpForm={otpForm}
+          resendOtp={this.resendOtp}/>
       </div>
     )
   }

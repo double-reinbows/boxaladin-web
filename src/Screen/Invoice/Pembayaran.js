@@ -25,6 +25,7 @@ import BNI from '../../asset/Logo/BNI.svg'
 import BRI from '../../asset/Logo/BRI.svg'
 
 import Guide from './PaymentGuide'
+import ModalInvoice from '../Components/Modal/ModalInvoice'
 
 class InvoiceDetail extends React.Component {
   constructor(props) {
@@ -39,11 +40,13 @@ class InvoiceDetail extends React.Component {
       cvn: '',
       isOpen3dsModal: false,
       payer_auth_url: '',
-      time: ''
+      time: '',
+      modalDetail: false
     }
 
     this.toggle = this.toggle.bind(this);
     this.toggle3dsModal = this.toggle3dsModal.bind(this)
+    this.toggleDetail = this.toggleDetail.bind(this)
   }
 
   toggle(tab) {
@@ -52,6 +55,12 @@ class InvoiceDetail extends React.Component {
         activeTab: tab
       });
     }
+  }
+
+  toggleDetail(){
+    this.setState({
+      modalDetail:!this.state.modalDetail
+    })
   }
 
   render() {
@@ -64,52 +73,23 @@ class InvoiceDetail extends React.Component {
       var finalTime = moment(time, moment.ISO_8601).add(6, 'hours').format('D MMMM YYYY, h:mm:ss a')
     }
 
+    console.log('props', this.props)
+    console.log('state', this.state)
+
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
-          <h1 className="pembayaran__title">Menunggu pembayaran</h1>
+          <h1 className="pembayaran__title__header">Pembayaran</h1>
           {this.state.invoice ? (
               <div>
-                <h1 className="pembayaran__title">Jumlah yang harus di bayarkan Rp {this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}</h1>
-                <h2 className="pembayaran__title">Selesaikan Pembayaran Sebelum {finalTime}</h2>
-                <h5 className="pembayaran__title">Silahkan melakukan pembayaran ke salah satu virtual bank account di bawah ini:</h5>
-
-                <div className="bankz">
-                  <img src={MANDIRI} className="bankz__icon" alt="Logo" />
-                    {this.state.invoice.payment.availableBanks.map((bank, idx) => {
-                      return (
-                        bank.bank_code === 'MANDIRI' ? (
-                          <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
-                        ) : null
-                      )
-                    })}
+                <div className="pembayaran__content__textDistance">
+                  <h1 className="pembayaran__title"> Rp {this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}</h1>
+                  <button className="pembayaran__buttonDetail" onClick={this.toggleDetail}> Detail Tagihan </button>
                 </div>
+                <h2 className="pembayaran__title__infoTime">Selesaikan Pembayaran Sebelum {finalTime}</h2>
 
-                <div className="bankz">
-                  <img src={BNI} className="bankz__icon" alt="Logo" />
-                  {this.state.invoice.payment.availableBanks.map((bank, idx) => {
-                      return (
-                        bank.bank_code === 'BNI' ? (
-                          <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
-                        ) : null
-                      )
-                    })}
-                </div>
 
-                <div className="bankz">
-                  <img src={BRI} className="bankz__icon" alt="Logo" />
-                  {this.state.invoice.payment.availableBanks.map((bank, idx) => {
-                      return (
-                        bank.bank_code === 'BRI' ? (
-                          <div className="bankz__name" key={idx}>{bank.bank_code}: {bank.bank_account_number}</div>
-                        ) : null
-                      )
-                  })}
-                </div>
-
-                <div style = { { padding: '10px'} }>
-                  <h1 className="pembayaran__title" ><b> CARA PEMBAYARAN </b></h1>
-                </div>
+                  <h1 className="pembayaran__title__metodeBayar" > Pilih metode pembayaran </h1>
 
                   <div>
                     <Nav tabs>
@@ -152,6 +132,32 @@ class InvoiceDetail extends React.Component {
                             outline: "none" }}>BRI</button></h4>
                         </NavLink>
                       </NavItem>
+                      <NavItem>
+                        <NavLink
+                          className={classnames({ active: this.state.activeTab === '4' })}
+                          onClick={() => { this.toggle('4'); }}
+                        >
+                          <h4><button style = {{  backgroundColor: "Transparent",
+                            backgroundRepeat: "no-repeat",
+                            border: "none",
+                            cursor: "pointer",
+                            overflow: "hidden",
+                            outline: "none" }}>BCA</button></h4>
+                        </NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink
+                          className={classnames({ active: this.state.activeTab === '5' })}
+                          onClick={() => { this.toggle('5'); }}
+                        >
+                          <h4><button style = {{  backgroundColor: "Transparent",
+                            backgroundRepeat: "no-repeat",
+                            border: "none",
+                            cursor: "pointer",
+                            overflow: "hidden",
+                            outline: "none" }}>Gerai Retail</button></h4>
+                        </NavLink>
+                      </NavItem>
                     </Nav>
                     <Guide activeTab= {this.state.activeTab} invoice={this.state.invoice} />
                   </div>
@@ -159,6 +165,7 @@ class InvoiceDetail extends React.Component {
             ) : null
           }
         </div>
+        <ModalInvoice isOpen={this.state.modalDetail} toggle={this.toggleDetail} invoice={this.state.invoice} />
       </div>
     )
   }
@@ -343,12 +350,13 @@ class InvoiceDetail extends React.Component {
       url: `${process.env.REACT_APP_API_HOST}/transaction/${this.props.match.params.id}`
     })
     .then(({data}) => {
+      console.log(data)
     this.setState({
       invoice: data
     })
   })
     .catch(err => console.log(err))
-  }
+ }
 
 }
 
