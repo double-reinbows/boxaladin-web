@@ -17,7 +17,9 @@ class HomeContent extends Component {
       providerModal: false,
       openModal: false,
       pulsaValue: '',
-      logo: ''
+      logo: '',
+      defaultName: '',
+      defaultId: 0
     }
   }
   
@@ -28,10 +30,13 @@ class HomeContent extends Component {
     })
   }
 
-  toggleBid = (pulsa) => {
+  toggleBid = (pulsa, name, id) => {
+    console.log('pulsa', name, id)
     this.setState({
       openModal: !this.state.openModal,
       pulsaValue: pulsa,
+      defaultName: name,
+      defaultId: id
     })
   }
   
@@ -39,11 +44,11 @@ class HomeContent extends Component {
 
   pulsaItem = () => {
     const pulsaItems = [
-      {onClick: () => this.toggleBid('XL'), img: LogoXL, alt:"Logo XL"},
-      {onClick: () => this.toggleBid('Telkomsel'), img: LogoTelkomsel, alt:"Logo Telkomsel"},
-      {onClick: () => this.toggleBid('Smartfren'), img: LogoSmart, alt:"Logo Smart"},
-      {onClick: () => this.toggleBid('Indosat'), img: LogoIndosat, alt:"Logo Indosat"},
-      {onClick: () => this.toggleBid('Tri'), img: LogoTri, alt:"Logo Tri"}
+      {onClick: () => this.toggleBid('XL', 'Pulsa XL 25.000', 4), img: LogoXL, alt:"Logo XL"},
+      {onClick: () => this.toggleBid('Telkomsel', 'Pulsa Telkomsel 25.000', 1), img: LogoTelkomsel, alt:"Logo Telkomsel"},
+      {onClick: () => this.toggleBid('Smartfren', 'Pulsa Smartfren 25.000', 16), img: LogoSmart, alt:"Logo Smart"},
+      {onClick: () => this.toggleBid('Indosat', 'Pulsa Indosat 25.000', 7), img: LogoIndosat, alt:"Logo Indosat"},
+      {onClick: () => this.toggleBid('Tri', 'Pulsa Tri 25.000', 10), img: LogoTri, alt:"Logo Tri"}
     ]
 
     return pulsaItems.map(data => (
@@ -66,7 +71,7 @@ class HomeContent extends Component {
             </div>
           </div>
           <div className="homecontent__top__youtube">
-          <iframe title="boxaladin intro" width="100%" height="100%" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+          <iframe title="boxaladin intro" width="100%" height="100%" src="https://www.youtube.com/embed/N1S_Z0gww18" ></iframe>
           </div>
         </div>
         <div className="homecontent__bottom">
@@ -78,7 +83,7 @@ class HomeContent extends Component {
           </div>
         </div>
         <ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
-        <ModalBid isOpen={this.state.openModal} toggle={this.toggleBid} pulsaValue={this.state.pulsaValue} logo={this.state.logo}/>
+        <ModalBid isOpen={this.state.openModal} toggle={this.toggleBid} pulsaValue={this.state.pulsaValue} defaultId={this.state.defaultId} defaultName={this.state.defaultName}/>
       </div>
     )
   }
