@@ -50,7 +50,7 @@ class ModalCheck extends Component {
               <div>
               <img className="modal__pulsa__content__2__logo__image"  src={require('../../../asset/LandingPage/pulsa/' + this.props.pulsaValue + '.svg')} alt={`Logo ${this.props.pulsaValue}`}/>
               </div>
-              {data.price.toLocaleString(['ban', 'id'])}
+              {data.displayPrice.toLocaleString(['ban', 'id'])}
             </button>
           )
         })
@@ -79,7 +79,7 @@ class ModalCheck extends Component {
     console.log('data id', e)
     this.props.selectProductID(e)
     this.setState({
-      pulsaPrice: data.price,
+      pulsaPrice: data.displayPrice,
       pulsaName: data.productName,
       pulsaId : this.props.selectProductID(e),
       disabled: false
@@ -108,7 +108,7 @@ class ModalCheck extends Component {
 
   render() { 
     console.log('render', this.state)
-    console.log(this.props.defaultId)
+    console.log(this.props)
     return ( 
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__pulsa">
         <div className="modal__pulsa__container">
@@ -130,7 +130,6 @@ class ModalCheck extends Component {
               <div className="modal__pulsa__content__3__button">
                 <button className="modal__pulsa__content__3__button__x" onClick={this.toggle}>X</button>
               </div>
-              <label>{this.selectId}</label>
               <label>{ !this.state.pulsaName ? (this.props.defaultName) : (this.state.pulsaName)}</label>
             </div>
             <div >
