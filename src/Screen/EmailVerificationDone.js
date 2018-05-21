@@ -10,9 +10,24 @@ const BA_API_HOST = `${process.env.REACT_APP_API_HOST}`
 
 class EmailVerificationDone extends React.Component {
   render() {
+    console.log(this.props)
+    console.log(this.state)
     return (
       <div className="emailVerification">
-        <h1 className="emailVerification__text">Email Telah Terverifikasi</h1>
+        <header className="emailVerification__header">
+          <img src="https://s3-ap-southeast-1.amazonaws.com/boxaladin.com/BoxAladin.png" className="emailVerification__header__image"/>
+        </header>
+        <div className="emailVerification__content">
+          <p className="emailVerification__content__textHead">Halo !</p>
+          <p className="emailVerification__content__textMiddle">
+            Kamu telah menverifikasi email {this.props.userInfo.typedEmail} sebagai akun baru di Boxaladin. klik gambar dibawah ini untuk mulai berbelanja:
+          </p>
+          <div className="emailVerification__content__image">
+            <a href="https://www.boxaladin.com">
+              <img src="https://s3-ap-southeast-1.amazonaws.com/boxaladin.com/logo.png" />
+            </a>
+          </div>
+        </div>
         { this.showLoginLink() }
       </div>
     )
@@ -41,6 +56,8 @@ class EmailVerificationDone extends React.Component {
     .catch(err => console.log(err))
   }
 
+
+
   showLoginLink() {
     if (localStorage.getItem('token') == null) {
       return (
@@ -57,6 +74,7 @@ class EmailVerificationDone extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    userInfo: state.userReducer.userInfo,
     modalLogin: state.modalReducer.modalLogin,
     modalRegister: state.modalReducer.modalRegister,
   }
