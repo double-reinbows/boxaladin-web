@@ -1,4 +1,5 @@
 import * as firebase from 'firebase'
+import axios from 'axios'
 
 export const getProducts = () => {
 	return (dispatch) => {
@@ -12,6 +13,16 @@ export const getProducts = () => {
 			dispatch(getProductsAction(dataProducts))
 		})
 	}
+// 	return (dispatch) => {
+// 		axios({
+// 			method: 'GET',
+// 			url: `${process.env.REACT_APP_API_HOST}/api/product`,
+// 		})
+// 		.then((dataProducts) => {
+// 			dispatch(getProductsAction(dataProducts))
+// })
+// 		.catch(err => console.log(err))
+// 	}
 }
 
 export const getFilteredProducts = (brand, category) => {

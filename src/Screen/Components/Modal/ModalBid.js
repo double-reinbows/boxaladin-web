@@ -20,7 +20,7 @@ class ModalCheck extends Component {
   constructor(props) {
     super(props);
     this.state = {  
-      pulsaPrice : '',
+      pulsaPrice : 25000,
       pulsaName: '',
       modalConfirm : false,
       pulsaId: '',
@@ -33,7 +33,6 @@ class ModalCheck extends Component {
       modalConfirm: !this.state.modalConfirm
     })
   }
-  
 
   choicePulsa=()=>{
     if (this.props.products.length === 0) {
@@ -61,13 +60,19 @@ class ModalCheck extends Component {
 
   toggle = () => {
     this.setState({
-      pulsaPrice : '',
       pulsaName: '',
       pulsaId: '',
       disabled: true
     },
       () => this.props.toggle('XL'),
     )
+  }
+
+  selectId = () => {
+      { !this.state.pulsaId ? ( this.setState({
+        pulsaId: this.props.defaultId
+      })
+    ) : (this.state.pulsaId) }
   }
 
   pulsa(e, data){
@@ -92,7 +97,7 @@ class ModalCheck extends Component {
   }
 
   imageProps = () => {
-    if ( this.props.pulsaValue === null || this.props.pulsaValue === undefined || this.props.pulsaValue === ''){
+    if ( !this.props.pulsaValue ){
       return (<h1>Loading</h1>)
     } else {
       return (
@@ -103,6 +108,7 @@ class ModalCheck extends Component {
 
   render() { 
     console.log('render', this.state)
+    console.log(this.props.defaultId)
     return ( 
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__pulsa">
         <div className="modal__pulsa__container">
@@ -124,7 +130,8 @@ class ModalCheck extends Component {
               <div className="modal__pulsa__content__3__button">
                 <button className="modal__pulsa__content__3__button__x" onClick={this.toggle}>X</button>
               </div>
-              <label>{this.state.pulsaName}</label>
+              <label>{this.selectId}</label>
+              <label>{ !this.state.pulsaName ? (this.props.defaultName) : (this.state.pulsaName)}</label>
             </div>
             <div >
               <button onClick={() => this.handleNotLogin()} disabled={this.state.disabled} type="button" className="modal__pulsa__content__3__button__price">

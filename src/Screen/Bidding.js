@@ -24,8 +24,8 @@ class Bidding extends React.Component {
     super(props)
     this.state = {
       productUnlocked: {},
-			count: 1000,
-      initCount: 1000,
+			count: 15,
+      initCount: 15,
       isWatching: false,
       notif:''
     }
@@ -37,7 +37,8 @@ class Bidding extends React.Component {
 
 
   render() {
-    console.log(this.props)
+    console.log('data props', this.props)
+    console.log(this.state.productUnlocked)
     return (
   <div>
       <div className="bidding__2__col1">
@@ -140,8 +141,6 @@ class Bidding extends React.Component {
   }
 
   componentWillUnmount() {
-
-    // this.props.history.replace('/')
     this.stopWatchProductPrice(this.props.selectedProductID)
     localStorage.removeItem('selectedProductId')
   }
@@ -166,8 +165,6 @@ class Bidding extends React.Component {
 			url: `${process.env.REACT_APP_API_HOST}/api/product/${this.props.selectedProductID}`
 		})
 		.then(({data}) => {
-      // this.stopWatchProductPrice(this.props.selectedProductID)
-
       const productsRef = firebase.database().ref().child('productsdummy')
       const productRef = productsRef.child(this.props.selectedProductID)
 
@@ -184,7 +181,6 @@ class Bidding extends React.Component {
   }
 
   cancel() {
-    // this.stopWatchProductPrice(this.props.selectedProductID)
     this.props.history.push('/home')
   }
 
@@ -192,9 +188,6 @@ class Bidding extends React.Component {
     if (productId === '') {
       return null
     }
-
-    // const productsRef = firebase.database().ref().child('productsdummy')
-    // const productRef = productsRef.child(productId)
 
 		if (localStorage.getItem('token') !== null) {
 
