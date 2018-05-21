@@ -277,7 +277,7 @@ class Game extends React.Component<Props, State> {
 	}
 
 	componentDidMount() {
-		this.props.getUser()
+		this.props.getUser();
 		this.getRules();
 	}
 
@@ -430,8 +430,6 @@ class Game extends React.Component<Props, State> {
 	}
 
 	async start() {
-		// this.increaseGameCount()
-
 		let gameResult =
 			axios({
 				method: 'GET',
@@ -446,13 +444,14 @@ class Game extends React.Component<Props, State> {
 				this.setState({startButton: (<label className="game__textHeader">ANDA TIDAK MEMILIKI COIN</label>)});
 			} else if (data.data.message === 'Verify Email') {
 				this.setState({startButton: (<label className="game__textHeader">VERIFY EMAIL DAHULU</label>)});
-			} else {
+			} else { //User can play
 				this.start1();
 				this.start2();
 				this.start3();
 				this.setState({gameResult, startButton: null,
 					stopButton: (<button className="game__slotButton__start" onClick={ () => this.stop() }>STOP</button>),
 				});
+				this.props.getUser(); //update user data (for the coins);
 				this.setState({winToken: data.data.winToken});
 			}
 		})
@@ -477,11 +476,42 @@ class Game extends React.Component<Props, State> {
 				this.stop1();
 				this.stop2();
 				this.stop3();
-				if (this.handleResult() !== 0) { //User won but shouldn't
-					this.setState({slot1: 1}); //TODO: how to test this?
+				if (this.accidentalWin() === 0) { //User didn't win accidentally
+					// console.log("BITCH");
+					this.setState({
+						startButton:(<button className="game__slotButton__start" onClick={ () => this.start() }>START</button>),
+						stopButton: null,
+					});
 				}
+
 		}
 	}
+
+	/*
+	 * This checks the slots for a winning combination and if found, forces the User to lose
+	*/
+	accidentalWin() {
+		let {slot1_atas, slot2_atas, slot3_atas, slot1, slot2, slot3, slot1_bawah, slot2_bawah, slot3_bawah} = this.state;
+		if (slot1.toString() + slot2.toString() + slot3.toString() === '666') {
+			this.setState({slot3: 0});
+			return 1;
+		} else if (slot1_atas.toString() + slot2_atas.toString() + slot3_atas.toString() === '666') {
+			this.setState({slot1_atas: 0});
+			return 2;
+		} else if (slot1_bawah.toString() + slot2_bawah.toString() + slot3_bawah.toString() === '666') {
+			this.setState({slot1_bawah: 0});
+			return 3
+		} else if (slot1_atas.toString() + slot2.toString() + slot3_bawah.toString() === '666') {
+			this.setState({slot3_bawab: 0});
+			return 4;
+		} else if (slot1_bawah.toString() + slot2.toString() + slot3_atas.toString() === '666') {
+			this.setState({slot2: 0});
+			return 5;
+		} else {
+			// console.log('RETURN 0 BITCH');
+			return 0;
+		}
+}
 
 	reset() {
 		this.setState({
@@ -526,13 +556,10 @@ class Game extends React.Component<Props, State> {
 	}
 
 	start2() {
-
-
 		var _this = this
 		var i = 0
 
 		this.setState.si2 = setInterval(function() {
-
 			_this.setState({
 				slot2: i,
 				slot2_atas: i === 0 ? _this.state.itemsdummy2.length-1 : i-1,
@@ -544,7 +571,6 @@ class Game extends React.Component<Props, State> {
 			} else {
 				i=0
 			}
-
   	}, this.state.speed2)
 
 	}
