@@ -160,12 +160,14 @@ class ModalOtp extends Component {
   render() {
     let {createdAt, otp, notifCount, notifOtp, show, disabled} = this.state;
     let {text, submit, buttonToggle, open, otpForm} = this.props;
-    // let otpFormJSX = null;
     let otpFormJSX = otpForm ? (<input required className="form-control inputz" value={otp} type="text" pattern="[0-9]*"
-                              onChange={e => this.handleOtp(e)} style={{width: "50%", margin: 'auto'}}/>
+                              onChange={e => this.handleOtp(e)} style={{width: "25%", margin: 'auto'}}/>
                             ) : null;
 
-    let clear = otp.length >= 4 ? (<Button className="body__otp__button" color="primary" onClick={() => this.clearOtp()}>Clear</Button>): null
+    let clear = otp.length >= 4 ?
+      (<Button className="modal-body__otp__button" color="primary" onClick={() => this.clearOtp()} style={{'marginRight': '15px'}}>Clear</Button>)
+      : null;
+
     return (
       <Modal ariaHideApp={false} isOpen={open} toggle={buttonToggle} className='modal__otp' >
         <form onSubmit={e => this.sendOtp(e)}>

@@ -316,7 +316,7 @@ class Signup extends Component {
             <input name="phonenumber" required
               className="form-control inputz"
               value={phonenumber}
-              type="integer"
+              type="number"
               aria-describedby="phonenumberHelp"
               placeholder="Masukkan No Handphone Kamu*"
               onChange={e => this.handlePhoneNum(e)}
