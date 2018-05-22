@@ -78,7 +78,7 @@ class DropdownUser extends React.Component {
 
           {/* <a href="/win"> */}
           <DropdownItem className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" onClick={(e) => this.changeText('Game Result')} to="/gameresult">Hasil Game</Link>
+            <Link className="DropdownUser__inside__link" onClick={(e) => this.changeText('Hasil Game')} to="/gameresult">Hasil Game</Link>
           </DropdownItem>
           {/* </a> */}
 

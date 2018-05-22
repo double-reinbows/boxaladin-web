@@ -10,22 +10,17 @@ import LockIcon from '../../../asset/LandingPage/pulsa/lock.png';
 import { selectProductID } from '../../../actions/productAction';
 
 class ModalCheck extends Component {
-  static propTypes = {
-    buttonToggle: PropTypes.func,
-    open: PropTypes.bool,
-    phone: PropTypes.string,
-    loginAction: PropTypes.func,
-    setModalRegister: PropTypes.func
-  }
+
   constructor(props) {
     super(props);
     this.state = {  
       pulsaPrice : 25000,
       pulsaName: '',
       modalConfirm : false,
-      pulsaId: '',
-      disabled: true
+      disabled: false,
+      defaultId: this.props.defaultId
     }
+    console.log('constructor', this.state)
   }
 
   toggleConfirm = () => {
@@ -57,41 +52,41 @@ class ModalCheck extends Component {
       )
     }
   }
-
   toggle = () => {
     this.setState({
+      pulsaPrice: 25000,
       pulsaName: '',
-      pulsaId: '',
       disabled: true
     },
       () => this.props.toggle('XL'),
     )
   }
 
-  selectId = () => {
-      { !this.state.pulsaId ? ( this.setState({
-        pulsaId: this.props.defaultId
-      })
-    ) : (this.state.pulsaId) }
-  }
-
-  pulsa(e, data){
-    console.log('data id', e)
-    this.props.selectProductID(e)
+  pulsa(id, data) {
+    console.log('id', id)
     this.setState({
       pulsaPrice: data.displayPrice,
       pulsaName: data.productName,
-      pulsaId : this.props.selectProductID(e),
-      disabled: false
+      disabled: false,
+      defaultId: id
+    }, () => {
+      this.props.selectProductID(this.state.defaultId)
+      console.log( this.props.selectProductID(this.state.defaultId))
+
     })
   }
 
   handleNotLogin() {
+    console.log('default id', this.state.defaultId, this.props.defaultId)
     if (localStorage.getItem('token') === null) {
       alert('Anda belum masuk')
     } else {
       this.setState({
-        modalConfirm: !this.state.modalConfirm
+        modalConfirm: !this.state.modalConfirm,
+      }, () => {
+        this.props.selectProductID(this.state.defaultId)
+        console.log( this.props.selectProductID(this.state.defaultId))
+
       })
     }
   }
@@ -99,6 +94,10 @@ class ModalCheck extends Component {
   imageProps = () => {
     if ( !this.props.pulsaValue ){
       return (<h1>Loading</h1>)
+    } else if ( this.props.pulsaValue === 'Telkomsel' || this.props.pulsaValue === 'Smartfren') {
+      return (
+        <img className="modal__pulsa__content__1__logo__image__special" src={require('../../../asset/LandingPage/pulsa/' + this.props.pulsaValue + '.svg')} alt={`Logo ${this.props.pulsaValue}`}/>
+      )
     } else {
       return (
         <img className="modal__pulsa__content__1__logo__image" src={require('../../../asset/LandingPage/pulsa/' + this.props.pulsaValue + '.svg')} alt={`Logo ${this.props.pulsaValue}`}/>
@@ -107,8 +106,8 @@ class ModalCheck extends Component {
   }
 
   render() { 
-    console.log('render', this.state)
-    console.log(this.props)
+    console.log(this.state)
+    console.log( this.props.selectProductID(this.state.defaultId))
     return ( 
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__pulsa">
         <div className="modal__pulsa__container">
@@ -133,13 +132,13 @@ class ModalCheck extends Component {
               <label>{ !this.state.pulsaName ? (this.props.defaultName) : (this.state.pulsaName)}</label>
             </div>
             <div >
-              <button onClick={() => this.handleNotLogin()} disabled={this.state.disabled} type="button" className="modal__pulsa__content__3__button__price">
-                Intip Harga
+              <button value={this.props.defaultId} onClick={() => this.handleNotLogin()} disabled={this.state.disabled} type="button" className="modal__pulsa__content__3__button__price">
+                Intip Harga 
                 <img src={LockIcon} alt="LockIcon" className="modal__pulsa__content__3__button__price__image"/>
               </button>
             </div>
           </div>
-          <ModalConfirm open={this.state.modalConfirm} toggle={this.toggleConfirm} idPulsa={this.state.pulsaId}/>
+          <ModalConfirm open={this.state.modalConfirm} toggle={this.toggleConfirm}/>
         </div>
       </Modal>
     )

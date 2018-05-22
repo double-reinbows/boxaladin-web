@@ -511,8 +511,8 @@
 
           &__image{
             width: 30%;
-            &__tri{
-              width: 20%;
+            &__special{
+              width: 60%;
             }
           }
         }
@@ -576,6 +576,13 @@
             color: white;
             background-color: grey;
             border: none;
+            &:disabled{
+              background-color: lightgrey;
+              color: graytext;
+              &:hover{
+                cursor: not-allowed;
+              }
+            }
             &:hover{
               cursor: pointer;
             }

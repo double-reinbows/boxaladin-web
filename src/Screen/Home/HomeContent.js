@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import axios from 'axios'
+import { connect } from 'react-redux';
+
+import { getProducts } from '../../actions/productAction';
+
 
 import ProviderModal from './Modal/ProviderModal';
 import ModalBid from '../Components/Modal/ModalBid'
@@ -21,6 +26,7 @@ class HomeContent extends Component {
       defaultName: '',
       defaultId: 0
     }
+    this.toggleBid = this.toggleBid.bind(this);
   }
 
 
@@ -30,34 +36,75 @@ class HomeContent extends Component {
     })
   }
 
-  toggleBid = (pulsa, name, id) => {
-    console.log('pulsa', name, id)
-    this.setState({
-      openModal: !this.state.openModal,
+  async toggleBid(pulsa, name, id) {
+      await this.setState({
       pulsaValue: pulsa,
       defaultName: name,
       defaultId: id
+    })
+    await this.setState({
+      openModal: !this.state.openModal,
     })
   }
 
 
 
-  pulsaItem = () => {
-    const pulsaItems = [
-      {onClick: () => this.toggleBid('XL', 'Pulsa XL 25.000', 4), img: LogoXL, alt:"Logo XL"},
-      {onClick: () => this.toggleBid('Telkomsel', 'Pulsa Telkomsel 25.000', 1), img: LogoTelkomsel, alt:"Logo Telkomsel"},
-      {onClick: () => this.toggleBid('Smartfren', 'Pulsa Smartfren 25.000', 16), img: LogoSmart, alt:"Logo Smart"},
-      {onClick: () => this.toggleBid('Indosat', 'Pulsa Indosat 25.000', 7), img: LogoIndosat, alt:"Logo Indosat"},
-      {onClick: () => this.toggleBid('Tri', 'Pulsa Tri 25.000', 10), img: LogoTri, alt:"Logo Tri"}
-    ]
 
-    return pulsaItems.map(data => (
-        <button onClick={data.onClick} className="homecontent__bottom__pulsa__button">
-          <img className="homecontent__bottom__pulsa__button__image" src={data.img} alt={data.alt}/>
-        </button>
+  pulsaItem() {
+    if (this.props.products.length === 0) {
+      return (
+        <h1>Loading</h1>
       )
-    )
+    } else {
+      return(
+        this.props.products.filter(data => {
+          return data.displayPrice === 25000 && data.category === 'Pulsa' && data.category && data.brand !== 'Axis'
+        })
+        
+        .map((data, i) => {
+          const pulsaItems = [
+            {onClick: () => this.toggleBid(`${data.brand}`, `${data.productName}`, `${data.id}`), img: data.brandLogo, alt:`Logo ${data.brand}`},
+          ]
+          return pulsaItems.map(data => (
+            <button onClick={data.onClick} className="homecontent__bottom__pulsa__button">
+              <img className="homecontent__bottom__pulsa__button__image" src={data.img} alt={data.alt}/>
+            </button>
+          )
+        )
+        })
+      )
+    }
+    // const pulsaItems = [
+    //   {onClick: () => this.toggleBid('XL', 'Pulsa XL 25.000', 142), img: LogoXL, alt:"Logo XL"},
+    //   {onClick: () => this.toggleBid('Telkomsel', 'Pulsa Telkomsel 25.000', 139), img: LogoTelkomsel, alt:"Logo Telkomsel"},
+    //   {onClick: () => this.toggleBid('Smartfren', 'Pulsa Smartfren 25.000', 16), img: LogoSmart, alt:"Logo Smart"},
+    //   {onClick: () => this.toggleBid('Indosat', 'Pulsa Indosat 25.000', 145), img: LogoIndosat, alt:"Logo Indosat"},
+    //   {onClick: () => this.toggleBid('Tri', 'Pulsa Tri 25.000',   ), img: LogoTri, alt:"Logo Tri"}
+    // ]
+
+    // return pulsaItems.map(data => (
+    //     <button onClick={data.onClick} className="homecontent__bottom__pulsa__button">
+    //       <img className="homecontent__bottom__pulsa__button__image" src={data.img} alt={data.alt}/>
+    //     </button>
+    //   )
+    // )
   }
+
+  renderModalBid() {
+    if (this.state.openModal) {
+      return (
+        <ModalBid 
+          isOpen={this.state.openModal} 
+          toggle={this.toggleBid} 
+          pulsaValue={this.state.pulsaValue} 
+          defaultId={this.state.defaultId} 
+          defaultName={this.state.defaultName }
+        />
+      )
+    }
+    return null;
+  }
+
   render() {
     return (
       <div className="homecontent__container">
@@ -83,10 +130,27 @@ class HomeContent extends Component {
           </div>
         </div>
         <ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
-        <ModalBid isOpen={this.state.openModal} toggle={this.toggleBid} pulsaValue={this.state.pulsaValue} defaultId={this.state.defaultId} defaultName={this.state.defaultName}/>
+        {
+          this.renderModalBid()
+        }
       </div>
     )
   }
 }
 
-export default HomeContent;
+const mapStateToProps = (state) => {
+	return {
+    products: state.productReducer.products,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+    getProducts: () => dispatch(getProducts()),
+  }
+}
+
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(HomeContent);
+
+export default connectComponent;
+

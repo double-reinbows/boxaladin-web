@@ -53,12 +53,12 @@ export default function Advantage(props: Props) {
           </div>
         </div>
       </div>
-      <div className="resetPassword__wrapper__about">
-        <div className="resetPassword__textWarning">
-          <h1>INGAT PULSA ? INGAT</h1>
+      <div className="advantage__footer">
+        <div className="advantage__footer__label">
+          <label>INGAT PULSA, INGAT</label>
         </div>
-        <div className="resetPassword__image">
-          <img className="resetPassword__logo" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/logoTextOnly.png" alt="Boxaladin"/>
+        <div >
+          <img  src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/logoTextOnly.png" alt="Boxaladin"/>
         </div>
       </div>
     </div>

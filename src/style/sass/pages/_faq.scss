@@ -21,7 +21,7 @@
   padding-bottom: 2%;
   &__title{
     text-align: center;
-    font-size: 20px;
+    font-size: 25px;
     &__bottom{
       width: 130px;
       display: flex;
@@ -75,6 +75,18 @@
       }
     }
   }
+  &__footer{
+    display: flex;
+    justify-content: center;
+    margin: 5%;
+    font-size: 25px;
+    &__label{
+      display: flex;
+      align-items: flex-end;
+      margin-top: 0.3%;
+      margin-right: 1%;
+    }
+  }
 }
 
 @media (min-width: 200px ) and (max-width:767px) {
@@ -101,6 +113,20 @@
         &__5{
 
         }
+      }
+    }
+  }
+}
+
+@media (min-width: 200px ) and (max-width:535px) {
+  .advantage{
+    &__footer{
+      display: block;
+      text-align: center;
+      &__label{
+        margin-top: 0.6%;
+        display: flex;
+        justify-content: center;
       }
     }
   }
