@@ -1,3 +1,24 @@
+.verified {
+  &__profile {
+    /* margin-left: 22%; */
+    /* margin-right: 22%; */
+    background-color: white;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    border: 2px #FFCD05 solid;
+    border-radius: 5px;
+    /* padding-left: 51%; */
+    margin-left: 10%;
+  }
+}
+
+
+
 .user{
   background-color: white;
   display: flex;

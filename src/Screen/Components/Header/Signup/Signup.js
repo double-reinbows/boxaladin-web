@@ -1,9 +1,10 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import { setModalLogin, setModalRegister, setIsLoading, loginAction } from '../../../../actions/'
-import axios from 'axios'
-import Loading from '../../Loading/'
-import ModalOtp from './ModalOtp'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import { setModalLogin, setModalRegister, setIsLoading, loginAction } from '../../../../actions/';
+import axios from 'axios';
+import Loading from '../../Loading/';
+import ModalOtp from './ModalOtp';
+import SuccessModalOtp from './SuccessModalOtp';
 import {Button} from 'reactstrap';
 import formatEmail from '../../../../utils/formatEmail';
 
@@ -19,15 +20,17 @@ class Signup extends Component {
       typedEmail: '',
       modalOtp: false,
       state: null,
-      text: 'Silakan tunggu sampai miscallnya selesai sebelum masukkan kode.',
+      text: 'Silakan tunggu bbrp saat untuk panggilan selesai.',
       submit: null,
       password: '',
       confirm_password: '',
       otpForm: false,
+      modalSuccessOtp: false,
     }
     this.signUpInputHandler = this.signUpInputHandler.bind(this)
     this.toggle = this.toggle.bind(this);
     this.toggleOtp = this.toggleOtp.bind(this);
+    this.toggleSuccessOtp = this.toggleSuccessOtp.bind(this);
     this.resendOtp = this.resendOtp.bind(this);
   }
 
@@ -40,8 +43,18 @@ class Signup extends Component {
   }
 
   toggleOtp() {
+    const {loginAction, setModalRegister} = this.props;
+    loginAction();
+    setModalRegister(false);
     this.setState({
       modalOtp: !this.state.modalOtp,
+    })
+  }
+
+  toggleSuccessOtp() {
+    this.setState({
+      modalSuccessOtp: true,
+      modalOtp: false,
     })
   }
 
@@ -122,39 +135,15 @@ class Signup extends Component {
     }
   }
 
-  // vconfirm_password() {
-  //   if (this.state.confirm_password !== this.state.password) {
-  //     alert('Password must same')
-  //   }
-  // }
-
-  // vUsername() {
-  //   /**
-  //    * Username yang diizinkan: alphanumeric, 3-20 karakter.
-  //    * No special characters kecuali '_' (underscore)
-  //    */
-  //   if (/^[A-Za-z0-9_]{3,20}$/.test(this.state.username)) {
-  //     this.setState({_vUsername: true});
-  //   } else {
-  //     this.setState({username: undefined, _vFname: false});
-  //     alert('Wrong username format');
-  //   }
-  // }
 
   /**
    * Valid atau tidaknya form (keseluruhan)
    * dievaluasi di sini
    */
   async formIsValid() {
-    // await this.vFname()
-    // await this.vLname()
-    // await this.vUsername()
     await this.vPassword()
     await this.vEmail()
-    // await this.vconfirm_password()
     if (
-      // this.state._vFname &&
-      // this.state._vUsername &&
       this.state._vPassword &&
       this.state._vEmail
     ) {
@@ -171,7 +160,7 @@ class Signup extends Component {
     let {setIsLoading} = this.props;
     setTimeout(() => {
         this.setState({
-          text: 'Masukkan 4 angka terakhir dari no yang menelpon anda',
+          text: 'Silahkan memasuki 4 angka terakhir dari nomor panggilan tersebut.',
           submit: (<Button className="modal-body__otp__button" color="primary" type="submit" >Submit</Button>),
           otpForm: true,
         });
@@ -201,7 +190,6 @@ class Signup extends Component {
         data: payload
       })
         .then(({data}) => {
-          // console.log(data)
           if (data.hasOwnProperty('isUsed')) {
             if (data.isUsed.username) {
               this.setState({
@@ -222,21 +210,13 @@ class Signup extends Component {
               this.setState({
                 notif: "Email Sudah digunakan",
               })
-            } else {
-              localStorage.setItem('token', data.token)
+            } else if (data.message === 'Signup Berhasil') {
+              localStorage.setItem('token', data.token);
               this.setState({
                 dataUser: payload,
-                email: payload.email
-              }, () => {
-                this.toggleOtp();
+                email: payload.email,
+                modalOtp: !this.state.modalOtp,
               });
-              /**
-               * Tinggal tambah, kalau udah sukses signup mau ngapain lagi
-               * selain terima token.
-               * Redirect ke home misalnya? Atau dilempar lagi ke halaman login?
-               */
-              // this.props.setModalRegister(false)
-
             }
 
           }
@@ -254,7 +234,6 @@ class Signup extends Component {
   signUpInputHandler(e) {
     this.setState({[e.target.name]: e.target.value.trim()});
   }
-
 
   resendOtp() {
     this.setState({
@@ -274,24 +253,13 @@ class Signup extends Component {
   signUpInputToLowerHandler(e) {
     var email = e.target.value;
     var formatted = formatEmail(e.target.value);
-    // var user = email.split('@')[0]
-    // var provider = email.split('@')[1]
-    //
-    // if (provider === 'gmail.com') {
-    //   let userWithoutDot = user.split('.').join('')
-    //   const result = userWithoutDot + '@gmail.com'
       this.setState({ email : formatted, typedEmail: email });
-    // }
-    // else {
-    //   const result = e.target.value
-      // this.setState({ email : result.trim().toLowerCase(), typedEmail: email})
-    // }
   }
 
   render() {
     let {isLoading} = this.props;
     let {notif, open, phonenumber, email, submit, text, modalOtp, password,
-      confirm_password, typedEmail, otpForm} = this.state;
+      confirm_password, typedEmail, otpForm, modalSuccessOtp} = this.state;
     return (
       <div className="Signup">
 
@@ -316,7 +284,7 @@ class Signup extends Component {
             <input name="phonenumber" required
               className="form-control inputz"
               value={phonenumber}
-              type="integer"
+              type="number"
               aria-describedby="phonenumberHelp"
               placeholder="Masukkan No Handphone Kamu*"
               onChange={e => this.handlePhoneNum(e)}
@@ -366,7 +334,13 @@ class Signup extends Component {
           text={text}
           submit={submit}
           otpForm={otpForm}
-          resendOtp={this.resendOtp}/>
+          resendOtp={this.resendOtp}
+          toggleSuccessOtp={this.toggleSuccessOtp}
+        />
+        <SuccessModalOtp
+          open={modalSuccessOtp}
+          buttonToggle={this.toggleSuccessOtp}
+        />
       </div>
     )
   }
