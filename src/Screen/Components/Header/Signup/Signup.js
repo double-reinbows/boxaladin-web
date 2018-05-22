@@ -43,6 +43,9 @@ class Signup extends Component {
   }
 
   toggleOtp() {
+    const {loginAction, setModalRegister} = this.props;
+    loginAction();
+    setModalRegister(false);
     this.setState({
       modalOtp: !this.state.modalOtp,
     })
@@ -207,13 +210,12 @@ class Signup extends Component {
               this.setState({
                 notif: "Email Sudah digunakan",
               })
-            } else {
-              localStorage.setItem('token', data.token)
+            } else if (data.message === 'Signup Berhasil') {
+              localStorage.setItem('token', data.token);
               this.setState({
                 dataUser: payload,
-                email: payload.email
-              }, () => {
-                this.toggleOtp();
+                email: payload.email,
+                modalOtp: !this.state.modalOtp,
               });
             }
 
