@@ -45,7 +45,7 @@ class ModalOtp extends Component {
   sendOtp(e){
     e.preventDefault();
     let {otp} = this.state;
-    let {phone, emailUser, buttonToggle, loginAction, setModalRegister} = this.props;
+    let {phone, emailUser, toggleSuccessOtp} = this.props;
     if (otp === '') {
       this.setState({
         notifOtp: 'OTP Tidak Boleh Kosong',
@@ -65,20 +65,12 @@ class ModalOtp extends Component {
       })
       //--------------------- ask about difference between 'phone verified' and 'phone Terverifikasi'
       .then((dataOtp) => {
-        // console.log(dataOtp);
         if (dataOtp.data.message === 'phone verified') {
-          alert('Selamat! Anda mendapat 5 Kunci Gratis!')
-          buttonToggle();
-          loginAction();
-          setModalRegister(false);
+          toggleSuccessOtp();
         }	else if ( dataOtp.data.message === 'incorrect otp') {
           this.setState({
             notifOtp: "OTP Salah",
           });
-        // } else if ( dataOtp.data.message === 'phone verified'){
-        //   buttonToggle();
-        //   loginAction();
-        //   setModalRegister(false);
         }
       //.catch(err => console.log(err));
       }).catch(err => console.log('error'));
@@ -113,7 +105,6 @@ class ModalOtp extends Component {
             show: 'hidden',
           })
           buttonToggle();
-          loginAction();
           setModalRegister(false);
         } else if (dataOtp.data === 'retry'){
           this.setState({
@@ -149,10 +140,6 @@ class ModalOtp extends Component {
     clearInterval(this.timer);
   }
 
- //  componentDidUpdate(){
- //   this.refs.nameInput.getDOMNode().focus();
- // }
-
   clearOtp() {
     this.setState({otp: ''});
   }
@@ -160,12 +147,14 @@ class ModalOtp extends Component {
   render() {
     let {createdAt, otp, notifCount, notifOtp, show, disabled} = this.state;
     let {text, submit, buttonToggle, open, otpForm} = this.props;
-    // let otpFormJSX = null;
     let otpFormJSX = otpForm ? (<input required className="form-control inputz" value={otp} type="text" pattern="[0-9]*"
-                              onChange={e => this.handleOtp(e)} style={{width: "50%", margin: 'auto'}}/>
+                              onChange={e => this.handleOtp(e)} style={{width: "25%", margin: 'auto'}}/>
                             ) : null;
 
-    let clear = otp.length >= 4 ? (<Button className="body__otp__button" color="primary" onClick={() => this.clearOtp()}>Clear</Button>): null
+    let clear = otp.length >= 4 ?
+      (<Button className="modal-body__otp__button" color="primary" onClick={() => this.clearOtp()} style={{'marginRight': '15px'}}>Clear</Button>)
+      : null;
+
     return (
       <Modal ariaHideApp={false} isOpen={open} toggle={buttonToggle} className='modal__otp' >
         <form onSubmit={e => this.sendOtp(e)}>
@@ -173,7 +162,7 @@ class ModalOtp extends Component {
           <ModalHeader toggle={buttonToggle} className="modal__otp__header"></ModalHeader>
             <div className="modal__otp__content">
               <label>Verify Nomor Anda Untuk Dapat 5 AladinKey Gratis!</label>
-              <label>Anda Akan di Missed Call Oleh Sistem Kami. Mohon Jangan Angkat.</label>
+              <label>Akan ada panggilan masuk ke hape anda.</label>
               <label>{text}</label>
             <div className="form-group Signup__Form">
               {otpFormJSX}
@@ -189,7 +178,7 @@ class ModalOtp extends Component {
 
             </div>
             <ModalFooter className="modal__otp__footer">
-            <Button style ={{visibility:show}} disabled={disabled} onClick={() => this.resendOtp()} className="modal__otp__content__button">Kirim Ulang OTP</Button>
+            <Button style ={{visibility:show}} disabled={disabled} onClick={() => this.resendOtp()} className="modal__otp__content__button">Kirim kembali</Button>
           </ModalFooter>
           </div>
         </form>
@@ -214,6 +203,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(ModalOtp)
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(ModalOtp);
 
-export default connectComponent
+export default connectComponent;

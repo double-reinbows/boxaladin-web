@@ -58,7 +58,7 @@ export default function Advantage(props: Props) {
           <h1>INGAT PULSA ? INGAT</h1>
         </div>
         <div className="resetPassword__image">
-          <img className="resetPassword__logo" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/logoTextOnly.png" alt="Boxaladin"/>
+          <img className="resetPassword__logo__faq" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/logoTextOnly.png" alt="Boxaladin"/>
         </div>
       </div>
     </div>
