@@ -58,13 +58,11 @@ class Invoice extends React.Component {
         </thead>
         <tbody className="invoice__table">
           {transactions.map((data, idx) => {
-            console.log('dataaaaaaaaaaaaaaaaaaaaaaaa', data)
             if (data.createdAt === ''){
               console.log('kosong')
             } else if ( data.createdAt === undefined){
               console.log('undefined')
             } else {
-              console.log('new data', data)
               const time = moment()
               const now = time.valueOf()
 
@@ -109,8 +107,7 @@ class Invoice extends React.Component {
   }
 
   showMetodePembayaran(id) {
-    console.log('id topup', id)
-    this.props.history.push(`/payment/${id}`)
+      this.props.history.push(`/payment/${id}`)
   }
 
 

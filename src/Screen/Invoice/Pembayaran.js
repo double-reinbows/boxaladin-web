@@ -74,7 +74,7 @@ class InvoiceDetail extends React.Component {
     }
 
     console.log('props', this.props)
-    console.log('state', this.state)
+    console.log('state bank', this.state)
 
     return (
       <div className="pembayaran">

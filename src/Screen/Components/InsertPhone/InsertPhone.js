@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Input, Button } from 'reactstrap'
+import PropTypes from 'prop-types';
 
 import axios from 'axios'
 
-import { getPhoneNumbers } from '../../../actions/'
+import { getPhoneNumbers, setIsLoading } from '../../../actions/'
 import { validateProvider, detectProvider } from '../../../utils/phone'
 import ProviderModal from '../../Home/Modal/ProviderModal';
 import  priceProduct  from '../../../utils/splitPrice'
@@ -18,11 +19,16 @@ class InsertPhone extends React.Component {
     this.state = {
       phone: '',
       productUnlocked: {},
-			providerModal: false
+      providerModal: false,
+      disabled: true
     }
-
     this.handleBack()
   }
+  static propTypes = {
+    setIsLoading: PropTypes.bool
+  }
+
+  
 
 	toggle = () =>  {
 		this.setState({
@@ -31,10 +37,6 @@ class InsertPhone extends React.Component {
 	}
 
   render() {
-
-		console.log(this.props)
-		console.log('unlock', this.state.productUnlocked)
-    console.log('phone', this.props.location.state.phoneNumbers[0])
     return (
 		<div>
 		<div className="InsertPhone__textHead">
@@ -45,7 +47,7 @@ class InsertPhone extends React.Component {
 				<h4 className="InsertPhone__inputHead__text">Masukkan nomor hape kamu</h4>
 				<div className="InsertPhone__inputHead__checkBox">
 					<Input className="InsertPhone__inputHead__inputBox" value={ this.state.phone }
-					onChange={ (e) => this.setState({	phone: e.target.value}) } />
+					onChange={ (e) => this.handleChangePhone(e) } />
 					<div className="homecontent__bottom__check" style= {{ alignSelf: "center", paddingLeft: "20px"}}>
 						<button onClick={this.toggle} className="homecontent__bottom__check__button" style = {{ fontSize: "15px"}}>CEK PROVIDER-MU</button>
 					</div>
@@ -70,7 +72,7 @@ class InsertPhone extends React.Component {
 		<div className="InsertPhone__buttonContainer">
 
 				<Button type="submit" className = "InsertPhone__buttonContainer__buttonBatal" onClick={() => this.cancel()}>Batal</Button>
-				<Button type="submit" className = "InsertPhone__buttonContainer__buttonLanjut" onClick={(e) => this.submitTransaction(e)} >Lanjut</Button>
+				<Button type="submit" disabled={this.state.disabled} className = "InsertPhone__buttonContainer__buttonLanjut" onClick={(e) => this.submitTransaction(e)} >Lanjut</Button>
 
 		</div>
 
@@ -140,6 +142,13 @@ class InsertPhone extends React.Component {
     })
   }
 
+  handleChangePhone(e) {
+    this.setState({
+      phone: e.target.value,
+      disabled: false
+    })
+  }
+
   handleBack() {
     if (this.props.history.action === 'POP') {
       this.props.history.replace('/')
@@ -147,6 +156,9 @@ class InsertPhone extends React.Component {
   }
 
   axiosTransaction(){
+    console.log('axios')
+    this.props.setIsLoading(true)
+    console.log('loading')
     axios({
       method: 'POST',
       url: `${process.env.REACT_APP_API_HOST}/payment`,
@@ -161,6 +173,7 @@ class InsertPhone extends React.Component {
       },
     })
     .then(({data}) => {
+      this.props.setIsLoading(false)
       this.props.history.push(`/payment/${data.id}`)
     })
     .catch(err => console.log(err))
@@ -206,13 +219,16 @@ class InsertPhone extends React.Component {
 const mapStateToProps = (state) => {
   return {
 		phoneNumbers: state.userReducer.phoneNumbers,
-		selectedProductID: state.productReducer.selectedProductID
+    selectedProductID: state.productReducer.selectedProductID,
+    isLoading: state.loadingReducer.isLoading
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-		getPhoneNumbers: () => dispatch(getPhoneNumbers())
+    getPhoneNumbers: () => dispatch(getPhoneNumbers()),
+    setIsLoading: (bool) => dispatch(setIsLoading(bool))
+
   }
 }
 

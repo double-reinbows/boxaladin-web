@@ -17,7 +17,7 @@ payment: [],
 */
 
 const Guide = (props) => {
-  console.log(this.props)
+  console.log('props bank', this.props)
   return (
     <TabContent activeTab={props.activeTab}>
       <TabPane tabId="1">

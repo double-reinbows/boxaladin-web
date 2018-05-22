@@ -37,8 +37,6 @@ class Bidding extends React.Component {
 
 
   render() {
-    console.log('data props', this.props)
-    console.log(this.state.productUnlocked)
     return (
   <div>
       <div className="bidding__2__col1">

@@ -20,7 +20,6 @@ class ModalCheck extends Component {
       disabled: false,
       defaultId: this.props.defaultId
     }
-    console.log('constructor', this.state)
   }
 
   toggleConfirm = () => {
@@ -63,7 +62,6 @@ class ModalCheck extends Component {
   }
 
   pulsa(id, data) {
-    console.log('id', id)
     this.setState({
       pulsaPrice: data.displayPrice,
       pulsaName: data.productName,
@@ -71,13 +69,11 @@ class ModalCheck extends Component {
       defaultId: id
     }, () => {
       this.props.selectProductID(this.state.defaultId)
-      console.log( this.props.selectProductID(this.state.defaultId))
 
     })
   }
 
   handleNotLogin() {
-    console.log('default id', this.state.defaultId, this.props.defaultId)
     if (localStorage.getItem('token') === null) {
       alert('Anda belum masuk')
     } else {
@@ -85,7 +81,6 @@ class ModalCheck extends Component {
         modalConfirm: !this.state.modalConfirm,
       }, () => {
         this.props.selectProductID(this.state.defaultId)
-        console.log( this.props.selectProductID(this.state.defaultId))
 
       })
     }
@@ -106,8 +101,6 @@ class ModalCheck extends Component {
   }
 
   render() { 
-    console.log(this.state)
-    console.log( this.props.selectProductID(this.state.defaultId))
     return ( 
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__pulsa">
         <div className="modal__pulsa__container">
