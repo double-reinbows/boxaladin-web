@@ -2,6 +2,7 @@ import React from 'react'
 // import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { connect } from 'react-redux'
+import  check  from '../asset/LandingPage/home/checked.svg'
 
 import { setModalLogin, setModalRegister, loginAction } from '../actions/'
 import { getUser, refreshToken } from '../actions/userAction'
@@ -10,8 +11,6 @@ const BA_API_HOST = `${process.env.REACT_APP_API_HOST}`
 
 class EmailVerificationDone extends React.Component {
   render() {
-    console.log(this.props)
-    console.log(this.state)
     return (
       <div className="emailVerification">
         <header className="emailVerification__header">
@@ -23,9 +22,9 @@ class EmailVerificationDone extends React.Component {
             Kamu telah menverifikasi email {this.props.userInfo.typedEmail} sebagai akun baru di Boxaladin. klik gambar dibawah ini untuk mulai berbelanja:
           </p>
           <div className="emailVerification__content__image">
-            <a href="https://www.boxaladin.com">
-              <img src="https://s3-ap-southeast-1.amazonaws.com/boxaladin.com/logo.png" />
-            </a>
+             <a href="https://www.boxaladin.com">
+              <img src= {check} />
+             </a>
           </div>
         </div>
         { this.showLoginLink() }

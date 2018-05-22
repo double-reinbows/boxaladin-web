@@ -349,8 +349,14 @@ class User extends React.Component {
 									<div>
 										{phone.primary === false ? null :
 											<div className="user__phone__row1__phoneInfo">
-												<label>{phone.number}</label>
-												<label>(Verified)</label>
+												<label style={{ marginRight: '2%'}} >{phone.number}</label>
+
+												{
+													phone.verified === false ? <div style={{ display:'flex'}}><label>(Unverified)</label> <button className="verified__profile" onClick={() => this.toggle()}> Verifikasi Nomor </button></div> :
+													<label>(Verified)</label>
+												}
+
+
 											</div>}
 									</div>
 								)
@@ -550,7 +556,7 @@ class User extends React.Component {
 					{this.props.userInfo !== null ? this.props.userInfo.coin : null}
 				</div>
 				{ this.showPhoneNumbers() }
-				
+
 				<ModalText isOpen={this.state.modalCheck} toggle={this.toggleCheck} text="Cek Email Anda"/>
 			</div>
 		)
