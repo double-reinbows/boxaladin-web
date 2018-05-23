@@ -23,8 +23,9 @@ import Pembayaran from './Screen/Invoice/Pembayaran';
 import TopupInvoice from './Screen/Invoice/TopupInvoice';
 import TopupPayment from './Screen/Invoice/TopupPayment';
 
-import Bidding from './Screen/Bidding';
-import InsertPhone from './Screen/Components/InsertPhone/InsertPhone';
+import Bidding from './Screen/Bidding/Bidding'
+import InsertPhone from './Screen/Bidding/InsertPhone'
+// import Pulsa from './Screen/Pulsa'
 
 import DompetAladin from './Screen/DompetAladin/DompetAladin';
 import Game from './Screen/Game';

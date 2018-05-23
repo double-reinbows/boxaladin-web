@@ -31,7 +31,7 @@ class TopupPayment extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      invoice: null,
+      invoice: '',
       activeTab: '1',
       // amount: 0,
       ccNumber: '',
@@ -56,7 +56,6 @@ class TopupPayment extends React.Component {
   }
 
   render() {
-
 
     if (this.state.invoice === null){
       console.log('kosong')

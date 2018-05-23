@@ -17,7 +17,6 @@ payment: [],
 */
 
 const Guide = (props) => {
-  console.log('props bank', this.props)
   return (
     <TabContent activeTab={props.activeTab}>
       <TabPane tabId="1">
@@ -37,7 +36,7 @@ const Guide = (props) => {
                     Pilih menu BAYAR/BELI, kemudian pilih menu MULTI PAYMENT
                   </li>
                   <li>
-                    Masukkan nomor Virtual Account {props.invoice.payment.availableBanks[0].bank_account_number}
+                    Masukkan nomor Virtual Account {props.invoice.payment.availableBanks}
                   </li>
                   <li>
                     Isi NOMINAL sebesar Rp.{props.invoice.payment.amount.toLocaleString(['ban', 'id'])}, kemudian tekan "BENAR"
@@ -84,7 +83,7 @@ const Guide = (props) => {
                     Pilih "No Virtual Account"
                   </li>
                   <li>
-                    Masukkan nomor Virtual Account {props.invoice.payment.availableBanks[0].bank_account_number}
+                    Masukkan nomor Virtual Account {props.invoice.payment.availableBanks}
                   </li>
                   <li>
                     Masuk ke halaman konfirmasi 1
@@ -126,7 +125,7 @@ const Guide = (props) => {
                   Pilih "Tabungan" lalu "Rekening BNI Virtual Account"
                 </li>
                 <li>
-                  Masukkan nomor Virtual Account {props.invoice.payment.availableBanks[1].bank_account_number} dan nominal yang Anda bayar sebesar Rp.{props.invoice.payment.amount.toLocaleString(['ban', 'id'])}
+                  Masukkan nomor Virtual Account {props.invoice.payment.availableBanks} dan nominal yang Anda bayar sebesar Rp.{props.invoice.payment.amount.toLocaleString(['ban', 'id'])}
                 </li>
                 <li>
                   Periksa kembali data transaksi kemudian tekan "YA"
@@ -151,7 +150,7 @@ const Guide = (props) => {
                   Jika Anda menggunakan desktop untuk menambah rekening, pilih "Transaksi", pilih "Info & Administrasi Transfer" lalu pilih "Atur Rekening Tujuan" kemudian "Tambah Rekening Tujuan"
                 </li>
                 <li>
-                  Masukkan nama dan nomor Virtual Account Anda {props.invoice.payment.availableBanks[1].bank_account_number}, lalu masukkan Kode Otentikasi Token
+                  Masukkan nama dan nomor Virtual Account Anda {props.invoice.payment.availableBanks}, lalu masukkan Kode Otentikasi Token
                 </li>
                 <li>
                    Jika Nomor rekening tujuan berhasil ditambahkan, kembali ke menu "TRANSFER"
@@ -181,7 +180,7 @@ const Guide = (props) => {
                   Pilih "Input Rekening Baru"
                 </li>
                 <li>
-                  Masukkan "Rekening Debet", "Rekening Tujuan ({props.invoice.payment.availableBanks[1].bank_account_number})" dan "Nominal sebesar Rp.{props.invoice.payment.amount.toLocaleString(['ban', 'id'])}" kemudian klik "Lanjut"
+                  Masukkan "Rekening Debet", "Rekening Tujuan ({props.invoice.payment.availableBanks})" dan "Nominal sebesar Rp.{props.invoice.payment.amount.toLocaleString(['ban', 'id'])}" kemudian klik "Lanjut"
                 </li>
                 <li>
                   Periksa kembali data transaksi Anda, masukkan "Password Transaksi", kemudian klik "Lanjut"
@@ -211,7 +210,7 @@ const Guide = (props) => {
                   Pilih "Lainnya" lalu pilih "Briva"
                 </li>
                 <li>
-                  Masukkan nomor Virtual Account {props.invoice.payment.availableBanks[2].bank_account_number} dan nominal yang ingin Anda bayar sebesar Rp.{props.invoice.payment.amount.toLocaleString(['ban', 'id'])}
+                  Masukkan nomor Virtual Account {props.invoice.payment.availableBanks} dan nominal yang ingin Anda bayar sebesar Rp.{props.invoice.payment.amount.toLocaleString(['ban', 'id'])}
                 </li>
                 <li>
                   Periksa kembali data transaksi kemudian tekan "YA"
@@ -232,7 +231,7 @@ const Guide = (props) => {
                   Pilih "Pembayaran" lalu pilih "Briva"
                 </li>
                 <li>
-                  Masukkan nomor Virtual Account Anda {props.invoice.payment.availableBanks[2].bank_account_number}, nominal yang akan dibayar sebesar Rp.{props.invoice.payment.amount.toLocaleString(['ban', 'id'])}, lalu klik kirim
+                  Masukkan nomor Virtual Account Anda {props.invoice.payment.availableBanks}, nominal yang akan dibayar sebesar Rp.{props.invoice.payment.amount.toLocaleString(['ban', 'id'])}, lalu klik kirim
                 </li>
                 <li>
                   Masukkan kembali PASSWORD anda serta kode otentikasi mToken internet banking
@@ -252,7 +251,7 @@ const Guide = (props) => {
                   Pilih "Pembayaran" lalu pilih "Briva"
                 </li>
                 <li>
-                  Masukkan nomor Virtual Account anda {props.invoice.payment.availableBanks[2].bank_account_number}, serta nominal yang akan dibayar sebesar Rp.{props.invoice.payment.amount.toLocaleString(['ban', 'id'])}
+                  Masukkan nomor Virtual Account anda {props.invoice.payment.availableBanks}, serta nominal yang akan dibayar sebesar Rp.{props.invoice.payment.amount.toLocaleString(['ban', 'id'])}
                 </li>
                 <li>
                   Masukkan nomor PIN anda dan klik "Kirim"
@@ -277,7 +276,7 @@ const Guide = (props) => {
             Pilih m-Transfer
           </li>
           <li>
-            Masukkan {props.invoice.payment.availableBanks[0].bank_account_number} pada No. Rekening Tujuan dan pilih Bank “Mandiri” ({props.invoice.payment.availableBanks[2].bank_account_number} untuk bank BNI atau {props.invoice.payment.availableBanks[1].bank_account_number} untuk bank BRI), lalu klik “Send”. Nomor rekening akan tercatat sebagai PT BOXALADIN ASIAPACIFIC
+            Masukkan {props.invoice.payment.availableBanks} pada No. Rekening Tujuan dan pilih Bank “Mandiri” ({props.invoice.payment.availableBanks} untuk bank BNI atau {props.invoice.payment.availableBanks} untuk bank BRI), lalu klik “Send”. Nomor rekening akan tercatat sebagai PT BOXALADIN ASIAPACIFIC
           </li>
           <li>
             Setelah nomor rekening terdaftar, pilih “Antar Bank” pada “Transfer”
