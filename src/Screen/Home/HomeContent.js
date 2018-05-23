@@ -24,7 +24,8 @@ class HomeContent extends Component {
       pulsaValue: '',
       logo: '',
       defaultName: '',
-      defaultId: 0
+      defaultId: 0,
+      logo: ''
     }
     this.toggleBid = this.toggleBid.bind(this);
   }
@@ -36,11 +37,12 @@ class HomeContent extends Component {
     })
   }
 
-  async toggleBid(pulsa, name, id) {
+  async toggleBid(pulsa, name, id, logo) {
       await this.setState({
       pulsaValue: pulsa,
       defaultName: name,
-      defaultId: id
+      defaultId: id,
+      logo: logo
     })
     await this.setState({
       openModal: !this.state.openModal,
@@ -63,7 +65,7 @@ class HomeContent extends Component {
         
         .map((data, i) => {
           const pulsaItems = [
-            {onClick: () => this.toggleBid(`${data.brand}`, `${data.productName}`, `${data.id}`), img: data.brandLogo, alt:`Logo ${data.brand}`},
+            {onClick: () => this.toggleBid(`${data.brand}`, `${data.productName}`, `${data.id}`, data.brandLogo), img: data.brandLogo, alt:`Logo ${data.brand}`},
           ]
           return pulsaItems.map(data => (
             <button onClick={data.onClick} className="homecontent__bottom__pulsa__button">
@@ -99,6 +101,7 @@ class HomeContent extends Component {
           pulsaValue={this.state.pulsaValue} 
           defaultId={this.state.defaultId} 
           defaultName={this.state.defaultName }
+          logo={this.state.logo}
         />
       )
     }

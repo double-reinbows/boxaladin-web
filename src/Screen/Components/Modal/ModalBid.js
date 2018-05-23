@@ -39,10 +39,11 @@ class ModalCheck extends Component {
           return data.brand === `${this.props.pulsaValue}` && data.category === 'Pulsa'
         })
         .map((data, i) => {
+          console.log("dataaaaaaaaaaaaaaaaaaaaa", data)
           return (
             <button onClick={(e) => this.pulsa(data.id, data)} className="modal__pulsa__content__2__button" value={data.id} key={i}>
               <div>
-              <img className="modal__pulsa__content__2__logo__image"  src={require('../../../asset/LandingPage/pulsa/' + this.props.pulsaValue + '.svg')} alt={`Logo ${this.props.pulsaValue}`}/>
+              <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.pulsaValue}`}/>
               </div>
               {data.displayPrice.toLocaleString(['ban', 'id'])}
             </button>
@@ -91,16 +92,17 @@ class ModalCheck extends Component {
       return (<h1>Loading</h1>)
     } else if ( this.props.pulsaValue === 'Telkomsel' || this.props.pulsaValue === 'Smartfren') {
       return (
-        <img className="modal__pulsa__content__1__logo__image__special" src={require('../../../asset/LandingPage/pulsa/' + this.props.pulsaValue + '.svg')} alt={`Logo ${this.props.pulsaValue}`}/>
+        <img className="modal__pulsa__content__1__logo__image__special" src={this.props.logo} alt={`Logo ${this.props.pulsaValue}`}/>
       )
     } else {
       return (
-        <img className="modal__pulsa__content__1__logo__image" src={require('../../../asset/LandingPage/pulsa/' + this.props.pulsaValue + '.svg')} alt={`Logo ${this.props.pulsaValue}`}/>
+        <img className="modal__pulsa__content__1__logo__image" src={this.props.logo} alt={`Logo ${this.props.pulsaValue}`}/>
       )
     }
   }
 
   render() { 
+    console.log(this.props)
     return ( 
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__pulsa">
         <div className="modal__pulsa__container">
