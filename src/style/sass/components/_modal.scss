@@ -673,7 +673,7 @@
 .modal{
   &__method{
     margin: 1.75rem auto;
-    margin-top: 30%;
+    margin-top: 20%;
     border-radius: 2px;
     max-width: 40%;
     &__container{
@@ -723,6 +723,7 @@
   .modal{
     &__method{
       max-width: 90%;
+      margin-top: 25%;
     }
   }
 }

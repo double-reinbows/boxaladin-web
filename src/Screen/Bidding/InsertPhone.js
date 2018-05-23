@@ -3,8 +3,10 @@ import { connect } from 'react-redux'
 import { Input, Button } from 'reactstrap'
 import PropTypes from 'prop-types';
 
-import ModalPayment from './ModalPayment'
+import axios from 'axios'
+
 import { getPhoneNumbers } from '../../actions/'
+import ModalPayment from './ModalPayment'
 import { validateProvider, detectProvider } from '../../utils/phone'
 import ProviderModal from '../Home/Modal/ProviderModal';
 import  priceProduct  from '../../utils/splitPrice'
@@ -19,23 +21,18 @@ class InsertPhone extends React.Component {
       phone: '',
       productUnlocked: {},
       providerModal: false,
+      disabled: true,
       modalPayment: false,
-      disabled: true
     }
     this.handleBack()
   }
-  static propTypes = {
-    setIsLoading: PropTypes.bool
-  }
-
-  
 
 	toggle = () =>  {
 		this.setState({
 			providerModal: !this.state.providerModal
 		})
   }
-  
+
   togglePayment = () => {
     this.setState({
       modalPayment: !this.state.modalPayment
@@ -208,14 +205,12 @@ const mapStateToProps = (state) => {
   return {
 		phoneNumbers: state.userReducer.phoneNumbers,
     selectedProductID: state.productReducer.selectedProductID,
-    isLoading: state.loadingReducer.isLoading
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getPhoneNumbers: () => dispatch(getPhoneNumbers()),
-    setIsLoading: (bool) => dispatch(setIsLoading(bool))
 
   }
 }
