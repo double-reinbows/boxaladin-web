@@ -11,8 +11,6 @@ class ModalConfirm extends Component {
   }
 
   render() { 
-    console.log('modal confirm', this.props)
-
     return (  
       <Modal isOpen={this.props.open} className="modal__confirm">
         <div className="modal__confirm__container">

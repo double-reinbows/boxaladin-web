@@ -37,7 +37,6 @@ class ResetPasswordForm extends React.Component<Props, State> {
     const {email, email_token, passwordChanged} = this.props;
     const {password, confirmPassword} = this.state;
     // const email_token:string = this.props.location.search.split('&')[1].split('=')[1];
-    console.log(email, email_token);
 
     if (password == null) {
       this.setState({
@@ -85,7 +84,6 @@ class ResetPasswordForm extends React.Component<Props, State> {
         }
       })
       .then(({data}) => {
-        console.log(data);
         if (data.msg === 'password updated') {
           passwordChanged();
         } else if (data.msg === 'link expired') {

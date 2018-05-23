@@ -43,7 +43,6 @@ class ModalPrimaryPhone extends Component {
         phone: num.join('')
       })
     }
-    console.log(this.state.phone)
     axios({
       method: 'POST',
       url: `${process.env.REACT_APP_API_HOST}/olduserotp`,
@@ -57,7 +56,6 @@ class ModalPrimaryPhone extends Component {
       }
     })
     .then((data) => {
-      console.log('Data create phone', data)
       if (data.data === 'ada no hp verified/primary'){
         this.setState({
           notif: 'No Hp Sudah Terverifikasi, Masukkan No Lain',

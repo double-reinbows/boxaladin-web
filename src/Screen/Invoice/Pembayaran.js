@@ -72,10 +72,6 @@ class InvoiceDetail extends React.Component {
       const time = this.state.invoice.createdAt
       var finalTime = moment(time, moment.ISO_8601).add(6, 'hours').format('D MMMM YYYY, h:mm:ss a')
     }
-
-    console.log('props', this.props)
-    console.log('state bank', this.state)
-
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
@@ -235,25 +231,11 @@ class InvoiceDetail extends React.Component {
     	}
 
     	if (creditCardCharge.status === 'VERIFIED') {
-
-        console.log(creditCardCharge.status);
         var token = creditCardCharge.id;
-    		console.log(token);
         this.submitPaymentWithCC(token)
-
     	} else if (creditCardCharge.status === 'IN_REVIEW') {
-
-        console.log(creditCardCharge.status);
-        console.log(creditCardCharge);
-        console.log(creditCardCharge.payer_authentication_url);
         this.setState({payer_auth_url: creditCardCharge.payer_authentication_url})
         this.toggle3dsModal()
-
-        // console.log(creditCardCharge.status);
-        // var token = creditCardCharge.id;
-    		// console.log(token);
-        // this.submitPaymentWithCC(token)
-
       } else if (creditCardCharge.status === 'FAILED') {
         console.log(creditCardCharge.status);
       }
@@ -350,7 +332,7 @@ class InvoiceDetail extends React.Component {
       url: `${process.env.REACT_APP_API_HOST}/transaction/${this.props.match.params.id}`
     })
     .then(({data}) => {
-      console.log(data)
+      console.log('data')
     this.setState({
       invoice: data
     })

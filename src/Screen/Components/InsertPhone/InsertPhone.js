@@ -156,9 +156,7 @@ class InsertPhone extends React.Component {
   }
 
   axiosTransaction(){
-    console.log('axios')
     this.props.setIsLoading(true)
-    console.log('loading')
     axios({
       method: 'POST',
       url: `${process.env.REACT_APP_API_HOST}/payment`,

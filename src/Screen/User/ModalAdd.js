@@ -75,7 +75,6 @@ class ModalAdd extends Component {
 	}
   
   render() { 
-    console.log(this.state.numberToSend)
     return ( 
 		<Modal isOpen={this.props.openModalAdd} className="modal__check">
     <div className="modal__check__container">

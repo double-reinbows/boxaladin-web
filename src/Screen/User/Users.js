@@ -40,7 +40,6 @@ class User extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.userInfo)
 		return (
 			<div className="user">
 				<div className="user__container">

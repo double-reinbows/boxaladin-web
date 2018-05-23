@@ -46,7 +46,7 @@ class TopupInvoice extends React.Component {
         </thead>
         <tbody>
           {this.props.userTopupTransactions.map((data, idx) => {
-            console.log('awal', data.id)
+            console.log('awal')
             if (data.createdAt === ''){
               console.log('kosong')
             } else if ( data.createdAt === undefined){
@@ -93,7 +93,6 @@ class TopupInvoice extends React.Component {
   }
 
   showMetodePembayaran(id) {
-    console.log('id topup', id)
     this.props.history.push(`/topupinvoice/${id}`)
   }
 }
