@@ -3,20 +3,20 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import * as firebase from 'firebase'
 
-import timer from '../asset/bidding/timer.svg'
-import watch from '../asset/bidding/watch.svg'
-import coin  from '../asset/bidding/coins.png'
-import buy from '../asset/bidding/cart-of-ecommerce.png'
-import cancel from '../asset/bidding/cancel.png'
+import timer from '../../asset/bidding/timer.svg'
+import watch from '../../asset/bidding/watch.svg'
+import coin  from '../../asset/bidding/coins.png'
+import buy from '../../asset/bidding/cart-of-ecommerce.png'
+import cancel from '../../asset/bidding/cancel.png'
 
 
-import Loading from './Components/Loading/'
+import Loading from '../Components/Loading/'
 
-import { getPhoneNumbers, setIsLoading } from '../actions/'
-import { getUser } from '../actions/userAction'
-import  priceProduct  from '../utils/splitPrice'
-import  productName from '../utils/splitProduct'
-import FormatRupiah from '../utils/formatRupiah'
+import { getPhoneNumbers, setIsLoading } from '../../actions/'
+import { getUser } from '../../actions/userAction'
+import  priceProduct  from '../../utils/splitPrice'
+import  productName from '../../utils/splitProduct'
+import FormatRupiah from '../../utils/formatRupiah'
 
 
 class Bidding extends React.Component {
@@ -153,8 +153,6 @@ class Bidding extends React.Component {
   }
 
   buy() {
-
-
 		axios({
       method: 'PUT',
       headers: {
