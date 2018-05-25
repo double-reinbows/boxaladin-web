@@ -1,3 +1,9 @@
+.nav-tabs .nav-link {
+  &:active{
+    border: none
+  }
+}
+
 .modal{
 
   &__invoice{
@@ -486,6 +492,19 @@
 .modal{
   &__pulsa{
   margin: 1.75rem auto;
+    &__tabsContainer{
+      width: 75%,
+    }
+    &__tabs{
+      display: flex;
+      justify-content: space-between !important;
+      border: solid 1px lightgrey;
+      &__text{
+        border: solid 1px lightgrey;
+        width: 50%;
+        text-align: center;
+      }
+    }
     &__container{
       background-color: white;
       font-size: 20px;
@@ -499,7 +518,6 @@
     }
 
     &__content{
-      width: 75%;
       &__1{
         &__logo{
           text-align: center;
