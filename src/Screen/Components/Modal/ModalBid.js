@@ -21,7 +21,8 @@ class ModalCheck extends Component {
       modalConfirm : false,
       disabled: false,
       defaultId: this.props.defaultId,
-      activeTab: '1'
+      activeTab: '1',
+      category: 'Pulsa'
     }
     this.toggleTabs = this.toggleTabs.bind(this);
   }
@@ -40,7 +41,7 @@ class ModalCheck extends Component {
     } else {
       return(
         this.props.products.filter(data => {
-          return data.brand === `${this.props.pulsaValue}` && data.category === 'Pulsa'
+          return data.brand === `${this.props.pulsaValue}` && data.category === this.state.category
         })
         .map((data, i) => {
           return (
@@ -55,6 +56,7 @@ class ModalCheck extends Component {
       )
     }
   }
+
   toggle = () => {
     this.setState({
       pulsaPrice: 25000,
@@ -104,15 +106,17 @@ class ModalCheck extends Component {
     }
   }
 
-    toggleTabs(tab) {
+    toggleTabs(tab, category) {
     if (this.state.activeTab !== tab) {
       this.setState({
-        activeTab: tab
+        activeTab: tab,
+        category: category
       });
     }
   }
 
   render() {
+    console.log(this.state.category)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__pulsa">
         <div className="modal__pulsa__container">
@@ -123,7 +127,7 @@ class ModalCheck extends Component {
             <NavItem className= "modal__pulsa__tabs__text">
               <NavLink
                 className={classnames({ active: this.state.activeTab === '1' })}
-                onClick={() => { this.toggleTabs('1'); }}
+                onClick={() => { this.toggleTabs('1','Pulsa'); }}
                 >
               Pulsa
               </NavLink>
@@ -131,7 +135,7 @@ class ModalCheck extends Component {
             <NavItem className= "modal__pulsa__tabs__text">
               <NavLink
                 className={classnames({ active: this.state.activeTab === '2' })}
-                onClick={() => { this.toggleTabs('2'); }}
+                onClick={() => { this.toggleTabs('2','Paket Data'); }}
                 >
               Paket Data
               </NavLink>
@@ -170,7 +174,17 @@ class ModalCheck extends Component {
               </NavLink>
             </NavItem>
           </Nav>
-            <h1>ini buat paket data</h1>
+          <div className="modal__pulsa__content__1">
+            <div className="modal__pulsa__content__1__logo">
+              <div>
+                {this.imageProps()}
+              </div>
+              <label>{this.state.pulsaPrice.toLocaleString(['ban', 'id'])}</label>
+            </div>
+          </div>
+          <div className="modal__pulsa__content__2">
+            {this.choicePulsa()}
+          </div>
           </div>
           </TabPane>
         </TabContent>

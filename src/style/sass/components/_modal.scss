@@ -1,3 +1,9 @@
+.nav-tabs .nav-link {
+  &:active{
+    border: none
+  }
+}
+
 .modal{
 
   &__invoice{
