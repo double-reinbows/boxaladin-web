@@ -38,6 +38,10 @@ class ModalCheck extends Component {
       return (
         <h1>Loading</h1>
       )
+    } else if ( this.state.activeTab === '2' && this.props.pulsaValue === 'Smartfren') {
+      return(
+        <label>Paket Data Smartfren Sedang Tidak Tersedia</label>
+      )
     } else {
       return(
         this.props.products.filter(data => {
