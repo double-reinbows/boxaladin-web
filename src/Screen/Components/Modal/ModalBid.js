@@ -102,7 +102,7 @@ class ModalCheck extends Component {
   }
 
   render() { 
-    console.log(this.props)
+    console.log('props', this.props)
     return ( 
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__pulsa">
         <div className="modal__pulsa__container">

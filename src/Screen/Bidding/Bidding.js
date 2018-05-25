@@ -158,8 +158,8 @@ class Bidding extends React.Component {
       headers: {
         key: process.env.REACT_APP_KEY
       },
-			url: `${process.env.REACT_APP_API_HOST}/api/product/${this.props.selectedProductID}`
-		})
+      url: `${process.env.REACT_APP_API_HOST}/api/product/${this.props.selectedProductID}`
+    })
 		.then(({data}) => {
       const productsRef = firebase.database().ref().child('productsdummy')
       const productRef = productsRef.child(this.props.selectedProductID)
