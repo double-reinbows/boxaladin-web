@@ -8,18 +8,22 @@ import { connect } from 'react-redux';
 import ModalConfirm from '../../Home/Modal/ModalConfirm';
 import LockIcon from '../../../asset/LandingPage/pulsa/lock.png';
 import { selectProductID } from '../../../actions/productAction';
+import classnames from 'classnames';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 
 class ModalCheck extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {  
+    this.state = {
       pulsaPrice : 25000,
       pulsaName: '',
       modalConfirm : false,
       disabled: false,
-      defaultId: this.props.defaultId
+      defaultId: this.props.defaultId,
+      activeTab: '1'
     }
+    this.toggleTabs = this.toggleTabs.bind(this);
   }
 
   toggleConfirm = () => {
@@ -100,11 +104,39 @@ class ModalCheck extends Component {
     }
   }
 
-  render() { 
-    return ( 
+    toggleTabs(tab) {
+    if (this.state.activeTab !== tab) {
+      this.setState({
+        activeTab: tab
+      });
+    }
+  }
+
+  render() {
+    return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__pulsa">
         <div className="modal__pulsa__container">
+        <TabContent className="modal__pulsa__tabsContainer" activeTab={this.state.activeTab}>
+          <TabPane tabId="1">
           <div className="modal__pulsa__content">
+          <Nav className="modal__pulsa__tabs" tabs>
+            <NavItem className= "modal__pulsa__tabs__text">
+              <NavLink
+                className={classnames({ active: this.state.activeTab === '1' })}
+                onClick={() => { this.toggleTabs('1'); }}
+                >
+              Pulsa
+              </NavLink>
+            </NavItem>
+            <NavItem className= "modal__pulsa__tabs__text">
+              <NavLink
+                className={classnames({ active: this.state.activeTab === '2' })}
+                onClick={() => { this.toggleTabs('2'); }}
+                >
+              Paket Data
+              </NavLink>
+            </NavItem>
+          </Nav>
             <div className="modal__pulsa__content__1">
               <div className="modal__pulsa__content__1__logo">
                 <div>
@@ -117,6 +149,31 @@ class ModalCheck extends Component {
               {this.choicePulsa()}
             </div>
           </div>
+          </TabPane>
+          <TabPane tabId="2">
+          <div className="modal__pulsa__content">
+          <Nav className="modal__pulsa__tabs" tabs>
+            <NavItem className= "modal__pulsa__tabs__text">
+              <NavLink
+                className={classnames({ active: this.state.activeTab === '1' })}
+                onClick={() => { this.toggleTabs('1'); }}
+                >
+              Pulsa
+              </NavLink>
+            </NavItem>
+            <NavItem className= "modal__pulsa__tabs__text">
+              <NavLink
+                className={classnames({ active: this.state.activeTab === '2' })}
+                onClick={() => { this.toggleTabs('2'); }}
+                >
+              Paket Data
+              </NavLink>
+            </NavItem>
+          </Nav>
+            <h1>ini buat paket data</h1>
+          </div>
+          </TabPane>
+        </TabContent>
           <div className="modal__pulsa__content__3">
             <div className="modal__pulsa__content__3__top">
               <div className="modal__pulsa__content__3__button">
@@ -126,7 +183,7 @@ class ModalCheck extends Component {
             </div>
             <div >
               <button value={this.props.defaultId} onClick={() => this.handleNotLogin()} disabled={this.state.disabled} type="button" className="modal__pulsa__content__3__button__price">
-                Intip Harga 
+                Intip Harga
                 <img src={LockIcon} alt="LockIcon" className="modal__pulsa__content__3__button__price__image"/>
               </button>
             </div>
@@ -154,4 +211,3 @@ const mapDispatchToProps = (dispatch) => {
 const connectComponent = connect(mapStateToProps, mapDispatchToProps)(ModalCheck)
 
 export default connectComponent
-
