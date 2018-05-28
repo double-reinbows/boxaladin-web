@@ -120,12 +120,14 @@ class ModalCheck extends Component {
         category: category,
         pulsaName: '',
         pulsaPrice: '',
-        defaultId: ''
+        defaultId: '',
+        disabled: true
       });
     }
   }
 
   render() {
+    console.log(this.props)
     console.log(this.state.pulsaName)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__pulsa">

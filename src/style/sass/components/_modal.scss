@@ -295,7 +295,7 @@
   }
   &__container{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     font-size: 20px;
   }
   &__content{
@@ -369,7 +369,7 @@
   &__button{
     width: 90%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
 
     &__yes{
       width: 100px;
@@ -441,7 +441,7 @@
 
     &__delete{
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-around;
       &__content{
 
       }
@@ -537,7 +537,7 @@
       }
       &__2{
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-around;
         border: solid 1px lightgrey;
         &__logo{
           &__image{
