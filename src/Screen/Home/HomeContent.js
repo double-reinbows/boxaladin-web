@@ -112,6 +112,7 @@ class HomeContent extends Component {
           toggle={this.toggleBid}
           pulsaValue={this.state.pulsaValue}
           defaultId={this.state.defaultId}
+          logo={this.state.logo}
           defaultProduct={this.priceProduct()}
           defaultName={this.nameProduct()}
         />
