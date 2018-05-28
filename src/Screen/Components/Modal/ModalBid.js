@@ -10,6 +10,8 @@ import LockIcon from '../../../asset/LandingPage/pulsa/lock.png';
 import { selectProductID } from '../../../actions/productAction';
 import classnames from 'classnames';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import priceProduct from '../../../utils/splitPrice'
+import productName from '../../../utils/splitProduct'
 
 class ModalCheck extends Component {
 
@@ -193,7 +195,13 @@ class ModalCheck extends Component {
               <div className="modal__pulsa__content__3__button">
                 <button className="modal__pulsa__content__3__button__x" onClick={this.toggle}>X</button>
               </div>
-              <label>{ !this.state.pulsaName ? (this.props.defaultName) : (this.state.pulsaName)}</label>
+              <label>{ !this.state.pulsaName ?
+                      (this.props.defaultName) :
+                      productName(this.state.pulsaName)}</label>
+              <br />
+              <label>{ !this.state.pulsaName ?
+                      (this.props.defaultProduct) : // penamaan nya masih salah .. ini buat harga 
+                      priceProduct(this.state.pulsaName)}</label>
             </div>
             <div >
               <button value={this.props.defaultId} onClick={() => this.handleNotLogin()} disabled={this.state.disabled} type="button" className="modal__pulsa__content__3__button__price">
