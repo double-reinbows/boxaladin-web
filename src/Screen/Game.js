@@ -200,27 +200,27 @@ class Game extends React.Component<Props, State> {
 					<div className="game__prize__row">
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win1} alt="coin" />
-							<text>Rp. {prize1}</text>
+							<text>{prize1}</text>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win2} alt="coin" />
-							<text>Rp. {prize2}</text>
+							<text>{prize2}</text>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win3} alt="coin" />
-							<text>Rp. {prize3}</text>
+							<text>{prize3}</text>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win4} alt="coin" />
-							<text>Rp. {prize4}</text>
+							<text>{prize4}</text>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src={win5} alt="coin" />
-							<text>Rp. {prize5}</text>
+							<text>{prize5}</text>
 						</div>
 					</div>
 

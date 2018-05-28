@@ -268,7 +268,7 @@ class Signup extends Component {
         <form className="form-horizontal" onSubmit={e => this.signUp(e)}>
 
           <div className="form-group Signup__Form">
-            <label>Alamat Email</label>
+            <label>Alamat Email :</label>
             <input name="typedEmail" required
               className="form-control inputz"
               value={typedEmail}
@@ -280,7 +280,7 @@ class Signup extends Component {
           </div>
 
           <div className="form-group Signup__Form">
-            <label>Nomor Handphone</label>
+            <label>Nomor Handphone :</label>
             <input name="phonenumber" required
               className="form-control inputz"
               value={phonenumber}
@@ -292,7 +292,7 @@ class Signup extends Component {
           </div>
 
           <div className="form-group Signup__Form">
-            <label>Password</label>
+            <label>Password :</label>
             <input name="password" required
               className="form-control inputz"
               value={password}
@@ -303,7 +303,7 @@ class Signup extends Component {
             />
           </div>
           <div className="form-group Signup__Form">
-            <label>Ketik Ulang Password</label>
+            <label>Ketik Ulang Password :</label>
             <input name="confirm_password" required
               className="form-control inputz"
               value={confirm_password}

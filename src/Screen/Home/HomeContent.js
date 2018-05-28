@@ -14,6 +14,8 @@ import LogoTelkomsel from '../../asset/LandingPage/pulsa/Telkomsel.svg';
 import LogoTri from '../../asset/LandingPage/pulsa/Tri.svg';
 import LogoXL from '../../asset/LandingPage/pulsa/XL.svg';
 
+import priceProduct from '../../utils/splitPrice'
+import nameProduct from '../../utils/splitProduct'
 
 class HomeContent extends Component {
   constructor(props) {
@@ -62,7 +64,7 @@ class HomeContent extends Component {
         this.props.products.filter(data => {
           return data.displayPrice === 25000 && data.category === 'Pulsa' && data.category && data.brand !== 'Axis'
         })
-        
+
         .map((data, i) => {
           const pulsaItems = [
             {onClick: () => this.toggleBid(`${data.brand}`, `${data.productName}`, `${data.id}`, data.brandLogo), img: data.brandLogo, alt:`Logo ${data.brand}`},
@@ -92,16 +94,26 @@ class HomeContent extends Component {
     // )
   }
 
+  priceProduct() {
+    return this.state.defaultName &&
+    priceProduct(this.state.defaultName)
+  }
+
+  nameProduct() {
+    return this.state.defaultName &&
+    nameProduct(this.state.defaultName)
+  }
+
   renderModalBid() {
     if (this.state.openModal) {
       return (
-        <ModalBid 
-          isOpen={this.state.openModal} 
-          toggle={this.toggleBid} 
-          pulsaValue={this.state.pulsaValue} 
-          defaultId={this.state.defaultId} 
-          defaultName={this.state.defaultName }
-          logo={this.state.logo}
+        <ModalBid
+          isOpen={this.state.openModal}
+          toggle={this.toggleBid}
+          pulsaValue={this.state.pulsaValue}
+          defaultId={this.state.defaultId}
+          defaultProduct={this.priceProduct()}
+          defaultName={this.nameProduct()}
         />
       )
     }
@@ -117,7 +129,7 @@ class HomeContent extends Component {
             <label className="homecontent__top__text__bot">sistem lelang terbalik pertama yang menyajikan harga pulsa termurah Setanah air!</label>
             <label>Ingat  <b>PULSA ?</b></label>
             <div>
-            <label>Ingat  <b>Boxaladin</b></label>
+            <label>Ingat  <img style = {{ width: '55%' }}src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/logoTextOnly.png" alt="boxaladin" /></label>
             </div>
           </div>
           <div className="homecontent__top__youtube">
@@ -156,4 +168,3 @@ const mapDispatchToProps = (dispatch) => {
 const connectComponent = connect(mapStateToProps, mapDispatchToProps)(HomeContent);
 
 export default connectComponent;
-
