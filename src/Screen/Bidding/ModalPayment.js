@@ -13,7 +13,9 @@ class ModalPayment extends Component{
   constructor(props) {
     super(props)
     this.state = {
-      bank: ''
+      bank: '',
+      notif: '',
+      disabled: true
     }
   }
   static propTypes = {
@@ -23,7 +25,8 @@ class ModalPayment extends Component{
   }
   setBank = (e) => {
     this.setState({
-      bank: e.target.value
+      bank: e.target.value,
+      disabled: false
     })
   }
 
@@ -44,9 +47,17 @@ class ModalPayment extends Component{
         bankCode: this.state.bank
       },
     })
-    .then((result) => {
-      this.props.setIsLoading(false)
-      this.props.history.push(`/payment/${result.data.dataFinal.id}`)
+    .then(result => {
+      console.log(result)
+      if (result.data.error_code === "DUPLICATE_CALLBACK_VIRTUAL_ACCOUNT_ERROR") {
+        this.props.setIsLoading(false)
+        this.setState({
+          notif: "Pembayaran Anda Dengan No VA ini Belum diselesaikan"
+        })
+      } else {
+        this.props.setIsLoading(false)
+        this.props.history.push(`/payment/${result.data.dataFinal.id}`)
+      }
     })
     .catch(err => console.log(err))
   }
@@ -72,7 +83,10 @@ class ModalPayment extends Component{
                 <input className="modal__method__content__radio" type="radio" value="MANDIRI" name='bank'/> MANDIRI
               </div>
             </div>
-            <button className="modal__method__content__button" onClick={this.axiosTransaction}>Submit</button>
+            <div>
+              <label>{this.state.notif}</label>
+            </div>
+            <button disabled={this.state.disabled} className="modal__method__content__button" onClick={this.axiosTransaction}>Submit</button>
             <Loading isLoading={ this.props.isLoading } />
           </div>
         </div>
