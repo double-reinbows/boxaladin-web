@@ -307,7 +307,7 @@ const Guide = (props) => {
             Setelah penerima pembayaran di temukan oleh sistem alfamart, staff kasih akan menanyakan code pembayaran yang harus di input ke sistem alfamart.
           </li>
           <li>
-            Kode pembayaran tersebut adalah "Boaladin"
+            Kode pembayaran tersebut adalah {props.invoice.payment.availableRetail}
           </li>
           <li>
             Detail pembayaran akan keluar di sistem alfamart dan pembayaran sudah bisa dilakukan
@@ -318,5 +318,6 @@ const Guide = (props) => {
     </TabContent>
   )
 }
+
 
 export default Guide
