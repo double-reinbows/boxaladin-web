@@ -1,5 +1,4 @@
 import * as firebase from 'firebase'
-import axios from 'axios'
 
 export const getProducts = () => {
 	return (dispatch) => {

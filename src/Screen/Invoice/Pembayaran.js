@@ -20,10 +20,6 @@ import moment from 'moment'
 import classnames from 'classnames';
 import Xendit from 'xendit-js-node'
 
-import MANDIRI from '../../asset/Logo/MANDIRI.svg'
-import BNI from '../../asset/Logo/BNI.svg'
-import BRI from '../../asset/Logo/BRI.svg'
-
 import Guide from './PaymentGuide'
 import ModalInvoice from '../Components/Modal/ModalInvoice'
 

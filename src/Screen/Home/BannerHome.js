@@ -2,7 +2,6 @@
 import React, {Component} from 'react';
 import CheckIcon from '../../asset/LandingPage/home/checkmark.png'
 import MoneyIcon from '../../asset/LandingPage/home/Group 3.svg'
-import KeyIcon from '../../asset/LandingPage/home/key.png'
 import ClockIcon from '../../asset/LandingPage/home/clock-circular-outline.png'
 import HandphoneIcon from '../../asset/LandingPage/home/handphone.png'
 import CardIcon from '../../asset/LandingPage/home/credit-card.png'

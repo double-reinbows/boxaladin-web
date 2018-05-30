@@ -1,7 +1,6 @@
 //@flow
 
 import React,{Component} from 'react';
-import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
 
@@ -9,7 +8,7 @@ import ModalConfirm from '../../Home/Modal/ModalConfirm';
 import LockIcon from '../../../asset/LandingPage/pulsa/lock.png';
 import { selectProductID } from '../../../actions/productAction';
 import classnames from 'classnames';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import priceProduct from '../../../utils/splitPrice'
 import productName from '../../../utils/splitProduct'
 

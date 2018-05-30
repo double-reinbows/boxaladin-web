@@ -5,7 +5,6 @@ import {setModalRegister, setIsLoading, loginAction } from '../../../../actions/
 import Modal from 'react-modal';
 import {Button, ModalHeader, ModalFooter} from 'reactstrap';
 import axios from 'axios';
-import TextInput from 'react-otp';
 
 class ModalOtp extends Component {
   static propTypes = {
@@ -145,7 +144,7 @@ class ModalOtp extends Component {
   }
 
   render() {
-    let {createdAt, otp, notifCount, notifOtp, show, disabled} = this.state;
+    let { otp, notifCount, notifOtp, show, disabled} = this.state;
     let {text, submit, buttonToggle, open, otpForm} = this.props;
     let otpFormJSX = otpForm ? (<input required className="form-control inputz" value={otp} type="text" pattern="[0-9]*"
                               onChange={e => this.handleOtp(e)} style={{width: "25%", margin: 'auto'}}/>

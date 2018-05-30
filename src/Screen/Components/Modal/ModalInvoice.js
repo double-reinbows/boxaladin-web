@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import FormatRupiah from '../../../utils/formatRupiah'
 import productName from '../../../utils/splitProduct'
 

@@ -1,22 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import { connect } from 'react-redux';
-
 import { getProducts } from '../../actions/productAction';
-
-
 import ProviderModal from './Modal/ProviderModal';
 import ModalBid from '../Components/Modal/ModalBid'
-
-import LogoIndosat from '../../asset/LandingPage/pulsa/Indosat.svg';
-import LogoSmart from '../../asset/LandingPage/pulsa/Smartfren.svg';
-import LogoTelkomsel from '../../asset/LandingPage/pulsa/Telkomsel.svg';
-import LogoTri from '../../asset/LandingPage/pulsa/Tri.svg';
-import LogoXL from '../../asset/LandingPage/pulsa/XL.svg';
-
 import priceProduct from '../../utils/splitPrice'
 import nameProduct from '../../utils/splitProduct'
-
 class HomeContent extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +15,6 @@ class HomeContent extends Component {
       logo: '',
       defaultName: '',
       defaultId: 0,
-      logo: ''
     }
     this.toggleBid = this.toggleBid.bind(this);
   }

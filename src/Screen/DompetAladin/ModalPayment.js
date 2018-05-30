@@ -41,7 +41,7 @@ class ModalPayment extends Component{
             },
         url: `${process.env.REACT_APP_API_HOST}/topupva`,
         data: {
-            keyId: parseInt(this.props.data),
+            keyId: parseInt(this.props.data, 10),
             bankCode: this.state.bank
         }
       })

@@ -1,5 +1,5 @@
 //@flow
-import React, { Component } from 'react';
+import React from 'react';
 import Welcome from './Welcome';
 import Advantage from './Advantage';
 import Faq from './Faq';

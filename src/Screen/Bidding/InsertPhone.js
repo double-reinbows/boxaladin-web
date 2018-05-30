@@ -1,10 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Input, Button } from 'reactstrap'
-import PropTypes from 'prop-types';
-
-import axios from 'axios'
-
 import { getPhoneNumbers } from '../../actions/'
 import ModalPayment from './ModalPayment'
 import { validateProvider, detectProvider } from '../../utils/phone'
