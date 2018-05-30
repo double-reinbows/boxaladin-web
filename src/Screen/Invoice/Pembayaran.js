@@ -137,7 +137,7 @@ class InvoiceDetail extends React.Component {
                             outline: "none" }}>BCA</button></h4>
                         </NavLink>
                       </NavItem>
-                      <NavItem>
+                      {/* <NavItem>
                         <NavLink
                           className={classnames({ active: this.state.activeTab === '5' })}
                           onClick={() => { this.toggle('5'); }}
@@ -149,7 +149,7 @@ class InvoiceDetail extends React.Component {
                             overflow: "hidden",
                             outline: "none" }}>Gerai Retail</button></h4>
                         </NavLink>
-                      </NavItem>
+                      </NavItem> */}
                     </Nav>
                     <Guide activeTab= {this.state.activeTab} invoice={this.state.invoice} />
                   </div>
