@@ -92,7 +92,6 @@
 }
 
 .alert{
-  color: #ff2323;
   &__dompetAladin{
     font-size: 14px;
     display: flex;
@@ -117,6 +116,8 @@
   }
   &__otp{
     color: #ff2323;
-
+  }
+  &__invoice{
+    font-size: 25px;
   }
 }

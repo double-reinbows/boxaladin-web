@@ -27,7 +27,8 @@ class ModalPayment extends Component{
   setBank = (e) => {
     this.setState({
       bank: e.target.value,
-      disabled: false
+      disabled: false,
+      notif: ''
     })
   }
 
@@ -60,12 +61,23 @@ class ModalPayment extends Component{
     .catch(err => console.log('error'))
   }
 
+  handleToggle = () => {
+    this.setState({
+      notif: '',
+      bank: '',
+      disabled: true
+    }, 
+  () => this.props.toggle()
+    )
+  }
+
   render() { 
+    console.log('state', this.state)
     return (  
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">
           <div className="modal__method__header">
-            <button className="modal__method__header__button" onClick={this.props.toggle}>X</button>
+            <button className="modal__method__header__button" onClick={this.handleToggle}>X</button>
           </div>
           <div>
             <label>Silahkan Pilih Salah Satu Bank Untuk Metode Pembayaran Virtual Account</label>
@@ -81,7 +93,7 @@ class ModalPayment extends Component{
               </div>
             </div>
             <div>
-              <label>{this.state.notif}</label>
+              <label className="alert__invoice"><b>{this.state.notif}</b></label>
             </div>
             <button disabled={this.state.disabled} className="modal__method__content__button" onClick={this.axiosTransaction}>Submit</button>
             <Loading isLoading={ this.props.isLoading } />

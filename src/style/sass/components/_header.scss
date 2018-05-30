@@ -4,6 +4,7 @@
     border-bottom: 4px solid #FFCD06;
 
     &__Right{
+      margin-right: 5% !important;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -21,12 +22,18 @@
 @media (max-width: 767px)  {
   .HeaderTop{
     display: none;
+    &__right{
+      margin-right: 5%;
+
+    }
   }
 }
 
 @media (max-width: 1024) {
   .HeaderTop__Right {
     width: 70%;
+    margin-right: 5%;
+
   }
 }
 
