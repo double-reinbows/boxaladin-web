@@ -60,8 +60,6 @@ class InvoiceDetail extends React.Component {
   }
 
   render() {
-    console.log('props', this.props)
-    console.log('state', this.state.invoice)
     if (this.state.invoice.createdAt === ''){
       console.log('kosong')
     } else if ( this.state.invoice.createdAt === undefined){
@@ -73,7 +71,7 @@ class InvoiceDetail extends React.Component {
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
-          <h1 className="pembayaran__title__header">Pembayaran</h1>
+          <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice ? (this.state.invoice.virtualAccount.bankCode) : null}</h1>
           {this.state.invoice ? (
               <div>
                 <div className="pembayaran__content__textDistance">
