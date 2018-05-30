@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import Modal from 'react-modal'
 import axios from 'axios'
-import { Button, Modal } from 'reactstrap'
+import { Modal } from 'reactstrap'
 import ModalOtpUser from './ModalOtpUser'
 class ModalPrimaryPhone extends Component {
   constructor(props) {
@@ -43,7 +43,6 @@ class ModalPrimaryPhone extends Component {
         phone: num.join('')
       })
     }
-    console.log(this.state.phone)
     axios({
       method: 'POST',
       url: `${process.env.REACT_APP_API_HOST}/olduserotp`,
@@ -57,7 +56,6 @@ class ModalPrimaryPhone extends Component {
       }
     })
     .then((data) => {
-      console.log('Data create phone', data)
       if (data.data === 'ada no hp verified/primary'){
         this.setState({
           notif: 'No Hp Sudah Terverifikasi, Masukkan No Lain',
@@ -77,14 +75,15 @@ class ModalPrimaryPhone extends Component {
       <div>
         <Modal isOpen={this.props.open} className="modalPrimary__phone">
           <form className="modalPrimary__phone__content" onSubmit={(e) => this.submitOldUserPhone(e)}>
+            <label><b>Masukan Nomor Hape:</b></label>
             <div className="modalPrimary__phone__content__form">
               <input name="numberToSend" required autoFocus type="text" maxLength={14} className="modalPrimary__phone__input" placeholder="Phone Number" value={this.state.phone} onChange={(e) => this.handleOldUserPhone(e)} />
             </div>
             <label className="modalPrimary__phone__alert">{this.state.notif}</label>
 
             <div className="modalPrimary__phone__content__buttonContainer">
-              <Button className="modalPrimary__phone__button" type="button" color="danger" onClick={() => this.props.buttongToggle()}>Batal</Button>
-              <Button className="modalPrimary__phone__button" type="submit" color="primary">Setuju</Button>
+              <button className="modalPrimary__phone__button" type="submit" color="primary">Setuju</button>
+              <button className="modalPrimary__phone__button" type="button" color="danger" onClick={this.props.buttonToggle}>Batal</button>
             </div>
           </form>
         </Modal>

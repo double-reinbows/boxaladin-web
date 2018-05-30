@@ -36,7 +36,7 @@ class NavBar extends React.Component {
     return (
       <div>
         <Navbar light expand="md" className="HeaderTop">
-          <Link to="/home">
+          <Link to="/home" className="logoHeader">
             <img src={logo} alt="logo" className="BoxAladinLogo-Big" href="/home"/>
           </Link>
 
@@ -50,7 +50,7 @@ class NavBar extends React.Component {
 
         <Navbar light expand="md" className="HeaderTopM">
           <NavbarToggler onClick={this.toggle} className="IconBurger" />
-          
+
 
           <Link to="/home" className="HeaderTopM__logo">
             <img src={logo} alt="logo" className="BoxAladinLogo-Big" href="/home" />
@@ -69,16 +69,6 @@ class NavBar extends React.Component {
     if (localStorage.getItem('token') !== null) {
       return (
         <Nav navbar className="HeaderTop__Right">
-
-          <NavItem>
-            <Link to="/dompetaladin">
-              <button className="ButtonTopUP">
-                <label className="ButtonTopUP__label">Dompet Aladin</label>{' '}
-                <label className="ButtonTopUP__label__italic"></label>
-              </button>
-            </Link>
-          </NavItem>
-
           <NavItem>
             <DropdownUser />
           </NavItem>

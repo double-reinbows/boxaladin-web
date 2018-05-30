@@ -1,21 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Modal from 'react-modal'
+import { Modal } from 'reactstrap'
 import axios from 'axios'
-import { Button } from 'reactstrap'
 
 import { getPhoneNumbers } from '../../actions/'
 import { getUser } from '../../actions/userAction'
 
 // import Logo from '../asset/TabsHome/IconTabs1.svg'
-import IconCoin from '../../asset/user/IconCoin.svg'
-import IconEmail from '../../asset/user/IconEmail.svg'
-import IconKey from '../../asset/user/IconKey.svg'
-import IconPhone from '../../asset/user/IconPhone.svg'
-// import IconUser from '../asset/user/IconUser.svg'
-// import IconCheck from '../asset/user/IconCheck.svg'
+import IconCoin from '../../asset/user/coin.png'
+import IconEmail from '../../asset/user//mail.png'
+import IconKey from '../../asset/user/key.png'
+import IconPhone from '../../asset/user/phone.png'
+// import IconUser from '../../asset/user/user.png'
+import IconCheck from '../../asset/user/checked.png'
 import ModalPrimaryPhone from './ModalPrimary'
-
+import ModalDelete from './ModalDelete'
+import ModalText from '../Components/Modal/ModalText'
 class User extends React.Component {
 	constructor() {
 		super()
@@ -28,10 +28,12 @@ class User extends React.Component {
 			changePhoneModal: false,
 			changePrimaryPhoneModal: false,
 			idPhoneToChange: null,
+			idPhoneToDelete: '',
 			changePrimaryPhoneOTPModal: false,
 			notif: '',
 			oldUserModal: false,
-
+			openModalDelete: false,
+			modalCheck: false
 		}
 		this.toggle = this.toggle.bind(this);
 
@@ -39,17 +41,24 @@ class User extends React.Component {
 
 	render() {
 		return (
-			<div className="User">
-				<div className="User__container">
-					<label className="User__Label">
+			<div className="user">
+				<div className="user__container">
+					<label className="user__title__header">
 						Profil Saya
 					</label>
+					<div className="user__info__container">
+						{/* <div>
+							<img src={IconUser} className="user__show__logo__user" alt="User" />
+
+						</div> */}
+
 					{ this.showDataUser() }
+
+					</div>
 					{ this.showPhoneModal() }
 
 					{ this.showAddPhoneModal() }
 					{ this.showChangePhoneModal(this.state.numberToSend) }
-
 					{ this.showChangePrimaryPhone() }
 
 					{ this.showChangePrimaryPhoneOTP() }
@@ -135,8 +144,8 @@ class User extends React.Component {
 					</div>
 
 					<div className="form-group ModalContent__button">
-						<Button type="button" color="secondary" onClick={ () => this.setState({ changePrimaryPhoneOTPModal: false }) }>Batal</Button>
-						<Button style={{ marginLeft: 5 }} type="submit" color="primary">Submit</Button>
+					<button className="user__show__button" onClick={ () => this.setState({ changePrimaryPhoneOTPModal: false }) }>Batal</button>
+					<button className="user__show__button" type="submit" color="primary">Submit</button>
 					</div>
 				</form>
 
@@ -199,8 +208,8 @@ class User extends React.Component {
 					</div>
 
 					<div className="form-group ModalContent__button">
-						<Button type="button" color="secondary" onClick={ () => this.setState({ changePrimaryPhoneModal: false }) }>Batal</Button>
-						<Button style={{ marginLeft: 5 }} type="submit" color="primary">Ubah</Button>
+					<button className="user__show__button" onClick={ () => this.setState({ changePrimaryPhoneModal: false }) }>Batal</button>
+					<button className="user__show__button" type="submit" color="primary">Ubah</button>
 					</div>
 				</form>
 
@@ -212,20 +221,19 @@ class User extends React.Component {
 	showChangePhoneModal(numValue) {
 		// var numValue = this.state.numberToSend
 		return (
-			<Modal isOpen={this.state.changePhoneModal} className="ModalPhone">
-
-				<form className="ModalContent" onSubmit={ (e) => this.submitChangePhone(e) }>
-
-					<div className="form-group ModalContent__form">
-						<input value={numValue} name="numberToSend" required autoFocus type="text" maxLength={14} className="form-control" placeholder="Number to change" onChange={ (e) => this.handlePhoneNum(e) } />
+			<Modal isOpen={this.state.changePhoneModal} className="modal__check">
+			<div className="modal__check__container">
+					<div className="modal__check__delete__content">
+						<label className="modal__check__delete__label"><b>Masukan Nomor Hape:</b></label>
 					</div>
-
-					<div className="form-group ModalContent__button">
-						<Button type="button" color="secondary" onClick={ () => this.setState({ changePhoneModal: false }) }>Batal</Button>
-						<Button style={{ marginLeft: 5 }} type="submit" color="primary">Ubah</Button>
+					<div className="modal__check__add">
+						<input value={numValue} name="numberToSend" type="text" maxLength={14} className="modal__check__add__input" placeholder="Ubah No" onChange={ (e) => this.handlePhoneNum(e) } />
 					</div>
-				</form>
-
+					<div className="modal__check__delete">
+						<button className="modal__check__delete__button" onClick={(e) => this.submitChangePhone(e)}>Ubah</button>
+						<button className="modal__check__delete__button" onClick={ () => this.setState({ changePhoneModal: false }) }>Batal</button>
+					</div>
+				</div>
 			</Modal>
 		)
 	}
@@ -233,20 +241,21 @@ class User extends React.Component {
 	// modal untuk add phone
 	showAddPhoneModal() {
 		return (
-		<Modal isOpen={this.state.addPhoneModal} className="ModalPhone">
-
-			<form className="ModalContent" onSubmit={e => this.submitPhone(e)}>
-
-				<div className="form-group ModalContent__form">
-					<input name="numberToSend" required autoFocus type="text" maxLength={14} className="form-control" placeholder="Phone Number" onChange={e => this.handlePhoneNum(e)} />
-			  </div>
-
-        <div className="form-group ModalContent__button">
-					<Button type="button" color="danger" onClick={() => this.setState({ addPhoneModal: false })}>Batal</Button>
-					<Button style={{ marginLeft: 5 }} type="submit" color="primary">Setuju</Button>
-			  </div>
-
-      </form>
+		<Modal isOpen={this.state.addPhoneModal} className="modal__check">
+			<div className="modal__check__container">
+				<form onSubmit={e => this.submitPhone(e)}>
+					<div className="modal__check__delete__content">
+						<label className="modal__check__delete__label"><b>Masukan Nomor Hape:</b></label>
+					</div>
+					<div className="modal__check__add">
+						<input name="numberToSend" maxLength={14} className="modal__check__add__input" placeholder="Phone Number" onChange={e => this.handlePhoneNum(e)} />
+					</div>
+					<div className="modal__check__delete">
+						<button className="modal__check__delete__button" type="submit" color="primary">Setuju</button>
+						<button className="modal__check__delete__button" onClick={() => this.addPhone()} >Batal</button>
+					</div>
+				</form>
+			</div>
 		</Modal>
 		)
 	}
@@ -283,8 +292,8 @@ class User extends React.Component {
 					</div>
 
 					<div className="form-group ModalContent__button">
-						<Button type="button" color="secondary" onClick={ () => this.setState({ phoneModal: false }) }>Batal</Button>
-						<Button style={{ marginLeft: 5 }} type="submit" color="primary">Setuju</Button>
+						<button className="user__show__button" onClick={ () => this.setState({ phoneModal: false }) }>Batal</button>
+						<button className="user__show__button" type="submit" color="primary">Setuju</button>
 					</div>
 				</form>
 
@@ -321,81 +330,91 @@ class User extends React.Component {
 			oldUserModal: !this.state.oldUserModal,
 			notif: '',
     })
-  }
+	}
+
+	addPhone = () => {
+		this.setState({
+			addPhoneModal: !this.state.addPhoneModal
+		})
+	}
 
 	showPhoneNumbers() {
-		return <div className="User__Phone">
-        <div className="User__Phone__row1">
-					<div className="User__Phone__row1__PhoneNumber">
-	          <img src={IconPhone} className="User__show__logo" alt="Logo" />
-						<div className = "User__Phone__row1__PhoneWidth">
+		return <div className="user__phone">
+        <div className="user__phone__row1">
+					<div className="user__phone__row1__phoneNumber">
+	          <img src={IconPhone} className="user__show__logo" alt="Logo" />
+						<div className = "user__phone__row1__phoneWidth">
 							{this.props.phoneNumbers.length !== 0 ? this.props.phoneNumbers.map((phone, idx) => {
 								return (
 									<div>
 										{phone.primary === false ? null :
-											<div className="User__Phone__row1__PhoneInfo">
-												<h1>{phone.number}</h1>
-												<h1>(Verified)</h1>
+											<div className="user__phone__row1__phoneInfo">
+												<label style={{ marginRight: '2%'}} >{phone.number}</label>
+
+												{
+													phone.verified === false ? <div style={{ display:'flex'}}><label>(Unverified)</label> <button className="verified__profile" onClick={() => this.toggle()}> Verifikasi Nomor </button></div> :
+													<label>(Verified)</label>
+												}
+
+
 											</div>}
 									</div>
 								)
-							}) : 
-							<Button color="success" onClick={() => this.toggle()} className="User__Phone__row1__buttonverification" > Verifikasi Nomor </Button>}
+							}) :
+							<button className="user__show__button" onClick={() => this.toggle()}> Verifikasi Nomor </button>}
 						</div>
 						</div>
 							{ this.props.phoneNumbers.length !== 0 ?
-								<label className="User__Label">
+								<label className="user__title">
 	            		No Hp Terdaftar
 	          		</label> :
 									null }
 	        </div>
-        <div className="User__Phone__row2">
+        <div className="user__phone__row2">
           <ul>
             {this.props.phoneNumbers !== null ? this.props.phoneNumbers.map(
                   (phone, idx) => {
                     return (
-                      <li key={idx} className="User__Phone__row2__li">
-                        <div className="User__Phone__row2__number">
+                      <li key={idx} className="user__phone__row2__li">
+                        <div className="user__phone__row2__number">
                           {phone.primary === false ? phone.number : null }
                         </div>
                         {phone.verified === false && phone.primary === false ? (
-                          <div className="User__Phone__row2__unverify">
-                            <div className="User__Phone__row2__unverify__2">
-                              <Button
-                                type="button"
-                                color="secondary"
+                          <div className="user__phone__row2__unverify">
+                            <div className="user__phone__row2__unverify__2">
+														<button className="user__phone__row2__unverify__2__button2"
                                 onClick={() => this.changePhone(phone)}
-                                className="User__Phone__row2__unverify__2__button2"
                               >
                                 Ubah
-                              </Button>
+                              </button>
                             </div>
-                            <div className="User__Phone__row2__unverify__3">
-                              <Button
-                                type="button"
-                                color="danger"
-                                onClick={() => this.removePhone(phone)}
-                                className="User__Phone__row2__unverify__3__button3"
+                            <div className="user__phone__row2__unverify__3">
+														<button className="user__phone__row2__unverify__3__button3"
+																// onClick={() => this.removePhone(phone)}
+																onClick={() => this.toggleRemove(phone)}
                               >
                                 Hapus
-                              </Button>
+                              </button>
+
                             </div>
                           </div>
                         ) : null }
                       </li>
                     );
                   }
-                ) : null}
+								) : null}
+							<ModalDelete phone={this.state.idPhoneToDelete} openModalDelete={this.state.openModalDelete} buttonToggle={this.toggleModalDelete}/>
           </ul>
 					<label className="alert__user">{this.state.notif}</label>
 
-          <div className="User__Phone__row3">
+          <div className="user__phone__row3">
 					{this.props.phoneNumbers.length === 0 ? null :
-					<Button color="success" onClick={() => this.addPhone()} className="User__Phone__row3__button1">
+					<button className="user__phone__row3__button1" onClick={() => this.addPhone()}>
 						Tambah No Baru
-					</Button>}
+					</button>}
           </div>
         </div>
+				<ModalText isOpen={this.state.modalCheck} toggle={this.state.toggle} props="Cek Hape Anda"/>
       </div>;
 	}
 
@@ -417,7 +436,10 @@ class User extends React.Component {
 			.then(response => {
 				if (response.data.message === 'data added') {
 					this.props.getPhoneNumbers()
-					this.setState({addPhoneModal: false})
+					this.setState({
+						addPhoneModal: false,
+						notif: ''
+					})
 				} else if (response.data === 'duplicate number') {
 					this.setState({
 						notif: 'No Hp Sudah Ada',
@@ -432,25 +454,25 @@ class User extends React.Component {
 
 	}
 
-	addPhone() {
-		this.setState({addPhoneModal: true})
-	}
+
 
 	changePhone(phone) {
-		this.setState({numberToSend: phone.number})
-		this.setState({idPhoneToChange: phone.id})
-		this.setState({changePhoneModal: true})
+		this.setState({
+			numberToSend: phone.number,
+			idPhoneToChange: phone.id,
+			changePhoneModal: true
+		})
 	}
 
 	submitChangePhone(e) {
 		e.preventDefault()
 		// console.log('Submit change phone!');
 
-		if (this.state.numberToSend[0] + this.state.numberToSend[1] !== '62') {
-			this.setState({
-        notif: "Format No Hp Salah",
-      })
-		} else {
+		// if (this.state.numberToSend[0] + this.state.numberToSend[1] !== '62') {
+		// 	this.setState({
+    //     notif: "Format No Hp Salah",
+    //   })
+		// } else {
 			axios({
 				method: 'PUT',
 				url: `${process.env.REACT_APP_API_HOST}/phone/${this.state.idPhoneToChange}`,
@@ -464,10 +486,14 @@ class User extends React.Component {
 			})
 			.then(response => {
 				if (response.data.message === 'data changed') {
+					this.setState({
+						changePhoneModal: false,
+						numberToSend: null,
+						idPhoneToChange: null
+					},
 					this.props.getPhoneNumbers()
-					this.setState({changePhoneModal: false})
-					this.setState({numberToSend: null})
-					this.setState({idPhoneToChange: null})
+
+				)
 				} else if (response.data.message === 'duplicate number') {
 					this.setState({
 						notif: response.data.message,
@@ -479,45 +505,59 @@ class User extends React.Component {
 				}
 			})
 			.catch(err => console.log(err))
-		}
+		// }
 	}
 
-	removePhone(phone) {
-		// alert('Remove phone here!')
-		axios({
-			method: 'DELETE',
-			url: `${process.env.REACT_APP_API_HOST}/phone/${phone.id}`,
-			headers: {
-				key: process.env.REACT_APP_KEY
-			}
+	toggleRemove = (phone) => {
+		this.setState({
+			openModalDelete: !this.state.openModalDelete,
+			idPhoneToDelete: phone.id
 		})
-		.then(({data}) => {
-			this.props.getPhoneNumbers()
+	}
+
+	toggleModalDelete = () => {
+		this.setState({
+			openModalDelete: !this.state.openModalDelete
 		})
-		.catch(err => console.log(err))
+	}
+
+	toggleCheck = () => {
+		this.setState({
+			modalCheck: !this.state.modalCheck,
+			notif: ''
+		})
 	}
 
 	showDataUser() {
 		return (
-			<div>
+			<div className="user__show__container">
 				<h3>{this.props.userInfo !== null ? this.props.userInfo.first_name : null} {this.props.userInfo !== null ? this.props.userInfo.family_name : null}</h3>
-				<div className="User__show">
-					<img src={IconEmail} className="User__show__logo" alt="Logo"/>
-					{this.props.userInfo !== null ? this.props.userInfo.email : null} {this.props.userInfo !== null ?
-						(this.props.userInfo.emailVerified ? '(verified)' :
-						(<Button color= "success" onClick={() => this.resendEmailVerification()}> Kirim Verifikasi Email </Button>)) : null
-					}
+				<div className="user__show">
+					<img src={IconEmail} className="user__show__logo" alt="Logo"/>
+					<div className="user__show__email">
+					{this.props.userInfo !== null ? this.props.userInfo.typedEmail : null}
+						<div style= {{ width:"16%" }}>
+							{this.props.userInfo !== null ? (this.props.userInfo.emailVerified ? <img src={IconCheck} className="user__show__logo__verified" alt="Logo"/>
+								:
+								(<button  className="user__show__button" onClick={() => this.resendEmailVerification()}> Verifikasi </button>)) : null
+							}
+						</div>
+
+					</div>
+
+
 				</div>
-				<div className="User__show">
-					<img src={IconKey} className="User__show__logo" alt="Logo"/>
+				<div className="user__show">
+					<img src={IconKey} className="user__show__logo" alt="Logo"/>
 					{this.props.userInfo !== null ? this.props.userInfo.aladinKeys : null}
 				</div>
-				<div className="User__show">
-					<img src={IconCoin} className="User__show__logo" alt="Logo"/>
+				<div className="user__show">
+					<img src={IconCoin} className="user__show__logo" alt="Logo"/>
 					{this.props.userInfo !== null ? this.props.userInfo.coin : null}
 				</div>
 				{ this.showPhoneNumbers() }
 
+				<ModalText isOpen={this.state.modalCheck} toggle={this.toggleCheck} text="Cek Email Anda"/>
 			</div>
 		)
 	}
@@ -536,7 +576,7 @@ class User extends React.Component {
 		.then(response => {
 			if (response.status === 200) {
 				return this.setState({
-					notif: response.data.message,
+					modalCheck: !this.state.modalCheck
 				})
 			}
 			return null

@@ -1,76 +1,145 @@
-.ModalTop{
-  border-bottom: none;
-  border-radius: 0;
-  background-color: var(--color-grey-5);
-  span{
-    color: #FFCD05;
+.nav-tabs .nav-link {
+  &:active{
+    border: none
   }
-  &__otp{
-    background-color: white;
-    span{
-      color: black;
+}
+
+.modal{
+
+  &__invoice{
+
+    &__detailText{
+      font-size: 30px
+    }
+
+    &__container{
+      background-color: lightgrey;
+      width: 48%;
+      margin: auto;
+      &__detail{
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+
+    &__header{
+      font-size: 30px;
+      padding-left: 4%;
+      &__label{
+        border-bottom: 4px orange solid
+      }
+    }
+  }
+  overflow: scroll;
+  &__login{
+    padding-top: 3%;
+    margin: 1.75rem auto;
+    &__container{
+      margin: auto;
+      padding: 0;
+      width: 60%;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      &__line{
+        width: 100%;
+      }
+    }
+    &__header{
+      background-color: var(--color-white);
+      border-bottom-color: black;
+      border-bottom-width: 3px;
+      text-align: center;
+      span{
+        color: black;
+      }
+      &__title{
+        width: 100%;
+      }
+    }
+    &__footer{
+      font-size: 15px;
+      display: flex;
+      justify-content: space-around;
+      background-color: lightgrey;
+      border-top: 1px;
+      border-top-style: solid;
+      height: 50px;
+      align-items: center;
+      &__text{
+        border: 2px;
+        border-right-style: solid;
+        border-width: 2px;
+        width: 38%;
+      }
+      &__button{
+        background-color: Transparent;
+        background-repeat:no-repeat;
+        border: none;
+        cursor:pointer;
+        overflow: hidden;
+        outline:none;
+      }
     }
   }
 }
 
-.modalz{
-  position: fixed; /* Stay in place */
-  z-index: 10; /* Sit on top */
-  left: 0;
-  top: 0;
-  padding-top: 100px;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+.modal{
+  &__otp{
+    padding-top: 3%;
+    margin: 1.75rem auto;
+    height: 100%;
+    overflow: disabled;
+    background-color: rgba(0, 0, 0, 0.4);
+    &__header{
+      display: flex;
+    }
+    &__container{
+      margin: auto;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      border: 5px solid var(--white);
+      width: 50%;
+      margin-top: 5%;
+      background-color: white;
+    }
+    &__content{
+      text-align: center;
+      font-size: 18px;
+      &__button{
+        cursor: pointer;
+        border: 1px solid lightgrey;
+        width: 30%;
+        border-radius: 4px;
+      }
+      &__alert{
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
 
-.containerModalOtp{
-  position: fixed; /* Stay in place */
-  z-index: 10; /* Sit on top */
-  left: 0;
-  top: 0;
-  padding-top: 100px;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: disabled; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+      }
+    }
 
-//---------------------
-
-/* Modal Content */
-.modalOtp{
-  position: relative;
-  margin: auto;
-  padding: 0;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s;
-  overflow: auto; /* Enable scroll if needed */
-  border: 5px solid var(--white);
-  height: 60%;
-  width: 50%;
-  margin-top: 5%;
-  background-color: white;
+    &__footer{
+      font-size: 12px;
+      border: none;
+    }
+  }
 }
 
 .modalPrimary{
-
   &__phone{
-    top: 35%;
+    margin: 1.75rem auto;
+    max-width: 60%;
+    top: 25%;
     &__content{
+      font-size: 20px;
+      text-align: center;
       border-radius: 0;
-      border: 5px solid var(--color-yellow-1);
+      border: 2px solid grey;
       top: 35%;
       z-index: 10;
-      background-color: black;
+      background-color: lightgrey;
       justify-content: center;
-      align-items: center;  
+      align-items: center;
       &__form{
-        margin-top: 20px;
         text-align: center;
       }
       &__buttonContainer{
@@ -84,55 +153,45 @@
       border-radius: 4px;
       width: 50%;
       padding: 4px;
+      font-size: 20px;
+      background-color: white;
+      border: 1px solid #FFCD05;
+      &:focus{
+        outline: none;
+      }
     }
     &__button{
+      cursor: pointer;
       width: 20%;
-    }
-    &__alert{
-      color: red;
-      font-size: 17px;
-      display: flex;
-      justify-content: center;
-      margin-top: 10px;
+      font-size: 15px;
+      background-color: white;
+      border: 2px solid #FFCD05;
+      border-radius: 5px;
     }
   }
 }
 
+@media (min-width: 200px ) and (max-width:766px ) {
+  .modalPrimary{
+    &__phone{
+      max-width: 80%;
+      &__content{
+        font-size: 17px;
+      }
+      &__input{
+        font-size: 14px;
+      }
+    }
+  }
+
+}
+
 .modalContent {
-  position: relative;
   margin: auto;
   padding: 0;
   width: 60%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s;
-  overflow: auto; /* Enable scroll if needed */
-  border: 5px solid var(--white);
-}
 
-/* Add Animation */
-@-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
-  to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-
-/* The Close Button */
-.close {
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  text-decoration: none;
-  cursor: pointer;
 }
 
 .modal-body {
@@ -149,33 +208,25 @@
     &__button{
       font-size: 14px;
       margin-bottom: 10px;
+      background-color: lightgrey;
+      color: black;
+      border: 2px;
+      border-style: solid;
+      border-color: lightslategrey;
     }
     &__label{
       font-size: 18px;
     }
     &__resend{
-      // border: none;
-      // background: white;
-      // cursor: pointer;
-      // &:hover{
-      //   color: blue;
-      // }
-      // &:active{
-      //   color: blue;
-      // }
-      // &:focus{
-      //   color: blue;
-      // }
+      cursor: pointer;
+      background-color: lightgrey;
+      color: black;
+      border: 2px;
+      border-style: solid;
+      border-color: lightslategrey;
     }
   }
 }
-
-.otpLabel{
-  font-size: 12px;
-  display: flex;
-  flex-direction: column;
-}
-//----------------------
 
 @media (min-width: 767px ) {
   .modalContent{
@@ -183,25 +234,28 @@
   }
 }
 @media (min-width: 200px ) and (max-width:766px ) {
-  .modalContent{
+  .modal__login__container{
     font-size: 14px;
     width: 90%
   }
-  .modalOtp{
+  .modal__otp__container{
     font-size: 14px;
     width: 85%
+  }
+  .modal__pulsa{
+    font-size: 10px;
   }
 }
 
 
 .modalOtpUser{
-  top: 35%;
+  top: 25%;
   &__modalHeader{
     border-bottom: none;
   }
   &__container{
-    background-color: var(--color-grey-5);
-    border: 5px solid #FFCD05;
+    background-color: lightgrey;
+    border: 2px solid black;
     text-align: center;
   }
   &__input{
@@ -211,13 +265,491 @@
     border-radius: 4px;
     text-align: center;
     font-size: 14px;
+    background-color: white;
+    border: 2px solid #FFCD05
   }
   &__label{
     font-size: 14px;
-    color: white
+    color: black
   }
   &__button{
-    margin: 10px;
+    cursor: pointer;
+    width: 15%;
+    background-color: lightgrey;
+    border: 1px solid #FFCD05;
+    color: black;
     font-size: 12px;
+    border-radius: 4px;
+    margin-bottom: 5%;
+  }
+}
+
+
+.modal__provider{
+  max-width: 70%;
+  margin: 1.75rem auto;
+  border: solid 1px lightgrey;
+  background-color: white;
+  &__header{
+    border-bottom: none;
+  }
+  &__container{
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+  }
+  &__content{
+    width: 100%;
+    text-align: -webkit-center;
+    border: solid 1px lightgrey;
+    &__x{
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  &__logo{
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    &__image{
+      width: 100%;
+    }
+  }
+  &__list{
+    text-align: center;
+    border-top: solid 1px lightgrey;
+  }
+  &__button{
+    background-color: transparent;
+    font-size: 10px;
+    color: #FFCD05;
+  }
+}
+
+@media (min-width: 200px ) and (max-width:560px ) {
+  .modal__provider{
+    max-width: 90%;
+
+    &__content{
+      font-size: 14px;
+    }
+    &__logo{
+      width: 50px;
+      height: 50px;
+      &__image{
+        width: 100%
+      }
+    }
+  }
+}
+
+
+.modal-title{
+  width: 100%
+}
+
+.h4ModalTitle{
+  padding-top: 15px;
+}
+
+.modal__confirm{
+  max-width: 60%;
+  font-size: 15px;
+  margin: 1.75rem auto;
+  &__container{
+    margin-top: 40%;
+    background-color: rgb(175, 193, 203);
+    padding: 3%;
+    display: flex
+  }
+  &__label{
+    width: 100%;
+    margin-right: 40px;
+  }
+  &__button{
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+
+    &__yes{
+      width: 100px;
+      border-radius: 5px;
+      border: solid 2px #FFCD05;
+      background-color: white;
+    }
+    &__no{
+      width: 100px;
+      border-radius: 5px;
+      border: solid 2px #FFCD05;
+      background-color: white;
+
+    }
+  }
+}
+@media (min-width: 767px ) and (max-width:886px ) {
+  .modal__confirm{
+    top: 23%;
+    font-size: 12px;
+    max-width: 60%;
+    &__container{
+      display: block;
+      text-align: center;
+    }
+  }
+}
+
+@media (min-width: 200px ) and (max-width:766px ) {
+  .modal__confirm{
+    top: 23%;
+    font-size: 12px;
+    max-width: 80%;
+    &__container{
+      display: block;
+      text-align: center;
+    }
+  }
+}
+
+.modal{
+  &__check{
+    margin: 1.75rem auto;
+    margin-top: 25%;
+    border-radius: 2px;
+    max-width: 60%;
+    &__container{
+      text-align: center;
+      background-color: lightgrey;
+      &__header{
+        display: flex;
+        justify-content: flex-end;
+      }
+      &__content{
+      }
+    }
+    &__button{
+      cursor: pointer;
+      width: 3%;
+      background-color: lightgrey;
+      border: 1px solid grey;
+      color: #FFCD05;
+    }
+    &__label{
+      font-size: 30px;
+      margin-bottom: 3%;
+    }
+
+
+    &__delete{
+      display: flex;
+      justify-content: space-around;
+      &__content{
+
+      }
+      &__label{
+        font-size: 20px;
+      }
+      &__button{
+        cursor: pointer;
+        width: 20%;
+        font-size: 15px;
+        border-radius: 4px;
+        background-color: white;
+        border: 1px solid #FFCD05;
+        color: black;
+        margin-bottom: 3%;
+      }
+    }
+
+
+    &__add{
+      &__input{
+        width: 50%;
+        font-size: 15px;
+        margin-bottom: 2%;
+        border: 2px solid #FFCD05;
+        background-color: white;
+      }
+    }
+  }
+}
+
+@media (min-width: 200px ) and (max-width:766px ) {
+  .modal__check{
+    max-width: 80%;
+    &__button{
+      width: 5%;
+      background-color: lightgrey;
+      border: 1px solid grey;
+      color: #FFCD05;
+    }
+    &__label{
+      font-size: 20px;
+      margin-bottom: 3%;
+    }
+  }
+}
+
+.modal{
+  &__pulsa{
+  margin: 1.75rem auto;
+    &__tabsContainer{
+      width: 75%,
+    }
+    &__tabs{
+      display: flex;
+      justify-content: space-between !important;
+      border: solid 1px lightgrey;
+      &__text{
+        border: solid 1px lightgrey;
+        width: 50%;
+        text-align: center;
+      }
+    }
+    &__container{
+      background-color: white;
+      font-size: 20px;
+      position: fixed;
+      top: 35%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      overflow: auto;
+      width: 55%;
+      display: flex;
+    }
+
+    &__content{
+      &__1{
+        &__logo{
+          text-align: center;
+          border: solid 1px lightgrey;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          min-height: 250px;
+
+          &__image{
+            width: 30%;
+            &__special{
+              width: 60%;
+            }
+          }
+        }
+      }
+      &__2{
+        display: flex;
+        justify-content: space-around;
+        border: solid 1px lightgrey;
+        &__logo{
+          &__image{
+            width: 100%;
+          }
+        }
+
+        &__button{
+          background-color: white;
+          border-top: none;
+          border-right: none;
+          border-bottom: none;
+          width: 33.33%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          font-size: 18px;
+          &:hover{
+            cursor: pointer;
+          }
+          &:focus{
+            background-color: lightgrey;
+          }
+        }
+        &__map{
+          display: flex;
+          flex-direction: column;
+        }
+      }
+      &__3{
+        width: 25%;
+        border: 1px solid lightgrey;
+        border-left: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        &__top{
+          padding-left: 5px;
+        }
+        &__button{
+          display: flex;
+          justify-content: flex-end;
+
+          &__x{
+            color: #FFCD05;
+            border: none;
+            background: white;
+            &:hover{
+              cursor: pointer;
+            }
+          }
+          &__price{
+            width: 100%;
+            color: white;
+            background-color: grey;
+            border: none;
+            &:disabled{
+              background-color: lightgrey;
+              color: graytext;
+              &:hover{
+                cursor: not-allowed;
+              }
+            }
+            &:hover{
+              cursor: pointer;
+            }
+            &__image{
+              width: 20%;
+              margin-left: 10%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.modal-open {
+  overflow: scroll;
+}
+
+@media (min-width: 500px ) and (max-width:766px ) {
+  .modal__pulsa{
+    &__container{
+      font-size: 12px;
+      width: 60%;
+    }
+    &__content{
+      &__1{
+        &__logo{
+          min-height: 110px;
+        }
+      }
+      &__2{
+        &__button{
+          font-size: 14px;
+        }
+        &__logo{
+          &__image{
+            width: 60%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 200px ) and (max-width:499px ) {
+  .modal__pulsa{
+    &__container{
+      font-size: 12px;
+      width: 85%;
+    }
+    &__content{
+      &__1{
+        &__logo{
+          min-height: 110px;
+        }
+      }
+      &__2{
+        &__button{
+          font-size: 10px;
+        }
+        &__logo{
+          &__image{
+            width: 60%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.ReactModalPortal > div {
+  opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+  transition: opacity 200ms ease-in-out;
+  background: rgba(0, 0, 0, 0.15);
+  &--after-open {
+    overflow: scroll;
+    opacity: 1;
+  }
+  &--before-close {
+      opacity: 0;
+  }
+}
+
+
+.modal{
+  &__method{
+    margin: 1.75rem auto;
+    margin-top: 25%;
+    border-radius: 2px;
+    max-width: 40%;
+    &__container{
+      text-align: center;
+      background-color: lightgrey;
+      font-size: 15px;
+    }
+    &__header{
+      display: flex;
+      justify-content: flex-end;
+      &__button{
+        cursor: pointer;
+        width: 7%;
+        background-color: lightgrey;
+        border: 1px solid grey;
+        color: #FFCD05;
+      }
+    }
+    &__content{
+      display: flex;
+      justify-content: flex-start;
+      &__container{
+        padding-left: 30%;
+      }
+      &__radio{
+        height: 20px;
+        width: 20%;
+        cursor: pointer;
+        &:checked{
+
+        }
+      }
+      &__button{
+        margin: 5%;
+        cursor: pointer;
+        width: 20%;
+        font-size: 15px;
+        background-color: white;
+        border: 2px solid #FFCD05;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+@media (min-width: 200px ) and (max-width:400px ) {
+  .modal{
+    &__method{
+      max-width: 90%;
+      margin-top: 25%;
+    }
+  }
+}
+
+@media (min-width: 401px ) and (max-width:766px ) {
+  .modal{
+    &__method{
+      max-width: 60%;
+    }
   }
 }

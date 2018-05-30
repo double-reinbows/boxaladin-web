@@ -1,79 +1,47 @@
 // @flow
 import React, {Component} from 'react';
-import { Button } from 'reactstrap';
-import { Link } from 'react-router-dom'
 
-import logo from "../../../asset/Logo/LogoBig.svg"
-import facebook from "../../../asset/SocialMedia/facebook.svg"
-import twitter from "../../../asset/SocialMedia/twitter.svg"
-import instagram from "../../../asset/SocialMedia/instagram.svg"
-import youtube from "../../../asset/SocialMedia/youtube.svg"
+import facebook from "../../../asset/SocialMedia/facebook-logo.png";
+import instagram from "../../../asset/SocialMedia/instagram.png";
+import line from "../../../asset/SocialMedia/line.png";
+import { Link } from 'react-router-dom';
+import ModalLineInfo from '../Modal/ModalLineInfo'
 
+type State = {
+  modalLineOpen: boolean,
+}
+export default  class Footer extends Component <Props, State> {
 
-export default  class Footer extends Component <{}> {
+  state: State = {
+    modalLineOpen: false,
+  }
+
+  toggleLineModal = (e: Event) => {
+    e.preventDefault();
+    this.setState({
+      modalLineOpen: !this.state.modalLineOpen
+    })
+  }
 
   render() {
     return (
-      <div className="footerz" >
-        <div className="footerz__Top">
-          <div className="footerz__Top__Left">
-              <a href="/home">
-                <img src={logo} alt="logo" className="LogoFooter"/>
-              </a>
-              <label className="footerz__Top__Left__label">LINE @boxaladin</label>
-              <a href="/layanan">
-                <Button className="footerz__Top__Left__button">Layanan Bantuan</Button>
-              </a>
-
-          </div>
-
-          <div className="footerz__Top__Right">
-            <div className="FooterzKosong"></div>
-
-            <div className="footerz__Top__Right__devide">
-              <div className="footerz__Top__Right__Row1">
-                <ul>
-                  Tentang Box Aladin
-                  <li className="footerz__Top__Right__Row1__list"><Link className="footerz__Top__Right__Row1__list" to="/aboutus">About Us</Link></li>
-                  <li className="footerz__Top__Right__Row1__list">FAQ</li>
-                  <li className="footerz__Top__Right__Row1__list">Cara Membeli</li>
-                </ul>
-              </div>
-
-              <div className="footerz__Top__Right__Row2">
-                <ul>
-                  Produk
-                  <li className="footerz__Top__Right__Row1__list">Pulsa</li>
-                  <li className="footerz__Top__Right__Row1__list">Paket data</li>
-                </ul>
-              </div>
-
-              <div className="footerz__Top__Right__Row3">
-
-                Social Media
-                <div className="footerz__Top__Right__Row3__logo">
-                  <a href="/facebook.com">
-                    <img src={facebook} alt="logo" className="LogoSosmed__facebook" href="/home"/>
-                  </a>
-                  <a href="/twitter.com">
-                    <img src={twitter} alt="logo" className="LogoSosmed__twitter" href="/home"/>
-                  </a>
-                  <a href="/instagram.com">
-                    <img src={instagram} alt="logo" className="LogoSosmed__instagram" href="/home"/>
-                  </a>
-                  <a href="/youtube.com">
-                    <img src={youtube} alt="logo" className="LogoSosmed__youtube" href="/home"/>
-                  </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
+      <div className="footer__info">
+        <ModalLineInfo isOpen={this.state.modalLineOpen} onToggle={this.toggleLineModal} />
+        <div className="footer__info__button">
+        <Link className="footer__info__button__content" to="/layanan"><b>Layanan Bantuan</b></Link>
 
         </div>
-
-
-
+        <div className="footer__info__logo">
+          {/* <a href="#" onClick={(e: HTMLInputElement)=>this.toggleLineModal(e)}> */}
+            <img  onClick={(e: HTMLInputElement)=>this.toggleLineModal(e)} className="footer__info__logo__content" src={line} alt="logo"/>
+          {/* </a> */}
+          <a href="https://www.facebook.com/boxaladin/">
+            <img className="footer__info__logo__content" src={facebook} alt="logo"/>
+          </a>
+          <a href="https://www.instagram.com/boxaladin/">
+            <img className="footer__info__logo__content" src={instagram} alt="logo"/>
+          </a>
+        </div>
       </div>
     )
   }

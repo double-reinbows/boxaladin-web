@@ -1,43 +1,39 @@
-import React from 'react'
-import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
-import {connect} from 'react-redux'
-
-//convention pake camelcase
+//@flow
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 //component page
-// import NavBar from './Screen/Components/NavBar'
-import Header from './Screen/Components/Header/Header'
-import FooterBot from './Screen/Components/Footer/FooterBot'
+import Header from './Screen/Components/Header/Header';
+import FooterBot from './Screen/Components/Footer/FooterBot';
+import Footer from './Screen/Components/Footer/Footer';
 
 //page non login
-import AboutUs from './Screen/AboutUs'
-import HowItWorks from './Screen/HowItWorks'
-import Layanan from './Screen/Layanan'
+import HowItWorks from './Screen/HowItWorks';
+import Layanan from './Screen/Layanan';
 
 //page after login
-import Home from './Screen/Home'
-import EmailVerificationDone from './Screen/EmailVerificationDone'
-import User from './Screen/User/Users'
+import Home from './Screen/Home/Home';
+import EmailVerificationDone from './Screen/EmailVerificationDone';
+import User from './Screen/User/Users';
 
 //page pembelian
-import Invoice from './Screen/Invoice'
-import Pembayaran from './Screen/Pembayaran'
-import TopupKey from './Screen/TopupKey'
-import TopupInvoice from './Screen/TopupInvoice'
-import TopupPayment from './Screen/TopupPayment'
-// import Cart from './screen/Cart'
+import TabsInvoice from './Screen/Invoice/TabsInvoice';
+import Pembayaran from './Screen/Invoice/Pembayaran';
+import TopupInvoice from './Screen/Invoice/TopupInvoice';
+import TopupPayment from './Screen/Invoice/TopupPayment';
 
-import Bidding from './Screen/Bidding'
-import InsertPhone from './Screen/Components/InsertPhone/InsertPhone'
+import Bidding from './Screen/Bidding/Bidding'
+import InsertPhone from './Screen/Bidding/InsertPhone'
 // import Pulsa from './Screen/Pulsa'
 
-import DompetAladin from './Screen/DompetAladin'
-import Game from './Screen/Game'
-import GameResult from './Screen/GameResult'
-// import ClaimReward from './Screen/ClaimReward'
-import RequestResetPassword from './Screen/RequestResetPassword'
-import ResetPassword from './Screen/ResetPassword'
-import ClaimFreePulsa from './Screen/ClaimFreePulsa'
+import DompetAladin from './Screen/DompetAladin/DompetAladin';
+import Game from './Screen/Game';
+import GameResult from './Screen/GameResult';
+import RequestResetPassword from './Screen/RequestResetPassword';
+import ResetPassword from './Screen/ResetPassword';
+import ClaimFreePulsa from './Screen/ClaimFreePulsa';
+import About from './Screen/About/About';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -49,7 +45,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
         <Redirect
           to={{
             pathname: "/",
-            state: { from: props.location }
+            state: { from: props.location },
           }}
         />
       ))
@@ -57,7 +53,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   />
 );
 
-class RouteList extends React.Component {
+class RouteList extends Component {
   render() {
     return (
       <div className="mainContainer">
@@ -66,36 +62,29 @@ class RouteList extends React.Component {
             <Header />
               <div className = "bodyContainer">
                 <Route exact path="/" component={Home} />
-                <Route exact path="/aboutus" component={AboutUs} />
                 <Route exact path="/howitworks" component={HowItWorks} />
                 <Route exact path="/home" component={Home} />
                 <Route exact path='/layanan' component={Layanan} />
-
                 <PrivateRoute exact path="/me" component={User} />
-                <PrivateRoute exact path="/invoice" component={Invoice} />
+                <PrivateRoute exact path="/tabsinvoice" component={TabsInvoice} />
                 <PrivateRoute exact path="/payment/:id" component={Pembayaran} />
-                <PrivateRoute exact path="/topup" component={TopupKey} />
                 <PrivateRoute exact path="/topupinvoice" component={TopupInvoice} />
                 <PrivateRoute exact path="/topupinvoice/:id" component={TopupPayment} />
                 <PrivateRoute exact path="/bidding" component={Bidding} />
                 <PrivateRoute exact path="/insertphone" component={InsertPhone} />
-                {/* <PrivateRoute exact path="/pulsa" component={Pulsa} /> */}
                 <PrivateRoute exact path="/game" component={ Game } />
                 <PrivateRoute exact path="/dompetaladin" component={DompetAladin} />
                 <PrivateRoute exact path="/gameresult" component={ GameResult } />
                 <PrivateRoute exact path="/claimfreepulsa" component={ ClaimFreePulsa } />
-                {/* <PrivateRoute exact path="/claimreward" component={ ClaimReward } /> */}
-
+                <Route exact path="/About" component={About} />
                 <Route exact path="/emailVerification" component={EmailVerificationDone} />
-                {/* <Route exact path="/product" component={Product} /> */}
-                <Route exact path="/requestresetpassword" component={RequestResetPassword} />
-                <Route exact path="/resetpassword" component={ResetPassword} />
+                <Route exact path="/requestresetpassword" component={RequestResetPassword } />
+                <Route exact path="/resetpassword/:email/:email_token" component={ResetPassword}/>
               </div>
-              <div className="phantom">
+              <div className="footer__container">
+                <Footer />
+                <FooterBot/>
               </div>
-            <div className = "footerContainer">
-              <FooterBot/>
-            </div>
           </div>
         </Router>
       </div>
@@ -105,14 +94,14 @@ class RouteList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isLogin: state.userReducer.isLogin
+    isLogin: state.userReducer.isLogin,
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return {}
+  return {};
 }
 
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(RouteList)
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(RouteList);
 
-export default connectComponent
+export default connectComponent;

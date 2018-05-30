@@ -2,6 +2,7 @@ import React from 'react'
 // import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { connect } from 'react-redux'
+import  check  from '../asset/LandingPage/home/checked.svg'
 
 import { setModalLogin, setModalRegister, loginAction } from '../actions/'
 import { getUser, refreshToken } from '../actions/userAction'
@@ -12,7 +13,20 @@ class EmailVerificationDone extends React.Component {
   render() {
     return (
       <div className="emailVerification">
-        <h1 className="emailVerification__text">Your email is verified.</h1>
+        <header className="emailVerification__header">
+          <img alt="boxaladin" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin.com/BoxAladin.png" className="emailVerification__header__image"/>
+        </header>
+        <div className="emailVerification__content">
+          <p className="emailVerification__content__textHead">Halo !</p>
+          <p className="emailVerification__content__textMiddle">
+            Kamu telah menverifikasi email {this.props.userInfo.typedEmail} sebagai akun baru di Boxaladin. klik gambar dibawah ini untuk mulai berbelanja:
+          </p>
+          <div className="emailVerification__content__image">
+             <a href="https://www.boxaladin.com">
+              <img alt="check icon" src= {check} />
+             </a>
+          </div>
+        </div>
         { this.showLoginLink() }
       </div>
     )
@@ -41,11 +55,13 @@ class EmailVerificationDone extends React.Component {
     .catch(err => console.log(err))
   }
 
+
+
   showLoginLink() {
     if (localStorage.getItem('token') == null) {
       return (
         // <h3 className="emailVerification__text">Click <Link to="/login">here</Link> to login</h3>
-        <h3 className="emailVerification__text">Click <text onClick={() => this.openLoginModal()}>here</text> to login</h3>
+        <h3 className="emailVerification__text">Tekan <text onClick={() => this.openLoginModal()}><b>disini</b></text> untuk masuk</h3>
       )
     }
   }
@@ -53,11 +69,11 @@ class EmailVerificationDone extends React.Component {
   openLoginModal() {
     this.props.setModalLogin(!this.props.modalLogin)
   }
-
 }
 
 const mapStateToProps = (state) => {
   return {
+    userInfo: state.userReducer.userInfo,
     modalLogin: state.modalReducer.modalLogin,
     modalRegister: state.modalReducer.modalRegister,
   }

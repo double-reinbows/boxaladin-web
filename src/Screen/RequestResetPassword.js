@@ -1,42 +1,30 @@
-import React from 'react'
-import axios from 'axios'
-import { connect } from 'react-redux'
-import { Button, Form, FormGroup, Input } from 'reactstrap'
+// @flow
+import React from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { setModalLogin } from '../actions/';
+import { Form, FormGroup, Input, FormFeedback } from 'reactstrap';
+import formatEmail from '../utils/formatEmail';
 
-class RequestResetPassword extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      email: null,
-      notif: ''
-    }
+// type State = {
+//   email: string,
+//   notif: string,
+// };
+// type Props = {
+//   history: Array,
+// };
+class RequestResetPassword<State> extends React.Component {
+  state: State = {
+    email: '',
+    valid: false,
+    invalid: false,
+    feedback: null,
   }
 
-  render() {
-  
+  sendLink(e: SyntheticInputEvent<HTMLInputElement>): void {
+    e.preventDefault();
 
-    return (
-      <div className="RequestReset">
-        <h1 className="RequestReset__text">Request Reset Password</h1>
-
-        <Form onSubmit={ (e) => this.sendLink(e) }>
-          <FormGroup>
-             <Input onChange={(e) => this.setState({ email: e.target.value })} type="email" name="email" id="email" placeholder="email" />
-          </FormGroup>
-          <FormGroup>
-            <Button color="success" size="lg" block>send link</Button>
-          </FormGroup>
-        </Form>
-        <label className="alert__resetPassword">{this.state.notif}</label>
-      </div>
-    )
-  }
-
-  sendLink(e) {
-    e.preventDefault()
-
-    if (this.state.email !== null) {
-
+    if (this.state.email !== '') {
       axios({
         method: 'POST',
         url: `${process.env.REACT_APP_API_HOST}/forgotpassword`,
@@ -44,43 +32,100 @@ class RequestResetPassword extends React.Component {
           key: process.env.REACT_APP_KEY
         },
         data: {
-          email: this.state.email
+          email: formatEmail(this.state.email)
         }
       })
       .then(({data}) => {
         if (data.msg === 'email sent') {
           this.setState({
-            notif: "Email Sent",
-          })
-          this.props.history.push('/')
+            invalid: false,
+            valid: true,
+            feedback: (<FormFeedback valid>Email reset password ulang terkirim!</FormFeedback>),
+          }, () => {setTimeout(() => {
+                this.props.history.push('/');
+            }, 3000)}
+          );
         } else {
-          console.log('data')
+          this.setState({
+            invalid: true,
+            valid: false,
+            feedback: (<FormFeedback>Email tidak terdaftar, mohon daftar dahulu.</FormFeedback>),
+          });
         }
       })
-      .catch(err => console.log(err))
-
+      .catch(err => {
+        if (err.message === 'Network Error') {
+          this.setState({
+            feedback: (<FormFeedback>Mohon chek koneksi internet Anda.</FormFeedback>),
+          });
+        } else {
+          this.setState({
+            feedback: (<FormFeedback>Mohon maaf ada masalah dengan sistem kami. Mohon coba ulang beberapa saat lagi.</FormFeedback>),
+          });
+        }
+      });
+      //whilst waiting for backend response, change button text
+      this.setState({
+        true: false,
+        invalid: false,
+        feedback: (<FormFeedback>Email sedang di kirim...</FormFeedback>),
+      });
     } else {
       this.setState({
-        notif: "Email Harus diisi",
+        feedback: (<FormFeedback>Email wajib di isi</FormFeedback>),
+        true: false,
+        invalid: true,
       })
     }
-
+  }
+  openLoginModal() {
+    this.props.setModalLogin(!this.props.modalLogin)
   }
 
+  render() {
+    let {valid, invalid, feedback} = this.state;
+    return (
+      <div className="RequestReset">
+        <div className="RequestReset__box">
+          <h1 className="RequestReset__text">Lupa Password?</h1>
+          <h2 className="RequestReset__text">Tolong masukkan email kamu di kolom bawah ini. Kami akan mengirimkan link ke
+            email tersebut untuk meng-reset password kamu.</h2>
+          <div className="RequestReset__formBox">
+            <Form className="RequestReset__form"
+              onSubmit={ (e: SyntheticInputEvent<HTMLInputElement>) => this.sendLink(e) }>
+              <FormGroup>
+                <Input className="RequestReset__input"
+                 onChange={(e: SyntheticInputEvent<HTMLInputElement>) => this.setState({email: e.target.value}) }
+                 type="email"
+                 name="email"
+                 id="email"
+                 bsSize="lg"
+                 valid={valid}
+                 invalid={invalid}
+                />
+                {feedback}
+              </FormGroup>
+            </Form>
+          </div>
+            <h2 className="RequestReset__text" onClick={()=>this.openLoginModal()}>atau kembali ke login</h2>
+        </div>
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
   return {
-    //
+    modalLogin: state.modalReducer.modalLogin,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    //
+    setModalLogin: (payload) => dispatch(setModalLogin(payload)),
   }
 }
 
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(RequestResetPassword)
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(RequestResetPassword);
 
-export default connectComponent
+export default connectComponent;

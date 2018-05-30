@@ -1,7 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal'
 import { ModalHeader, Button } from 'reactstrap';
-import LoginIcon from '../../../../asset/Login/login.svg'
 import Signup from './Signup'
 import { connect } from 'react-redux'
 
@@ -18,31 +17,35 @@ class ModalSignup extends React.Component {
     this.props.setModalRegister(!this.props.modalRegister)
   }
 
+  openRegisterModal() {
+    this.props.setModalLogin(!this.props.modalLogin)
+    this.props.setModalRegister(!this.props.modalRegister)
+  }
+
+
   render() {
     return (
       <div className="header-margin">
         <Button className="ButtonHeader" onClick={this.toggle}>
-          <div className="ButtonHeader__devide">
             <div className="ButtonHeader__big">
               {this.props.buttonLabel}
               Daftar
             </div>
-
-            <div className="ButtonHeader__small">
-              <img src={LoginIcon} alt="LoginIcon" className="ButtonHeader__iconLogin" href="/home"/>
-            </div>
-          </div>
         </Button>
 
-        {/* <Modal isOpen={this.props.modalRegister} toggle={this.toggle} className="{this.props.className} Modalz" backdrop="static">
-          <ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>
-        </Modal> */}
-
-        <Modal ariaHideApp={false} isOpen={this.props.modalRegister} toggle={this.toggle} className="{this.props.className} modalz">
-          <div className="modalContent">
-          <ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>
-            <div className="modal-body">
+        <Modal ariaHideApp={false} isOpen={this.props.modalRegister} toggle={this.toggle} className="modal__login">
+          <div className="modal__login__container">
+          <ModalHeader toggle={this.toggle} className="modal__login__header">
+            <div className="modal__login__header__title">
+              <h2> Selamat Datang di Boxaladin</h2>
+              <h4> Daftar dengan akun baru </h4>
+            </div>
+          </ModalHeader>
+            <div>
             <Signup />
+            </div>
+            <div className="modal__login__footer">
+              <text onClick={() => this.openRegisterModal()} ><button className="modal__login__footer__button">Sudah Terdaftar ?</button></text>
             </div>
           </div>
         </Modal>

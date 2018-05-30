@@ -1,18 +1,20 @@
 .bidding{
-  background-color: var(--color-grey-5);
+  background-color: white;
   display: flex;
   justify-content: center;
   padding-left: 20%;
   padding-right: 20%;
-  padding-top: 5%;
+  padding-top: 2%;
 
   &__container{
     width: 100%;
-    background-color: var(--color-grey-5);
+    background-color: white;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-
+      &__button{
+        display: flex;
+      }
   }
 
   &__1{
@@ -23,7 +25,7 @@
       width: 100%;
       text-align: center;
       color: #FFCD05;
-      font-family: Raleway;
+      font-family: Helvetica;
       font-size: 26px;
       font-weight: 600;
       line-height: 30px;
@@ -34,15 +36,27 @@
     width: 100%;
     display: flex;
     padding-bottom: 30px;
+    justify-content: center;
 
     &__col1{
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
+      background-color: #FFCD06;
+      padding-top: 15px;
+      padding-bottom: 15px;
 
       &__logo{
-        width: 50%;
+        width: 10%;
+      }
+
+      &__text{
+        font-weight: bold;
+        font-size: 30px;
+      }
+      &__textDistance{
+        padding-left: 10px;
       }
     }
 
@@ -50,7 +64,7 @@
 
       &__pulsa{
         color: #FFFFFF;
-        font-family: Raleway;
+        font-family: Helvetica;
         font-size: 22px;
         font-weight: 600;
         line-height: 26px;
@@ -58,7 +72,7 @@
 
       &__coret{
         color: #FFFFFF;
-        font-family: Raleway;
+        font-family: Helvetica;
         font-size: 22px;
         font-weight: 900;
         line-height: 26px;
@@ -68,27 +82,29 @@
 
       &__newPrice{
       	color: #FFCD05;
-      	font-family: Raleway;
-      	font-size: 42px;
+      	font-family: Helvetica;
+      	font-size: 80px;
       	font-weight: 900;
-      	line-height: 49px;
 
       }
 
       &__live{
         color: #FFCD05;
-        font-family: Raleway;
+        font-family: Helvetica;
         font-size: 20px;
         font-weight: 900;
         line-height: 24px;
       }
 
       &__text {
-      	color: #FFFFFF;
-      	font-family: Raleway;
+      	color: black;
+      	font-family: Helvetica;
       	font-size: 14px;
       	font-weight: 600;
       	line-height: 16px;
+        width:100%;
+        display: flex;
+        flex-direction: row-reverse;
       }
 
     }
@@ -111,7 +127,7 @@
 
       &__text{
       	color: #FFCD05;
-      	font-family: Raleway;
+      	font-family: Helvetica;
       	font-size: 36px;
       	font-weight: 800;
       	line-height: 42px;
@@ -127,6 +143,16 @@
         height: 75px;
         width: 100px;
         padding: 10px;
+      }
+      &__logoPrice{
+        padding: 10px;
+      }
+      &__logoBuy{
+        padding-right: 15px;
+      }
+      &__logoCancel{
+        height: 50%;
+        padding-right: 15px
       }
     }
 
@@ -147,24 +173,30 @@
 
       width: 80%;
       height: 75px;
-      border-radius: 8px;
+      border-radius: 50px;
 
-      background-color: var(--color-yellow-1);
+      background-color: #FFCD06;
     	color: #3E3E3E;
-    	font-family: Raleway;
+    	font-family: Helvetica;
     	font-size: 30px;
     	font-weight: bold;
     	line-height: 35px;
+      display: flex;
+      justify-content: center;
+      &:hover{
+        cursor: pointer;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+
+      }
     }
   }
 
   &__5{
     width: 100%;
-    padding: 30px;
+    padding-bottom: 30px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border-radius: 8px;
 
     &__btnCancel{
       // display: flex;
@@ -173,16 +205,16 @@
 
       width: 80%;
       height: 75px;
-      border: none;
-
-      background-color: var(--color-grey-5);
-    	color: #FFFFFF;
-    	font-family: Raleway;
-    	font-size: 18px;
-    	font-weight: bold;
-    	line-height: 21px;
-
-
+      border-radius: 50px;
+      background-color: #989898;
+      color: #3E3E3E;
+      font-family: Helvetica;
+      font-size: 30px;
+      font-weight: bold;
+      &:hover{
+        cursor: pointer;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      }
     }
   }
 
@@ -202,4 +234,32 @@
   .bidding__3{
     display: block;
   }
+}
+
+@media (max-width:450px) {
+  .bidding__2__col2__newPrice {
+    color: #FFCD05;
+    font-family: Helvetica;
+    font-size: 60px;
+    font-weight: 900;
+  }
+  .bidding__3__col__logoCancel {
+    height: 0;
+    width:0;
+    padding-right: 0px;
+  }
+  .bidding__3__col__logoBuy {
+    height: 0;
+    width: 0;
+    padding-right: 0px;
+  }
+  .biddingIconPriceStyle {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+biddingImage{
+  width: 100%;
+  height:50%;
 }

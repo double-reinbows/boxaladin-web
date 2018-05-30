@@ -1,45 +1,78 @@
 .game{
-	background-color: var(--color-grey-5);
+	background-color: white;
+	font-size: 20px;
+	background-image: url(https://s3-ap-southeast-1.amazonaws.com/iconpulsa/opacityLogo.svg);
+	background-size: 54% 75%;
+	background-repeat: no-repeat;
+	background-position: center;
+
+	&__textHeader{
+		font-size: 34px;
+	}
+
+	&__textKeytoCoin{
+		font-size: 23px;
+	}
 
 	&__container{
-		padding: 2.5%;
 		margin: auto;
-		width: 100%;
-		max-width: 600px;
-		background-color: var(--color-grey-5);
-
+		width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+		padding-top: 4%;
 	}
-
-	&__slotLabel{
+	&__convert{
 		text-align: center;
-		font-family: raleway;
-		padding-bottom: 25px;
-			&__h1{
-				color: #FFCD05;	
-				font-size: 48px;	
-				font-weight: 900;	
-				line-height: 56px;
-			}
-
-			&__paragraph{
-				color: white;
-				font-size: 20px;
-				font-weight: 500;	
-				line-height: 16px;
-			}
+		display: flex;
+    flex-direction: column;
+		align-items: center;
+		padding: 10%;
+		&__button{
+			width: 50%;
+			font-size: 20px;
+			border-radius: 6px;
+			background-color: var(--color-yellow-1);
+			border: 2px solid;
+		}
 	}
+	&__slotCoin{
+		text-align: center;
+		margin: 10%;
+		&__icon{
+			width: 20%;
+			margin-right: 10px;
+		}
+	}
+
+	&__slotItems{
+		border-radius: 10px;
+		border: 11px solid rgb(186, 171, 171);
+		margin-bottom: 10px;
+		background-color: rgb(186, 171, 171);
+			&__boxContainer {
+				background-color: black;
+				width: 266px;
+				border-radius: 10px;
+				&__box{
+					display: flex;
+				}
+			}
+		}
 
 	&__prize{
 		margin-top: 5%;
 		text-align: center;
-		font-family: raleway;
+		font-family: Helvetica;
+			&__textDistance{
+				display: flex;
+				flex-direction: column;
+			}
+
 			&__row{
 				display: flex;
-				flex-direction: row;
 				flex-wrap: wrap;
 				justify-content: space-around;
-				align-items: center;
-				margin-bottom: 30px;
 			}
 			&__container{
 				display: flex;
@@ -49,15 +82,7 @@
 				margin: 3%;
 			}
 			&__title{
-				color: #FFCD05;	
-				font-size: 48px;	
-				font-weight: 900;	
-				line-height: 56px;
-			}
-			&__h1{
-				color: #FFCD05;	
-				font-size: 20px;
-				margin-top: 25px;	
+				font-size: 30px;
 			}
 
 			&__img{
@@ -66,137 +91,40 @@
 			}
 	}
 
-	&__container2{
-		display: flex;
-		justify-content: center;
-	}
-
-	&__convert{
-		text-align: center;
-		&__label{
-			margin: 10px;
-			color: #FFCD05;
-			font-family: Raleway;
-			font-size: 24px;
-			font-weight: bold;	
-			line-height: 29px;
-
-		}
-		&__input{
-			border-radius: 5px;
-			margin-right: 10px;
-			height: 30px;
-			font-family: Raleway;
-			line-height: 29px;
-			font-size: 21px;
-			padding-left: 10px;
-
-		}
-
-		&__buttonConvert{
-			margin-top: 10px;
-			margin-bottom: 10px;	
-			color: #FFFFFF;	
-			font-family: Raleway;	
-			font-size: 15px;
-			font-weight: 900;	
-			letter-spacing: 3px;	
-			line-height: 33px;
-			border-radius: 8px;
-			background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%)		
-		}
-	}
-
-	&__slotCoin{
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		margin-bottom: 10px;
-		&__icon{
-			width: 15%;
-			margin: 10px;
-		}
-
-		&__label{
-			margin: 10px;
-			color: #FFFFFF;
-			font-family: Raleway;
-			font-size: 24px;
-			font-weight: bold;	
-			line-height: 29px;
-		}
-	}
-
-	&__container3{
-		display: flex;
-		justify-content: center;
-	}
-
-	&__slotItems{
-		// display: flex;
-		// justify-content: center;
-		width: 70%;
-		border-radius: 30px;
-		background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%);		
-		padding: 20px;
-		margin-bottom: 10px;
-
-			&__boxContainer {
-				background-color: black;
-				width: 100%;
-				border-radius: 10px;
-				border: 3px solid;
-				&__box{
-					display: flex;
-				}
-			}
-		}
-
 	&__slotButton {
-		display: flex;
-		justify-content: center;
-
-		&__container3{
-			width: 40%;
-		}
-
+    width: 20%;
 		&__start{
+			cursor: pointer;
 			width: 100%;
-			margin-top: 10px;
-			margin-bottom: 10px;	
-			color: #FFFFFF;	
-			font-family: Raleway;	
-			font-size: 25px;
-			font-weight: 900;	
-			letter-spacing: 3px;	
-			line-height: 33px;
-			border-radius: 8px;
-			background: linear-gradient(180deg, #FAD961 0%, #F76B1C 100%)		
+			font-size: 15px;
+			background-color: white;
+			border: 2px solid #FFCD05;
+			border-radius: 5px;
+			margin-bottom: 5%;
+			color: black;
 		}
 	}
-	
 }
 
+// @media (min-width: 349px )  {
+//   .game__slotItems{
+// 		padding: 15px;
+// 		width: 310px;
+//   }
+// }
 
-@media (min-width: 275px )  {
-  .game__slotItems{
-		padding: 15px;
-		width: 310px;
-  }
-}
-
-@media (min-width: 350px ) and (max-width:500px ) {
-  .game__slotItems{
-		padding: 15px;
-		width: 90%;
-  }
-}
+// @media (min-width: 350px ) and (max-width:500px ) {
+//   .game__slotItems{
+// 		padding: 15px;
+// 		width: 90%;
+//   }
+// }
 
 
 
 .box1 {
 	width: 80%;
-	height: 100px;	
+	height: 100px;
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -209,7 +137,7 @@
 
 .box2 {
 	width: 80%;
-	height: 100px;	
+	height: 100px;
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -221,7 +149,7 @@
 
 .box3 {
 	width: 80%;
-	height: 100px;	
+	height: 100px;
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -233,7 +161,7 @@
 
 .box4 {
 	width: 80%;
-	height: 100px;	
+	height: 100px;
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -245,7 +173,7 @@
 
 .box5 {
 	width: 80%;
-	height: 100px;	
+	height: 100px;
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -257,7 +185,7 @@
 
 .box6 {
 	width: 80%;
-	height: 100px;	
+	height: 100px;
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -270,7 +198,7 @@
 .boxaladin {
 	background-image: url('../../asset/Logo/LogoSmall.svg');
 	width: 80%;
-	height: 100px;	
+	height: 100px;
 	border-radius: 10px;
 	margin-top: 3px;
 	margin-bottom: 3px;
@@ -298,7 +226,7 @@
 		flex-direction: column;
 		justify-content: center;
 		background-color: black;
-		
+
 		&__item{
 			display: flex;
 			justify-content: center;
@@ -306,10 +234,10 @@
 		&__text{
 			margin: 2.5%;
 			text-align: center;
-			font-family: raleway;
+			font-family: Helvetica;
 			// color: var(--color-yellow-1);
 			font-size: 20px;
-			font-weight: 500;	
+			font-weight: 500;
 			line-height: 16px;
 		}
 	}
@@ -330,7 +258,7 @@
 	.gameModal__Container__text {
         margin: 2.5%;
         text-align: center;
-        font-family: raleway;
+        font-family: Helvetica;
         font-size: 20px;
         font-weight: 500;
         line-height: 16px
@@ -345,7 +273,7 @@
 	.gameModal__Container__text {
 		margin: 2.5%;
 		text-align: center;
-		font-family: raleway;
+		font-family: Helvetica;
 		font-size: 30px;
 		font-weight: 500;
 		line-height: 16px

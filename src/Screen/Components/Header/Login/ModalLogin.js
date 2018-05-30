@@ -4,7 +4,6 @@ import Modal from 'react-modal'
 import { ModalHeader, Button } from 'reactstrap';
 import { connect } from 'react-redux'
 
-import LoginIcon from '../../../../asset/Login/login.svg'
 import Login from './Login'
 import { setModalLogin, setModalRegister } from '../../../../actions/'
 
@@ -18,6 +17,11 @@ class ModalLogin extends React.Component {
     this.props.setModalLogin(!this.props.modalLogin)
   }
 
+  openRegisterModal() {
+    this.props.setModalLogin(!this.props.modalLogin)
+    this.props.setModalRegister(!this.props.modalRegister)
+  }
+
   render() {
     return (
       <div className="header-margin">
@@ -28,16 +32,23 @@ class ModalLogin extends React.Component {
               Masuk
             </div>
 
-            <div className="ButtonHeader__small">
-              <img src={LoginIcon} alt="LoginIcon" className="ButtonHeader__iconLogin" href="/home"/>
-            </div>
           </div>
         </Button>
-        <Modal ariaHideApp={false} isOpen={this.props.modalLogin} toggle={this.toggle} className="{this.props.className} modalz">
-          <div className="modalContent">
-          <ModalHeader toggle={this.toggle} className="ModalTop"></ModalHeader>
-            <div className="modal-body">
-            <Login />
+
+        <Modal ariaHideApp={false} isOpen={this.props.modalLogin} toggle={this.toggle} className="modal__login">
+          <div className="modal__login__container">
+          <ModalHeader toggle={this.toggle} className="modal__login__header">
+            <div className="modal__login__header__title" >
+              <h2>Selamat Datang di Boxaladin</h2>
+              <h4> Daftar dengan akun baru </h4>
+            </div>
+          </ModalHeader>
+            <div>
+              <Login />
+            </div>
+            <div className="modal__login__footer">
+              <text className="modal__login__footer__text" ><a className="lupapass"style={{ textDecoration: "none"}} href="/requestresetpassword"><button className="modal__login__footer__button">Lupa Password</button></a></text>
+              <text onClick={() => this.openRegisterModal()} ><button className="modal__login__footer__button">Buat Akun Baru</button></text>
             </div>
           </div>
         </Modal>
@@ -45,6 +56,7 @@ class ModalLogin extends React.Component {
     );
   }
 }
+
 
 const mapStateToProps = (state) => {
   return {

@@ -1,48 +1,56 @@
 import React, {Component} from 'react';
 import { Container, Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios'
+import ModalText from './Components/Modal/ModalText'
 
 class Layanan extends Component {
   constructor(){
-    super()
-
-    this.handleChangeContent = this.handleChangeContent.bind(this)
-    this.handleChangeSubject = this.handleChangeSubject.bind(this)
-    this.handleChangeEmail = this.handleChangeEmail.bind(this)
-    
+    super()    
     this.state = {
       subject: '',
       content: '',
       email: '',
       receiver: 'info@boxaladin.com',
-      notif: ''
+      notif: '',
+      modal: false,
+      phone: ''
     }
   }
 
-  handleChangeEmail(e){
+  handleChangeEmail = (e) => {
     this.setState({
       email: e.target.value
     })
   }
 
-  handleChangeSubject(e){
+  handleChangePhone = (e) => {
+    this.setState({
+      phone: e.target.value
+    })
+  }
+
+  handleChangeSubject = (e) => {
     this.setState({
       subject: e.target.value
     })
   }
 
-  handleChangeContent(e){
+  handleChangeContent = (e) => {
     this.setState({
       content: e.target.value
     })
   }
 
-  sentContent(e){
+  sentContent = (e) => {
     e.preventDefault()
     
     if (this.state.email === '') {
       this.setState({
         notif: 'Email Tidak Boleh Kosong'
+      })
+    }  else if (this.state.phone === ''){
+      this.setState({
+        notif: 'No Hp Harus Diisi'
       })
     } else if (this.state.subject === ''){
       this.setState({
@@ -53,7 +61,6 @@ class Layanan extends Component {
         notif: 'Content Harus Diisi'
       })
     } else {
-      console.log('state', this.state)
       axios({
         method: 'POST',
         url: `${process.env.REACT_APP_API_HOST}/serviceemail`,
@@ -64,7 +71,8 @@ class Layanan extends Component {
           email: this.state.email,
           subject: this.state.subject,
           content: this.state.content,
-          receiver: this.state.receiver
+          receiver: this.state.receiver,
+          phone: this.state.phone
         }
       })
       .then((data) => {
@@ -72,13 +80,20 @@ class Layanan extends Component {
           subject: '',
           content: '',
           email: '',
-          notif: ''
+          notif: '',
+          phone: '',
+          modal: !this.state.modal
         })
-        console.log("asdsafsaf")    
       }
     )
       .catch(err => console.log(err))
     }
+  }
+
+  toggle = () => {
+    this.setState({
+      modal: !this.state.modal
+    })
   }
   
   render() {
@@ -92,31 +107,30 @@ class Layanan extends Component {
                 <Form onSubmit={ (e) => this.sentContent(e) }>
                   <FormGroup>
                     <Label className="layanan__text" for="exampleUrl">Email</Label>
-                    <Input className="layanan__input" value={this.state.email} onChange={this.handleChangeEmail} type="email" name="email" placeholder="Email" />
+                    <Input className="layanan__input" value={this.state.email} onChange={this.handleChangeEmail} type="email" name="email" />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label className="layanan__text" for="exampleUrl">No Hp</Label>
+                    <Input className="layanan__input" value={this.state.phone} onChange={this.handleChangePhone} type="number" name="number"/>
                   </FormGroup>
                   <FormGroup>
                     <Label className="layanan__text" for="exampleUrl">Subject</Label>
-                    <Input className="layanan__input" value={this.state.subject} onChange={this.handleChangeSubject} type="label" name="label" placeholder="Subject" />
+                    <Input className="layanan__input" value={this.state.subject} onChange={this.handleChangeSubject} type="label" name="label"/>
                   </FormGroup>
                   
                   <FormGroup>
                     <Label className="layanan__text" for="exampleText">Content</Label>
                     <Input className="layanan__input__textarea"  value={this.state.content} onChange={this.handleChangeContent} type="textarea" name="text" placeholder="Tulis Keluhan Anda Disini" />
                   </FormGroup>
-                  <label className="alert__dompetAladin">{this.state.notif}</label>
-                  {/* <FormGroup>
-                    <Label className="layanan__text" for="exampleFile">File</Label>
-                    <Input type="file" name="file" id="exampleFile" />
-                    <FormText className="layanan__text" color="white">
-                      Max Size = 2mb
-                    </FormText>
-                  </FormGroup> */}
-                  
-                  <button className="layanan__button">Submit</button>
+                  <label className="alert__dompetAladin">{this.state.notif}</label>      
+                  <div className="layanan__button__container">
+                    <button className="layanan__button">Submit</button>
+                  </div>            
                 </Form>
               </Col>
             </Row>
           </Container>
+          <ModalText isOpen={this.state.modal} toggle={this.toggle} text="Email telah terkirim! Tim kami akan segera menghubungi anda."/>
         </div>
       </div>
     )

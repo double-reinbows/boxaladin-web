@@ -3,7 +3,7 @@ import * as firebase from 'firebase'
 export const getProducts = () => {
 	return (dispatch) => {
 		var dataProducts = []
-		const productsRef = firebase.database().ref().child('products')
+		const productsRef = firebase.database().ref().child('productsdummy')
 		productsRef.once('value').then(snap => {
 			for (var key in snap.val()) {
 				dataProducts.push(snap.val()[key])
@@ -12,13 +12,23 @@ export const getProducts = () => {
 			dispatch(getProductsAction(dataProducts))
 		})
 	}
+// 	return (dispatch) => {
+// 		axios({
+// 			method: 'GET',
+// 			url: `${process.env.REACT_APP_API_HOST}/api/product`,
+// 		})
+// 		.then((dataProducts) => {
+// 			dispatch(getProductsAction(dataProducts))
+// })
+// 		.catch(err => console.log(err))
+// 	}
 }
 
 export const getFilteredProducts = (brand, category) => {
 	return (dispatch) => {
 		var dataProducts = []
 
-		const productsRef = firebase.database().ref().child('products')
+		const productsRef = firebase.database().ref().child('productsdummy')
 		productsRef.once('value').then(snap => {
 			for (var key in snap.val()) {
 				dataProducts.push(snap.val()[key])
@@ -55,7 +65,7 @@ export const getFilteredProducts = (brand, category) => {
 					return product.categoryId === category
 				})
 				dispatch(getFilteredProductsAction(filteredProducts))
-				
+
 			}
 
 		})
