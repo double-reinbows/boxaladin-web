@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 // import PropTypes from 'prop-types';
-import { Modal, ModalHeader, ModalFooter} from 'reactstrap'
+import { Modal, ModalFooter} from 'reactstrap'
 import axios from 'axios'
 
 class ModalOtpUser extends Component {
@@ -111,7 +111,9 @@ class ModalOtpUser extends Component {
       <Modal ariaHideApp={false} isOpen={this.props.openOtpUser} className="modalOtpUser">
         <form onSubmit={e => this.sendOtp(e)}>
           <div className="modalOtpUser__container">
-          <ModalHeader className="modalOtpUser__modalHeader" toggle={this.props.buttonToggle}></ModalHeader>
+          <div className="modal__check__container__header">
+            <button className="modal__check__button" onClick={this.props.buttonToggle}>X</button>
+          </div>
             <div>
               <label className="modalOtpUser__label">Anda Akan di Missed Call Oleh Sistem Kami</label>
               <label className="modalOtpUser__label">Masukkan 4 Angka Terakhir Dari no yang Menelpon Anda</label>
