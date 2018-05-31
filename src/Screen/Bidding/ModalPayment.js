@@ -49,7 +49,6 @@ class ModalPayment extends Component{
       },
     })
     .then(result => {
-      console.log(result)
       if (result.data.error_code === "DUPLICATE_CALLBACK_VIRTUAL_ACCOUNT_ERROR") {
         this.props.setIsLoading(false)
         this.setState({
