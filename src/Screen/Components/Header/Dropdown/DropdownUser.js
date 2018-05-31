@@ -1,6 +1,5 @@
 import React from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
-import { Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap';
 
 import ExpandIcon from '../../../../asset/Login/expand.svg'

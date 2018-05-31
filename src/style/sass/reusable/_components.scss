@@ -6,6 +6,11 @@
   margin: 2rem;
 }
 
+.dropdown-item.active{
+  color: black !important;
+  background-color: lightgrey !important;
+}
+
 .DropdownUser{
   &__item{
     background-color: lightgrey;
