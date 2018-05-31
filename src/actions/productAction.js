@@ -3,7 +3,8 @@ import * as firebase from 'firebase'
 export const getProducts = () => {
 	return (dispatch) => {
 		var dataProducts = []
-		const productsRef = firebase.database().ref().child('productsdummy')
+		// const productsRef = firebase.database().ref().child('productsdummy')
+		const productsRef = firebase.database().ref().child('products')
 		productsRef.once('value').then(snap => {
 			for (var key in snap.val()) {
 				dataProducts.push(snap.val()[key])
@@ -28,7 +29,8 @@ export const getFilteredProducts = (brand, category) => {
 	return (dispatch) => {
 		var dataProducts = []
 
-		const productsRef = firebase.database().ref().child('productsdummy')
+		// const productsRef = firebase.database().ref().child('productsdummy')
+		const productsRef = firebase.database().ref().child('products')
 		productsRef.once('value').then(snap => {
 			for (var key in snap.val()) {
 				dataProducts.push(snap.val()[key])

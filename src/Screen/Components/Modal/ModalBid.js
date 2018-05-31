@@ -73,7 +73,6 @@ class ModalCheck extends Component {
   }
 
   pulsa(id, data) {
-    console.log('id', id)
     this.setState({
       pulsaPrice: data.displayPrice,
       pulsaName: data.productName,
@@ -81,8 +80,6 @@ class ModalCheck extends Component {
       defaultId: id
     }, () => {
       this.props.selectProductID(this.state.defaultId)
-      console.log(      this.props.selectProductID(this.state.defaultId)
-    )
     })
   }
 
@@ -211,7 +208,7 @@ class ModalCheck extends Component {
                       productName(this.state.pulsaName)}</label>
               <br />
               <label>{ !this.state.pulsaName ?
-                      (this.props.defaultProduct) : // penamaan nya masih salah .. ini buat harga 
+                      (this.props.defaultProduct) : // penamaan nya masih salah .. ini buat harga
                       priceProduct(this.state.pulsaName)}</label>
             </div>
             <div >
