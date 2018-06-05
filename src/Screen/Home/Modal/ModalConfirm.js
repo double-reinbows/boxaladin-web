@@ -1,13 +1,40 @@
 import React, { Component } from 'react';
-
+import axios from 'axios'
 import Modal from 'react-modal'
-import { Link } from 'react-router-dom'
+import {withRouter} from 'react-router-dom' 
+import { connect } from 'react-redux';
+
+import { selectProductID } from '../../../actions/productAction';
 
 class ModalConfirm extends Component {
   constructor(props) {
     super(props);
     this.state = {  
     }
+  }
+
+  checkAladinkey = () => {
+      axios({
+        method: 'GET',
+        headers: {
+          token: localStorage.getItem('token'),
+				},
+				url: `${process.env.REACT_APP_API_HOST}/users/info`,
+			})
+			.then(data => {
+        if (data.data.aladinKeys > 0 && data.data.aladinKeys !== 0) {
+          this.props.history.push('/bidding')
+          axios({
+            method: 'PUT',
+            url: `${process.env.REACT_APP_API_HOST}/logopen`,
+            data: {
+              productId: this.props.selectedProductID
+            },
+          })
+        } else {
+          alert("Anda Tidak Memiliki Aladin Key")
+        }
+      })
   }
 
   render() { 
@@ -18,9 +45,7 @@ class ModalConfirm extends Component {
             <label><b>1x intip = 1 kunci aladin. Lanjutkan ?</b></label>
           </div>
           <div className="modal__confirm__button">
-            <Link to="/bidding">
-              <button className="modal__confirm__button__yes">YA</button>
-            </Link>
+            <button className="modal__confirm__button__yes" onClick={this.checkAladinkey}>YA</button>
             <button className="modal__confirm__button__no" onClick={this.props.toggle}>TIDAK</button>
           </div>
         </div>
@@ -29,4 +54,19 @@ class ModalConfirm extends Component {
   }
 }
 
-export default ModalConfirm;
+const mapStateToProps = (state) => {
+  return {
+    selectedProductID: state.productReducer.selectedProductID
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    selectProductID: (id) => dispatch(selectProductID(id))
+  }
+}
+
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(ModalConfirm)
+
+export default withRouter(connectComponent)
+

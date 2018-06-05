@@ -42,7 +42,7 @@ class ModalPayment extends Component{
         token: localStorage.getItem('token')
       },
       data: {
-        amount: productUnlocked.aladinPrice,
+        amount: this.props.aladinPrice,
         productId: productUnlocked.id,
         phoneNumber: phone,
         bankCode: this.state.bank
