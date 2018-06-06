@@ -47,9 +47,9 @@ class TopupInvoice extends React.Component {
         <tbody>
           {this.props.userTopupTransactions.map((data, idx) => {
             if (data.createdAt === ''){
-              console.log('kosong')
+              return null
             } else if ( data.createdAt === undefined){
-              console.log('undefined')
+              return null
             } else {
               const time = moment()
               const now = time.valueOf()

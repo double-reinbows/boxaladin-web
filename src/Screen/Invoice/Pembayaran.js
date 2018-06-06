@@ -61,9 +61,9 @@ class InvoiceDetail extends React.Component {
 
   render() {
     if (this.state.invoice.createdAt === ''){
-      console.log('kosong')
+      return null
     } else if ( this.state.invoice.createdAt === undefined){
-      console.log('undefined')
+      return null
     } else {
       const time = this.state.invoice.createdAt
       var finalTime = moment(time, moment.ISO_8601).add(6, 'hours').format('D MMMM YYYY, h:mm:ss a')

@@ -48,9 +48,9 @@ class Invoice extends React.Component {
         <tbody className="invoice__table">
           {transactions.map((data, idx) => {
             if (data.createdAt === ''){
-              console.log('kosong')
+              return null
             } else if ( data.createdAt === undefined){
-              console.log('undefined')
+              return null
             } else {
               const time = moment()
               const now = time.valueOf()

@@ -24,8 +24,8 @@ class Bidding extends React.Component {
     super(props)
     this.state = {
       productUnlocked: {},
-			count: 9999,
-      initCount: 9999,
+			count: 15,
+      initCount: 15,
     }
 
     this.handleBack()
