@@ -69,7 +69,7 @@ class ClaimFreePulsa extends React.Component<Props, State> {
         phone: this.state.phone,
         pulsaCode: this.state.pulsaCode,
         winToken: this.state.win,
-        // authentication: process.env.REACT_APP_GAME_PASSWORD
+        authentication: process.env.REACT_APP_GAME_PASSWORD
       }
     })
     .then(({data}) => {

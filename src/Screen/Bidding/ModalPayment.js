@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import axios from 'axios'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom' 
+import {withRouter} from 'react-router-dom'
 
 import Loading from '../Components/Loading/'
 import { setIsLoading } from '../../actions/'
@@ -67,13 +67,13 @@ class ModalPayment extends Component{
       notif: '',
       bank: '',
       disabled: true
-    }, 
+    },
   () => this.props.toggle()
     )
   }
 
-  render() { 
-    return (  
+  render() {
+    return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">
           <div className="modal__method__header">
