@@ -50,7 +50,7 @@ class DropdownUser extends React.Component {
         </DropdownToggle>
 
         <DropdownMenu className="DropdownUser__item">
-        
+
           <LinkContainer className="DropdownUser__inside__link" onClick={(e) => this.changeText('Home')} to="/home">
             <DropdownItem  className="DropdownUser__inside">
               Home
