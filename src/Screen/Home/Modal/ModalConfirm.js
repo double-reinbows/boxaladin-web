@@ -22,7 +22,7 @@ class ModalConfirm extends Component {
 				url: `${process.env.REACT_APP_API_HOST}/users/info`,
 			})
 			.then(data => {
-        if (data.data.aladinKeys > 0 && data.data.aladinKeys !== 0) {
+        if (data.data.aladinKeys > 0) {
           this.props.history.push('/bidding')
           axios({
             method: 'PUT',

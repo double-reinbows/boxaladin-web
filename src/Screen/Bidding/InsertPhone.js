@@ -41,7 +41,7 @@ class InsertPhone extends React.Component {
     return (
 		<div>
 		<div className="InsertPhone__textHead">
-			<h1 className="InsertPhone__textHead__font">LELANG KAMU BERHASIL, BOEDJANGAN!</h1>
+			<h1 className="InsertPhone__textHead__font">LELANG KAMU BERHASIL</h1>
 		</div>
 		<div className="InsertPhone__inputNumber">
 			<div className="InsertPhone__inputHead">
