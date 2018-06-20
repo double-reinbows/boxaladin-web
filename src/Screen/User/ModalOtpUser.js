@@ -6,7 +6,7 @@ import axios from 'axios'
 class ModalOtpUser extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       otpUser: '',
       notifOtp: '',
       count: 5,
@@ -88,14 +88,14 @@ class ModalOtpUser extends Component {
           console.log('otp sent')
         }
       })
-    } 
+    }
     this.timer = setInterval(() => {
       this.setState({
         time: this.state.time - 1,
         disabled: true,
         notifCount: `${this.state.count} OTP Sisa Yang Dapat Dikirim`
       })
-  
+
       if(this.state.time <= 0) {
         clearInterval(this.timer);
         this.setState({
@@ -106,8 +106,8 @@ class ModalOtpUser extends Component {
     }, 1000)
   }
 
-  render() { 
-    return ( 
+  render() {
+    return (
       <Modal ariaHideApp={false} isOpen={this.props.openOtpUser} className="modalOtpUser">
         <form onSubmit={e => this.sendOtp(e)}>
           <div className="modalOtpUser__container">

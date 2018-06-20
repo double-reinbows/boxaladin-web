@@ -6,7 +6,7 @@ import ModalOtpUser from './ModalOtpUser'
 class ModalPrimaryPhone extends Component {
   constructor(props) {
     super(props);
-    this.state = {  
+    this.state = {
       phone:'',
       oldUserModal: false
     }
@@ -84,9 +84,9 @@ class ModalPrimaryPhone extends Component {
     })
   }
 
-  render() { 
+  render() {
     console.log('props', this.props)
-    return (  
+    return (
       <div>
         <Modal isOpen={this.props.open} className="modalPrimary__phone">
           <form className="modalPrimary__phone__content" onSubmit={(e) => this.submitOldUserPhone(e)}>

@@ -205,7 +205,7 @@ class ModalCheck extends Component {
                       productName(this.state.pulsaName)}</label>
               <br />
               <label>{ !this.state.pulsaName ?
-                      (this.props.defaultProduct) : // penamaan nya masih salah .. ini buat harga 
+                      (this.props.defaultProduct) : // penamaan nya masih salah .. ini buat harga
                       priceProduct(this.state.pulsaName)}</label>
             </div>
             <div >
