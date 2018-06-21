@@ -17,6 +17,9 @@ npm run build --production
 # Install `serve` to run the application.
 RUN npm install -g serve
 
+# move_serve_file:
+RUN cp serve.json build
+
 # Set the command to start the node server.
 CMD serve -s build -l 5000
 
