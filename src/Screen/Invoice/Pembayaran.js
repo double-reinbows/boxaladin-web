@@ -59,7 +59,94 @@ class InvoiceDetail extends React.Component {
     })
   }
 
+  handleRetail(){
+    if (!this.state.invoice){
+      return null
+    } else if (this.state.invoice.payment.availableretail === 'Alfamart'){
+      return (
+        <div>
+          <Guide activeTab= {'5'} invoice={this.state.invoice} />
+        </div>
+      )
+    } else {
+      return(
+        <div>
+        <h1 className="pembayaran__title__metodeBayar" > Pilih metode pembayaran </h1>
+        <Nav tabs>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: this.state.activeTab === '1' })}
+              onClick={() => { this.toggle('1'); }}
+            >
+              <h4><button style = {{  backgroundColor: "Transparent",
+                backgroundRepeat: "no-repeat",
+                border: "none",
+                cursor: "pointer",
+                overflow: "hidden",
+                outline: "none" }}>Mandiri</button></h4>
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: this.state.activeTab === '2' })}
+              onClick={() => { this.toggle('2'); }}
+            >
+              <h4><button style = {{  backgroundColor: "Transparent",
+                backgroundRepeat: "no-repeat",
+                border: "none",
+                cursor: "pointer",
+                overflow: "hidden",
+                outline: "none" }}>BNI</button></h4>
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: this.state.activeTab === '3' })}
+              onClick={() => { this.toggle('3'); }}
+            >
+              <h4><button style = {{  backgroundColor: "Transparent",
+                backgroundRepeat: "no-repeat",
+                border: "none",
+                cursor: "pointer",
+                overflow: "hidden",
+                outline: "none" }}>BRI</button></h4>
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: this.state.activeTab === '4' })}
+              onClick={() => { this.toggle('4'); }}
+            >
+              <h4><button style = {{  backgroundColor: "Transparent",
+                backgroundRepeat: "no-repeat",
+                border: "none",
+                cursor: "pointer",
+                overflow: "hidden",
+                outline: "none" }}>BCA</button></h4>
+            </NavLink>
+          </NavItem>
+          {/* <NavItem>
+            <NavLink
+              className={classnames({ active: this.state.activeTab === '5' })}
+              onClick={() => { this.toggle('5'); }}
+            >
+              <h4><button style = {{  backgroundColor: "Transparent",
+                backgroundRepeat: "no-repeat",
+                border: "none",
+                cursor: "pointer",
+                overflow: "hidden",
+                outline: "none" }}>Gerai Retail</button></h4>
+            </NavLink>
+          </NavItem> */}
+        </Nav>
+        <Guide activeTab= {this.state.activeTab} invoice={this.state.invoice} />
+      </div>
+      )
+    }
+  }
+
   render() {
+    console.log('invoice', this.state.invoice)
     if (this.state.invoice.createdAt === ''){
       return null
     } else if ( this.state.invoice.createdAt === undefined){
@@ -71,7 +158,7 @@ class InvoiceDetail extends React.Component {
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
-          <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice ? (this.state.invoice.virtualAccount.bankCode) : null}</h1>
+          <h1 className="pembayaran__title__header">Pembayaran {!this.state.invoice ? (this.state.invoice.virtualAccount.bankCode) : null}</h1>
           {this.state.invoice ? (
               <div>
                 <div className="pembayaran__content__textDistance">
@@ -79,80 +166,8 @@ class InvoiceDetail extends React.Component {
                   <button className="pembayaran__buttonDetail" onClick={this.toggleDetail}> Detail Tagihan </button>
                 </div>
                 <h2 className="pembayaran__title__infoTime">Selesaikan Pembayaran Sebelum {finalTime}</h2>
+                  {this.handleRetail()}
 
-
-                  <h1 className="pembayaran__title__metodeBayar" > Pilih metode pembayaran </h1>
-
-                  <div>
-                    <Nav tabs>
-                      <NavItem>
-                        <NavLink
-                          className={classnames({ active: this.state.activeTab === '1' })}
-                          onClick={() => { this.toggle('1'); }}
-                        >
-                          <h4><button style = {{  backgroundColor: "Transparent",
-                            backgroundRepeat: "no-repeat",
-                            border: "none",
-                            cursor: "pointer",
-                            overflow: "hidden",
-                            outline: "none" }}>Mandiri</button></h4>
-                        </NavLink>
-                      </NavItem>
-                      <NavItem>
-                        <NavLink
-                          className={classnames({ active: this.state.activeTab === '2' })}
-                          onClick={() => { this.toggle('2'); }}
-                        >
-                          <h4><button style = {{  backgroundColor: "Transparent",
-                            backgroundRepeat: "no-repeat",
-                            border: "none",
-                            cursor: "pointer",
-                            overflow: "hidden",
-                            outline: "none" }}>BNI</button></h4>
-                        </NavLink>
-                      </NavItem>
-                      <NavItem>
-                        <NavLink
-                          className={classnames({ active: this.state.activeTab === '3' })}
-                          onClick={() => { this.toggle('3'); }}
-                        >
-                          <h4><button style = {{  backgroundColor: "Transparent",
-                            backgroundRepeat: "no-repeat",
-                            border: "none",
-                            cursor: "pointer",
-                            overflow: "hidden",
-                            outline: "none" }}>BRI</button></h4>
-                        </NavLink>
-                      </NavItem>
-                      <NavItem>
-                        <NavLink
-                          className={classnames({ active: this.state.activeTab === '4' })}
-                          onClick={() => { this.toggle('4'); }}
-                        >
-                          <h4><button style = {{  backgroundColor: "Transparent",
-                            backgroundRepeat: "no-repeat",
-                            border: "none",
-                            cursor: "pointer",
-                            overflow: "hidden",
-                            outline: "none" }}>BCA</button></h4>
-                        </NavLink>
-                      </NavItem>
-                      {/* <NavItem>
-                        <NavLink
-                          className={classnames({ active: this.state.activeTab === '5' })}
-                          onClick={() => { this.toggle('5'); }}
-                        >
-                          <h4><button style = {{  backgroundColor: "Transparent",
-                            backgroundRepeat: "no-repeat",
-                            border: "none",
-                            cursor: "pointer",
-                            overflow: "hidden",
-                            outline: "none" }}>Gerai Retail</button></h4>
-                        </NavLink>
-                      </NavItem> */}
-                    </Nav>
-                    <Guide activeTab= {this.state.activeTab} invoice={this.state.invoice} />
-                  </div>
               </div>
             ) : null
           }

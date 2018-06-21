@@ -47,7 +47,7 @@ class InsertPhone extends React.Component {
 			<div className="InsertPhone__inputHead">
 				<h4 className="InsertPhone__inputHead__text">Masukkan nomor hape kamu</h4>
 				<div className="InsertPhone__inputHead__checkBox">
-					<Input className="InsertPhone__inputHead__inputBox" value={ this.state.phone }
+					<Input className="InsertPhone__inputHead__inputBox" value={ this.state.phone } type="number"
 					onChange={ (e) => this.handleChangePhone(e) } />
 					<div className="homecontent__bottom__check" style= {{ alignSelf: "center", paddingLeft: "20px"}}>
 						<button onClick={this.toggle} className="homecontent__bottom__check__button" style = {{ fontSize: "15px"}}>CEK PROVIDER-MU</button>

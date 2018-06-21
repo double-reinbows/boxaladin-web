@@ -50,3 +50,8 @@ ul {
 .col-sm-6{
   padding-right: 0;
 }
+
+//remove arrow in input type number
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}

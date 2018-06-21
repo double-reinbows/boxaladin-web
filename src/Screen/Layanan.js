@@ -13,13 +13,20 @@ class Layanan extends Component {
       receiver: 'info@boxaladin.com',
       notif: '',
       modal: false,
-      phone: ''
+      phone: '',
+      line: ''
     }
   }
 
   handleChangeEmail = (e) => {
     this.setState({
       email: e.target.value
+    })
+  }
+
+  handleChangeLine = (e) => {
+    this.setState({
+      line: e.target.value
     })
   }
 
@@ -56,6 +63,10 @@ class Layanan extends Component {
       this.setState({
         notif: 'Subject Harus Diisi'
       })
+    } else if (this.state.line === ''){
+      this.setState({
+        notif: 'Id Line Harus Diisi'
+      })
     } else if (this.state.content === ''){
       this.setState({
         notif: 'Content Harus Diisi'
@@ -70,6 +81,7 @@ class Layanan extends Component {
         data: {
           email: this.state.email,
           subject: this.state.subject,
+          line: this.state.line,
           content: this.state.content,
           receiver: this.state.receiver,
           phone: this.state.phone
@@ -80,6 +92,7 @@ class Layanan extends Component {
           subject: '',
           content: '',
           email: '',
+          line: '',
           notif: '',
           phone: '',
           modal: !this.state.modal
@@ -97,6 +110,7 @@ class Layanan extends Component {
   }
   
   render() {
+    console.log(this.state.line)
     return (
       <div className="layanan">
         <div className="layanan__container">
@@ -108,6 +122,10 @@ class Layanan extends Component {
                   <FormGroup>
                     <Label className="layanan__text" for="exampleUrl">Email</Label>
                     <Input className="layanan__input" value={this.state.email} onChange={this.handleChangeEmail} type="email" name="email" />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label className="layanan__text" for="exampleUrl">Id LINE</Label>
+                    <Input className="layanan__input" value={this.state.line} onChange={this.handleChangeLine} type="label" name="line" />
                   </FormGroup>
                   <FormGroup>
                     <Label className="layanan__text" for="exampleUrl">No Hp</Label>
@@ -130,7 +148,7 @@ class Layanan extends Component {
               </Col>
             </Row>
           </Container>
-          <ModalText isOpen={this.state.modal} toggle={this.toggle} text="Email telah terkirim! Tim kami akan segera menghubungi anda."/>
+          <ModalText isOpen={this.state.modal} toggle={this.toggle} text="Email telah terkirim! Tim kami akan segera menghubungi anda, silahkan cek email anda dalam 24 Jam kedepan."/>
         </div>
       </div>
     )
