@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Table, Button } from 'reactstrap';
-import {withRouter} from 'react-router-dom' 
+import {withRouter} from 'react-router-dom'
 
 
 import moment from 'moment'
@@ -25,7 +25,7 @@ class Invoice extends React.Component {
   }
 
   render() {
-    
+
     return (
 
     <div className="invoice">
@@ -73,10 +73,10 @@ class Invoice extends React.Component {
               <tr key={idx}>
                 <th scope="row">{idx+1}</th>
                 <td>{moment(data.createdAt, moment.ISO_8601).format('L, h:mm:ss a')}</td>
-                <td>{ data.product.productName }</td>
+                <td>{ data.product ? data.product.productName : data.description }</td>
                 <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
                 <td>{ data.number ? data.number : (<h3>Anda Tidak Memasukkan no Hp</h3>) }</td>
-                <td>{ data.payment? data.payment.status : null }</td>
+                <td>{ data.payment ? data.payment.status : 'GRATIS' }</td>
                 <td>{ data.status === 'PENDING'  ? (
                   <Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button>
                 ) : null}</td>
@@ -87,10 +87,10 @@ class Invoice extends React.Component {
                   <tr key={idx}>
                     <th scope="row">{idx+1}</th>
                     <td>{moment(data.createdAt, moment.ISO_8601).format('L, h:mm:ss a')}</td>
-                    <td>{ data.product.productName }</td>
+                    <td>{ data.product ? data.product.productName : data.description }</td>
                     <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
                     <td>{ data.number ? data.number : (<h3>Anda Tidak Memasukkan no Hp</h3>) }</td>
-                    <td>{ data.payment ? data.payment.status : null }</td>
+                    <td>{ data.payment ? data.payment.status : 'GRATIS' }</td>
                     <td>{ data.status === 'PENDING'  ? (
                   <label>Expired</label>
                 ) : null}</td>

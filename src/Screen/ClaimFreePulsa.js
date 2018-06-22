@@ -73,7 +73,7 @@ class ClaimFreePulsa extends React.Component<Props, State> {
       }
     })
     .then(({data}) => {
-			console.log(data);
+			// console.log(data);
 			if (data === 'Error') {
 				alert('Ada masalah dengan nomor yang Anda masukkan. Silakan hubungi CS di LINE @boxaladin');
 			} else {
