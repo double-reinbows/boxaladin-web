@@ -53,9 +53,7 @@ class TopupPayment extends React.Component {
 
   render() {
 
-    if (this.state.invoice === null){
-      return null
-    } else if ( this.state.invoice === undefined){
+    if (this.state.invoice === null || this.state.invoice === undefined){
       return null
     } else {
       const time = this.state.invoice.createdAt
@@ -179,7 +177,6 @@ class TopupPayment extends React.Component {
       }
     })
     .then(({data}) => {
-      console.log('data')
     })
     .catch(err => console.log(err))
   }

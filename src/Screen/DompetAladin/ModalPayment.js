@@ -34,11 +34,11 @@ class ModalPayment extends Component{
 
   axiosTransaction = () => {
     this.props.setIsLoading(true)
+    if (this.state.bank !== 'Alfamart') {
       axios({
         method: 'POST',
         headers: {
             token: localStorage.getItem('token'),
-            key: process.env.REACT_APP_KEY
             },
         url: `${process.env.REACT_APP_API_HOST}/topupva`,
         data: {
@@ -58,6 +58,26 @@ class ModalPayment extends Component{
         }
       })
     .catch(err => console.log('error'))
+    } else if (this.state.bank === 'Alfamart') {
+      this.props.setIsLoading(true)
+      const {productUnlocked, phone} = this.props.data;
+      axios({
+        method: 'POST',
+        url: `${process.env.REACT_APP_API_HOST}/topupKey`,
+        headers: {
+          token: localStorage.getItem('token')
+        },
+        data: {
+          keyId: parseInt(this.props.data, 10),
+          bankCode: this.state.bank
+        },
+      })
+      .then(result => {
+        this.props.setIsLoading(false)
+        this.props.history.push(`/payment/${result.data.dataFinal.id}`)
+      })
+      .catch(err => console.log(err))
+    }
   }
 
   handleToggle = () => {
@@ -88,6 +108,9 @@ class ModalPayment extends Component{
               </div>
               <div className="modal__method__content">
                 <input className="modal__method__content__radio" type="radio" value="MANDIRI" name='bank'/> MANDIRI
+              </div>
+              <div className="modal__method__content">
+                <input className="modal__method__content__radio" type="radio" value="Alfamart" name='bank'/> ALFAMART
               </div>
             </div>
             <div>

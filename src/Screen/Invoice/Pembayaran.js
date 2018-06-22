@@ -158,7 +158,7 @@ class InvoiceDetail extends React.Component {
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
-          <h1 className="pembayaran__title__header">Pembayaran {!this.state.invoice ? (this.state.invoice.virtualAccount.bankCode) : null}</h1>
+          <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice.virtualAccount.bankCode ? (this.state.invoice.virtualAccount.bankCode) : null}</h1>
           {this.state.invoice ? (
               <div>
                 <div className="pembayaran__content__textDistance">
@@ -343,10 +343,27 @@ class InvoiceDetail extends React.Component {
       url: `${process.env.REACT_APP_API_HOST}/transaction/${this.props.match.params.id}`
     })
     .then(({data}) => {
-      console.log('data')
+      console.log('data', data)
     this.setState({
       invoice: data
     })
+    if ( data.virtualAccount.bankCode === 'MANDIRI'){
+      this.setState({
+        activeTab: '1'
+      })
+    } else if (data.virtualAccount.bankCode === 'BNI'){
+      this.setState({
+        activeTab: '2'
+      })
+    } else if (data.virtualAccount.bankCode === 'BRI'){
+      this.setState({
+        activeTab: '3'
+      })
+    } else if (data.virtualAccount.bankCode === 'BCA'){
+      this.setState({
+        activeTab: '4'
+      })
+    }
   })
     .catch(err => console.log(err))
  }
