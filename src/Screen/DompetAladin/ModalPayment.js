@@ -74,7 +74,7 @@ class ModalPayment extends Component{
       })
       .then(result => {
         this.props.setIsLoading(false)
-        this.props.history.push(`/payment/${result.data.dataFinal.id}`)
+        this.props.history.push(`/topupinvoice/${result.data.dataTopUp.id}`)
       })
       .catch(err => console.log(err))
     }

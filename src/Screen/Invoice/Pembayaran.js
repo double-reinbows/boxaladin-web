@@ -62,13 +62,13 @@ class InvoiceDetail extends React.Component {
   handleRetail(){
     if (!this.state.invoice){
       return null
-    } else if (this.state.invoice.payment.availableretail === 'Alfamart'){
+    } else if (this.state.invoice.payment.availableretail !== 'null'){
       return (
         <div>
           <Guide activeTab= {'5'} invoice={this.state.invoice} />
         </div>
       )
-    } else {
+    } else if (this.state.invoice.payment.availableretail === 'null') {
       return(
         <div>
         <h1 className="pembayaran__title__metodeBayar" > Pilih metode pembayaran </h1>
@@ -158,7 +158,7 @@ class InvoiceDetail extends React.Component {
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
-          <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice.virtualAccount.bankCode ? (this.state.invoice.virtualAccount.bankCode) : null}</h1>
+          <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice.virtualAccount ? (this.state.invoice.virtualAccount.bankCode) : null}</h1>
           {this.state.invoice ? (
               <div>
                 <div className="pembayaran__content__textDistance">
@@ -167,7 +167,6 @@ class InvoiceDetail extends React.Component {
                 </div>
                 <h2 className="pembayaran__title__infoTime">Selesaikan Pembayaran Sebelum {finalTime}</h2>
                   {this.handleRetail()}
-
               </div>
             ) : null
           }
