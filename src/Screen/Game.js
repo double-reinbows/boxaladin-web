@@ -245,6 +245,8 @@ class Game extends React.Component<Props, State> {
 								<label className="gameModal__Container__text">
 									berupa Rp.{this.state.pulsaAmount.toLocaleString(['ban', 'id'])} pulsa gratis
 								</label>
+
+								<button className="gameModal__Container__button" onClick={this.lanjut}>Lanjut</button>
 							</div>
 					</Modal>
 
@@ -329,6 +331,15 @@ class Game extends React.Component<Props, State> {
 		})
 		this.reset()
 
+		this.props.history.push('/claimfreepulsa', this.state.winToken);
+	}
+
+	lanjut = () => {
+		this.setState({
+			pulsaAmount: 0,
+			modalWin: false,
+		})
+		this.reset()
 		this.props.history.push('/claimfreepulsa', this.state.winToken);
 	}
 
