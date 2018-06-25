@@ -58,7 +58,6 @@ class Invoice extends React.Component {
         </thead>
         <tbody className="invoice__table">
           {transactions.map((data, idx) => {
-            console.log('dataaaa', data)
             if (!data.createdAt || !data.product || !data.payment){
               return null
             } else {
