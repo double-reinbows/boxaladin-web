@@ -63,10 +63,6 @@ class Layanan extends Component {
       this.setState({
         notif: 'Subject Harus Diisi'
       })
-    } else if (this.state.line === ''){
-      this.setState({
-        notif: 'Id Line Harus Diisi'
-      })
     } else if (this.state.content === ''){
       this.setState({
         notif: 'Content Harus Diisi'
