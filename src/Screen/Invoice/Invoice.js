@@ -97,7 +97,6 @@ class Invoice extends React.Component {
                 )
               }
             }
-            return null
           })}
         </tbody>
       </Table>

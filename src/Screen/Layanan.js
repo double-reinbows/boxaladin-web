@@ -106,7 +106,6 @@ class Layanan extends Component {
   }
   
   render() {
-    console.log(this.state.line)
     return (
       <div className="layanan">
         <div className="layanan__container">

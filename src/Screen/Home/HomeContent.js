@@ -51,7 +51,6 @@ class HomeContent extends Component {
         this.props.products.filter(data => {
           return data.displayPrice === 25000 && data.category === 'Pulsa' && data.category && data.brand !== 'Axis'
         })
-
         .map((data, i) => {
           const pulsaItems = [
             {onClick: () => this.toggleBid(`${data.brand}`, `${data.productName}`, `${data.id}`, data.brandLogo), img: data.brandLogo, alt:`Logo ${data.brand}`},

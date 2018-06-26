@@ -81,7 +81,6 @@ class TopupInvoice extends React.Component {
                 )
               }
             }
-            return null
           })}
         </tbody>
       </Table>

@@ -60,7 +60,6 @@ class ModalPayment extends Component{
     .catch(err => console.log('error'))
     } else if (this.state.bank === 'Alfamart') {
       this.props.setIsLoading(true)
-      const {productUnlocked, phone} = this.props.data;
       axios({
         method: 'POST',
         url: `${process.env.REACT_APP_API_HOST}/topupKey`,

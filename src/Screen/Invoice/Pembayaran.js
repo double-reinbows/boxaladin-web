@@ -342,7 +342,6 @@ class InvoiceDetail extends React.Component {
       url: `${process.env.REACT_APP_API_HOST}/transaction/${this.props.match.params.id}`
     })
     .then(({data}) => {
-      console.log('data', data)
     this.setState({
       invoice: data
     })
