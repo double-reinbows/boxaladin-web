@@ -87,6 +87,7 @@ const Guide = (props) => {
             </div>
           </Col>
         </Row>
+        <a className="paymentGuide" >*Jangan gunakan fitur "Simpan Daftar Transfer" untuk pembayaran melalui Internet Banking karena dapat mengganggu proses pembayaran berikutnya</a>
       </TabPane>
       <TabPane tabId="2">
         <Row>
