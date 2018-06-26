@@ -295,7 +295,7 @@ const Guide = (props) => {
       </div>
       </TabPane>
       <TabPane tabId="5">
-      <center><h1 style = { { padding: '10px'} }><b>Gerai Retail</b></h1></center>
+      <center><h1 style = { { padding: '10px'} }><b>Alfamart</b></h1></center>
       <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
         <ol>
           <li>
