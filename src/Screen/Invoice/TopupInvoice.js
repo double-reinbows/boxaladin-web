@@ -17,7 +17,6 @@ class TopupInvoice extends React.Component {
   }
 
   render() {
-
     return (
       <div className="invoice">
         <div className="invoice__container">
@@ -46,10 +45,8 @@ class TopupInvoice extends React.Component {
         </thead>
         <tbody>
           {this.props.userTopupTransactions.map((data, idx) => {
-            if (data.createdAt === ''){
-              console.log('kosong')
-            } else if ( data.createdAt === undefined){
-              console.log('undefined')
+            if (data.createdAt === '' || data.createdAt === undefined || data.payment.invoiceId === 'null'){
+              return null
             } else {
               const time = moment()
               const now = time.valueOf()
@@ -84,7 +81,6 @@ class TopupInvoice extends React.Component {
                 )
               }
             }
-            return null
           })}
         </tbody>
       </Table>

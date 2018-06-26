@@ -112,7 +112,6 @@ class ModalCheck extends Component {
 
     toggleTabs(tab, category) {
     if (this.state.activeTab !== tab) {
-      console.log('e', tab, category)
       this.setState({
         activeTab: tab,
         category: category,
@@ -125,8 +124,6 @@ class ModalCheck extends Component {
   }
 
   render() {
-    console.log(this.props)
-    console.log(this.state.pulsaName)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__pulsa">
         <div className="modal__pulsa__container">

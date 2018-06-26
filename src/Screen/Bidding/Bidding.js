@@ -1,6 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import axios from 'axios'
+import { connect } from 'react-redux'
 import * as firebase from 'firebase'
 
 import timer from '../../asset/bidding/timer.svg'
@@ -18,7 +18,7 @@ import  priceProduct  from '../../utils/splitPrice'
 import  productName from '../../utils/splitProduct'
 import FormatRupiah from '../../utils/formatRupiah'
 
-
+let propsAladinPrice = 0
 class Bidding extends React.Component {
   constructor(props) {
     super(props)
@@ -26,15 +26,11 @@ class Bidding extends React.Component {
       productUnlocked: {},
 			count: 15,
       initCount: 15,
-      isWatching: false,
-      notif:''
     }
 
     this.handleBack()
     localStorage.setItem('selectedProductId', this.props.selectedProductID)
   }
-
-
 
   render() {
     return (
@@ -110,8 +106,8 @@ class Bidding extends React.Component {
   }
 
   formatRupiah() {
-    return this.state.productUnlocked.aladinPrice && (
-      FormatRupiah(this.state.productUnlocked.aladinPrice)
+    return propsAladinPrice && (
+      FormatRupiah(propsAladinPrice)
     )
   }
 
@@ -128,9 +124,8 @@ class Bidding extends React.Component {
   }
 
   componentDidMount() {
-    this.watchProductPrice(this.props.selectedProductID)
+    this.watchProductPrice(this.props.selectedProductID)    
     this.props.getPhoneNumbers()
-    // this.handleBack()
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -153,27 +148,31 @@ class Bidding extends React.Component {
   }
 
   buy() {
-		axios({
-      method: 'PUT',
-      headers: {
-        key: process.env.REACT_APP_KEY
-      },
-      url: `${process.env.REACT_APP_API_HOST}/api/product/${this.props.selectedProductID}`
-    })
-		.then(({data}) => {
-      const productsRef = firebase.database().ref().child(`${process.env.REACT_APP_FIREBASE_PRODUCT}`)
-      const productRef = productsRef.child(this.props.selectedProductID)
+    const productsRef = firebase.database().ref().child(`${process.env.REACT_APP_FIREBASE_PRODUCT}`)
+    const productRef = productsRef.child(this.props.selectedProductID)
+    let updatePrice = 0
 
+    productRef.once('value', snap => {
+      updatePrice = snap.val().aladinPrice
       productRef.update({
-        watching: 0
+        watching: 0,
+        aladinPrice: snap.val().price
       })
+    })
 
-      this.props.history.push('/insertphone', {
-        productUnlocked: this.state.productUnlocked,
-        phoneNumbers: this.props.phoneNumbers
-      })
-		})
-		.catch(err => console.log(err))
+    axios({
+      method: 'PUT',
+      url: `${process.env.REACT_APP_API_HOST}/logsold`,
+      data: {
+        productId: this.props.selectedProductID
+      },
+    })
+    
+    this.props.history.push('/insertphone', {
+      productUnlocked: this.state.productUnlocked,
+      aladinPrice: updatePrice,
+      phoneNumbers: this.props.phoneNumbers
+    })
   }
 
   cancel() {
@@ -186,64 +185,48 @@ class Bidding extends React.Component {
     }
 
 		if (localStorage.getItem('token') !== null) {
-
       this.props.setIsLoading(true)
+      this.props.getUser()
 
-			axios({
-				method: 'POST',
-				url: `${process.env.REACT_APP_API_HOST}/unlockPrice`,
-				data: {
-					productId: this.props.selectedProductID
-				},
-				headers: {
-          token: localStorage.getItem('token'),
-          key: process.env.REACT_APP_KEY
-				}
-			})
-			.then(({data}) => {
-
-				if (data.message === 'success') {
-
-          // biar update user info (jumlah aladin key)
-          this.props.getUser()
-
-					const productsRef = firebase.database().ref().child(`${process.env.REACT_APP_FIREBASE_PRODUCT}`)
-					const productRef = productsRef.child(productId)
-
-					productRef.once('value', snap => {
-            productRef.update({
-              watching: snap.val().watching +1
-						})
-					})
-
-					productRef.on('value', snap => {
-            this.setState({
-              productUnlocked: snap.val(),
-              isWatching: true
-						})
-					})
-
-					this.runTimer()
-
-				} else if (data.message === 'not enough aladin key') {
-          alert("Anda Tidak Memiliki Aladin Key")
-          this.props.history.push('/home')
-        } else {
-
-          console.log('data')
-
+      const productsRef = firebase.database().ref().child(`${process.env.REACT_APP_FIREBASE_PRODUCT}`)
+      const productRef = productsRef.child(productId)
+      productRef.once('value', snap => {
+        if (snap.val().aladinPrice > 10000){
+          productRef.update({
+            watching: snap.val().watching +1,
+            aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
+          })
         }
-        this.props.setIsLoading(false)
-			})
-      .catch(err => {
-        this.props.setIsLoading(false)
-        return console.log(err)
+        else if (snap.val().aladinPrice === 10000 || snap.val().aladinPrice <= 10000 ) {
+          productRef.update({
+            watching: snap.val().watching +1,
+          })        
+        }
       })
 
-		} else {
-      alert("Harus Login")
-    }
+      productRef.on('value', snap => {
+        propsAladinPrice = snap.val().aladinPrice
+        let productValue = {
+          brand: snap.val().brand,
+          brandId: snap.val().brandId,
+          brandLogo: snap.val().brandLogo,
+          category: snap.val().category,
+          categoryId: snap.val().categoryId,
+          displayPrice: snap.val().displayPrice,
+          id: snap.val().id,
+          price: snap.val().price,
+          productName: snap.val().productName,
+          watching: snap.val().watching
+        }
+        this.setState({
+          productUnlocked: productValue,
+        })
+      })
+
+      this.runTimer()
+    this.props.setIsLoading(false)
   }
+}
 
   runTimer() {
 		setTimeout(() => {
@@ -252,21 +235,21 @@ class Bidding extends React.Component {
   }
 
   checkTimer(prevCount) {
-		if (this.state.count > 0 && this.state.count !== prevCount && this.state.isWatching === true) {
+		if (this.state.count > 0 && this.state.count !== prevCount ) {
       this.runTimer()
 
-		} else if (this.state.count <= 0 && this.state.count !== prevCount && this.state.isWatching === true) {
+		} else if (this.state.count <= 0 && this.state.count !== prevCount) {
       // this.stopWatchProductPrice(this.props.selectedProductID)
       alert('Waktu bidding sudah habis')
       this.props.history.push('/home')
 
-		} else if (this.state.count !== this.state.initCount && this.state.isWatching === false) {
+		} else if (this.state.count !== this.state.initCount ) {
 			this.setState({count: this.state.initCount})
 		}
   }
 
   afterResetPrice(prevPrice) {
-		if (prevPrice !== undefined && this.state.productUnlocked.aladinPrice > prevPrice) {
+		if (prevPrice !== undefined && propsAladinPrice > prevPrice) {
       alert('Maaf, produk ini sudah terbeli orang lain! Silahkan melakukan bidding lagi.')
       // this.stopWatchProductPrice(this.props.selectedProductID)
       this.props.history.push('/home')
@@ -282,7 +265,7 @@ class Bidding extends React.Component {
 		const productRef = productsRef.child(productId)
 
     productRef.off()
-    this.setState({isWatching: false})
+    // this.setState({isWatching: false})
 
     productRef.once('value', snap => {
 			if (snap.val().watching > 0) {
@@ -300,6 +283,7 @@ class Bidding extends React.Component {
 const mapStateToProps = (state) => {
   return {
     selectedProductID: state.productReducer.selectedProductID,
+    userInfo: state.userReducer.userInfo,
     phoneNumbers: state.userReducer.phoneNumbers,
     isLoading: state.loadingReducer.isLoading,
   }

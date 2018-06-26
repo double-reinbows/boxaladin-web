@@ -10,6 +10,7 @@ import  productName from '../../utils/splitProduct'
 import FormatRupiah from '../../utils/formatRupiah'
 import percentagePrice from '../../utils/percentagePrice'
 
+let aladinPrice = 0
 class InsertPhone extends React.Component {
   constructor(props) {
     super(props)
@@ -22,6 +23,7 @@ class InsertPhone extends React.Component {
     }
     this.handleBack()
   }
+  
 
 	toggle = () =>  {
 		this.setState({
@@ -39,13 +41,13 @@ class InsertPhone extends React.Component {
     return (
 		<div>
 		<div className="InsertPhone__textHead">
-			<h1 className="InsertPhone__textHead__font">LELANG KAMU BERHASIL, BOEDJANGAN!</h1>
+			<h1 className="InsertPhone__textHead__font">LELANG KAMU BERHASIL</h1>
 		</div>
 		<div className="InsertPhone__inputNumber">
 			<div className="InsertPhone__inputHead">
 				<h4 className="InsertPhone__inputHead__text">Masukkan nomor hape kamu</h4>
 				<div className="InsertPhone__inputHead__checkBox">
-					<Input className="InsertPhone__inputHead__inputBox" value={ this.state.phone }
+					<Input className="InsertPhone__inputHead__inputBox" value={ this.state.phone } type="number"
 					onChange={ (e) => this.handleChangePhone(e) } />
 					<div className="homecontent__bottom__check" style= {{ alignSelf: "center", paddingLeft: "20px"}}>
 						<button onClick={this.toggle} className="homecontent__bottom__check__button" style = {{ fontSize: "15px"}}>CEK PROVIDER-MU</button>
@@ -74,24 +76,8 @@ class InsertPhone extends React.Component {
 
 		</div>
 
-
-      { /*<div className="InsertPhone">
-        <h1 className="InsertPhone__text">Masukkan No Handphone Anda</h1>
-
-        <Form onSubmit={(e) => this.submitTransaction(e)}>
-          <FormGroup>
-            <Label for="selectNumber"></Label>
-
-						<Input type="tel" value={ this.state.phone } onChange={ (e) => this.setState({
-              phone: e.target.value}) } />
-          </FormGroup>
-
-          <Button type="submit" color="primary" size="lg" block>Confirm</Button>
-
-				</Form>
-		  </div> */}
 			<ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
-      <ModalPayment isOpen={this.state.modalPayment} data={this.state} toggle={this.togglePayment} />
+      <ModalPayment isOpen={this.state.modalPayment} data={this.state} aladinPrice={aladinPrice} toggle={this.togglePayment} />
 		</div>
     )
   }
@@ -115,16 +101,16 @@ class InsertPhone extends React.Component {
 	}
 
 	formatRupiah() {
-		return this.state.productUnlocked.aladinPrice && (
-			FormatRupiah(this.state.productUnlocked.aladinPrice)
+		return aladinPrice && (
+			FormatRupiah(aladinPrice)
 		)
 	}
 
 	percentagePrice() {
-		if (this.state.productUnlocked.aladinPrice === 'undefined' && this.state.productUnlocked.price === 'undefined') {
+		if (aladinPrice === 'undefined' && this.state.productUnlocked.price === 'undefined') {
 			return null
 		} else {
-			return (percentagePrice(this.state.productUnlocked.aladinPrice, this.state.productUnlocked.price))
+			return (percentagePrice(aladinPrice, this.state.productUnlocked.price))
 		}
 	}
 
@@ -135,6 +121,7 @@ class InsertPhone extends React.Component {
 
   componentDidMount() {
     this.props.getPhoneNumbers()
+    aladinPrice = this.props.location.state.aladinPrice
     this.setState({
       productUnlocked: this.props.location.state.productUnlocked,
       phone: this.props.location.state.phoneNumbers[0] ? '' : ''

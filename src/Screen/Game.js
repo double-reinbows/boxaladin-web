@@ -21,9 +21,6 @@ import LoseSfx from '../../src/asset/sound/Lose-sfx.mp3';
 import { getUser } from '../actions/userAction';
 import { getUserWins } from '../actions/winAction';
 
-type Props = {
-
-}
 type State = {
 	si1: null | number,
 	si2: null | number,
@@ -245,6 +242,8 @@ class Game extends React.Component<Props, State> {
 								<label className="gameModal__Container__text">
 									berupa Rp.{this.state.pulsaAmount.toLocaleString(['ban', 'id'])} pulsa gratis
 								</label>
+
+								<button className="gameModal__Container__button" onClick={this.toggle}>Lanjut</button>
 							</div>
 					</Modal>
 

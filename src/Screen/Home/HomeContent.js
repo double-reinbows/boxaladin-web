@@ -51,13 +51,12 @@ class HomeContent extends Component {
         this.props.products.filter(data => {
           return data.displayPrice === 25000 && data.category === 'Pulsa' && data.category && data.brand !== 'Axis'
         })
-
         .map((data, i) => {
           const pulsaItems = [
             {onClick: () => this.toggleBid(`${data.brand}`, `${data.productName}`, `${data.id}`, data.brandLogo), img: data.brandLogo, alt:`Logo ${data.brand}`},
           ]
           return pulsaItems.map(data => (
-            <button onClick={data.onClick} className="homecontent__bottom__pulsa__button">
+            <button key={i} onClick={data.onClick} className="homecontent__bottom__pulsa__button">
               <img className="homecontent__bottom__pulsa__button__image" src={data.img} alt={data.alt}/>
             </button>
           )

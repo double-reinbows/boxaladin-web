@@ -49,7 +49,6 @@ class ModalOtpUser extends Component {
           notifOtp: "OTP Salah"
         })
       } else if ( dataOtp.data.message === 'phone verified'){
-        console.log('sukses')
         window.location.reload();
       }
     })
