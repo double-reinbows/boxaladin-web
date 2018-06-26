@@ -27,34 +27,28 @@ const Guide = (props) => {
               <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%', width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
                 <ol>
                   <li>
-                    Masukkan kartu ATM dan pilih "Bahasa Indonesia"
+                    Masukkan kartu ATM dan PIN
                   </li>
                   <li>
-                    Ketik nomor PIN kartu ATM
+                    Pilih menu BAYAR/BELI
                   </li>
                   <li>
-                    Pilih menu BAYAR/BELI, kemudian pilih menu MULTI PAYMENT
+                    Pilih menu Lainnya > Lainnya > Multipayment
                   </li>
                   <li>
-                    Masukkan nomor Virtual Account {props.invoice.payment.availableBanks}
+                    Silahkan masukkan kode perusahaan 88908, lalu pilih Benar
                   </li>
                   <li>
-                    Isi NOMINAL sebesar Rp.{props.invoice.payment.amount.toLocaleString(['ban', 'id'])}, kemudian tekan "BENAR"
+                    Masukkan kode bayar dengan Nomor Virtual Account Anda: {props.invoice.payment.availableBanks}, dan klik Benar
                   </li>
                   <li>
-                    Muncul konfirmasi data customer. Pilih Nomor 1 sesuai tagihan yang akan dibayar, kemudian tekan "YA"
+                    Jangan lupa memeriksa informasi yang tertera di layar. pastikan Merchant adalah Xendit dan total tagihan sudah benar. Jika benar, tekan angka 1 dan pilih Ya
                   </li>
                   <li>
-                    Muncul konfirmasi pembayaran. Tekan "YA" untuk melakukan pembayaran
+                    Akan muncul konfirmasi pembayaran, lalu pilih tombol Ya
                   </li>
                   <li>
-                    Bukti pembayaran dalam bentuk struk agar disimpan sebagai bukti pembayaran yang sah dari Bank Mandiri
-                  </li>
-                  <li>
-                    Transaksi Anda sudah selesai
-                  </li>
-                  <li>
-                    Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis. Ini bisa memakan waktu hingga 5 menit.
+                    Simpan struk sebagai bukti pembayaran Anda
                   </li>
                 </ol>
               </div>
@@ -65,43 +59,28 @@ const Guide = (props) => {
               <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
                 <ol>
                   <li>
-                    Kunjungi website Mandiri Internet Banking dengan alamat <a href="https://ib.bankmandiri.co.id/" target="_blank" rel="noopener noreferrer">https://ib.bankmandiri.co.id/</a>
+                    Login Mandiri Online <a href="https://ib.bankmandiri.co.id/" target="_blank" rel="noopener noreferrer">https://ib.bankmandiri.co.id/</a> dengan memasukkan Username dan Password
                   </li>
                   <li>
-                    Login dengan memasukkan USER ID dan PIN
+                    Pilih menu "Bayar"
                   </li>
                   <li>
-                    Masuk ke halaman Beranda, lalu pilih "Bayar"
+                    Pilih menu "Multipayment"
                   </li>
                   <li>
-                    "Multi Payment"
+                    Pilih penyedia jasa "Xendit"
                   </li>
                   <li>
-                    Pilih "No Rekening Anda"
+                    Masukkan kode bayar dengan Nomor Virtual Account: {props.invoice.payment.availableBanks} dan "Nominal" yang akan dibayarkan, lalu pilih Lanjut
                   </li>
                   <li>
-                    Pilih "No Virtual Account"
+                    Setelah muncul tagihan, pilih Konfirmasi
                   </li>
                   <li>
-                    Masukkan nomor Virtual Account {props.invoice.payment.availableBanks}
+                    Masukkan PIN token Anda dan klik Kirim
                   </li>
                   <li>
-                    Masuk ke halaman konfirmasi 1
-                  </li>
-                  <li>
-                    Apabila benar/sesuai, klik tombol tagihan TOTAL, kemudian klik "Lanjutkan"
-                  </li>
-                  <li>
-                    Masuk ke halaman konfirmasi 2
-                  </li>
-                  <li>
-                    Masukkan Challenge Code yang dikirimkan ke Token Internet Banking Anda, kemudian klik "Kirim"
-                  </li>
-                  <li>
-                    Masuk ke halaman konfirmasi pembayaran telah selesai
-                  </li>
-                  <li>
-                    Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis. Ini bisa memakan waktu hingga 5 menit.
+                    Transaksi selesai, simpan bukti bayar Anda
                   </li>
                 </ol>
               </div>
