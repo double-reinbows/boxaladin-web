@@ -6,7 +6,7 @@ import ModalOtpUser from './ModalOtpUser'
 class ModalPrimaryPhone extends Component {
   constructor(props) {
     super(props);
-    this.state = {  
+    this.state = {
       phone:'',
       oldUserModal: false
     }
@@ -43,7 +43,6 @@ class ModalPrimaryPhone extends Component {
         phone: num.join('')
       })
     }
-    console.log(this.state.phone)
     axios({
       method: 'POST',
       url: `${process.env.REACT_APP_API_HOST}/olduserotp`,
@@ -57,7 +56,6 @@ class ModalPrimaryPhone extends Component {
       }
     })
     .then((data) => {
-      console.log('Data create phone', data)
       if (data.data === 'ada no hp verified/primary'){
         this.setState({
           notif: 'No Hp Sudah Terverifikasi, Masukkan No Lain',
@@ -72,24 +70,40 @@ class ModalPrimaryPhone extends Component {
     .catch(err => console.log(err))
   }
 
-  render() { 
-    return (  
+  closeModal = () => {
+    this.setState({
+      phone: ''
+    },
+    () => this.props.buttonToggle()
+    )
+  }
+
+  closeOtpModal = () => {
+    this.setState({
+      oldUserModal: !this.state.oldUserModal
+    })
+  }
+
+  render() {
+    return (
       <div>
         <Modal isOpen={this.props.open} className="modalPrimary__phone">
           <form className="modalPrimary__phone__content" onSubmit={(e) => this.submitOldUserPhone(e)}>
+            <div className="modal__check__container__header">
+              <button className="modal__check__button" onClick={this.props.buttonToggle}>X</button>
+            </div>
             <label><b>Masukan Nomor Hape:</b></label>
             <div className="modalPrimary__phone__content__form">
               <input name="numberToSend" required autoFocus type="text" maxLength={14} className="modalPrimary__phone__input" placeholder="Phone Number" value={this.state.phone} onChange={(e) => this.handleOldUserPhone(e)} />
             </div>
             <label className="modalPrimary__phone__alert">{this.state.notif}</label>
-
             <div className="modalPrimary__phone__content__buttonContainer">
               <button className="modalPrimary__phone__button" type="submit" color="primary">Setuju</button>
-              <button className="modalPrimary__phone__button" type="button" color="danger" onClick={this.props.buttonToggle}>Batal</button>
+              <button className="modalPrimary__phone__button" type="button" color="danger" onClick={this.closeModal}>Batal</button>
             </div>
           </form>
         </Modal>
-        <ModalOtpUser openOtpUser={this.state.oldUserModal} userEmail={this.props.emailUser} userPhone={this.state.phone}/>
+        <ModalOtpUser buttonToggle={this.closeOtpModal} openOtpUser={this.state.oldUserModal} userEmail={this.props.emailUser} userPhone={this.state.phone}/>
       </div>
     )
   }

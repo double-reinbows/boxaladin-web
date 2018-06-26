@@ -40,7 +40,6 @@ class User extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.userInfo)
 		return (
 			<div className="user">
 				<div className="user__container">
@@ -63,7 +62,7 @@ class User extends React.Component {
 					{ this.showChangePrimaryPhone() }
 
 					{ this.showChangePrimaryPhoneOTP() }
-					<ModalPrimaryPhone open={this.state.oldUserModal} buttongToggle={this.toggle} emailUser={this.props.userInfo.email}/>
+					<ModalPrimaryPhone open={this.state.oldUserModal} buttonToggle={this.toggle} emailUser={this.props.userInfo.email}/>
 				</div>
 			</div>
 		)
@@ -536,7 +535,7 @@ class User extends React.Component {
 				<div className="user__show">
 					<img src={IconEmail} className="user__show__logo" alt="Logo"/>
 					<div className="user__show__email">
-					{this.props.userInfo !== null ? this.props.userInfo.typedEmail : null}
+						{this.props.userInfo.typedEmail !== null ? this.props.userInfo.typedEmail : this.props.userInfo.email}
 						<div style= {{ width:"16%" }}>
 							{this.props.userInfo !== null ? (this.props.userInfo.emailVerified ? <img src={IconCheck} className="user__show__logo__verified" alt="Logo"/>
 								:

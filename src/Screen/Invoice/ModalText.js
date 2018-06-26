@@ -11,7 +11,6 @@ export default class ModalText extends Component <{}> {
     text: PropTypes.string,
   }
   render() { 
-    console.log('props', this.props)
     return (  
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__check">
         <div className="modal__check__container">

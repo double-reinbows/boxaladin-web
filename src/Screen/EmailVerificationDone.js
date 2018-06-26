@@ -14,7 +14,7 @@ class EmailVerificationDone extends React.Component {
     return (
       <div className="emailVerification">
         <header className="emailVerification__header">
-          <img src="https://s3-ap-southeast-1.amazonaws.com/boxaladin.com/BoxAladin.png" className="emailVerification__header__image"/>
+          <img alt="boxaladin" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin.com/BoxAladin.png" className="emailVerification__header__image"/>
         </header>
         <div className="emailVerification__content">
           <p className="emailVerification__content__textHead">Halo !</p>
@@ -23,7 +23,7 @@ class EmailVerificationDone extends React.Component {
           </p>
           <div className="emailVerification__content__image">
              <a href="https://www.boxaladin.com">
-              <img src= {check} />
+              <img alt="check icon" src= {check} />
              </a>
           </div>
         </div>

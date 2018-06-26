@@ -1,11 +1,8 @@
 import React,{Component} from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux'
 import {setModalRegister, setIsLoading, loginAction } from '../../../../actions/';
 import Modal from 'react-modal';
-import {Button, ModalHeader, ModalFooter} from 'reactstrap';
-import axios from 'axios';
-import TextInput from 'react-otp';
+import { ModalHeader} from 'reactstrap';
 
 class SuccessModalOtp extends Component {
   _toggle() {

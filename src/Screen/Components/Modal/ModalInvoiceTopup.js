@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import FormatRupiah from '../../../utils/formatRupiah'
 
 
@@ -23,7 +22,6 @@ export default class ModalInvoiceTopup extends Component <{}> {
 
 
   render() {
-    console.log('props',this.props.invoice)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__check">
         <div className="modal__invoice__container">

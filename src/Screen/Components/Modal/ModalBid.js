@@ -1,7 +1,6 @@
 //@flow
 
 import React,{Component} from 'react';
-import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
 
@@ -9,7 +8,7 @@ import ModalConfirm from '../../Home/Modal/ModalConfirm';
 import LockIcon from '../../../asset/LandingPage/pulsa/lock.png';
 import { selectProductID } from '../../../actions/productAction';
 import classnames from 'classnames';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import priceProduct from '../../../utils/splitPrice'
 import productName from '../../../utils/splitProduct'
 
@@ -40,6 +39,10 @@ class ModalCheck extends Component {
       return (
         <h1>Loading</h1>
       )
+    } else if ( this.state.activeTab === '2' && this.props.pulsaValue === 'Smartfren') {
+      return(
+        <label>Paket Data Smartfren Sedang Tidak Tersedia</label>
+      )
     } else {
       return(
         this.props.products.filter(data => {
@@ -49,7 +52,7 @@ class ModalCheck extends Component {
           return (
             <button onClick={(e) => this.pulsa(data.id, data)} className="modal__pulsa__content__2__button" value={data.id} key={i}>
               <div>
-              <img className="modal__pulsa__content__2__logo__image"  src={require('../../../asset/LandingPage/pulsa/' + this.props.pulsaValue + '.svg')} alt={`Logo ${this.props.pulsaValue}`}/>
+              <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.pulsaValue}`}/>
               </div>
               {data.displayPrice.toLocaleString(['ban', 'id'])}
             </button>
@@ -77,7 +80,6 @@ class ModalCheck extends Component {
       defaultId: id
     }, () => {
       this.props.selectProductID(this.state.defaultId)
-
     })
   }
 
@@ -99,11 +101,11 @@ class ModalCheck extends Component {
       return (<h1>Loading</h1>)
     } else if ( this.props.pulsaValue === 'Telkomsel' || this.props.pulsaValue === 'Smartfren') {
       return (
-        <img className="modal__pulsa__content__1__logo__image__special" src={require('../../../asset/LandingPage/pulsa/' + this.props.pulsaValue + '.svg')} alt={`Logo ${this.props.pulsaValue}`}/>
+        <img className="modal__pulsa__content__1__logo__image__special" src={this.props.logo} alt={`Logo ${this.props.pulsaValue}`}/>
       )
     } else {
       return (
-        <img className="modal__pulsa__content__1__logo__image" src={require('../../../asset/LandingPage/pulsa/' + this.props.pulsaValue + '.svg')} alt={`Logo ${this.props.pulsaValue}`}/>
+        <img className="modal__pulsa__content__1__logo__image" src={this.props.logo} alt={`Logo ${this.props.pulsaValue}`}/>
       )
     }
   }
@@ -112,13 +114,16 @@ class ModalCheck extends Component {
     if (this.state.activeTab !== tab) {
       this.setState({
         activeTab: tab,
-        category: category
+        category: category,
+        pulsaName: '',
+        pulsaPrice: '',
+        defaultId: '',
+        disabled: true
       });
     }
   }
 
   render() {
-    console.log(this.state.category)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__pulsa">
         <div className="modal__pulsa__container">
@@ -129,7 +134,7 @@ class ModalCheck extends Component {
             <NavItem className= "modal__pulsa__tabs__text">
               <NavLink
                 className={classnames({ active: this.state.activeTab === '1' })}
-                onClick={() => { this.toggleTabs('1','Pulsa'); }}
+                onClick={() => { this.toggleTabs('1', 'Pulsa'); }}
                 >
               Pulsa
               </NavLink>
@@ -162,7 +167,7 @@ class ModalCheck extends Component {
             <NavItem className= "modal__pulsa__tabs__text">
               <NavLink
                 className={classnames({ active: this.state.activeTab === '1' })}
-                onClick={() => { this.toggleTabs('1'); }}
+                onClick={() => { this.toggleTabs('1', 'Pulsa'); }}
                 >
               Pulsa
               </NavLink>
@@ -170,7 +175,7 @@ class ModalCheck extends Component {
             <NavItem className= "modal__pulsa__tabs__text">
               <NavLink
                 className={classnames({ active: this.state.activeTab === '2' })}
-                onClick={() => { this.toggleTabs('2'); }}
+                onClick={() => { this.toggleTabs('2','Paket Data'); }}
                 >
               Paket Data
               </NavLink>
@@ -200,7 +205,7 @@ class ModalCheck extends Component {
                       productName(this.state.pulsaName)}</label>
               <br />
               <label>{ !this.state.pulsaName ?
-                      (this.props.defaultProduct) : // penamaan nya masih salah .. ini buat harga 
+                      (this.props.defaultProduct) : // penamaan nya masih salah .. ini buat harga
                       priceProduct(this.state.pulsaName)}</label>
             </div>
             <div >

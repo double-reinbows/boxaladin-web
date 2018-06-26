@@ -57,11 +57,14 @@
       width: 20%;
       display: flex;
       justify-content: space-around;
+      &__content{
+        cursor: pointer;
+      }
     }
   }
 }
 
-@media (min-width: 200px ) and (max-width:813px) {
+@media (min-width: 341px ) and (max-width:813px) {
   .footer__info{
     &__button{
       &__content{
@@ -71,6 +74,20 @@
     }
     &__logo{
       width: 40%;
+    }
+  }
+}
+
+@media (min-width: 200px ) and (max-width:340px) {
+  .footer__info{
+    &__button{
+      &__content{
+        width: 100%;
+        font-size: 14px;
+      }
+    }
+    &__logo{
+      width: 50%;
     }
   }
 }

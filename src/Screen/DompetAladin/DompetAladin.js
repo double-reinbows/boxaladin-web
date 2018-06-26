@@ -8,6 +8,7 @@ import Koin from '../../../src/asset/Dompet Aladin/Koin.png'
 import Key from '../../../src/asset/Dompet Aladin/Key.png'
 import Troly from '../../../src/asset/Dompet Aladin/troly.png'
 import Switch from '../../../src/asset/Dompet Aladin/circle.png'
+import ModalPayment from './ModalPayment'
 // import TopUpKey from './TopupKey'
 
 import { getUser } from '../../actions/userAction'
@@ -25,7 +26,8 @@ class Dompet extends React.Component {
       key: null,
       notif: '',
       notif2: '',
-      disabled: true
+      disabled: true,
+      modalPayment: false
     }
   }
 
@@ -55,13 +57,16 @@ class Dompet extends React.Component {
             <div className="dompet__content__key__topup">
               <h1 className="dompet__content__key__label">Top Up Kunci Aladin</h1>
               {this.showForm()}
+              <label className="alert__dompetAladin">{this.state.notif}</label>
             </div>
+
             <div>
               <label className="dompet__content__key__label">Tukar Kunci Jadi Koin</label>
               {this.dropdownConvert()}
             </div>
           </div>
         </div>
+        <ModalPayment isOpen={this.state.modalPayment} data={this.state.idKeySelected} toggle={this.togglePayment} />
       </div>
     )
   }
@@ -69,6 +74,12 @@ class Dompet extends React.Component {
   componentDidMount() {
       this.props.getUser()
       this.props.getKeys()
+  }
+
+  togglePayment = () => {
+    this.setState({
+      modalPayment: !this.state.modalPayment
+    })
   }
 
   showForm() {
@@ -94,7 +105,6 @@ class Dompet extends React.Component {
           </Form>
       </div>
         <div>
-          <label className="alert__dompetAladin">{this.state.notif}</label>
         </div>
       </div>
     )
@@ -104,33 +114,18 @@ class Dompet extends React.Component {
     e.preventDefault()
     if (this.state.idKeySelected === '') {
       this.setState({
-        notif: "Harus Pilih Salah Satu Voucher Aladin Key.",
+        notif: "Silahkan Memilih Jumlah Kunci.",
       })
+    } else if (this.props.userInfo.emailVerified === false){
+      return this.setState({
+        notif: "Email Belum Terferivikasi.",
+    })
     } else {
-        axios({
-        method: 'POST',
-        headers: {
-            token: localStorage.getItem('token'),
-            key: process.env.REACT_APP_KEY
-            },
-        url: `${process.env.REACT_APP_API_HOST}/topupKey`,
-        data: {
-            keyId: this.state.idKeySelected
-        }
+      this.setState({
+        modalPayment: true
       })
-      .then(({ data }) => {
-          if (data.msg === 'not verified user') {
-              return this.setState({
-                  notif: "Silahkan Verifikasi Email Untuk Membeli Kunci.",
-              })
-          } else {
-              this.props.history.push(`/topupinvoice/${data.id}`)
-          }
-      })
-      // .catch(err => console.log('error'))
-      .catch(err => console.log(err))
-      }
     }
+  }
 
     handleChangeKey =(e) => {
       this.setState({

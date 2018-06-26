@@ -1,5 +1,5 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
-
+style.prefix.css
 # dependencies
 /node_modules
 
@@ -25,3 +25,8 @@ public/css/style.comp.css
 style.comp.css
 public/css/style.css
 style.css
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

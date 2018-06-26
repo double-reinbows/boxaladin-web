@@ -27,27 +27,43 @@
 
     <!-- sass -->
     <link rel="stylesheet" href="%PUBLIC_URL%/css/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-84868350-1"></script>
+    <script>
+      if (document.location.hostname.indexOf("www.boxaladin.com") !== -1) {
+        /* Global site tag (gtag.js) - Google Analytics */
+          /* Production Google Analytics Code */
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-84868350-1"></script>
-  <script>
-   window.dataLayer = window.dataLayer || [];
-   function gtag(){dataLayer.push(arguments);}
-   gtag('js', new Date());
+          gtag('config', 'UA-84868350-1');
+      }
+    </script>
 
-   gtag('config', 'UA-84868350-1');
-  </script>
-
-    <!-- Required dependencies -->
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.min.js"></script>
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.production.min.js"></script>
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.production.min.js"></script>
-  <!-- Optional dependencies -->
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-transition-group/2.2.1/react-transition-group.min.js"></script>
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-popper/0.7.4/react-popper.min.js"></script>
-  <!-- Reactstrap -->
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/reactstrap/5.0.0-alpha.3/reactstrap.min.js"></script>
+      <!-- Required dependencies -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.production.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.production.min.js"></script>
+    <!-- Optional dependencies -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-transition-group/2.2.1/react-transition-group.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react-popper/0.7.4/react-popper.min.js"></script>
+    <!-- Reactstrap -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/reactstrap/5.0.0-alpha.3/reactstrap.min.js"></script>
 
     <title>Box Aladin</title>
+    <!-- Hotjar Tracking Code for www.boxaladin.com -->
+    <script>
+      if (document.location.hostname.indexOf("www.boxaladin.com") !== -1) {
+        (function(h,o,t,j,a,r){
+          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+          h._hjSettings={hjid:927428,hjsv:6};
+          a=o.getElementsByTagName('head')[0];
+          r=o.createElement('script');r.async=1;
+          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+          a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

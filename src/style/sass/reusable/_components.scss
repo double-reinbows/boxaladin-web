@@ -6,6 +6,11 @@
   margin: 2rem;
 }
 
+.dropdown-item.active{
+  color: black !important;
+  background-color: lightgrey !important;
+}
+
 .DropdownUser{
   &__item{
     background-color: lightgrey;
@@ -31,6 +36,8 @@
 
     }
     &__link{
+      display: flex;
+      align-items: center;
       font-family: Helvetica;
       font-size: 22px;
       font-weight: 600;
@@ -92,7 +99,6 @@
 }
 
 .alert{
-  color: #ff2323;
   &__dompetAladin{
     font-size: 14px;
     display: flex;
@@ -117,6 +123,8 @@
   }
   &__otp{
     color: #ff2323;
-
+  }
+  &__invoice{
+    font-size: 25px;
   }
 }

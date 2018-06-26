@@ -32,9 +32,9 @@ export default  class Footer extends Component <Props, State> {
 
         </div>
         <div className="footer__info__logo">
-          <a href="#" onClick={(e: HTMLInputElement)=>this.toggleLineModal(e)}>
-            <img className="footer__info__logo__content" src={line} alt="logo"/>
-          </a>
+          {/* <a href="#" onClick={(e: HTMLInputElement)=>this.toggleLineModal(e)}> */}
+            <img  onClick={(e: HTMLInputElement)=>this.toggleLineModal(e)} className="footer__info__logo__content" src={line} alt="logo"/>
+          {/* </a> */}
           <a href="https://www.facebook.com/boxaladin/">
             <img className="footer__info__logo__content" src={facebook} alt="logo"/>
           </a>

@@ -1,5 +1,5 @@
 //@flow
-import React, { Component } from 'react';
+import React from 'react';
 type Props = {};
 export default function Faq(props: Props) {
   return (

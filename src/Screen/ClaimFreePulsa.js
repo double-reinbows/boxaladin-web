@@ -24,8 +24,8 @@ class ClaimFreePulsa extends React.Component<Props, State> {
 
     if (this.state.phone === null) {
       return alert('Harus masukan nomor HP.')
-    } else if (this.state.pulsaCode === null) {
-      return alert('Harus pilih pulsa.')
+    // } else if (this.state.pulsaCode === null) {
+    //   return alert('Harus pilih pulsa.')
     } else {
       var num = this.state.phone.split('')
       if (num[0] === '0') {
@@ -67,16 +67,22 @@ class ClaimFreePulsa extends React.Component<Props, State> {
       data: {
         // productId: this.state.productId,
         phone: this.state.phone,
-        pulsaCode: this.state.pulsaCode,
+        // pulsaCode: this.state.pulsaCode,
         winToken: this.state.win,
         // authentication: process.env.REACT_APP_GAME_PASSWORD
       }
     })
     .then(({data}) => {
-      this.props.history.push('/game')
+			if (data === 'Error') {
+				alert('Ada masalah dengan nomor yang Anda masukkan. Silakan hubungi CS di LINE @boxaladin');
+			} else {
+				alert('Selamat! Anda berhasil mendapatkan pulsa gratis! Silakan bermain lagi sampai puas!');
+			}
+      this.props.history.push('/game');
     })
     .catch(err => {
-
+			alert('Ada masalah dengan nomor yang Anda masukkan. Silakan hubungi CS di LINE @boxaladin');
+			this.props.history.push('/game');
     })
   }
 
@@ -103,7 +109,7 @@ class ClaimFreePulsa extends React.Component<Props, State> {
             <Input onChange={(e) => this.setState({ phone: e.target.value })} type="text" placeholder="Nomor HP" />
           </FormGroup>
 
-          <FormGroup>
+          {/* <FormGroup>
             <Input type="select" onChange={(e) => this.setState({ pulsaCode: e.target.value })}>
               <option selected disabled value={ null }>-- Pilih Pulsa --</option>
               <option value='htelkomsel10000'>Pulsa Telkomsel 10.000</option>
@@ -112,13 +118,13 @@ class ClaimFreePulsa extends React.Component<Props, State> {
               <option value='hthree10000'>Pulsa Three 10.000</option>
               <option value='hsmart10000'>Pulsa Smart 10.000</option>
 
-              {/* {pulsa.map((data, i) => {
+               {pulsa.map((data, i) => {
                 return (
                   <option key={i} value={data.id}>{data.productName}</option>
                 )
-              })} */}
+              })}
             </Input>
-          </FormGroup>
+          </FormGroup> */}
 
           <FormGroup>
             <Button type="submit"> submit </Button>

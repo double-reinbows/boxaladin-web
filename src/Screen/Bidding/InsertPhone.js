@@ -1,18 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Input, Button } from 'reactstrap'
-import PropTypes from 'prop-types';
+import { getPhoneNumbers } from '../../actions/'
+import ModalPayment from './ModalPayment'
+import { validateProvider, detectProvider } from '../../utils/phone'
+import ProviderModal from '../Home/Modal/ProviderModal';
+import  priceProduct  from '../../utils/splitPrice'
+import  productName from '../../utils/splitProduct'
+import FormatRupiah from '../../utils/formatRupiah'
+import percentagePrice from '../../utils/percentagePrice'
 
-import axios from 'axios'
-
-import { getPhoneNumbers, setIsLoading } from '../../../actions/'
-import { validateProvider, detectProvider } from '../../../utils/phone'
-import ProviderModal from '../../Home/Modal/ProviderModal';
-import  priceProduct  from '../../../utils/splitPrice'
-import  productName from '../../../utils/splitProduct'
-import FormatRupiah from '../../../utils/formatRupiah'
-import percentagePrice from '../../../utils/percentagePrice'
-
+let aladinPrice = 0
 class InsertPhone extends React.Component {
   constructor(props) {
     super(props)
@@ -20,33 +18,36 @@ class InsertPhone extends React.Component {
       phone: '',
       productUnlocked: {},
       providerModal: false,
-      disabled: true
+      disabled: true,
+      modalPayment: false,
     }
     this.handleBack()
   }
-  static propTypes = {
-    setIsLoading: PropTypes.bool
-  }
-
   
 
 	toggle = () =>  {
 		this.setState({
 			providerModal: !this.state.providerModal
 		})
-	}
+  }
+
+  togglePayment = () => {
+    this.setState({
+      modalPayment: !this.state.modalPayment
+    })
+  }
 
   render() {
     return (
 		<div>
 		<div className="InsertPhone__textHead">
-			<h1 className="InsertPhone__textHead__font">LELANG KAMU BERHASIL, BOEDJANGAN!</h1>
+			<h1 className="InsertPhone__textHead__font">LELANG KAMU BERHASIL</h1>
 		</div>
 		<div className="InsertPhone__inputNumber">
 			<div className="InsertPhone__inputHead">
 				<h4 className="InsertPhone__inputHead__text">Masukkan nomor hape kamu</h4>
 				<div className="InsertPhone__inputHead__checkBox">
-					<Input className="InsertPhone__inputHead__inputBox" value={ this.state.phone }
+					<Input className="InsertPhone__inputHead__inputBox" value={ this.state.phone } type="number"
 					onChange={ (e) => this.handleChangePhone(e) } />
 					<div className="homecontent__bottom__check" style= {{ alignSelf: "center", paddingLeft: "20px"}}>
 						<button onClick={this.toggle} className="homecontent__bottom__check__button" style = {{ fontSize: "15px"}}>CEK PROVIDER-MU</button>
@@ -70,29 +71,13 @@ class InsertPhone extends React.Component {
 		</div>
 
 		<div className="InsertPhone__buttonContainer">
-
 				<Button type="submit" className = "InsertPhone__buttonContainer__buttonBatal" onClick={() => this.cancel()}>Batal</Button>
 				<Button type="submit" disabled={this.state.disabled} className = "InsertPhone__buttonContainer__buttonLanjut" onClick={(e) => this.submitTransaction(e)} >Lanjut</Button>
 
 		</div>
 
-
-      { /*<div className="InsertPhone">
-        <h1 className="InsertPhone__text">Masukkan No Handphone Anda</h1>
-
-        <Form onSubmit={(e) => this.submitTransaction(e)}>
-          <FormGroup>
-            <Label for="selectNumber"></Label>
-
-						<Input type="tel" value={ this.state.phone } onChange={ (e) => this.setState({
-              phone: e.target.value}) } />
-          </FormGroup>
-
-          <Button type="submit" color="primary" size="lg" block>Confirm</Button>
-
-				</Form>
-		  </div> */}
 			<ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
+      <ModalPayment isOpen={this.state.modalPayment} data={this.state} aladinPrice={aladinPrice} toggle={this.togglePayment} />
 		</div>
     )
   }
@@ -116,16 +101,16 @@ class InsertPhone extends React.Component {
 	}
 
 	formatRupiah() {
-		return this.state.productUnlocked.aladinPrice && (
-			FormatRupiah(this.state.productUnlocked.aladinPrice)
+		return aladinPrice && (
+			FormatRupiah(aladinPrice)
 		)
 	}
 
 	percentagePrice() {
-		if (this.state.productUnlocked.aladinPrice === 'undefined' && this.state.productUnlocked.price === 'undefined') {
+		if (aladinPrice === 'undefined' && this.state.productUnlocked.price === 'undefined') {
 			return null
 		} else {
-			return (percentagePrice(this.state.productUnlocked.aladinPrice, this.state.productUnlocked.price))
+			return (percentagePrice(aladinPrice, this.state.productUnlocked.price))
 		}
 	}
 
@@ -136,6 +121,7 @@ class InsertPhone extends React.Component {
 
   componentDidMount() {
     this.props.getPhoneNumbers()
+    aladinPrice = this.props.location.state.aladinPrice
     this.setState({
       productUnlocked: this.props.location.state.productUnlocked,
       phone: this.props.location.state.phoneNumbers[0] ? '' : ''
@@ -155,28 +141,10 @@ class InsertPhone extends React.Component {
     }
   }
 
-  axiosTransaction(){
-    console.log('axios')
-    this.props.setIsLoading(true)
-    console.log('loading')
-    axios({
-      method: 'POST',
-      url: `${process.env.REACT_APP_API_HOST}/payment`,
-      headers: {
-        key: process.env.REACT_APP_KEY,
-        token: localStorage.getItem('token')
-      },
-      data: {
-        amount: this.state.productUnlocked.aladinPrice,
-        productId: this.state.productUnlocked.id,
-        phoneNumber: this.state.phone,
-      },
+  openPayment(){
+    this.setState({
+      modalPayment: !this.state.modalPayment
     })
-    .then(({data}) => {
-      this.props.setIsLoading(false)
-      this.props.history.push(`/payment/${data.id}`)
-    })
-    .catch(err => console.log(err))
   }
 
   submitTransaction(e) {
@@ -191,25 +159,25 @@ class InsertPhone extends React.Component {
         this.setState({
           phone: num.join('')
         },
-        () => {this.axiosTransaction()})
+        () => {this.openPayment()})
       } else if (num[0] + num[1] + num[2] === '+62') {
         num.splice(0, 3, '0')
         this.setState({
           phone: num.join('')
         },
-        () => {this.axiosTransaction()})
+        () => {this.openPayment()})
       } else if (num[0] + num[1] === '62') {
         num.splice(0, 2, '0')
         this.setState({
           phone: num.join('')
         },
-        () => {this.axiosTransaction()})
+        () => {this.openPayment()})
       } else if (num[0] === '8') {
         num.splice(0, 0, '0')
         this.setState({
           phone: num.join('')
         },
-        () => {this.axiosTransaction()})
+        () => {this.openPayment()})
       }
     }
   }
@@ -220,14 +188,12 @@ const mapStateToProps = (state) => {
   return {
 		phoneNumbers: state.userReducer.phoneNumbers,
     selectedProductID: state.productReducer.selectedProductID,
-    isLoading: state.loadingReducer.isLoading
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getPhoneNumbers: () => dispatch(getPhoneNumbers()),
-    setIsLoading: (bool) => dispatch(setIsLoading(bool))
 
   }
 }

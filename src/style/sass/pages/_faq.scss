@@ -91,29 +91,13 @@
 
 @media (min-width: 200px ) and (max-width:767px) {
   .advantage{
+    &__title{
+      font-size: 20px
+    }
     &__content{
       width: 98%;
       font-size: 10px;
       padding-bottom: 5%;
-      &__left{
-        &__1{
-        }
-      }
-      &__mid{
-        &__2{
-
-        }
-        &__3{
-
-        }
-      }
-      &__right{
-        &__4{
-        }
-        &__5{
-
-        }
-      }
     }
   }
 }

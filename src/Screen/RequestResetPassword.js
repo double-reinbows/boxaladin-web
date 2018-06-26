@@ -3,18 +3,17 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { setModalLogin } from '../actions/';
-import { Button, Form, FormGroup, Input, FormFeedback } from 'reactstrap';
+import { Form, FormGroup, Input, FormFeedback } from 'reactstrap';
 import formatEmail from '../utils/formatEmail';
-import Footer from './Components/Footer/Footer';
 
-type State = {
-  email: string,
-  notif: string,
-};
-type Props = {
-  history: Array,
-};
-class RequestResetPassword<Props, State> extends React.Component {
+// type State = {
+//   email: string,
+//   notif: string,
+// };
+// type Props = {
+//   history: Array,
+// };
+class RequestResetPassword<State> extends React.Component {
   state: State = {
     email: '',
     valid: false,
@@ -84,7 +83,7 @@ class RequestResetPassword<Props, State> extends React.Component {
   }
 
   render() {
-    let {buttonText, notif, valid, invalid, feedback} = this.state;
+    let {valid, invalid, feedback} = this.state;
     return (
       <div className="RequestReset">
         <div className="RequestReset__box">
@@ -108,9 +107,7 @@ class RequestResetPassword<Props, State> extends React.Component {
               </FormGroup>
             </Form>
           </div>
-          <a href="#">
             <h2 className="RequestReset__text" onClick={()=>this.openLoginModal()}>atau kembali ke login</h2>
-          </a>
         </div>
       </div>
     )

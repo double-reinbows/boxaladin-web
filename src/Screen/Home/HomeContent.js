@@ -1,22 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import { connect } from 'react-redux';
-
 import { getProducts } from '../../actions/productAction';
-
-
 import ProviderModal from './Modal/ProviderModal';
 import ModalBid from '../Components/Modal/ModalBid'
-
-import LogoIndosat from '../../asset/LandingPage/pulsa/Indosat.svg';
-import LogoSmart from '../../asset/LandingPage/pulsa/Smartfren.svg';
-import LogoTelkomsel from '../../asset/LandingPage/pulsa/Telkomsel.svg';
-import LogoTri from '../../asset/LandingPage/pulsa/Tri.svg';
-import LogoXL from '../../asset/LandingPage/pulsa/XL.svg';
-
 import priceProduct from '../../utils/splitPrice'
 import nameProduct from '../../utils/splitProduct'
-
 class HomeContent extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +14,7 @@ class HomeContent extends Component {
       pulsaValue: '',
       logo: '',
       defaultName: '',
-      defaultId: 0
+      defaultId: 0,
     }
     this.toggleBid = this.toggleBid.bind(this);
   }
@@ -38,11 +26,12 @@ class HomeContent extends Component {
     })
   }
 
-  async toggleBid(pulsa, name, id) {
+  async toggleBid(pulsa, name, id, logo) {
       await this.setState({
       pulsaValue: pulsa,
       defaultName: name,
-      defaultId: id
+      defaultId: id,
+      logo: logo
     })
     await this.setState({
       openModal: !this.state.openModal,
@@ -62,13 +51,12 @@ class HomeContent extends Component {
         this.props.products.filter(data => {
           return data.displayPrice === 25000 && data.category === 'Pulsa' && data.category && data.brand !== 'Axis'
         })
-
         .map((data, i) => {
           const pulsaItems = [
-            {onClick: () => this.toggleBid(`${data.brand}`, `${data.productName}`, `${data.id}`), img: data.brandLogo, alt:`Logo ${data.brand}`},
+            {onClick: () => this.toggleBid(`${data.brand}`, `${data.productName}`, `${data.id}`, data.brandLogo), img: data.brandLogo, alt:`Logo ${data.brand}`},
           ]
           return pulsaItems.map(data => (
-            <button onClick={data.onClick} className="homecontent__bottom__pulsa__button">
+            <button key={i} onClick={data.onClick} className="homecontent__bottom__pulsa__button">
               <img className="homecontent__bottom__pulsa__button__image" src={data.img} alt={data.alt}/>
             </button>
           )
@@ -110,6 +98,7 @@ class HomeContent extends Component {
           toggle={this.toggleBid}
           pulsaValue={this.state.pulsaValue}
           defaultId={this.state.defaultId}
+          logo={this.state.logo}
           defaultProduct={this.priceProduct()}
           defaultName={this.nameProduct()}
         />

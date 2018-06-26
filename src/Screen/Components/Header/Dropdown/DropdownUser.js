@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
-import { Link } from 'react-router-dom'
+import { LinkContainer } from 'react-router-bootstrap';
 
 import ExpandIcon from '../../../../asset/Login/expand.svg'
 
@@ -51,47 +51,47 @@ class DropdownUser extends React.Component {
 
         <DropdownMenu className="DropdownUser__item">
 
+          <LinkContainer className="DropdownUser__inside__link" onClick={(e) => this.changeText('Home')} to="/home">
             <DropdownItem  className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" onClick={(e) => this.changeText('Home')} to="/home">Home</Link>
+              Home
             </DropdownItem>
-          {/* <DropdownItem className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" to="/pulsa">Pulsa</Link>
-          </DropdownItem> */}
+          </LinkContainer>
 
-          {/* <a href="/me"> */}
-          <DropdownItem className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" onClick={(e) => this.changeText('Profile')} to="/me">Profile Saya</Link>
-          </DropdownItem>
-          {/* </a> */}
-
-          {/* <a href="/dompetaladin"> */}
-          <DropdownItem className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" onClick={(e) => this.changeText('Dompet')} to="/dompetaladin">Dompet Aladin</Link>
-          </DropdownItem>
-          {/* </a> */}
-
-          {/* <a href="/game"> */}
-          <DropdownItem className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" onClick={(e) => this.changeText('Game')} to="/game">Ruang Game</Link>
-          </DropdownItem>
-          {/* </a> */}
-
-          {/* <a href="/win"> */}
-          <DropdownItem className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" onClick={(e) => this.changeText('Hasil Game')} to="/gameresult">Hasil Game</Link>
-          </DropdownItem>
-          {/* </a> */}
-
-          {/* <a href="/tabsinvoice"> */}
+          <LinkContainer className="DropdownUser__inside__link" onClick={(e) => this.changeText('Profile')} to="/me">
             <DropdownItem className="DropdownUser__inside">
-              <Link className="DropdownUser__inside__link" onClick={(e) => this.changeText('Invoice')} to="/tabsinvoice">Invoice</Link>
+              Profile
             </DropdownItem>
-          {/* </a> */}
+          </LinkContainer>
 
+          <LinkContainer className="DropdownUser__inside__link" onClick={(e) => this.changeText('Dompet')} to="/dompetaladin">
             <DropdownItem className="DropdownUser__inside">
-              <Link className="DropdownUser__inside__link" onClick={(e) => this.changeText('FAQ')} to="/about">FAQ</Link>
+              Dompet Aladin
             </DropdownItem>
-          
+          </LinkContainer>
+
+          <LinkContainer className="DropdownUser__inside__link" onClick={(e) => this.changeText('Game')} to="/game">
+            <DropdownItem className="DropdownUser__inside">
+              Ruang Game
+            </DropdownItem>
+          </LinkContainer>
+
+          <LinkContainer className="DropdownUser__inside__link" onClick={(e) => this.changeText('Hasil Game')} to="/gameresult">
+            <DropdownItem className="DropdownUser__inside">
+              Hasil Game
+            </DropdownItem>
+          </LinkContainer>
+
+          <LinkContainer className="DropdownUser__inside__link" onClick={(e) => this.changeText('Invoice')} to="/tabsinvoice">
+            <DropdownItem className="DropdownUser__inside">
+              Invoice
+            </DropdownItem>
+          </LinkContainer>
+
+          <LinkContainer className="DropdownUser__inside__link" onClick={(e) => this.changeText('FAQ')} to="/about">
+            <DropdownItem className="DropdownUser__inside">
+              FAQ
+            </DropdownItem>
+          </LinkContainer>
 
           {/* <DropdownItem className="DropdownUser__inside">
             <Link className="DropdownUser__inside__link" to="/claimreward">Claim Reward</Link>

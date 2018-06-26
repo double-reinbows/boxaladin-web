@@ -116,7 +116,6 @@ class Signup extends Component {
      */
     if (this.state.password === '' || this.state.password === undefined) {
       this.setState({
-        password: undefined,
         _vPassword: false,
         notif: "Password Harus diisi",
         password: '',
@@ -124,7 +123,6 @@ class Signup extends Component {
       });
     } else if (!/^[A-Za-z0-9!@#$%^&*()_]{8,20}$/.test(this.state.password)) {
       this.setState({
-        password: undefined,
         _vPassword: false,
         notif : "Password Harus Terdiri Dari 8 Huruf/Angka atau Lebih",
         password: '',
@@ -258,7 +256,7 @@ class Signup extends Component {
 
   render() {
     let {isLoading} = this.props;
-    let {notif, open, phonenumber, email, submit, text, modalOtp, password,
+    let {notif, phonenumber, email, submit, text, modalOtp, password,
       confirm_password, typedEmail, otpForm, modalSuccessOtp} = this.state;
     return (
       <div className="Signup">

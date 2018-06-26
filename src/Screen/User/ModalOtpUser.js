@@ -1,12 +1,12 @@
 import React,{Component} from 'react';
 // import PropTypes from 'prop-types';
-import { Modal, ModalHeader, ModalFooter} from 'reactstrap'
+import { Modal, ModalFooter} from 'reactstrap'
 import axios from 'axios'
 
 class ModalOtpUser extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       otpUser: '',
       notifOtp: '',
       count: 5,
@@ -49,7 +49,6 @@ class ModalOtpUser extends Component {
           notifOtp: "OTP Salah"
         })
       } else if ( dataOtp.data.message === 'phone verified'){
-        console.log('sukses')
         window.location.reload();
       }
     })
@@ -88,14 +87,14 @@ class ModalOtpUser extends Component {
           console.log('otp sent')
         }
       })
-    } 
+    }
     this.timer = setInterval(() => {
       this.setState({
         time: this.state.time - 1,
         disabled: true,
         notifCount: `${this.state.count} OTP Sisa Yang Dapat Dikirim`
       })
-  
+
       if(this.state.time <= 0) {
         clearInterval(this.timer);
         this.setState({
@@ -106,12 +105,14 @@ class ModalOtpUser extends Component {
     }, 1000)
   }
 
-  render() { 
-    return ( 
+  render() {
+    return (
       <Modal ariaHideApp={false} isOpen={this.props.openOtpUser} className="modalOtpUser">
         <form onSubmit={e => this.sendOtp(e)}>
           <div className="modalOtpUser__container">
-          <ModalHeader className="modalOtpUser__modalHeader" toggle={this.props.buttonToggle}></ModalHeader>
+          <div className="modal__check__container__header">
+            <button className="modal__check__button" onClick={this.props.buttonToggle}>X</button>
+          </div>
             <div>
               <label className="modalOtpUser__label">Anda Akan di Missed Call Oleh Sistem Kami</label>
               <label className="modalOtpUser__label">Masukkan 4 Angka Terakhir Dari no yang Menelpon Anda</label>
