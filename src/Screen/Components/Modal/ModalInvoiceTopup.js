@@ -33,7 +33,7 @@ export default class ModalInvoiceTopup extends Component <{}> {
           </div>
           <div className="modal__invoice__container__detail">
             <label className="modal__invoice__detailText">{this.keyAmount()} Kunci Aladin</label>
-            <label className="modal__check__label">{this.formatRupiah()}</label>
+            <label className="modal__invoice__detailText">{this.formatRupiah()}</label>
           </div>
       </div>
       </Modal>

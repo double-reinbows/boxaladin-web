@@ -191,19 +191,43 @@ class Bidding extends React.Component {
       const productsRef = firebase.database().ref().child(`${process.env.REACT_APP_FIREBASE_PRODUCT}`)
       const productRef = productsRef.child(productId)
       productRef.once('value', snap => {
+
         if (snap.val().aladinPrice > 10000){
           productRef.update({
             watching: snap.val().watching +1,
             aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
+          })
+          axios({
+            method: 'POST',
+            url: `${process.env.REACT_APP_API_HOST}/logbid`,
+            headers: {
+              token: localStorage.getItem('token'),
+            },
+            data: {
+              productId: productId,
+              priceBefore: snap.val().aladinPrice  ,
+              priceAfter: snap.val().aladinPrice - snap.val().decreasePrice
+            }
           })
         }
         else if (snap.val().aladinPrice === 10000 || snap.val().aladinPrice <= 10000 ) {
           productRef.update({
             watching: snap.val().watching +1,
           })        
+          axios({
+            method: 'POST',
+            url: `${process.env.REACT_APP_API_HOST}/logbid`,
+            headers: {
+              token: localStorage.getItem('token'),
+            },
+            data: {
+              productId: productId,
+              priceBefore: snap.val().aladinPrice  ,
+              priceAfter: snap.val().aladinPrice - snap.val().decreasePrice
+            }
+          })
         }
       })
-
       productRef.on('value', snap => {
         propsAladinPrice = snap.val().aladinPrice
         let productValue = {
