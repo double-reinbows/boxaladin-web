@@ -25,8 +25,8 @@ class Invoice extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     return (
-
     <div className="invoice">
       <div className="invoice__container">
         {this.showInvoice()}
@@ -63,23 +63,9 @@ class Invoice extends React.Component {
               const time = moment()
               const now = time.valueOf()
 
-              const limitTime = moment(data.createdAt, moment.ISO_8601).add(12, 'hours')
+              const limitTime = moment(data.createdAt, moment.ISO_8601).add(6, 'hours')
               const limitTimeFinal = limitTime.valueOf()
-              if (now <= limitTimeFinal) {
-              return (
-              <tr key={idx}>
-                <th scope="row">{idx+1}</th>
-                <td>{moment(data.createdAt, moment.ISO_8601).format('L, h:mm:ss a')}</td>
-                <td>{ data.product ? data.product.productName : data.description }</td>
-                <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
-                <td>{ data.number ? data.number : (<h3>Anda Tidak Memasukkan no Hp</h3>) }</td>
-                <td>{ data.payment ? data.payment.status : 'GRATIS' }</td>
-                <td>{ data.status === 'PENDING'  ? (
-                  <Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button>
-                ) : null}</td>
-              </tr>
-            )
-              } else {
+              if (data.payment.status === 'CANCELLED') {
                 return (
                   <tr key={idx}>
                     <th scope="row">{idx+1}</th>
@@ -88,9 +74,33 @@ class Invoice extends React.Component {
                     <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
                     <td>{ data.number ? data.number : (<h3>Anda Tidak Memasukkan no Hp</h3>) }</td>
                     <td>{ data.payment ? data.payment.status : 'GRATIS' }</td>
-                    <td>{ data.status === 'PENDING'  ? (
-                  <label>Expired</label>
-                ) : null}</td>
+                    <td></td>
+                  </tr>
+                )
+              } else if (now <= limitTimeFinal) {
+                return (
+                <tr key={idx}>
+                  <th scope="row">{idx+1}</th>
+                  <td>{moment(data.createdAt, moment.ISO_8601).format('L, h:mm:ss a')}</td>
+                  <td>{ data.product ? data.product.productName : data.description }</td>
+                  <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
+                  <td>{ data.number ? data.number : (<h3>Anda Tidak Memasukkan no Hp</h3>) }</td>
+                  <td>{ data.payment ? data.payment.status : 'GRATIS' }</td>
+                  <td>{ data.status === 'PENDING'  ? (
+                    <Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button>
+                  ) : null}</td>
+                </tr>
+              )
+                } else {
+                return (
+                  <tr key={idx}>
+                    <th scope="row">{idx+1}</th>
+                    <td>{moment(data.createdAt, moment.ISO_8601).format('L, h:mm:ss a')}</td>
+                    <td>{ data.product ? data.product.productName : data.description }</td>
+                    <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
+                    <td>{ data.number ? data.number : (<h3>Anda Tidak Memasukkan no Hp</h3>) }</td>
+                    <td>{ data.payment ? data.payment.status : 'GRATIS' }</td>
+                    <td>{ data.status === 'PENDING'  ? (<label>Expired</label>) : null}</td>
 
                   </tr>
                 )
