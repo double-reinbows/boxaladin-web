@@ -29,6 +29,10 @@ class Bidding extends React.Component {
     }
 
     this.handleBack()
+    this.handler = (ev) => {
+      ev.preventDefault();
+      alert('WOAH!');
+    }
     localStorage.setItem('selectedProductId', this.props.selectedProductID)
   }
 
@@ -124,7 +128,11 @@ class Bidding extends React.Component {
   }
 
   componentDidMount() {
-    this.watchProductPrice(this.props.selectedProductID)    
+    this.watchProductPrice(this.props.selectedProductID)
+    //TODO: handle user closing tab/window
+    // setTimeout(() => {
+    //   this.stopWatchProductPrice(this.props.selectedProductID);
+    // }, 15000);
     this.props.getPhoneNumbers()
   }
 
@@ -134,7 +142,7 @@ class Bidding extends React.Component {
   }
 
   componentWillUnmount() {
-    this.stopWatchProductPrice(this.props.selectedProductID)
+    this.stopWatchProductPrice(this.props.selectedProductID) //handles user going to different page
     localStorage.removeItem('selectedProductId')
   }
 
@@ -167,7 +175,7 @@ class Bidding extends React.Component {
         productId: this.props.selectedProductID
       },
     })
-    
+
     this.props.history.push('/insertphone', {
       productUnlocked: this.state.productUnlocked,
       aladinPrice: updatePrice,
@@ -213,7 +221,7 @@ class Bidding extends React.Component {
         else if (snap.val().aladinPrice === 10000 || snap.val().aladinPrice <= 10000 ) {
           productRef.update({
             watching: snap.val().watching +1,
-          })        
+          })
           axios({
             method: 'POST',
             url: `${process.env.REACT_APP_API_HOST}/logbid`,
@@ -264,7 +272,8 @@ class Bidding extends React.Component {
 
 		} else if (this.state.count <= 0 && this.state.count !== prevCount) {
       // this.stopWatchProductPrice(this.props.selectedProductID)
-      alert('Waktu bidding sudah habis')
+      // alert('Waktu bidding sudah habis')
+      //TODO: send a prop to /home that tells it to tell the User their timer has expired
       this.props.history.push('/home')
 
 		} else if (this.state.count !== this.state.initCount ) {
