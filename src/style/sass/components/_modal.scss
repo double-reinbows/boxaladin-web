@@ -689,15 +689,47 @@
 
 
 .modal{
+  &__label{
+    &__header{
+      font-size: 25px
+    }
+    &__content{
+      padding: 1%
+    }
+    &__warningBca{
+      font-size: 13px
+    }
+  }
   &__method{
+    &__ButtonGroup{
+      width: 43%,
+    }
+    &__Button{
+      background-color: white;
+      color: black;
+      padding-top: 4%;
+      padding-bottom: 4%;
+      font-size: 14px;
+      &:hover{
+        background-color: #FFCD05;
+        color: black;
+      }
+      &:focus{
+        background-color: yellow;
+      }
+      &:active{
+        background-color: yellow;
+      }
+    }
     margin: 1.75rem auto;
-    margin-top: 25%;
+    margin-top: 17%;
     border-radius: 2px;
-    max-width: 40%;
+    max-width: 26%;
     &__container{
       text-align: center;
-      background-color: lightgrey;
+      background-color: white;
       font-size: 15px;
+      border: 1px solid;
     }
     &__header{
       display: flex;
@@ -705,8 +737,10 @@
       &__button{
         cursor: pointer;
         width: 7%;
-        background-color: lightgrey;
+        background-color: white;
         border: 1px solid grey;
+        border-top: none;
+        border-right: none;
         color: #FFCD05;
       }
     }
@@ -714,7 +748,6 @@
       display: flex;
       justify-content: flex-start;
       &__container{
-        padding-left: 30%;
       }
       &__radio{
         height: 20px;
@@ -729,9 +762,9 @@
         cursor: pointer;
         width: 20%;
         font-size: 15px;
-        background-color: white;
+        background-color: #FFCD05;
         border: 2px solid #FFCD05;
-        border-radius: 5px;
+        margin-top: 0;
       }
     }
   }
