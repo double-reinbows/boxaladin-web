@@ -17,7 +17,7 @@ class ModalPayment extends Component{
       bank: '',
       notif: '',
       disabledCancel: false,
-      time: 20
+      time: 25
     }
   }
   static propTypes = {
@@ -95,25 +95,6 @@ class ModalPayment extends Component{
     )
   }
 
-  cancelInterval() {
-    this.timer = setInterval(() => {
-      this.setState({
-        time: this.state.time - 1,
-        disabledCancel: true,
-      })
-
-      if (this.state.time <= 0) {
-        clearInterval(this.timer);
-        this.props.setIsLoading(false)
-        console.log('aktif');
-        this.setState({
-          time: 20,
-          disabledCancel: false
-        })
-      }
-    }, 1000);
-  }
-
   notifDuplicate() {
     if (this.state.notif === true) {
       return (
@@ -121,8 +102,8 @@ class ModalPayment extends Component{
         <div>
           <b>Pembayaran Anda Dengan No VA ini Belum diselesaikan</b>
           <br />
-          <button onClick={() => this.cancelInvoice()} disabled = {this.state.disabledCancel}><a className="bidding__notif">Hapus</a></button>
-          <button><a href="http://localhost:5000/tabsinvoice" target="_blank" rel="noopener noreferrer" className="bidding__notif">Invoice</a></button>
+          <button className="modal__method__content__button" onClick={() => this.cancelInvoice()} disabled = {this.state.disabledCancel}>Hapus</button>
+          <button className="modal__method__content__button" ><a href="http://localhost:5000/tabsinvoice" target="_blank" rel="noopener noreferrer" className="bidding__notif">Invoice</a></button>
         </div>
       )
     } else {
@@ -153,7 +134,7 @@ class ModalPayment extends Component{
           clearInterval(this.timer);
           this.props.setIsLoading(false)
           this.setState({
-            time: 15
+            time: 25
           })
         }
       }, 1000);
