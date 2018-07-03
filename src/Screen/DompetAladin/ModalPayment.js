@@ -4,7 +4,8 @@ import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import axios from 'axios'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom' 
+import {withRouter} from 'react-router-dom'
+import { Button, ButtonGroup } from 'reactstrap'
 
 import Loading from '../Components/Loading/'
 import { setIsLoading } from '../../actions/'
@@ -15,7 +16,9 @@ class ModalPayment extends Component{
     this.state = {
       bank: '',
       notif: '',
-      disabled: true
+      disabled: true,
+      disabledCancel: false,
+      time: 25
     }
   }
   static propTypes = {
@@ -50,7 +53,7 @@ class ModalPayment extends Component{
         if (result.data.error_code === "DUPLICATE_CALLBACK_VIRTUAL_ACCOUNT_ERROR") {
           this.props.setIsLoading(false)
           this.setState({
-            notif: "Pembayaran Anda Dengan No VA ini Belum diselesaikan"
+            notif: true
           })
         } else {
           this.props.setIsLoading(false)
@@ -84,13 +87,59 @@ class ModalPayment extends Component{
       notif: '',
       bank: '',
       disabled: true
-    }, 
+    },
   () => this.props.toggle()
     )
   }
 
-  render() { 
-    return (  
+  notifDuplicate() {
+    if (this.state.notif === true) {
+      return (
+        <div>
+          <b>Pembayaran Anda Dengan No VA ini Belum diselesaikan</b>
+          <br />
+          <button className="modal__method__content__button" onClick={() => this.cancelInvoice()} disabled = {this.state.disabledCancel}>Hapus</button>
+          <button className="modal__method__content__button" ><a href="http://localhost:5000/tabsinvoice" target="_blank" rel="noopener noreferrer" className="bidding__notif">Invoice</a></button>
+        </div>
+      )
+    } else {
+      return null
+    }
+  }
+
+  cancelInvoice() {
+    axios({
+      method: 'DELETE',
+      url: `${process.env.REACT_APP_API_HOST}/virtualaccount`,
+      headers: {
+        token: localStorage.getItem('token')
+      },
+      data: {
+        bank: this.state.bank
+      }
+    })
+    .then((data) => {
+      this.timer = setInterval(() => {
+        this.props.setIsLoading(true)
+        this.setState({
+          time: this.state.time - 1,
+          disabledCancel: true,
+        })
+
+        if (this.state.time <= 0) {
+          clearInterval(this.timer);
+          this.props.setIsLoading(false)
+          this.setState({
+            time: 0
+          })
+        }
+      }, 1000);
+    })
+    .catch(err => console.log(err))
+  }
+
+  render() {
+    return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">
           <div className="modal__method__header">
@@ -99,26 +148,32 @@ class ModalPayment extends Component{
           <div>
             <label>Silahkan Pilih Salah Satu Bank Untuk Metode Pembayaran Virtual Account</label>
             <div className="modal__method__content__container" onChange={this.setBank}>
-              <div className="modal__method__content">
-                <input className="modal__method__content__radio" type="radio" value="BNI" name='bank'/> BNI
-              </div>
-              <div className="modal__method__content">
-                <input className="modal__method__content__radio" type="radio" value="BRI" name='bank'/> BRI
-              </div>
-              <div className="modal__method__content">
-                <input className="modal__method__content__radio" type="radio" value="MANDIRI" name='bank'/> MANDIRI
-              </div>
-              <div className="modal__method__content">
-                <input className="modal__method__content__radio" type="radio" value="Alfamart" name='bank'/> ALFAMART
-              </div>
+            <ButtonGroup className="modal__method__ButtonGroup" vertical>
+              <Button className="modal__method__Button" onClick={() => this.setState({
+                bank: 'BNI',
+                disabled: false
+              })}>BNI</Button>
+              <Button className="modal__method__Button" onClick={() => this.setState({
+                bank: 'BRI',
+                disabled: false
+              })} >BRI</Button>
+              <Button className="modal__method__Button" onClick={() => this.setState({
+                bank: 'MANDIRI',
+                disabled: false
+              })} >Mandiri</Button>
+              <Button className="modal__method__Button" onClick={() => this.setState({
+                bank: 'Alfamart',
+                disabled: false
+              })} >Alfamart</Button>
+            </ButtonGroup>
+            </div>
             </div>
             <div>
-              <label className="alert__invoice"><b>{this.state.notif}</b></label>
+              <label className="alert__invoice"><b>{this.notifDuplicate()}</b></label>
             </div>
             <button disabled={this.state.disabled} className="modal__method__content__button" onClick={this.axiosTransaction}>Submit</button>
             <Loading isLoading={ this.props.isLoading } />
           </div>
-        </div>
       </Modal>
     )
   }

@@ -98,7 +98,6 @@ class ModalPayment extends Component{
   notifDuplicate() {
     if (this.state.notif === true) {
       return (
-
         <div>
           <b>Pembayaran Anda Dengan No VA ini Belum diselesaikan</b>
           <br />
