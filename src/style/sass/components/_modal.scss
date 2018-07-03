@@ -5,16 +5,13 @@
 }
 
 .modal{
-
   &__invoice{
-
     &__detailText{
-      font-size: 30px
+      font-size: 20px
     }
-
     &__container{
       background-color: lightgrey;
-      width: 48%;
+      font-size: 20px;
       margin: auto;
       &__detail{
         display: flex;
@@ -23,7 +20,6 @@
     }
 
     &__header{
-      font-size: 30px;
       padding-left: 4%;
       &__label{
         border-bottom: 4px orange solid
@@ -80,6 +76,13 @@
       }
     }
   }
+}
+
+@media (min-width: 500px ){
+  .modal__invoice__container{
+    width: 70%;
+  }
+
 }
 
 .modal{
@@ -428,7 +431,6 @@
     }
     &__button{
       cursor: pointer;
-      width: 3%;
       background-color: lightgrey;
       border: 1px solid grey;
       color: #FFCD05;

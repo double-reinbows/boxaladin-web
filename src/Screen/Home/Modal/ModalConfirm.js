@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import Modal from 'react-modal'
-import {withRouter} from 'react-router-dom' 
+import {withRouter} from 'react-router-dom'
 import { connect } from 'react-redux';
 
 import { selectProductID } from '../../../actions/productAction';
@@ -9,7 +9,7 @@ import { selectProductID } from '../../../actions/productAction';
 class ModalConfirm extends Component {
   constructor(props) {
     super(props);
-    this.state = {  
+    this.state = {
     }
   }
 
@@ -26,6 +26,9 @@ class ModalConfirm extends Component {
           this.props.history.push('/bidding')
           axios({
             method: 'PUT',
+            headers: {
+              token: localStorage.getItem('token'),
+            },
             url: `${process.env.REACT_APP_API_HOST}/logopen`,
             data: {
               productId: this.props.selectedProductID
@@ -37,8 +40,8 @@ class ModalConfirm extends Component {
       })
   }
 
-  render() { 
-    return (  
+  render() {
+    return (
       <Modal isOpen={this.props.open} className="modal__confirm">
         <div className="modal__confirm__container">
           <div className="modal__confirm__label">
@@ -69,4 +72,3 @@ const mapDispatchToProps = (dispatch) => {
 const connectComponent = connect(mapStateToProps, mapDispatchToProps)(ModalConfirm)
 
 export default withRouter(connectComponent)
-
