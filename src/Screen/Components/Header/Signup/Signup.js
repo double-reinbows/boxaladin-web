@@ -20,7 +20,7 @@ class Signup extends Component {
       typedEmail: '',
       modalOtp: false,
       state: null,
-      text: 'Silakan tunggu bbrp saat untuk panggilan selesai.',
+      text: '',
       submit: null,
       password: '',
       confirm_password: '',
@@ -235,7 +235,7 @@ class Signup extends Component {
 
   resendOtp() {
     this.setState({
-      text: 'Silakan tunggu sampai miscallnya selesai sebelum masukkan kode.',
+      text: 'Silakan Angkat No yang Menelpon Anda.',
       submit: null,
       otpForm: false,
     });
