@@ -9,10 +9,8 @@ import {
 
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
-
 import {logoutAction} from '../../../actions'
 
-import logo from '../../../asset/Logo/LogoBig.svg'
 import DropdownUser from './Dropdown/DropdownUser'
 
 import ModalLogin from './Login/ModalLogin'
@@ -37,7 +35,7 @@ class NavBar extends React.Component {
       <div>
         <Navbar light expand="md" className="HeaderTop">
           <Link to="/home" className="logoHeader">
-            <img src={logo} alt="logo" className="BoxAladinLogo-Big" href="/home"/>
+            <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Logo/LogoBig.svg' alt="logo" className="BoxAladinLogo-Big" href="/home"/>
           </Link>
 
           <NavbarToggler onClick={this.toggle} className="IconBurger"/>
@@ -53,7 +51,7 @@ class NavBar extends React.Component {
 
 
           <Link to="/home" className="HeaderTopM__logo">
-            <img src={logo} alt="logo" className="BoxAladinLogo-Big" href="/home" />
+            <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Logo/LogoBig.svg' alt="logo" className="BoxAladinLogo-Big" href="/home" />
           </Link>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

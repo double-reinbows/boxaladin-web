@@ -1,13 +1,5 @@
 //@flow
 import React, {Component} from 'react';
-import CheckIcon from '../../asset/LandingPage/home/checkmark.png'
-import MoneyIcon from '../../asset/LandingPage/home/Group 3.svg'
-import ClockIcon from '../../asset/LandingPage/home/clock-circular-outline.png'
-import HandphoneIcon from '../../asset/LandingPage/home/handphone.png'
-import CardIcon from '../../asset/LandingPage/home/credit-card.png'
-import CoinIcon from '../../asset/LandingPage/home/token.png'
-import DangerIcon from '../../asset/LandingPage/home/danger.png'
-
 
 export default class BannerHome extends Component <{}> {
   render() {
@@ -20,7 +12,7 @@ export default class BannerHome extends Component <{}> {
           <div>
             <div className="BannerText__content">
               <div className="BannerText__icon__left">
-                <img src={CheckIcon} alt="Check Icon" className="BannerText__icon__image"/>
+                <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Home/checkmark.png' alt="Check Icon" className="BannerText__icon__image"/>
               </div>
               <div style={{ paddingTop: '2%' }}>
                 <h3 className="BannerText__content__title">Registrasi</h3>
@@ -37,7 +29,7 @@ export default class BannerHome extends Component <{}> {
                 </div>
               </div>
               <div className="BannerText__icon__right">
-                <img src={MoneyIcon} alt="Money Icon" className="BannerText__icon__image"/>
+                <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Home/Group+3.svg' alt="Money Icon" className="BannerText__icon__image"/>
               </div>
             </div>
             <div className="BannerText__content" style={{ paddingTop: '2%'}}>
@@ -59,12 +51,12 @@ export default class BannerHome extends Component <{}> {
                 </div>
               </div>
               <div className="BannerText__icon__right">
-                <img src={ClockIcon} alt="Clock Icon" className="BannerText__icon__image"/>
+                <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Home/clock-circular-outline.png' alt="Clock Icon" className="BannerText__icon__image"/>
               </div>
             </div>
             <div className="BannerText__content">
               <div className="BannerText__icon__left">
-                <img src={HandphoneIcon} alt="Phone Icon" className="BannerText__icon__image"/>
+                <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Home/handphone.png' alt="Phone Icon" className="BannerText__icon__image"/>
               </div>
               <div>
                 <h3 className="BannerText__content__title">Masukkan Nomor Hape</h3>
@@ -81,12 +73,12 @@ export default class BannerHome extends Component <{}> {
                 </div>
               </div>
               <div className="BannerText__icon__right">
-                <img src={CardIcon} alt="Card Icon" className="BannerText__icon__image" style={{ paddingTop: '11%' }}/>
+                <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Home/credit-card.png' alt="Card Icon" className="BannerText__icon__image" style={{ paddingTop: '11%' }}/>
               </div>
             </div>
             <div className="BannerText__content">
               <div className="BannerText__icon__left">
-                <img src={CoinIcon} alt="Coin Icon" className="BannerText__icon__image"/>
+                <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Home/token.png' alt="Coin Icon" className="BannerText__icon__image"/>
               </div>
               <div>
                 <h3 className="BannerText__content__title">Ruang Game</h3>
@@ -99,7 +91,7 @@ export default class BannerHome extends Component <{}> {
 
           <div className="BannerText__content__footer">
             <div className="BannerText__icon__footer">
-              <img src={DangerIcon} alt="Danger Icon" className="BannerText__icon__danger"/>
+              <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Home/danger.png' alt="Danger Icon" className="BannerText__icon__danger"/>
             </div>
             <label><b>HATI-HATI KETAGIHAN</b></label>
           </div>
