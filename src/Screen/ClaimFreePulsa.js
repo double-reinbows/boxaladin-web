@@ -10,13 +10,13 @@ import {
 import axios from 'axios';
 
 import { getProducts } from '../actions/productAction';
+import { detectProvider } from '../utils/phone'
 
 class ClaimFreePulsa extends React.Component<Props, State> {
 
 	state = {
     win: this.props.history.location.state || null,
     phone: null,
-    pulsaCode: null
   }
 
 	submit(e) {
@@ -24,9 +24,7 @@ class ClaimFreePulsa extends React.Component<Props, State> {
 
     if (this.state.phone === null) {
       return alert('Harus masukan nomor HP.')
-    // } else if (this.state.pulsaCode === null) {
-    //   return alert('Harus pilih pulsa.')
-    } else {
+    } else if(detectProvider(this.state.phone)) {
       var num = this.state.phone.split('')
       if (num[0] === '0') {
         num.splice(0, 1, '0')
@@ -53,6 +51,9 @@ class ClaimFreePulsa extends React.Component<Props, State> {
         },
         () => {this.claimPulsa()})
       }
+    } else {
+      return alert('Nomor Hp Tidak Sesuai Provider')
+
     }
   }
 
@@ -65,14 +66,12 @@ class ClaimFreePulsa extends React.Component<Props, State> {
         // key: process.env.REACT_APP_KEY
       },
       data: {
-        // productId: this.state.productId,
         phone: this.state.phone,
-        // pulsaCode: this.state.pulsaCode,
         winToken: this.state.win,
-        // authentication: process.env.REACT_APP_GAME_PASSWORD
       }
     })
     .then(({data}) => {
+      console.log('data', data)
 			if (data === 'Error') {
 				alert('Ada masalah dengan nomor yang Anda masukkan. Silakan hubungi CS di LINE @boxaladin');
 			} else {
@@ -106,7 +105,7 @@ class ClaimFreePulsa extends React.Component<Props, State> {
 
         <Form onSubmit={ (e) => this.submit(e) }>
           <FormGroup>
-            <Input onChange={(e) => this.setState({ phone: e.target.value })} type="text" placeholder="Nomor HP" />
+            <Input onChange={(e) => this.setState({ phone: e.target.value })} type="number" placeholder="Nomor HP" />
           </FormGroup>
 
           {/* <FormGroup>
