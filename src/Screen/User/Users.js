@@ -440,13 +440,10 @@ class User extends React.Component {
 						addPhoneModal: false,
 						notif: ''
 					})
+					//TODO: this should read from message too
 				} else if (response.data === 'duplicate number') {
 					this.setState({
 						notif: 'No Hp Sudah Ada',
-					})
-				} else if (response.data.message === 'already use') {
-					this.setState({
-						notif: response.data.message,
 					})
 				}
 			})
