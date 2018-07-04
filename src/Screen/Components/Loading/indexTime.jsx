@@ -11,8 +11,8 @@ const LoadingTime = ({ isLoadingTime, timer }: Props) => {
   return (
     isLoadingTime === true ? (
       <div className="loader__container">
+        <h1 style = {{ fontWeight: 'bold', color: 'white' }}>{timer}</h1>
         <div className="loader" />
-        <h1>{timer}</h1>
       </div>
     ) : null
   )
