@@ -3,11 +3,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Form, FormGroup, Input  } from 'reactstrap'
 import axios from 'axios'
-
-import Koin from '../../../src/asset/Dompet Aladin/Koin.png'
-import Key from '../../../src/asset/Dompet Aladin/Key.png'
-import Troly from '../../../src/asset/Dompet Aladin/troly.png'
-import Switch from '../../../src/asset/Dompet Aladin/circle.png'
 import ModalPayment from './ModalPayment'
 // import TopUpKey from './TopupKey'
 
@@ -40,14 +35,14 @@ class Dompet extends React.Component {
             <div className="dompet__content__info">
               <label>Kunci</label>
               <div>
-                <img className="dompet__content__info__icon" src={Key} alt="key" />
+                <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/Key.png' alt="key" />
                 <label>: {this.props.userInfo.aladinKeys}</label>
               </div>
             </div>
             <div className="dompet__content__info">
               <label>Koin</label>
               <div>
-                <img className="dompet__content__info__icon" src={Koin} alt="koin" />
+                <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/Koin.png' alt="koin" />
                 <label className="dompet__content__info__label">: {this.props.userInfo.coin}</label>
               </div>
             </div>
@@ -99,7 +94,7 @@ class Dompet extends React.Component {
             </FormGroup>
             <FormGroup>
                 <button className="dompet__content__key__button" color="primary" type="submit">
-                <img className="dompet__content__info__icon" src={Troly} alt="troly" />
+                <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/troly.png' alt="troly" />
                 Beli</button>
             </FormGroup>
           </Form>
@@ -151,7 +146,7 @@ class Dompet extends React.Component {
             <label style = {{fontSize: "18px"}}>1 Kunci Aladin = 5 Koin</label>
             <FormGroup>
                 <button className="dompet__content__key__button" color="primary" type="submit">
-                <img className="dompet__content__info__icon" src={Switch} alt="Switch" />
+                <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/circle.png' alt="Switch" />
                 Tukar</button>
             </FormGroup>
           </Form>

@@ -3,21 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Modal, ModalHeader, Form, FormGroup, Input } from 'reactstrap';
 import axios from 'axios';
-
-import Coin from '../../src/asset/Game/win/token.png';
-import Star from '../../src/asset/Game/win/star.svg';
-import Key from '../../src/asset/Dompet Aladin/Key.png';
-
-import win1 from '../../src/asset/Game/win/win1.png';
-import win2 from '../../src/asset/Game/win/win2.png';
-import win3 from '../../src/asset/Game/win/win3.png';
-import win4 from '../../src/asset/Game/win/win4.png';
-import win5 from '../../src/asset/Game/win/win5.png';
-
-import WinSfx from '../../src/asset/sound/Win-sfx.mp3';
-import LoseSfx from '../../src/asset/sound/Lose-sfx.mp3';
-
-
 import { getUser } from '../actions/userAction';
 import { getUserWins } from '../actions/winAction';
 
@@ -152,9 +137,9 @@ class Game extends React.Component<Props, State> {
 							</div>
 						<label className="alert__game">{this.state.notif}</label>
 							<div  className="game__slotCoin">
-								<img className="game__slotCoin__icon" src={Key} alt="coin"/>
+								<img className="game__slotCoin__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/Key.png' alt="coin"/>
 								<label> <b> : {this.props.userInfo.aladinKeys}</b></label>
-								<img className="game__slotCoin__icon" src={Coin} alt="coin"/>
+								<img className="game__slotCoin__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Game/token.png' alt="coin"/>
 								<label> <b> : {this.props.userInfo.coin}</b></label>
 							</div>
 							<div className="game__slotItems">
@@ -196,27 +181,27 @@ class Game extends React.Component<Props, State> {
 
 					<div className="game__prize__row">
 						<div className="game__prize__container">
-							<img className="game__prize__img" src={win1} alt="coin" />
+							<img className="game__prize__img" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Game/win1.png' alt="coin" />
 							<text>{prize1}</text>
 						</div>
 
 						<div className="game__prize__container">
-							<img className="game__prize__img" src={win2} alt="coin" />
+							<img className="game__prize__img" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Game/win2.png' alt="coin" />
 							<text>{prize2}</text>
 						</div>
 
 						<div className="game__prize__container">
-							<img className="game__prize__img" src={win3} alt="coin" />
+							<img className="game__prize__img" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Game/win3.png' alt="coin" />
 							<text>{prize3}</text>
 						</div>
 
 						<div className="game__prize__container">
-							<img className="game__prize__img" src={win4} alt="coin" />
+							<img className="game__prize__img" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Game/win4.png' alt="coin" />
 							<text>{prize4}</text>
 						</div>
 
 						<div className="game__prize__container">
-							<img className="game__prize__img" src={win5} alt="coin" />
+							<img className="game__prize__img" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Game/win5.png' alt="coin" />
 							<text>{prize5}</text>
 						</div>
 					</div>
@@ -228,7 +213,7 @@ class Game extends React.Component<Props, State> {
 							<div className="gameModal__Container">
 
 								<div className="gameModal__Container__item">
-									<img className="gameModal__icon" src={Star} alt="Star" />
+									<img className="gameModal__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Game/star.svg' alt="Star" />
 								</div>
 
 								<label className="gameModal__Container__text">
@@ -247,8 +232,8 @@ class Game extends React.Component<Props, State> {
 							</div>
 					</Modal>
 
-				{ this.state.loseSfx ? <audio src={LoseSfx} autoPlay /> : null }
-				{ this.state.modalWin ? <audio src={WinSfx} autoPlay /> : null }
+				{ this.state.loseSfx ? <audio src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Game/Lose-sfx.mp3' autoPlay /> : null }
+				{ this.state.modalWin ? <audio src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Game/Win-sfx.mp3' autoPlay /> : null }
 			</div>
 		)
 	}

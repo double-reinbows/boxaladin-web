@@ -3,13 +3,6 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import * as firebase from 'firebase'
 
-import timer from '../../asset/bidding/timer.svg'
-import watch from '../../asset/bidding/watch.svg'
-import coin  from '../../asset/bidding/coins.png'
-import buy from '../../asset/bidding/cart-of-ecommerce.png'
-import cancel from '../../asset/bidding/cancel.png'
-
-
 import Loading from '../Components/Loading/'
 import ModalText from '../Components/Modal/ModalText'
 
@@ -64,7 +57,7 @@ class Bidding extends React.Component {
 
             <div className="bidding__3__col">
               <div>
-                <img src={timer} className="bidding__3__col__logoTimer" alt="Logo Timer"/>
+                <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/timer.svg' className="bidding__3__col__logoTimer" alt="Logo Timer"/>
               </div>
               <div>
                 <label className="bidding__3__col__text">{this.state.count < 10 ? `00:0${this.state.count}` : `00:${this.state.count}`} detik</label>
@@ -73,7 +66,7 @@ class Bidding extends React.Component {
 
             <div className="bidding__3__col">
               <div>
-                <img src={watch} className="bidding__3__col__logoWatch" alt="Logo Watch"/>
+                <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/timer.svg' className="bidding__3__col__logoWatch" alt="Logo Watch"/>
               </div>
               <div>
                 {watchComponent}
@@ -85,7 +78,7 @@ class Bidding extends React.Component {
           <div className="bidding__2">
 
           <div className="biddingIconPriceStyle">
-            <img src={coin} className="bidding__3__col__logoPrice" alt="Logo Watch"/>
+            <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/coins.png' className="bidding__3__col__logoPrice" alt="Logo Watch"/>
           </div>
 
             <div className="bidding__2__col2">
@@ -103,12 +96,12 @@ class Bidding extends React.Component {
           <div className="bidding__container__button">
           <div className="bidding__4">
             <button className="bidding__4__btnBuy" onClick={() => this.buy()}>
-              <img src={buy} className="bidding__3__col__logoBuy" alt="Logo Watch"/>Beli
+              <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/cart-of-ecommerce.png' className="bidding__3__col__logoBuy" alt="Logo Watch"/>Beli
             </button>
           </div>
 
           <div className="bidding__5">
-            <button className="bidding__5__btnCancel" onClick={() => this.cancel()}><img src={cancel} className="bidding__3__col__logoCancel" alt="Logo Watch"/>Batal</button>
+            <button className="bidding__5__btnCancel" onClick={() => this.cancel()}><img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/cancel.png' className="bidding__3__col__logoCancel" alt="Logo Watch"/>Batal</button>
           </div>
           </div>
         </div>
@@ -121,7 +114,7 @@ class Bidding extends React.Component {
   toggle = () => {
     this.props.history.push('/home')
   }
- 
+
   formatRupiah() {
     return propsAladinPrice && (
       FormatRupiah(propsAladinPrice)
@@ -141,7 +134,7 @@ class Bidding extends React.Component {
   }
 
   componentDidMount() {
-    this.watchProductPrice(this.props.selectedProductID)    
+    this.watchProductPrice(this.props.selectedProductID)
     this.props.getPhoneNumbers()
   }
 
@@ -184,7 +177,7 @@ class Bidding extends React.Component {
         productId: this.props.selectedProductID
       },
     })
-    
+
     this.props.history.push('/insertphone', {
       productUnlocked: this.state.productUnlocked,
       aladinPrice: updatePrice,
@@ -229,7 +222,7 @@ class Bidding extends React.Component {
         else if (snap.val().aladinPrice === 10000 || snap.val().aladinPrice <= 10000 ) {
           productRef.update({
             watching: snap.val().watching +1,
-          })        
+          })
           axios({
             method: 'POST',
             url: `${process.env.REACT_APP_API_HOST}/logbid`,

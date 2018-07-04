@@ -6,13 +6,6 @@ import axios from 'axios'
 import { getPhoneNumbers } from '../../actions/'
 import { getUser } from '../../actions/userAction'
 
-// import Logo from '../asset/TabsHome/IconTabs1.svg'
-import IconCoin from '../../asset/user/coin.png'
-import IconEmail from '../../asset/user//mail.png'
-import IconKey from '../../asset/user/key.png'
-import IconPhone from '../../asset/user/phone.png'
-// import IconUser from '../../asset/user/user.png'
-import IconCheck from '../../asset/user/checked.png'
 import ModalPrimaryPhone from './ModalPrimary'
 import ModalDelete from './ModalDelete'
 import ModalText from '../Components/Modal/ModalText'
@@ -48,7 +41,7 @@ class User extends React.Component {
 					</label>
 					<div className="user__info__container">
 						{/* <div>
-							<img src={IconUser} className="user__show__logo__user" alt="User" />
+							<img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/user.png className="user__show__logo__user" alt="User" />
 
 						</div> */}
 
@@ -342,7 +335,7 @@ class User extends React.Component {
 		return <div className="user__phone">
         <div className="user__phone__row1">
 					<div className="user__phone__row1__phoneNumber">
-	          <img src={IconPhone} className="user__show__logo" alt="Logo" />
+	          <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/phone.png' className="user__show__logo" alt="Logo" />
 						<div className = "user__phone__row1__phoneWidth">
 							{this.props.phoneNumbers.length !== 0 ? this.props.phoneNumbers.map((phone, idx) => {
 								return (
@@ -530,11 +523,11 @@ class User extends React.Component {
 			<div className="user__show__container">
 				<h3>{this.props.userInfo !== null ? this.props.userInfo.first_name : null} {this.props.userInfo !== null ? this.props.userInfo.family_name : null}</h3>
 				<div className="user__show">
-					<img src={IconEmail} className="user__show__logo" alt="Logo"/>
+					<img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mail.png' className="user__show__logo" alt="Logo"/>
 					<div className="user__show__email">
 						{this.props.userInfo.typedEmail !== null ? this.props.userInfo.typedEmail : this.props.userInfo.email}
 						<div style= {{ width:"16%" }}>
-							{this.props.userInfo !== null ? (this.props.userInfo.emailVerified ? <img src={IconCheck} className="user__show__logo__verified" alt="Logo"/>
+							{this.props.userInfo !== null ? (this.props.userInfo.emailVerified ? <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/checked.png' className="user__show__logo__verified" alt="Logo"/>
 								:
 								(<button  className="user__show__button" onClick={() => this.resendEmailVerification()}> Verifikasi </button>)) : null
 							}
@@ -545,11 +538,11 @@ class User extends React.Component {
 
 				</div>
 				<div className="user__show">
-					<img src={IconKey} className="user__show__logo" alt="Logo"/>
+					<img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/key.png' className="user__show__logo" alt="Logo"/>
 					{this.props.userInfo !== null ? this.props.userInfo.aladinKeys : null}
 				</div>
 				<div className="user__show">
-					<img src={IconCoin} className="user__show__logo" alt="Logo"/>
+					<img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/coin.png' className="user__show__logo" alt="Logo"/>
 					{this.props.userInfo !== null ? this.props.userInfo.coin : null}
 				</div>
 				{ this.showPhoneNumbers() }

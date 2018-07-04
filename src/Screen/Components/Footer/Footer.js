@@ -1,9 +1,5 @@
 // @flow
 import React, {Component} from 'react';
-
-import facebook from "../../../asset/SocialMedia/facebook-logo.png";
-import instagram from "../../../asset/SocialMedia/instagram.png";
-import line from "../../../asset/SocialMedia/line.png";
 import { Link } from 'react-router-dom';
 import ModalLineInfo from '../Modal/ModalLineInfo'
 
@@ -33,13 +29,13 @@ export default  class Footer extends Component <Props, State> {
         </div>
         <div className="footer__info__logo">
           {/* <a href="#" onClick={(e: HTMLInputElement)=>this.toggleLineModal(e)}> */}
-            <img  onClick={(e: HTMLInputElement)=>this.toggleLineModal(e)} className="footer__info__logo__content" src={line} alt="logo"/>
+            <img  onClick={(e: HTMLInputElement)=>this.toggleLineModal(e)} className="footer__info__logo__content" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/SocialMedia/line.png' alt="logo"/>
           {/* </a> */}
           <a href="https://www.facebook.com/boxaladin/">
-            <img className="footer__info__logo__content" src={facebook} alt="logo"/>
+            <img className="footer__info__logo__content" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/SocialMedia/facebook-logo.png' alt="logo"/>
           </a>
           <a href="https://www.instagram.com/boxaladin/">
-            <img className="footer__info__logo__content" src={instagram} alt="logo"/>
+            <img className="footer__info__logo__content" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/SocialMedia/instagram.png' alt="logo"/>
           </a>
         </div>
       </div>

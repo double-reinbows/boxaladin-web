@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import Modal from 'react-modal'
 import { ModalHeader} from 'reactstrap'
 
-import LogoIndosat from '../../../asset/LandingPage/pulsa/Indosat.svg';
-import LogoSmart from '../../../asset/LandingPage/pulsa/Smartfren.svg';
-import LogoTelkomsel from '../../../asset/LandingPage/pulsa/Telkomsel.svg';
-import LogoTri from '../../../asset/LandingPage/pulsa/Tri.svg';
-import LogoXL from '../../../asset/LandingPage/pulsa/XL.svg';
-
 class ProviderModal extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +18,7 @@ class ProviderModal extends Component {
           <div className="modal__provider__container">
             <div className="modal__provider__content">
               <div className="modal__provider__logo">
-                <img className="modal__provider__logo__image" src={LogoXL} alt="Logo XL"/>
+                <img className="modal__provider__logo__image" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/XL.svg' alt="Logo XL"/>
               </div>
               <div className="modal__provider__list">
                 <ul>
@@ -39,7 +33,7 @@ class ProviderModal extends Component {
             </div>
             <div className="modal__provider__content">
               <div className="modal__provider__logo">
-                <img className="modal__provider__logo__image" src={LogoTelkomsel} alt="Logo Telkomsel"/>
+                <img className="modal__provider__logo__image" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/Telkomsel.svg' alt="Logo Telkomsel"/>
               </div>
               <div className="modal__provider__list">
                 <ul>
@@ -57,7 +51,7 @@ class ProviderModal extends Component {
             </div>
             <div className="modal__provider__content">
               <div className="modal__provider__logo">
-                <img className="modal__provider__logo__image" src={LogoSmart} alt="Logo Smart"/>
+                <img className="modal__provider__logo__image" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/Smartfren.svg' alt="Logo Smart"/>
               </div>
               <div className="modal__provider__list">
                 <ul>
@@ -75,7 +69,7 @@ class ProviderModal extends Component {
             </div>
             <div className="modal__provider__content">
               <div className="modal__provider__logo">
-                <img className="modal__provider__logo__image" src={LogoIndosat} alt="Logo Indosat"/>
+                <img className="modal__provider__logo__image" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/Indosat.svg' alt="Logo Indosat"/>
               </div>
               <div className="modal__provider__list">
                 <ul>
@@ -91,7 +85,7 @@ class ProviderModal extends Component {
             </div>
             <div className="modal__provider__content">
               <div className="modal__provider__logo">
-                <img className="modal__provider__logo__image" src={LogoTri} alt="Logo Tri"/>
+                <img className="modal__provider__logo__image" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/Tri.svg' alt="Logo Tri"/>
               </div>
               <div className="modal__provider__list">
                 <ul>
