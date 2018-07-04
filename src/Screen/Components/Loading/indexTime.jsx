@@ -8,10 +8,13 @@ type Props = {|
 |}
 
 const LoadingTime = ({ isLoadingTime, timer }: Props) => {
+  if (timer >= 100) {
+    timer = 100;
+  }
   return (
     isLoadingTime === true ? (
       <div className="loader__container">
-        <h1 style = {{ fontWeight: 'bold', color: 'white' }}>{timer}</h1>
+        <h1 style = {{ fontWeight: 'bold', color: 'white' }}>{timer}%</h1>
         <div className="loader" />
       </div>
     ) : null
