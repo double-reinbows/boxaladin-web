@@ -21,14 +21,14 @@ class SuccessModalOtp extends Component {
               <h1 className="resetPassword__textSuccess">Nomor kamu berhasil di verifikasi.</h1>
               <h1 className="resetPassword__textSuccess">SELAMAT BERBELANJA!</h1>
               <div className="resetPassword__img">
-                <img src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/checked.svg" alt="Check Icon"/>
+                <img src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Home/checked.svg" alt="Check Icon"/>
               </div>
               <div className="resetPassword__wrapper__about">
                 <div className="resetPassword__textWarning">
                   <h1>INGAT PULSA ? INGAT</h1>
                 </div>
                 <div className="resetPassword__image">
-                  <img className="resetPassword__logo" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/logoTextOnly.png" alt="Boxaladin"/>
+                  <img className="resetPassword__logo" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Logo/logoTextOnly.png" alt="Boxaladin"/>
                 </div>
               </div>
 
