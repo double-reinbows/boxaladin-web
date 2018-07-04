@@ -23,10 +23,11 @@ import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { loadingBarMiddleware } from 'react-redux-loading-bar'
 import reducer from '../reducers/'
+import { logger } from 'redux-logger'
 
-const middleware = applyMiddleware(thunk)
+const middlewares = [thunk, logger];
+const middleware = applyMiddleware(...middlewares)
 
 const store = createStore(reducer, middleware, applyMiddleware(loadingBarMiddleware()))
 
 export default store
-
