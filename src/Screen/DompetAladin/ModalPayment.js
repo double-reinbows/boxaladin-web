@@ -131,7 +131,7 @@ class ModalPayment extends Component{
           disabledCancel: true
         })
 
-        if (this.props.TimerLoading.timer >= 100) {
+        if (this.props.TimerLoading.timer > 100) {
           clearInterval(this.timer);
           this.props.setIsLoadingTime(false)
           this.setState({
