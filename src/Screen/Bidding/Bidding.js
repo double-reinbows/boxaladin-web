@@ -114,7 +114,7 @@ class Bidding extends React.Component {
   toggle = () => {
     this.props.history.push('/home')
   }
- 
+
   formatRupiah() {
     return propsAladinPrice && (
       FormatRupiah(propsAladinPrice)
@@ -134,7 +134,7 @@ class Bidding extends React.Component {
   }
 
   componentDidMount() {
-    this.watchProductPrice(this.props.selectedProductID)    
+    this.watchProductPrice(this.props.selectedProductID)
     this.props.getPhoneNumbers()
   }
 
@@ -177,7 +177,7 @@ class Bidding extends React.Component {
         productId: this.props.selectedProductID
       },
     })
-    
+
     this.props.history.push('/insertphone', {
       productUnlocked: this.state.productUnlocked,
       aladinPrice: updatePrice,
@@ -222,7 +222,7 @@ class Bidding extends React.Component {
         else if (snap.val().aladinPrice === 10000 || snap.val().aladinPrice <= 10000 ) {
           productRef.update({
             watching: snap.val().watching +1,
-          })        
+          })
           axios({
             method: 'POST',
             url: `${process.env.REACT_APP_API_HOST}/logbid`,
