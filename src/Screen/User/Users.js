@@ -414,7 +414,7 @@ class User extends React.Component {
 					</button>}
           </div>
         </div>
-				<ModalText isOpen={this.state.modalCheck} toggle={this.state.toggle} props="Cek Hape Anda"/>
+				<ModalText isOpen={this.state.modalCheck} toggle={this.state.toggle} text="Cek Hape Anda"/>
       </div>;
 	}
 

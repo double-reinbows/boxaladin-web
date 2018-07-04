@@ -11,6 +11,7 @@ import cancel from '../../asset/bidding/cancel.png'
 
 
 import Loading from '../Components/Loading/'
+import ModalText from '../Components/Modal/ModalText'
 
 import { getPhoneNumbers, setIsLoading } from '../../actions/'
 import { getUser } from '../../actions/userAction'
@@ -24,8 +25,10 @@ class Bidding extends React.Component {
     super(props)
     this.state = {
       productUnlocked: {},
-			count: 30,
-      initCount: 30,
+			count: 15,
+      initCount: 15,
+      open: false,
+      priceComp : true,
     }
 
     this.handleBack()
@@ -33,6 +36,15 @@ class Bidding extends React.Component {
   }
 
   render() {
+    let priceComponent = null;
+    let watchComponent = null
+    if (this.state.priceComp) {
+      priceComponent = (<label className="bidding__2__col2__newPrice">{this.formatRupiah()}</label>)
+      watchComponent = (<label className="bidding__3__col__text">{this.state.productUnlocked.watching} orang</label>)
+    } else {
+      priceComponent =  (<label className="bidding__2__col2__newPrice"></label>)
+      watchComponent = (<label className="bidding__3__col__text">orang</label>)
+    }
     return (
   <div>
       <div className="bidding__2__col1">
@@ -64,7 +76,7 @@ class Bidding extends React.Component {
                 <img src={watch} className="bidding__3__col__logoWatch" alt="Logo Watch"/>
               </div>
               <div>
-                <label className="bidding__3__col__text">{this.state.productUnlocked.watching} orang</label>
+                {watchComponent}
               </div>
             </div>
 
@@ -78,7 +90,7 @@ class Bidding extends React.Component {
 
             <div className="bidding__2__col2">
               <div className="bidding__2__col2__mid">
-                <label className="bidding__2__col2__newPrice">{this.formatRupiah()}</label>
+                {priceComponent}
               </div>
 
               <div>
@@ -100,9 +112,14 @@ class Bidding extends React.Component {
           </div>
           </div>
         </div>
+          <ModalText text="Waktu Bidding Anda Sudah Habis" isOpen={this.state.open} toggle={this.toggle}/>
       </div>
 </div>
     )
+  }
+
+  toggle = () => {
+    this.props.history.push('/home')
   }
 
   formatRupiah() {
@@ -134,15 +151,15 @@ class Bidding extends React.Component {
   }
 
   componentWillUnmount() {
-    this.stopWatchProductPrice(this.props.selectedProductID)
+    // this.stopWatchProductPrice(this.props.selectedProductID)
     localStorage.removeItem('selectedProductId')
   }
 
   handleBack() {
     if (this.props.history.action === 'POP') {
-      if (localStorage.getItem('selectedProductId')) {
-        this.stopWatchProductPrice(localStorage.getItem('selectedProductId'))
-      }
+      // if (localStorage.getItem('selectedProductId')) {
+      //   this.stopWatchProductPrice(localStorage.getItem('selectedProductId'))
+      // }
       this.props.history.replace('/')
     }
   }
@@ -187,7 +204,6 @@ class Bidding extends React.Component {
 		if (localStorage.getItem('token') !== null) {
       this.props.setIsLoading(true)
       this.props.getUser()
-
       const productsRef = firebase.database().ref().child(`${process.env.REACT_APP_FIREBASE_PRODUCT}`)
       const productRef = productsRef.child(productId)
       productRef.once('value', snap => {
@@ -228,6 +244,13 @@ class Bidding extends React.Component {
           })
         }
       })
+      axios({
+        method: 'POST',
+        url: `${process.env.REACT_APP_API_HOST}/watching`,
+        data: {
+          productId: productId,
+        }
+      })
       productRef.on('value', snap => {
         propsAladinPrice = snap.val().aladinPrice
         let productValue = {
@@ -263,44 +286,42 @@ class Bidding extends React.Component {
       this.runTimer()
 
 		} else if (this.state.count <= 0 && this.state.count !== prevCount) {
-      // this.stopWatchProductPrice(this.props.selectedProductID)
-      alert('Waktu bidding sudah habis')
-      this.props.history.push('/home')
-
-		} else if (this.state.count !== this.state.initCount ) {
-			this.setState({count: this.state.initCount})
-		}
+      this.setState({
+        open: true,
+        productUnlocked : {},
+        priceComp: false,
+      })
+    }
   }
 
   afterResetPrice(prevPrice) {
 		if (prevPrice !== undefined && propsAladinPrice > prevPrice) {
       alert('Maaf, produk ini sudah terbeli orang lain! Silahkan melakukan bidding lagi.')
-      // this.stopWatchProductPrice(this.props.selectedProductID)
       this.props.history.push('/home')
 		}
   }
 
-  stopWatchProductPrice(productId) {
-    if (productId === '') {
-      return null
-    }
+  // stopWatchProductPrice(productId) {
+  //   if (productId === '') {
+  //     return null
+  //   }
 
-    const productsRef = firebase.database().ref().child(`${process.env.REACT_APP_FIREBASE_PRODUCT}`)
-		const productRef = productsRef.child(productId)
+  //   const productsRef = firebase.database().ref().child(`${process.env.REACT_APP_FIREBASE_PRODUCT}`)
+	// 	const productRef = productsRef.child(productId)
 
-    productRef.off()
-    // this.setState({isWatching: false})
+  //   productRef.off()
+  //   // this.setState({isWatching: false})
 
-    productRef.once('value', snap => {
-			if (snap.val().watching > 0) {
+  //   productRef.once('value', snap => {
+	// 		if (snap.val().watching > 0) {
 
-        productRef.update({
-          watching: snap.val().watching -1
-        })
+  //       productRef.update({
+  //         watching: snap.val().watching -1
+  //       })
 
-      }
-		})
-  }
+  //     }
+	// 	})
+  // }
 
 }
 

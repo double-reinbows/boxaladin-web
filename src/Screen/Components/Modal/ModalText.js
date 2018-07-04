@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 
 
-export default class ModalText extends Component <{}> {
+export default class ModalText extends Component {
   static propTypes = {
     toggle: PropTypes.func,
     isOpen: PropTypes.bool,
