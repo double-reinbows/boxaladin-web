@@ -20,10 +20,6 @@ import moment from 'moment'
 import classnames from 'classnames';
 import Xendit from 'xendit-js-node'
 
-import MANDIRI from '../asset/Logo/MANDIRI.svg'
-import BNI from '../asset/Logo/BNI.svg'
-import BRI from '../asset/Logo/BRI.svg'
-
 import Guide from './PaymentGuide'
 
 class InvoiceDetail extends React.Component {
@@ -75,7 +71,7 @@ class InvoiceDetail extends React.Component {
                 <h5 className="pembayaran__title">Silahkan melakukan pembayaran ke salah satu virtual bank account di bawah ini:</h5>
 
                 <div className="bankz">
-                  <img src={MANDIRI} className="bankz__icon" alt="Logo" />
+                  <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bank/MANDIRI.svg' className="bankz__icon" alt="Logo" />
                     {this.state.invoice.payment.availableBanks.map((bank, idx) => {
                       return (
                         bank.bank_code === 'MANDIRI' ? (
@@ -86,7 +82,7 @@ class InvoiceDetail extends React.Component {
                 </div>
 
                 <div className="bankz">
-                  <img src={BNI} className="bankz__icon" alt="Logo" />
+                  <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bank/BNI.svg' className="bankz__icon" alt="Logo" />
                   {this.state.invoice.payment.availableBanks.map((bank, idx) => {
                       return (
                         bank.bank_code === 'BNI' ? (
@@ -97,7 +93,7 @@ class InvoiceDetail extends React.Component {
                 </div>
 
                 <div className="bankz">
-                  <img src={BRI} className="bankz__icon" alt="Logo" />
+                  <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bank/BRI.svg' className="bankz__icon" alt="Logo" />
                   {this.state.invoice.payment.availableBanks.map((bank, idx) => {
                       return (
                         bank.bank_code === 'BRI' ? (

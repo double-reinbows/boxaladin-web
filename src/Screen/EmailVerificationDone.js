@@ -2,7 +2,6 @@ import React from 'react'
 // import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import  check  from '../asset/LandingPage/home/checked.svg'
 
 import { setModalLogin, setModalRegister, loginAction } from '../actions/'
 import { getUser, refreshToken } from '../actions/userAction'
@@ -23,7 +22,7 @@ class EmailVerificationDone extends React.Component {
           </p>
           <div className="emailVerification__content__image">
              <a href="https://www.boxaladin.com">
-              <img alt="check icon" src= {check} />
+              <img alt="check icon" src= 'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Home/checked.svg' />
              </a>
           </div>
         </div>

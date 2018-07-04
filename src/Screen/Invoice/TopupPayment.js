@@ -54,6 +54,30 @@ class TopupPayment extends React.Component {
   handleRetail(){
     if (!this.state.invoice){
       return null
+    }  else if (this.state.invoice.payment.availableretail !== 'null'){
+      return (
+        <div>
+        <Guide activeTab= {'1'} invoice={this.state.invoice} />
+      </div>
+      )
+    } else if (this.state.invoice.virtualAccount.bankCode === 'BNI') {
+      return (
+        <div>
+        <Guide activeTab= {'2'} invoice={this.state.invoice} />
+      </div>
+      )
+    } else if (this.state.invoice.virtualAccount.bankCode === 'BRI') {
+      return (
+        <div>
+        <Guide activeTab= {'3'} invoice={this.state.invoice} />
+      </div>
+      )
+    } else if (this.state.invoice.virtualAccount.bankCode === 'BCA') {
+      return (
+        <div>
+        <Guide activeTab= {'4'} invoice={this.state.invoice} />
+      </div>
+      )
     } else if (this.state.invoice.virtualAccount.bankCode === 'MANDIRI') {
       return (
         <div>
@@ -78,12 +102,8 @@ class TopupPayment extends React.Component {
         <Guide activeTab= {'4'} invoice={this.state.invoice} />
       </div>
       )
-    } else if (this.state.invoice.payment.availableretail !== 'null'){
-      return (
-        <div>
-          <Guide activeTab= {'5'} invoice={this.state.invoice} />
-        </div>
-      )
+    } else {
+      return null
     }
   }
 
@@ -98,7 +118,7 @@ class TopupPayment extends React.Component {
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
-					<h1 className="pembayaran__title__header">Pembayaran</h1>
+        <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice ? (this.state.invoice.virtualAccount.bankCode) : null}</h1>
           {this.state.invoice ? (
               <div>
               <div className="pembayaran__content__textDistance">

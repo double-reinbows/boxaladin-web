@@ -84,6 +84,7 @@ class ModalOtp extends Component {
     this.setState({
       count: count - 1,
       otp: '',
+      notifOtp: '',
     })
     if (count > 0 ){
       axios({
@@ -160,8 +161,9 @@ class ModalOtp extends Component {
           <div className="modal__otp__container">
           <ModalHeader toggle={buttonToggle} className="modal__otp__header"></ModalHeader>
             <div className="modal__otp__content">
-              <label>Verify Nomor Anda Untuk Dapat 5 AladinKey Gratis!</label>
-              <label>Akan ada panggilan masuk ke hape anda.</label>
+              <h1>Verify Nomor Anda Untuk Dapat 5 AladinKey Gratis!</h1>
+              <h2>Akan ada panggilan masuk ke hape anda.</h2>
+              <h1><b>Panggilan Wajib Diangkat</b></h1>
               <label>{text}</label>
             <div className="form-group Signup__Form">
               {otpFormJSX}

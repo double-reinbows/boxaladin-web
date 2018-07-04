@@ -21,6 +21,14 @@ export const setIsLoading = (payload) => ({
   payload
 })
 
+export const setIsLoadingTime = (isStart, timer) => ({
+  type: 'LOADINGTIME',
+  payload:{
+    isLoadingTime: isStart,
+    timer
+  }
+})
+
 export const setModalLogin = (payload) => ({
   type: 'SET_MODAL_LOGIN',
   payload
