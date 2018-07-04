@@ -124,14 +124,14 @@ class ModalPayment extends Component{
     })
     .then((data) => {
       this.props.setIsLoading(false);
-      this.props.setIsLoadingTime(true, 45)
+      this.props.setIsLoadingTime(true, 0)
       this.timer = setInterval(() => {
-        this.props.setIsLoadingTime(true, this.props.TimerLoading.timer - 1)
+        this.props.setIsLoadingTime(true, this.props.TimerLoading.timer + Math.floor(100 / 45))
         this.setState({
           disabledCancel: true
         })
 
-        if (this.props.TimerLoading.timer <= 0) {
+        if (this.props.TimerLoading.timer >= 100) {
           clearInterval(this.timer);
           this.props.setIsLoadingTime(false)
           this.setState({
