@@ -97,6 +97,15 @@ class ModalPayment extends Component{
   }
 
   notifDuplicate() {
+    let env = '';
+    if (process.env.ENV === 'dev') {
+      env = process.env.REACT_APP_WEB_DEVELOPMENT;
+    } else if (process.env.ENV === 'prod') {
+      env = process.env.REACT_APP_WEB_PRODUCTION;
+    } else if (process.env.ENV === 'test') {
+      env = process.env.REACT_APP_WEB_TEST;
+    }
+
     if (this.state.notif === true) {
       return (
         <div>
@@ -106,7 +115,7 @@ class ModalPayment extends Component{
             {...this.props.TimerLoading}
           />
           <button className="modal__method__content__button" onClick={() => this.cancelInvoice()} disabled = {this.state.disabledCancel}>Hapus</button>
-          <button className="modal__method__content__button" ><a href={process.env.REACT_APP_WEB_PRODUCTION + '/tabsinvoice'} target="_blank" rel="noopener noreferrer" className="bidding__notif">Invoice</a></button>
+          <button className="modal__method__content__button" ><a href={env + '/tabsinvoice'} target="_blank" rel="noopener noreferrer" className="bidding__notif">Invoice</a></button>
         </div>
       )
     } else {
