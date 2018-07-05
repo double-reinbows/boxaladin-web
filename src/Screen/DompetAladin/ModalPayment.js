@@ -102,7 +102,7 @@ class ModalPayment extends Component{
             {...this.props.TimerLoading}
           />
           <button className="modal__method__content__button" onClick={() => this.cancelInvoice()} disabled = {this.state.disabledCancel}>Hapus</button>
-          <button className="modal__method__content__button" ><a href="http://localhost:5000/tabsinvoice" target="_blank" rel="noopener noreferrer" className="bidding__notif">Invoice</a></button>
+          <button className="modal__method__content__button" ><a href={process.env.REACT_APP_WEB_PRODUCTION + '/tabsinvoice'} target="_blank" rel="noopener noreferrer" className="bidding__notif">Invoice</a></button>
         </div>
       )
     } else {
@@ -131,7 +131,7 @@ class ModalPayment extends Component{
           disabledCancel: true
         })
 
-        if (this.props.TimerLoading.timer > 100) {
+        if (this.props.TimerLoading.timer >= 100) {
           clearInterval(this.timer);
           this.props.setIsLoadingTime(false)
           this.setState({
