@@ -7,7 +7,6 @@ import moment from 'moment'
 import { getRewards } from '../actions/rewardAction'
 import { getUser } from '../actions/userAction'
 import { getUserClaims } from '../actions/claimAction'
-import Coin from '../../src/asset/Game/coin.svg'
 
 class ClaimReward extends React.Component {
   constructor() {
@@ -23,7 +22,7 @@ class ClaimReward extends React.Component {
         <div className="game">
   				<div className="game__container">
             <div className="game__slotCoin">
-              <img className="game__slotCoin__icon" src={Coin} alt="coin image"/>
+              <img className="game__slotCoin__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/Koin.png' alt="coin image"/>
               <label className="game__slotCoin__label">Aladin Key : {this.props.userInfo.aladinKeys}</label>
             </div>
           </div>

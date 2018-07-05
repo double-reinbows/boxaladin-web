@@ -17,7 +17,6 @@ class TopupInvoice extends React.Component {
   }
 
   render() {
-    console.log('dari TopupInvoice ', this.props);
     return (
       <div className="invoice">
         <div className="invoice__container">

@@ -116,7 +116,7 @@ class HomeContent extends Component {
             <label className="homecontent__top__text__bot">sistem lelang terbalik pertama yang menyajikan harga pulsa termurah Setanah air!</label>
             <label>Ingat  <b>PULSA ?</b></label>
             <div>
-            <label>Ingat  <img style = {{ width: '55%' }}src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/logoTextOnly.png" alt="boxaladin" /></label>
+            <label>Ingat  <img style = {{ width: '55%' }}src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Logo/logoTextOnly.png" alt="boxaladin" /></label>
             </div>
           </div>
           <div className="homecontent__top__youtube">

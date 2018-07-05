@@ -1,11 +1,7 @@
 import React from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-
-import ExpandIcon from '../../../../asset/Login/expand.svg'
-
 import {connect} from 'react-redux'
-
 import {logoutAction} from '../../../../actions/'
 import { getUser } from '../../../../actions/userAction'
 
@@ -44,7 +40,7 @@ class DropdownUser extends React.Component {
             </div>
 
             <div className="ButtonHeader__small" style= {{ backgroundColor: "transparent", borderLeftStyle: "solid", borderLeftWidth: "3px", borderColor: "#FFCD06"}}>
-              <img src={ExpandIcon} alt="LoginIcon" className="ButtonHeader__iconLogin" href="/home"/>
+              <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Login/expand.svg' alt="LoginIcon" className="ButtonHeader__iconLogin" href="/home"/>
             </div>
           </div>
         </DropdownToggle>

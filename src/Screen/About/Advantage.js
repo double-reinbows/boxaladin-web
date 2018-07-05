@@ -58,7 +58,7 @@ export default function Advantage(props: Props) {
           <label>INGAT PULSA, INGAT</label>
         </div>
         <div >
-          <img  src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/logoTextOnly.png" alt="Boxaladin"/>
+          <img  src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Logo/logoTextOnly.png" alt="Boxaladin"/>
         </div>
       </div>
     </div>
