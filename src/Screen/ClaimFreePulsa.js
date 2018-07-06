@@ -11,6 +11,7 @@ import axios from 'axios';
 
 import { getProducts } from '../actions/productAction';
 import { detectProvider } from '../utils/phone'
+import envChecker from '../utils/envChecker'
 
 class ClaimFreePulsa extends React.Component<Props, State> {
 
@@ -60,7 +61,7 @@ class ClaimFreePulsa extends React.Component<Props, State> {
   claimPulsa(){
     axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_API_HOST}/win/claimfreepulsa`,
+      url: `${envChecker('api')}/win/claimfreepulsa`,
       headers: {
         token: localStorage.getItem('token'),
         // key: process.env.REACT_APP_KEY

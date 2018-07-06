@@ -9,6 +9,8 @@ import { getUser } from '../../actions/userAction'
 import ModalPrimaryPhone from './ModalPrimary'
 import ModalDelete from './ModalDelete'
 import ModalText from '../Components/Modal/ModalText'
+import envChecker from '../../utils/envChecker'
+
 class User extends React.Component {
 	constructor() {
 		super()
@@ -71,7 +73,7 @@ class User extends React.Component {
 
 		axios({
 			method: 'POST',
-			url: `${process.env.REACT_APP_API_HOST}/phoneVerification`,
+			url: `${envChecker('api')}/phoneVerification`,
 			headers: {
         key: process.env.REACT_APP_KEY
       },
@@ -104,7 +106,7 @@ class User extends React.Component {
 
 		axios({
 				method: 'POST',
-				url: `${process.env.REACT_APP_API_HOST}/changePrimary`,
+				url: `${envChecker('api')}/changePrimary`,
 				headers: {
 					token: localStorage.getItem('token'),
 					key: process.env.REACT_APP_KEY
@@ -161,7 +163,7 @@ class User extends React.Component {
 
 			axios({
 				method: 'POST',
-				url: `${process.env.REACT_APP_API_HOST}/smsVerification`,
+				url: `${envChecker('api')}/smsVerification`,
 				data: {
 					phoneId: this.state.numberId
 				},
@@ -301,7 +303,7 @@ class User extends React.Component {
 
 		axios({
 			method: 'POST',
-			url: `${process.env.REACT_APP_API_HOST}/smsVerification`,
+			url: `${envChecker('api')}/smsVerification`,
 			data: {
 				phoneId: phone.id
 			},
@@ -417,7 +419,7 @@ class User extends React.Component {
 
 			axios({
 				method: 'POST',
-				url: `${process.env.REACT_APP_API_HOST}/phonenumber`,
+				url: `${envChecker('api')}/phonenumber`,
 				data: {
 					phonenumber: this.state.numberToSend
 				},
@@ -465,7 +467,7 @@ class User extends React.Component {
 		// } else {
 			axios({
 				method: 'PUT',
-				url: `${process.env.REACT_APP_API_HOST}/phone/${this.state.idPhoneToChange}`,
+				url: `${envChecker('api')}/phone/${this.state.idPhoneToChange}`,
 				data: {
 					phonenumber: this.state.numberToSend
 				},
@@ -557,7 +559,7 @@ class User extends React.Component {
 
 		axios({
 			method: 'POST',
-			url: `${process.env.REACT_APP_API_HOST}/resendemailverification`,
+			url: `${envChecker('api')}/resendemailverification`,
 			headers: {
 				token: localStorage.getItem('token'),
 				key: process.env.REACT_APP_KEY

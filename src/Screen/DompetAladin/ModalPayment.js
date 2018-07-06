@@ -11,6 +11,7 @@ import Loading from '../Components/Loading/'
 import LoadingTime from '../Components/Loading/indexTime'
 import { setIsLoading } from '../../actions/'
 import { setIsLoadingTime } from '../../actions/'
+import envChecker from '../../utils/envChecker'
 
 class ModalPayment extends Component{
   constructor(props) {
@@ -44,7 +45,7 @@ class ModalPayment extends Component{
         headers: {
             token: localStorage.getItem('token'),
             },
-        url: `${process.env.REACT_APP_API_HOST}/topupva`,
+        url: `${envChecker('api')}/topupva`,
         data: {
             keyId: parseInt(this.props.data, 10),
             bankCode: this.state.bank
@@ -66,7 +67,7 @@ class ModalPayment extends Component{
       this.props.setIsLoading(true)
       axios({
         method: 'POST',
-        url: `${process.env.REACT_APP_API_HOST}/topupKey`,
+        url: `${envChecker('api')}/topupKey`,
         headers: {
           token: localStorage.getItem('token')
         },
@@ -114,7 +115,7 @@ class ModalPayment extends Component{
     this.props.setIsLoading(true);
     axios({
       method: 'DELETE',
-      url: `${process.env.REACT_APP_API_HOST}/virtualaccount`,
+      url: `${envChecker('api')}/virtualaccount`,
       headers: {
         token: localStorage.getItem('token')
       },

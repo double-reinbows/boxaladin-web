@@ -11,6 +11,7 @@ import { getUserWins } from '../../actions/winAction'
 import { getKeys } from '../../actions/keyAction'
 
 import FormatRupiah from '../../utils/formatRupiah'
+import envChecker from '../../utils/envChecker'
 
 class Dompet extends React.Component {
   constructor(props) {
@@ -177,7 +178,7 @@ class Dompet extends React.Component {
 		// CEK SISA ALADIN KEY LANGSUNG DARI API
 		axios({
 			method: 'GET',
-			url: `${process.env.REACT_APP_API_HOST}/users/info`,
+			url: `${envChecker('api')}/users/info`,
 			headers: {
         token: localStorage.getItem('token'),
         key: process.env.REACT_APP_KEY
@@ -193,7 +194,7 @@ class Dompet extends React.Component {
 				// REQUEST UPDATE ALADIN KEY DAN COIN KE API
 				axios({
 					method: 'PUT',
-          url: `${process.env.REACT_APP_API_HOST}/users/upcoin`,
+          url: `${envChecker('api')}/users/upcoin`,
           headers: {
               token: localStorage.getItem('token'),
               key: process.env.REACT_APP_KEY

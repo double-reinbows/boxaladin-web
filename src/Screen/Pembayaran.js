@@ -19,6 +19,7 @@ import {
 import moment from 'moment'
 import classnames from 'classnames';
 import Xendit from 'xendit-js-node'
+import envChecker from '../../utils/envChecker'
 
 import Guide from './PaymentGuide'
 
@@ -175,7 +176,7 @@ class InvoiceDetail extends React.Component {
       headers: {
         key: process.env.REACT_APP_KEY
       },
-      url: `${process.env.REACT_APP_API_HOST}/creditcard`,
+      url: `${envChecker('api')}/creditcard`,
 
       data: {
         tokenId: token,
@@ -336,7 +337,7 @@ class InvoiceDetail extends React.Component {
       headers: {
         key: process.env.REACT_APP_KEY
       },
-      url: `${process.env.REACT_APP_API_HOST}/transaction/${this.props.match.params.id}`
+      url: `${envChecker('api')}/transaction/${this.props.match.params.id}`
     })
     .then(({data}) => {
     this.setState({

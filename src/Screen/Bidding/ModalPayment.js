@@ -11,6 +11,7 @@ import Loading from '../Components/Loading/'
 import LoadingTime from '../Components/Loading/indexTime'
 import { setIsLoading } from '../../actions/'
 import { setIsLoadingTime } from '../../actions/'
+import envChecker from '../../utils/envChecker'
 
 class ModalPayment extends Component{
   constructor(props) {
@@ -41,7 +42,7 @@ class ModalPayment extends Component{
       const {productUnlocked, phone} = this.props.data;
       axios({
         method: 'POST',
-        url: `${process.env.REACT_APP_API_HOST}/virtualaccount`,
+        url: `${envChecker('api')}/virtualaccount`,
         headers: {
           token: localStorage.getItem('token')
         },
@@ -69,7 +70,7 @@ class ModalPayment extends Component{
         const {productUnlocked, phone} = this.props.data;
         axios({
           method: 'POST',
-          url: `${process.env.REACT_APP_API_HOST}/payment`,
+          url: `${envChecker('api')}/payment`,
           headers: {
             token: localStorage.getItem('token')
           },
@@ -97,14 +98,6 @@ class ModalPayment extends Component{
   }
 
   notifDuplicate() {
-    let env = '';
-    if (process.env.ENV === 'dev') {
-      env = process.env.REACT_APP_WEB_DEVELOPMENT;
-    } else if (process.env.ENV === 'prod') {
-      env = process.env.REACT_APP_WEB_PRODUCTION;
-    } else if (process.env.ENV === 'test') {
-      env = process.env.REACT_APP_WEB_TEST;
-    }
 
     if (this.state.notif === true) {
       return (
@@ -115,7 +108,7 @@ class ModalPayment extends Component{
             {...this.props.TimerLoading}
           />
           <button className="modal__method__content__button" onClick={() => this.cancelInvoice()} disabled = {this.state.disabledCancel}>Hapus</button>
-          <button className="modal__method__content__button" ><a href={env + '/tabsinvoice'} target="_blank" rel="noopener noreferrer" className="bidding__notif">Invoice</a></button>
+          <button className="modal__method__content__button" ><a href={envChecker('web') + '/tabsinvoice'} target="_blank" rel="noopener noreferrer" className="bidding__notif">Invoice</a></button>
         </div>
       )
     } else {
@@ -127,7 +120,7 @@ class ModalPayment extends Component{
     this.props.setIsLoading(true);
     axios({
       method: 'DELETE',
-      url: `${process.env.REACT_APP_API_HOST}/virtualaccount`,
+      url: `${envChecker('api')}/virtualaccount`,
       headers: {
         token: localStorage.getItem('token')
       },

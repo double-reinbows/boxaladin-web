@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { setModalLogin } from '../actions/';
 import { Form, FormGroup, Input, FormFeedback } from 'reactstrap';
 import formatEmail from '../utils/formatEmail';
+import envChecker from '../utils/envChecker'
 
 // type State = {
 //   email: string,
@@ -27,7 +28,7 @@ class RequestResetPassword<State> extends React.Component {
     if (this.state.email !== '') {
       axios({
         method: 'POST',
-        url: `${process.env.REACT_APP_API_HOST}/forgotpassword`,
+        url: `${envChecker('api')}/forgotpassword`,
         headers: {
           key: process.env.REACT_APP_KEY
         },

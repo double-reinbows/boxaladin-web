@@ -1,5 +1,6 @@
 // @flow
 import axios from 'axios'
+import envChecker from '../utils/envChecker'
 
 export const loginAction = (payload) => ({
   type: 'LOGIN',
@@ -43,7 +44,7 @@ export const getPhoneNumbers = () => {
   return (dispatch) => {
     axios({
       method: 'GET',
-      url: `${process.env.REACT_APP_API_HOST}/phoneNumbers`,
+      url: `${envChecker('api')}/phoneNumbers`,
       headers: {
         token: localStorage.getItem('token'),
         key: process.env.REACT_APP_KEY

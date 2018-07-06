@@ -22,6 +22,7 @@ import Xendit from 'xendit-js-node'
 
 import Guide from './PaymentGuide'
 import ModalInvoice from '../Components/Modal/ModalInvoice'
+import envChecker from '../../utils/envChecker'
 
 class InvoiceDetail extends React.Component {
   constructor(props) {
@@ -143,7 +144,7 @@ class InvoiceDetail extends React.Component {
       headers: {
         key: process.env.REACT_APP_KEY
       },
-      url: `${process.env.REACT_APP_API_HOST}/creditcard`,
+      url: `${envChecker('api')}/creditcard`,
 
       data: {
         tokenId: token,
@@ -290,7 +291,7 @@ class InvoiceDetail extends React.Component {
       headers: {
         key: process.env.REACT_APP_KEY
       },
-      url: `${process.env.REACT_APP_API_HOST}/transaction/${this.props.match.params.id}`
+      url: `${envChecker('api')}/transaction/${this.props.match.params.id}`
     })
     .then(({data}) => {
     this.setState({
