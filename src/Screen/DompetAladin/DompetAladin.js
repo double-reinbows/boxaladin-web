@@ -11,6 +11,7 @@ import { getUserWins } from '../../actions/winAction'
 import { getKeys } from '../../actions/keyAction'
 
 import FormatRupiah from '../../utils/formatRupiah'
+import envChecker from '../../utils/envChecker'
 
 class Dompet extends React.Component {
   constructor(props) {
@@ -26,7 +27,15 @@ class Dompet extends React.Component {
     }
   }
 
+  formatRupiahSaldo() {
+    return this.props.userInfo.wallet && (
+      FormatRupiah(this.props.userInfo.wallet)
+    )
+  }
+
   render() {
+    console.log(this.props);
+    console.log(this.state);
     return (
       <div className="dompet">
         <div className="dompet__container">
@@ -46,6 +55,13 @@ class Dompet extends React.Component {
                 <label className="dompet__content__info__label">: {this.props.userInfo.coin}</label>
               </div>
             </div>
+            <div className="dompet__content__info">
+              <label>Saldo Aladin</label>
+              <div>
+                <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/Koin.png' alt="koin" />
+                <label className="dompet__content__info__label">: {this.formatRupiahSaldo()}</label>
+              </div>
+            </div>
 
           </div>
           <div className="dompet__content__key">
@@ -59,6 +75,12 @@ class Dompet extends React.Component {
               <label className="dompet__content__key__label">Tukar Kunci Jadi Koin</label>
               {this.dropdownConvert()}
             </div>
+
+            <div style={{ paddingTop: '14%' }}>
+              <label className="dompet__content__key__label">Top Up Saldo Aladin</label>
+              {this.dropdownConvert()}
+            </div>
+
           </div>
         </div>
         <ModalPayment isOpen={this.state.modalPayment} data={this.state.idKeySelected} toggle={this.togglePayment} />
@@ -177,7 +199,7 @@ class Dompet extends React.Component {
 		// CEK SISA ALADIN KEY LANGSUNG DARI API
 		axios({
 			method: 'GET',
-			url: `${process.env.REACT_APP_API_HOST}/users/info`,
+			url: `${envChecker('api')}/users/info`,
 			headers: {
         token: localStorage.getItem('token'),
         key: process.env.REACT_APP_KEY
@@ -193,7 +215,7 @@ class Dompet extends React.Component {
 				// REQUEST UPDATE ALADIN KEY DAN COIN KE API
 				axios({
 					method: 'PUT',
-          url: `${process.env.REACT_APP_API_HOST}/users/upcoin`,
+          url: `${envChecker('api')}/users/upcoin`,
           headers: {
               token: localStorage.getItem('token'),
               key: process.env.REACT_APP_KEY

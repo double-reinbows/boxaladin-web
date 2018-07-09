@@ -22,6 +22,7 @@ import Xendit from 'xendit-js-node'
 
 import Guide from './PaymentGuide'
 import ModalInvoiceTopup from '../Components/Modal/ModalInvoiceTopup'
+import envChecker from '../../utils/envChecker'
 
 class TopupPayment extends React.Component {
   constructor(props) {
@@ -129,7 +130,7 @@ class TopupPayment extends React.Component {
   submitPaymentWithCC(token) {
     axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_API_HOST}/creditCardTopup`,
+      url: `${envChecker('api')}/creditCardTopup`,
       headers: {
         key: process.env.REACT_APP_KEY
       },
@@ -278,7 +279,7 @@ class TopupPayment extends React.Component {
   getInvoiceById() {
     axios({
       method: 'GET',
-      url: `${process.env.REACT_APP_API_HOST}/topup/${this.props.match.params.id}`,
+      url: `${envChecker('api')}/topup/${this.props.match.params.id}`,
       headers: {
         key: process.env.REACT_APP_KEY
       },

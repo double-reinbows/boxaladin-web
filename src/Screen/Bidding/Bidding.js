@@ -11,6 +11,7 @@ import { getUser } from '../../actions/userAction'
 import  priceProduct  from '../../utils/splitPrice'
 import  productName from '../../utils/splitProduct'
 import FormatRupiah from '../../utils/formatRupiah'
+import envChecker from '../../utils/envChecker'
 
 let propsAladinPrice = 0
 class Bidding extends React.Component {
@@ -158,7 +159,7 @@ class Bidding extends React.Component {
   }
 
   buy() {
-    const productsRef = firebase.database().ref().child(`${process.env.REACT_APP_FIREBASE_PRODUCT}`)
+    const productsRef = firebase.database().ref().child(`${envChecker('firebase')}`)
     const productRef = productsRef.child(this.props.selectedProductID)
     let updatePrice = 0
 
@@ -172,7 +173,7 @@ class Bidding extends React.Component {
 
     axios({
       method: 'PUT',
-      url: `${process.env.REACT_APP_API_HOST}/logsold`,
+      url: `${envChecker('api')}/logsold`,
       data: {
         productId: this.props.selectedProductID
       },
@@ -197,7 +198,7 @@ class Bidding extends React.Component {
 		if (localStorage.getItem('token') !== null) {
       this.props.setIsLoading(true)
       this.props.getUser()
-      const productsRef = firebase.database().ref().child(`${process.env.REACT_APP_FIREBASE_PRODUCT}`)
+      const productsRef = firebase.database().ref().child(`${envChecker('firebase')}`)
       const productRef = productsRef.child(productId)
       productRef.once('value', snap => {
 
@@ -208,7 +209,7 @@ class Bidding extends React.Component {
           })
           axios({
             method: 'POST',
-            url: `${process.env.REACT_APP_API_HOST}/logbid`,
+            url: `${envChecker('api')}/logbid`,
             headers: {
               token: localStorage.getItem('token'),
             },
@@ -225,7 +226,7 @@ class Bidding extends React.Component {
           })
           axios({
             method: 'POST',
-            url: `${process.env.REACT_APP_API_HOST}/logbid`,
+            url: `${envChecker('api')}/logbid`,
             headers: {
               token: localStorage.getItem('token'),
             },
@@ -239,7 +240,7 @@ class Bidding extends React.Component {
       })
       axios({
         method: 'POST',
-        url: `${process.env.REACT_APP_API_HOST}/watching`,
+        url: `${envChecker('api')}/watching`,
         data: {
           productId: productId,
         }

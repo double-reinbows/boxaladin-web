@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { Modal } from 'reactstrap'
 import ModalOtpUser from './ModalOtpUser'
+import envChecker from '../../utils/envChecker'
+
 class ModalPrimaryPhone extends Component {
   constructor(props) {
     super(props);
@@ -45,7 +47,7 @@ class ModalPrimaryPhone extends Component {
     }
     axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_API_HOST}/olduserotp`,
+      url: `${envChecker('api')}/olduserotp`,
       headers: {
         key: process.env.REACT_APP_KEY,
         token: localStorage.getItem('token')

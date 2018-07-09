@@ -1,4 +1,5 @@
 import axios from 'axios'
+import envChecker from '../utils/envChecker'
 
 const getBrandsAction = (payload) => ({
 	type: 'GET_BRANDS',
@@ -12,7 +13,7 @@ export const getBrands = () => {
 			headers: {
         key: process.env.REACT_APP_KEY
       },
-			url: `${process.env.REACT_APP_API_HOST}/api/brand`
+			url: `${envChecker('api')}/api/brand`
 		})
 		.then(({data}) => {
 			dispatch(getBrandsAction(data))

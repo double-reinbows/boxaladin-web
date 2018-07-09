@@ -1,4 +1,5 @@
 import axios from 'axios'
+import envChecker from '../utils/envChecker'
 
 const getKeysAction = (payload) => ({
 	type: 'GET_KEYS',
@@ -12,7 +13,7 @@ export const getKeys = (keyId) => {
 			headers: {
         key: process.env.REACT_APP_KEY
       },
-			url: `${process.env.REACT_APP_API_HOST}/voucheraladinkey`
+			url: `${envChecker('api')}/voucheraladinkey`
 		})
 		.then(({data}) => {
 			dispatch(getKeysAction(data))

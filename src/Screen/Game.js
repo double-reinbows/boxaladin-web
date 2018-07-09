@@ -5,6 +5,7 @@ import { Modal, ModalHeader, Form, FormGroup, Input } from 'reactstrap';
 import axios from 'axios';
 import { getUser } from '../actions/userAction';
 import { getUserWins } from '../actions/winAction';
+import envChecker from '../utils/envChecker'
 
 type State = {
 	si1: null | number,
@@ -241,7 +242,7 @@ class Game extends React.Component<Props, State> {
 	getRules = () => {
 		axios({
 			method: 'GET',
-			url: `${process.env.REACT_APP_API_HOST}/gamerules`,
+			url: `${envChecker('api')}/gamerules`,
 			headers: {
 				token: localStorage.getItem('token'),
 			}
@@ -281,7 +282,7 @@ class Game extends React.Component<Props, State> {
 			// REQUEST UPDATE ALADIN KEY DAN COIN KE API
 			axios({
 				method: 'PUT',
-				url: `${process.env.REACT_APP_API_HOST}/users/upcoin`,
+				url: `${envChecker('api')}/users/upcoin`,
 				data: {
 					key: this.state.key
 				},
@@ -417,7 +418,7 @@ class Game extends React.Component<Props, State> {
 		let gameResult =
 			axios({
 				method: 'GET',
-				url: `${process.env.REACT_APP_API_HOST}/game`,
+				url: `${envChecker('api')}/game`,
 				headers:{
 					token: localStorage.getItem('token'),
 				},

@@ -11,6 +11,7 @@ import Loading from '../Components/Loading/'
 import LoadingTime from '../Components/Loading/indexTime'
 import { setIsLoading } from '../../actions/'
 import { setIsLoadingTime } from '../../actions/'
+import envChecker from '../../utils/envChecker'
 
 class ModalPayment extends Component{
   constructor(props) {
@@ -44,7 +45,7 @@ class ModalPayment extends Component{
         headers: {
             token: localStorage.getItem('token'),
             },
-        url: `${process.env.REACT_APP_API_HOST}/topupva`,
+        url: `${envChecker('api')}/topupva`,
         data: {
             keyId: parseInt(this.props.data, 10),
             bankCode: this.state.bank
@@ -66,7 +67,7 @@ class ModalPayment extends Component{
       this.props.setIsLoading(true)
       axios({
         method: 'POST',
-        url: `${process.env.REACT_APP_API_HOST}/topupKey`,
+        url: `${envChecker('api')}/topupKey`,
         headers: {
           token: localStorage.getItem('token')
         },
@@ -102,7 +103,7 @@ class ModalPayment extends Component{
             {...this.props.TimerLoading}
           />
           <button className="modal__method__content__button" onClick={() => this.cancelInvoice()} disabled = {this.state.disabledCancel}>Hapus</button>
-          <button className="modal__method__content__button" ><a href="http://localhost:5000/tabsinvoice" target="_blank" rel="noopener noreferrer" className="bidding__notif">Invoice</a></button>
+          <button className="modal__method__content__button" ><a href={process.env.REACT_APP_WEB_PRODUCTION + '/tabsinvoice'} target="_blank" rel="noopener noreferrer" className="bidding__notif">Invoice</a></button>
         </div>
       )
     } else {
@@ -114,7 +115,7 @@ class ModalPayment extends Component{
     this.props.setIsLoading(true);
     axios({
       method: 'DELETE',
-      url: `${process.env.REACT_APP_API_HOST}/virtualaccount`,
+      url: `${envChecker('api')}/virtualaccount`,
       headers: {
         token: localStorage.getItem('token')
       },
@@ -124,14 +125,14 @@ class ModalPayment extends Component{
     })
     .then((data) => {
       this.props.setIsLoading(false);
-      this.props.setIsLoadingTime(true, 45)
+      this.props.setIsLoadingTime(true, 0)
       this.timer = setInterval(() => {
-        this.props.setIsLoadingTime(true, this.props.TimerLoading.timer - 1)
+        this.props.setIsLoadingTime(true, this.props.TimerLoading.timer + Math.floor(100 / 45))
         this.setState({
           disabledCancel: true
         })
 
-        if (this.props.TimerLoading.timer <= 0) {
+        if (this.props.TimerLoading.timer >= 100) {
           clearInterval(this.timer);
           this.props.setIsLoadingTime(false)
           this.setState({

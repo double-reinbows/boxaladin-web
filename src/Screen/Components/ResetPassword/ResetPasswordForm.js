@@ -3,6 +3,7 @@ import React from 'react'
 import axios from 'axios'
 import { Button, Form, FormGroup, Input, FormFeedback, Label } from 'reactstrap'
 import {withRouter} from 'react-router-dom';
+import envChecker from '../../../utils/envChecker'
 
 type Props = {
   passwordChanged: Function,
@@ -75,7 +76,7 @@ class ResetPasswordForm extends React.Component<Props, State> {
     if (password && confirmPassword && password === confirmPassword) {
       axios({
         method: 'POST',
-        url: `${process.env.REACT_APP_API_HOST}/resetpassword?email=${email}&encoded=${email_token}`,
+        url: `${envChecker('api')}/resetpassword?email=${email}&encoded=${email_token}`,
         headers: {
           key: process.env.REACT_APP_KEY,
         },
