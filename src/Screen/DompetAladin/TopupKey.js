@@ -33,6 +33,7 @@ class TopupKey extends React.Component {
 	}
 
 	showForm() {
+    console.log('modal payment', this.props)
 		return (
 			<div>
 				<div>

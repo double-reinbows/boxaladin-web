@@ -1,4 +1,3 @@
-//@flow
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
@@ -37,19 +36,35 @@ class ModalPayment extends Component{
     })
   }
 
+  createObj() {
+    if (this.props.reqbody === 'amount') {
+      let data = {
+        amount: parseInt(this.props.data, 10),
+        bankCode: this.state.bank
+      }
+      return data
+    } else {
+      let data = {
+        keyId: parseInt(this.props.data, 10),
+        bankCode: this.state.bank
+      }
+      return data
+    }
+  }
+
   axiosTransaction = () => {
+    const dataValue = this.createObj();
+    const {reqbody, fixedendpoint, retailendpoint, push} = this.props
     this.props.setIsLoading(true)
     if (this.state.bank !== 'Alfamart') {
+      console.log('reqbody', reqbody)
       axios({
         method: 'POST',
         headers: {
             token: localStorage.getItem('token'),
             },
-        url: `${envChecker('api')}/topupva`,
-        data: {
-            keyId: parseInt(this.props.data, 10),
-            bankCode: this.state.bank
-        }
+        url: `${envChecker('api')}/${fixedendpoint}`,
+        data: dataValue
       })
       .then(result => {
         if (result.data.error_code === "DUPLICATE_CALLBACK_VIRTUAL_ACCOUNT_ERROR") {
@@ -59,7 +74,7 @@ class ModalPayment extends Component{
           })
         } else {
           this.props.setIsLoading(false)
-          this.props.history.push(`/topupinvoice/${result.data.dataFinal.id}`)
+          this.props.history.push(`/${push}/${result.data.dataFinal.id}`)
         }
       })
     .catch(err => console.log('error'))
@@ -67,18 +82,15 @@ class ModalPayment extends Component{
       this.props.setIsLoading(true)
       axios({
         method: 'POST',
-        url: `${envChecker('api')}/topupKey`,
+        url: `${envChecker('api')}/${retailendpoint}`,
         headers: {
           token: localStorage.getItem('token')
         },
-        data: {
-          keyId: parseInt(this.props.data, 10),
-          bankCode: this.state.bank
-        },
+        data: dataValue
       })
       .then(result => {
         this.props.setIsLoading(false)
-        this.props.history.push(`/topupinvoice/${result.data.dataTopUp.id}`)
+        this.props.history.push(`/${push}/${result.data.dataTopUp.id}`)
       })
       .catch(err => console.log(err))
     }
