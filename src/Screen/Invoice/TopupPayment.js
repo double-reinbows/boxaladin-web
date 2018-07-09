@@ -89,25 +89,24 @@ class TopupPayment extends React.Component {
     }
   }
 
-  render() {
-    if (this.state.invoice === null || this.state.invoice === undefined){
-      return null
-    } else {
-      const time = this.state.invoice.createdAt
-      var finalTime = moment(time, moment.ISO_8601).add(6, 'hours').format('D MMMM YYYY, h:mm:ss a')
-    }
+  getExpired = () => {
+    return this.state.invoice.payment.expiredAt && (
+      <h2 className="pembayaran__title__infoTime">Selesaikan Pembayaran Sebelum {moment(this.state.invoice.payment.expiredAt, moment.ISO_8601).add(12, 'hours').format('D MMMM YYYY, h:mm:ss a')}</h2>
+    )
+  }
 
+  render() {
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
-        <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice ? (this.state.invoice.virtualAccount.bankCode) : null}</h1>
+        <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice.virtualAccount ? (this.state.invoice.virtualAccount.bankCode) : null}</h1>
           {this.state.invoice ? (
               <div>
               <div className="pembayaran__content__textDistance">
                 <h1 className="pembayaran__title"> Rp {this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}</h1>
                 <button className="pembayaran__buttonDetail" onClick={this.toggleDetail}> Detail Tagihan </button>
               </div>
-              <h2 className="pembayaran__title__infoTime">Selesaikan Pembayaran Sebelum {finalTime}</h2>
+              {this.getExpired()}
               {this.handleRetail()}
               </div>
             ) : null
