@@ -19,16 +19,13 @@ class Dompet extends React.Component {
       idKeySelected: '',
       convertKey: '',
       key: null,
+      wallet: 0,
       notif: '',
       notif2: '',
       disabled: true,
-      modalPayment: false
+      modalPayment1: false,
+      modalPayment2: false
     }
-  }
-
-  componentDidMount() {
-      this.props.getUser()
-      this.props.getKeys()
   }
 
   render() {
@@ -52,7 +49,7 @@ class Dompet extends React.Component {
               </div>
             </div>
             <div className="dompet__content__info">
-              <label>Saldo Aladin</label>
+              <label>Saldo</label>
               <div>
                 <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/Koin.png' alt="koin" />
                 <label className="dompet__content__info__label">: {this.formatRupiahSaldo()}</label>
@@ -62,7 +59,7 @@ class Dompet extends React.Component {
           </div>
           <div className="dompet__content__key">
             <div className="dompet__content__key__topup">
-              <h1 className="dompet__content__key__label">Top Up Kunci Aladin</h1>
+              <h1 className="dompet__content__key__label">Top Up Kunci</h1>
               {this.showForm()}
               <label className="alert__dompetAladin">{this.state.notif}</label>
             </div>
@@ -73,21 +70,84 @@ class Dompet extends React.Component {
             </div>
 
             <div style={{ paddingTop: '14%' }}>
-              <label className="dompet__content__key__label">Top Up Saldo Aladin</label>
-              {this.dropdownConvert()}
+              <label className="dompet__content__key__label">Top Up Saldo</label>
+              {this.dropdownSaldo()}
             </div>
 
           </div>
         </div>
-        <ModalPayment isOpen={this.state.modalPayment} data={this.state.idKeySelected} toggle={this.togglePayment} />
       </div>
     )
   }
 
-  togglePayment = () => {
+  componentDidMount() {
+      this.props.getUser()
+      this.props.getKeys()
+  }
+
+  togglePayment1 = () => {
     this.setState({
-      modalPayment: !this.state.modalPayment
+      modalPayment1: !this.state.modalPayment1
     })
+  }
+  togglePayment2 = () => {
+    this.setState({
+      modalPayment2: !this.state.modalPayment2
+    })
+  }
+
+  dropdownSaldo= ()=>{
+    return(
+    <div>
+      <div>
+        <Form onSubmit={this.upWallet}>
+          <FormGroup>
+            <Input className="dompet__content__key__topup__dropdown" type="select" id="upcoin" name="aladinConvert" onChange={(e) => this.setState({ wallet: parseInt(e.target.value, 10) })}>
+              <option selected="true" disabled="true" value=''>-- Select --</option>
+              <option value={25000}>{FormatRupiah(25000)}</option>
+              <option value={50000}>{FormatRupiah(50000)}</option>
+              <option value={100000}>{FormatRupiah(100000)}</option>
+            </Input>
+          </FormGroup>
+          <FormGroup>
+            <button className="dompet__content__key__button" color="primary" type="submit">
+            <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/troly.png' alt="troly" />
+            Beli</button>
+          </FormGroup>
+        </Form>
+      </div>
+    <div>
+      <label className="alert__dompetAladin">{this.state.notif2}</label>
+    </div>
+    <ModalPayment
+      fixedendpoint='wallet'
+      retailendpoint='alfawallet'
+      reqbody={'amount'}
+      push='payment'
+      isOpen={this.state.modalPayment1}
+      data={this.state.wallet}
+      toggle={this.togglePayment1} />
+  </div>
+    )
+  }
+
+  upWallet = (e, payload) => {
+    e.preventDefault()
+    if (this.state.wallet === 0) {
+      this.setState({
+        notif: "Silahkan Memilih Jumlah Saldo.",
+      })
+    } else if (this.props.userInfo.emailVerified === false){
+      return this.setState({
+        notif: "Email Belum Terferivikasi.",
+    })
+    } else {
+      this.setState({
+        modalPayment1: true
+      })
+      payload ={wallet: this.state.wallet}
+    }
+
   }
 
   formatRupiahSaldo() {
@@ -118,8 +178,14 @@ class Dompet extends React.Component {
             </FormGroup>
           </Form>
       </div>
-        <div>
-        </div>
+      <ModalPayment
+        fixedendpoint='topupva'
+        retailendpoint='topupKey'
+        reqbody={'keyId'}
+        push='topupinvoice'
+        isOpen={this.state.modalPayment2}
+        data={this.state.idKeySelected}
+        toggle={this.togglePayment2} />
       </div>
     )
   }
@@ -136,7 +202,7 @@ class Dompet extends React.Component {
     })
     } else {
       this.setState({
-        modalPayment: true
+        modalPayment2: true
       })
     }
   }

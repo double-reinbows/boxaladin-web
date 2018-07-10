@@ -59,11 +59,7 @@ class Invoice extends React.Component {
             if (!data.createdAt || !data.product || !data.payment){
               return null
             } else {
-              const time = moment()
-              const now = time.valueOf()
-
-              const limitTime = moment(data.createdAt, moment.ISO_8601).add(6, 'hours')
-              const limitTimeFinal = limitTime.valueOf()
+              const time = moment().toISOString()
               if (data.payment.status === 'CANCELLED') {
                 return (
                   <tr key={idx}>
@@ -72,11 +68,11 @@ class Invoice extends React.Component {
                     <td>{ data.product ? data.product.productName : data.description }</td>
                     <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
                     <td>{ data.number ? data.number : (<h3>Anda Tidak Memasukkan no Hp</h3>) }</td>
-                    <td>{ data.payment ? data.payment.status : 'GRATIS' }</td>
+                    <td>{ data.payment ? data.payment.status : 'CANCELLED' }</td>
                     <td></td>
                   </tr>
                 )
-              } else if (now <= limitTimeFinal) {
+              } else if (time <= data.payment.expiredAt) {
                 return (
                 <tr key={idx}>
                   <th scope="row">{idx+1}</th>

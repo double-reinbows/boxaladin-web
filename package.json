@@ -62,6 +62,9 @@
   },
   "scripts": {
     "start": "npm-run-all --parallel watch:sass reactstart",
+    "dev": "REACT_APP_ENV=dev npm-run-all --parallel watch:sass reactstart",
+    "testing": "REACT_APP_ENV=test npm-run-all --parallel watch:sass reactstart",
+    "prod": "REACT_APP_ENV=prod npm-run-all --parallel watch:sass reactstart",
     "reactstart": "react-scripts start",
     "reactstart:build": "react-scripts build",
     "build": "npm-run-all -s build:css reactstart:build",

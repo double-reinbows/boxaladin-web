@@ -48,13 +48,20 @@ class TopupInvoice extends React.Component {
             if (data.createdAt === '' || data.createdAt === undefined || data.payment.invoiceId === 'null'){
               return null
             } else {
-              const time = moment()
-              const now = time.valueOf()
-
-              const limitTime = moment(data.createdAt, moment.ISO_8601).add(12, 'hours')
-              const limitTimeFinal = limitTime.valueOf()
-
-              if (now <= limitTimeFinal) {
+              const time = moment().toISOString()
+              if (data.payment.status === 'CANCELLED') {
+                return (
+                  <tr key={idx}>
+                    <th scope="row">{idx+1}</th>
+                    <td>{moment(data.createdAt, moment.ISO_8601).format('L, h:mm:ss a')}</td>
+                    <td>{ data.product ? data.product.productName : data.description }</td>
+                    <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
+                    <td>{ data.number ? data.number : (<h3>Anda Tidak Memasukkan no Hp</h3>) }</td>
+                    <td>{ data.payment ? data.payment.status : 'CANCELLED' }</td>
+                    <td></td>
+                  </tr>
+                )
+              } else if (time <= data.payment.expiredAt) {
               return (
               <tr key={idx}>
                 <th scope="row">{idx+1}</th>
@@ -76,7 +83,6 @@ class TopupInvoice extends React.Component {
                     <td>{ data.payment.status === 'PENDING'  ? (
                   <label>Expired</label>
                 ) : null}</td>
-
                   </tr>
                 )
               }
