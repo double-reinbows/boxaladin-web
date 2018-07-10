@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { connect } from 'react-redux'
 import { Form, FormGroup, Input  } from 'reactstrap'
@@ -27,15 +26,12 @@ class Dompet extends React.Component {
     }
   }
 
-  formatRupiahSaldo() {
-    return this.props.userInfo.wallet && (
-      FormatRupiah(this.props.userInfo.wallet)
-    )
+  componentDidMount() {
+      this.props.getUser()
+      this.props.getKeys()
   }
 
   render() {
-    console.log(this.props);
-    console.log(this.state);
     return (
       <div className="dompet">
         <div className="dompet__container">
@@ -88,15 +84,16 @@ class Dompet extends React.Component {
     )
   }
 
-  componentDidMount() {
-      this.props.getUser()
-      this.props.getKeys()
-  }
-
   togglePayment = () => {
     this.setState({
       modalPayment: !this.state.modalPayment
     })
+  }
+
+  formatRupiahSaldo() {
+    return this.props.userInfo.wallet && (
+      FormatRupiah(this.props.userInfo.wallet)
+    )
   }
 
   showForm() {
