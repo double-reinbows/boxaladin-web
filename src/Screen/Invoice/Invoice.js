@@ -69,7 +69,6 @@ class Invoice extends React.Component {
                     <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
                     <td>{ data.number ? data.number : (<h3>Anda Tidak Memasukkan no Hp</h3>) }</td>
                     <td>{ data.payment ? data.payment.status : 'CANCELLED' }</td>
-                    <td></td>
                   </tr>
                 )
               } else if (time <= data.payment.expiredAt) {
@@ -95,8 +94,6 @@ class Invoice extends React.Component {
                     <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
                     <td>{ data.number ? data.number : (<h3>Anda Tidak Memasukkan no Hp</h3>) }</td>
                     <td>{ data.payment ? data.payment.status : 'GRATIS' }</td>
-                    <td>{ data.status === 'PENDING'  ? (<label>Expired</label>) : null}</td>
-
                   </tr>
                 )
               }

@@ -37,13 +37,13 @@ class ModalPayment extends Component{
   }
 
   createObj() {
-    if (this.props.reqbody === 'amount') {
+    if (this.props.text === 'buy wallet') {
       let data = {
         amount: parseInt(this.props.data, 10),
         bankCode: this.state.bank
       }
       return data
-    } else {
+    } else if (this.props.text === 'buy key'){
       let data = {
         keyId: parseInt(this.props.data, 10),
         bankCode: this.state.bank
@@ -54,9 +54,9 @@ class ModalPayment extends Component{
 
   axiosTransaction = () => {
     const dataValue = this.createObj();
-    const {reqbody, fixedendpoint, retailendpoint, push} = this.props
+    const {reqbody, fixedendpoint, walletendpoint, retailendpoint, push} = this.props
     this.props.setIsLoading(true)
-    if (this.state.bank !== 'Alfamart') {
+    if (this.state.bank !== 'Alfamart' && this.state.bank !== 'Wallet') {
       console.log('reqbody', reqbody)
       axios({
         method: 'POST',
@@ -90,7 +90,28 @@ class ModalPayment extends Component{
       })
       .then(result => {
         this.props.setIsLoading(false)
-        this.props.history.push(`/${push}/${result.data.dataTopUp.id}`)
+        this.props.history.push(`/${push}/${result.data.dataFinal.id}`)
+      })
+      .catch(err => console.log(err))
+    } else if ( this.state.bank === 'Wallet') {
+      this.props.setIsLoading(true)
+      axios({
+        method: 'POST',
+        url: `${envChecker('api')}/${walletendpoint}`,
+        headers: {
+          token: localStorage.getItem('token')
+        },
+        data: dataValue
+      })
+      .then(result => {
+        console.log('result', result)
+        if (result.data === 'saldo tidak mencukupi'){
+          this.props.setIsLoading(false)
+          alert('saldo tidak mencukupi')
+        } else if (result.data.message === 'topup sukses'){
+        this.props.setIsLoading(false)
+        window.location.reload();
+        }
       })
       .catch(err => console.log(err))
     }
@@ -159,40 +180,55 @@ class ModalPayment extends Component{
     })
   }
 
+  handleChangeBank = (e) => {
+    this.setState({
+      bank: e.target.value,
+    })
+  }
+
+  bankChoice = () => {
+    let bank = []
+    if (this.props.text === 'buy wallet'){
+      bank = [
+        {value:'BNI', onClick: this.handleChangeBank},
+        {value:'BRI', onClick: this.handleChangeBank},
+        {value:'MANDIRI', onClick: this.handleChangeBank},
+        {value:'Alfamart', onClick: this.handleChangeBank},
+      ]
+    } else {
+      bank = [
+        {value:'BNI', onClick: this.handleChangeBank},
+        {value:'BRI', onClick: this.handleChangeBank},
+        {value:'MANDIRI', onClick: this.handleChangeBank},
+        {value:'Alfamart', onClick: this.handleChangeBank},
+        {value:'Wallet', onClick: this.handleChangeBank}
+      ]
+    }
+
+    return(
+      <div>
+        <label>Silahkan Pilih Salah Satu Bank Untuk Metode Pembayaran Virtual Account</label>
+        <div className="modal__method__content__container" onChange={this.setBank}>
+          <ButtonGroup className="modal__method__ButtonGroup" vertical>
+            {bank.map(data => (
+            <Button value={data.value} className="modal__method__Button" onClick={data.onClick}>{data.value}</Button>
+            ))
+            }
+          </ButtonGroup>
+        </div>
+      </div>
+    )
+  }
+
   render() {
+    console.log('bank', this.props)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">
           <div className="modal__method__header">
             <button className="modal__method__header__button" onClick={this.handleToggle}>X</button>
           </div>
-          <div>
-            <label>Silahkan Pilih Salah Satu Bank Untuk Metode Pembayaran Virtual Account</label>
-            <div className="modal__method__content__container" onChange={this.setBank}>
-            <ButtonGroup className="modal__method__ButtonGroup" vertical>
-              <Button className="modal__method__Button" onClick={() => this.setState({
-                bank: 'BNI',
-                disabled: false
-              })}>BNI</Button>
-              <Button className="modal__method__Button" onClick={() => this.setState({
-                bank: 'BRI',
-                disabled: false
-              })} >BRI</Button>
-              <Button className="modal__method__Button" onClick={() => this.setState({
-                bank: 'MANDIRI',
-                disabled: false
-              })} >Mandiri</Button>
-              <Button className="modal__method__Button" onClick={() => this.setState({
-                bank: 'Alfamart',
-                disabled: false
-              })} >Alfamart</Button>
-              <Button className="modal__method__Button" onClick={() => this.setState({
-                bank: 'Alfamart',
-                disabled: false
-              })} >Wallet</Button>
-            </ButtonGroup>
-            </div>
-            </div>
+            {this.bankChoice()}
             <div>
               <label className="alert__invoice"><b>{this.notifDuplicate()}</b></label>
             </div>

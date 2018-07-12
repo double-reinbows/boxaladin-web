@@ -60,7 +60,7 @@ class Dompet extends React.Component {
           <div className="dompet__content__key">
             <div className="dompet__content__key__topup">
               <h1 className="dompet__content__key__label">Top Up Kunci</h1>
-              {this.showForm()}
+              {this.showFormKey()}
               <label className="alert__dompetAladin">{this.state.notif}</label>
             </div>
 
@@ -71,7 +71,7 @@ class Dompet extends React.Component {
 
             <div style={{ paddingTop: '14%' }}>
               <label className="dompet__content__key__label">Top Up Saldo</label>
-              {this.dropdownSaldo()}
+              {this.dropdownSaldoWallet()}
             </div>
 
           </div>
@@ -96,7 +96,7 @@ class Dompet extends React.Component {
     })
   }
 
-  dropdownSaldo= ()=>{
+  dropdownSaldoWallet= ()=>{
     return(
     <div>
       <div>
@@ -120,13 +120,14 @@ class Dompet extends React.Component {
       <label className="alert__dompetAladin">{this.state.notif2}</label>
     </div>
     <ModalPayment
-      fixedendpoint='wallet'
+      text='buy wallet'
+      fixedendpoint='fixedwallet'
       retailendpoint='alfawallet'
-      reqbody={'amount'}
-      push='payment'
+      push='walletinvoice'
       isOpen={this.state.modalPayment1}
       data={this.state.wallet}
-      toggle={this.togglePayment1} />
+      toggle={this.togglePayment1} 
+      />
   </div>
     )
   }
@@ -156,7 +157,7 @@ class Dompet extends React.Component {
     )
   }
 
-  showForm() {
+  showFormKey() {
     return (
       <div>
         <div>
@@ -179,13 +180,15 @@ class Dompet extends React.Component {
           </Form>
       </div>
       <ModalPayment
+        text='buy key'
         fixedendpoint='topupva'
         retailendpoint='topupKey'
-        reqbody={'keyId'}
+        walletendpoint='walletkey'
         push='topupinvoice'
         isOpen={this.state.modalPayment2}
         data={this.state.idKeySelected}
-        toggle={this.togglePayment2} />
+        toggle={this.togglePayment2} 
+        />
       </div>
     )
   }
