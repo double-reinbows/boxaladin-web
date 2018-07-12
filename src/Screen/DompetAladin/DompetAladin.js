@@ -56,7 +56,7 @@ class Dompet extends React.Component {
               </div>
             </div>
             <div className="dompet__content__info">
-              <label>Saldo Aladin</label>
+              <label>Saldo</label>
               <div>
                 <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/Koin.png' alt="koin" />
                 <label className="dompet__content__info__label">: {this.formatRupiahSaldo()}</label>
@@ -66,7 +66,7 @@ class Dompet extends React.Component {
           </div>
           <div className="dompet__content__key">
             <div className="dompet__content__key__topup">
-              <h1 className="dompet__content__key__label">Top Up Kunci Aladin</h1>
+              <h1 className="dompet__content__key__label">Top Up Kunci</h1>
               {this.showForm()}
               <label className="alert__dompetAladin">{this.state.notif}</label>
             </div>
@@ -77,7 +77,7 @@ class Dompet extends React.Component {
             </div>
 
             <div style={{ paddingTop: '14%' }}>
-              <label className="dompet__content__key__label">Top Up Saldo Aladin</label>
+              <label className="dompet__content__key__label">Top Up Saldo</label>
               {this.dropdownSaldo()}
             </div>
 
