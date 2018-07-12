@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { connect } from 'react-redux'
 import { Form, FormGroup, Input  } from 'reactstrap'
@@ -27,12 +26,6 @@ class Dompet extends React.Component {
       modalPayment1: false,
       modalPayment2: false
     }
-  }
-
-  formatRupiahSaldo() {
-    return this.props.userInfo.wallet && (
-      FormatRupiah(this.props.userInfo.wallet)
-    )
   }
 
   render() {
@@ -111,9 +104,9 @@ class Dompet extends React.Component {
           <FormGroup>
             <Input className="dompet__content__key__topup__dropdown" type="select" id="upcoin" name="aladinConvert" onChange={(e) => this.setState({ wallet: parseInt(e.target.value, 10) })}>
               <option selected="true" disabled="true" value=''>-- Select --</option>
-              <option value={25000}>25000</option>
-              <option value={50000}>50000</option>
-              <option value={100000}>100000</option>
+              <option value={25000}>{FormatRupiah(25000)}</option>
+              <option value={50000}>{FormatRupiah(50000)}</option>
+              <option value={100000}>{FormatRupiah(100000)}</option>
             </Input>
           </FormGroup>
           <FormGroup>
@@ -126,13 +119,13 @@ class Dompet extends React.Component {
     <div>
       <label className="alert__dompetAladin">{this.state.notif2}</label>
     </div>
-    <ModalPayment 
-      fixedendpoint='wallet' 
+    <ModalPayment
+      fixedendpoint='wallet'
       retailendpoint='alfawallet'
       reqbody={'amount'}
       push='payment'
-      isOpen={this.state.modalPayment1} 
-      data={this.state.wallet} 
+      isOpen={this.state.modalPayment1}
+      data={this.state.wallet}
       toggle={this.togglePayment1} />
   </div>
     )
@@ -157,7 +150,13 @@ class Dompet extends React.Component {
 
   }
 
-  showForm = () => {
+  formatRupiahSaldo() {
+    return this.props.userInfo.wallet && (
+      FormatRupiah(this.props.userInfo.wallet)
+    )
+  }
+
+  showForm() {
     return (
       <div>
         <div>
@@ -179,13 +178,13 @@ class Dompet extends React.Component {
             </FormGroup>
           </Form>
       </div>
-      <ModalPayment 
-        fixedendpoint='topupva' 
+      <ModalPayment
+        fixedendpoint='topupva'
         retailendpoint='topupKey'
         reqbody={'keyId'}
         push='topupinvoice'
-        isOpen={this.state.modalPayment2} 
-        data={this.state.idKeySelected} 
+        isOpen={this.state.modalPayment2}
+        data={this.state.idKeySelected}
         toggle={this.togglePayment2} />
       </div>
     )

@@ -186,6 +186,10 @@ class ModalPayment extends Component{
                 bank: 'Alfamart',
                 disabled: false
               })} >Alfamart</Button>
+              <Button className="modal__method__Button" onClick={() => this.setState({
+                bank: 'Alfamart',
+                disabled: false
+              })} >Wallet</Button>
             </ButtonGroup>
             </div>
             </div>
