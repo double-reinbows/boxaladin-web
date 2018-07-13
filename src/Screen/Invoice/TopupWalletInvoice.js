@@ -1,31 +1,24 @@
-import React from 'react'
+//@flow
+import React, { Component } from 'react';
 import {
   Table,
   Button
 } from 'reactstrap'
 import {withRouter} from 'react-router-dom'
 import envChecker from '../../utils/envChecker'
-
 import moment from 'moment'
-import Axios from '../../../node_modules/axios';
+import Axios from 'axios'
 
-class TopupInvoice extends React.Component {
+type State = {
+  invoice: Array,
+}
+
+class TopupInvoice extends Component<State, Props> {
   constructor(props) {
     super(props)
     this.state = {
       invoice: []
     }
-  }
-
-  render() {
-    console.log('aaaaaaa', this.state.invoice)
-    return (
-      <div className="invoice">
-        <div className="invoice__container">
-					{ this.showInvoice() }
-        </div>
-      </div>
-    )
   }
 
   componentDidMount() {
@@ -66,13 +59,15 @@ class TopupInvoice extends React.Component {
               return null
             } else {
               const time = moment().toISOString()
-              let x = ''
+              let statusComponent = ''
               if (data.payment.status === 'CANCELLED'){
-                x = <td>{'CANCELLED'}</td>
+                statusComponent = <td>{'CANCELLED'}</td>
+              } else if (data.payment.status === 'PAID') {
+                statusComponent = <td>{'PAID'}</td>
               } else if (time <= data.payment.expiredAt){
-                x = <td><Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button></td>
+                statusComponent = <td><Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button></td>
               } else if (time >= data.payment.expiredAt){
-                x = <td>Expired</td>
+                statusComponent = <td>Expired</td>
               }
 
               return(
@@ -80,7 +75,7 @@ class TopupInvoice extends React.Component {
                   <th scope="row">{idx+1}</th>
                   <td>{moment(data.createdAt, moment.ISO_8601).format('L, h:mm:ss a')}</td>
                   <td>{`Rp.${data.amount.toLocaleString(['ban', 'id'])}`}</td>
-                  {x}
+                  {statusComponent}
                 </tr>
               )
             }
@@ -93,6 +88,19 @@ class TopupInvoice extends React.Component {
   showMetodePembayaran(id) {
     this.props.history.push(`/walletinvoice/${id}`)
   }
+
+  render() {
+    console.log('props', this.props)
+    return (
+      <div className="invoice">
+        <div className="invoice__container">
+          { this.showInvoice() }
+        </div>
+      </div>
+    )
+  }
 }
+
+
 
 export default withRouter(TopupInvoice)

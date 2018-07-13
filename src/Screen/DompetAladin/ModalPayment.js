@@ -54,10 +54,9 @@ class ModalPayment extends Component{
 
   axiosTransaction = () => {
     const dataValue = this.createObj();
-    const {reqbody, fixedendpoint, walletendpoint, retailendpoint, push} = this.props
+    const {fixedendpoint, walletendpoint, retailendpoint, push} = this.props
     this.props.setIsLoading(true)
     if (this.state.bank !== 'Alfamart' && this.state.bank !== 'Wallet') {
-      console.log('reqbody', reqbody)
       axios({
         method: 'POST',
         headers: {
@@ -67,12 +66,16 @@ class ModalPayment extends Component{
         data: dataValue
       })
       .then(result => {
+        console.log('result', result)
         if (result.data.error_code === "DUPLICATE_CALLBACK_VIRTUAL_ACCOUNT_ERROR") {
           this.props.setIsLoading(false)
           this.setState({
             notif: true
           })
-        } else {
+        } else if (result.data === 'saldo limited') {
+          this.props.setIsLoading(false)
+          alert('Masukkan Jumlah Sesuai Range Saldo')
+        }  else {
           this.props.setIsLoading(false)
           this.props.history.push(`/${push}/${result.data.dataFinal.id}`)
         }
@@ -89,8 +92,13 @@ class ModalPayment extends Component{
         data: dataValue
       })
       .then(result => {
-        this.props.setIsLoading(false)
-        this.props.history.push(`/${push}/${result.data.dataFinal.id}`)
+        if (result.data === 'saldo limited') {
+          this.props.setIsLoading(false)
+          alert('Masukkan Jumlah Sesuai Range Saldo')
+        } else {
+          this.props.setIsLoading(false)
+          this.props.history.push(`/${push}/${result.data.dataFinal.id}`)
+        }
       })
       .catch(err => console.log(err))
     } else if ( this.state.bank === 'Wallet') {

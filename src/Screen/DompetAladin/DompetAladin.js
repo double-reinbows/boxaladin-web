@@ -102,13 +102,16 @@ class Dompet extends React.Component {
       <div>
         <Form onSubmit={this.upWallet}>
           <FormGroup>
-            <Input className="dompet__content__key__topup__dropdown" type="select" id="upcoin" name="aladinConvert" onChange={(e) => this.setState({ wallet: parseInt(e.target.value, 10) })}>
-              <option selected="true" disabled="true" value=''>-- Select --</option>
+            <Input className="dompet__content__key__topup__dropdown" type="number" id="upcoin" name="aladinConvert" min="200000" max="1000000" onChange={(e) => this.setState({ wallet: parseInt(e.target.value, 10) })}/>
+              {/* <option selected="true" disabled="true" value=''>-- Select --</option>
               <option value={25000}>{FormatRupiah(25000)}</option>
               <option value={50000}>{FormatRupiah(50000)}</option>
-              <option value={100000}>{FormatRupiah(100000)}</option>
-            </Input>
+              <option value={100000}>{FormatRupiah(100000)}</option> */}
+            {/* </Input> */}
           </FormGroup>
+          <label style = {{fontSize: "18px"}}>Min Pembelian Rp 200.000</label>
+          <br/>
+          <label style = {{fontSize: "18px"}}>Max Pembelian Rp 1.000.000</label>
           <FormGroup>
             <button className="dompet__content__key__button" color="primary" type="submit">
             <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/troly.png' alt="troly" />

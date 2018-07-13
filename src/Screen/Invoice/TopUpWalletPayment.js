@@ -1,15 +1,22 @@
+//@flow
 import React from 'react'
 import axios from 'axios'
 import Guide from './PaymentGuide'
 import ModalInvoice from '../Components/Modal/ModalInvoice'
 import envChecker from '../../utils/envChecker'
+import moment from 'moment'
 
-class InvoiceDetail extends React.Component {
+type state = {
+  invoice: object,
+  modalDetail: boolean,
+}
+class InvoiceDetail extends React.Component<state> {
   constructor(props) {
     super(props)
     this.state = {
-      invoice: '',
-      modalDetail: false
+      invoice: {},
+      modalDetail: false,
+      activeTab : 1
     }
   }
 
@@ -64,12 +71,10 @@ class InvoiceDetail extends React.Component {
   getInvoiceById() {
     axios({
       method: 'GET',
-      headers: {
-        key: process.env.REACT_APP_KEY
-      },
-      url: `${envChecker('api')}/walletstatus/${this.props.match.params.id}`
+      url: `${envChecker('api')}/walletstatus/23`
     })
     .then(({data}) => {
+      console.log('data', data)
     this.setState({
       invoice: data
     })
@@ -94,21 +99,37 @@ class InvoiceDetail extends React.Component {
     .catch(err => console.log(err))
   }
 
+  getExpired = () => {
+    return this.state.invoice.payment.expiredAt && (
+      <h2 className="pembayaran__title__infoTime">Selesaikan Pembayaran Sebelum {moment(this.state.invoice.payment.expiredAt, moment.ISO_8601).add(12, 'hours').format('D MMMM YYYY, h:mm:ss a')}</h2>
+    )
+  }
+
+  handleInvoice = () => {
+    if (!this.state.invoice){
+      return null
+    } else if (this.state.invoice){
+      return(
+        <div>
+          <div className="pembayaran__content__textDistance">
+            <h1 className="pembayaran__title"> Rp {this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}</h1>
+            <button className="pembayaran__buttonDetail" onClick={this.toggleDetail}> Detail Tagihan </button>
+          </div>
+          {this.getExpired()}
+            {this.handleRetail()}
+      </div>
+      )
+    }
+  }
+
   render() {
+    console.log('invoice', this.state.invoice)
+    console.log('props', this.props)
   return (
     <div className="pembayaran">
       <div className="pembayaran__container">
         <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice.virtualAccount ? (this.state.invoice.virtualAccount.bankCode) : null}</h1>
-        {this.state.invoice ? (
-            <div>
-              <div className="pembayaran__content__textDistance">
-                <h1 className="pembayaran__title"> Rp {this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}</h1>
-                <button className="pembayaran__buttonDetail" onClick={this.toggleDetail}> Detail Tagihan </button>
-              </div>
-                {this.handleRetail()}
-            </div>
-          ) : null
-        }
+        {this.handleInvoice()}
       </div>
       <ModalInvoice isOpen={this.state.modalDetail} toggle={this.toggleDetail} invoice={this.state.invoice} />
     </div>
