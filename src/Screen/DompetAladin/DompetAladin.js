@@ -19,7 +19,7 @@ class Dompet extends React.Component {
       idKeySelected: '',
       convertKey: '',
       key: null,
-      wallet: 0,
+      wallet: '',
       notif: '',
       notif2: '',
       disabled: true,
@@ -96,18 +96,19 @@ class Dompet extends React.Component {
     })
   }
 
+  handleInputWallet = (e) => {
+    this.setState({ 
+      wallet: parseInt(e.target.value, 10)
+    });
+  }
+
   dropdownSaldoWallet= ()=>{
     return(
     <div>
       <div>
         <Form onSubmit={this.upWallet}>
           <FormGroup>
-            <Input className="dompet__content__key__topup__dropdown" type="number" id="upcoin" name="aladinConvert" min="200000" max="1000000" onChange={(e) => this.setState({ wallet: parseInt(e.target.value, 10) })}/>
-              {/* <option selected="true" disabled="true" value=''>-- Select --</option>
-              <option value={25000}>{FormatRupiah(25000)}</option>
-              <option value={50000}>{FormatRupiah(50000)}</option>
-              <option value={100000}>{FormatRupiah(100000)}</option> */}
-            {/* </Input> */}
+            <Input className="dompet__content__key__topup__dropdown" type="number" id="upcoin" name="aladinConvert" min="200000" max="1000000" placeholder="Rp. 200.000,00" value={this.state.wallet} onChange={this.handleInputWallet}/>
           </FormGroup>
           <label style = {{fontSize: "18px"}}>Min Pembelian Rp 200.000</label>
           <br/>

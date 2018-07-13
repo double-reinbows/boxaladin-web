@@ -28,13 +28,6 @@ class ModalPayment extends Component{
     setIsLoadingTime: PropTypes.func,
     data: PropTypes.string
   }
-  setBank = (e) => {
-    this.setState({
-      bank: e.target.value,
-      disabled: false,
-      notif: false
-    })
-  }
 
   createObj() {
     if (this.props.text === 'buy wallet') {
@@ -216,7 +209,7 @@ class ModalPayment extends Component{
     return(
       <div>
         <label>Silahkan Pilih Salah Satu Bank Untuk Metode Pembayaran Virtual Account</label>
-        <div className="modal__method__content__container" onChange={this.setBank}>
+        <div className="modal__method__content__container">
           <ButtonGroup className="modal__method__ButtonGroup" vertical>
             {bank.map(data => (
             <Button value={data.value} className="modal__method__Button" onClick={data.onClick}>{data.value}</Button>

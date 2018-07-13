@@ -104,6 +104,8 @@ class InvoiceDetail extends React.Component {
   }
 
   render() {
+    console.log('props', this.props)
+    console.log('invoice', this.state.invoice)
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
