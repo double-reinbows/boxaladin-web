@@ -25,7 +25,7 @@ import { loadingBarMiddleware } from 'react-redux-loading-bar'
 import reducer from '../reducers/'
 import { logger } from 'redux-logger'
 
-const middlewares = [thunk, logger];
+const middlewares = [thunk];
 const middleware = applyMiddleware(...middlewares)
 
 const store = createStore(reducer, middleware, applyMiddleware(loadingBarMiddleware()))

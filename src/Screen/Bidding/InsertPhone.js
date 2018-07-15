@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Input, Button } from 'reactstrap'
 import { getPhoneNumbers } from '../../actions/'
-import ModalPayment from './ModalPayment'
+import ModalBankPayment from '../Components/Modal/ModalBankPayment'
 import { validateProvider, detectProvider } from '../../utils/phone'
 import ProviderModal from '../Home/Modal/ProviderModal';
 import  priceProduct  from '../../utils/splitPrice'
@@ -19,7 +19,7 @@ class InsertPhone extends React.Component {
       productUnlocked: {},
       providerModal: false,
       disabled: true,
-      modalPayment: false,
+      modalBankPayment: false,
     }
     this.handleBack()
   }
@@ -33,7 +33,7 @@ class InsertPhone extends React.Component {
 
   togglePayment = () => {
     this.setState({
-      modalPayment: !this.state.modalPayment
+      modalBankPayment: !this.state.modalBankPayment
     })
   }
 
@@ -77,7 +77,18 @@ class InsertPhone extends React.Component {
 		</div>
 
 			<ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
-      <ModalPayment isOpen={this.state.modalPayment} data={this.state} aladinPrice={aladinPrice} toggle={this.togglePayment} />
+      <ModalBankPayment 
+      text='buy pulsa'
+      fixedendpoint='virtualaccount'
+      retailendpoint='payment'
+      walletendpoint='walletpulsa'
+      isOpen={this.state.modalBankPayment} 
+      amount={aladinPrice} 
+      phone={this.state.phone}
+      productId={this.state.productUnlocked}
+      toggle={this.togglePayment} 
+      push={'payment'}
+      />
 		</div>
     )
   }
@@ -141,12 +152,6 @@ class InsertPhone extends React.Component {
     }
   }
 
-  openPayment(){
-    this.setState({
-      modalPayment: !this.state.modalPayment
-    })
-  }
-
   submitTransaction(e) {
     e.preventDefault()
 
@@ -159,25 +164,25 @@ class InsertPhone extends React.Component {
         this.setState({
           phone: num.join('')
         },
-        () => {this.openPayment()})
+        () => {this.togglePayment()})
       } else if (num[0] + num[1] + num[2] === '+62') {
         num.splice(0, 3, '0')
         this.setState({
           phone: num.join('')
         },
-        () => {this.openPayment()})
+        () => {this.togglePayment()})
       } else if (num[0] + num[1] === '62') {
         num.splice(0, 2, '0')
         this.setState({
           phone: num.join('')
         },
-        () => {this.openPayment()})
+        () => {this.togglePayment()})
       } else if (num[0] === '8') {
         num.splice(0, 0, '0')
         this.setState({
           phone: num.join('')
         },
-        () => {this.openPayment()})
+        () => {this.togglePayment()})
       }
     }
   }

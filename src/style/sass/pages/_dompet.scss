@@ -16,8 +16,10 @@
     text-align: center;
     border: 1px solid;
     width: 40%;
-    height: 86%;
-    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 400px;
     &__title{
       font-size: 28px;
       margin: 5%;

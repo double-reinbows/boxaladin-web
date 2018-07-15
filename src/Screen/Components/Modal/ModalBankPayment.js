@@ -1,113 +1,131 @@
-//@flow
 import React, { Component } from 'react';
 import Modal from 'react-modal';
+import PropTypes from 'prop-types';
 import axios from 'axios'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import { Button, ButtonGroup } from 'reactstrap'
-import Loading from '../Components/Loading/'
-import LoadingTime from '../Components/Loading/indexTime'
-import { setIsLoading } from '../../actions/'
-import { setIsLoadingTime } from '../../actions/'
-import envChecker from '../../utils/envChecker'
 
-type Props = {
-  toggle: Function,
-  isOpen: boolean,
-  setIsLoading: Function,
-  setIsLoadingTime: Function
-}
+import Loading from '../Loading'
+import LoadingTime from '../Loading/indexTime'
+import { setIsLoading } from '../../../actions/'
+import { setIsLoadingTime } from '../../../actions/'
+import envChecker from '../../../utils/envChecker'
 
-type State = {
-  bank: string,
-  notif: string,
-  disabledCancel: boolean
-}
-class ModalPayment extends Component <Props, State>{
+class ModalPayment extends Component{
   constructor(props) {
     super(props)
     this.state = {
       bank: '',
       notif: '',
-      disabledCancel: false,
+      disabledCancel: false
+    }
+  }
+  static propTypes = {
+    toggle: PropTypes.func,
+    isOpen: PropTypes.bool,
+    setIsLoading: PropTypes.func,
+    setIsLoadingTime: PropTypes.func,
+    data: PropTypes.string
+  }
+
+  createObj() {
+    if (this.props.text === 'buy wallet') {
+      let data = {
+        amount: parseInt(this.props.data, 10),
+        bankCode: this.state.bank
+      }
+      return data
+    } else if (this.props.text === 'buy key'){
+      let data = {
+        keyId: parseInt(this.props.data, 10),
+        bankCode: this.state.bank
+      }
+      return data
+    } else if (this.props.text === 'buy pulsa'){
+      let data = {
+        productId: this.props.productId.id,
+        phoneNumber: this.props.phone,
+        bankCode: this.state.bank,
+        amount: this.props.amount
+      }
+      return data
     }
   }
 
   axiosTransaction = () => {
-    const {productUnlocked, phone} = this.props.data;
+    const dataValue = this.createObj();
+    console.log('datavalue', dataValue)
+    const {fixedendpoint, walletendpoint, retailendpoint, push} = this.props
+    this.props.setIsLoading(true)
     if (this.state.bank !== 'Alfamart' && this.state.bank !== 'Wallet') {
-      this.props.setIsLoading(true)
       axios({
         method: 'POST',
-        url: `${envChecker('api')}/virtualaccount`,
         headers: {
-          token: localStorage.getItem('token')
-        },
-        data: {
-          amount: this.props.aladinPrice,
-          productId: productUnlocked.id,
-          phoneNumber: phone,
-          bankCode: this.state.bank
-        },
+            token: localStorage.getItem('token'),
+            },
+        url: `${envChecker('api')}/${fixedendpoint}`,
+        data: dataValue
       })
       .then(result => {
+        console.log('result', result)
         if (result.data.error_code === "DUPLICATE_CALLBACK_VIRTUAL_ACCOUNT_ERROR") {
           this.props.setIsLoading(false)
           this.setState({
             notif: true
           })
+        } else if (result.data === 'saldo limited') {
+          this.props.setIsLoading(false)
+          alert('Masukkan Jumlah Sesuai Range Saldo')
+        }  else {
+          this.props.setIsLoading(false)
+          this.props.history.push(`/${push}/${result.data.dataFinal.id}`)
+        }
+      })
+    .catch(err => console.log('error'))
+    } else if (this.state.bank === 'Alfamart') {
+      this.props.setIsLoading(true)
+      axios({
+        method: 'POST',
+        url: `${envChecker('api')}/${retailendpoint}`,
+        headers: {
+          token: localStorage.getItem('token')
+        },
+        data: dataValue
+      })
+      .then(result => {
+        if (result.data === 'saldo limited') {
+          this.props.setIsLoading(false)
+          alert('Masukkan Jumlah Sesuai Range Saldo')
         } else {
           this.props.setIsLoading(false)
-          this.props.history.push(`/payment/${result.data.dataFinal.id}`)
+          this.props.history.push(`/${push}/${result.data.dataFinal.id}`)
         }
       })
       .catch(err => console.log(err))
-      } else if (this.state.bank === 'Alfamart') {
-        this.props.setIsLoading(true)
-        const {productUnlocked, phone} = this.props.data;
-        axios({
-          method: 'POST',
-          url: `${envChecker('api')}/payment`,
-          headers: {
-            token: localStorage.getItem('token')
-          },
-          data: {
-            amount: this.props.aladinPrice,
-            productId: productUnlocked.id,
-            phoneNumber: phone,
-          },
-        })
-        .then(result => {
+    } else if ( this.state.bank === 'Wallet') {
+      this.props.setIsLoading(true)
+      axios({
+        method: 'POST',
+        url: `${envChecker('api')}/${walletendpoint}`,
+        headers: {
+          token: localStorage.getItem('token')
+        },
+        data: dataValue
+      })
+      .then(result => {
+        console.log('result', result)
+        if (result.data === 'saldo tidak mencukupi'){
           this.props.setIsLoading(false)
-          this.props.history.push(`/payment/${result.data.id}`)
-        })
-        .catch(err => console.log(err))
-      } else if (this.state.bank === 'Wallet'){
-        this.props.setIsLoading(true)
-        axios({
-          method: 'POST',
-          url: `${envChecker('api')}/walletpulsa`,
-          headers: {
-            token: localStorage.getItem('token')
-          },
-          data: {
-            productId: productUnlocked.id,
-            phoneNumber: phone,
-          },
-        })
-        .then(result => {
-          console.log('asfsfsafsafas', result)
-          if (result.data === 'saldo tidak mencukupi'){
-            this.props.setIsLoading(false)
-            alert('saldo tidak mencukupi')
-          } else {
-          this.props.setIsLoading(false)
-          this.props.history.push(`/tabsinvoice`)
-          }
-        })
-        .catch(err => console.log(err))
-      }
+          alert('saldo tidak mencukupi')
+        } else if (result.data.message === 'topup sukses'){
+        this.props.setIsLoading(false)
+        window.location.reload();
+        }
+      })
+      .catch(err => console.log(err))
     }
+  }
 
   handleToggle = () => {
     this.setState({
@@ -119,7 +137,6 @@ class ModalPayment extends Component <Props, State>{
   }
 
   notifDuplicate() {
-
     if (this.state.notif === true) {
       return (
         <div>
@@ -129,7 +146,7 @@ class ModalPayment extends Component <Props, State>{
             {...this.props.TimerLoading}
           />
           <button className="modal__method__content__button" onClick={() => this.cancelInvoice()} disabled = {this.state.disabledCancel}>Hapus</button>
-          <button className="modal__method__content__button" ><a href={envChecker('web') + '/tabsinvoice'} target="_blank" rel="noopener noreferrer" className="bidding__notif">Invoice</a></button>
+          <button className="modal__method__content__button" ><a href={process.env.REACT_APP_WEB_PRODUCTION + '/tabsinvoice'} target="_blank" rel="noopener noreferrer" className="bidding__notif">Invoice</a></button>
         </div>
       )
     } else {
@@ -162,14 +179,14 @@ class ModalPayment extends Component <Props, State>{
           clearInterval(this.timer);
           this.props.setIsLoadingTime(false)
           this.setState({
-            notif: false
+            notif : false
           })
         }
       }, 1000);
     })
     .catch(err => {
-      this.props.setIsLoading(false)
       console.log(err)
+      this.props.setIsLoading(false)
     })
   }
 
@@ -180,13 +197,23 @@ class ModalPayment extends Component <Props, State>{
   }
 
   bankChoice = () => {
-      const bank = [
+    let bank = []
+    if (this.props.text === 'buy wallet'){
+      bank = [
+        {value:'BNI', onClick: this.handleChangeBank},
+        {value:'BRI', onClick: this.handleChangeBank},
+        {value:'MANDIRI', onClick: this.handleChangeBank},
+        {value:'Alfamart', onClick: this.handleChangeBank},
+      ]
+    } else {
+      bank = [
         {value:'BNI', onClick: this.handleChangeBank},
         {value:'BRI', onClick: this.handleChangeBank},
         {value:'MANDIRI', onClick: this.handleChangeBank},
         {value:'Alfamart', onClick: this.handleChangeBank},
         {value:'Wallet', onClick: this.handleChangeBank}
       ]
+    }
 
     return(
       <div>
@@ -204,25 +231,20 @@ class ModalPayment extends Component <Props, State>{
   }
 
   render() {
-    console.log('invoice state', this.state)
+    console.log('bank', this.props.text)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">
           <div className="modal__method__header">
             <button className="modal__method__header__button" onClick={this.handleToggle}>X</button>
           </div>
-          <div>
-            <label className="modal__label__header">Pilih Metode Pembayaran</label>
-            <label className="modal__label__content"><b>Pastikan metode pembayaran anda sesuai dengan apa yang anda mau (sekali anda memilih, anda tidak dapat mengubah metode pembayarannya)</b></label>
-            <label className="modal__label__warningBca">*pembayaran menggunakan BCA untuk sementara hanya dapat dilakukan menggunakan transfer dari bank lain</label>
             {this.bankChoice()}
             <div>
-              <label className="alert__invoice">{this.notifDuplicate()}</label>
+              <label className="alert__invoice"><b>{this.notifDuplicate()}</b></label>
             </div>
-            <button disabled={this.state.disabled} className="modal__method__content__button" onClick={this.axiosTransaction}>Lanjut</button>
+            <button disabled={this.state.disabled} className="modal__method__content__button" onClick={this.axiosTransaction}>Submit</button>
             <Loading isLoading={ this.props.isLoading } />
           </div>
-        </div>
       </Modal>
     )
   }
