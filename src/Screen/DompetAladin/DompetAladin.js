@@ -44,14 +44,14 @@ class Dompet extends React.Component {
             <div className="dompet__content__info">
               <label>Koin</label>
               <div>
-                <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/Koin.png' alt="koin" />
+                <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/koin-v2.png' alt="koin" />
                 <label className="dompet__content__info__label">: {this.props.userInfo.coin}</label>
               </div>
             </div>
             <div className="dompet__content__info">
               <label>Uang</label>
               <div>
-                <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/Koin.png' alt="koin" />
+                <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/uang.png' alt="uang" />
                 <label className="dompet__content__info__label">: {this.formatRupiahSaldo()}</label>
               </div>
             </div>
