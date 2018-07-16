@@ -293,10 +293,15 @@ class InvoiceDetail extends React.Component {
       url: `${envChecker('api')}/transaction/${this.props.match.params.id}`
     })
     .then(({data}) => {
+      console.log('data', data)
     this.setState({
       invoice: data
     })
-    if ( data.virtualAccount.bankCode === 'MANDIRI'){
+    if (data.virtualAccount === null){
+      this.setState({
+        activeTab: '5'
+      })
+    } else if ( data.virtualAccount.bankCode === 'MANDIRI'){
       this.setState({
         activeTab: '1'
       })
@@ -314,8 +319,8 @@ class InvoiceDetail extends React.Component {
       })
     }
   })
-    .catch(err => console.log(err))
- }
+  .catch(err => console.log(err))
+}
 
 }
 

@@ -55,7 +55,7 @@ class ModalPayment extends Component{
 
   axiosTransaction = () => {
     const dataValue = this.createObj();
-    console.log('datavalue', dataValue)
+    console.log('value', dataValue)
     const {fixedendpoint, walletendpoint, retailendpoint, push} = this.props
     this.props.setIsLoading(true)
     if (this.state.bank !== 'Alfamart' && this.state.bank !== 'Wallet') {
@@ -220,8 +220,8 @@ class ModalPayment extends Component{
         <label>Silahkan Pilih Salah Satu Bank Untuk Metode Pembayaran Virtual Account</label>
         <div className="modal__method__content__container">
           <ButtonGroup className="modal__method__ButtonGroup" vertical>
-            {bank.map(data => (
-            <Button value={data.value} className="modal__method__Button" onClick={data.onClick}>{data.value}</Button>
+            {bank.map((data, idx) => (
+            <Button key={idx} value={data.value} className="modal__method__Button" onClick={data.onClick}>{data.value}</Button>
             ))
             }
           </ButtonGroup>
@@ -231,7 +231,7 @@ class ModalPayment extends Component{
   }
 
   render() {
-    console.log('bank', this.props.text)
+    console.log('bank key', this.props)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">

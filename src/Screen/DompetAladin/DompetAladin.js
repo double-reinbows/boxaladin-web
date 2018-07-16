@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Form, FormGroup, Input  } from 'reactstrap'
 import axios from 'axios'
-import ModalBankPayment from '../Components/Modal/ModalBankPayment'
+import ModalPayment from '../Components/Modal/ModalPayment'
 // import TopUpKey from './TopupKey'
 
 import { getUser } from '../../actions/userAction'
@@ -23,8 +23,8 @@ class Dompet extends React.Component {
       notif: '',
       notif2: '',
       disabled: true,
-      modalBankPayment1: false,
-      modalBankPayment2: false
+      modalPayment1: false,
+      modalPayment2: false
     }
   }
 
@@ -87,12 +87,12 @@ class Dompet extends React.Component {
 
   togglePayment1 = () => {
     this.setState({
-      modalBankPayment1: !this.state.modalBankPayment1
+      modalPayment1: !this.state.modalPayment1
     })
   }
   togglePayment2 = () => {
     this.setState({
-      modalBankPayment2: !this.state.modalBankPayment2
+      modalPayment2: !this.state.modalPayment2
     })
   }
 
@@ -123,12 +123,12 @@ class Dompet extends React.Component {
     <div>
       <label className="alert__dompetAladin">{this.state.notif2}</label>
     </div>
-    <ModalBankPayment
+    <ModalPayment
       text='buy wallet'
       fixedendpoint='fixedwallet'
       retailendpoint='alfawallet'
       push='walletinvoice'
-      isOpen={this.state.modalBankPayment1}
+      isOpen={this.state.modalPayment1}
       data={this.state.wallet}
       toggle={this.togglePayment1}
       />
@@ -148,7 +148,7 @@ class Dompet extends React.Component {
     })
     } else {
       this.setState({
-        modalBankPayment1: true
+        modalPayment1: true
       })
       payload ={wallet: this.state.wallet}
     }
@@ -184,13 +184,13 @@ class Dompet extends React.Component {
             </FormGroup>
           </Form>
       </div>
-      <ModalBankPayment
+      <ModalPayment
         text='buy key'
         fixedendpoint='topupva'
         retailendpoint='topupKey'
         walletendpoint='walletkey'
         push='topupinvoice'
-        isOpen={this.state.modalBankPayment2}
+        isOpen={this.state.modalPayment2}
         data={this.state.idKeySelected}
         toggle={this.togglePayment2}
         />
@@ -210,7 +210,7 @@ class Dompet extends React.Component {
     })
     } else {
       this.setState({
-        modalBankPayment2: true
+        modalPayment2: true
       })
     }
   }

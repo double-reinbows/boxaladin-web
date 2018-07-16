@@ -106,7 +106,32 @@ class TopupPayment extends React.Component {
         key: process.env.REACT_APP_KEY
       },
     })
-    .then(({data}) => this.setState({invoice: data}))
+    .then(({data}) => {
+      this.setState({
+        invoice: data
+      })
+      if (data.virtualAccount === null){
+        this.setState({
+          activeTab: '5'
+        })
+      } else if ( data.virtualAccount.bankCode === 'MANDIRI'){
+        this.setState({
+          activeTab: '1'
+        })
+      } else if (data.virtualAccount.bankCode === 'BNI'){
+        this.setState({
+          activeTab: '2'
+        })
+      } else if (data.virtualAccount.bankCode === 'BRI'){
+        this.setState({
+          activeTab: '3'
+        })
+      } else if (data.virtualAccount.bankCode === 'BCA'){
+        this.setState({
+          activeTab: '4'
+        })
+      }
+    })
     .catch(err => console.log(err))
   }
 

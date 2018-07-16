@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Input, Button } from 'reactstrap'
 import { getPhoneNumbers } from '../../actions/'
-import ModalBankPayment from '../Components/Modal/ModalBankPayment'
+import ModalPayment from '../Components/Modal/ModalPayment'
 import { validateProvider, detectProvider } from '../../utils/phone'
 import ProviderModal from '../Home/Modal/ProviderModal';
 import  priceProduct  from '../../utils/splitPrice'
@@ -19,7 +19,7 @@ class InsertPhone extends React.Component {
       productUnlocked: {},
       providerModal: false,
       disabled: true,
-      modalBankPayment: false,
+      modalPayment: false,
     }
     this.handleBack()
   }
@@ -33,7 +33,7 @@ class InsertPhone extends React.Component {
 
   togglePayment = () => {
     this.setState({
-      modalBankPayment: !this.state.modalBankPayment
+      modalPayment: !this.state.modalPayment
     })
   }
 
@@ -77,17 +77,17 @@ class InsertPhone extends React.Component {
 		</div>
 
 			<ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
-      <ModalBankPayment 
-      text='buy pulsa'
-      fixedendpoint='virtualaccount'
-      retailendpoint='payment'
-      walletendpoint='walletpulsa'
-      isOpen={this.state.modalBankPayment} 
-      amount={aladinPrice} 
-      phone={this.state.phone}
-      productId={this.state.productUnlocked}
-      toggle={this.togglePayment} 
-      push={'payment'}
+      <ModalPayment 
+        text='buy pulsa'
+        fixedendpoint='virtualaccount'
+        retailendpoint='payment'
+        walletendpoint='walletpulsa'
+        isOpen={this.state.modalPayment} 
+        amount={aladinPrice} 
+        phone={this.state.phone}
+        productId={this.state.productUnlocked}
+        toggle={this.togglePayment} 
+        push={'payment'}
       />
 		</div>
     )

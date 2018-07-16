@@ -56,7 +56,7 @@ class Invoice extends React.Component {
         </thead>
         <tbody className="invoice__table">
           {transactions.map((data, idx) => {
-            if (!data.createdAt || !data.product || !data.payment){
+            if (!data.createdAt || !data.createdAt || !data.payment || data.payment.invoiceId === 'null'){
               return null
             } else {
               const time = moment().toISOString()
