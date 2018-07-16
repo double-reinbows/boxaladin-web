@@ -49,7 +49,7 @@ class Dompet extends React.Component {
               </div>
             </div>
             <div className="dompet__content__info">
-              <label>Saldo</label>
+              <label>Uang</label>
               <div>
                 <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/Koin.png' alt="koin" />
                 <label className="dompet__content__info__label">: {this.formatRupiahSaldo()}</label>
@@ -70,7 +70,7 @@ class Dompet extends React.Component {
             </div>
 
             <div style={{ paddingTop: '14%' }}>
-              <label className="dompet__content__key__label">Top Up Saldo</label>
+              <label className="dompet__content__key__label">Top Up Uang</label>
               {this.dropdownSaldoWallet()}
             </div>
 
@@ -97,7 +97,7 @@ class Dompet extends React.Component {
   }
 
   handleInputWallet = (e) => {
-    this.setState({ 
+    this.setState({
       wallet: parseInt(e.target.value, 10)
     });
   }
@@ -108,11 +108,11 @@ class Dompet extends React.Component {
       <div>
         <Form onSubmit={this.upWallet}>
           <FormGroup>
-            <Input className="dompet__content__key__topup__dropdown" type="number" id="upcoin" name="aladinConvert" min="200000" max="1000000" placeholder="Rp. 200.000,00" value={this.state.wallet} onChange={this.handleInputWallet}/>
+            <Input className="dompet__content__key__topup__dropdown" type="number" id="upcoin" name="aladinConvert" min="200000" max="1000000" placeholder="Minimal Rp. 200.000,00" value={this.state.wallet} onChange={this.handleInputWallet}/>
           </FormGroup>
-          <label style = {{fontSize: "18px"}}>Min Pembelian Rp 200.000</label>
-          <br/>
-          <label style = {{fontSize: "18px"}}>Max Pembelian Rp 1.000.000</label>
+          {/* <label style = {{fontSize: "18px"}}>Min Pembelian Rp 200.000</label>
+          <br/> */}
+          <label style = {{fontSize: "18px"}}>Uang tidak boleh melebihi Rp 1.000.000</label>
           <FormGroup>
             <button className="dompet__content__key__button" color="primary" type="submit">
             <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/troly.png' alt="troly" />
@@ -130,7 +130,7 @@ class Dompet extends React.Component {
       push='walletinvoice'
       isOpen={this.state.modalBankPayment1}
       data={this.state.wallet}
-      toggle={this.togglePayment1} 
+      toggle={this.togglePayment1}
       />
   </div>
     )
@@ -156,6 +156,7 @@ class Dompet extends React.Component {
   }
 
   formatRupiahSaldo() {
+    console.log('render saldo', this.props.userInfo.wallet)
     return this.props.userInfo.wallet && (
       FormatRupiah(this.props.userInfo.wallet)
     )
@@ -191,7 +192,7 @@ class Dompet extends React.Component {
         push='topupinvoice'
         isOpen={this.state.modalBankPayment2}
         data={this.state.idKeySelected}
-        toggle={this.togglePayment2} 
+        toggle={this.togglePayment2}
         />
       </div>
     )
