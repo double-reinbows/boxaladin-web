@@ -114,13 +114,15 @@ class ModalPayment extends Component{
         data: dataValue
       })
       .then(result => {
-        console.log('result', result)
+        console.log('result wallet', result)
         if (result.data === 'saldo tidak mencukupi'){
           this.props.setIsLoading(false)
           alert('saldo tidak mencukupi')
         } else if (result.data.message === 'topup sukses'){
         this.props.setIsLoading(false)
         window.location.reload();
+        } else if (result.data.message === 'sukses pulsa'){
+          this.props.history.push(`/tabsinvoice`)
         }
       })
       .catch(err => console.log(err))
