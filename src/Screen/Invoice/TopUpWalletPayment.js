@@ -80,7 +80,11 @@ class InvoiceDetail extends React.Component<state> {
     this.setState({
       invoice: data
     })
-    if ( data.virtualAccount.bankCode === 'MANDIRI'){
+    if (data.virtualAccount === null){
+      this.setState({
+        activeTab: '5'
+      })
+    } else if ( data.virtualAccount.bankCode === 'MANDIRI'){
       this.setState({
         activeTab: '1'
       })

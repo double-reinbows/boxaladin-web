@@ -44,7 +44,8 @@ class TopupInvoice extends React.Component <Props> {
         </thead>
         <tbody>
           {this.props.userTopupTransactions.map((data, idx) => {
-            if (!data.createdAt || !data.createdAt || data.payment.invoiceId === 'null'){
+            console.log('data invoice', data)
+            if (!data.createdAt || !data.createdAt || !data.payment || data.payment.invoiceId === 'null'){
               return null
             } else {
               const time = moment().toISOString()
@@ -56,6 +57,8 @@ class TopupInvoice extends React.Component <Props> {
               } else if (time <= data.payment.expiredAt){
                 statusComponent = <td><Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button></td>
               } else if (time >= data.payment.expiredAt){
+                statusComponent = <td>Expired</td>
+              } else {
                 statusComponent = <td>Expired</td>
               }
 

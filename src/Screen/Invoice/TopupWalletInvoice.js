@@ -55,7 +55,7 @@ class TopupInvoice extends Component<State, Props> {
         </thead>
         <tbody>
           {this.state.invoice.map((data, idx) => {
-            if (!data.createdAt|| !data.createdAt || data.payment.invoiceId === 'null'){
+            if (!data.createdAt || !data.createdAt || !data.payment || data.payment.invoiceId === 'null'){
               return null
             } else {
               const time = moment().toISOString()
