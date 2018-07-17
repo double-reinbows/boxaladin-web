@@ -11,6 +11,7 @@ import LoadingTime from '../Loading/indexTime'
 import { setIsLoading } from '../../../actions/'
 import { setIsLoadingTime } from '../../../actions/'
 import envChecker from '../../../utils/envChecker'
+import FormatRupiah from '../../../utils/formatRupiah'
 
 class ModalPayment extends Component{
   constructor(props) {
@@ -18,7 +19,8 @@ class ModalPayment extends Component{
     this.state = {
       bank: '',
       notif: '',
-      disabledCancel: false
+      disabledCancel: false,
+      disabledButton: false
     }
   }
   static propTypes = {
@@ -127,9 +129,12 @@ class ModalPayment extends Component{
       })
       .then(result => {
         console.log('result wallet', result)
-        if (result.data === 'saldo tidak mencukupi'){
+        if (result.data.message === 'saldo tidak mencukupi'){
           this.props.setIsLoading(false)
-          alert('saldo tidak mencukupi')
+          alert(`saldo tidak mencukupi, saldo anda ${FormatRupiah(result.data.wallet)}`)
+          this.setState({ 
+            disabledButton: true
+          });
         } else if (result.data.message === 'topup sukses'){
         this.props.setIsLoading(false)
         window.location.reload();
@@ -221,11 +226,11 @@ class ModalPayment extends Component{
       ]
     } else {
       bank = [
-        {value:'BNI', onClick: this.handleChangeBank},
-        {value:'BRI', onClick: this.handleChangeBank},
-        {value:'MANDIRI', onClick: this.handleChangeBank},
-        {value:'Alfamart', onClick: this.handleChangeBank},
-        {value:'Wallet', onClick: this.handleChangeBank}
+        {value:'BNI', onClick: this.handleChangeBank, disabled: false},
+        {value:'BRI', onClick: this.handleChangeBank, disabled: false},
+        {value:'MANDIRI', onClick: this.handleChangeBank, disabled: false},
+        {value:'Alfamart', onClick: this.handleChangeBank, disabled: false},
+        {value:'Wallet', onClick: this.handleChangeBank , disabled: this.state.disabledButton }
       ]
     }
 
@@ -235,7 +240,7 @@ class ModalPayment extends Component{
         <div className="modal__method__content__container">
           <ButtonGroup className="modal__method__ButtonGroup" vertical>
             {bank.map((data, idx) => (
-            <Button key={idx} value={data.value} className="modal__method__Button" onClick={data.onClick}>{data.value}</Button>
+            <Button key={idx} disabled={data.disabled} value={data.value} className="modal__method__Button" onClick={data.onClick}>{data.value}</Button>
             ))
             }
           </ButtonGroup>
