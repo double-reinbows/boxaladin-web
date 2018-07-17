@@ -140,7 +140,7 @@ class Game extends React.Component<Props, State> {
 							<div  className="game__slotCoin">
 								<img className="game__slotCoin__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/Key.png' alt="coin"/>
 								<label> <b> : {this.props.userInfo.aladinKeys}</b></label>
-								<img className="game__slotCoin__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Game/token.png' alt="coin"/>
+								<img className="game__slotCoin__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/koin-v2.png' alt="coin"/>
 								<label> <b> : {this.props.userInfo.coin}</b></label>
 							</div>
 							<div className="game__slotItems">
