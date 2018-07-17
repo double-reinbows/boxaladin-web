@@ -77,7 +77,13 @@ class ModalPayment extends Component{
         } else if (result.data === 'saldo limited') {
           this.props.setIsLoading(false)
           alert('Masukkan Jumlah Sesuai Range Saldo')
-        }  else {
+        } else if (result.data === 'not verified user'){
+          this.props.setIsLoading(false)
+          alert('Silahkan Verifikasi Email Anda')
+        } else if (result.data === 'maksimum limit wallet') {
+          this.props.setIsLoading(false)
+          alert('Saldo Wallet Tidak Boleh Melebihi Rp.2000.000')
+        } else if (result.data.status === 200){
           this.props.setIsLoading(false)
           this.props.history.push(`/${push}/${result.data.dataFinal.id}`)
         }
@@ -97,7 +103,13 @@ class ModalPayment extends Component{
         if (result.data === 'saldo limited') {
           this.props.setIsLoading(false)
           alert('Masukkan Jumlah Sesuai Range Saldo')
-        } else {
+        } else if (result.data === 'not verified user'){
+          this.props.setIsLoading(false)
+          alert('Silahkan Verifikasi Email Anda')
+        } else if (result.data === 'maksimum limit wallet') {
+          this.props.setIsLoading(false)
+          alert('Saldo Wallet Tidak Boleh Melebihi Rp.2000.000')
+        } else if (result.data.status === 200){
           this.props.setIsLoading(false)
           this.props.history.push(`/${push}/${result.data.dataFinal.id}`)
         }
