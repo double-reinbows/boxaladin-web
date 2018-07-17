@@ -19,7 +19,6 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    height: 400px;
     &__title{
       font-size: 28px;
       margin: 5%;
@@ -30,18 +29,12 @@
         width: 13%;
         margin-right: 2%;
       }
-      &__label{
-
-      }
     }
     &__key{
       text-align: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      &__label{
-
-      }
       &__button{
         width: 50%;
         font-size: 20px;
