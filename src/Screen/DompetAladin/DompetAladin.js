@@ -108,20 +108,18 @@ class Dompet extends React.Component {
       <div>
         <Form onSubmit={this.upWallet}>
           <FormGroup>
-            <Input className="dompet__content__key__topup__dropdown" type="number" id="upcoin" name="aladinConvert" min="200000" max="1000000" placeholder="Minimal Rp. 200.000,00" value={this.state.wallet} onChange={this.handleInputWallet}/>
+            <Input className="dompet__content__key__topup__dropdown" type="number" id="upcoin" name="aladinConvert" placeholder="Minimal Rp. 200.000,00" value={this.state.wallet} onChange={this.handleInputWallet}/>
           </FormGroup>
-          {/* <label style = {{fontSize: "18px"}}>Min Pembelian Rp 200.000</label>
-          <br/> */}
-          <label style = {{fontSize: "18px"}}>Uang tidak boleh melebihi Rp 1.000.000</label>
+          <label style = {{fontSize: "18px"}}>Uang tidak boleh melebihi Rp 2.000.000</label>
           <FormGroup>
             <button className="dompet__content__key__button" color="primary" type="submit">
             <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/troly.png' alt="troly" />
-            Beli</button>
+            Setor</button>
           </FormGroup>
         </Form>
       </div>
     <div>
-      <label className="alert__dompetAladin">{this.state.notif2}</label>
+      <label className="alert__dompetAladin">{this.state.notif3}</label>
     </div>
     <ModalPayment
       text='buy wallet'
@@ -138,14 +136,23 @@ class Dompet extends React.Component {
 
   upWallet = (e, payload) => {
     e.preventDefault()
-    if (this.state.wallet === 0) {
+    if (this.props.userInfo.emailVerified === false) {
       this.setState({
-        notif: "Silahkan Memilih Jumlah Saldo.",
+        notif3: "Email Belum Terferivikasi.",
       })
-    } else if (this.props.userInfo.emailVerified === false){
-      return this.setState({
-        notif: "Email Belum Terferivikasi.",
-    })
+    } else if (this.state.wallet === 0 || this.state.wallet === '') {
+      this.setState({
+        notif3: "Silahkan Memilih Jumlah Saldo.",
+      })
+    } else if (this.state.wallet < 100000) {
+      this.setState({
+        notif3: "Minimal setoran adalah Rp. 100.000",
+      })
+    } else if (this.props.userInfo.wallet + this.state.wallet > 2000000) {//Top-up greater than 2jt
+      let allowedAmount = 2000000 - this.props.userInfo.wallet
+      this.setState({
+        notif3: "Anda hanya bisa setor hingga "+FormatRupiah(allowedAmount),
+      })
     } else {
       this.setState({
         modalPayment1: true
@@ -156,7 +163,7 @@ class Dompet extends React.Component {
   }
 
   formatRupiahSaldo() {
-    console.log('render saldo', this.props.userInfo.wallet)
+    // console.log('render saldo', this.props.userInfo.wallet)
     return this.props.userInfo.wallet && (
       FormatRupiah(this.props.userInfo.wallet)
     )
@@ -200,14 +207,15 @@ class Dompet extends React.Component {
 
   submitForm(e) {
     e.preventDefault()
-    if (this.state.idKeySelected === '') {
+    // console.log(this.props.keys[this.state.idKeySelected])
+    if (this.props.userInfo.emailVerified === false) {
       this.setState({
+        notif: "Email Belum Terferivikasi.",
+      })
+    } else if (this.state.idKeySelected === '') {
+      return this.setState({
         notif: "Silahkan Memilih Jumlah Kunci.",
       })
-    } else if (this.props.userInfo.emailVerified === false){
-      return this.setState({
-        notif: "Email Belum Terferivikasi.",
-    })
     } else {
       this.setState({
         modalPayment2: true
