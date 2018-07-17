@@ -84,7 +84,7 @@ class ModalPayment extends Component{
           alert('Silahkan Verifikasi Email Anda')
         } else if (result.data === 'maksimum limit wallet') {
           this.props.setIsLoading(false)
-          alert('Saldo Wallet Tidak Boleh Melebihi Rp.2000.000')
+          alert('Saldo Wallet Tidak Boleh Melebihi Rp. 2.000.000')
         } else if (result.status === 200){
           this.props.setIsLoading(false)
           this.props.history.push(`/${push}/${result.data.dataFinal.id}`)
@@ -111,7 +111,7 @@ class ModalPayment extends Component{
           alert('Silahkan Verifikasi Email Anda')
         } else if (result.data === 'maksimum limit wallet') {
           this.props.setIsLoading(false)
-          alert('Saldo Wallet Tidak Boleh Melebihi Rp.2000.000')
+          alert('Saldo Wallet Tidak Boleh Melebihi Rp. 2.000.000')
         } else if (result.status === 200){
           this.props.setIsLoading(false)
           this.props.history.push(`/${push}/${result.data.dataFinal.id}`)
@@ -133,7 +133,7 @@ class ModalPayment extends Component{
         if (result.data.message === 'saldo tidak mencukupi'){
           this.props.setIsLoading(false)
           alert(`saldo tidak mencukupi, saldo anda ${FormatRupiah(result.data.wallet)}`)
-          this.setState({ 
+          this.setState({
             disabledButton: true
           });
         } else if (result.data.message === 'topup sukses'){
