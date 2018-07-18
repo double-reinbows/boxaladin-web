@@ -63,11 +63,11 @@ class InvoiceDetail extends React.Component {
   handleRetail(){
     if (!this.state.invoice){
       return null
-    } else if (this.state.invoice.payment.availableretail !== 'null'){
+    } else if (this.state.invoice.virtualAccount.bankCode === 'MANDIRI') {
       return (
         <div>
-          <Guide activeTab= {'5'} invoice={this.state.invoice} />
-        </div>
+        <Guide activeTab= {'1'} invoice={this.state.invoice} />
+      </div>
       )
     } else if (this.state.invoice.virtualAccount.bankCode === 'MANDIRI') {
       return (
@@ -107,7 +107,7 @@ class InvoiceDetail extends React.Component {
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
-          <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice.virtualAccount ? (this.state.invoice.virtualAccount.bankCode) : null}</h1>
+          <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice ? (this.state.invoice.virtualAccount.bankCode) : null}</h1>
           {this.state.invoice ? (
               <div>
                 <div className="pembayaran__content__textDistance">
