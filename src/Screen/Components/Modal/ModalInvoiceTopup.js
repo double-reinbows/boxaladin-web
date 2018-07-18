@@ -1,25 +1,25 @@
 //@flow
 import React, { Component } from 'react';
 import Modal from 'react-modal';
-import PropTypes from 'prop-types';
 import FormatRupiah from '../../../utils/formatRupiah'
 
+type Props = {
+  toggle: Function,
+  isOpen: boolean,
+  text: string
+}
 
-export default class ModalInvoiceTopup extends Component <{}> {
+type State = {
+  invoice: object
+}
 
+export default class ModalInvoiceTopup extends Component <Props, State> {
   constructor(props) {
     super(props)
     this.state = {
-      invoice: ''
+      invoice: {}
     }
   }
-
-  static propTypes = {
-    toggle: PropTypes.func,
-    isOpen: PropTypes.bool,
-    text: PropTypes.string,
-  }
-
 
   render() {
     return (

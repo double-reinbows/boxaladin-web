@@ -46,7 +46,8 @@
 	}
 
 	&__slotItems{
-		width: 290px;
+		width: 60%;
+		margin: 10px auto;
 		border-radius: 10px;
 		border: 11px solid rgb(186, 171, 171);
 		margin-bottom: 10px;
@@ -105,22 +106,6 @@
 		}
 	}
 }
-
-// @media (min-width: 349px )  {
-//   .game__slotItems{
-// 		padding: 15px;
-// 		width: 310px;
-//   }
-// }
-
-// @media (min-width: 350px ) and (max-width:500px ) {
-//   .game__slotItems{
-// 		padding: 15px;
-// 		width: 90%;
-//   }
-// }
-
-
 
 .box1 {
 	width: 80%;
@@ -276,7 +261,7 @@
 
 @media (min-width: 767px) and (max-width: 1280px) {
     .gameModal__icon {
-        width: 200px;
+      width: 200px;
     	height: 200px
 	}
 	.gameModal__Container__text {

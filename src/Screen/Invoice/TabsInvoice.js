@@ -5,6 +5,7 @@ import classnames from 'classnames';
 
 import Invoice from './Invoice'
 import TopUpInvoice from './TopupInvoice'
+import WalletInvoice from'./TopupWalletInvoice'
 
 class TabsInvoice extends React.Component {
   constructor(props) {
@@ -49,6 +50,14 @@ class TabsInvoice extends React.Component {
               Invoice Key
             </NavLink>
           </NavItem>
+          <NavItem className="invoice__tab">
+            <NavLink
+              className={classnames({ active: this.state.activeTab === '3' })}
+              onClick={() => { this.toggle('3'); }}
+            >
+              Invoice Saldo
+            </NavLink>
+          </NavItem>
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
           <TabPane tabId="1">
@@ -56,6 +65,9 @@ class TabsInvoice extends React.Component {
           </TabPane>
           <TabPane tabId="2">
             <TopUpInvoice/>
+          </TabPane>
+          <TabPane tabId="3">
+            <WalletInvoice/>
           </TabPane>
         </TabContent>
       </div>

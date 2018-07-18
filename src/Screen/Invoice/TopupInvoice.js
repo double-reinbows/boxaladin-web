@@ -1,3 +1,4 @@
+//@flow
 import React from 'react'
 import { connect } from 'react-redux'
 import {
@@ -5,17 +6,15 @@ import {
   Button
 } from 'reactstrap'
 import {withRouter} from 'react-router-dom'
-
 import moment from 'moment'
-
 import { getUserPendingTopupTransactions, getUserTopupTransactions } from '../../actions/topupAction'
 
-class TopupInvoice extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
+type Props = {
+  userTopupTransactions: Array,
+  userPendingTopupTransactions: Array
+}
 
+class TopupInvoice extends React.Component <Props> {
   render() {
     return (
       <div className="invoice">
@@ -45,47 +44,31 @@ class TopupInvoice extends React.Component {
         </thead>
         <tbody>
           {this.props.userTopupTransactions.map((data, idx) => {
-            if (data.createdAt === '' || data.createdAt === undefined || data.payment.invoiceId === 'null'){
+            if (!data.createdAt || !data.createdAt || !data.payment || data.payment.invoiceId === 'null'){
               return null
             } else {
               const time = moment().toISOString()
-              if (data.payment.status === 'CANCELLED') {
-                return (
-                  <tr key={idx}>
-                    <th scope="row">{idx+1}</th>
-                    <td>{moment(data.createdAt, moment.ISO_8601).format('L, h:mm:ss a')}</td>
-                    <td>{ data.product ? data.product.productName : data.description }</td>
-                    <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
-                    <td>{ data.number ? data.number : (<h3>Anda Tidak Memasukkan no Hp</h3>) }</td>
-                    <td>{ data.payment ? data.payment.status : 'CANCELLED' }</td>
-                    <td></td>
-                  </tr>
-                )
-              } else if (time <= data.payment.expiredAt) {
-              return (
-              <tr key={idx}>
-                <th scope="row">{idx+1}</th>
-                <td>{data.key.keyAmount}</td>
-                <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
-                <td>{ data.payment? data.payment.status : null }</td>
-                <td>{ data.payment.status === 'PENDING'  ? (
-                  <Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button>
-                ) : null}</td>
-              </tr>
-            )
+              let statusComponent = ''
+              if (data.payment.status === 'CANCELLED'){
+                statusComponent = <td>{'CANCELLED'}</td>
+              } else if (data.payment.status === 'PAID') {
+                statusComponent = <td>{'PAID'}</td>
+              } else if (time <= data.payment.expiredAt){
+                statusComponent = <td><Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button></td>
+              } else if (time >= data.payment.expiredAt){
+                statusComponent = <td>Expired</td>
               } else {
-                return (
-                  <tr key={idx}>
-                    <th scope="row">{idx+1}</th>
-                    <td>{data.key.keyAmount}</td>
-                    <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
-                    <td>{ data.payment? data.payment.status : null }</td>
-                    <td>{ data.payment.status === 'PENDING'  ? (
-                  <label>Expired</label>
-                ) : null}</td>
-                  </tr>
-                )
+                statusComponent = <td>Expired</td>
               }
+
+              return(
+                <tr key={idx}>
+                  <th scope="row">{idx+1}</th>
+                  <td>{data.key.keyAmount}</td>
+                  <td>{`Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}`}</td>
+                  {statusComponent}
+                </tr>
+              )
             }
           })}
         </tbody>

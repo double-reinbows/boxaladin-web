@@ -56,7 +56,7 @@ class Invoice extends React.Component {
         </thead>
         <tbody className="invoice__table">
           {transactions.map((data, idx) => {
-            if (!data.createdAt || !data.product || !data.payment){
+            if (!data.createdAt || !data.createdAt || !data.payment || data.payment.invoiceId === 'null'){
               return null
             } else {
               const time = moment().toISOString()
@@ -69,7 +69,6 @@ class Invoice extends React.Component {
                     <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
                     <td>{ data.number ? data.number : (<h3>Anda Tidak Memasukkan no Hp</h3>) }</td>
                     <td>{ data.payment ? data.payment.status : 'CANCELLED' }</td>
-                    <td></td>
                   </tr>
                 )
               } else if (time <= data.payment.expiredAt) {
@@ -95,8 +94,6 @@ class Invoice extends React.Component {
                     <td>{ data.payment ? `Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}` : null }</td>
                     <td>{ data.number ? data.number : (<h3>Anda Tidak Memasukkan no Hp</h3>) }</td>
                     <td>{ data.payment ? data.payment.status : 'GRATIS' }</td>
-                    <td>{ data.status === 'PENDING'  ? (<label>Expired</label>) : null}</td>
-
                   </tr>
                 )
               }
