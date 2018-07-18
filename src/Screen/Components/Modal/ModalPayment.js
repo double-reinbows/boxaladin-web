@@ -130,7 +130,8 @@ class ModalPayment extends Component{
           this.props.setIsLoading(false)
           alert(`saldo tidak mencukupi, saldo anda ${FormatRupiah(result.data.wallet)}`)
           this.setState({
-            disabledButton: true
+            disabledButton: true,
+            bank: ''
           });
         } else if (result.data.message === 'topup sukses'){
         this.props.setIsLoading(false)
