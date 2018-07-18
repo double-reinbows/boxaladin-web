@@ -90,7 +90,6 @@ class TopupInvoice extends Component<State, Props> {
   }
 
   render() {
-    console.log('props', this.props)
     return (
       <div className="invoice">
         <div className="invoice__container">

@@ -226,16 +226,11 @@ class InvoiceDetail extends React.Component {
 
     	if (creditCardCharge.status === 'VERIFIED') {
 
-        console.log(creditCardCharge.status);
         var token = creditCardCharge.id;
-    		console.log(token);
         this.submitPaymentWithCC(token)
 
     	} else if (creditCardCharge.status === 'IN_REVIEW') {
 
-        console.log(creditCardCharge.status);
-        console.log(creditCardCharge);
-        console.log(creditCardCharge.payer_authentication_url);
         this.setState({payer_auth_url: creditCardCharge.payer_authentication_url})
         this.toggle3dsModal()
 
@@ -245,7 +240,7 @@ class InvoiceDetail extends React.Component {
         // this.submitPaymentWithCC(token)
 
       } else if (creditCardCharge.status === 'FAILED') {
-        console.log(creditCardCharge.status);
+        return null
       }
     }
 

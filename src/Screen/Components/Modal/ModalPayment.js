@@ -57,7 +57,6 @@ class ModalPayment extends Component{
 
   axiosTransaction = () => {
     const dataValue = this.createObj();
-    console.log('value', dataValue)
     const {fixedendpoint, walletendpoint, retailendpoint, push} = this.props
     this.props.setIsLoading(true)
     if (this.state.bank !== 'Alfamart' && this.state.bank !== 'Wallet') {
@@ -70,7 +69,6 @@ class ModalPayment extends Component{
         data: dataValue
       })
       .then(result => {
-        console.log('result', result)
         if (result.data.error_code === "DUPLICATE_CALLBACK_VIRTUAL_ACCOUNT_ERROR") {
           this.props.setIsLoading(false)
           this.setState({
@@ -102,7 +100,6 @@ class ModalPayment extends Component{
         data: dataValue
       })
       .then(result => {
-        console.log('result alfamart', result)
         if (result.data === 'saldo limited') {
           this.props.setIsLoading(false)
           alert('Masukkan Jumlah Sesuai Range Saldo')
@@ -129,7 +126,6 @@ class ModalPayment extends Component{
         data: dataValue
       })
       .then(result => {
-        console.log('result wallet', result)
         if (result.data.message === 'saldo tidak mencukupi'){
           this.props.setIsLoading(false)
           alert(`saldo tidak mencukupi, saldo anda ${FormatRupiah(result.data.wallet)}`)
@@ -251,7 +247,6 @@ class ModalPayment extends Component{
   }
 
   render() {
-    console.log('bank key', this.props)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">

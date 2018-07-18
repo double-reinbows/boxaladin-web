@@ -44,7 +44,6 @@ class TopupInvoice extends React.Component <Props> {
         </thead>
         <tbody>
           {this.props.userTopupTransactions.map((data, idx) => {
-            console.log('data invoice', data)
             if (!data.createdAt || !data.createdAt || !data.payment || data.payment.invoiceId === 'null'){
               return null
             } else {

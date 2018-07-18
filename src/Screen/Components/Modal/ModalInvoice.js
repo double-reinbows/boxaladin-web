@@ -13,7 +13,6 @@ type Props = {
 
 export default class ModalInvoice extends Component<Props> {
   render() {
-    console.log(this.props.invoice)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__check">
         <div className="modal__invoice__container">
