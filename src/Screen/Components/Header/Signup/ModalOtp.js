@@ -5,6 +5,7 @@ import {setModalRegister, setIsLoading, loginAction } from '../../../../actions/
 import Modal from 'react-modal';
 import {Button, ModalHeader, ModalFooter} from 'reactstrap';
 import axios from 'axios';
+import envChecker from '../../../../utils/envChecker'
 
 class ModalOtp extends Component {
   static propTypes = {
@@ -52,7 +53,7 @@ class ModalOtp extends Component {
     } else {
       axios({
         method: 'POST',
-        url: `${process.env.REACT_APP_API_HOST}/signupverification`,
+        url: `${envChecker('api')}/signupverification`,
         headers: {
           key: process.env.REACT_APP_KEY
         },
@@ -89,7 +90,7 @@ class ModalOtp extends Component {
     if (count > 0 ){
       axios({
         method: 'POST',
-        url: `${process.env.REACT_APP_API_HOST}/otp`,
+        url: `${envChecker('api')}/otp`,
         headers: {
           key: process.env.REACT_APP_KEY
         },

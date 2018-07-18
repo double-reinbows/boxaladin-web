@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom'
 import { connect } from 'react-redux';
 
 import { selectProductID } from '../../../actions/productAction';
+import envChecker from '../../../utils/envChecker'
 
 class ModalConfirm extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class ModalConfirm extends Component {
         headers: {
           token: localStorage.getItem('token'),
 				},
-				url: `${process.env.REACT_APP_API_HOST}/users/info`,
+				url: `${envChecker('api')}/users/info`,
 			})
 			.then(data => {
         if (data.data.aladinKeys > 0) {
@@ -29,7 +30,7 @@ class ModalConfirm extends Component {
             headers: {
               token: localStorage.getItem('token'),
             },
-            url: `${process.env.REACT_APP_API_HOST}/logopen`,
+            url: `${envChecker('api')}/logopen`,
             data: {
               productId: this.props.selectedProductID
             },

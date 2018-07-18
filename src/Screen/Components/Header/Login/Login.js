@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom'
 
 import { loginAction, logoutAction, getPhoneNumbers, setModalLogin, setModalRegister, setIsLoading } from '../../../../actions'
 import { getUser } from '../../../../actions/userAction'
+import envChecker from '../../../../utils/envChecker'
 
 import Loading from '../../Loading/'
 
@@ -24,7 +25,7 @@ class Login extends Component {
     this.props.setIsLoading(true)
     axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_API_HOST}/signin`,
+      url: `${envChecker('api')}/signin`,
 			headers: {
         key: process.env.REACT_APP_KEY
       },

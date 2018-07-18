@@ -1,9 +1,8 @@
-
 import React from 'react'
 import { connect } from 'react-redux'
 import { Form, FormGroup, Input  } from 'reactstrap'
 import axios from 'axios'
-import ModalPayment from './ModalPayment'
+import ModalPayment from '../Components/Modal/ModalPayment'
 // import TopUpKey from './TopupKey'
 
 import { getUser } from '../../actions/userAction'
@@ -11,6 +10,7 @@ import { getUserWins } from '../../actions/winAction'
 import { getKeys } from '../../actions/keyAction'
 
 import FormatRupiah from '../../utils/formatRupiah'
+import envChecker from '../../utils/envChecker'
 
 class Dompet extends React.Component {
   constructor(props) {
@@ -19,10 +19,12 @@ class Dompet extends React.Component {
       idKeySelected: '',
       convertKey: '',
       key: null,
+      wallet: '',
       notif: '',
       notif2: '',
       disabled: true,
-      modalPayment: false
+      modalPayment1: false,
+      modalPayment2: false
     }
   }
 
@@ -42,16 +44,23 @@ class Dompet extends React.Component {
             <div className="dompet__content__info">
               <label>Koin</label>
               <div>
-                <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/Koin.png' alt="koin" />
+                <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/koin-v2.png' alt="koin" />
                 <label className="dompet__content__info__label">: {this.props.userInfo.coin}</label>
+              </div>
+            </div>
+            <div className="dompet__content__info">
+              <label>Uang</label>
+              <div>
+                <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/uang.png' alt="uang" />
+                <label className="dompet__content__info__label">: {this.formatRupiahSaldo()}</label>
               </div>
             </div>
 
           </div>
           <div className="dompet__content__key">
             <div className="dompet__content__key__topup">
-              <h1 className="dompet__content__key__label">Top Up Kunci Aladin</h1>
-              {this.showForm()}
+              <h1 className="dompet__content__key__label">Top Up Kunci</h1>
+              {this.showFormKey()}
               <label className="alert__dompetAladin">{this.state.notif}</label>
             </div>
 
@@ -59,9 +68,14 @@ class Dompet extends React.Component {
               <label className="dompet__content__key__label">Tukar Kunci Jadi Koin</label>
               {this.dropdownConvert()}
             </div>
+
+            <div style={{ paddingTop: '14%' }}>
+              <label className="dompet__content__key__label">Top Up Uang</label>
+              {this.dropdownSaldoWallet()}
+            </div>
+
           </div>
         </div>
-        <ModalPayment isOpen={this.state.modalPayment} data={this.state.idKeySelected} toggle={this.togglePayment} />
       </div>
     )
   }
@@ -71,13 +85,91 @@ class Dompet extends React.Component {
       this.props.getKeys()
   }
 
-  togglePayment = () => {
+  togglePayment1 = () => {
     this.setState({
-      modalPayment: !this.state.modalPayment
+      modalPayment1: !this.state.modalPayment1
+    })
+  }
+  togglePayment2 = () => {
+    this.setState({
+      modalPayment2: !this.state.modalPayment2
     })
   }
 
-  showForm() {
+  handleInputWallet = (e) => {
+    this.setState({
+      wallet: parseInt(e.target.value, 10)
+    });
+  }
+
+  dropdownSaldoWallet= ()=>{
+    return(
+    <div>
+      <div>
+        <Form onSubmit={this.upWallet}>
+          <FormGroup>
+            <Input className="dompet__content__key__topup__dropdown" type="number" id="upcoin" name="aladinConvert" placeholder="Minimal Rp. 200.000,00" value={this.state.wallet} onChange={this.handleInputWallet}/>
+          </FormGroup>
+          <label style = {{fontSize: "18px"}}>Uang tidak boleh melebihi Rp 2.000.000</label>
+          <FormGroup>
+            <button className="dompet__content__key__button" color="primary" type="submit">
+            <img className="dompet__content__info__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/troly.png' alt="troly" />
+            Setor</button>
+          </FormGroup>
+        </Form>
+      </div>
+    <div>
+      <label className="alert__dompetAladin">{this.state.notif3}</label>
+    </div>
+    <ModalPayment
+      text='buy wallet'
+      fixedendpoint='fixedwallet'
+      retailendpoint='alfawallet'
+      push='walletinvoice'
+      isOpen={this.state.modalPayment1}
+      data={this.state.wallet}
+      toggle={this.togglePayment1}
+      />
+  </div>
+    )
+  }
+
+  upWallet = (e, payload) => {
+    e.preventDefault()
+    if (this.props.userInfo.emailVerified === false) {
+      this.setState({
+        notif3: "Email Belum Terferivikasi.",
+      })
+    } else if (this.state.wallet === 0 || this.state.wallet === '') {
+      this.setState({
+        notif3: "Silahkan Memilih Jumlah Saldo.",
+      })
+    } else if (this.state.wallet < 200000) {
+      this.setState({
+        notif3: "Minimal setoran adalah Rp. 200.000",
+      })
+    } else if (this.props.userInfo.wallet + this.state.wallet > 2000000) {//Top-up greater than 2jt
+      let allowedAmount = 2000000 - this.props.userInfo.wallet
+      this.setState({
+        notif3: "Anda hanya bisa setor hingga "+FormatRupiah(allowedAmount),
+      })
+    } else {
+      this.setState({
+        modalPayment1: true
+      })
+      payload ={wallet: this.state.wallet}
+    }
+
+  }
+
+  formatRupiahSaldo() {
+    // console.log('render saldo', this.props.userInfo.wallet)
+    return this.props.userInfo.wallet && (
+      FormatRupiah(this.props.userInfo.wallet)
+    )
+  }
+
+  showFormKey() {
     return (
       <div>
         <div>
@@ -99,25 +191,34 @@ class Dompet extends React.Component {
             </FormGroup>
           </Form>
       </div>
-        <div>
-        </div>
+      <ModalPayment
+        text='buy key'
+        fixedendpoint='topupva'
+        retailendpoint='topupKey'
+        walletendpoint='walletkey'
+        push='topupinvoice'
+        isOpen={this.state.modalPayment2}
+        data={this.state.idKeySelected}
+        toggle={this.togglePayment2}
+        />
       </div>
     )
   }
 
   submitForm(e) {
     e.preventDefault()
-    if (this.state.idKeySelected === '') {
+    // console.log(this.props.keys[this.state.idKeySelected])
+    if (this.props.userInfo.emailVerified === false) {
       this.setState({
+        notif: "Email Belum Terferivikasi.",
+      })
+    } else if (this.state.idKeySelected === '') {
+      return this.setState({
         notif: "Silahkan Memilih Jumlah Kunci.",
       })
-    } else if (this.props.userInfo.emailVerified === false){
-      return this.setState({
-        notif: "Email Belum Terferivikasi.",
-    })
     } else {
       this.setState({
-        modalPayment: true
+        modalPayment2: true
       })
     }
   }
@@ -177,7 +278,7 @@ class Dompet extends React.Component {
 		// CEK SISA ALADIN KEY LANGSUNG DARI API
 		axios({
 			method: 'GET',
-			url: `${process.env.REACT_APP_API_HOST}/users/info`,
+			url: `${envChecker('api')}/users/info`,
 			headers: {
         token: localStorage.getItem('token'),
         key: process.env.REACT_APP_KEY
@@ -193,7 +294,7 @@ class Dompet extends React.Component {
 				// REQUEST UPDATE ALADIN KEY DAN COIN KE API
 				axios({
 					method: 'PUT',
-          url: `${process.env.REACT_APP_API_HOST}/users/upcoin`,
+          url: `${envChecker('api')}/users/upcoin`,
           headers: {
               token: localStorage.getItem('token'),
               key: process.env.REACT_APP_KEY

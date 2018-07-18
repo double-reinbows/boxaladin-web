@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 // import PropTypes from 'prop-types';
 import { Modal, ModalFooter} from 'reactstrap'
 import axios from 'axios'
+import envChecker from '../../utils/envChecker'
 
 class ModalOtpUser extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class ModalOtpUser extends Component {
     } else {
     axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_API_HOST}/olduserverification`,
+      url: `${envChecker('api')}/olduserverification`,
       headers: {
         key: process.env.REACT_APP_KEY
       },
@@ -63,7 +64,7 @@ class ModalOtpUser extends Component {
     if (this.state.count > 0 ){
       axios({
         method: 'POST',
-        url: `${process.env.REACT_APP_API_HOST}/otp`,
+        url: `${envChecker('api')}/otp`,
         headers: {
           key: process.env.REACT_APP_KEY
         },

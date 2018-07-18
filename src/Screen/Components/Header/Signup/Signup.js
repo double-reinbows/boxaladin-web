@@ -7,6 +7,7 @@ import ModalOtp from './ModalOtp';
 import SuccessModalOtp from './SuccessModalOtp';
 import {Button} from 'reactstrap';
 import formatEmail from '../../../../utils/formatEmail';
+import envChecker from '../../../../utils/envChecker'
 
 class Signup extends Component {
   constructor(props) {
@@ -181,7 +182,7 @@ class Signup extends Component {
       }
       axios({
         method: 'POST',
-        url: `${process.env.REACT_APP_API_HOST}/signup`,
+        url: `${envChecker('api')}/signup`,
         headers: {
           key: process.env.REACT_APP_KEY,
         },

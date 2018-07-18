@@ -1,9 +1,10 @@
 import * as firebase from 'firebase'
+import envChecker from '../utils/envChecker'
 
 export const getProducts = () => {
 	return (dispatch) => {
 		var dataProducts = []
-		const productsRef = firebase.database().ref().child(`${process.env.REACT_APP_FIREBASE_PRODUCT}`)
+		const productsRef = firebase.database().ref().child(`${envChecker('firebase')}`)
 		productsRef.once('value').then(snap => {
 			for (var key in snap.val()) {
 				dataProducts.push(snap.val()[key])
@@ -28,7 +29,7 @@ export const getFilteredProducts = (brand, category) => {
 	return (dispatch) => {
 		var dataProducts = []
 
-		const productsRef = firebase.database().ref().child(`${process.env.REACT_APP_FIREBASE_PRODUCT}`)
+		const productsRef = firebase.database().ref().child(`${envChecker('firebase')}`)
 		productsRef.once('value').then(snap => {
 			for (var key in snap.val()) {
 				dataProducts.push(snap.val()[key])

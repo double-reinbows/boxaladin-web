@@ -7,6 +7,7 @@ import moment from 'moment'
 import { getRewards } from '../actions/rewardAction'
 import { getUser } from '../actions/userAction'
 import { getUserClaims } from '../actions/claimAction'
+import envChecker from '../utils/envChecker'
 
 class ClaimReward extends React.Component {
   constructor() {
@@ -97,7 +98,7 @@ class ClaimReward extends React.Component {
 
       axios({
         method: 'POST',
-        url: `${process.env.REACT_APP_API_HOST}/claim`,
+        url: `${envChecker('api')}/claim`,
         headers: {
           token: localStorage.getItem('token'),
           key: process.env.REACT_APP_KEY

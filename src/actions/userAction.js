@@ -1,4 +1,5 @@
 import axios from 'axios'
+import envChecker from '../utils/envChecker'
 
 const getUserAction = (payload) => ({
 	type: 'GET_USER',
@@ -9,7 +10,7 @@ export const getUser = () => {
 	return (dispatch) => {
 		axios({
 			method: 'GET',
-			url: `${process.env.REACT_APP_API_HOST}/users/info`,
+			url: `${envChecker('api')}/users/info`,
 			headers: {
 				token: localStorage.getItem('token'),
 				key: process.env.REACT_APP_KEY
@@ -17,8 +18,14 @@ export const getUser = () => {
 		})
 		.then(({data}) => {
 			dispatch(getUserAction(data))
+			console.log(data)
 		})
-		.catch(err => console.log(err))
+		.catch(err => {
+				console.log(err.response)
+				localStorage.removeItem('token')
+				window.location.replace('/home')
+			}
+		)
 	}
 }
 
@@ -26,7 +33,7 @@ export const refreshToken = () => {
 	return (dispatch) => {
 		axios({
 			method: 'GET',
-			url: `${process.env.REACT_APP_API_HOST}/users/token`,
+			url: `${envChecker('api')}/users/token`,
 			headers: {
 				token: localStorage.getItem('token'),
 				key: process.env.REACT_APP_KEY

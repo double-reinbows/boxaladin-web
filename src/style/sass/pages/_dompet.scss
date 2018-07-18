@@ -16,6 +16,9 @@
     text-align: center;
     border: 1px solid;
     width: 40%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     &__title{
       font-size: 28px;
       margin: 5%;
@@ -23,17 +26,15 @@
     &__info{
       margin-bottom: 5%;
       &__icon{
+        width: 13%;
         margin-right: 2%;
-      }
-      &__label{
-
       }
     }
     &__key{
       text-align: center;
-      &__label{
-
-      }
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       &__button{
         width: 50%;
         font-size: 20px;

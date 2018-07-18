@@ -22,6 +22,7 @@ import Xendit from 'xendit-js-node'
 
 import Guide from './PaymentGuide'
 import ModalInvoice from '../Components/Modal/ModalInvoice'
+import envChecker from '../../utils/envChecker'
 
 class InvoiceDetail extends React.Component {
   constructor(props) {
@@ -96,16 +97,13 @@ class InvoiceDetail extends React.Component {
       return null
     }
   }
+  getExpired = () => {
+    return this.state.invoice.payment.expiredAt && (
+      <h2 className="pembayaran__title__infoTime">Selesaikan Pembayaran Sebelum {moment(this.state.invoice.payment.expiredAt, moment.ISO_8601).add(12, 'hours').format('D MMMM YYYY, h:mm:ss a')}</h2>
+    )
+  }
 
   render() {
-    if (this.state.invoice.createdAt === ''){
-      return null
-    } else if ( this.state.invoice.createdAt === undefined){
-      return null
-    } else {
-      const time = this.state.invoice.createdAt
-      var finalTime = moment(time, moment.ISO_8601).add(6, 'hours').format('D MMMM YYYY, h:mm:ss a')
-    }
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
@@ -116,7 +114,7 @@ class InvoiceDetail extends React.Component {
                   <h1 className="pembayaran__title"> Rp {this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}</h1>
                   <button className="pembayaran__buttonDetail" onClick={this.toggleDetail}> Detail Tagihan </button>
                 </div>
-                <h2 className="pembayaran__title__infoTime">Selesaikan Pembayaran Sebelum {finalTime}</h2>
+                  {this.getExpired()}
                   {this.handleRetail()}
               </div>
             ) : null
@@ -143,7 +141,7 @@ class InvoiceDetail extends React.Component {
       headers: {
         key: process.env.REACT_APP_KEY
       },
-      url: `${process.env.REACT_APP_API_HOST}/creditcard`,
+      url: `${envChecker('api')}/creditcard`,
 
       data: {
         tokenId: token,
@@ -290,13 +288,17 @@ class InvoiceDetail extends React.Component {
       headers: {
         key: process.env.REACT_APP_KEY
       },
-      url: `${process.env.REACT_APP_API_HOST}/transaction/${this.props.match.params.id}`
+      url: `${envChecker('api')}/transaction/${this.props.match.params.id}`
     })
     .then(({data}) => {
     this.setState({
       invoice: data
     })
-    if ( data.virtualAccount.bankCode === 'MANDIRI'){
+    if (data.virtualAccount === null){
+      this.setState({
+        activeTab: '5'
+      })
+    } else if ( data.virtualAccount.bankCode === 'MANDIRI'){
       this.setState({
         activeTab: '1'
       })
@@ -314,8 +316,8 @@ class InvoiceDetail extends React.Component {
       })
     }
   })
-    .catch(err => console.log(err))
- }
+  .catch(err => console.log(err))
+}
 
 }
 

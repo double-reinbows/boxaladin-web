@@ -1,4 +1,5 @@
 import axios from 'axios'
+import envChecker from '../utils/envChecker'
 
 const getUserWinsAction = (payload) => ({
   type: 'GET_USER_WINS',
@@ -9,7 +10,7 @@ export const getUserWins = () => {
   return (dispatch) => {
     axios({
       method: 'GET',
-      url: `${process.env.REACT_APP_API_HOST}/win/user`,
+      url: `${envChecker('api')}/win/user`,
       headers: {
         token: localStorage.getItem('token'),
         key: process.env.REACT_APP_KEY

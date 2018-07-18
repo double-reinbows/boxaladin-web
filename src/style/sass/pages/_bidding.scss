@@ -62,6 +62,10 @@
 
     &__col2{
 
+      &__mid{
+        color: black;
+      }
+
       &__pulsa{
         color: #FFFFFF;
         font-family: Helvetica;
@@ -81,7 +85,7 @@
       }
 
       &__newPrice{
-      	color: #FFCD05;
+      	color: black;
       	font-family: Helvetica;
       	font-size: 80px;
       	font-weight: 900;
@@ -126,7 +130,7 @@
       text-align: center;
 
       &__text{
-      	color: #FFCD05;
+      	color: black;
       	font-family: Helvetica;
       	font-size: 36px;
       	font-weight: 800;

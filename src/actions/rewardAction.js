@@ -1,4 +1,5 @@
 import axios from 'axios'
+import envChecker from '../utils/envChecker'
 
 const getRewardsAction = (payload) => ({
   type: 'GET_REWARDS',
@@ -12,7 +13,7 @@ export const getRewards = () => {
       headers: {
         key: process.env.REACT_APP_KEY
       },
-      url: `${process.env.REACT_APP_API_HOST}/reward`,
+      url: `${envChecker('api')}/reward`,
     })
     .then(({data}) => {
       dispatch(getRewardsAction(data))

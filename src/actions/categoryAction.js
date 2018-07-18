@@ -1,4 +1,5 @@
 import axios from 'axios'
+import envChecker from '../utils/envChecker'
 
 const getCategoriesAction = (payload) => ({
 	type: 'GET_CATEGORIES',
@@ -12,7 +13,7 @@ export const getCategories = () => {
 			headers: {
         key: process.env.REACT_APP_KEY
       },
-			url: `${process.env.REACT_APP_API_HOST}/api/category`
+			url: `${envChecker('api')}/api/category`
 		})
 		.then(({data}) => {
 			dispatch(getCategoriesAction(data))
