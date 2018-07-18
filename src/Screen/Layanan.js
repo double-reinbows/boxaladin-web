@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import { Container, Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios'
 import ModalText from './Components/Modal/ModalText'
+import envChecker from '../utils/envChecker'
 
 class Layanan extends Component {
   constructor(){
-    super()    
+    super()
     this.state = {
       subject: '',
       content: '',
@@ -50,7 +51,7 @@ class Layanan extends Component {
 
   sentContent = (e) => {
     e.preventDefault()
-    
+
     if (this.state.email === '') {
       this.setState({
         notif: 'Email Tidak Boleh Kosong'
@@ -70,7 +71,7 @@ class Layanan extends Component {
     } else {
       axios({
         method: 'POST',
-        url: `${process.env.REACT_APP_API_HOST}/serviceemail`,
+        url: `${envChecker('api')}/serviceemail`,
         headers: {
           key: process.env.REACT_APP_KEY
         },
@@ -104,7 +105,7 @@ class Layanan extends Component {
       modal: !this.state.modal
     })
   }
-  
+
   render() {
     return (
       <div className="layanan">
@@ -130,15 +131,15 @@ class Layanan extends Component {
                     <Label className="layanan__text" for="exampleUrl">Subject</Label>
                     <Input className="layanan__input" value={this.state.subject} onChange={this.handleChangeSubject} type="label" name="label"/>
                   </FormGroup>
-                  
+
                   <FormGroup>
                     <Label className="layanan__text" for="exampleText">Content</Label>
                     <Input className="layanan__input__textarea"  value={this.state.content} onChange={this.handleChangeContent} type="textarea" name="text" placeholder="Tulis Keluhan Anda Disini" />
                   </FormGroup>
-                  <label className="alert__dompetAladin">{this.state.notif}</label>      
+                  <label className="alert__dompetAladin">{this.state.notif}</label>
                   <div className="layanan__button__container">
                     <button className="layanan__button">Submit</button>
-                  </div>            
+                  </div>
                 </Form>
               </Col>
             </Row>

@@ -5,8 +5,9 @@ import { connect } from 'react-redux'
 
 import { setModalLogin, setModalRegister, loginAction } from '../actions/'
 import { getUser, refreshToken } from '../actions/userAction'
+import envChecker from '../utils/envChecker'
 
-const BA_API_HOST = `${process.env.REACT_APP_API_HOST}`
+const BA_API_HOST = `${envChecker('api')}`
 
 class EmailVerificationDone extends React.Component {
   render() {

@@ -11,6 +11,7 @@ import axios from 'axios';
 
 import { getProducts } from '../actions/productAction';
 import { detectProvider } from '../utils/phone'
+import envChecker from '../utils/envChecker'
 
 class ClaimFreePulsa extends React.Component<Props, State> {
 
@@ -60,7 +61,7 @@ class ClaimFreePulsa extends React.Component<Props, State> {
   claimPulsa(){
     axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_API_HOST}/win/claimfreepulsa`,
+      url: `${envChecker('api')}/win/claimfreepulsa`,
       headers: {
         token: localStorage.getItem('token'),
         // key: process.env.REACT_APP_KEY
@@ -106,24 +107,6 @@ class ClaimFreePulsa extends React.Component<Props, State> {
           <FormGroup>
             <Input onChange={(e) => this.setState({ phone: e.target.value })} type="number" placeholder="Nomor HP" />
           </FormGroup>
-
-          {/* <FormGroup>
-            <Input type="select" onChange={(e) => this.setState({ pulsaCode: e.target.value })}>
-              <option selected disabled value={ null }>-- Pilih Pulsa --</option>
-              <option value='htelkomsel10000'>Pulsa Telkomsel 10.000</option>
-              <option value='xld10000'>Pulsa XL 10.000</option>
-              <option value='hindosat10000'>Pulsa Indosat 10.000</option>
-              <option value='hthree10000'>Pulsa Three 10.000</option>
-              <option value='hsmart10000'>Pulsa Smart 10.000</option>
-
-               {pulsa.map((data, i) => {
-                return (
-                  <option key={i} value={data.id}>{data.productName}</option>
-                )
-              })}
-            </Input>
-          </FormGroup> */}
-
           <FormGroup>
             <Button type="submit"> submit </Button>
           </FormGroup>

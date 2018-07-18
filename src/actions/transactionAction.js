@@ -1,4 +1,5 @@
 import axios from 'axios'
+import envChecker from '../utils/envChecker'
 
   export const getUserPendingTransactionsAction = (payload) => ({
     type: 'GET_USER_PENDING_TRANSACTIONS',
@@ -14,7 +15,7 @@ import axios from 'axios'
     return (dispatch) => {
       axios({
         method: 'GET',
-        url: `${process.env.REACT_APP_API_HOST}/transaction/userPending`,
+        url: `${envChecker('api')}/transaction/userPending`,
         headers: {
           token: localStorage.getItem('token'),
           key: process.env.REACT_APP_KEY
@@ -31,7 +32,7 @@ import axios from 'axios'
     return (dispatch) => {
       axios({
         method: 'GET',
-        url: `${process.env.REACT_APP_API_HOST}/transaction/user`,
+        url: `${envChecker('api')}/transaction/user`,
         headers: {
           token: localStorage.getItem('token'),
           key: process.env.REACT_APP_KEY

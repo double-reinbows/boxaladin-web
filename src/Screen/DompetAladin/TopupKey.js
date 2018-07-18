@@ -9,6 +9,7 @@ import axios from 'axios'
 
 import { getKeys } from '../../actions/keyAction'
 import FormatRupiah from '../../utils/formatRupiah'
+import envChecker from '../../utils/envChecker'
 
 class TopupKey extends React.Component {
 	constructor(props) {
@@ -71,7 +72,7 @@ class TopupKey extends React.Component {
 					token: localStorage.getItem('token'),
 					key: process.env.REACT_APP_KEY
 					},
-        url: `${process.env.REACT_APP_API_HOST}/topupKey`,
+        url: `${envChecker('api')}/topupKey`,
         data: {
 					keyId: this.state.idKeySelected
         }

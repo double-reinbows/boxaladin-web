@@ -6,12 +6,13 @@ import { connect } from 'react-redux'
 import { Modal } from 'reactstrap'
 import axios from 'axios'
 import { getPhoneNumbers } from '../../actions/'
+import envChecker from '../../utils/envChecker'
 
 
 class ModalDelete extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
     }
   }
 
@@ -19,7 +20,7 @@ class ModalDelete extends Component {
 		// alert('Remove phone here!')
 		axios({
 			method: 'DELETE',
-			url: `${process.env.REACT_APP_API_HOST}/phone/${this.props.phone}`,
+			url: `${envChecker('api')}/phone/${this.props.phone}`,
 			headers: {
 				key: process.env.REACT_APP_KEY
 			}
@@ -32,8 +33,8 @@ class ModalDelete extends Component {
 		.catch(err => console.log(err))
 	}
 
-  render() { 
-    return ( 
+  render() {
+    return (
       <Modal ariaHideApp={false} isOpen={this.props.openModalDelete} className="modal__check">
       <div className="modal__check__container">
         <div className="modal__check__container__header">

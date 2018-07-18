@@ -4,12 +4,13 @@ import { Modal } from 'reactstrap'
 import { connect } from 'react-redux'
 
 import { getPhoneNumbers } from '../../actions/'
+import envChecker from '../../utils/envChecker'
 
 class ModalAdd extends Component {
   constructor(props) {
     super(props);
     this.submitPhone = this.submitPhone.bind(this)
-    this.state = { 
+    this.state = {
       numberToSend: '',
       notif: ''
     }
@@ -21,7 +22,7 @@ class ModalAdd extends Component {
 
 			axios({
 				method: 'POST',
-				url: `${process.env.REACT_APP_API_HOST}/phonenumber`,
+				url: `${envChecker('api')}/phonenumber`,
 				data: {
 					phonenumber: this.state.numberToSend
 				},
@@ -73,9 +74,9 @@ class ModalAdd extends Component {
 			this.setState({notif: 'Format No Hp Salah'})
 		}
 	}
-  
-  render() { 
-    return ( 
+
+  render() {
+    return (
 		<Modal isOpen={this.props.openModalAdd} className="modal__check">
     <div className="modal__check__container">
         <div className="modal__check__delete__content">
@@ -110,5 +111,3 @@ const mapDispatchToProps = (dispatch) => {
 const connectComponent = connect(mapStateToProps, mapDispatchToProps)(ModalAdd)
 
 export default connectComponent
-
-
