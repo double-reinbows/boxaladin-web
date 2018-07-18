@@ -144,9 +144,9 @@ class Dompet extends React.Component {
       this.setState({
         notif3: "Silahkan Memilih Jumlah Saldo.",
       })
-    } else if (this.state.wallet < 100000) {
+    } else if (this.state.wallet < 200000) {
       this.setState({
-        notif3: "Minimal setoran adalah Rp. 100.000",
+        notif3: "Minimal setoran adalah Rp. 200.000",
       })
     } else if (this.props.userInfo.wallet + this.state.wallet > 2000000) {//Top-up greater than 2jt
       let allowedAmount = 2000000 - this.props.userInfo.wallet
