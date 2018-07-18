@@ -42,9 +42,9 @@ class Invoice extends React.Component {
   showInvoice() {
     let transactions = this.props.userTransactions.filter(data => data.description !== 'FREE')
     return (
-      <Table >
-        <thead className="invoice__table">
-          <tr>
+      <Table>
+        <thead>
+        <tr>
             <th>No.</th>
             <th>Tanggal</th>
             <th>Barang</th>
@@ -54,8 +54,8 @@ class Invoice extends React.Component {
             <th></th>
           </tr>
         </thead>
-        <tbody className="invoice__table">
-          {transactions.map((data, idx) => {
+        <tbody>
+        {transactions.map((data, idx) => {
             if (!data.createdAt || !data.createdAt || !data.payment || data.payment.invoiceId === 'null'){
               return null
             } else {
@@ -77,7 +77,7 @@ class Invoice extends React.Component {
                 <tr key={idx}>
                   <th scope="row">{idx+1}</th>
                   <td>{moment(data.createdAt, moment.ISO_8601).format('L, h:mm:ss a')}</td>
-                  <td>{data.product.productName}}</td>
+                  <td>{data.product.productName}</td>
                   <td>{`Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}`}</td>
                   <td>{ data.number ? data.number : (<h3>Anda Tidak Memasukkan no Hp</h3>) }</td>
                   {statusComponent}
