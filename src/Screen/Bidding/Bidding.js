@@ -7,7 +7,7 @@ import Loading from '../Components/Loading/'
 import ModalText from '../Components/Modal/ModalText'
 
 import { getPhoneNumbers, setIsLoading } from '../../actions/'
-import { getUser } from '../../actions/userAction'
+// import { getUser } from '../../actions/userAction'
 import  priceProduct  from '../../utils/splitPrice'
 import  productName from '../../utils/splitProduct'
 import FormatRupiah from '../../utils/formatRupiah'
@@ -201,7 +201,7 @@ class Bidding extends React.Component {
 
 		if (localStorage.getItem('token') !== null) {
       this.props.setIsLoading(true)
-      this.props.getUser()
+      // this.props.getUser()
       const productsRef = firebase.database().ref().child(`${envChecker('firebase')}`)
       const productRef = productsRef.child(productId)
       productRef.once('value', snap => {
@@ -303,7 +303,7 @@ class Bidding extends React.Component {
 const mapStateToProps = (state) => {
   return {
     selectedProductID: state.productReducer.selectedProductID,
-    userInfo: state.userReducer.userInfo,
+    // userInfo: state.userReducer.userInfo,
     phoneNumbers: state.userReducer.phoneNumbers,
     isLoading: state.loadingReducer.isLoading,
   }
@@ -312,7 +312,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getPhoneNumbers: () => dispatch(getPhoneNumbers()),
-    getUser: () => dispatch(getUser()),
+    // getUser: () => dispatch(getUser()),
     setIsLoading: (bool) => dispatch(setIsLoading(bool)),
   }
 }
