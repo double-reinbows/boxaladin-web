@@ -10,6 +10,7 @@ import Loading from '../Loading'
 import LoadingTime from '../Loading/indexTime'
 import { setIsLoading } from '../../../actions/'
 import { setIsLoadingTime } from '../../../actions/'
+import { refreshToken } from '../../../actions/userAction'
 import envChecker from '../../../utils/envChecker'
 import FormatRupiah from '../../../utils/formatRupiah'
 
@@ -53,6 +54,10 @@ class ModalPayment extends Component{
       }
       return data
     }
+  }
+
+  componentDidMount() {
+    this.props.refreshToken()
   }
 
   axiosTransaction = () => {
@@ -126,6 +131,7 @@ class ModalPayment extends Component{
         data: dataValue
       })
       .then(result => {
+        console.log('result wallet', result)
         if (result.data.message === 'saldo tidak mencukupi'){
           this.props.setIsLoading(false)
           alert(`saldo tidak mencukupi, saldo anda ${FormatRupiah(result.data.wallet)}`)
@@ -134,14 +140,20 @@ class ModalPayment extends Component{
             bank: ''
           });
         } else if (result.data.message === 'topup sukses'){
-        this.props.setIsLoading(false)
+          this.refreshToken()
+          this.props.setIsLoading(false)
         window.location.reload();
         } else if (result.data.message === 'sukses pulsa'){
+          this.refreshToken()
           this.props.history.push(`/tabsinvoice`)
         }
       })
       .catch(err => console.log(err))
     }
+  }
+
+  async refreshToken(){
+    await this.props.refreshToken()
   }
 
   handleToggle = () => {
@@ -277,7 +289,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setIsLoading: (bool) => dispatch(setIsLoading(bool)),
-    setIsLoadingTime: (bool, timer) => dispatch(setIsLoadingTime(bool, timer))
+    setIsLoadingTime: (bool, timer) => dispatch(setIsLoadingTime(bool, timer)),
+    refreshToken: () => dispatch(refreshToken()),
   }
 }
 

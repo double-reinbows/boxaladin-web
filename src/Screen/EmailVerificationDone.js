@@ -22,9 +22,9 @@ class EmailVerificationDone extends React.Component {
             Kamu telah menverifikasi email {this.props.userInfo.typedEmail} sebagai akun baru di Boxaladin. klik gambar dibawah ini untuk mulai berbelanja:
           </p>
           <div className="emailVerification__content__image">
-             <a href="https://www.boxaladin.com">
+            <a href="https://www.boxaladin.com">
               <img alt="check icon" src= 'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Home/checked.svg' />
-             </a>
+            </a>
           </div>
         </div>
         { this.showLoginLink() }
