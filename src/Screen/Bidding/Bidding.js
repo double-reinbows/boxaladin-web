@@ -26,6 +26,10 @@ class Bidding extends React.Component {
     }
 
     this.handleBack()
+    this.handler = (ev) => {
+      ev.preventDefault();
+      alert('WOAH!');
+    }
     localStorage.setItem('selectedProductId', this.props.selectedProductID)
   }
 
@@ -294,29 +298,6 @@ class Bidding extends React.Component {
       this.props.history.push('/home')
 		}
   }
-
-  // stopWatchProductPrice(productId) {
-  //   if (productId === '') {
-  //     return null
-  //   }
-
-  //   const productsRef = firebase.database().ref().child(`${process.env.REACT_APP_FIREBASE_PRODUCT}`)
-	// 	const productRef = productsRef.child(productId)
-
-  //   productRef.off()
-  //   // this.setState({isWatching: false})
-
-  //   productRef.once('value', snap => {
-	// 		if (snap.val().watching > 0) {
-
-  //       productRef.update({
-  //         watching: snap.val().watching -1
-  //       })
-
-  //     }
-	// 	})
-  // }
-
 }
 
 const mapStateToProps = (state) => {
