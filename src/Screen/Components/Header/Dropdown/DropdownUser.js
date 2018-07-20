@@ -28,6 +28,13 @@ class DropdownUser extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProps) {
+    if (!prevProps.isResetText && prevProps.isResetText !== this.props.isResetText) {
+      this.changeText('Home');
+      this.props.onResetCalback();
+    }
+  }
+
   render() {
     return (
       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>

@@ -29,7 +29,7 @@ class ModalSignup extends React.Component {
         <Button className="ButtonHeader" onClick={this.toggle}>
             <div className="ButtonHeader__big">
               {this.props.buttonLabel}
-              Daftar
+              Register
             </div>
         </Button>
 
