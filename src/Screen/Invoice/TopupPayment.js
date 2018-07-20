@@ -25,10 +25,10 @@ class TopupPayment extends React.Component {
   handleRetail(){
     if (!this.state.invoice){
       return null
-    }  else if (this.state.invoice.payment.availableretail !== 'null'){
+    } else if (this.state.invoice.payment.availableretail !== 'null'){
       return (
         <div>
-        <Guide activeTab= {'1'} invoice={this.state.invoice} />
+        <Guide activeTab= {'5'} invoice={this.state.invoice} />
       </div>
       )
     } else if (this.state.invoice.payment.availableretail === 'wallet'){
@@ -37,7 +37,7 @@ class TopupPayment extends React.Component {
           <Guide activeTab= {'5'} invoice={this.state.invoice} />
         </div>
       )
-    }else if (this.state.invoice.virtualAccount.bankCode === 'MANDIRI') {
+    } else if (this.state.invoice.virtualAccount.bankCode === 'MANDIRI') {
       return (
         <div>
         <Guide activeTab= {'1'} invoice={this.state.invoice} />

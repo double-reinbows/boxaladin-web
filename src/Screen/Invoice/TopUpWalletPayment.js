@@ -21,9 +21,15 @@ class InvoiceDetail extends React.Component<state> {
   }
 
   handleRetail(){
-    if (this.state.invoice === {}){
+    if (!this.state.invoice){
       return null
     } else if (this.state.invoice.payment.availableretail !== 'null'){
+      return (
+        <div>
+          <Guide activeTab= {'5'} invoice={this.state.invoice} />
+        </div>
+      )
+    } else if (this.state.invoice.payment.availableretail === 'wallet'){
       return (
         <div>
           <Guide activeTab= {'5'} invoice={this.state.invoice} />
