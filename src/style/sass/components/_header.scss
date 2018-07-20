@@ -4,7 +4,6 @@
     border-bottom: 4px solid #FFCD06;
 
     &__Right{
-      margin-right: 5% !important;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -24,7 +23,14 @@
     display: none;
     &__right{
       margin-right: 5%;
+    }
+  }
 
+  .HeaderTop__Right {
+    &.navbar-nav{
+      display: flex;
+      flex-direction: row;
+      width: 100%
     }
   }
 }
@@ -33,7 +39,6 @@
   .HeaderTop__Right {
     width: 70%;
     margin-right: 5%;
-
   }
 }
 

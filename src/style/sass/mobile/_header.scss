@@ -1,0 +1,29 @@
+@media (max-width: 767px)  {
+  .HeaderTop__Right {
+    &.navbar-nav{
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-around;
+    }
+  }
+
+  .ButtonHeader {
+    &.btn {
+      &.btn-secondary {
+        width: 100%
+      }
+    }
+  }
+
+  .header-margin{
+    margin: 0%;
+    border: 2px solid #FFCD05;
+    border-radius: 16px;
+    width: 40%;
+  }
+
+  .HeaderTopM__logo{
+    padding: 0%;
+  }
+}

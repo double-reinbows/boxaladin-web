@@ -7,6 +7,7 @@ import { getProducts } from '../../actions/productAction'
 
 import HomeContent from './HomeContent'
 import BannerHome from './BannerHome'
+import MediaQuery from 'react-responsive';
 
 type Props = {
   getProducts: Function,
@@ -21,8 +22,14 @@ class Home extends Component<Props, State> {
   render() {
     return (
       <div>
-        <HomeContent/>
-        <BannerHome />
+        <MediaQuery query="(max-device-width: 720px)">
+          <h1>Mobile app</h1>
+        </MediaQuery>
+        <MediaQuery query="(min-device-width: 721px)">
+          <HomeContent/>
+          <BannerHome />
+        </MediaQuery>
+
       </div>
     )
   }

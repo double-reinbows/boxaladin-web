@@ -29,7 +29,7 @@ class ModalLogin extends React.Component {
           <div className="ButtonHeader__devide">
             <div className="ButtonHeader__big">
               {this.props.buttonLabel}
-              Masuk
+              Login
             </div>
 
           </div>
