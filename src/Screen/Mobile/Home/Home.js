@@ -65,18 +65,19 @@ class Home extends Component {
     } else {
       return(
         this.props.products.filter(data => {
-          return data.displayPrice === 25000 && data.category === 'Pulsa' && data.category && data.brand !== 'Axis' && data.brand !=='Smartfren' && data.brand !== 'Tri'
-        })
-        .map((data, i) => {
+          return data.displayPrice === 25000 && data.categoryId === 1 && data.brand.brandName !== 'Axis' && data.brand.brandName !== 'Smartfren' && data.brand.brandName !== 'Tri'
+        }).map((data, i) => {
           const pulsaItems = [
-            {onClick: () => this.toggleBid(`${data.brand}`, `${data.productName}`, `${data.id}`, data.brandLogo), img: data.brandLogo, alt:`Logo ${data.brand}`},
+            {onClick: () => this.toggleBid(`${data.brand.brandName}`, `${data.productName}`, `${data.id}`, data.brand.brandLogo), img: data.brand.brandLogo, alt:`Logo ${data.brand.brandName}`, name: data.brand.brandName},
           ]
           return pulsaItems.map(data => (
-            <button key={i} onClick={data.onClick} className="mobile__home__button">
-              <img className="mobile__home__button__image" src={data.img} alt={data.alt}/>
-            </button>
-          )
-        )
+            <div className='mobile__home__button__container'>
+              <button key={i} onClick={data.onClick} className="mobile__home__button">
+                <img className="mobile__home__button__image" src={data.img} alt={data.alt}/>
+              </button>
+              <label>{data.name}</label>
+            </div>
+          ))
         })
       )
     }
@@ -87,28 +88,28 @@ class Home extends Component {
     } else {
       return(
         this.props.products.filter(data => {
-          return data.displayPrice === 25000 && data.category === 'Pulsa' && data.category && data.brand !== 'Axis' && data.brand !=='Telkomsel' && data.brand !== 'XL' && data.brand !== 'Indosat'
-        })
-        .map((data, i) => {
+          return data.displayPrice === 25000 && data.categoryId === 1 && data.brand.brandName !== 'Axis' && data.brand.brandName !== 'Telkomsel' && data.brand.brandName !== 'XL' && data.brand.brandName !== 'Indosat'
+        }).map((data, i) => {
           const pulsaItems = [
-            {onClick: () => this.toggleBid(`${data.brand}`, `${data.productName}`, `${data.id}`, data.brandLogo), img: data.brandLogo, alt:`Logo ${data.brand}`},
+            {onClick: () => this.toggleBid(`${data.brand.brandName}`, `${data.productName}`, `${data.id}`, data.brand.brandLogo), img: data.brand.brandLogo, alt:`Logo ${data.brand.brandName}`, name: data.brand.brandName},
           ]
           return pulsaItems.map(data => (
-            <button key={i} onClick={data.onClick} className="mobile__home__button">
-              <img className="mobile__home__button__image" src={data.img} alt={data.alt}/>
-            </button>
-          )
-        )
+            <div className='mobile__home__button__container'>
+              <button key={i} onClick={data.onClick} className="mobile__home__button">
+                <img className="mobile__home__button__image" src={data.img} alt={data.alt}/>
+              </button>
+              <label>{data.name}</label>
+            </div>
+          ))
         })
       )
     }
   }
   
   render() { 
-    console.log
     return ( 
       <div>
-        <label className="mobile__home__label">PILIH PROVIDER KALIAN</label>
+        <h2 className="mobile__home__label">PILIH PROVIDER KALIAN</h2>
         <div className="mobile__home__content1">
           {this.pulsaItem1()}
         </div>
@@ -116,6 +117,8 @@ class Home extends Component {
           {this.pulsaItem2()}
         </div>
         {this.renderModalBid()}
+        <h2 className="mobile__home__label">Cara Kerja</h2>
+        <img className='mobile__home__image'src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Home/Carakerja.svg"/>
       </div>
     );
   }

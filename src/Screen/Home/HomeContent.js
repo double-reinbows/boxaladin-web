@@ -49,11 +49,11 @@ class HomeContent extends Component {
     } else {
       return(
         this.props.products.filter(data => {
-          return data.displayPrice === 25000 && data.category === 'Pulsa' && data.category && data.brand !== 'Axis'
+          return data.displayPrice === 25000 && data.categoryId === 1 && data.brand.brandName !== 'Axis'
         })
         .map((data, i) => {
           const pulsaItems = [
-            {onClick: () => this.toggleBid(`${data.brand}`, `${data.productName}`, `${data.id}`, data.brandLogo), img: data.brandLogo, alt:`Logo ${data.brand}`},
+            {onClick: () => this.toggleBid(`${data.brand.brandName}`, `${data.productName}`, `${data.id}`, data.brand.brandLogo), img: data.brand.brandLogo, alt:`Logo ${data.brand.brandName}`, name: data.brand.brandName},
           ]
           return pulsaItems.map(data => (
             <button key={i} onClick={data.onClick} className="homecontent__bottom__pulsa__button">
@@ -64,20 +64,6 @@ class HomeContent extends Component {
         })
       )
     }
-    // const pulsaItems = [
-    //   {onClick: () => this.toggleBid('XL', 'Pulsa XL 25.000', 142), img: LogoXL, alt:"Logo XL"},
-    //   {onClick: () => this.toggleBid('Telkomsel', 'Pulsa Telkomsel 25.000', 139), img: LogoTelkomsel, alt:"Logo Telkomsel"},
-    //   {onClick: () => this.toggleBid('Smartfren', 'Pulsa Smartfren 25.000', 16), img: LogoSmart, alt:"Logo Smart"},
-    //   {onClick: () => this.toggleBid('Indosat', 'Pulsa Indosat 25.000', 145), img: LogoIndosat, alt:"Logo Indosat"},
-    //   {onClick: () => this.toggleBid('Tri', 'Pulsa Tri 25.000',   ), img: LogoTri, alt:"Logo Tri"}
-    // ]
-
-    // return pulsaItems.map(data => (
-    //     <button onClick={data.onClick} className="homecontent__bottom__pulsa__button">
-    //       <img className="homecontent__bottom__pulsa__button__image" src={data.img} alt={data.alt}/>
-    //     </button>
-    //   )
-    // )
   }
 
   priceProduct() {
