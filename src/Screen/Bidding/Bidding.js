@@ -253,10 +253,10 @@ class Bidding extends React.Component {
         propsAladinPrice = snap.val().aladinPrice
         let productValue = {
           brand: snap.val().brand,
-          brandId: snap.val().brandId,
+          // brandId: snap.val().brandId,
           brandLogo: snap.val().brandLogo,
-          category: snap.val().category,
-          categoryId: snap.val().categoryId,
+          // category: snap.val().category,
+          // categoryId: snap.val().categoryId,
           displayPrice: snap.val().displayPrice,
           id: snap.val().id,
           price: snap.val().price,
