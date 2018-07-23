@@ -13,15 +13,13 @@ export const getUser = () => {
 			url: `${envChecker('api')}/users/info`,
 			headers: {
 				token: localStorage.getItem('token'),
-				key: process.env.REACT_APP_KEY
 			}
 		})
 		.then(({data}) => {
+			console.log(data);
 			dispatch(getUserAction(data))
-			console.log(data)
 		})
 		.catch(err => {
-				console.log(err.response)
 				localStorage.removeItem('token')
 				window.location.replace('/home')
 			}
@@ -36,14 +34,13 @@ export const refreshToken = () => {
 			url: `${envChecker('api')}/users/token`,
 			headers: {
 				token: localStorage.getItem('token'),
-				key: process.env.REACT_APP_KEY
 			}
 		})
 		.then(({data}) => {
-			//console.log('TOKEN LAMA:', localStorage.getItem('token'))
+			// console.log('TOKEN LAMA:', localStorage.getItem('token'))
 			localStorage.removeItem('token')
 			localStorage.setItem('token', data.token)
-			//console.log('TOKEN BARU:', localStorage.getItem('token'))
+			// console.log('TOKEN BARU:', localStorage.getItem('token'))
 		})
 		.catch(err => console.log(err))
 	}

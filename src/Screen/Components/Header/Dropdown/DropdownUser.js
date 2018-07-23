@@ -3,7 +3,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap'
 import { LinkContainer } from 'react-router-bootstrap';
 import {connect} from 'react-redux'
 import {logoutAction} from '../../../../actions/'
-import { getUser } from '../../../../actions/userAction'
+// import { getUser } from '../../../../actions/userAction'
 
 class DropdownUser extends React.Component {
   constructor(props) {
@@ -112,7 +112,7 @@ class DropdownUser extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getUser()
+    // this.props.getUser()
   }
 
   logout() {
@@ -124,14 +124,14 @@ class DropdownUser extends React.Component {
 const mapStateToProps = state => {
   return {
     isLogin: state.userReducer.isLogin,
-    userInfo: state.userReducer.userInfo
+    // userInfo: state.userReducer.userInfo
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     logoutAction: () => dispatch(logoutAction()),
-    getUser: () => dispatch(getUser())
+    // getUser: () => dispatch(getUser())
   }
 }
 

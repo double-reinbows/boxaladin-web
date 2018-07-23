@@ -7,7 +7,7 @@ import Loading from '../Components/Loading/'
 import ModalText from '../Components/Modal/ModalText'
 
 import { getPhoneNumbers, setIsLoading } from '../../actions/'
-import { getUser } from '../../actions/userAction'
+// import { getUser } from '../../actions/userAction'
 import  priceProduct  from '../../utils/splitPrice'
 import  productName from '../../utils/splitProduct'
 import FormatRupiah from '../../utils/formatRupiah'
@@ -26,6 +26,10 @@ class Bidding extends React.Component {
     }
 
     this.handleBack()
+    this.handler = (ev) => {
+      ev.preventDefault();
+      alert('WOAH!');
+    }
     localStorage.setItem('selectedProductId', this.props.selectedProductID)
   }
 
@@ -197,7 +201,7 @@ class Bidding extends React.Component {
 
 		if (localStorage.getItem('token') !== null) {
       this.props.setIsLoading(true)
-      this.props.getUser()
+      // this.props.getUser()
       const productsRef = firebase.database().ref().child(`${envChecker('firebase')}`)
       const productRef = productsRef.child(productId)
       productRef.once('value', snap => {
@@ -294,35 +298,12 @@ class Bidding extends React.Component {
       this.props.history.push('/home')
 		}
   }
-
-  // stopWatchProductPrice(productId) {
-  //   if (productId === '') {
-  //     return null
-  //   }
-
-  //   const productsRef = firebase.database().ref().child(`${process.env.REACT_APP_FIREBASE_PRODUCT}`)
-	// 	const productRef = productsRef.child(productId)
-
-  //   productRef.off()
-  //   // this.setState({isWatching: false})
-
-  //   productRef.once('value', snap => {
-	// 		if (snap.val().watching > 0) {
-
-  //       productRef.update({
-  //         watching: snap.val().watching -1
-  //       })
-
-  //     }
-	// 	})
-  // }
-
 }
 
 const mapStateToProps = (state) => {
   return {
     selectedProductID: state.productReducer.selectedProductID,
-    userInfo: state.userReducer.userInfo,
+    // userInfo: state.userReducer.userInfo,
     phoneNumbers: state.userReducer.phoneNumbers,
     isLoading: state.loadingReducer.isLoading,
   }
@@ -331,7 +312,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getPhoneNumbers: () => dispatch(getPhoneNumbers()),
-    getUser: () => dispatch(getUser()),
+    // getUser: () => dispatch(getUser()),
     setIsLoading: (bool) => dispatch(setIsLoading(bool)),
   }
 }
