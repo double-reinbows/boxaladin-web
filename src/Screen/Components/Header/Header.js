@@ -61,7 +61,7 @@ class NavBar extends React.Component {
   showRightButton() {
     if (localStorage.getItem('token') !== null) {
       return (
-        <Nav navbar className="HeaderTop__Right">
+        <Nav navbar className="HeaderTop__Right" style={{  width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
           <NavItem>
             <DropdownUser isResetText={this.state._isResetText} onResetCalback={()=>this.setState({_isResetText: false})}/>
           </NavItem>
@@ -70,11 +70,9 @@ class NavBar extends React.Component {
       )
     } else {
       return (
-        <Nav navbar className="HeaderTop__Right">
-
+        <Nav navbar className="HeaderTop__Right" >
             <ModalLogin />
             <ModalSignup />
-
         </Nav>
       )
     }
@@ -83,6 +81,7 @@ class NavBar extends React.Component {
   logout() {
     localStorage.removeItem('token')
     this.props.logoutAction()
+    window.location.reload()
   }
 
 }

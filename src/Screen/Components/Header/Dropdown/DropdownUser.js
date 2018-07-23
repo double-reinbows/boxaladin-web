@@ -43,7 +43,7 @@ class DropdownUser extends React.Component {
         <DropdownToggle className="ButtonHeader">
           <div className="ButtonHeader__devide">
             <div className="ButtonHeader__big">
-              {this.state.text}
+              <div className="ButtonHeader__textMobile">{this.state.text}</div>
             </div>
 
             <div className="ButtonHeader__small" style= {{ backgroundColor: "transparent", borderLeftStyle: "solid", borderLeftWidth: "3px", borderColor: "#FFCD06"}}>
@@ -118,6 +118,7 @@ class DropdownUser extends React.Component {
   logout() {
     localStorage.removeItem('token')
     this.props.logoutAction()
+    window.location.reload()
   }
 }
 
