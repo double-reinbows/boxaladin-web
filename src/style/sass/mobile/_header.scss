@@ -27,3 +27,30 @@
     padding: 0%;
   }
 }
+
+.mobile__home{
+  &__label{
+    display: flex;
+    justify-content: center;
+  }
+  &__content1{
+    display: flex;
+    justify-content: space-around;
+  }
+  &__content2{
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__button{
+    width: 60px;
+    height: 70px;
+    border-radius: 10px;
+    margin: 2px;
+    background-color: white;
+    &__image{
+      display: flex;
+      width: 100%
+    }
+  }
+}
