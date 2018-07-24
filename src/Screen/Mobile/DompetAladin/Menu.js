@@ -10,7 +10,7 @@ class menu extends Component {
 
   showButton = () => {
     const buttonPrice = [
-      {keys: 'Kunci Aladin', link:'mdompetwallet'},
+      {keys: 'Kunci Aladin', link:'mdompetkey'},
       {keys: 'Koin Aladin', link:'mdompetconvert'},
       {keys: 'Uang Aladin', link:'mdompetwallet'},
     ]

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-
+import ModalPayment from '../../Components/Modal/ModalPayment'
 
 class aladinKeys extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      modalPayment: false,
+      id: 0
     }
   }
 
@@ -32,6 +33,15 @@ class aladinKeys extends Component {
           {this.showButton()}
         </div>
         <h2 className="mobile__pulsa__label">1 = Rp 1.000,-</h2>
+        <ModalPayment
+            text='buy wallet'
+            fixedendpoint='fixedwallet'
+            retailendpoint='alfawallet'
+            push='walletinvoice'
+            isOpen={this.state.modalPayment}
+            data={this.state.wallet}
+            toggle={this.walletButton}
+          />
       </div>
     );
   }
