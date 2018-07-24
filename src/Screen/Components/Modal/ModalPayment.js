@@ -74,7 +74,10 @@ class ModalPayment extends Component{
         data: dataValue
       })
       .then(result => {
-        if (result.data.error_code === "DUPLICATE_CALLBACK_VIRTUAL_ACCOUNT_ERROR") {
+        if (result.data.message === 'not verified user'){
+          this.props.setIsLoading(false)
+          return alert('Silahkan Verifikasi Email Anda')
+        } else if (result.data.error_code === "DUPLICATE_CALLBACK_VIRTUAL_ACCOUNT_ERROR") {
           this.props.setIsLoading(false)
           this.setState({
             notif: true
@@ -105,7 +108,10 @@ class ModalPayment extends Component{
         data: dataValue
       })
       .then(result => {
-        if (result.data === 'saldo limited') {
+        if (result.data.message === 'not verified user'){
+          this.props.setIsLoading(false)
+          return alert('Silahkan Verifikasi Email Anda')
+        } else if (result.data === 'saldo limited') {
           this.props.setIsLoading(false)
           alert('Masukkan Jumlah Sesuai Range Saldo')
         } else if (result.data === 'not verified user'){
@@ -132,7 +138,10 @@ class ModalPayment extends Component{
       })
       .then(result => {
         console.log('result wallet', result)
-        if (result.data.message === 'saldo tidak mencukupi'){
+        if (result.data.message === 'not verified user'){
+          this.props.setIsLoading(false)
+          return alert('Silahkan Verifikasi Email Anda')
+        } else if (result.data.message === 'saldo tidak mencukupi'){
           this.props.setIsLoading(false)
           alert(`saldo tidak mencukupi, saldo anda ${FormatRupiah(result.data.wallet)}`)
           this.setState({
