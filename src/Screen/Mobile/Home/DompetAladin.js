@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Modal } from 'reactstrap'
-import axios from 'axios'
 
 import { getPhoneNumbers } from '../../../actions/'
 import { getUser } from '../../../actions/userAction'
@@ -20,7 +18,7 @@ class Dompet extends Component {
         <div className="dompetHome__content">
           <div className="dompetHome__headContent">
             <label className="dompetHome__headContent__text">DOMPET ALADIN</label>
-            <label className="dompetHome__headContent__plus">+</label>
+            <button onClick={this.showTopup} className="dompetHome__headContent__plus">+</button>
           </div>
         </div>
         <div className="dompetHome__bodyContent">
