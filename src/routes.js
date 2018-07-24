@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
+import MediaQuery from 'react-responsive';
 
 //component page
 import Header from './Screen/Components/Header/Header';
@@ -37,6 +38,12 @@ import ResetPassword from './Screen/ResetPassword';
 import ClaimFreePulsa from './Screen/ClaimFreePulsa';
 import About from './Screen/About/About';
 
+//mobile
+import MobileMenuDompetAladin from './Screen/Mobile/Home/DompetAladin'
+import MobileKey from './Screen/Mobile/DompetAladin/AladinKeys'
+import MobileConvert from './Screen/Mobile/DompetAladin/Convert'
+import MobileWallet from './Screen/Mobile/DompetAladin/Wallet'
+
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
@@ -62,6 +69,9 @@ class RouteList extends Component {
         <Router>
           <div>
             <Header />
+            <MediaQuery query="(max-device-width: 720px)">
+              <MobileMenuDompetAladin/>
+            </MediaQuery>
               <div className = "bodyContainer">
                 <Route exact path="/" component={Home} />
                 <Route exact path="/howitworks" component={HowItWorks} />
@@ -84,6 +94,11 @@ class RouteList extends Component {
                 <Route exact path="/emailVerification" component={EmailVerificationDone} />
                 <Route exact path="/requestresetpassword" component={RequestResetPassword } />
                 <Route exact path="/resetpassword/:email/:email_token" component={ResetPassword}/>
+                
+                <PrivateRoute exact path="/mdompetwallet" component={ MobileWallet } />
+                <PrivateRoute exact path="/mdompetkey" component={ MobileKey } />
+                <PrivateRoute exact path="/mdompetconvert" component={ MobileConvert } />
+
               </div>
               <div className="footer__container">
                 <Footer />

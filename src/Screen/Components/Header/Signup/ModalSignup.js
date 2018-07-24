@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal'
-import { ModalHeader, Button } from 'reactstrap';
+import { ModalHeader } from 'reactstrap';
 import Signup from './Signup'
 import { connect } from 'react-redux'
 

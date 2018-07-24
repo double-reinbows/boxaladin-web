@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-
+import { Link } from 'react-router-dom';
 import { getPhoneNumbers } from '../../../actions/'
 import { getUser } from '../../../actions/userAction'
 
@@ -18,7 +18,7 @@ class Dompet extends Component {
         <div className="dompetHome__content">
           <div className="dompetHome__headContent">
             <label className="dompetHome__headContent__text">DOMPET ALADIN</label>
-            <button onClick={this.showTopup} className="dompetHome__headContent__plus">+</button>
+            <Link to="dompetaladin" className="dompetHome__headContent__plus">+</Link>
           </div>
         </div>
         <div className="dompetHome__bodyContent">

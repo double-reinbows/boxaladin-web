@@ -17,7 +17,7 @@ class aladinKeys extends Component {
     ]
 
     return buttonPrice.map((data, idx) => (
-      <div className="mobile__topup__button__container">
+      <div key={idx} className="mobile__topup__button__container">
         <button className="mobile__topup__button">{data.keys1}</button>
         <button className="mobile__topup__button">{data.keys2}</button>
       </div>

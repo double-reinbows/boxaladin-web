@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Form, FormGroup, Input  } from 'reactstrap'
 import axios from 'axios'
+import MediaQuery from 'react-responsive';
 import ModalPayment from '../Components/Modal/ModalPayment'
 // import TopUpKey from './TopupKey'
 
@@ -11,7 +12,7 @@ import { getKeys } from '../../actions/keyAction'
 
 import FormatRupiah from '../../utils/formatRupiah'
 import envChecker from '../../utils/envChecker'
-
+import Menu from '../Mobile/DompetAladin/Menu'
 class Dompet extends React.Component {
   constructor(props) {
     super(props)
@@ -30,7 +31,13 @@ class Dompet extends React.Component {
 
   render() {
     return (
-      <div className="dompet">
+      <div>
+        <MediaQuery query="(max-device-width: 720px)">
+          <Menu/>
+        </MediaQuery>
+
+        <MediaQuery query="(min-device-width: 721px)">
+              <div className="dompet">
         <div className="dompet__container">
           <div className="dompet__content">
             <label className="dompet__content__title">Dompet Aladin</label>
@@ -76,7 +83,9 @@ class Dompet extends React.Component {
 
           </div>
         </div>
-      </div>
+        </div>
+        </MediaQuery>
+        </div>
     )
   }
 

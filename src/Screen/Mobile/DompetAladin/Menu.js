@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 class menu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      notif: ''
     }
   }
 
   showButton = () => {
     const buttonPrice = [
-      {keys1: 'Kunci Aladin'},
-      {keys1: 'Koin Aladin'},
-      {keys1: 'Uang Aladin'},
+      {keys: 'Kunci Aladin', link:'mdompetwallet'},
+      {keys: 'Koin Aladin', link:'mdompetconvert'},
+      {keys: 'Uang Aladin', link:'mdompetwallet'},
     ]
 
     return buttonPrice.map((data, idx) => (
-      <div className="mobile__topup__button__container">
-        <button className="mobile__topup__button" style={button}>{data.keys1}</button>
+      <div key={idx} className="mobile__menu__button__container">
+        <Link to={data.link} className="mobile__menu__button" style={button}>{data.keys}</Link>
       </div>
     ))
   }
@@ -29,7 +29,6 @@ class menu extends Component {
         <div>
           {this.showButton()}
         </div>
-        <h2 className="mobile__pulsa__label">1 = Rp 1.000,-</h2>
       </div>
     );
   }
