@@ -3,6 +3,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap'
 import { LinkContainer } from 'react-router-bootstrap';
 import {connect} from 'react-redux'
 import {logoutAction} from '../../../../actions/'
+import MediaQuery from 'react-responsive';
 // import { getUser } from '../../../../actions/userAction'
 
 class DropdownUser extends React.Component {
@@ -43,7 +44,7 @@ class DropdownUser extends React.Component {
         <DropdownToggle className="ButtonHeader">
           <div className="ButtonHeader__devide">
             <div className="ButtonHeader__big">
-              {this.state.text}
+              <div className="ButtonHeader__textMobile">{this.state.text}</div>
             </div>
 
             <div className="ButtonHeader__small" style= {{ backgroundColor: "transparent", borderLeftStyle: "solid", borderLeftWidth: "3px", borderColor: "#FFCD06"}}>
@@ -66,11 +67,13 @@ class DropdownUser extends React.Component {
             </DropdownItem>
           </LinkContainer>
 
+        <MediaQuery query="(min-device-width: 721px)">
           <LinkContainer className="DropdownUser__inside__link" onClick={(e) => this.changeText('Dompet')} to="/dompetaladin">
             <DropdownItem className="DropdownUser__inside">
               Dompet Aladin
             </DropdownItem>
           </LinkContainer>
+        </MediaQuery>
 
           <LinkContainer className="DropdownUser__inside__link" onClick={(e) => this.changeText('Game')} to="/game">
             <DropdownItem className="DropdownUser__inside">
@@ -118,6 +121,7 @@ class DropdownUser extends React.Component {
   logout() {
     localStorage.removeItem('token')
     this.props.logoutAction()
+    window.location.reload()
   }
 }
 

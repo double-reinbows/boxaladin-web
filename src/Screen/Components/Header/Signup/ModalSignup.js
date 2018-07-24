@@ -26,12 +26,20 @@ class ModalSignup extends React.Component {
   render() {
     return (
       <div className="header-margin">
-        <Button className="ButtonHeader" onClick={this.toggle}>
+      { /**   <Button className="ButtonHeader" onClick={this.toggle}>
             <div className="ButtonHeader__big">
               {this.props.buttonLabel}
               Register
             </div>
-        </Button>
+        </Button> **/ }
+        <div>
+        <button style= {{
+        backgroundColor: 'Transparent',
+        backgroundRepeat:'no-repeat',
+        border: 'none',
+        cursor:'pointer',
+        overflow: 'hidden' }} onClick={this.toggle} className="headMobile__text"> {this.props.buttonLabel} Register </button>
+        </div>
 
         <Modal ariaHideApp={false} isOpen={this.props.modalRegister} toggle={this.toggle} className="modal__login">
           <div className="modal__login__container">

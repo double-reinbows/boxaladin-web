@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
 import DompetAladin from './DompetAladin'
 import Pulsa from './Pulsa'
-import Topup from './Topup'
+import Wallet from '../DompetAladin/Wallet'
+import AladinKeys from '../DompetAladin/AladinKeys'
+import Convert from '../DompetAladin/Convert'
+import Menu from '../DompetAladin/Menu'
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {  
-      
+    this.state = {
+
     }
   }
-  render() { 
-    return (  
+  render() {
+    return (
       <div>
         <DompetAladin/>
         <Pulsa/>
-        <Topup/>
+        <Wallet/>
+        <AladinKeys/>
+        <Convert/>
+        <Menu/>
       </div>
     );
   }
