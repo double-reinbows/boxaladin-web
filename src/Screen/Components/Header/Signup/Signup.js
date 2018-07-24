@@ -159,7 +159,7 @@ class Signup extends Component {
     let {setIsLoading} = this.props;
     setTimeout(() => {
         this.setState({
-          text: 'Silahkan memasuki 4 angka terakhir dari nomor panggilan tersebut.',
+          text: 'Silahkan masukkan 4 angka terakhir dari nomor panggilan tersebut.',
           submit: (<Button className="modal-body__otp__button" color="primary" type="submit" >Submit</Button>),
           otpForm: true,
         });
@@ -324,6 +324,8 @@ class Signup extends Component {
           <div className="form-group">
             <button type="submit" className="Signup__ButtonLogin">Daftar</button>
           </div>
+
+          <button onClick={this.toggleOtp}>labes</button>
         </form>
         <ModalOtp
           open={modalOtp}
