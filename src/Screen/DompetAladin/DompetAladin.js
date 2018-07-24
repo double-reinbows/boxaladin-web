@@ -276,28 +276,29 @@ class Dompet extends React.Component {
 		}
 
 		// CEK SISA ALADIN KEY LANGSUNG DARI API
-		axios({
-			method: 'GET',
-			url: `${envChecker('api')}/users/info`,
-			headers: {
+    axios({
+      method: 'GET',
+      headers: {
         token: localStorage.getItem('token'),
-        key: process.env.REACT_APP_KEY
-			}
-		})
-		.then(({data}) => {
-			if (this.state.key > data.aladinKeys) {
+      },
+      url: `${envChecker('api')}/users/checkuser`,
+    })
+    .then(data => {
+      if (data.data.message === 'not verified user') {
+				return this.setState({
+					notif2: "Email Belum Terferivikasi.",
+        })      
+      } else if (this.state.key > data.aladinKeys) {
 				return this.setState({
 					notif2: "Aladin Key Tidak Cukup",
 				})
 			} else {
-
 				// REQUEST UPDATE ALADIN KEY DAN COIN KE API
 				axios({
 					method: 'PUT',
           url: `${envChecker('api')}/users/upcoin`,
           headers: {
               token: localStorage.getItem('token'),
-              key: process.env.REACT_APP_KEY
           },
 					data: {
 						key: this.state.key

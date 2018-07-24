@@ -20,10 +20,9 @@ class ModalConfirm extends Component {
         headers: {
           token: localStorage.getItem('token'),
 				},
-				url: `${envChecker('api')}/checkuser`,
+				url: `${envChecker('api')}/users/checkuser`,
 			})
 			.then(data => {
-        console.log('data', data)
         if (data.data.message === 'not verified user') {
           alert("Silahkan Verifikasi Email Anda")
         } else if (data.data.aladinKeys > 0) {
