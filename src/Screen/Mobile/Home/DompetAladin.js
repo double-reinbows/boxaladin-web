@@ -22,9 +22,9 @@ class Dompet extends Component {
           </div>
         </div>
         <div className="dompetHome__bodyContent">
-            <label>key: {this.props.userInfo.aladinKeys ?  this.props.userInfo.aladinKeys : null}</label>
-            <label>coin: {this.props.userInfo.coin ? this.props.userInfo.coin : null}</label>
-            <label>wallet: {this.props.userInfo.wallet ? this.props.userInfo.wallet.toLocaleString(['ban','id']) : null}</label>
+          <label>key: {this.props.userInfo.aladinKeys ?  this.props.userInfo.aladinKeys : null}</label>
+          <label>coin: {this.props.userInfo.coin ? this.props.userInfo.coin : null}</label>
+          <label>wallet: {this.props.userInfo.wallet ? this.props.userInfo.wallet.toLocaleString(['ban','id']) : null}</label>
         </div>
       </div>
 
@@ -33,17 +33,15 @@ class Dompet extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return {
-		userInfo: state.userReducer.userInfo,
-		phoneNumbers: state.userReducer.phoneNumbers
-	}
+  return {
+    userInfo: state.userReducer.userInfo
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		getPhoneNumbers: () => dispatch(getPhoneNumbers()),
-		getUser: () => dispatch(getUser())
-	}
+  return {
+    getUser: () => dispatch(getUser())
+  }
 }
 
 const connectComponent = connect(mapStateToProps, mapDispatchToProps)(Dompet)

@@ -5,6 +5,7 @@ import Wallet from '../DompetAladin/Wallet'
 import AladinKeys from '../DompetAladin/AladinKeys'
 import Convert from '../DompetAladin/Convert'
 import Menu from '../DompetAladin/Menu'
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -12,6 +13,7 @@ class Home extends Component {
 
     }
   }
+
   render() {
     return (
       <div>
