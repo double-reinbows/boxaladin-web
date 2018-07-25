@@ -21,7 +21,8 @@ class ModalPayment extends Component{
       bank: '',
       notif: '',
       disabledCancel: false,
-      disabledButton: false
+      disabledButton: false,
+      disabled: true
     }
   }
   static propTypes = {
@@ -169,6 +170,7 @@ class ModalPayment extends Component{
     this.setState({
       notif: '',
       bank: '',
+      disabled: true
     },
       () => this.props.toggle()
     )
@@ -231,6 +233,7 @@ class ModalPayment extends Component{
   handleChangeBank = (e) => {
     this.setState({
       bank: e.target.value,
+      disabled: false
     })
   }
 
@@ -269,6 +272,7 @@ class ModalPayment extends Component{
   }
 
   render() {
+    console.log(this.props)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">

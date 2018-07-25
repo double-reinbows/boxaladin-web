@@ -65,7 +65,7 @@ class Pulsa extends Component {
     } else {
       return(
         this.props.products.filter(data => {
-          return data.displayPrice === 25000 && data.categoryId === 1 && data.brand.brandName !== 'Axis' && data.brand.brandName !== 'Smartfren' && data.brand.brandName !== 'Tri'
+          return data.active === true && data.brand.brandName !== 'Smartfren' && data.brand.brandName !== 'Tri'
         }).map((data, i) => {
           const pulsaItems = [
             {onClick: () => this.toggleBid(`${data.brand.brandName}`, `${data.productName}`, `${data.id}`, data.brand.brandLogo), img: data.brand.brandLogo, alt:`Logo ${data.brand.brandName}`, name: data.brand.brandName},
@@ -88,7 +88,7 @@ class Pulsa extends Component {
     } else {
       return(
         this.props.products.filter(data => {
-          return data.displayPrice === 25000 && data.categoryId === 1 && data.brand.brandName !== 'Axis' && data.brand.brandName !== 'Telkomsel' && data.brand.brandName !== 'XL' && data.brand.brandName !== 'Indosat'
+          return data.active === true && data.brand.brandName !== 'Telkomsel' && data.brand.brandName !== 'XL' && data.brand.brandName !== 'Indosat'
         }).map((data, i) => {
           const pulsaItems = [
             {onClick: () => this.toggleBid(`${data.brand.brandName}`, `${data.productName}`, `${data.id}`, data.brand.brandLogo), img: data.brand.brandLogo, alt:`Logo ${data.brand.brandName}`, name: data.brand.brandName},

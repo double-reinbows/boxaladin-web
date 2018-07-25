@@ -1,9 +1,14 @@
+//@flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { getUser } from '../../../actions/userAction'
 
-class Dompet extends Component {
+type Props = {
+  getUser: Function,
+  userInfo: object
+}
+class Dompet extends Component <Props> {
 
   componentDidMount() {
     if (!this.props.userInfo.id && localStorage.getItem('token')) {
@@ -12,13 +17,12 @@ class Dompet extends Component {
   }
 
   render() {
-    console.log('props user', this.props.userInfo)
     return (
       <div className="dompetHome__container">
         <div className="dompetHome__content">
           <div className="dompetHome__headContent">
             <label className="dompetHome__headContent__text">DOMPET ALADIN</label>
-            <Link to="dompetaladin" className="dompetHome__headContent__plus">+</Link>
+            <Link to="/dompetaladin" className="dompetHome__headContent__plus">+</Link>
           </div>
         </div>
         <div className="dompetHome__bodyContent">

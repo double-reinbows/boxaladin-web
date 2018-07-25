@@ -49,7 +49,7 @@ class HomeContent extends Component {
     } else {
       return(
         this.props.products.filter(data => {
-          return data.displayPrice === 25000 && data.categoryId === 1 && data.brand.brandName !== 'Axis'
+          return data.active === true
         })
         .map((data, i) => {
           const pulsaItems = [

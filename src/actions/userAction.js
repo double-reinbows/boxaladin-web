@@ -16,7 +16,6 @@ export const getUser = () => {
 			}
 		})
 		.then(({data}) => {
-			console.log(data);
 			dispatch(getUserAction(data))
 		})
 		.catch(err => {
