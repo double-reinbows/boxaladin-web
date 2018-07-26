@@ -1,4 +1,3 @@
-//@flow
 
 import React,{Component} from 'react';
 import Modal from 'react-modal';
@@ -16,13 +15,16 @@ class ModalCheck extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pulsaPrice : 25000,
+      pulsaPrice : '',
       pulsaName: '',
       modalConfirm : false,
-      disabled: false,
-      defaultId: this.props.defaultId,
+      disabled: true,
       activeTab: '1',
-      category: 'Pulsa'
+      defaultId: 0,
+      category: 'Pulsa',
+      defaultName: '',
+      defaultId: '',
+      defaultPrice: ''
     }
     this.toggleTabs = this.toggleTabs.bind(this);
   }
@@ -32,38 +34,125 @@ class ModalCheck extends Component {
       modalConfirm: !this.state.modalConfirm
     })
   }
+  componentDidMount() {
+    this.getDefault()
+  }
+
+  getDefault = () => {
+    const data = this.props.product
+    let arr = []
+    let arr2 = []
+    for (let i = 1; i <= 6; i++) {
+      arr.push({
+        pulsa: data[`${i}`].pulsa
+      })
+  }
+  const firstItem = arr.map((item, index) => {
+    return item.pulsa[0];
+  })
+  
+  console.log('aaaa', firstItem[0])
+  }
 
   choicePulsa=()=>{
-    if (this.props.products.length === 0) {
+    const { product } = this.props
+    if (product.length === 0){
       return (
         <h1>Loading</h1>
       )
-    } else if ( this.state.activeTab === '2' && this.props.pulsaValue === 'Smartfren') {
+    } else if ( this.state.activeTab === '2' && this.props.brandName === 'Smartfren'){
       return(
         <label>Paket Data Smartfren Sedang Tidak Tersedia</label>
       )
     } else {
-      return(
-        this.props.products.filter(data => {
-          return data.brand.brandName === `${this.props.pulsaValue}` && data.category.categoryName === this.state.category && data.displayPrice !== 10000
-        })
-        .map((data, i) => {
-          return (
-            <button onClick={(e) => this.pulsa(data.id, data)} className="modal__pulsa__content__2__button" value={data.id} key={i}>
-              <div>
-              <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.pulsaValue}`}/>
-              </div>
-              {data.displayPrice.toLocaleString(['ban', 'id'])}
-            </button>
-          )
-        })
-      )
+      let name = ''
+      let id = ''
+      let price = ''
+      const brand = [
+        {name: 'Telkomsel', brandId: 1},
+        {name: 'Xl', brandId: 2},
+        {name: 'Indosat', brandId: 3},
+        {name: 'Tri', brandId: 4},
+        {name: 'Axis', brandId: 5},
+        {name: 'Smartfren', brandId: 6},
+      ]
+      return brand.map((data, idx) => {
+        for (let i = 1; i <=brand.length ; i++){
+          if (this.state.activeTab === '1'){
+            name = product[`${i}`].pulsa[0].productName
+            id = product[`${i}`].pulsa[0].id
+            price = product[`${i}`].pulsa[0].displayPrice
+            return (
+              product[`${i}`].pulsa.filter(data2 => {
+                return data2.brandId === data.brandId && data2.displayPrice !== 10000 
+              })
+              .map((data3, i) => {
+                return(
+                  <button onClick={(e) => this.pulsa(data3.id, data3)} className="modal__pulsa__content__2__button" key = {i}>
+                    <div>
+                      <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.brandName}`}/>
+                    </div>
+                    {data3.displayPrice.toLocaleString(['ban', 'id'])}
+                  </button>
+                )
+              })
+            )
+          } else if (this.state.activeTab === '2') {
+            return (
+              product[`${i}`].paketData.filter(data2 => {
+                return data2.brandId === data.brandId && data2.displayPrice !== 10000 
+              })
+              .map((data3, i) => {
+                return(
+                  <button onClick={(e) => this.pulsa(data3.id, data3)} className="modal__pulsa__content__2__button" key = {i}>
+                    <div>
+                      <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.brandName}`}/>
+                    </div>
+                    {data3.displayPrice.toLocaleString(['ban', 'id'])}
+                  </button>
+                )
+              })
+            )
+          }
+        }
+      })
+      this.setState({ 
+        defaultName: name,
+        defaultId: id,
+        defaultPrice: price
+      })
     }
+    // if (this.props.products.length === 0) {
+    //   return (
+    //     <h1>Loading</h1>
+    //   )
+    // } else if ( this.state.activeTab === '2' && this.props.brandName === 'Smartfren') {
+    //   return(
+    //     <label>Paket Data Smartfren Sedang Tidak Tersedia</label>
+    //   )
+    // } else {
+    //   return(
+    //     this.props.products.filter(data => {
+    //       return data.brand.brandName === `${this.props.brandName}` && data.category.categoryName === this.state.category && data.displayPrice !== 10000
+    //     })
+    //     .map((data, i) => {
+    //       console.log('data filter and map', data)
+    //       return (
+    //         <button onClick={(e) => this.pulsa(data.id, data)} className="modal__pulsa__content__2__button" value={data.id} key={i}>
+    //           <div>
+    //           <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.brandName}`}/>
+    //           </div>
+    //           {data.displayPrice.toLocaleString(['ban', 'id'])}
+    //         </button>
+    //       )
+    //     })
+    //   )
+    // }
   }
 
   toggle = () => {
     this.setState({
-      pulsaPrice: 25000,
+      // pulsaPrice: 25000,
       pulsaName: '',
       disabled: true
     },
@@ -73,10 +162,10 @@ class ModalCheck extends Component {
 
   pulsa(id, data) {
     this.setState({
+      defaultId: id,
       pulsaPrice: data.displayPrice,
       pulsaName: data.productName,
       disabled: false,
-      defaultId: id
     }, () => {
       this.props.selectProductID(this.state.defaultId)
     })
@@ -96,15 +185,15 @@ class ModalCheck extends Component {
   }
 
   imageProps = () => {
-    if ( !this.props.pulsaValue ){
+    if ( !this.props.brandName ){
       return (<h1>Loading</h1>)
-    } else if ( this.props.pulsaValue === 'Telkomsel' || this.props.pulsaValue === 'Smartfren') {
+    } else if ( this.props.brandName === 'Telkomsel' || this.props.brandName === 'Smartfren') {
       return (
-        <img className="modal__pulsa__content__1__logo__image__special" src={this.props.logo} alt={`Logo ${this.props.pulsaValue}`}/>
+        <img className="modal__pulsa__content__1__logo__image__special" src={this.props.logo} alt={`Logo ${this.props.brandName}`}/>
       )
     } else {
       return (
-        <img className="modal__pulsa__content__1__logo__image" src={this.props.logo} alt={`Logo ${this.props.pulsaValue}`}/>
+        <img className="modal__pulsa__content__1__logo__image" src={this.props.logo} alt={`Logo ${this.props.brandName}`}/>
       )
     }
   }
@@ -116,13 +205,13 @@ class ModalCheck extends Component {
         category: category,
         pulsaName: '',
         pulsaPrice: '',
-        defaultId: '',
         disabled: true
       });
     }
   }
 
   render() {
+    console.log('this.props', this.props)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__pulsa">
         <div className="modal__pulsa__container">
@@ -199,16 +288,12 @@ class ModalCheck extends Component {
               <div className="modal__pulsa__content__3__button">
                 <button className="modal__pulsa__content__3__button__x" onClick={this.toggle}>X</button>
               </div>
-              <label>{ !this.state.pulsaName ?
-                      (this.props.defaultName) :
-                      productName(this.state.pulsaName)}</label>
+              <label>{this.state.defaultName}</label>
               <br />
-              <label>{ !this.state.pulsaName ?
-                      (this.props.defaultProduct) : // penamaan nya masih salah .. ini buat harga
-                      priceProduct(this.state.pulsaName)}</label>
+              <label>{this.state.pulsaName}</label>
             </div>
             <div >
-              <button value={this.props.defaultId} onClick={() => this.handleNotLogin()} disabled={this.state.disabled} type="button" className="modal__pulsa__content__3__button__price">
+              <button onClick={() => this.handleNotLogin()} disabled={this.state.disabled} type="button" className="modal__pulsa__content__3__button__price">
                 Intip Harga
                 <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/lock.png' alt="LockIcon" className="modal__pulsa__content__3__button__price__image"/>
               </button>
