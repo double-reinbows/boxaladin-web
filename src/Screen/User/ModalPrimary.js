@@ -58,6 +58,7 @@ class ModalPrimaryPhone extends Component {
       }
     })
     .then((data) => {
+      console.log('dick', data);
       if (data.data === 'ada no hp verified/primary'){
         this.setState({
           notif: 'No Hp Sudah Terverifikasi, Masukkan No Lain',
@@ -66,6 +67,10 @@ class ModalPrimaryPhone extends Component {
         this.setState({
           notif: '',
           oldUserModal: true
+        })
+      } else {
+        this.setState({
+          notif: 'Nomor yang di input wajib sama dengan nomor primary yang sudah terdaftar.',
         })
       }
     })
