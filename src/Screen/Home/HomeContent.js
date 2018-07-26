@@ -1,22 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import { getProducts } from '../../actions/productAction';
+import envChecker from '../../utils/envChecker'
 import ProviderModal from './Modal/ProviderModal';
 import ModalBid from '../Components/Modal/ModalBid'
-import priceProduct from '../../utils/splitPrice'
-import nameProduct from '../../utils/splitProduct'
+// import priceProduct from '../../utils/splitPrice'
+// import nameProduct from '../../utils/splitProduct'
 class HomeContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       providerModal: false,
       openModal: false,
-      pulsaValue: '',
+      brandName: '',
       logo: '',
       defaultName: '',
       defaultId: 0,
+      brand: '',
+      product: ''
     }
     this.toggleBid = this.toggleBid.bind(this);
+  }
+
+  componentDidMount() {
+    this.getBrand()
+    this.getProduct()
   }
 
 
@@ -26,10 +35,10 @@ class HomeContent extends Component {
     })
   }
 
-  async toggleBid(pulsa, name, id, logo) {
+  async toggleBid(brandName, id, logo) {
       await this.setState({
-      pulsaValue: pulsa,
-      defaultName: name,
+        brandName: brandName,
+      // defaultName: name,
       defaultId: id,
       logo: logo
     })
@@ -38,22 +47,19 @@ class HomeContent extends Component {
     })
   }
 
-
-
-
   pulsaItem() {
-    if (this.props.products.length === 0) {
+    if (!this.state.brand) {
       return (
         <h1>Loading</h1>
       )
     } else {
       return(
-        this.props.products.filter(data => {
-          return data.active === true
+        this.state.brand.filter(data => {
+          return data.brandName === 'Telkomsel' || data.brandName === 'XL' || data.brandName === 'Indosat' || data.brandName === 'Tri' || data.brandName === 'Smartfren'
         })
         .map((data, i) => {
           const pulsaItems = [
-            {onClick: () => this.toggleBid(`${data.brand.brandName}`, `${data.productName}`, `${data.id}`, data.brand.brandLogo), img: data.brand.brandLogo, alt:`Logo ${data.brand.brandName}`, name: data.brand.brandName},
+            {onClick: () => this.toggleBid(`${data.brandName}`, data.id, data.brandLogo), img: data.brandLogo, alt:`Logo ${data.brandName}`, name: data.brandName},
           ]
           return pulsaItems.map(data => (
             <button key={i} onClick={data.onClick} className="homecontent__bottom__pulsa__button">
@@ -66,15 +72,62 @@ class HomeContent extends Component {
     }
   }
 
-  priceProduct() {
-    return this.state.defaultName &&
-    priceProduct(this.state.defaultName)
+  getBrand = () => {
+    axios({
+      method: 'GET',
+      url: `${envChecker('api')}/api/brand`,
+    })
+    .then(response => {
+      this.setState({
+        brand: response.data
+      })
+    })
+    .catch(err => console.log('error'))
   }
 
-  nameProduct() {
-    return this.state.defaultName &&
-    nameProduct(this.state.defaultName)
+  getProduct = () => {
+    axios({
+      method: 'GET',
+      url: `${envChecker('api')}/api/product`,
+    })
+    .then(response => {
+      const arrayProduct = response.data
+      let brands = {}
+      for (let i = 0; i < arrayProduct.length; i++){
+          if (!(arrayProduct[i].brandId in brands)){
+          brands[arrayProduct[i].brandId] = {
+            pulsa: [],
+            paketData: []
+          }
+          if (arrayProduct[i].categoryId === 1){
+            brands[arrayProduct[i].brandId].pulsa.push(arrayProduct[i])
+          } else {
+            brands[arrayProduct[i].brandId].paketData.push(arrayProduct[i])
+          }
+        } else {
+          if (arrayProduct[i].categoryId === 1){
+            brands[arrayProduct[i].brandId].pulsa.push(arrayProduct[i])
+          } else {
+            brands[arrayProduct[i].brandId].paketData.push(arrayProduct[i])
+          }
+        }
+      }
+      this.setState({ 
+        product: brands
+      });
+    })
+    .catch(err => console.log(err))
   }
+
+  // priceProduct() {
+  //   return this.state.defaultName &&
+  //   priceProduct(this.state.defaultName)
+  // }
+
+  // nameProduct() {
+  //   return this.state.defaultName &&
+  //   nameProduct(this.state.defaultName)
+  // }
 
   renderModalBid() {
     if (this.state.openModal) {
@@ -82,11 +135,12 @@ class HomeContent extends Component {
         <ModalBid
           isOpen={this.state.openModal}
           toggle={this.toggleBid}
-          pulsaValue={this.state.pulsaValue}
+          brandName={this.state.brandName}
           defaultId={this.state.defaultId}
           logo={this.state.logo}
-          defaultProduct={this.priceProduct()}
-          defaultName={this.nameProduct()}
+          // defaultProduct={this.priceProduct()}
+          // defaultName={this.nameProduct()}
+          product={this.state.product}
         />
       )
     }
