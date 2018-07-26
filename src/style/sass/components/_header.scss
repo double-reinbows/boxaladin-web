@@ -1,10 +1,34 @@
 //Header
+.header-margin{
+  margin: 0%;
+  border: 2px solid #FFCD05;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  width: 38%;
+}
+
+.headMobile{
+  &__text{
+    font-size: 100%;
+  }
+}
+
+.HeaderTop__Right{
+  &.navbar-nav{
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    width: 80%;
+  }
+}
+
 .HeaderTop {
     background-color: white;
     border-bottom: 4px solid #FFCD06;
 
     &__Right{
-      margin-right: 5% !important;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -24,7 +48,14 @@
     display: none;
     &__right{
       margin-right: 5%;
+    }
+  }
 
+  .HeaderTop__Right {
+    &.navbar-nav{
+      display: flex;
+      flex-direction: row;
+      width: 100%
     }
   }
 }
@@ -33,7 +64,6 @@
   .HeaderTop__Right {
     width: 70%;
     margin-right: 5%;
-
   }
 }
 

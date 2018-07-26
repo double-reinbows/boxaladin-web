@@ -25,7 +25,6 @@ class Invoice extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
     <div className="invoice">
       <div className="invoice__container">

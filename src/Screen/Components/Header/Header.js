@@ -34,7 +34,7 @@ class NavBar extends React.Component {
     return (
       <div>
         <Navbar light expand="md" className="HeaderTop">
-          <Link to="/home" className="logoHeader">
+          <Link onClick={e=>this.setState({_isResetText: true})} to="/home" className="logoHeader">
             <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Logo/LogoBig.svg' alt="logo" className="BoxAladinLogo-Big" href="/home"/>
           </Link>
 
@@ -47,17 +47,12 @@ class NavBar extends React.Component {
         </Navbar>
 
         <Navbar light expand="md" className="HeaderTopM">
-          <NavbarToggler onClick={this.toggle} className="IconBurger" />
 
 
-          <Link to="/home" className="HeaderTopM__logo">
+          <Link onClick={e=>this.setState({_isResetText: true})} to="/home" className="HeaderTopM__logo">
             <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Logo/LogoBig.svg' alt="logo" className="BoxAladinLogo-Big" href="/home" />
           </Link>
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-            </Nav>
             {this.showRightButton()}
-          </Collapse>
         </Navbar>
 
       </div>
@@ -66,20 +61,18 @@ class NavBar extends React.Component {
   showRightButton() {
     if (localStorage.getItem('token') !== null) {
       return (
-        <Nav navbar className="HeaderTop__Right">
+        <Nav navbar className="HeaderTop__Right" style={{  width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
           <NavItem>
-            <DropdownUser />
+            <DropdownUser isResetText={this.state._isResetText} onResetCalback={()=>this.setState({_isResetText: false})}/>
           </NavItem>
 
         </Nav>
       )
     } else {
       return (
-        <Nav navbar className="HeaderTop__Right">
-
+        <Nav navbar className="HeaderTop__Right" >
             <ModalLogin />
             <ModalSignup />
-
         </Nav>
       )
     }
@@ -88,6 +81,7 @@ class NavBar extends React.Component {
   logout() {
     localStorage.removeItem('token')
     this.props.logoutAction()
+    window.location.reload()
   }
 
 }

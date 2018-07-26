@@ -8,13 +8,13 @@ phases:
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t ba-web-dockers:master .
-      - docker tag ba-web-dockers:master 776507434898.dkr.ecr.ap-southeast-1.amazonaws.com/ba-web-dockers:master
+      - docker build -t ba-web-dockers:test .
+      - docker tag ba-web-dockers:test 776507434898.dkr.ecr.ap-southeast-1.amazonaws.com/ba-web-dockers:test
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 776507434898.dkr.ecr.ap-southeast-1.amazonaws.com/ba-web-dockers:master
+      - docker push 776507434898.dkr.ecr.ap-southeast-1.amazonaws.com/ba-web-dockers:test
       - rm Dockerfile
 artifacts:
   files:

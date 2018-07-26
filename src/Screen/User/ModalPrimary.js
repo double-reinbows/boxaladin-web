@@ -58,14 +58,19 @@ class ModalPrimaryPhone extends Component {
       }
     })
     .then((data) => {
+      console.log('dick', data);
       if (data.data === 'ada no hp verified/primary'){
         this.setState({
-          notif: 'No Hp Sudah Terverifikasi, Masukkan No Lain',
+          notif: 'Maaf tapi nomor ini sudah terdaftar dengan akun orang lain. Silakan hubungi Customer Service di LINE @boxaladin',
         })
       } else if ( data.data === 'phone created'){
         this.setState({
           notif: '',
           oldUserModal: true
+        })
+      } else {
+        this.setState({
+          notif: 'Nomor yang di input wajib sama dengan nomor primary yang sudah terdaftar.',
         })
       }
     })

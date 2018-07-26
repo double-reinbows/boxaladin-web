@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Form, FormGroup, Input  } from 'reactstrap'
 import axios from 'axios'
+import MediaQuery from 'react-responsive';
 import ModalPayment from '../Components/Modal/ModalPayment'
 // import TopUpKey from './TopupKey'
 
@@ -11,7 +12,7 @@ import { getKeys } from '../../actions/keyAction'
 
 import FormatRupiah from '../../utils/formatRupiah'
 import envChecker from '../../utils/envChecker'
-
+import Menu from '../Mobile/DompetAladin/Menu'
 class Dompet extends React.Component {
   constructor(props) {
     super(props)
@@ -30,7 +31,13 @@ class Dompet extends React.Component {
 
   render() {
     return (
-      <div className="dompet">
+      <div>
+        <MediaQuery query="(max-device-width: 720px)">
+          <Menu/>
+        </MediaQuery>
+
+        <MediaQuery query="(min-device-width: 721px)">
+              <div className="dompet">
         <div className="dompet__container">
           <div className="dompet__content">
             <label className="dompet__content__title">Dompet Aladin</label>
@@ -76,7 +83,9 @@ class Dompet extends React.Component {
 
           </div>
         </div>
-      </div>
+        </div>
+        </MediaQuery>
+        </div>
     )
   }
 
@@ -207,7 +216,6 @@ class Dompet extends React.Component {
 
   submitForm(e) {
     e.preventDefault()
-    // console.log(this.props.keys[this.state.idKeySelected])
     if (this.props.userInfo.emailVerified === false) {
       this.setState({
         notif: "Email Belum Terferivikasi.",
@@ -276,28 +284,29 @@ class Dompet extends React.Component {
 		}
 
 		// CEK SISA ALADIN KEY LANGSUNG DARI API
-		axios({
-			method: 'GET',
-			url: `${envChecker('api')}/users/info`,
-			headers: {
+    axios({
+      method: 'GET',
+      headers: {
         token: localStorage.getItem('token'),
-        key: process.env.REACT_APP_KEY
-			}
-		})
-		.then(({data}) => {
-			if (this.state.key > data.aladinKeys) {
+      },
+      url: `${envChecker('api')}/users/checkuser`,
+    })
+    .then(data => {
+      if (data.data.message === 'not verified user') {
+				return this.setState({
+					notif2: "Email Belum Terferivikasi.",
+        })      
+      } else if (this.state.key > data.aladinKeys) {
 				return this.setState({
 					notif2: "Aladin Key Tidak Cukup",
 				})
 			} else {
-
 				// REQUEST UPDATE ALADIN KEY DAN COIN KE API
 				axios({
 					method: 'PUT',
           url: `${envChecker('api')}/users/upcoin`,
           headers: {
               token: localStorage.getItem('token'),
-              key: process.env.REACT_APP_KEY
           },
 					data: {
 						key: this.state.key

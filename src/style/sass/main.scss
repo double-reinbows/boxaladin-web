@@ -25,6 +25,11 @@
 @import "pages/dompet";
 @import "pages/faq";
 
+//mobile
+@import "mobile/header";
+@import "mobile/dompet";
+@import "mobile/home";
+
 // reuseable components
 @import "reusable/base";
 @import "reusable/components";

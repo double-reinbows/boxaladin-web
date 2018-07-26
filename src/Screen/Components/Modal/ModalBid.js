@@ -45,7 +45,7 @@ class ModalCheck extends Component {
     } else {
       return(
         this.props.products.filter(data => {
-          return data.brand === `${this.props.pulsaValue}` && data.category === this.state.category
+          return data.brand.brandName === `${this.props.pulsaValue}` && data.category.categoryName === this.state.category && data.displayPrice !== 10000
         })
         .map((data, i) => {
           return (

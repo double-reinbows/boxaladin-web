@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal'
 
-import { ModalHeader, Button } from 'reactstrap';
+import { ModalHeader } from 'reactstrap';
 import { connect } from 'react-redux'
 
 import Login from './Login'
@@ -25,16 +25,22 @@ class ModalLogin extends React.Component {
   render() {
     return (
       <div className="header-margin">
-        <Button className="ButtonHeader" onClick={this.toggle}>
+      { /**  <Button className="ButtonHeader" onClick={this.toggle}>
           <div className="ButtonHeader__devide">
             <div className="ButtonHeader__big">
               {this.props.buttonLabel}
-              Masuk
+              Login
             </div>
-
           </div>
-        </Button>
-
+        </Button> **/ }
+        <div>
+        <button style= {{
+          backgroundColor: 'Transparent',
+          backgroundRepeat:'no-repeat',
+          border: 'none',
+          cursor:'pointer',
+          overflow: 'hidden' }} onClick={this.toggle} className="headMobile__text"> {this.props.buttonLabel} Login </button>
+        </div>
         <Modal ariaHideApp={false} isOpen={this.props.modalLogin} toggle={this.toggle} className="modal__login">
           <div className="modal__login__container">
           <ModalHeader toggle={this.toggle} className="modal__login__header">

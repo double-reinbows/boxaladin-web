@@ -1,0 +1,52 @@
+@media (max-width: 767px)  {
+
+  .ButtonHeader__big {
+    background-color: transparent !important;
+    background: transparent;
+    margin-left: 15px;
+    border: 2px solid;
+    border-radius: 12px;
+    padding-right: 0%;
+    color: #FFCD05
+  }
+
+  .ButtonHeader__textMobile {
+    color: black
+  }
+
+  .HeaderTop__Right {
+    &.navbar-nav{
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-around;
+    }
+  }
+
+  .ButtonHeader {
+    &.btn {
+      &.btn-secondary {
+
+      }
+    }
+  }
+
+  .headMobile{
+    &__text{
+      font-size: 100%;
+    }
+  }
+
+  .header-margin{
+    margin: 0%;
+    border: 2px solid #FFCD05;
+    border-radius: 16px;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .HeaderTopM__logo{
+    padding: 0%;
+  }
+}

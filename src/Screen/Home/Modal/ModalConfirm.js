@@ -20,10 +20,12 @@ class ModalConfirm extends Component {
         headers: {
           token: localStorage.getItem('token'),
 				},
-				url: `${envChecker('api')}/users/info`,
+				url: `${envChecker('api')}/users/checkuser`,
 			})
 			.then(data => {
-        if (data.data.aladinKeys > 0) {
+        if (data.data.message === 'not verified user') {
+          alert("Silahkan Verifikasi Email Anda")
+        } else if (data.data.aladinKeys > 0) {
           this.props.history.push('/bidding')
           axios({
             method: 'PUT',

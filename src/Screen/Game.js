@@ -279,31 +279,52 @@ class Game extends React.Component<Props, State> {
 			})
 		}	else {
 			this.setState({notif: ""});
-			// REQUEST UPDATE ALADIN KEY DAN COIN KE API
-			axios({
-				method: 'PUT',
-				url: `${envChecker('api')}/users/upcoin`,
-				data: {
-					key: this.state.key
-				},
-				headers: {
-					token: localStorage.getItem('token'),
-				}
-			})
-			.then(response => {
-				if (response.data.message === 'coin updated') {
-					this.setState({
-						notif: "Aladin Key berhasil di tukar!",
-						key: null,
-					})
-					document.getElementById('upcoin').value = '';
-					this.props.getUser();
-				} else {
-						this.setState({notif: "Aladin Key Tidak Cukup", key: null});
-						document.getElementById('upcoin').value = '';
-				}
-			})
-			.catch(err => console.log('err'));
+      // REQUEST UPDATE ALADIN KEY DAN COIN KE API
+      axios({
+        method: 'GET',
+        headers: {
+          token: localStorage.getItem('token'),
+        },
+        url: `${envChecker('api')}/users/checkuser`,
+      })
+      .then(data => {
+        if (data.data.message === 'not verified user') {
+          return this.setState({
+            notif: "Email Belum Terferivikasi.",
+          })      
+        } else if (this.state.key > data.aladinKeys) {
+          return this.setState({
+            notif: "Aladin Key Tidak Cukup",
+          })
+        } else {
+          // REQUEST UPDATE ALADIN KEY DAN COIN KE API
+          axios({
+          method: 'PUT',
+          url: `${envChecker('api')}/users/upcoin`,
+          data: {
+            key: this.state.key
+          },
+          headers: {
+            token: localStorage.getItem('token'),
+          }
+        })
+        .then(response => {
+          if (response.data.message === 'coin updated') {
+            this.setState({
+              notif: "Aladin Key berhasil di tukar!",
+              key: null,
+            })
+            document.getElementById('upcoin').value = '';
+            this.props.getUser();
+          } else {
+              this.setState({notif: "Aladin Key Tidak Cukup", key: null});
+              document.getElementById('upcoin').value = '';
+          }
+        })
+        .catch(err => console.log('err'));
+        }
+      })
+      .catch(err => console.log('error'))
 		}
 	}
 

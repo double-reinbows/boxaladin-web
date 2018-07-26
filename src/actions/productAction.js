@@ -1,28 +1,29 @@
 import * as firebase from 'firebase'
 import envChecker from '../utils/envChecker'
+import axios from 'axios'
 
 export const getProducts = () => {
+	// return (dispatch) => {
+	// 	var dataProducts = []
+	// 	const productsRef = firebase.database().ref().child(`${envChecker('firebase')}`)
+	// 	productsRef.once('value').then(snap => {
+	// 		for (var key in snap.val()) {
+	// 			dataProducts.push(snap.val()[key])
+	// 		}
+	// 		// var arrProducts = Object.keys(dataProducts)
+	// 		dispatch(getProductsAction(dataProducts))
+	// 	})
+	// }
 	return (dispatch) => {
-		var dataProducts = []
-		const productsRef = firebase.database().ref().child(`${envChecker('firebase')}`)
-		productsRef.once('value').then(snap => {
-			for (var key in snap.val()) {
-				dataProducts.push(snap.val()[key])
-			}
-			// var arrProducts = Object.keys(dataProducts)
-			dispatch(getProductsAction(dataProducts))
+		axios({
+			method: 'GET',
+			url: `${envChecker('api')}/api/product`,
 		})
+		.then((dataProducts) => {
+			dispatch(getProductsAction(dataProducts.data))
+})
+		.catch(err => console.log(err))
 	}
-// 	return (dispatch) => {
-// 		axios({
-// 			method: 'GET',
-// 			url: `${process.env.REACT_APP_API_HOST}/api/product`,
-// 		})
-// 		.then((dataProducts) => {
-// 			dispatch(getProductsAction(dataProducts))
-// })
-// 		.catch(err => console.log(err))
-// 	}
 }
 
 export const getFilteredProducts = (brand, category) => {
