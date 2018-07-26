@@ -74,7 +74,6 @@ class ModalCheck extends Component {
     } else {
       const data = this.props.product
       let arr = []
-      let arr2 = []
       for (let i = 1; i <= 6; i++) {
         arr.push({
           pulsa: data[`${i}`].pulsa,
@@ -87,9 +86,9 @@ class ModalCheck extends Component {
       return ( data.pulsa.filter(dataFilter => {
           return dataFilter.brandId === this.props.defaultId && dataFilter.displayPrice !== 10000
         })
-        .map(dataMap => {
+        .map((dataMap, i) => {
           return(
-            <button onClick={(e) => this.pulsa(dataMap.id, dataMap)} className="modal__pulsa__content__2__button">
+            <button onClick={(e) => this.pulsa(dataMap.id, dataMap)} className="modal__pulsa__content__2__button" key ={i}>
               <div>
                 <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.brandName}`}/>
               </div>
@@ -101,9 +100,9 @@ class ModalCheck extends Component {
           return (data.paketData.filter(dataFilter => {
           return dataFilter.brandId === this.props.defaultId && dataFilter.displayPrice !== 10000
         })
-        .map(dataMap => {
+        .map((dataMap, i) => {
           return(
-            <button onClick={(e) => this.pulsa(dataMap.id, dataMap)} className="modal__pulsa__content__2__button">
+            <button onClick={(e) => this.pulsa(dataMap.id, dataMap)} className="modal__pulsa__content__2__button" key={i}>
               <div>
                 <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.brandName}`}/>
               </div>
@@ -154,7 +153,6 @@ class ModalCheck extends Component {
   }
 
   pulsa(id, data) {
-    console.log('id', id)
     this.setState({
       defaultId: id,
       pulsaPrice: data.displayPrice,
