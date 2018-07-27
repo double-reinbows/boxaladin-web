@@ -3,11 +3,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap'
 import { LinkContainer } from 'react-router-bootstrap';
 import {connect} from 'react-redux'
 import {logoutAction} from '../../../../actions/'
-<<<<<<< HEAD
-=======
 import MediaQuery from 'react-responsive';
->>>>>>> testing
-// import { getUser } from '../../../../actions/userAction'
 
 class DropdownUser extends React.Component {
   constructor(props) {

@@ -139,14 +139,10 @@ class ModalPayment extends Component{
       })
       .then(result => {
         console.log('result wallet', result)
-<<<<<<< HEAD
-        if (result.data.message === 'saldo tidak mencukupi'){
-=======
         if (result.data.message === 'not verified user'){
           this.props.setIsLoading(false)
           return alert('Silahkan Verifikasi Email Anda')
         } else if (result.data.message === 'saldo tidak mencukupi'){
->>>>>>> testing
           this.props.setIsLoading(false)
           alert(`saldo tidak mencukupi, saldo anda ${FormatRupiah(result.data.wallet)}`)
           this.setState({
