@@ -58,7 +58,6 @@ class ModalPrimaryPhone extends Component {
       }
     })
     .then((data) => {
-      console.log('dick', data);
       if (data.data === 'ada no hp verified/primary'){
         this.setState({
           notif: 'Maaf tapi nomor ini sudah terdaftar dengan akun orang lain. Silakan hubungi Customer Service di LINE @boxaladin',

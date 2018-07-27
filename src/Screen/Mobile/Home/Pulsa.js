@@ -168,7 +168,6 @@ componentDidMount() {
   }
 
   render() {
-    console.log(this.state.product)
     return (
       <div>
         <h2 className="mobile__pulsa__label">PILIH PROVIDER KALIAN</h2>
