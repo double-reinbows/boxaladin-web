@@ -112,7 +112,7 @@ class HomeContent extends Component {
           }
         }
       }
-      this.setState({ 
+      this.setState({
         product: brands
       });
     })

@@ -4,7 +4,6 @@ import { LinkContainer } from 'react-router-bootstrap';
 import {connect} from 'react-redux'
 import {logoutAction} from '../../../../actions/'
 import MediaQuery from 'react-responsive';
-// import { getUser } from '../../../../actions/userAction'
 
 class DropdownUser extends React.Component {
   constructor(props) {
