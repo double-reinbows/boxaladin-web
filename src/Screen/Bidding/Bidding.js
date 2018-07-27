@@ -71,7 +71,7 @@ class Bidding extends React.Component {
 
             <div className="bidding__3__col">
               <div>
-                <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/timer.svg' className="bidding__3__col__logoWatch" alt="Logo Watch"/>
+                <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/watch.svg' className="bidding__3__col__logoWatch" alt="Logo Watch"/>
               </div>
               <div>
                 {watchComponent}

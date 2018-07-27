@@ -87,7 +87,7 @@
       &__newPrice{
       	color: black;
       	font-family: Helvetica;
-      	font-size: 80px;
+      	font-size: 60px;
       	font-weight: 900;
 
       }
@@ -225,6 +225,17 @@
 }
 
 @media (min-width: 200px ) and (max-width:767px) {
+  .bidding__2__col2{
+    &__mid{
+      text-align: center;
+    }
+    &_newPrice {
+      font-family: Helvetica;
+      font-size: 35px;
+      font-weight: 900;
+    }
+  }
+
   .bidding__2{
     display: block;
   }
@@ -241,12 +252,6 @@
 }
 
 @media (max-width:450px) {
-  .bidding__2__col2__newPrice {
-    color: #FFCD05;
-    font-family: Helvetica;
-    font-size: 60px;
-    font-weight: 900;
-  }
   .bidding__3__col__logoCancel {
     height: 0;
     width:0;

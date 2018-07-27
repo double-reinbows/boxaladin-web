@@ -161,6 +161,35 @@
 
 }
 
+@media (max-width: 720px) {
+  .InsertPhone{
+    &__contentContainer{
+      display: block;
+      &__logo{
+        width: 40%;
+      }
+    }
+    &__inputHead {
+      width: 100%
+    }
+    &__contentContainer{
+      &__text{
+        font-size: 20px;
+      }
+      &__price{
+        font-size: 30px;
+      }  
+    }
+    &__buttonContainer{
+      width: 100%;
+      margin: none;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-around;
+    }
+  }
+}
+
 
 @media (max-width: 1100px) {
   .InsertPhone__inputHead__text {
@@ -182,5 +211,6 @@
 
   .InsertPhone__textHead__font {
     font-size: 30px;
+    text-align: center
   }
 }
