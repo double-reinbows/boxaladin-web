@@ -12,7 +12,7 @@ class Dompet extends Component {
   }
 
   render() {
-    console.log('props user', this.props.userInfo)
+    
     return (
       <div className="dompetHome__container">
         <div className="dompetHome__content">
