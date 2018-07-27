@@ -6,7 +6,8 @@
       border-bottom-right-radius: 10px;
       border-bottom-left-radius: 10px;
       display: flex;
-      padding: 5%;
+      padding: 3%;
+      padding-bottom: 0;
       font-size: 13px;
       &__container{
         display: flex;
@@ -16,6 +17,8 @@
       }
       &__logo{
         width: 25%;
+        margin-bottom: 7%;
+        margin-right: 3%;
       }
     }
 
