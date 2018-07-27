@@ -12,7 +12,6 @@ COPY . .
 RUN \
 npm install && \
 npm run build --production
-#npm start
 
 # Install `serve` to run the application.
 RUN npm install -g serve
