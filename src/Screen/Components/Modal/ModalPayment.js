@@ -138,7 +138,6 @@ class ModalPayment extends Component{
         data: dataValue
       })
       .then(result => {
-        console.log('result wallet', result)
         if (result.data.message === 'not verified user'){
           this.props.setIsLoading(false)
           return alert('Silahkan Verifikasi Email Anda')
