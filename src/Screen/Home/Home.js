@@ -3,23 +3,15 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
 import {loginAction} from '../../actions/'
-import { getProducts } from '../../actions/productAction'
 
 import HomeContent from './HomeContent'
 import BannerHome from './BannerHome'
 import MediaQuery from 'react-responsive';
 import MobileHome from '../Mobile/Home/Home'
 
-type Props = {
-  getProducts: Function,
-};
 type State = {
 };
 class Home extends Component<Props, State> {
-
-  componentDidMount() {
-    this.props.getProducts();
-  }
   render() {
     return (
       <div>
@@ -47,7 +39,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loginAction: () => dispatch(loginAction()),
-    getProducts: () => dispatch(getProducts())
   }
 }
 
