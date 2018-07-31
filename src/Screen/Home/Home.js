@@ -1,12 +1,12 @@
 //@flow
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import MediaQuery from 'react-responsive';
 
 import {loginAction} from '../../actions/'
 
 import HomeContent from './HomeContent'
 import BannerHome from './BannerHome'
-import MediaQuery from 'react-responsive';
 import MobileHome from '../Mobile/Home/Home'
 
 type State = {
