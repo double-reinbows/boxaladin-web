@@ -224,6 +224,7 @@ class Bidding extends React.Component {
         else if (snap.val().aladinPrice - snap.val().decreasePrice <= 0) {
           productRef.update({
             watching: snap.val().watching + 1,
+            aladinPrice: 0
           })
           axios({
             method: 'POST',
@@ -234,7 +235,7 @@ class Bidding extends React.Component {
             data: {
               productId: productId,
               priceBefore: snap.val().aladinPrice,
-              priceAfter: snap.val().aladinPrice
+              priceAfter: 0
             }
           })
         }
