@@ -24,8 +24,8 @@ class ModalConfirm extends Component {
   checkAladinkey = () => {
     const {selectedProductID} = this.props
     if (selectedProductID === 36 || selectedProductID === 37 || selectedProductID === 38 || selectedProductID === 39 || selectedProductID === 40) {
-      if (this.props.userInfo.wallet < 10000){
-        return alert('Saldo Wallet Anda Kurang Dari Rp.10.000,00')
+      if (this.props.userInfo.wallet < 10500){
+        return alert('Saldo Wallet Anda Kurang Dari Rp.10.500,00')
       } else {
         axios({
           method: 'GET',
@@ -37,7 +37,7 @@ class ModalConfirm extends Component {
         .then(data => {
           if (data.data.message === 'not verified user') {
             alert("Silahkan Verifikasi Email Anda")
-          } else if (data.data.aladinKeys > 0 && data.data.wallet >= 10000) {
+          } else if (data.data.aladinKeys > 0 && data.data.wallet >= 10500) {
             this.props.history.push('/bidding')
             axios({
               method: 'PUT',
