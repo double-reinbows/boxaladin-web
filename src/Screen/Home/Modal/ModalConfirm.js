@@ -15,6 +15,39 @@ class ModalConfirm extends Component {
   }
 
   checkAladinkey = () => {
+    const {selectedProductID} = this.props
+    if (selectedProductID === 36 || selectedProductID === 37 || selectedProductID === 38 || selectedProductID === 39 || selectedProductID === 40) {
+      if (this.props.userInfo.wallet < 10000){
+        return alert('Saldo Wallet Anda Kurang Dari Rp.10.000,00')
+      } else {
+        axios({
+          method: 'GET',
+          headers: {
+            token: localStorage.getItem('token'),
+          },
+          url: `${envChecker('api')}/users/checkuser`,
+        })
+        .then(data => {
+          if (data.data.message === 'not verified user') {
+            alert("Silahkan Verifikasi Email Anda")
+          } else if (data.data.aladinKeys > 0 && data.data.wallet >= 10000) {
+            this.props.history.push('/bidding')
+            axios({
+              method: 'PUT',
+              headers: {
+                token: localStorage.getItem('token'),
+              },
+              url: `${envChecker('api')}/logopen`,
+              data: {
+                productId: selectedProductID
+              },
+            })
+          } else {
+            alert("Anda Tidak Memiliki Aladin Key")
+          }
+        })
+      }
+    } else {
       axios({
         method: 'GET',
         headers: {
@@ -34,16 +67,18 @@ class ModalConfirm extends Component {
             },
             url: `${envChecker('api')}/logopen`,
             data: {
-              productId: this.props.selectedProductID
+              productId: selectedProductID
             },
           })
         } else {
           alert("Anda Tidak Memiliki Aladin Key")
         }
       })
+    }
   }
 
   render() {
+    console.log(this.props.userInfo)
     return (
       <Modal isOpen={this.props.open} className="modal__confirm">
         <div className="modal__confirm__container">
@@ -62,6 +97,7 @@ class ModalConfirm extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    userInfo: state.userReducer.userInfo,
     selectedProductID: state.productReducer.selectedProductID
   }
 }

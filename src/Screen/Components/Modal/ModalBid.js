@@ -1,4 +1,3 @@
-
 import React,{Component} from 'react';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
@@ -68,14 +67,25 @@ class ModalCheck extends Component {
     } else {
       if (activeTab === '1'){
         return pulsa.map((dataMap, i) => {
-          return(
-            <button onClick={(e) => this.pulsa(dataMap.id, dataMap)} className="modal__pulsa__content__2__button" key ={i}>
-              <div>
-                <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.brandName}`}/>
-              </div>
-              {dataMap.displayPrice.toLocaleString(['ban', 'id'])}
-            </button>
-          )
+          // if (dataMap.displayPrice === 10000){
+          //   return (
+          //     <button onClick={(e) => this.pulsa10k(dataMap.id, dataMap)} className="modal__pulsa__content__2__button" key ={i}>
+          //       <div>
+          //         <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.brandName}`}/>
+          //       </div>
+          //       {dataMap.displayPrice.toLocaleString(['ban', 'id'])}
+          //     </button>
+          //   )
+          // } else {
+            return(
+              <button onClick={(e) => this.pulsa(dataMap.id, dataMap)} className="modal__pulsa__content__2__button" key ={i}>
+                <div>
+                  <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.brandName}`}/>
+                </div>
+                {dataMap.displayPrice.toLocaleString(['ban', 'id'])}
+              </button>
+            )
+          // }
         })
       } else if (activeTab === '2'){
         return paketData.map((dataMap, i) => {
@@ -101,15 +111,14 @@ class ModalCheck extends Component {
     )
   }
 
-  pulsa(id, data) {
-    this.setState({
+  pulsa = async (id, data) => {
+    await this.setState({
       defaultId: id,
       pulsaPrice: data.displayPrice,
       pulsaName: data.productName,
       disabled: false,
-    }, () => {
-      this.props.selectProductID(this.state.defaultId)
     })
+    this.props.selectProductID(this.state.defaultId)
   }
 
   handleNotLogin() {
@@ -252,6 +261,7 @@ class ModalCheck extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    userInfo: state.userReducer.userInfo,
     // products: state.productReducer.products,
     selectedProductID: state.productReducer.selectedProductID
   }
@@ -259,6 +269,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    // getUser: () => dispatch(getUser()),
     selectProductID: (id) => dispatch(selectProductID(id))
   }
 }

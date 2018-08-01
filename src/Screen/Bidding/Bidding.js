@@ -183,7 +183,8 @@ class Bidding extends React.Component {
     this.props.history.push('/insertphone', {
       productUnlocked: this.state.productUnlocked,
       aladinPrice: updatePrice,
-      phoneNumbers: this.props.phoneNumbers
+      phoneNumbers: this.props.phoneNumbers,
+      id: this.state.productUnlocked.id
     })
   }
 
@@ -196,7 +197,74 @@ class Bidding extends React.Component {
       return null
     }
 
-		if (localStorage.getItem('token') !== null) {
+		if (productId === 36 || productId === 37 || productId === 38 || productId === 39 || productId === 40) {
+      this.props.setIsLoading(true)
+      const productsRef = firebase.database().ref().child(`${envChecker('firebase')}`)
+      const productRef = productsRef.child(productId)
+      productRef.once('value', snap => {
+
+        if ( snap.val().aladinPrice > 0){
+          productRef.update({
+            watching: snap.val().watching +1,
+            aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
+          })
+          axios({
+            method: 'POST',
+            url: `${envChecker('api')}/logbid`,
+            headers: {
+              token: localStorage.getItem('token'),
+            },
+            data: {
+              productId: productId,
+              priceBefore: snap.val().aladinPrice  ,
+              priceAfter: snap.val().aladinPrice - snap.val().decreasePrice
+            }
+          })
+        }
+        else if (snap.val().aladinPrice === 0) {
+          productRef.update({
+            watching: snap.val().watching +1,
+          })
+          axios({
+            method: 'POST',
+            url: `${envChecker('api')}/logbid`,
+            headers: {
+              token: localStorage.getItem('token'),
+            },
+            data: {
+              productId: productId,
+              priceBefore: snap.val().aladinPrice  ,
+              priceAfter: snap.val().aladinPrice
+            }
+          })
+        }
+      })
+      axios({
+        method: 'POST',
+        url: `${envChecker('api')}/watching`,
+        data: {
+          productId: productId,
+        }
+      })
+      productRef.on('value', snap => {
+        propsAladinPrice = snap.val().aladinPrice
+        let productValue = {
+          brand: snap.val().brand,
+          brandLogo: snap.val().brandLogo,
+          displayPrice: snap.val().displayPrice,
+          id: snap.val().id,
+          price: snap.val().price,
+          productName: snap.val().productName,
+          watching: snap.val().watching
+        }
+        this.setState({
+          productUnlocked: productValue,
+        })
+      })
+
+      this.runTimer()
+    this.props.setIsLoading(false)
+    } else if (localStorage.getItem('token') !== null) {
       this.props.setIsLoading(true)
       // this.props.getUser()
       const productsRef = firebase.database().ref().child(`${envChecker('firebase')}`)
@@ -234,7 +302,7 @@ class Bidding extends React.Component {
             data: {
               productId: productId,
               priceBefore: snap.val().aladinPrice  ,
-              priceAfter: snap.val().aladinPrice - snap.val().decreasePrice
+              priceAfter: snap.val().aladinPrice
             }
           })
         }
@@ -250,10 +318,7 @@ class Bidding extends React.Component {
         propsAladinPrice = snap.val().aladinPrice
         let productValue = {
           brand: snap.val().brand,
-          // brandId: snap.val().brandId,
           brandLogo: snap.val().brandLogo,
-          // category: snap.val().category,
-          // categoryId: snap.val().categoryId,
           displayPrice: snap.val().displayPrice,
           id: snap.val().id,
           price: snap.val().price,

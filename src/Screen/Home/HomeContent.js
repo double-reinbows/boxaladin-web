@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { getUser } from '../../actions/userAction'
 import envChecker from '../../utils/envChecker'
 import ProviderModal from './Modal/ProviderModal';
 import ModalBid from '../Components/Modal/ModalBid'
@@ -20,6 +22,9 @@ class HomeContent extends Component {
 
   componentDidMount() {
     this.getBrand()
+    if (!this.props.userInfo.id && localStorage.getItem('token')) {
+      this.props.getUser()
+    }
   }
 
 
@@ -38,6 +43,21 @@ class HomeContent extends Component {
     await this.setState({
       openModal: !this.state.openModal,
     })
+  }
+
+  renderModalBid() {
+    if (this.state.openModal) {
+      return (
+        <ModalBid
+          isOpen={this.state.openModal}
+          toggle={this.toggleBid}
+          brandName={this.state.brandName}
+          defaultId={this.state.defaultId}
+          logo={this.state.logo}
+        />
+      )
+    }
+    return null;
   }
 
   pulsaItem() {
@@ -78,21 +98,6 @@ class HomeContent extends Component {
     .catch(err => console.log('error'))
   }
 
-  renderModalBid() {
-    if (this.state.openModal) {
-      return (
-        <ModalBid
-          isOpen={this.state.openModal}
-          toggle={this.toggleBid}
-          brandName={this.state.brandName}
-          defaultId={this.state.defaultId}
-          logo={this.state.logo}
-        />
-      )
-    }
-    return null;
-  }
-
   render() {
     return (
       <div className="homecontent__container">
@@ -126,4 +131,19 @@ class HomeContent extends Component {
   }
 }
 
-export default HomeContent;
+const mapStateToProps = (state) => {
+  return {
+    userInfo: state.userReducer.userInfo,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getUser: () => dispatch(getUser())
+  }
+}
+
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(HomeContent)
+
+export default connectComponent
+
