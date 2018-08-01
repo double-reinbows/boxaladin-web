@@ -203,9 +203,9 @@ class Bidding extends React.Component {
       const productRef = productsRef.child(productId)
       productRef.once('value', snap => {
 
-        if ( snap.val().aladinPrice > 0){
+        if ( snap.val().aladinPrice - snap.val().decreasePrice > 0){
           productRef.update({
-            watching: snap.val().watching +1,
+            watching: snap.val().watching + 1,
             aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
           })
           axios({
@@ -216,14 +216,14 @@ class Bidding extends React.Component {
             },
             data: {
               productId: productId,
-              priceBefore: snap.val().aladinPrice  ,
+              priceBefore: snap.val().aladinPrice,
               priceAfter: snap.val().aladinPrice - snap.val().decreasePrice
             }
           })
         }
-        else if (snap.val().aladinPrice === 0) {
+        else if (snap.val().aladinPrice - snap.val().decreasePrice <= 0) {
           productRef.update({
-            watching: snap.val().watching +1,
+            watching: snap.val().watching + 1,
           })
           axios({
             method: 'POST',
@@ -233,7 +233,7 @@ class Bidding extends React.Component {
             },
             data: {
               productId: productId,
-              priceBefore: snap.val().aladinPrice  ,
+              priceBefore: snap.val().aladinPrice,
               priceAfter: snap.val().aladinPrice
             }
           })

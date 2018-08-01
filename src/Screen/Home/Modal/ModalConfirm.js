@@ -5,12 +5,19 @@ import {withRouter} from 'react-router-dom'
 import { connect } from 'react-redux';
 
 import { selectProductID } from '../../../actions/productAction';
+import { getUser } from '../../../actions/userAction';
 import envChecker from '../../../utils/envChecker'
 
 class ModalConfirm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+    }
+  }
+
+  componentDidMount() {
+    if (!this.props.userInfo.id && localStorage.getItem('token')) {
+      this.props.getUser()
     }
   }
 
@@ -78,7 +85,6 @@ class ModalConfirm extends Component {
   }
 
   render() {
-    console.log(this.props.userInfo)
     return (
       <Modal isOpen={this.props.open} className="modal__confirm">
         <div className="modal__confirm__container">
@@ -104,7 +110,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectProductID: (id) => dispatch(selectProductID(id))
+    selectProductID: (id) => dispatch(selectProductID(id)),
+    getUser: () => dispatch(getUser())
   }
 }
 
