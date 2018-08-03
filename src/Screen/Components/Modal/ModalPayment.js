@@ -46,7 +46,7 @@ class ModalPayment extends Component{
         bankCode: this.state.bank
       }
       return data
-    } else if (this.props.text === 'buy pulsa'){
+    } else if (this.props.text === 'buy pulsa' || this.props.text === 'buy pulsa 10k'){
       let data = {
         productId: this.props.productId.id,
         phoneNumber: this.props.phone,
@@ -238,22 +238,26 @@ class ModalPayment extends Component{
 
   bankChoice = () => {
     let bank = []
-    if (this.props.text === 'buy wallet'){
-      bank = [
-        {value:'BNI', onClick: this.handleChangeBank},
-        {value:'BRI', onClick: this.handleChangeBank},
-        {value:'MANDIRI', onClick: this.handleChangeBank},
-        {value:'Alfamart', onClick: this.handleChangeBank},
-      ]
-    } else {
-      bank = [
-        {value:'BNI', onClick: this.handleChangeBank, disabled: false},
-        {value:'BRI', onClick: this.handleChangeBank, disabled: false},
-        {value:'MANDIRI', onClick: this.handleChangeBank, disabled: false},
-        {value:'Alfamart', onClick: this.handleChangeBank, disabled: false},
-        {value:'Wallet', onClick: this.handleChangeBank , disabled: this.state.disabledButton }
-      ]
-    }
+      if (this.props.text === 'buy wallet'){
+        bank = [
+          {value:'BNI', onClick: this.handleChangeBank},
+          {value:'BRI', onClick: this.handleChangeBank},
+          {value:'MANDIRI', onClick: this.handleChangeBank},
+          {value:'Alfamart', onClick: this.handleChangeBank},
+        ]
+      } else if (this.props.text === 'buy pulsa' || this.props.text === 'buy key'){
+        bank = [
+          {value:'BNI', onClick: this.handleChangeBank, disabled: false},
+          {value:'BRI', onClick: this.handleChangeBank, disabled: false},
+          {value:'MANDIRI', onClick: this.handleChangeBank, disabled: false},
+          {value:'Alfamart', onClick: this.handleChangeBank, disabled: false},
+          {value:'Wallet', onClick: this.handleChangeBank , disabled: this.state.disabledButton }
+        ]
+      } else if (this.props.text === 'buy pulsa 10k'){
+        bank = [
+          {value:'Wallet', onClick: this.handleChangeBank , disabled: false }
+        ]
+      }
 
     return(
       <div>
@@ -271,6 +275,7 @@ class ModalPayment extends Component{
   }
 
   render() {
+    // console.log(this.props.text)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">

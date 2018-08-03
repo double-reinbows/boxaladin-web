@@ -1,14 +1,15 @@
-
 import React,{Component} from 'react';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
+import axios from 'axios';
+import classnames from 'classnames';
 
 import ModalConfirm from '../../Home/Modal/ModalConfirm';
 import { selectProductID } from '../../../actions/productAction';
-import classnames from 'classnames';
 import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import priceProduct from '../../../utils/splitPrice'
 import productName from '../../../utils/splitProduct'
+import envChecker from '../../../utils/envChecker'
 
 class ModalCheck extends Component {
 
@@ -21,9 +22,10 @@ class ModalCheck extends Component {
       disabled: false,
       activeTab: '1',
       defaultId: 0,
-      category: 'Pulsa',
       defaultName: '',
-      defaultPrice: ''
+      defaultPrice: '',
+      pulsa: [],
+      paketData: []
     }
     this.toggleTabs = this.toggleTabs.bind(this);
   }
@@ -34,59 +36,59 @@ class ModalCheck extends Component {
     })
   }
   componentDidMount() {
-    this.getDefault()
+    this.getProduct()
   }
 
-  getDefault = () => {
-    const data = this.props.product
-    let arr = []
-    let arr2 = []
-    for (let i = 1; i <= 6; i++) {
-      arr.push({
-        pulsa: data[`${i}`].pulsa
-      })
-  }
-  const firstItem = arr.map((item, index) => {
-    arr2.push(item.pulsa[0]);
-    return firstItem
-  })
-  return (arr2.filter(item => {
-    return item.brandId === this.props.defaultId
-  }).map(final => {
-    this.setState({
-      defaultName: final.productName,
-      defaultId: final.id,
-      defaultPrice: final.displayPrice
+  getProduct = () => {
+    axios({
+      method: 'GET',
+      url: `${envChecker('api')}/api/product/${this.props.defaultId}`,
     })
-  }))
-}
+    .then(response => {
+      this.setState({
+        pulsa: response.data.pulsa,
+        paketData: response.data.paketData,
+        defaultName: response.data.pulsa[0].productName,
+        defaultId: response.data.pulsa[0].id,
+        defaultPrice: response.data.pulsa[0].displayPrice
+      })
+    })
+    .catch(err => console.log('error'))
+  }
 
-  choicePulsa=()=>{
-    const { product } = this.props
-    if (product.length === 0){
-      return (
-        <h1>Loading</h1>
-      )
-    } else if ( this.state.activeTab === '2' && this.props.brandName === 'Smartfren'){
+  choicePulsa = () => {
+    const {activeTab, pulsa, paketData} = this.state
+    if (pulsa.length === 0 && paketData.length === 0){
+      return null
+    } else if (activeTab === '2' && paketData.length === 0){
       return(
-        <label>Paket Data Smartfren Sedang Tidak Tersedia</label>
+        <label>Produk Sedang Tidak Tersedia</label>
       )
     } else {
-      const data = this.props.product
-      let arr = []
-      for (let i = 1; i <= 6; i++) {
-        arr.push({
-          pulsa: data[`${i}`].pulsa,
-          paketData: data[`${i}`].paketData
+      if (activeTab === '1'){
+        return pulsa.map((dataMap, i) => {
+          // if (dataMap.displayPrice === 10000){
+          //   return (
+          //     <button onClick={(e) => this.pulsa10k(dataMap.id, dataMap)} className="modal__pulsa__content__2__button" key ={i}>
+          //       <div>
+          //         <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.brandName}`}/>
+          //       </div>
+          //       {dataMap.displayPrice.toLocaleString(['ban', 'id'])}
+          //     </button>
+          //   )
+          // } else {
+            return(
+              <button onClick={(e) => this.pulsa(dataMap.id, dataMap)} className="modal__pulsa__content__2__button" key ={i}>
+                <div>
+                  <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.brandName}`}/>
+                </div>
+                {dataMap.displayPrice.toLocaleString(['ban', 'id'])}
+              </button>
+            )
+          // }
         })
-    }
-
-    const buttonComponent = arr.map((data, idx) => {
-      if (this.state.activeTab === '1'){
-      return ( data.pulsa.filter(dataFilter => {
-          return dataFilter.brandId === this.props.defaultId && dataFilter.displayPrice !== 10000
-        })
-        .map((dataMap, i) => {
+      } else if (activeTab === '2'){
+        return paketData.map((dataMap, i) => {
           return(
             <button onClick={(e) => this.pulsa(dataMap.id, dataMap)} className="modal__pulsa__content__2__button" key ={i}>
               <div>
@@ -95,56 +97,13 @@ class ModalCheck extends Component {
               {dataMap.displayPrice.toLocaleString(['ban', 'id'])}
             </button>
           )
-        }))
-      } else if (this.state.activeTab === '2'){
-          return (data.paketData.filter(dataFilter => {
-          return dataFilter.brandId === this.props.defaultId && dataFilter.displayPrice !== 10000
         })
-        .map((dataMap, i) => {
-          return(
-            <button onClick={(e) => this.pulsa(dataMap.id, dataMap)} className="modal__pulsa__content__2__button" key={i}>
-              <div>
-                <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.brandName}`}/>
-              </div>
-              {dataMap.displayPrice.toLocaleString(['ban', 'id'])}
-            </button>
-          )
-        }))
       }
-    })
-      return buttonComponent
     }
-    // if (this.props.products.length === 0) {
-    //   return (
-    //     <h1>Loading</h1>
-    //   )
-    // } else if ( this.state.activeTab === '2' && this.props.brandName === 'Smartfren') {
-    //   return(
-    //     <label>Paket Data Smartfren Sedang Tidak Tersedia</label>
-    //   )
-    // } else {
-    //   return(
-    //     this.props.products.filter(data => {
-    //       return data.brand.brandName === `${this.props.brandName}` && data.category.categoryName === this.state.category && data.displayPrice !== 10000
-    //     })
-    //     .map((data, i) => {
-    //       console.log('data filter and map', data)
-    //       return (
-    //         <button onClick={(e) => this.pulsa(data.id, data)} className="modal__pulsa__content__2__button" value={data.id} key={i}>
-    //           <div>
-    //           <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.brandName}`}/>
-    //           </div>
-    //           {data.displayPrice.toLocaleString(['ban', 'id'])}
-    //         </button>
-    //       )
-    //     })
-    //   )
-    // }
   }
 
   toggle = () => {
     this.setState({
-      // pulsaPrice: 25000,
       pulsaName: '',
       disabled: true
     },
@@ -152,15 +111,14 @@ class ModalCheck extends Component {
     )
   }
 
-  pulsa(id, data) {
-    this.setState({
+  pulsa = async (id, data) => {
+    await this.setState({
       defaultId: id,
       pulsaPrice: data.displayPrice,
       pulsaName: data.productName,
       disabled: false,
-    }, () => {
-      this.props.selectProductID(this.state.defaultId)
     })
+    this.props.selectProductID(this.state.defaultId)
   }
 
   handleNotLogin() {
@@ -303,13 +261,15 @@ class ModalCheck extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    products: state.productReducer.products,
+    userInfo: state.userReducer.userInfo,
+    // products: state.productReducer.products,
     selectedProductID: state.productReducer.selectedProductID
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    // getUser: () => dispatch(getUser()),
     selectProductID: (id) => dispatch(selectProductID(id))
   }
 }

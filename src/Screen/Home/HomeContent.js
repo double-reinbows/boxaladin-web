@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import axios from 'axios';
-import { getProducts } from '../../actions/productAction';
+import { connect } from 'react-redux';
+import { getUser } from '../../actions/userAction'
 import envChecker from '../../utils/envChecker'
 import ProviderModal from './Modal/ProviderModal';
 import ModalBid from '../Components/Modal/ModalBid'
-// import priceProduct from '../../utils/splitPrice'
-// import nameProduct from '../../utils/splitProduct'
+
 class HomeContent extends Component {
   constructor(props) {
     super(props);
@@ -15,17 +14,17 @@ class HomeContent extends Component {
       openModal: false,
       brandName: '',
       logo: '',
-      defaultName: '',
       defaultId: 0,
       brand: '',
-      product: ''
     }
     this.toggleBid = this.toggleBid.bind(this);
   }
 
   componentDidMount() {
     this.getBrand()
-    this.getProduct()
+    if (!this.props.userInfo.id && localStorage.getItem('token')) {
+      this.props.getUser()
+    }
   }
 
 
@@ -38,13 +37,27 @@ class HomeContent extends Component {
   async toggleBid(brandName, id, logo) {
       await this.setState({
         brandName: brandName,
-      // defaultName: name,
       defaultId: id,
       logo: logo
     })
     await this.setState({
       openModal: !this.state.openModal,
     })
+  }
+
+  renderModalBid() {
+    if (this.state.openModal) {
+      return (
+        <ModalBid
+          isOpen={this.state.openModal}
+          toggle={this.toggleBid}
+          brandName={this.state.brandName}
+          defaultId={this.state.defaultId}
+          logo={this.state.logo}
+        />
+      )
+    }
+    return null;
   }
 
   pulsaItem() {
@@ -85,68 +98,6 @@ class HomeContent extends Component {
     .catch(err => console.log('error'))
   }
 
-  getProduct = () => {
-    axios({
-      method: 'GET',
-      url: `${envChecker('api')}/api/product`,
-    })
-    .then(response => {
-      const arrayProduct = response.data
-      let brands = {}
-      for (let i = 0; i < arrayProduct.length; i++){
-          if (!(arrayProduct[i].brandId in brands)){
-          brands[arrayProduct[i].brandId] = {
-            pulsa: [],
-            paketData: []
-          }
-          if (arrayProduct[i].categoryId === 1){
-            brands[arrayProduct[i].brandId].pulsa.push(arrayProduct[i])
-          } else {
-            brands[arrayProduct[i].brandId].paketData.push(arrayProduct[i])
-          }
-        } else {
-          if (arrayProduct[i].categoryId === 1){
-            brands[arrayProduct[i].brandId].pulsa.push(arrayProduct[i])
-          } else {
-            brands[arrayProduct[i].brandId].paketData.push(arrayProduct[i])
-          }
-        }
-      }
-      this.setState({
-        product: brands
-      });
-    })
-    .catch(err => console.log(err))
-  }
-
-  // priceProduct() {
-  //   return this.state.defaultName &&
-  //   priceProduct(this.state.defaultName)
-  // }
-
-  // nameProduct() {
-  //   return this.state.defaultName &&
-  //   nameProduct(this.state.defaultName)
-  // }
-
-  renderModalBid() {
-    if (this.state.openModal) {
-      return (
-        <ModalBid
-          isOpen={this.state.openModal}
-          toggle={this.toggleBid}
-          brandName={this.state.brandName}
-          defaultId={this.state.defaultId}
-          logo={this.state.logo}
-          // defaultProduct={this.priceProduct()}
-          // defaultName={this.nameProduct()}
-          product={this.state.product}
-        />
-      )
-    }
-    return null;
-  }
-
   render() {
     return (
       <div className="homecontent__container">
@@ -181,17 +132,18 @@ class HomeContent extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return {
-    products: state.productReducer.products,
+  return {
+    userInfo: state.userReducer.userInfo,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-    getProducts: () => dispatch(getProducts()),
+  return {
+    getUser: () => dispatch(getUser())
   }
 }
 
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(HomeContent);
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(HomeContent)
 
-export default connectComponent;
+export default connectComponent
+

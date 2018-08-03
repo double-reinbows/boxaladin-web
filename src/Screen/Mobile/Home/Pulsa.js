@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-// import { getProducts } from '../../../actions/productAction';
-import { connect } from 'react-redux';
 import axios from 'axios';
-// import priceProduct from '../../../utils/splitPrice'
-// import nameProduct from '../../../utils/splitProduct'
 import envChecker from '../../../utils/envChecker'
 import ModalBid from '../../Components/Modal/ModalBid'
 
@@ -17,7 +13,6 @@ class Pulsa extends Component {
       defaultName: '',
       defaultId: 0,
       brand: '',
-      product: ''
     }
     this.toggleBid = this.toggleBid.bind(this);
 
@@ -25,9 +20,8 @@ class Pulsa extends Component {
   async toggleBid(brandName, id, logo) {
     await this.setState({
       brandName: brandName,
-    // defaultName: name,
-    defaultId: id,
-    logo: logo
+      defaultId: id,
+      logo: logo
   })
   await this.setState({
     openModal: !this.state.openModal,
@@ -36,18 +30,7 @@ class Pulsa extends Component {
 
 componentDidMount() {
   this.getBrand()
-  this.getProduct()
 }
-
-  // priceProduct() {
-  //   return this.state.defaultName &&
-  //   priceProduct(this.state.defaultName)
-  // }
-
-  // nameProduct() {
-  //   return this.state.defaultName &&
-  //   nameProduct(this.state.defaultName)
-  // }
 
   renderModalBid() {
     if (this.state.openModal) {
@@ -58,9 +41,6 @@ componentDidMount() {
           brandName={this.state.brandName}
           defaultId={this.state.defaultId}
           logo={this.state.logo}
-          // defaultProduct={this.priceProduct()}
-          // defaultName={this.nameProduct()}
-          product={this.state.product}
         />
       )
     }
@@ -78,40 +58,6 @@ componentDidMount() {
       })
     })
     .catch(err => console.log('error'))
-  }
-
-  getProduct = () => {
-    axios({
-      method: 'GET',
-      url: `${envChecker('api')}/api/product`,
-    })
-    .then(response => {
-      const arrayProduct = response.data
-      let brands = {}
-      for (let i = 0; i < arrayProduct.length; i++){
-          if (!(arrayProduct[i].brandId in brands)){
-          brands[arrayProduct[i].brandId] = {
-            pulsa: [],
-            paketData: []
-          }
-          if (arrayProduct[i].categoryId === 1){
-            brands[arrayProduct[i].brandId].pulsa.push(arrayProduct[i])
-          } else {
-            brands[arrayProduct[i].brandId].paketData.push(arrayProduct[i])
-          }
-        } else {
-          if (arrayProduct[i].categoryId === 1){
-            brands[arrayProduct[i].brandId].pulsa.push(arrayProduct[i])
-          } else {
-            brands[arrayProduct[i].brandId].paketData.push(arrayProduct[i])
-          }
-        }
-      }
-      this.setState({
-        product: brands
-      });
-    })
-    .catch(err => console.log(err))
   }
 
   pulsaItem1() {
@@ -185,18 +131,4 @@ componentDidMount() {
   }
 }
 
-const mapStateToProps = (state) => {
-	return {
-    // products: state.productReducer.products,
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-	return {
-    // getProducts: () => dispatch(getProducts()),
-  }
-}
-
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(Pulsa);
-
-export default connectComponent;
+export default Pulsa;

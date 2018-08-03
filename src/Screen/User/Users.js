@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Modal } from 'reactstrap'
 import axios from 'axios'
+import MediaQuery from 'react-responsive';
 
 import { getPhoneNumbers } from '../../actions/'
 import { getUser } from '../../actions/userAction'
@@ -46,8 +47,12 @@ class User extends React.Component {
 							<img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/user.png className="user__show__logo__user" alt="User" />
 
 						</div> */}
-
-					{ this.showDataUser() }
+          <MediaQuery query="(max-device-width: 720px)">
+            {this.showMobileDataUser()}
+          </MediaQuery>
+          <MediaQuery query="(min-device-width: 721px)">
+            { this.showDataUser() }
+            </MediaQuery>
 
 					</div>
 					{ this.showPhoneModal() }
@@ -547,6 +552,40 @@ class User extends React.Component {
 					<img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/coin.png' className="user__show__logo" alt="Logo"/>
 					{this.props.userInfo !== null ? this.props.userInfo.coin : null}
 				</div>
+				{ this.showPhoneNumbers() }
+
+				<ModalText isOpen={this.state.modalCheck} toggle={this.toggleCheck} text="Cek Email Anda"/>
+			</div>
+		)
+  }
+  
+  showMobileDataUser() {
+		return (
+			<div className="user__show__container">
+				<h3>{this.props.userInfo !== null ? this.props.userInfo.first_name : null} {this.props.userInfo !== null ? this.props.userInfo.family_name : null}</h3>
+				<div className="user__show">
+					<img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mail.png' className="user__show__logo" alt="Logo"/>
+					<div className="user__show__email">
+						{this.props.userInfo.typedEmail !== null ? this.props.userInfo.typedEmail : this.props.userInfo.email}
+						<div style= {{ width:"16%" }}>
+							{this.props.userInfo !== null ? (this.props.userInfo.emailVerified ? <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/checked.png' className="user__show__logo__verified" alt="Logo"/>
+								:
+								(<button  className="user__show__button" onClick={() => this.resendEmailVerification()}> Verifikasi </button>)) : null
+							}
+						</div>
+
+					</div>
+
+
+				</div>
+				{/* <div className="user__show">
+					<img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/key.png' className="user__show__logo" alt="Logo"/>
+					{this.props.userInfo !== null ? this.props.userInfo.aladinKeys : null}
+				</div>
+				<div className="user__show">
+					<img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/coin.png' className="user__show__logo" alt="Logo"/>
+					{this.props.userInfo !== null ? this.props.userInfo.coin : null}
+				</div> */}
 				{ this.showPhoneNumbers() }
 
 				<ModalText isOpen={this.state.modalCheck} toggle={this.toggleCheck} text="Cek Email Anda"/>
