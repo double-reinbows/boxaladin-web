@@ -65,13 +65,13 @@ class Invoice extends React.Component {
                 statusComponent = <td>{'CANCELLED'}</td>
               } else if (data.payment.status === 'PAID') {
                 statusComponent = <td>{'PAID'}</td>
-              } else if (time <= data.payment.expiredAt){
+              } else if (data.payment.status !== 'PAID' && data.payment.status !== 'CANCELLED' && data.payment.status !== 'PENDING'){
+                statusComponent = <td>{data.payment.status}</td>
+              }else if (time <= data.payment.expiredAt){
                 statusComponent = <td><Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button></td>
               } else if (time >= data.payment.expiredAt){
                 statusComponent = <td>Expired</td>
-              } else {
-                statusComponent = <td>Expired</td>
-              }
+              } 
 
               return(
                 <tr key={idx}>
