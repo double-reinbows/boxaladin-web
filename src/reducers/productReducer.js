@@ -2,7 +2,7 @@ const defaultState = {
   products: [],
   filteredProducts: [],
   // cart: [],
-  selectedProductID: ''
+  selectedPriceID: ''
 }
 
 const productReducer = (state=defaultState, action) => {
@@ -16,8 +16,8 @@ const productReducer = (state=defaultState, action) => {
     // case 'UPDATE_CART':
     //   return {...state, cart: action.payload}
 
-    case 'SELECT_PRODUCT_ID':
-      return {...state, selectedProductID: action.payload}
+    case 'SELECT_PRICE_ID':
+      return {...state, selectedPriceID: action.payload}
 
   default:
     return state

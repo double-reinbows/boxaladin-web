@@ -6,7 +6,7 @@ import MediaQuery from 'react-responsive';
 import ModalPayment from '../Components/Modal/ModalPayment'
 // import TopUpKey from './TopupKey'
 
-import { getUser } from '../../actions/userAction'
+// import { getUser } from '../../actions/userAction'
 import { getUserWins } from '../../actions/winAction'
 import { getKeys } from '../../actions/keyAction'
 
@@ -90,7 +90,7 @@ class Dompet extends React.Component {
   }
 
   componentDidMount() {
-      this.props.getUser()
+      // this.props.getUser()
       this.props.getKeys()
   }
 
@@ -317,7 +317,7 @@ class Dompet extends React.Component {
 						coin: 0,
 						key: null
 					})
-          this.props.getUser();
+          // this.props.getUser();
           window.location.reload();
 
 				})
@@ -338,7 +338,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getUser: () => dispatch(getUser()),
+        // getUser: () => dispatch(getUser()),
         getUserWins: () => dispatch(getUserWins()),
         getKeys: () => dispatch(getKeys())
     }

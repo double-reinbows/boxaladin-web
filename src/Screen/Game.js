@@ -262,7 +262,7 @@ class Game extends React.Component<Props, State> {
 	}
 
 	componentDidMount() {
-		this.props.getUser();
+		// this.props.getUser();
 		this.getRules();
 	}
 

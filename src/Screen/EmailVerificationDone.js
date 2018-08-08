@@ -4,7 +4,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 
 import { setModalLogin, setModalRegister, loginAction } from '../actions/'
-import { getUser, refreshToken } from '../actions/userAction'
+import { refreshToken } from '../actions/userAction'
 import envChecker from '../utils/envChecker'
 
 const BA_API_HOST = `${envChecker('api')}`
@@ -35,7 +35,7 @@ class EmailVerificationDone extends React.Component {
   componentDidMount() {
     this.verifyEmail()
     this.props.loginAction()
-    this.props.getUser()
+    // this.props.getUser()
     this.props.refreshToken()
   }
 
@@ -84,7 +84,7 @@ const mapDispatchToProps = (dispatch) => {
     setModalLogin: (payload) => dispatch(setModalLogin(payload)),
     setModalRegister: (payload) => dispatch(setModalRegister(payload)),
     loginAction: () => dispatch(loginAction()),
-    getUser: () => dispatch(getUser()),
+    // getUser: () => dispatch(getUser()),
     refreshToken: () => dispatch(refreshToken()),
   }
 }

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { getUser } from '../../../actions/userAction';
+// import { getUser } from '../../../actions/userAction';
 import envChecker from '../../../utils/envChecker'
 class convert extends Component {
   constructor(props) {
@@ -105,7 +105,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUser: () => dispatch(getUser()),
+    // getUser: () => dispatch(getUser()),
   }
 }
 

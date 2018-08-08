@@ -1,15 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Input, Button } from 'reactstrap'
-import { getPhoneNumbers } from '../../actions/'
 import ModalPayment from '../Components/Modal/ModalPayment'
-import { validateProvider, detectProvider } from '../../utils/phone'
+// import { validateProvider, detectProvider } from '../../utils/phone'
 import ProviderModal from '../Home/Modal/ProviderModal';
 import  priceProduct  from '../../utils/splitPrice'
 import  productName from '../../utils/splitProduct'
 import FormatRupiah from '../../utils/formatRupiah'
 import percentagePrice from '../../utils/percentagePrice'
-
+import SplitPhone from '../../utils/splitPhone'
+import CheckProvider from '../../utils/checkProvider'
 let aladinPrice = 0
 class InsertPhone extends React.Component {
   constructor(props) {
@@ -20,6 +20,8 @@ class InsertPhone extends React.Component {
       providerModal: false,
       disabled: true,
       modalPayment: false,
+      brandId: 0,
+      brand: ''
     }
     this.handleBack()
   }
@@ -33,13 +35,14 @@ class InsertPhone extends React.Component {
 
   togglePayment = () => {
     this.setState({
-      modalPayment: !this.state.modalPayment
+      modalPayment: !this.state.modalPayment,
+
     })
   }
 
   renderModalPayment() {
     if (this.state.modalPayment) {
-      if (this.props.location.state.id === 36 || this.props.location.state.id === 37 || this.props.location.state.id === 38 || this.props.location.state.id === 39 || this.props.location.state.id === 40){
+      if (this.props.location.state.id === 1){
         return (
           <ModalPayment 
             text='buy pulsa 10k'
@@ -48,10 +51,12 @@ class InsertPhone extends React.Component {
             walletendpoint='walletpulsa'
             isOpen={this.state.modalPayment} 
             amount={aladinPrice} 
-            phone={this.state.phone}
+            phone={SplitPhone(this.state.phone)}
             productId={this.state.productUnlocked}
             toggle={this.togglePayment} 
             push={'payment'}
+            brand={this.state.brand}
+            brandId={this.state.brandId}
         />
         )
       } else {
@@ -63,10 +68,12 @@ class InsertPhone extends React.Component {
             walletendpoint='walletpulsa'
             isOpen={this.state.modalPayment} 
             amount={aladinPrice} 
-            phone={this.state.phone}
+            phone={SplitPhone(this.state.phone)}
             productId={this.state.productUnlocked}
             toggle={this.togglePayment} 
             push={'payment'}
+            brand={this.state.brand}
+            brandId={this.state.brandId}
         />
         )
       }
@@ -152,16 +159,14 @@ class InsertPhone extends React.Component {
 	}
 
 	cancel() {
-		// this.stopWatchProductPrice(this.props.selectedProductID)
+		// this.stopWatchProductPrice(this.props.selectedPriceID)
 		this.props.history.push('/home')
 	}
 
   componentDidMount() {
-    this.props.getPhoneNumbers()
     aladinPrice = this.props.location.state.aladinPrice
     this.setState({
       productUnlocked: this.props.location.state.productUnlocked,
-      phone: this.props.location.state.phoneNumbers[0] ? '' : ''
     })
   }
 
@@ -178,38 +183,17 @@ class InsertPhone extends React.Component {
     }
   }
 
-  submitTransaction(e) {
+  submitTransaction = async (e) => {
     e.preventDefault()
-
-    if (validateProvider(detectProvider(this.state.phone), this.state.productUnlocked.brand) === false) {
-      return alert('Nomor HP tidak sesuai dengan Provider.')
-    } else {
-      var num = this.state.phone.split('')
-      if (num[0] === '0') {
-        num.splice(0, 1, '0')
-        this.setState({
-          phone: num.join('')
-        },
-        () => {this.togglePayment()})
-      } else if (num[0] + num[1] + num[2] === '+62') {
-        num.splice(0, 3, '0')
-        this.setState({
-          phone: num.join('')
-        },
-        () => {this.togglePayment()})
-      } else if (num[0] + num[1] === '62') {
-        num.splice(0, 2, '0')
-        this.setState({
-          phone: num.join('')
-        },
-        () => {this.togglePayment()})
-      } else if (num[0] === '8') {
-        num.splice(0, 0, '0')
-        this.setState({
-          phone: num.join('')
-        },
-        () => {this.togglePayment()})
-      }
+    const provider = CheckProvider(this.state.phone)
+    if (provider !== 'Unknown Provider'){
+      await this.setState({
+        brand: provider.provider,
+        brandId: provider.id
+      })
+      this.togglePayment()
+    } else if ( provider === 'Unknown Provider'){
+      alert('Provider Tidak  Terdaftar')
     }
   }
 
@@ -217,15 +201,13 @@ class InsertPhone extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-		phoneNumbers: state.userReducer.phoneNumbers,
-    selectedProductID: state.productReducer.selectedProductID,
+    userInfo: state.userReducer.userInfo,
+    selectedPriceID: state.productReducer.selectedPriceID,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getPhoneNumbers: () => dispatch(getPhoneNumbers()),
-
   }
 }
 

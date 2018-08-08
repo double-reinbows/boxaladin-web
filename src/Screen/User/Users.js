@@ -5,7 +5,7 @@ import axios from 'axios'
 import MediaQuery from 'react-responsive';
 
 import { getPhoneNumbers } from '../../actions/'
-import { getUser } from '../../actions/userAction'
+// import { getUser } from '../../actions/userAction'
 
 import ModalPrimaryPhone from './ModalPrimary'
 import ModalDelete from './ModalDelete'
@@ -69,7 +69,7 @@ class User extends React.Component {
 	}
 
 	componentDidMount() {
-		this.props.getUser()
+		// this.props.getUser()
 		this.props.getPhoneNumbers()
 	}
 
@@ -528,7 +528,6 @@ class User extends React.Component {
 	showDataUser() {
 		return (
 			<div className="user__show__container">
-				<h3>{this.props.userInfo !== null ? this.props.userInfo.first_name : null} {this.props.userInfo !== null ? this.props.userInfo.family_name : null}</h3>
 				<div className="user__show">
 					<img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mail.png' className="user__show__logo" alt="Logo"/>
 					<div className="user__show__email">
@@ -562,11 +561,10 @@ class User extends React.Component {
   showMobileDataUser() {
 		return (
 			<div className="user__show__container">
-				<h3>{this.props.userInfo !== null ? this.props.userInfo.first_name : null} {this.props.userInfo !== null ? this.props.userInfo.family_name : null}</h3>
 				<div className="user__show">
 					<img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mail.png' className="user__show__logo" alt="Logo"/>
 					<div className="user__show__email">
-						{this.props.userInfo.typedEmail !== null ? this.props.userInfo.typedEmail : this.props.userInfo.email}
+						{!this.props.userInfo.typedEmail ? this.props.userInfo.typedEmail : this.props.userInfo.email}
 						<div style= {{ width:"16%" }}>
 							{this.props.userInfo !== null ? (this.props.userInfo.emailVerified ? <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/checked.png' className="user__show__logo__verified" alt="Logo"/>
 								:
@@ -629,7 +627,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		getPhoneNumbers: () => dispatch(getPhoneNumbers()),
-		getUser: () => dispatch(getUser())
+		// getUser: () => dispatch(getUser())
 	}
 }
 

@@ -4,8 +4,7 @@ import Modal from 'react-modal'
 import {withRouter} from 'react-router-dom'
 import { connect } from 'react-redux';
 
-import { selectProductID } from '../../../actions/productAction';
-import { getUser } from '../../../actions/userAction';
+import { selectPriceID } from '../../../actions/productAction';
 import envChecker from '../../../utils/envChecker'
 
 class ModalConfirm extends Component {
@@ -15,45 +14,14 @@ class ModalConfirm extends Component {
     }
   }
 
-  componentDidMount() {
-    if (!this.props.userInfo.id && localStorage.getItem('token')) {
-      this.props.getUser()
-    }
-  }
-
   checkAladinkey = () => {
-    const {selectedProductID} = this.props
-    if (selectedProductID === 36 || selectedProductID === 37 || selectedProductID === 38 || selectedProductID === 39 || selectedProductID === 40) {
-      if (this.props.userInfo.wallet < 10500){
-        return alert('Saldo Wallet Anda Kurang Dari Rp.10.500,00')
-      } else {
-        axios({
-          method: 'GET',
-          headers: {
-            token: localStorage.getItem('token'),
-          },
-          url: `${envChecker('api')}/users/checkuser`,
-        })
-        .then(data => {
-          if (data.data.message === 'not verified user') {
-            alert("Silahkan Verifikasi Email Anda")
-          } else if (data.data.aladinKeys > 0 && data.data.wallet >= 10500) {
-            this.props.history.push('/bidding')
-            axios({
-              method: 'PUT',
-              headers: {
-                token: localStorage.getItem('token'),
-              },
-              url: `${envChecker('api')}/logopen`,
-              data: {
-                productId: selectedProductID
-              },
-            })
-          } else {
-            alert("Anda Tidak Memiliki Aladin Key")
-          }
-        })
-      }
+    const {defaultId, userInfo} = this.props
+    if ( !userInfo.id && !localStorage.getItem('token')){
+      alert ('Anda Belum Masuk')
+    } else if ( userInfo.emailVerified === false) {
+      alert("Silahkan Verifikasi Email Anda")
+    } else if (userInfo.aladinKeys <= 0 ){
+      alert("Anda Tidak Memiliki Aladin Key")
     } else {
       axios({
         method: 'GET',
@@ -62,10 +30,11 @@ class ModalConfirm extends Component {
 				},
 				url: `${envChecker('api')}/users/checkuser`,
 			})
-			.then(data => {
+			.then(async data => {
         if (data.data.message === 'not verified user') {
           alert("Silahkan Verifikasi Email Anda")
         } else if (data.data.aladinKeys > 0) {
+          await this.props.selectPriceID(defaultId)
           this.props.history.push('/bidding')
           axios({
             method: 'PUT',
@@ -74,7 +43,7 @@ class ModalConfirm extends Component {
             },
             url: `${envChecker('api')}/logopen`,
             data: {
-              productId: selectedProductID
+              priceId: defaultId
             },
           })
         } else {
@@ -104,14 +73,13 @@ class ModalConfirm extends Component {
 const mapStateToProps = (state) => {
   return {
     userInfo: state.userReducer.userInfo,
-    selectedProductID: state.productReducer.selectedProductID
+    selectedPriceID: state.productReducer.selectedPriceID
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectProductID: (id) => dispatch(selectProductID(id)),
-    getUser: () => dispatch(getUser())
+    selectPriceID: (id) => dispatch(selectPriceID(id)),
   }
 }
 
