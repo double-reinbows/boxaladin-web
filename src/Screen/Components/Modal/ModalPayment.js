@@ -48,7 +48,7 @@ class ModalPayment extends Component{
   }
 
   createObj() {
-    const { text, data } = this.props
+    const { text, data, location, brandId, amount, phone } = this.props
     const { bank } = this.state
     if (text === 'buy wallet') {
       return {
@@ -62,10 +62,12 @@ class ModalPayment extends Component{
       }
     } else if (text === 'buy pulsa' || text === 'buy pulsa 10k'){
       return {
-        productId: this.props.productId.id,
-        phoneNumber: this.props.phone,
+        // priceid & brandid used for find product
+        priceId: location.state.id,
+        brandId: brandId,
+        phoneNumber: phone,
         bankCode: bank,
-        amount: this.props.amount
+        amount: amount
       }
     }
   }
@@ -82,7 +84,7 @@ class ModalPayment extends Component{
 
   getTransaction = async (axiosUrl, paymentType) => {
     const dataValue = this.createObj();
-    const { push, refreshToken, setIsLoading, history } = this.props
+    const { push, refreshToken, setIsLoading, history} = this.props
     setIsLoading(true)
     HelperAxios('POST', axiosUrl, dataValue)
     .then(async result => {
@@ -92,6 +94,10 @@ class ModalPayment extends Component{
         this.checkResponse({ warning: 'Masukkan Jumlah Sesuai Range Saldo' })
       } else if (result.data === 'maksimum limit wallet') {
         this.checkResponse({ warning: 'Saldo Wallet Tidak Boleh Melebihi Rp. 2.000.000'})
+      } else if (result.data === 'product not found') {
+        this.checkResponse({ warning: 'Provider Tidak ditemukkan'})
+      } else if (result.data === 'product not active') {
+        this.checkResponse({ warning: 'Provider Sedang Tidak Bisa digunakan'})
       } 
 
       if (paymentType !== 'Wallet'){
@@ -226,6 +232,7 @@ class ModalPayment extends Component{
   }
 
   render() {
+    console.log(this.props)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">

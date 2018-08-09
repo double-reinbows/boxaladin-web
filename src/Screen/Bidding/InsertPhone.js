@@ -52,7 +52,6 @@ class InsertPhone extends React.Component {
             isOpen={this.state.modalPayment} 
             amount={aladinPrice} 
             phone={SplitPhone(this.state.phone)}
-            productId={this.state.productUnlocked}
             toggle={this.togglePayment} 
             push={'payment'}
             brand={this.state.brand}
@@ -69,7 +68,6 @@ class InsertPhone extends React.Component {
             isOpen={this.state.modalPayment} 
             amount={aladinPrice} 
             phone={SplitPhone(this.state.phone)}
-            productId={this.state.productUnlocked}
             toggle={this.togglePayment} 
             push={'payment'}
             brand={this.state.brand}

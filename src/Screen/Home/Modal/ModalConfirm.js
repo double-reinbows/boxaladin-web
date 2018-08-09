@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import Modal from 'react-modal'
 import {withRouter} from 'react-router-dom'
 import { connect } from 'react-redux';
 
 import { selectPriceID } from '../../../actions/productAction';
-import envChecker from '../../../utils/envChecker'
+import helperAxios from '../../../utils/axios'
 
 class ModalConfirm extends Component {
   constructor(props) {
@@ -23,29 +22,14 @@ class ModalConfirm extends Component {
     } else if (userInfo.aladinKeys <= 0 ){
       alert("Anda Tidak Memiliki Aladin Key")
     } else {
-      axios({
-        method: 'GET',
-        headers: {
-          token: localStorage.getItem('token'),
-				},
-				url: `${envChecker('api')}/users/checkuser`,
-			})
+      helperAxios('GET', 'users/checkuser')
 			.then(async data => {
         if (data.data.message === 'not verified user') {
           alert("Silahkan Verifikasi Email Anda")
         } else if (data.data.aladinKeys > 0) {
           await this.props.selectPriceID(defaultId)
           this.props.history.push('/bidding')
-          axios({
-            method: 'PUT',
-            headers: {
-              token: localStorage.getItem('token'),
-            },
-            url: `${envChecker('api')}/logopen`,
-            data: {
-              priceId: defaultId
-            },
-          })
+          helperAxios('PUT', 'logopen', {priceId: defaultId})
         } else {
           alert("Anda Tidak Memiliki Aladin Key")
         }

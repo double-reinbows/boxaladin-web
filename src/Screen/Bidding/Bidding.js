@@ -186,15 +186,15 @@ class Bidding extends React.Component {
     this.props.history.push('/home')
   }
 
-  watchProductPrice = async (productId) => {
-    if (productId === '') {
+  watchProductPrice = async (priceId) => {
+    if (priceId === '') {
       return null
     }
 
-		if (productId === 1) {
+		if (priceId === 1) {
       this.props.setIsLoading(true)
       const productsRef = firebase.database().ref().child(`${envChecker('firebase')}`)
-      const productRef = productsRef.child(productId)
+      const productRef = productsRef.child(priceId)
       productRef.once('value', async snap => {
         if ( snap.val().aladinPrice - snap.val().decreasePrice > 0){
           await productRef.update({
@@ -208,7 +208,7 @@ class Bidding extends React.Component {
               token: localStorage.getItem('token'),
             },
             data: {
-              productId: productId,
+              priceId: priceId,
               priceBefore: snap.val().aladinPrice,
               priceAfter: snap.val().aladinPrice - snap.val().decreasePrice
             }
@@ -226,7 +226,7 @@ class Bidding extends React.Component {
               token: localStorage.getItem('token'),
             },
             data: {
-              productId: productId,
+              priceId: priceId,
               priceBefore: snap.val().aladinPrice,
               priceAfter: 0
             }
@@ -237,12 +237,12 @@ class Bidding extends React.Component {
         method: 'POST',
         url: `${envChecker('api')}/watching`,
         data: {
-          productId: productId,
+          priceId: priceId,
         }
       })
       productRef.on('value',async snap => {
         propsAladinPrice = snap.val().aladinPrice
-        let productValue = {
+        const productValue = {
           displayPrice: snap.val().displayPrice,
           id: snap.val().id,
           price: snap.val().price,
@@ -258,7 +258,7 @@ class Bidding extends React.Component {
     } else if (localStorage.getItem('token') !== null) {
       this.props.setIsLoading(true)
       const productsRef = firebase.database().ref().child(`${envChecker('firebase')}`)
-      const productRef = productsRef.child(productId)
+      const productRef = productsRef.child(priceId)
       productRef.once('value', async snap => {
 
         if (snap.val().aladinPrice > 10000){
@@ -273,7 +273,7 @@ class Bidding extends React.Component {
               token: localStorage.getItem('token'),
             },
             data: {
-              productId: productId,
+              priceId: priceId,
               priceBefore: snap.val().aladinPrice  ,
               priceAfter: snap.val().aladinPrice - snap.val().decreasePrice
             }
@@ -289,7 +289,7 @@ class Bidding extends React.Component {
               token: localStorage.getItem('token'),
             },
             data: {
-              productId: productId,
+              priceId: priceId,
               priceBefore: snap.val().aladinPrice  ,
               priceAfter: snap.val().aladinPrice
             }
@@ -300,7 +300,7 @@ class Bidding extends React.Component {
         method: 'POST',
         url: `${envChecker('api')}/watching`,
         data: {
-          productId: productId,
+          priceId: priceId,
         }
       })
       productRef.on('value', async snap => {
