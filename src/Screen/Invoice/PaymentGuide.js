@@ -245,33 +245,96 @@ const Guide = (props) => {
         </Row>
       </TabPane>
       <TabPane tabId="4">
-      <center><h1 style = { { padding: '10px', paddingTop: '13%', paddingBottom: '10%'} }>Maaf, untuk sementara pembayaran dengan debit BCA hanya dapat dilakukan melalui Transfer pada Bank lain</h1></center>
-      <center><h1 style = { { padding: '10px'} }>Mobile Banking</h1></center>
-      <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
-        <ol>
-          <li>
-            Akses BCA Mobile Banking dari handphone, kemudian masukkan Kode Akses
-          </li>
-          <li>
-            Pilih m-Transfer
-          </li>
-          <li>
-            Masukkan {props.invoice.payment.availableBanks} pada No. Rekening Tujuan dan pilih Bank “Mandiri” ({props.invoice.payment.availableBanks} untuk bank BNI atau {props.invoice.payment.availableBanks} untuk bank BRI), lalu klik “Send”. Nomor rekening akan tercatat sebagai PT BOXALADIN ASIAPACIFIC
-          </li>
-          <li>
-            Setelah nomor rekening terdaftar, pilih “Antar Bank” pada “Transfer”
-          </li>
-          <li>
-            Pilih Bank “Mandiri/BNI/BRI”, Ke Rekening Tujuan PT BOXALADIN ASIAPACIFIC, dan Nominal sebesar Rp {props.invoice.payment.amount.toLocaleString(['ban', 'id'])}, kemudian pilih “Send” (Nominal yang berbeda tidak dapat diproses)
-          </li>
-          <li>
-            Konfirmasi transaksi dan masukkan PIN m-BCA, lalu “OK”
-          </li>
-          <li>
-            Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis (memakan waktu kurang lebih 5 menit)
-          </li>
-        </ol>
-      </div>
+      <Row>
+        <Col sm="12">
+          <center><h1 style = { { padding: '10px'} }>ATM</h1></center>
+          <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
+            <ol>
+              <li>
+                Masukkan kartu dan PIN
+              </li>
+              <li>
+                Pilih “Transaksi Lainnya”, kemudian “Transfer”
+              </li>
+              <li>
+                Pilih Ke Rek BCA dan masukkan Nominal sebesar Rp <b style = {{ color: "red"}}>{props.invoice.payment.amount.toLocaleString(['ban', 'id'])},-</b>, dan pilih “YA” (Nominal yang berbeda tidak dapat diproses)
+              </li>
+              <li>
+                Silakan memasukkan {props.invoice.payment.availableBanks} pada nomor rekening yang dituju, dan pilih “Benar”
+              </li>
+              <li>
+                Konfirmasi transaksi (pastikan nama rekening tercatat sebagai BOX ALADIN ASIAPACIFIC PT), kemudian tekan “Benar”
+              </li>
+              <li>
+                Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis (memakan waktu kurang lebih 5 menit)
+              </li>
+            </ol>
+          </div>
+
+          <center><h1 style = { { padding: '10px'} }><b>Online (klikBCA)</b></h1></center>
+          <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
+            <ol>
+              <li>
+                Login di <a href="https://ibank.klikbca.com/" target="_blank" rel="noopener noreferrer">https://ibank.klikbca.com/</a> , masukkan USER ID dan PIN Internet Banking Anda
+              </li>
+              <li>
+                Pilih “Transfer Dana” pada option di sebelah kiri
+              </li>
+              <li>
+                Pilih “Daftar Rekening Tujuan”, dan “Rekening BCA” pada Jenis Rekening Tujuan
+              </li>
+              <li>
+                Masukkan {props.invoice.payment.availableBanks} pada No. Rekening Tujuan, lalu ikuti petunjuk pada layar (jika nomor rekening sudah terdaftar, abaikan langkah nomor 3 dan 4)
+              </li>
+              <li>
+                Kembali pada halaman “Transfer Dana”, pilih “Transfer ke Rek. BCA”
+              </li>
+              <li>
+                Pilih BOX ALADIN ASIAPACIFIC dari daftar transfer dan masukkan Nominal sebesar Rp <b style = {{ color: "red"}}>{props.invoice.payment.amount.toLocaleString(['ban', 'id'])},-</b>, lalu ikuti petunjuk selanjutnya pada layar (Nominal yang berbeda tidak dapat diproses)
+              </li>
+              <li>
+                Scroll ke bawah, pilih “Transfer Sekarang”, lalu klik “Lanjutkan”
+              </li>
+              <li>
+                Konfirmasi transaksi, masukkan angka dari token, lalu klik “Kirim”
+              </li>
+              <li>
+                Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis (memakan waktu kurang lebih 5 menit)
+              </li>
+            </ol>
+          </div>
+
+          <center><h1 style = { { padding: '10px'} }><b>Mobile Banking</b></h1></center>
+          <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
+            <ol>
+              <li>
+                Akses BCA Mobile Banking dari handphone, kemudian masukkan Kode Akses
+              </li>
+              <li>
+                Pilih m-Transfer
+              </li>
+              <li>
+                Pilih “Antar Rekening” pada “Daftar Transfer” untuk menambahkan nomor rekening baru
+              </li>
+              <li>
+                Masukkan {props.invoice.payment.availableBanks} pada Rekening 1, lalu klik “Send”. Nomor rekening akan tercatat sebagai BOX ALADIN ASIAPACIFIC PT
+              </li>
+              <li>
+                Setelah nomor rekening terdaftar, pilih “Antar Rekening” pada “Transfer”
+              </li>
+              <li>
+                Klik “Ke Rekening” lalu search BOX ALADIN ASIAPACIFIC PT dan masukkan Nominal sebesar <b style = {{ color: "red"}}>{props.invoice.payment.amount.toLocaleString(['ban', 'id'])},-</b>, kemudian pilih “Send” (Nominal yang berbeda tidak dapat diproses)
+              </li>
+              <li>
+                Konfirmasi transaksi dan masukkan PIN m-BCA, lalu “OK”
+              </li>
+              <li>
+                Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis (memakan waktu kurang lebih 5 menit)
+              </li>
+            </ol>
+          </div>
+        </Col>
+      </Row>
       </TabPane>
       <TabPane tabId="5">
       <center><h1 style = { { padding: '10px'} }><b>Alfamart</b></h1></center>

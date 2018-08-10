@@ -33,7 +33,6 @@ class Bidding extends React.Component {
   }
 
   render() {
-    console.log('bidding', this.props)
     let priceComponent = null;
     let watchComponent = null
     if (this.state.priceComp) {

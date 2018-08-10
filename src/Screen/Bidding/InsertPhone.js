@@ -46,9 +46,9 @@ class InsertPhone extends React.Component {
         return (
           <ModalPayment 
             text='buy pulsa 10k'
-            fixedendpoint='virtualaccount'
-            retailendpoint='payment'
-            walletendpoint='walletpulsa'
+            fixedendpoint='virtualaccountv2'
+            retailendpoint='paymentv2'
+            walletendpoint='walletpulsav2'
             isOpen={this.state.modalPayment} 
             amount={aladinPrice} 
             phone={SplitPhone(this.state.phone)}
@@ -62,9 +62,9 @@ class InsertPhone extends React.Component {
         return (
           <ModalPayment 
             text='buy pulsa'
-            fixedendpoint='virtualaccount'
-            retailendpoint='payment'
-            walletendpoint='walletpulsa'
+            fixedendpoint='virtualaccountv2'
+            retailendpoint='paymentv2'
+            walletendpoint='walletpulsav2'
             isOpen={this.state.modalPayment} 
             amount={aladinPrice} 
             phone={SplitPhone(this.state.phone)}
