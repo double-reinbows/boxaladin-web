@@ -38,12 +38,12 @@ class ModalPayment extends Component{
   axiosTransaction = () => {
     const { bank } = this.state
     const { fixedendpoint, retailendpoint, walletendpoint } = this.props
-    if ( bank !== 'Alfamart' && bank !== 'Wallet') {
-      this.getTransaction(fixedendpoint, '')
-    } else if ( bank === 'Alfamart') {
+      if ( bank === 'Alfamart') {
       this.getTransaction(retailendpoint, 'Alfamart')
     } else if ( bank === 'Wallet') {
       this.getTransaction(walletendpoint, 'Wallet')
+    } else {
+      this.getTransaction(fixedendpoint, '')
     }
   }
 
@@ -218,6 +218,7 @@ class ModalPayment extends Component{
 
     return(
       <Fragment>
+        {this.showProvider()}
         <label>Silahkan Pilih Salah Satu Bank Untuk Metode Pembayaran Virtual Account</label>
         <div className="modal__method__content__container">
           <ButtonGroup className="modal__method__ButtonGroup" vertical>
@@ -231,7 +232,17 @@ class ModalPayment extends Component{
     )
   }
 
+  showProvider = () => {
+    const { text, brand } = this.props
+    if (text === 'buy pulsa' || text === 'buy pulsa 10k' ){
+      return brand && (
+        <label>{brand}</label>
+      )
+    }
+  }
+
   render() {
+    console.log(this.props)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">

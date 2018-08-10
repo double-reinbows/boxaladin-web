@@ -252,7 +252,7 @@ class Bidding extends React.Component {
         })
       })
 
-      await this.runTimer()
+      this.runTimer()
       this.props.setIsLoading(false)
     } else if (localStorage.getItem('token') !== null) {
       this.props.setIsLoading(true)
