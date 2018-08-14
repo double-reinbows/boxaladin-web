@@ -2,11 +2,10 @@ import React,{Component} from 'react';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import classnames from 'classnames';
 
 import ModalConfirm from '../../Home/Modal/ModalConfirm';
 import { selectPriceID } from '../../../actions/productAction';
-import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
+import { TabContent, TabPane} from 'reactstrap';
 import priceProduct from '../../../utils/splitPrice'
 import productName from '../../../utils/splitProduct'
 import envChecker from '../../../utils/envChecker'
@@ -20,7 +19,7 @@ class ModalCheck extends Component {
       pulsaName: '',
       modalConfirm : false,
       disabled: false,
-      activeTab: '1',
+      activeTab: '2',
       defaultId: 0,
       defaultName: '',
       defaultPrice: '',
@@ -67,25 +66,14 @@ class ModalCheck extends Component {
     } else {
       if (activeTab === '1'){
         return pulsa.map((dataMap, i) => {
-          // if (dataMap.displayPrice === 10000){
-          //   return (
-          //     <button onClick={(e) => this.pulsa10k(dataMap.id, dataMap)} className="modal__pulsa__content__2__button" key ={i}>
-          //       <div>
-          //         <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.brandName}`}/>
-          //       </div>
-          //       {dataMap.displayPrice.toLocaleString(['ban', 'id'])}
-          //     </button>
-          //   )
-          // } else {
-            return(
-              <button onClick={(e) => this.pulsa(dataMap.id, dataMap)} className="modal__pulsa__content__2__button" key ={i}>
-                <div>
-                  <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.brandName}`}/>
-                </div>
-                {dataMap.displayPrice.toLocaleString(['ban', 'id'])}
-              </button>
-            )
-          // }
+          return(
+            <button onClick={(e) => this.pulsa(dataMap.id, dataMap)} className="modal__pulsa__content__2__button" key ={i}>
+              <div>
+                <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.brandName}`}/>
+              </div>
+              {dataMap.displayPrice.toLocaleString(['ban', 'id'])}
+            </button>
+          )
         })
       } else if (activeTab === '2'){
         return paketData.map((dataMap, i) => {
@@ -107,7 +95,7 @@ class ModalCheck extends Component {
       pulsaName: '',
       disabled: true
     },
-      () => this.props.toggle('XL'),
+      () => this.props.toggle(),
     )
   }
 
@@ -166,59 +154,8 @@ class ModalCheck extends Component {
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__pulsa">
         <div className="modal__pulsa__container">
         <TabContent className="modal__pulsa__tabsContainer" activeTab={this.state.activeTab}>
-          <TabPane tabId="1">
-          <div className="modal__pulsa__content">
-          <Nav className="modal__pulsa__tabs" tabs>
-            <NavItem className= "modal__pulsa__tabs__text">
-              <NavLink
-                className={classnames({ active: this.state.activeTab === '1' })}
-                onClick={() => { this.toggleTabs('1', 'Pulsa'); }}
-                >
-              Pulsa
-              </NavLink>
-            </NavItem>
-            <NavItem className= "modal__pulsa__tabs__text">
-              <NavLink
-                className={classnames({ active: this.state.activeTab === '2' })}
-                onClick={() => { this.toggleTabs('2','Paket Data'); }}
-                >
-              Paket Data
-              </NavLink>
-            </NavItem>
-          </Nav>
-            <div className="modal__pulsa__content__1">
-              <div className="modal__pulsa__content__1__logo">
-                <div>
-                  {this.imageProps()}
-                </div>
-                <label>{ !this.state.pulsaPrice ? (this.state.defaultPrice.toLocaleString(['ban', 'id'])) : this.state.pulsaPrice.toLocaleString(['ban', 'id'])}</label>
-              </div>
-            </div>
-            <div className="modal__pulsa__content__2">
-              {this.choicePulsa()}
-            </div>
-          </div>
-          </TabPane>
           <TabPane tabId="2">
           <div className="modal__pulsa__content">
-          <Nav className="modal__pulsa__tabs" tabs>
-            <NavItem className= "modal__pulsa__tabs__text">
-              <NavLink
-                className={classnames({ active: this.state.activeTab === '1' })}
-                onClick={() => { this.toggleTabs('1', 'Pulsa'); }}
-                >
-              Pulsa
-              </NavLink>
-            </NavItem>
-            <NavItem className= "modal__pulsa__tabs__text">
-              <NavLink
-                className={classnames({ active: this.state.activeTab === '2' })}
-                onClick={() => { this.toggleTabs('2','Paket Data'); }}
-                >
-              Paket Data
-              </NavLink>
-            </NavItem>
-          </Nav>
           <div className="modal__pulsa__content__1">
             <div className="modal__pulsa__content__1__logo">
               <div>

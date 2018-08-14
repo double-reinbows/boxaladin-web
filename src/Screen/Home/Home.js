@@ -22,7 +22,6 @@ class Home extends Component<Props, State> {
           <HomeContent/>
           <BannerHome />
         </MediaQuery>
-
       </div>
     )
   }

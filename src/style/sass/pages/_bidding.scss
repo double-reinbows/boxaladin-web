@@ -1,26 +1,14 @@
 .bidding{
   background-color: white;
-  display: flex;
-  justify-content: center;
-  padding-left: 20%;
-  padding-right: 20%;
-  padding-top: 2%;
-
-  &__container{
-    width: 100%;
-    background-color: white;
+  max-width: 80%;
+  margin: auto;
+  &__button{
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-      &__button{
-        display: flex;
-      }
   }
 
   &__1{
     width: 100%;
     padding-bottom: 30px;
-
     &__Title{
       width: 100%;
       text-align: center;
@@ -31,41 +19,12 @@
       line-height: 30px;
     }
   }
-
   &__2{
     width: 100%;
     display: flex;
     padding-bottom: 30px;
     justify-content: center;
-
-    &__col1{
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #FFCD06;
-      padding-top: 15px;
-      padding-bottom: 15px;
-
-      &__logo{
-        width: 10%;
-      }
-
-      &__text{
-        font-weight: bold;
-        font-size: 30px;
-      }
-      &__textDistance{
-        padding-left: 10px;
-      }
-    }
-
     &__col2{
-
-      &__mid{
-        color: black;
-      }
-
       &__pulsa{
         color: #FFFFFF;
         font-family: Helvetica;
@@ -74,20 +33,8 @@
         line-height: 26px;
       }
 
-      &__coret{
-        color: #FFFFFF;
-        font-family: Helvetica;
-        font-size: 22px;
-        font-weight: 900;
-        line-height: 26px;
-        text-decoration: line-through;
-        text-align: center;
-      }
-
       &__newPrice{
-      	color: black;
-      	font-family: Helvetica;
-      	font-size: 60px;
+      	font-size: 40px;
       	font-weight: 900;
 
       }
@@ -101,8 +48,6 @@
       }
 
       &__text {
-      	color: black;
-      	font-family: Helvetica;
       	font-size: 14px;
       	font-weight: 600;
       	line-height: 16px;
@@ -110,29 +55,19 @@
         display: flex;
         flex-direction: row-reverse;
       }
-
     }
-
   }
 
   &__3{
-    width: 100%;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-around;
     padding: 30px;
 
     &__col{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 10px;
       text-align: center;
 
       &__text{
-      	color: black;
-      	font-family: Helvetica;
-      	font-size: 36px;
+      	font-size: 25px;
       	font-weight: 800;
       	line-height: 42px;
       }
@@ -150,6 +85,7 @@
       }
       &__logoPrice{
         padding: 10px;
+        height: 100px;
       }
       &__logoBuy{
         padding-right: 15px;
@@ -159,7 +95,6 @@
         padding-right: 15px
       }
     }
-
   }
 
   &__4{
@@ -169,28 +104,16 @@
     flex-direction: row;
     justify-content: center;
 
-
     &__btnBuy{
-      // display: flex;
-      // flex-direction: row;
-      // justify-content: center;
-
       width: 80%;
-      height: 75px;
       border-radius: 50px;
-
       background-color: #FFCD06;
-    	color: #3E3E3E;
-    	font-family: Helvetica;
     	font-size: 30px;
     	font-weight: bold;
     	line-height: 35px;
-      display: flex;
-      justify-content: center;
       &:hover{
         cursor: pointer;
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-
       }
     }
   }
@@ -203,16 +126,10 @@
     justify-content: center;
 
     &__btnCancel{
-      // display: flex;
-      // flex-direction: row;
-      // justify-content: center;
-
       width: 80%;
       height: 75px;
       border-radius: 50px;
       background-color: #989898;
-      color: #3E3E3E;
-      font-family: Helvetica;
       font-size: 30px;
       font-weight: bold;
       &:hover{
@@ -220,63 +137,5 @@
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
       }
     }
-  }
-
-}
-
-@media (min-width: 200px ) and (max-width:767px) {
-  .bidding__2__col2{
-    &__mid{
-      text-align: center;
-    }
-    &_newPrice {
-      font-family: Helvetica;
-      font-size: 35px;
-      font-weight: 900;
-    }
-  }
-
-  .bidding__2{
-    display: block;
-  }
-  .bidding__2__col1{
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  .bidding__3__col{
-    font-size: 20px;
-  }
-  .bidding__3{
-    display: block;
-  }
-}
-
-@media (max-width:450px) {
-  .bidding__3__col__logoCancel {
-    height: 0;
-    width:0;
-    padding-right: 0px;
-  }
-  .bidding__3__col__logoBuy {
-    height: 0;
-    width: 0;
-    padding-right: 0px;
-  }
-  .biddingIconPriceStyle {
-    display: flex;
-    justify-content: center;
-  }
-}
-
-biddingImage{
-  width: 100%;
-  height:50%;
-}
-
-.bidding__notif{
-  color: black;
-  &:hover {
-    color: black;
-    text-decoration: none;
   }
 }

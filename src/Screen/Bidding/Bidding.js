@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import * as firebase from 'firebase'
+import MediaQuery from 'react-responsive';
 
 import Loading from '../Components/Loading/'
 import ModalText from '../Components/Modal/ModalText'
@@ -32,86 +33,127 @@ class Bidding extends React.Component {
     localStorage.setItem('selectedPriceID', this.props.selectedPriceID)
   }
 
-  render() {
-    let priceComponent = null;
-    let watchComponent = null
+  renderTimeUpPrice = () => {
     if (this.state.priceComp) {
-      priceComponent = (<label className="bidding__2__col2__newPrice">{this.formatRupiah()}</label>)
-      watchComponent = (<label className="bidding__3__col__text">{this.state.productUnlocked.watching} orang</label>)
+      return(<label className="bidding__2__col2__newPrice">{this.formatRupiah()}</label>)
     } else {
-      priceComponent =  (<label className="bidding__2__col2__newPrice"></label>)
-      watchComponent = (<label className="bidding__3__col__text">orang</label>)
+      return (<label className="bidding__2__col2__newPrice"></label>)
     }
+  }
+
+  renderTimeUpWatch = () => {
+    if (this.state.priceComp) {
+      return (<label className="bidding__3__col__text">{this.state.productUnlocked.watching} orang</label>)
+    } else {
+      return (<label className="bidding__3__col__text">orang</label>)
+    }
+  }
+
+  renderBid = () => {
     return (
-  <div>
-      <div className="bidding__2__col1">
-        {/* <img src={this.state.productUnlocked.brandLogo} className="bidding__2__col1__logo" alt="Logo pulsa"/> */}
-        <div className="bidding__2__col1__textDistance">
-          {/* {this.productName()}
-          {this.priceProduct()} */}
-        </div>
-      </div>
-
-      <div className="bidding">
-        <div className="bidding__container">
-
-          <Loading isLoading={ this.props.isLoading } />
-
-          <div className="bidding__3">
-
-            <div className="bidding__3__col">
-              <div>
-                <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/timer.svg' className="bidding__3__col__logoTimer" alt="Logo Timer"/>
-              </div>
-              <div>
-                <label className="bidding__3__col__text">{this.state.count < 10 ? `00:0${this.state.count}` : `00:${this.state.count}`} detik</label>
-              </div>
+    <div className="bidding">
+      <div className="bidding__container">
+        <Loading isLoading={ this.props.isLoading } />
+        <div className="bidding__3">
+          <div className="bidding__3__col">
+            <div>
+              <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/timer.svg' className="bidding__3__col__logoTimer" alt="Logo Timer"/>
             </div>
-
-            <div className="bidding__3__col">
-              <div>
-                <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/watch.svg' className="bidding__3__col__logoWatch" alt="Logo Watch"/>
-              </div>
-              <div>
-                {watchComponent}
-              </div>
-            </div>
-
-          </div>
-
-          <div className="bidding__2">
-
-          <div className="biddingIconPriceStyle">
-            <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/coins.png' className="bidding__3__col__logoPrice" alt="Logo Watch"/>
-          </div>
-
-            <div className="bidding__2__col2">
-              <div className="bidding__2__col2__mid">
-                {priceComponent}
-              </div>
-
-              <div>
-                <label className="bidding__2__col2__text">
-                  harga yang ditampilkan adalah harga live.
-                </label>
-              </div>
+            <div>
+              <label className="bidding__3__col__text">{this.state.count < 10 ? `00:0${this.state.count}` : `00:${this.state.count}`} detik</label>
             </div>
           </div>
-          <div className="bidding__container__button">
-          <div className="bidding__4">
-            <button className="bidding__4__btnBuy" onClick={() => this.buy()}>
-              <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/cart-of-ecommerce.png' className="bidding__3__col__logoBuy" alt="Logo Watch"/>Beli
-            </button>
-          </div>
-
-          <div className="bidding__5">
-            <button className="bidding__5__btnCancel" onClick={() => this.cancel()}><img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/cancel.png' className="bidding__3__col__logoCancel" alt="Logo Watch"/>Batal</button>
-          </div>
+          <div className="bidding__3__col">
+            <div>
+              <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/watch.svg' className="bidding__3__col__logoWatch" alt="Logo Watch"/>
+            </div>
+            <div>
+              {this.renderTimeUpWatch()}
+            </div>
           </div>
         </div>
-          <ModalText text="Waktu Bidding Anda Sudah Habis" isOpen={this.state.open} toggle={this.toggle}/>
+        <div className="bidding__2">
+        <div className="biddingIconPriceStyle">
+          <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/coins.png' className="bidding__3__col__logoPrice" alt="Logo Watch"/>
+        </div>
+          <div className="bidding__2__col2">
+            <div className="bidding__2__col2__mid">
+              {this.renderTimeUpPrice()}
+            </div>
+            <div>
+              <label className="bidding__2__col2__text">
+                harga yang ditampilkan adalah harga live.
+              </label>
+            </div>
+          </div>
+        </div>
+        <div className="bidding__button">
+        <div className="bidding__4">
+          <button className="bidding__4__btnBuy" onClick={() => this.buy()}>
+            <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/cart-of-ecommerce.png' className="bidding__3__col__logoBuy" alt="Logo Watch"/>Beli
+          </button>
+        </div>
+        <div className="bidding__5">
+          <button className="bidding__5__btnCancel" onClick={() => this.cancel()}><img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/cancel.png' className="bidding__3__col__logoCancel" alt="Logo Watch"/>Batal</button>
+        </div>
+        </div>
       </div>
-</div>
+      <ModalText text="Waktu lelang telah habis! Anda akan kembali pada halaman utama." color={'red'} background={'lightyellow'} isOpen={this.state.open} toggle={this.toggle}/>
+    </div>
+    )
+  }
+
+  renderMobileBid = () => {
+    return (
+      <div>
+        <Loading isLoading={ this.props.isLoading } />
+        <h1 className="mobile-bidding__title">RUANG LELANG</h1>
+        <div className="mobile-bidding__content">
+          <div className="mobile-bidding__2">
+            {this.renderTimeUpPrice()}
+            <label className="mobile-bidding__2__text">
+              harga live. saat ini
+            </label>
+          </div>
+          <div className="mobile-bidding__3">
+            <div className="mobile-bidding__3__col">
+              <div>
+                <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/timer.svg' className="mobile-bidding__3__col__logoTimer" alt="Logo Timer"/>
+              </div>
+              <div>
+                <label className="mobile-bidding__3__col__text">{this.state.count < 10 ? `00:0${this.state.count}` : `00:${this.state.count}`}</label>
+              </div>
+            </div>
+            <div className="mobile-bidding__3__col">
+              <div>
+                <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/watch.svg' className="mobile-bidding__3__col__logoWatch" alt="Logo Watch"/>
+              </div>
+              <div>
+                {this.renderTimeUpWatch()}
+              </div>
+            </div>
+          </div>
+          </div>
+          <div className="mobile-bidding__button__container">
+            <button className="mobile-bidding__button" onClick={() => this.buy()}>Beli Sekarang</button>
+            <button className="mobile-bidding__button batal" style={{color:'red'}} onClick={() => this.cancel()}>Batal</button>
+          </div>
+          <ModalText text="Waktu lelang telah habis! Anda akan kembali pada halaman utama." color={'red'} background={'lightyellow'} isOpen={this.state.open} toggle={this.toggle}/>
+      </div>
+    )
+  }
+  
+
+  render() {
+    return (
+    <div>
+      <MediaQuery query="(max-device-width: 720px)">
+        {this.renderMobileBid()}
+      </MediaQuery>
+      <MediaQuery query="(min-device-width: 721px)">
+        {this.renderBid()}
+      </MediaQuery>
+    </div>
     )
   }
 

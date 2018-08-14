@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import envChecker from '../../utils/envChecker'
 import ProviderModal from './Modal/ProviderModal';
 import ModalConfirm from './Modal/ModalConfirm'
+
 class HomeContent extends Component {
   constructor(props) {
     super(props);

@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Input, Button } from 'reactstrap'
+import { Button } from 'reactstrap'
+import MediaQuery from 'react-responsive';
 import ModalPayment from '../Components/Modal/ModalPayment'
-// import { validateProvider, detectProvider } from '../../utils/phone'
 import ProviderModal from '../Home/Modal/ProviderModal';
 import  priceProduct  from '../../utils/splitPrice'
 import  productName from '../../utils/splitProduct'
@@ -21,7 +21,8 @@ class InsertPhone extends React.Component {
       disabled: true,
       modalPayment: false,
       brandId: 0,
-      brand: ''
+      brand: '',
+      notif: ''
     }
     this.handleBack()
   }
@@ -79,48 +80,86 @@ class InsertPhone extends React.Component {
     return null;
   }
 
+  renderInsertPhone = () => {
+    return (
+      <div>
+        <div className="InsertPhone__textHead">
+          <h1 className="InsertPhone__textHead__font">LELANG KAMU BERHASIL</h1>
+        </div>
+        <div className="InsertPhone__inputNumber">
+          <div className="InsertPhone__inputHead">
+            <h4 className="InsertPhone__inputHead__text">Masukkan nomor hape kamu</h4>
+            <div className="InsertPhone__inputHead__checkBox">
+              <input className="InsertPhone__inputHead__inputBox" value={ this.state.phone } type="number"
+              onChange={ (e) => this.handleChangePhone(e) } />
+              <div className="homecontent__bottom__check" style= {{ alignSelf: "center", paddingLeft: "20px"}}>
+                <button onClick={this.toggle} className="homecontent__bottom__check__button" style = {{ fontSize: "15px"}}>CEK PROVIDER-MU</button>
+              </div>
+            </div>
+            <label className="InsertPhone__inputHead__label">Ex: 08x-xxx-xxx-xxx</label>
+          </div>
+        </div>
+        <div className="InsertPhone__contentContainer">
+          {this.logoPhone()}
+          <div className="InsertPhone__contentContainer__textDistance">
+            <h2 className="InsertPhone__contentContainer__text">{this.productName()}</h2>
+            <h2 className="InsertPhone__contentContainer__text">{this.priceProduct()}</h2>
+            <label className="InsertPhone__contentContainer__label">Terjual dengan harga:</label>
+          </div>
+          <div className="InsertPhone__contentContainer__priceDistance">
+            <label className="InsertPhone__contentContainer__price">{this.formatRupiah()}</label>
+            <label className="InsertPhone__contentContainer__labelPercentage" >Kamu menghemat {this.percentagePrice()}</label>
+          </div>
+        </div>
+        <label className="alert__game">{this.state.notif}</label>
+        <div className="InsertPhone__buttonContainer">
+          <Button type="submit" className = "InsertPhone__buttonContainer__buttonBatal" onClick={() => this.cancel()}>Batal</Button>
+          <Button type="submit" disabled={this.state.disabled} className = "InsertPhone__buttonContainer__buttonLanjut" onClick={(e) => this.submitTransaction(e)} >Lanjut</Button>
+        </div>
+        <ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
+        {this.renderModalPayment()}
+      </div>
+    )
+  }
+
+  renderMobileInsertPhone = () => {
+    return (
+      <div>
+        <h1 className="mobile-InsertPhone__title">LELANG BERHASIL</h1>
+        <div className="mobile-InsertPhone__container">
+          <div className="mobile-InsertPhone__content__container">
+            {/* <h2 className="mobile-InsertPhone__content__text">{this.priceProduct()}</h2> */}
+            <div className="mobile-InsertPhone__content__priceDistance">
+              <label className="mobile-InsertPhone__content__price">{this.formatRupiah()}</label>
+              <label className="mobile-InsertPhone__content__labelPercentage" >Kamu menghemat {this.percentagePrice()}</label>
+            </div>
+          </div>
+          <label className="alert__otp">{this.state.notif}</label>
+          <div className="mobile-InsertPhone__input">
+            <input className="mobile-InsertPhone__input__inputBox" value={ this.state.phone } type="number"
+            onChange={ (e) => this.handleChangePhone(e) } />
+          </div>
+          <label>Ex: 08x-xxx-xxx-xxx</label>
+        </div>
+        <div className="mobile-InsertPhone__button__container">
+          <button type="submit" disabled={this.state.disabled} className = "mobile-InsertPhone__button" onClick={(e) => this.submitTransaction(e)} >Beli Sekarang</button>
+          <button type="submit" style={{color:'red'}} className = "mobile-InsertPhone__button" onClick={() => this.cancel()}>Batal</button>
+        </div>
+        {this.renderModalPayment()}
+      </div>
+    )
+  }
+
   render() {
     return (
-		<div>
-		<div className="InsertPhone__textHead">
-			<h1 className="InsertPhone__textHead__font">LELANG KAMU BERHASIL</h1>
-		</div>
-		<div className="InsertPhone__inputNumber">
-			<div className="InsertPhone__inputHead">
-				<h4 className="InsertPhone__inputHead__text">Masukkan nomor hape kamu</h4>
-				<div className="InsertPhone__inputHead__checkBox">
-					<Input className="InsertPhone__inputHead__inputBox" value={ this.state.phone } type="number"
-					onChange={ (e) => this.handleChangePhone(e) } />
-					<div className="homecontent__bottom__check" style= {{ alignSelf: "center", paddingLeft: "20px"}}>
-						<button onClick={this.toggle} className="homecontent__bottom__check__button" style = {{ fontSize: "15px"}}>CEK PROVIDER-MU</button>
-					</div>
-				</div>
-				<label className="InsertPhone__inputHead__label">Ex: 08x-xxx-xxx-xxx</label>
-			</div>
-		</div>
-
-		<div className="InsertPhone__contentContainer">
-		  {this.logoPhone()}
-			<div className="InsertPhone__contentContainer__textDistance">
-				<h2 className="InsertPhone__contentContainer__text">{this.productName()}</h2>
-				<h2 className="InsertPhone__contentContainer__text">{this.priceProduct()}</h2>
-				<label className="InsertPhone__contentContainer__label">Terjual dengan harga:</label>
-			</div>
-			<div className="InsertPhone__contentContainer__priceDistance">
-				<label className="InsertPhone__contentContainer__price">{this.formatRupiah()}</label>
-				<label className="InsertPhone__contentContainer__labelPercentage" >Kamu menghemat {this.percentagePrice()}</label>
-			</div>
-		</div>
-
-		<div className="InsertPhone__buttonContainer">
-				<Button type="submit" className = "InsertPhone__buttonContainer__buttonBatal" onClick={() => this.cancel()}>Batal</Button>
-				<Button type="submit" disabled={this.state.disabled} className = "InsertPhone__buttonContainer__buttonLanjut" onClick={(e) => this.submitTransaction(e)} >Lanjut</Button>
-
-		</div>
-
-			<ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
-      {this.renderModalPayment()}
-		</div>
+      <div>
+        <MediaQuery query="(max-device-width: 720px)">
+          {this.renderMobileInsertPhone()}
+        </MediaQuery>
+        <MediaQuery query="(min-device-width: 721px)">
+          {this.renderInsertPhone()}
+        </MediaQuery>
+      </div>
     )
   }
 
@@ -191,7 +230,9 @@ class InsertPhone extends React.Component {
       })
       this.togglePayment()
     } else if ( provider === 'Unknown Provider'){
-      alert('Provider Tidak  Terdaftar')
+      this.setState({ 
+        notif: "Nomor yang kamu masukkan tidak terdaftar. Mohon periksa kembali"
+      });
     }
   }
 

@@ -360,6 +360,7 @@
   font-size: 15px;
   margin: 1.75rem auto;
   &__container{
+    border: 1px solid grey;
     margin-top: 40%;
     background-color: rgb(175, 193, 203);
     padding: 3%;
@@ -389,11 +390,11 @@
     }
   }
 }
-@media (min-width: 767px ) and (max-width:886px ) {
+@media (min-width: 721px ) and (max-width:886px ) {
   .modal__confirm{
     top: 23%;
     font-size: 12px;
-    max-width: 60%;
+    max-width: 50%;
     &__container{
       display: block;
       text-align: center;
@@ -401,20 +402,20 @@
   }
 }
 
-@media (min-width: 200px ) and (max-width:766px ) {
-  .modal__confirm{
-    top: 23%;
-    font-size: 12px;
-    max-width: 80%;
-    &__container{
-      display: block;
-      text-align: center;
-    }
-    &__button{
-      width: 100%;
-    }
-  }
-}
+// @media (min-width: 200px ) and (max-width:765px ) {
+//   .modal__confirm{
+//     top: 23%;
+//     font-size: 12px;
+//     max-width: 70%;
+//     &__container{
+//       display: block;
+//       text-align: center;
+//     }
+//     &__button{
+//       width: 100%;
+//     }
+//   }
+// }
 
 .modal{
   &__check{
@@ -425,6 +426,7 @@
     &__container{
       text-align: center;
       background-color: lightgrey;
+      border: 1px solid grey;
       &__header{
         display: flex;
         justify-content: flex-end;
@@ -523,6 +525,7 @@
     }
 
     &__content{
+      background-color: white;
       &__1{
         &__logo{
           text-align: center;
