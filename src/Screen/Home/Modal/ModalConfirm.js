@@ -14,8 +14,8 @@ class ModalConfirm extends Component {
     }
   }
 
-  checkAladinkey = () => {
-    const {defaultId, userInfo} = this.props
+  checkAladinkey = async () => {
+    const {defaultId, userInfo ,selectedPriceID} = this.props
     if ( !userInfo.id && !localStorage.getItem('token')){
       alert ('Anda Belum Masuk')
     } else if ( userInfo.emailVerified === false) {
@@ -23,18 +23,43 @@ class ModalConfirm extends Component {
     } else if (userInfo.aladinKeys <= 0 ){
       alert("Anda Tidak Memiliki Aladin Key")
     } else {
-      helperAxios('GET', 'users/checkuser')
-			.then(async data => {
-        if (data.data.message === 'not verified user') {
-          alert("Silahkan Verifikasi Email Anda")
-        } else if (data.data.aladinKeys > 0) {
-          await this.props.selectPriceID(defaultId)
-          this.props.history.push('/bidding')
-          helperAxios('PUT', 'logopen', {priceId: defaultId})
+      if (defaultId === 1) {
+        if (userInfo.wallet < 10500){
+          return alert('Saldo Wallet Anda Kurang Dari Rp.10.500,00')
         } else {
-          alert("Anda Tidak Memiliki Aladin Key")
+          helperAxios('GET', 'users/checkuser')
+          .then( async data => {
+            if (data.data.message === 'not verified user') {
+              alert("Silahkan Verifikasi Email Anda")
+            } else if (data.data.aladinKeys > 0 && data.data.wallet >= 10500) {
+              await this.props.selectPriceID(defaultId)
+              this.props.history.push('/bidding', {
+                displayPrice: this.props.displayPrice,
+                firebase: this.props.firebase
+              })
+              helperAxios('PUT', 'logopen'), {productId: selectedPriceID}
+            } else {
+              alert("Anda Tidak Memiliki Aladin Key")
+            }
+          })
         }
-      })
+      } else {
+        helperAxios('GET', 'users/checkuser')
+        .then( async data => {
+          if (data.data.message === 'not verified user') {
+            alert("Silahkan Verifikasi Email Anda")
+          } else if (data.data.aladinKeys > 0) {
+            await this.props.selectPriceID(defaultId)
+            this.props.history.push('/bidding', {
+              displayPrice: this.props.displayPrice,
+              firebase: this.props.firebase
+            })
+            helperAxios('PUT', 'logopen', {priceId: defaultId})
+          } else {
+            alert("Anda Tidak Memiliki Aladin Key")
+          }
+        })
+      }
     }
   }
 
@@ -76,6 +101,7 @@ class ModalConfirm extends Component {
   }
 
   render() {
+    console.log('props', this.props)
     return (
       <Modal isOpen={this.props.open} className="modal__confirm">
         <MediaQuery query="(max-device-width: 720px)">

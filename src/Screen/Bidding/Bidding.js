@@ -8,7 +8,7 @@ import Loading from '../Components/Loading/'
 import ModalText from '../Components/Modal/ModalText'
 
 import { setIsLoading } from '../../actions/'
-// import  priceProduct  from '../../utils/splitPrice'
+import  priceProduct  from '../../utils/splitPrice'
 // import  productName from '../../utils/splitProduct'
 import FormatRupiah from '../../utils/formatRupiah'
 import envChecker from '../../utils/envChecker'
@@ -19,8 +19,8 @@ class Bidding extends React.Component {
     super(props)
     this.state = {
       productUnlocked: {},
-			count: 15,
-      initCount: 15,
+			count: 9999,
+      initCount: 9999,
       open: false,
       priceComp : true,
     }
@@ -110,6 +110,7 @@ class Bidding extends React.Component {
         <h1 className="mobile-bidding__title">RUANG LELANG</h1>
         <div className="mobile-bidding__content">
           <div className="mobile-bidding__2">
+          {this.displayPrice()}
             {this.renderTimeUpPrice()}
             <label className="mobile-bidding__2__text">
               harga live. saat ini
@@ -145,6 +146,7 @@ class Bidding extends React.Component {
   
 
   render() {
+    console.log(this.props)
     return (
     <div>
       <MediaQuery query="(max-device-width: 720px)">
@@ -167,11 +169,11 @@ class Bidding extends React.Component {
     )
   }
 
-  // priceProduct() {
-  //   return this.state.productUnlocked.productName && (
-  //     <h2 className="bidding__2__col1__text">{priceProduct(this.state.productUnlocked.productName)}</h2>
-  //   )
-  // }
+  displayPrice = () => {
+    return this.props.location.state.displayPrice && (
+      <label className="mobile-bidding__displayPrice">{this.props.location.state.displayPrice.toLocaleString(['ban', 'id'])}</label>
+    )
+  }
 
   // productName() {
   //   return this.state.productUnlocked.productName && (
@@ -199,7 +201,7 @@ class Bidding extends React.Component {
   }
 
   buy() {
-    const productsRef = firebase.database().ref().child(`${envChecker('firebase')}`)
+    const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
     const productRef = productsRef.child(this.props.selectedPriceID)
     let updatePrice = 0
 
@@ -234,7 +236,7 @@ class Bidding extends React.Component {
 
 		if (priceId === 1) {
       this.props.setIsLoading(true)
-      const productsRef = firebase.database().ref().child(`${envChecker('firebase')}`)
+      const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
       const productRef = productsRef.child(priceId)
       productRef.once('value', async snap => {
         if ( snap.val().aladinPrice - snap.val().decreasePrice > 0){
@@ -298,7 +300,7 @@ class Bidding extends React.Component {
       this.props.setIsLoading(false)
     } else if (localStorage.getItem('token') !== null) {
       this.props.setIsLoading(true)
-      const productsRef = firebase.database().ref().child(`${envChecker('firebase')}`)
+      const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
       const productRef = productsRef.child(priceId)
       productRef.once('value', async snap => {
 

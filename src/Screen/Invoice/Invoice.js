@@ -56,7 +56,8 @@ class Invoice extends React.Component {
         </thead>
         <tbody>
         {transactions.map((data, idx) => {
-            if (!data.createdAt || !data.createdAt || !data.payment || data.payment.invoiceId === 'null'){
+          console.log('data', data)
+            if (!data.createdAt || !data.payment || data.payment.invoiceId === 'null'){
               return null
             } else {
               const time = moment().toISOString()
@@ -67,7 +68,7 @@ class Invoice extends React.Component {
                 statusComponent = <td>{'PAID'}</td>
               } else if (data.payment.status !== 'PAID' && data.payment.status !== 'CANCELLED' && data.payment.status !== 'PENDING'){
                 statusComponent = <td>{data.payment.status}</td>
-              }else if (time <= data.payment.expiredAt){
+              } else if (time <= data.payment.expiredAt){
                 statusComponent = <td><Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button></td>
               } else if (time >= data.payment.expiredAt){
                 statusComponent = <td>Expired</td>

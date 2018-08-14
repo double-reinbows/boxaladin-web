@@ -54,7 +54,7 @@ class PaketData extends Component {
     } else {
       return(
         this.state.brand.filter(data => {
-          return data.brandName === 'Telkomsel' || data.brandName === 'XL' || data.brandName === 'Indosat' || data.brandName === 'Tri' || data.brandName === 'Smartfren'
+          return data.brandName === 'Telkomsel' || data.brandName === 'XL' || data.brandName === 'Indosat' || data.brandName === 'Tri'
         })
         .map((data, i) => {
           const pulsaItems = [

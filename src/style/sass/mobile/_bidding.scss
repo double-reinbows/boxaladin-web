@@ -19,6 +19,12 @@
     background-color: #FFCD06;
     font-size: 20px;
   }
+  &__displayPrice{
+    display: flex;
+    justify-content: flex-end;
+    text-decoration-line: line-through;
+    text-decoration-color: red;
+  }
   &__content{
     border: 1px solid;
     max-width: 70%;

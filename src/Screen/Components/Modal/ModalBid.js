@@ -106,7 +106,7 @@ class ModalCheck extends Component {
       pulsaName: data.productName,
       disabled: false,
     })
-    this.props.selectPriceID(this.state.defaultId)
+    // this.props.selectPriceID(this.state.defaultId)
   }
 
   handleNotLogin() {
@@ -116,7 +116,7 @@ class ModalCheck extends Component {
       this.setState({
         modalConfirm: !this.state.modalConfirm,
       }, () => {
-        this.props.selectPriceID(this.state.defaultId)
+        // this.props.selectPriceID(this.state.defaultId)
 
       })
     }
@@ -190,7 +190,7 @@ class ModalCheck extends Component {
               </button>
             </div>
           </div>
-          <ModalConfirm open={this.state.modalConfirm} toggle={this.toggleConfirm}/>
+          <ModalConfirm firebase={'productsdummy'} defaultId={this.state.defaultId} open={this.state.modalConfirm} toggle={this.toggleConfirm}/>
         </div>
       </Modal>
     )

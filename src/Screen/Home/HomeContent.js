@@ -88,7 +88,7 @@ class HomeContent extends Component {
           </div>
         </div>
         <ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
-        <ModalConfirm open={this.state.openModal} toggle={this.toggleConfirm} defaultId={this.state.defaultId}/>
+        <ModalConfirm firebase={'pricedummy'} displayPrice={this.state.displayPrice} open={this.state.openModal} toggle={this.toggleConfirm} defaultId={this.state.defaultId}/>
       </div>
     )
   }

@@ -60,7 +60,7 @@ class Price extends Component {
         <div className="mobile__pulsa__content1">
           {this.price()}
         </div>
-        <ModalConfirm displayPrice={this.state.displayPrice} open={this.state.openModal} toggle={this.toggleConfirm} defaultId={this.state.defaultId}/>
+        <ModalConfirm firebase={'pricedummy'} displayPrice={this.state.displayPrice} open={this.state.openModal} toggle={this.toggleConfirm} defaultId={this.state.defaultId}/>
       </div>
     );
   }
