@@ -5,7 +5,7 @@ import axios from 'axios';
 import classnames from 'classnames';
 
 import ModalConfirm from '../../Home/Modal/ModalConfirm';
-import { selectProductID } from '../../../actions/productAction';
+import { selectPriceID } from '../../../actions/productAction';
 import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import priceProduct from '../../../utils/splitPrice'
 import productName from '../../../utils/splitProduct'
@@ -118,7 +118,7 @@ class ModalCheck extends Component {
       pulsaName: data.productName,
       disabled: false,
     })
-    this.props.selectProductID(this.state.defaultId)
+    this.props.selectPriceID(this.state.defaultId)
   }
 
   handleNotLogin() {
@@ -128,7 +128,7 @@ class ModalCheck extends Component {
       this.setState({
         modalConfirm: !this.state.modalConfirm,
       }, () => {
-        this.props.selectProductID(this.state.defaultId)
+        this.props.selectPriceID(this.state.defaultId)
 
       })
     }
@@ -159,6 +159,7 @@ class ModalCheck extends Component {
       });
     }
   }
+
 
   render() {
     return (
@@ -263,14 +264,14 @@ const mapStateToProps = (state) => {
   return {
     userInfo: state.userReducer.userInfo,
     // products: state.productReducer.products,
-    selectedProductID: state.productReducer.selectedProductID
+    selectedPriceID: state.productReducer.selectedPriceID
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     // getUser: () => dispatch(getUser()),
-    selectProductID: (id) => dispatch(selectProductID(id))
+    selectPriceID: (id) => dispatch(selectPriceID(id))
   }
 }
 

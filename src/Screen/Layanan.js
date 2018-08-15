@@ -3,6 +3,7 @@ import { Container, Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios'
 import ModalText from './Components/Modal/ModalText'
 import envChecker from '../utils/envChecker'
+// import Button from './Components/Button';
 
 class Layanan extends Component {
   constructor(){
@@ -139,6 +140,9 @@ class Layanan extends Component {
                   <label className="alert__dompetAladin">{this.state.notif}</label>
                   <div className="layanan__button__container">
                     <button className="layanan__button">Submit</button>
+                    {/* <Button size="small" block>hihi</Button>
+                    <Button size="medium">hihi</Button>
+                    <Button size="large">hihi</Button> */}
                   </div>
                 </Form>
               </Col>

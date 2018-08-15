@@ -1,5 +1,5 @@
 const priceProduct = function(product){
-    var pulsa_split = product.split(' ').splice(2, 3)
+    const pulsa_split = product.split(' ').splice(2, 3)
     return pulsa_split
   }
 

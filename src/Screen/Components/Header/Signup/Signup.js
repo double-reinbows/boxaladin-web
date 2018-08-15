@@ -325,7 +325,6 @@ class Signup extends Component {
             <button type="submit" className="Signup__ButtonLogin">Daftar</button>
           </div>
 
-          <button onClick={this.toggleOtp}>labes</button>
         </form>
         <ModalOtp
           open={modalOtp}

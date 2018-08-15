@@ -5,7 +5,7 @@ import { Table, Button, Row, Col, Card, CardImg, CardText, CardBody, CardLink, C
 import moment from 'moment'
 
 import { getRewards } from '../actions/rewardAction'
-import { getUser } from '../actions/userAction'
+// import { getUser } from '../actions/userAction'
 import { getUserClaims } from '../actions/claimAction'
 import envChecker from '../utils/envChecker'
 
@@ -85,7 +85,7 @@ class ClaimReward extends React.Component {
 
   componentDidMount() {
     this.props.getRewards()
-    this.props.getUser()
+    // this.props.getUser()
     this.props.getUserClaims()
   }
 
@@ -109,7 +109,7 @@ class ClaimReward extends React.Component {
       })
       .then(response => {
 
-        this.props.getUser()
+        // this.props.getUser()
         this.props.getUserClaims()
         alert('Claim on progress')
 
@@ -132,7 +132,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getRewards: () => dispatch(getRewards()),
-    getUser: () => dispatch(getUser()),
+    // getUser: () => dispatch(getUser()),
     getUserClaims: () => dispatch(getUserClaims()),
   }
 }
