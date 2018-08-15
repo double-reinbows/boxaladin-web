@@ -23,9 +23,8 @@ class ModalConfirm extends Component {
 				url: `${envChecker('api')}/users/checkuser`,
 			})
 			.then(data => {
-        if (data.data.message === 'not verified user') {
-          alert("Silahkan Verifikasi Email Anda")
-        } else if (data.data.aladinKeys > 0) {
+        console.log(data);
+        if (data.data.aladinKeys > 0) {
           this.props.history.push('/bidding')
           axios({
             method: 'PUT',
