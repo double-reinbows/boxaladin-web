@@ -110,7 +110,6 @@ class ResetPasswordForm extends React.Component<Props, State> {
   }
 
   render() {
-    // console.log(this.props);
     return (
       <div className="resetPassword">
         <div className="resetPassword__box">

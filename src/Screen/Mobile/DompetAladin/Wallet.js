@@ -1,6 +1,13 @@
+//@flow
 import React, { Component } from 'react';
 import ModalPayment from '../../Components/Modal/ModalPayment'
-class Topup extends Component {
+import formatRupiah from '../../../utils/formatRupiah'
+
+type State = {
+  modalPayment: boolean,
+  wallet: string
+}
+class Topup extends Component<State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,12 +25,11 @@ class Topup extends Component {
 
     return buttonPrice.map((data, idx) => (
       <div key={idx} className="mobile__topup__button__container">
-        <button onClick={() => this.walletButton(data.price1)} className="mobile__topup__button">{data.price1.toLocaleString(['ban', 'id'])}</button>
-        <button onClick={() => this.walletButton(data.price2)} className="mobile__topup__button">{data.price2.toLocaleString(['ban', 'id'])}</button>
+        <button onClick={() => this.walletButton(data.price1)} className="mobile__topup__button">{formatRupiah(data.price1)}</button>
+        <button onClick={() => this.walletButton(data.price2)} className="mobile__topup__button">{formatRupiah(data.price2)}</button>
       </div>
     ))
   }
-  
 
   walletButton = (price) => {
     this.setState({
@@ -32,10 +38,8 @@ class Topup extends Component {
     })
   }
 
-
-
   render() {
-    return (  
+    return (
       <div>
         <h2 className="mobile__pulsa__label">Pilih Nominal Top-up</h2>
         <div>

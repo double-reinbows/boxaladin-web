@@ -54,5 +54,13 @@
       display: flex;
       justify-content: center;
     }
+    &__convert{
+      width: 60%;
+      height: 45px;
+      border-radius: 10px;
+      background-color: white;
+      font-size: 15px;
+      margin: 5%;
+    }
   }
 }

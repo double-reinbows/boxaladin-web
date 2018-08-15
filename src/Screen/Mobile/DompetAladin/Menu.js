@@ -1,23 +1,18 @@
+//@flow
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 class menu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      notif: ''
-    }
-  }
 
   showButton = () => {
     const buttonPrice = [
-      {keys: 'Kunci Aladin', link:'mdompetkey'},
-      {keys: 'Koin Aladin', link:'mdompetconvert'},
-      {keys: 'Uang Aladin', link:'mdompetwallet'},
+      {menu: 'Kunci Aladin', link:'mdompetkey'},
+      {menu: 'Koin Aladin', link:'mdompetconvert'},
+      {menu: 'Uang Aladin', link:'mdompetwallet'},
     ]
 
     return buttonPrice.map((data, idx) => (
       <div key={idx} className="mobile__menu__button__container">
-        <Link to={data.link} className="mobile__menu__button" style={button}>{data.keys}</Link>
+        <Link to={data.link} className="mobile__menu__button" style={button}>{data.menu}</Link>
       </div>
     ))
   }

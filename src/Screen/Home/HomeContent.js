@@ -1,22 +1,30 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
-import { getProducts } from '../../actions/productAction';
+import { getUser } from '../../actions/userAction'
+import envChecker from '../../utils/envChecker'
 import ProviderModal from './Modal/ProviderModal';
 import ModalBid from '../Components/Modal/ModalBid'
-import priceProduct from '../../utils/splitPrice'
-import nameProduct from '../../utils/splitProduct'
+
 class HomeContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       providerModal: false,
       openModal: false,
-      pulsaValue: '',
+      brandName: '',
       logo: '',
-      defaultName: '',
       defaultId: 0,
+      brand: '',
     }
     this.toggleBid = this.toggleBid.bind(this);
+  }
+
+  componentDidMount() {
+    this.getBrand()
+    if (!this.props.userInfo.id && localStorage.getItem('token')) {
+      this.props.getUser()
+    }
   }
 
 
@@ -26,10 +34,9 @@ class HomeContent extends Component {
     })
   }
 
-  async toggleBid(pulsa, name, id, logo) {
+  async toggleBid(brandName, id, logo) {
       await this.setState({
-      pulsaValue: pulsa,
-      defaultName: name,
+        brandName: brandName,
       defaultId: id,
       logo: logo
     })
@@ -38,22 +45,34 @@ class HomeContent extends Component {
     })
   }
 
-
-
+  renderModalBid() {
+    if (this.state.openModal) {
+      return (
+        <ModalBid
+          isOpen={this.state.openModal}
+          toggle={this.toggleBid}
+          brandName={this.state.brandName}
+          defaultId={this.state.defaultId}
+          logo={this.state.logo}
+        />
+      )
+    }
+    return null;
+  }
 
   pulsaItem() {
-    if (this.props.products.length === 0) {
+    if (!this.state.brand) {
       return (
         <h1>Loading</h1>
       )
     } else {
       return(
-        this.props.products.filter(data => {
-          return data.displayPrice === 25000 && data.categoryId === 1 && data.brand.brandName !== 'Axis'
+        this.state.brand.filter(data => {
+          return data.brandName === 'Telkomsel' || data.brandName === 'XL' || data.brandName === 'Indosat' || data.brandName === 'Tri' || data.brandName === 'Smartfren'
         })
         .map((data, i) => {
           const pulsaItems = [
-            {onClick: () => this.toggleBid(`${data.brand.brandName}`, `${data.productName}`, `${data.id}`, data.brand.brandLogo), img: data.brand.brandLogo, alt:`Logo ${data.brand.brandName}`, name: data.brand.brandName},
+            {onClick: () => this.toggleBid(`${data.brandName}`, data.id, data.brandLogo), img: data.brandLogo, alt:`Logo ${data.brandName}`, name: data.brandName},
           ]
           return pulsaItems.map(data => (
             <button key={i} onClick={data.onClick} className="homecontent__bottom__pulsa__button">
@@ -66,31 +85,17 @@ class HomeContent extends Component {
     }
   }
 
-  priceProduct() {
-    return this.state.defaultName &&
-    priceProduct(this.state.defaultName)
-  }
-
-  nameProduct() {
-    return this.state.defaultName &&
-    nameProduct(this.state.defaultName)
-  }
-
-  renderModalBid() {
-    if (this.state.openModal) {
-      return (
-        <ModalBid
-          isOpen={this.state.openModal}
-          toggle={this.toggleBid}
-          pulsaValue={this.state.pulsaValue}
-          defaultId={this.state.defaultId}
-          logo={this.state.logo}
-          defaultProduct={this.priceProduct()}
-          defaultName={this.nameProduct()}
-        />
-      )
-    }
-    return null;
+  getBrand = () => {
+    axios({
+      method: 'GET',
+      url: `${envChecker('api')}/api/brand`,
+    })
+    .then(response => {
+      this.setState({
+        brand: response.data
+      })
+    })
+    .catch(err => console.log('error'))
   }
 
   render() {
@@ -127,17 +132,17 @@ class HomeContent extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return {
-    products: state.productReducer.products,
+  return {
+    userInfo: state.userReducer.userInfo,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-    getProducts: () => dispatch(getProducts()),
+  return {
+    getUser: () => dispatch(getUser())
   }
 }
 
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(HomeContent);
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(HomeContent)
 
-export default connectComponent;
+export default connectComponent

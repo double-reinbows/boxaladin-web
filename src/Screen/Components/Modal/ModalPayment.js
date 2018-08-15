@@ -21,7 +21,8 @@ class ModalPayment extends Component{
       bank: '',
       notif: '',
       disabledCancel: false,
-      disabledButton: false
+      disabledButton: false,
+      disabled: true
     }
   }
   static propTypes = {
@@ -45,7 +46,7 @@ class ModalPayment extends Component{
         bankCode: this.state.bank
       }
       return data
-    } else if (this.props.text === 'buy pulsa'){
+    } else if (this.props.text === 'buy pulsa' || this.props.text === 'buy pulsa 10k'){
       let data = {
         productId: this.props.productId.id,
         phoneNumber: this.props.phone,
@@ -74,10 +75,7 @@ class ModalPayment extends Component{
         data: dataValue
       })
       .then(result => {
-        if (result.data.message === 'not verified user'){
-          this.props.setIsLoading(false)
-          return alert('Silahkan Verifikasi Email Anda')
-        } else if (result.data.error_code === "DUPLICATE_CALLBACK_VIRTUAL_ACCOUNT_ERROR") {
+        if (result.data.error_code === "DUPLICATE_CALLBACK_VIRTUAL_ACCOUNT_ERROR") {
           this.props.setIsLoading(false)
           this.setState({
             notif: true
@@ -85,9 +83,6 @@ class ModalPayment extends Component{
         } else if (result.data === 'saldo limited') {
           this.props.setIsLoading(false)
           alert('Masukkan Jumlah Sesuai Range Saldo')
-        } else if (result.data === 'not verified user'){
-          this.props.setIsLoading(false)
-          alert('Silahkan Verifikasi Email Anda')
         } else if (result.data === 'maksimum limit wallet') {
           this.props.setIsLoading(false)
           alert('Saldo Wallet Tidak Boleh Melebihi Rp. 2.000.000')
@@ -108,15 +103,9 @@ class ModalPayment extends Component{
         data: dataValue
       })
       .then(result => {
-        if (result.data.message === 'not verified user'){
-          this.props.setIsLoading(false)
-          return alert('Silahkan Verifikasi Email Anda')
-        } else if (result.data === 'saldo limited') {
+        if (result.data === 'saldo limited') {
           this.props.setIsLoading(false)
           alert('Masukkan Jumlah Sesuai Range Saldo')
-        } else if (result.data === 'not verified user'){
-          this.props.setIsLoading(false)
-          alert('Silahkan Verifikasi Email Anda')
         } else if (result.data === 'maksimum limit wallet') {
           this.props.setIsLoading(false)
           alert('Saldo Wallet Tidak Boleh Melebihi Rp. 2.000.000')
@@ -137,11 +126,7 @@ class ModalPayment extends Component{
         data: dataValue
       })
       .then(result => {
-        console.log('result wallet', result)
-        if (result.data.message === 'not verified user'){
-          this.props.setIsLoading(false)
-          return alert('Silahkan Verifikasi Email Anda')
-        } else if (result.data.message === 'saldo tidak mencukupi'){
+        if (result.data.message === 'saldo tidak mencukupi'){
           this.props.setIsLoading(false)
           alert(`saldo tidak mencukupi, saldo anda ${FormatRupiah(result.data.wallet)}`)
           this.setState({
@@ -169,6 +154,7 @@ class ModalPayment extends Component{
     this.setState({
       notif: '',
       bank: '',
+      disabled: true
     },
       () => this.props.toggle()
     )
@@ -231,27 +217,32 @@ class ModalPayment extends Component{
   handleChangeBank = (e) => {
     this.setState({
       bank: e.target.value,
+      disabled: false
     })
   }
 
   bankChoice = () => {
     let bank = []
-    if (this.props.text === 'buy wallet'){
-      bank = [
-        {value:'BNI', onClick: this.handleChangeBank},
-        {value:'BRI', onClick: this.handleChangeBank},
-        {value:'MANDIRI', onClick: this.handleChangeBank},
-        {value:'Alfamart', onClick: this.handleChangeBank},
-      ]
-    } else {
-      bank = [
-        {value:'BNI', onClick: this.handleChangeBank, disabled: false},
-        {value:'BRI', onClick: this.handleChangeBank, disabled: false},
-        {value:'MANDIRI', onClick: this.handleChangeBank, disabled: false},
-        {value:'Alfamart', onClick: this.handleChangeBank, disabled: false},
-        {value:'Wallet', onClick: this.handleChangeBank , disabled: this.state.disabledButton }
-      ]
-    }
+      if (this.props.text === 'buy wallet'){
+        bank = [
+          {value:'BNI', onClick: this.handleChangeBank},
+          {value:'BRI', onClick: this.handleChangeBank},
+          {value:'MANDIRI', onClick: this.handleChangeBank},
+          {value:'Alfamart', onClick: this.handleChangeBank},
+        ]
+      } else if (this.props.text === 'buy pulsa' || this.props.text === 'buy key'){
+        bank = [
+          {value:'BNI', onClick: this.handleChangeBank, disabled: false},
+          {value:'BRI', onClick: this.handleChangeBank, disabled: false},
+          {value:'MANDIRI', onClick: this.handleChangeBank, disabled: false},
+          {value:'Alfamart', onClick: this.handleChangeBank, disabled: false},
+          {value:'Wallet', onClick: this.handleChangeBank , disabled: this.state.disabledButton }
+        ]
+      } else if (this.props.text === 'buy pulsa 10k'){
+        bank = [
+          {value:'Wallet', onClick: this.handleChangeBank , disabled: false }
+        ]
+      }
 
     return(
       <div>
@@ -269,6 +260,7 @@ class ModalPayment extends Component{
   }
 
   render() {
+    // console.log(this.props.text)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">

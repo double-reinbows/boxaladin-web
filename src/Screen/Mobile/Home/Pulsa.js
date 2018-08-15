@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { getProducts } from '../../../actions/productAction';
-import { connect } from 'react-redux';
-import priceProduct from '../../../utils/splitPrice'
-import nameProduct from '../../../utils/splitProduct'
+import axios from 'axios';
+import envChecker from '../../../utils/envChecker'
 import ModalBid from '../../Components/Modal/ModalBid'
 
 class Pulsa extends Component {
@@ -10,35 +8,29 @@ class Pulsa extends Component {
     super(props);
     this.state = {
       openModal: false,
-      pulsaValue: '',
+      brandName: '',
       logo: '',
       defaultName: '',
       defaultId: 0,
+      brand: '',
     }
     this.toggleBid = this.toggleBid.bind(this);
 
   }
-  async toggleBid(pulsa, name, id, logo) {
+  async toggleBid(brandName, id, logo) {
     await this.setState({
-    pulsaValue: pulsa,
-    defaultName: name,
-    defaultId: id,
-    logo: logo
+      brandName: brandName,
+      defaultId: id,
+      logo: logo
   })
   await this.setState({
     openModal: !this.state.openModal,
   })
 }
 
-  priceProduct() {
-    return this.state.defaultName &&
-    priceProduct(this.state.defaultName)
-  }
-
-  nameProduct() {
-    return this.state.defaultName &&
-    nameProduct(this.state.defaultName)
-  }
+componentDidMount() {
+  this.getBrand()
+}
 
   renderModalBid() {
     if (this.state.openModal) {
@@ -46,29 +38,41 @@ class Pulsa extends Component {
         <ModalBid
           isOpen={this.state.openModal}
           toggle={this.toggleBid}
-          pulsaValue={this.state.pulsaValue}
+          brandName={this.state.brandName}
           defaultId={this.state.defaultId}
           logo={this.state.logo}
-          defaultProduct={this.priceProduct()}
-          defaultName={this.nameProduct()}
         />
       )
     }
     return null;
   }
 
+  getBrand = () => {
+    axios({
+      method: 'GET',
+      url: `${envChecker('api')}/api/brand`,
+    })
+    .then(response => {
+      this.setState({
+        brand: response.data
+      })
+    })
+    .catch(err => console.log('error'))
+  }
+
   pulsaItem1() {
-    if (this.props.products.length === 0) {
+    if (!this.state.brand) {
       return (
         <h1>Loading</h1>
       )
     } else {
       return(
-        this.props.products.filter(data => {
-          return data.displayPrice === 25000 && data.categoryId === 1 && data.brand.brandName !== 'Axis' && data.brand.brandName !== 'Smartfren' && data.brand.brandName !== 'Tri'
-        }).map((data, i) => {
+        this.state.brand.filter(data => {
+          return data.brandName === 'Telkomsel' || data.brandName === 'XL' || data.brandName === 'Indosat'
+        })
+        .map((data, i) => {
           const pulsaItems = [
-            {onClick: () => this.toggleBid(`${data.brand.brandName}`, `${data.productName}`, `${data.id}`, data.brand.brandLogo), img: data.brand.brandLogo, alt:`Logo ${data.brand.brandName}`, name: data.brand.brandName},
+            {onClick: () => this.toggleBid(`${data.brandName}`, data.id, data.brandLogo), img: data.brandLogo, alt:`Logo ${data.brandName}`, name: data.brandName},
           ]
           return pulsaItems.map(data => (
             <div key={i} className='mobile__pulsa__button__container'>
@@ -83,15 +87,18 @@ class Pulsa extends Component {
     }
   }
   pulsaItem2() {
-    if (this.props.products.length === 0) {
-      return null
+    if (!this.state.brand) {
+      return (
+        <h1>Loading</h1>
+      )
     } else {
       return(
-        this.props.products.filter(data => {
-          return data.displayPrice === 25000 && data.categoryId === 1 && data.brand.brandName !== 'Axis' && data.brand.brandName !== 'Telkomsel' && data.brand.brandName !== 'XL' && data.brand.brandName !== 'Indosat'
-        }).map((data, i) => {
+        this.state.brand.filter(data => {
+          return data.brandName === 'Tri' || data.brandName === 'Smartfren'
+        })
+        .map((data, i) => {
           const pulsaItems = [
-            {onClick: () => this.toggleBid(`${data.brand.brandName}`, `${data.productName}`, `${data.id}`, data.brand.brandLogo), img: data.brand.brandLogo, alt:`Logo ${data.brand.brandName}`, name: data.brand.brandName},
+            {onClick: () => this.toggleBid(`${data.brandName}`, data.id, data.brandLogo), img: data.brandLogo, alt:`Logo ${data.brandName}`, name: data.brandName},
           ]
           return pulsaItems.map(data => (
             <div key={i} className='mobile__pulsa__button__container'>
@@ -124,18 +131,4 @@ class Pulsa extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-	return {
-    products: state.productReducer.products,
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-	return {
-    getProducts: () => dispatch(getProducts()),
-  }
-}
-
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(Pulsa);
-
-export default connectComponent;
+export default Pulsa;

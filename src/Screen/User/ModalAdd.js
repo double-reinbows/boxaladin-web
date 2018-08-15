@@ -18,33 +18,31 @@ class ModalAdd extends Component {
 
 	submitPhone(e){
 		e.preventDefault()
-		// alert(this.state.numberToSend)
-
-			axios({
-				method: 'POST',
-				url: `${envChecker('api')}/phonenumber`,
-				data: {
-					phonenumber: this.state.numberToSend
-				},
-				headers: {
-					token: localStorage.getItem('token'),
-					key: process.env.REACT_APP_KEY
-				}
-			})
-			.then(response => {
-				if (response.data.message === 'data added') {
-          window.location.reload();
-				} else if (response.data === 'duplicate number') {
-					this.setState({
-						notif: 'No Hp Sudah Ada',
-					})
-				} else if (response.data.message === 'already use') {
-					this.setState({
-						notif: "No Hp Sudah Digunakan",
-					})
-				}
-			})
-			.catch(err => console.log(err))
+		axios({
+			method: 'POST',
+			url: `${envChecker('api')}/phonenumber`,
+			data: {
+				phonenumber: this.state.numberToSend
+			},
+			headers: {
+				token: localStorage.getItem('token'),
+				key: process.env.REACT_APP_KEY
+			}
+		})
+		.then(response => {
+			if (response.data.message === 'data added') {
+        window.location.reload();
+			} else if (response.data === 'duplicate number') {
+				this.setState({
+					notif: 'No Hp Sudah Ada',
+				})
+			} else if (response.data.message === 'already use') {
+				this.setState({
+					notif: "No Hp Sudah Digunakan",
+				})
+			}
+		})
+		.catch(err => console.log(err))
   }
 
   handlePhoneNum = (e) => {

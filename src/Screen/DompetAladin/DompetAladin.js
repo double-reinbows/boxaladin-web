@@ -212,7 +212,6 @@ class Dompet extends React.Component {
 
   submitForm(e) {
     e.preventDefault()
-    // console.log(this.props.keys[this.state.idKeySelected])
     if (this.state.idKeySelected === '') {
       return this.setState({
         notif: "Silahkan Memilih Jumlah Kunci.",

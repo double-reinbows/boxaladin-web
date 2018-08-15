@@ -37,6 +37,43 @@ class InsertPhone extends React.Component {
     })
   }
 
+  renderModalPayment() {
+    if (this.state.modalPayment) {
+      if (this.props.location.state.id === 36 || this.props.location.state.id === 37 || this.props.location.state.id === 38 || this.props.location.state.id === 39 || this.props.location.state.id === 40){
+        return (
+          <ModalPayment 
+            text='buy pulsa 10k'
+            fixedendpoint='virtualaccount'
+            retailendpoint='payment'
+            walletendpoint='walletpulsa'
+            isOpen={this.state.modalPayment} 
+            amount={aladinPrice} 
+            phone={this.state.phone}
+            productId={this.state.productUnlocked}
+            toggle={this.togglePayment} 
+            push={'payment'}
+        />
+        )
+      } else {
+        return (
+          <ModalPayment 
+            text='buy pulsa'
+            fixedendpoint='virtualaccount'
+            retailendpoint='payment'
+            walletendpoint='walletpulsa'
+            isOpen={this.state.modalPayment} 
+            amount={aladinPrice} 
+            phone={this.state.phone}
+            productId={this.state.productUnlocked}
+            toggle={this.togglePayment} 
+            push={'payment'}
+        />
+        )
+      }
+    }
+    return null;
+  }
+
   render() {
     return (
 		<div>
@@ -77,18 +114,7 @@ class InsertPhone extends React.Component {
 		</div>
 
 			<ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
-      <ModalPayment 
-        text='buy pulsa'
-        fixedendpoint='virtualaccount'
-        retailendpoint='payment'
-        walletendpoint='walletpulsa'
-        isOpen={this.state.modalPayment} 
-        amount={aladinPrice} 
-        phone={this.state.phone}
-        productId={this.state.productUnlocked}
-        toggle={this.togglePayment} 
-        push={'payment'}
-      />
+      {this.renderModalPayment()}
 		</div>
     )
   }
