@@ -11,7 +11,7 @@ class PaketData extends Component {
       openModal: false,
       brandName: '',
       logo: '',
-      defaultId: 0,
+      priceOrProductId: 0,
       brand: '',
     }
   }
@@ -23,7 +23,7 @@ class PaketData extends Component {
   toggleBid = async(brandName, id, logo) => {
     await this.setState({
     brandName: brandName,
-    defaultId: id,
+    priceOrProductId: id,
     logo: logo
   })
   await this.setState({
@@ -35,10 +35,12 @@ class PaketData extends Component {
     if (this.state.openModal) {
       return (
         <ModalBid
+          typeBuy ='buy paket data'
+          firebase='productsdummy'
           isOpen={this.state.openModal}
           toggle={this.toggleBid}
           brandName={this.state.brandName}
-          defaultId={this.state.defaultId}
+          priceOrProductId={this.state.priceOrProductId}
           logo={this.state.logo}
         />
       )

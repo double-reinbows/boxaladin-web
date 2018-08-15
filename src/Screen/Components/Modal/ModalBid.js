@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 import ModalConfirm from '../../Home/Modal/ModalConfirm';
-import { selectPriceID } from '../../../actions/productAction';
-import { TabContent, TabPane} from 'reactstrap';
+import { selectedPriceOrProductID } from '../../../actions/productAction';
 import priceProduct from '../../../utils/splitPrice'
 import productName from '../../../utils/splitProduct'
 import envChecker from '../../../utils/envChecker'
@@ -15,18 +14,15 @@ class ModalCheck extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pulsaPrice : '',
-      pulsaName: '',
+      productPrice : '',
+      productName: '',
       modalConfirm : false,
       disabled: false,
-      activeTab: '2',
-      defaultId: 0,
+      priceOrProductId: 0,
       defaultName: '',
       defaultPrice: '',
-      pulsa: [],
       paketData: []
     }
-    this.toggleTabs = this.toggleTabs.bind(this);
   }
 
   toggleConfirm = () => {
@@ -41,41 +37,26 @@ class ModalCheck extends Component {
   getProduct = () => {
     axios({
       method: 'GET',
-      url: `${envChecker('api')}/api/product/${this.props.defaultId}`,
+      url: `${envChecker('api')}/api/product/${this.props.priceOrProductId}`,
     })
     .then(response => {
       this.setState({
-        pulsa: response.data.pulsa,
         paketData: response.data.paketData,
-        defaultName: response.data.pulsa[0].productName,
-        defaultId: response.data.pulsa[0].id,
-        defaultPrice: response.data.pulsa[0].displayPrice
+        defaultName: response.data.paketData[0].productName,
+        priceOrProductId: response.data.paketData[0].id,
+        defaultPrice: response.data.paketData[0].displayPrice
       })
     })
     .catch(err => console.log('error'))
   }
 
   choicePulsa = () => {
-    const {activeTab, pulsa, paketData} = this.state
-    if (pulsa.length === 0 && paketData.length === 0){
-      return null
-    } else if (activeTab === '2' && paketData.length === 0){
+    const {paketData} = this.state
+    if (paketData.length === 0){
       return(
         <label>Produk Sedang Tidak Tersedia</label>
       )
     } else {
-      if (activeTab === '1'){
-        return pulsa.map((dataMap, i) => {
-          return(
-            <button onClick={(e) => this.pulsa(dataMap.id, dataMap)} className="modal__pulsa__content__2__button" key ={i}>
-              <div>
-                <img className="modal__pulsa__content__2__logo__image"  src={this.props.logo} alt={`Logo ${this.props.brandName}`}/>
-              </div>
-              {dataMap.displayPrice.toLocaleString(['ban', 'id'])}
-            </button>
-          )
-        })
-      } else if (activeTab === '2'){
         return paketData.map((dataMap, i) => {
           return(
             <button onClick={(e) => this.pulsa(dataMap.id, dataMap)} className="modal__pulsa__content__2__button" key ={i}>
@@ -86,13 +67,12 @@ class ModalCheck extends Component {
             </button>
           )
         })
-      }
     }
   }
 
   toggle = () => {
     this.setState({
-      pulsaName: '',
+      productName: '',
       disabled: true
     },
       () => this.props.toggle(),
@@ -101,12 +81,11 @@ class ModalCheck extends Component {
 
   pulsa = async (id, data) => {
     await this.setState({
-      defaultId: id,
-      pulsaPrice: data.displayPrice,
-      pulsaName: data.productName,
+      priceOrProductId: id,
+      productPrice: data.displayPrice,
+      productName: data.productName,
       disabled: false,
     })
-    // this.props.selectPriceID(this.state.defaultId)
   }
 
   handleNotLogin() {
@@ -115,9 +94,6 @@ class ModalCheck extends Component {
     } else {
       this.setState({
         modalConfirm: !this.state.modalConfirm,
-      }, () => {
-        // this.props.selectPriceID(this.state.defaultId)
-
       })
     }
   }
@@ -141,8 +117,8 @@ class ModalCheck extends Component {
       this.setState({
         activeTab: tab,
         category: category,
-        pulsaName: '',
-        pulsaPrice: '',
+        productName: '',
+        productPrice: '',
         disabled: true
       });
     }
@@ -150,47 +126,53 @@ class ModalCheck extends Component {
 
 
   render() {
+    console.log('props', this.props)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__pulsa">
         <div className="modal__pulsa__container">
-        <TabContent className="modal__pulsa__tabsContainer" activeTab={this.state.activeTab}>
-          <TabPane tabId="2">
+        <div className="modal__pulsa__tabsContainer">
           <div className="modal__pulsa__content">
           <div className="modal__pulsa__content__1">
             <div className="modal__pulsa__content__1__logo">
               <div>
                 {this.imageProps()}
               </div>
-              <label>{ !this.state.pulsaPrice ? (this.state.defaultPrice.toLocaleString(['ban', 'id'])) : this.state.pulsaPrice.toLocaleString(['ban', 'id'])}</label>
+              <label>{ !this.state.productPrice ? (this.state.defaultPrice.toLocaleString(['ban', 'id'])) : this.state.productPrice.toLocaleString(['ban', 'id'])}</label>
             </div>
           </div>
           <div className="modal__pulsa__content__2">
             {this.choicePulsa()}
           </div>
           </div>
-          </TabPane>
-        </TabContent>
+        </div>
           <div className="modal__pulsa__content__3">
             <div className="modal__pulsa__content__3__top">
               <div className="modal__pulsa__content__3__button">
                 <button className="modal__pulsa__content__3__button__x" onClick={this.toggle}>X</button>
               </div>
-              <label>{ !this.state.pulsaName ?
+              <label>{ !this.state.productName ?
                       productName(this.state.defaultName) :
-                      productName(this.state.pulsaName)}</label>
+                      productName(this.state.productName)}</label>
               <br />
-              <label>{ !this.state.pulsaName ?
+              <label>{ !this.state.productName ?
                       priceProduct(this.state.defaultName) : // penamaan nya masih salah .. ini buat harga
-                      priceProduct(this.state.pulsaName)}</label>
+                      priceProduct(this.state.productName)}</label>
             </div>
             <div >
-              <button value={this.state.defaultId} onClick={() => this.handleNotLogin()} disabled={this.state.disabled} type="button" className="modal__pulsa__content__3__button__price">
+              <button value={this.state.priceOrProductId} onClick={() => this.handleNotLogin()} disabled={this.state.disabled} type="button" className="modal__pulsa__content__3__button__price">
                 Intip Harga
                 <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/lock.png' alt="LockIcon" className="modal__pulsa__content__3__button__price__image"/>
               </button>
             </div>
           </div>
-          <ModalConfirm firebase={'productsdummy'} defaultId={this.state.defaultId} open={this.state.modalConfirm} toggle={this.toggleConfirm}/>
+          <ModalConfirm 
+            typeBuy={this.props.typeBuy} 
+            displayPrice={this.state.productPrice} 
+            firebase={this.props.firebase}
+            open={this.state.modalConfirm} 
+            toggle={this.toggleConfirm}
+            priceOrProductId={this.state.priceOrProductId}
+            />
         </div>
       </Modal>
     )
@@ -200,15 +182,13 @@ class ModalCheck extends Component {
 const mapStateToProps = (state) => {
   return {
     userInfo: state.userReducer.userInfo,
-    // products: state.productReducer.products,
-    selectedPriceID: state.productReducer.selectedPriceID
+    selectedPriceOrProductID: state.productReducer.selectedPriceOrProductID
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // getUser: () => dispatch(getUser()),
-    selectPriceID: (id) => dispatch(selectPriceID(id))
+    selectedPriceOrProductID: (id) => dispatch(selectedPriceOrProductID(id))
   }
 }
 

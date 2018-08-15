@@ -8,7 +8,7 @@ class Price extends Component {
     super(props);
     this.state = {
       openModal: false,
-      defaultId: 0,
+      priceOrProductId: 0,
       price: '',
       displayPrice: 0
     }
@@ -24,7 +24,7 @@ class Price extends Component {
   toggleConfirm = (id, displayPrice) => {
     this.setState({
       openModal: !this.state.openModal,
-      defaultId: id,
+      priceOrProductId: id,
       displayPrice
     })
   }
@@ -60,7 +60,14 @@ class Price extends Component {
         <div className="mobile__pulsa__content1">
           {this.price()}
         </div>
-        <ModalConfirm firebase={'pricedummy'} displayPrice={this.state.displayPrice} open={this.state.openModal} toggle={this.toggleConfirm} defaultId={this.state.defaultId}/>
+        <ModalConfirm 
+          typeBuy='buy pulsa'
+          firebase='pricedummy'
+          displayPrice={this.state.displayPrice} 
+          open={this.state.openModal} 
+          toggle={this.toggleConfirm} 
+          priceOrProductId={this.state.priceOrProductId}
+        />
       </div>
     );
   }

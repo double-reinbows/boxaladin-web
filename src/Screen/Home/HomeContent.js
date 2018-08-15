@@ -11,7 +11,7 @@ class HomeContent extends Component {
     this.state = {
       providerModal: false,
       openModal: false,
-      defaultId: 0,
+      priceOrProductId: 0,
       price: '',
     }
   }
@@ -29,7 +29,7 @@ class HomeContent extends Component {
   toggleConfirm = (id) => {
     this.setState({
       openModal: !this.state.openModal,
-      defaultId: id
+      priceOrProductId: id
     })
   }
 
@@ -88,7 +88,14 @@ class HomeContent extends Component {
           </div>
         </div>
         <ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
-        <ModalConfirm firebase={'pricedummy'} displayPrice={this.state.displayPrice} open={this.state.openModal} toggle={this.toggleConfirm} defaultId={this.state.defaultId}/>
+        <ModalConfirm 
+          typeBuy='buy pulsa'
+          firebase='pricedummy'
+          displayPrice={this.state.displayPrice} 
+          open={this.state.openModal} 
+          toggle={this.toggleConfirm} 
+          priceOrProductId={this.state.priceOrProductId}
+        />
       </div>
     )
   }

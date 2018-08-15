@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom'
 import { connect } from 'react-redux';
 import MediaQuery from 'react-responsive';
 
-import { selectPriceID } from '../../../actions/productAction';
+import { selectedPriceOrProductID } from '../../../actions/productAction';
 import helperAxios from '../../../utils/axios'
 
 class ModalConfirm extends Component {
@@ -15,7 +15,7 @@ class ModalConfirm extends Component {
   }
 
   checkAladinkey = async () => {
-    const {defaultId, userInfo ,selectedPriceID} = this.props
+    const {priceOrProductId, userInfo} = this.props
     if ( !userInfo.id && !localStorage.getItem('token')){
       alert ('Anda Belum Masuk')
     } else if ( userInfo.emailVerified === false) {
@@ -23,7 +23,7 @@ class ModalConfirm extends Component {
     } else if (userInfo.aladinKeys <= 0 ){
       alert("Anda Tidak Memiliki Aladin Key")
     } else {
-      if (defaultId === 1) {
+      if (priceOrProductId === 1) {
         if (userInfo.wallet < 10500){
           return alert('Saldo Wallet Anda Kurang Dari Rp.10.500,00')
         } else {
@@ -32,12 +32,13 @@ class ModalConfirm extends Component {
             if (data.data.message === 'not verified user') {
               alert("Silahkan Verifikasi Email Anda")
             } else if (data.data.aladinKeys > 0 && data.data.wallet >= 10500) {
-              await this.props.selectPriceID(defaultId)
+              await this.props.selectedPriceOrProductID(priceOrProductId)
               this.props.history.push('/bidding', {
                 displayPrice: this.props.displayPrice,
-                firebase: this.props.firebase
+                firebase: this.props.firebase,
+                typeBuy: this.props.typeBuy
               })
-              helperAxios('PUT', 'logopen'), {productId: selectedPriceID}
+              helperAxios('PUT', 'logopen',  {productId: priceOrProductId})
             } else {
               alert("Anda Tidak Memiliki Aladin Key")
             }
@@ -49,12 +50,13 @@ class ModalConfirm extends Component {
           if (data.data.message === 'not verified user') {
             alert("Silahkan Verifikasi Email Anda")
           } else if (data.data.aladinKeys > 0) {
-            await this.props.selectPriceID(defaultId)
+            await this.props.selectedPriceOrProductID(priceOrProductId)
             this.props.history.push('/bidding', {
               displayPrice: this.props.displayPrice,
-              firebase: this.props.firebase
+              firebase: this.props.firebase,
+              typeBuy: this.props.typeBuy
             })
-            helperAxios('PUT', 'logopen', {priceId: defaultId})
+            helperAxios('PUT', 'logopen', {priceId: priceOrProductId})
           } else {
             alert("Anda Tidak Memiliki Aladin Key")
           }
@@ -101,7 +103,7 @@ class ModalConfirm extends Component {
   }
 
   render() {
-    console.log('props', this.props)
+    console.log('props --->', this.props)
     return (
       <Modal isOpen={this.props.open} className="modal__confirm">
         <MediaQuery query="(max-device-width: 720px)">
@@ -118,13 +120,13 @@ class ModalConfirm extends Component {
 const mapStateToProps = (state) => {
   return {
     userInfo: state.userReducer.userInfo,
-    selectedPriceID: state.productReducer.selectedPriceID
+    selectedPriceOrProductID: state.productReducer.selectedPriceOrProductID
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectPriceID: (id) => dispatch(selectPriceID(id)),
+    selectedPriceOrProductID: (id) => dispatch(selectedPriceOrProductID(id)),
   }
 }
 

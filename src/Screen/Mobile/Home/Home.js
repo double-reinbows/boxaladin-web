@@ -6,7 +6,7 @@ class Home extends Component {
     super(props);
     this.state = {
       tab: 1,
-      tabActive1: 'active',
+      tabActive1: 'tabactive',
       tabActive2: '',
     }
   }
