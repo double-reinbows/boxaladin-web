@@ -248,22 +248,23 @@ class Game extends React.Component<Props, State> {
 			}
 		})
 		.then(({data}) => {
-			if (data.msg === 'Unverified') {
-				// console.log('VERIFIED', data);
-				this.setState({
-					startButton:(<button className="game__slotButton__start" onClick={ () => this.start() }>START</button>),
-				});
-			}
-			// else {
-			// 	// console.log('UNVERIFIED');
-			// 	this.setState({startButton: (<label className="game__textHeader">VERIFY NOMOR HAPE DAN EMAIL DAHULU UNTUK MAIN GAME</label>)});
+			// if (data.msg === 'Unverified') {
+			// 	// console.log('VERIFIED', data);
+			//
 			// }
+			// // else {
+			// // 	// console.log('UNVERIFIED');
+			// // 	this.setState({startButton: (<label className="game__textHeader">VERIFY NOMOR HAPE DAN EMAIL DAHULU UNTUK MAIN GAME</label>)});
+			// // }
+			this.setState({
+				startButton:(<button className="game__slotButton__start" onClick={ () => this.start() }>START</button>),
+			});
 			this.setState({...data});
 		});
 	}
 
 	componentDidMount() {
-		// this.props.getUser();
+		this.props.getUser();
 		this.getRules();
 	}
 
@@ -289,7 +290,7 @@ class Game extends React.Component<Props, State> {
         url: `${envChecker('api')}/users/checkuser`,
       })
       .then(data => {
-       	if (this.state.key > data.aladinKeys) {
+       if (this.state.key > data.aladinKeys) {
           return this.setState({
             notif: "Aladin Key Tidak Cukup",
           })
@@ -443,8 +444,11 @@ class Game extends React.Component<Props, State> {
 			});
 
 		gameResult.then((data) => {
+			console.log(data);
 			if (data.data.message === 'Cannot Play') {
 				this.setState({startButton: (<label className="game__textHeader">ANDA TIDAK MEMILIKI COIN</label>)});
+			} else if (data.data.message === 'User not found') {
+				this.setState({startButton: (<label className="game__textHeader">USER NOT FOUND</label>)});
 			} else { //User can play
 				this.start1();
 				this.start2();
