@@ -13,12 +13,6 @@ class ModalConfirm extends Component {
     }
   }
 
-  componentDidMount() {
-    if (!this.props.userInfo.id && localStorage.getItem('token')) {
-      this.props.getUser()
-    }
-  }
-
   checkAladinkey = () => {
     const {defaultId, userInfo} = this.props
     if ( !userInfo.id && !localStorage.getItem('token')){
