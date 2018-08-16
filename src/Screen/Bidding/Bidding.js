@@ -94,7 +94,7 @@ class Bidding extends React.Component {
         </div>
         </div>
       </div>
-      <ModalText text="Waktu lelang telah habis! Anda akan kembali pada halaman utama." color={'red'} background={'lightyellow'} isOpen={this.state.open} toggle={this.toggle}/>
+      <ModalText text="Waktu lelang telah habis! Anda akan kembali pada halaman utama." color={'red'} background={'#ff083'} isOpen={this.state.open} toggle={this.toggle}/>
     </div>
     )
   }

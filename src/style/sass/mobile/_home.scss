@@ -18,6 +18,12 @@
     margin: 10px;
     border: 1px solid grey;
     background-color: white;
+    &:active{
+      background-color: #ffe680;
+    }
+    &:focus{
+      background-color: #ffe680;
+    }
     &__image{
       width: 100%;
       height: 100%;
@@ -108,7 +114,7 @@
     border-radius: 9px;
     color: black;
     border: white;
-    background-color: lightgrey;
+    background-color:#d8d8d8;
     &:focus{
       outline: none;
     }
