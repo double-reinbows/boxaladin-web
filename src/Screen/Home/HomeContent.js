@@ -115,4 +115,3 @@ const mapDispatchToProps = (dispatch) => {
 const connectComponent = connect(mapStateToProps, mapDispatchToProps)(HomeContent)
 
 export default connectComponent
-

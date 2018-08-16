@@ -18,8 +18,6 @@ class ModalConfirm extends Component {
     const {priceOrProductId, userInfo} = this.props
     if ( !userInfo.id && !localStorage.getItem('token')){
       alert ('Anda Belum Masuk')
-    } else if ( userInfo.emailVerified === false) {
-      alert("Silahkan Verifikasi Email Anda")
     } else if (userInfo.aladinKeys <= 0 ){
       alert("Anda Tidak Memiliki Aladin Key")
     } else {

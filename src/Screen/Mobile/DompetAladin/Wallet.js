@@ -30,7 +30,7 @@ class Topup extends Component<State> {
       </div>
     ))
   }
-  
+
   walletButton = (price) => {
     this.setState({
       wallet: price,
@@ -39,7 +39,7 @@ class Topup extends Component<State> {
   }
 
   render() {
-    return (  
+    return (
       <div>
         <h2 className="mobile__pulsa__label">Pilih Nominal Top-up</h2>
         <div>

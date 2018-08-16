@@ -86,7 +86,7 @@ class ModalPayment extends Component{
     }
     if(callback) {
       (callback())
-    } 
+    }
   }
 
   getTransaction = async (axiosUrl, paymentType) => {
@@ -95,9 +95,7 @@ class ModalPayment extends Component{
     setIsLoading(true)
     HelperAxios('POST', axiosUrl, dataValue)
     .then(async result => {
-      if (result.data.message === 'not verified user'){
-        this.checkResponse({ warning: 'Silahkan Verifikasi Email Anda' })
-      } else if (result.data === 'saldo limited') {
+      if (result.data === 'saldo limited') {
         this.checkResponse({ warning: 'Masukkan Jumlah Sesuai Range Saldo' })
       } else if (result.data === 'maksimum limit wallet') {
         this.checkResponse({ warning: 'Saldo Wallet Tidak Boleh Melebihi Rp. 2.000.000'})
@@ -105,7 +103,7 @@ class ModalPayment extends Component{
         this.checkResponse({ warning: 'Provider Tidak ditemukkan'})
       } else if (result.data === 'product not active') {
         this.checkResponse({ warning: 'Provider Sedang Tidak Bisa digunakan'})
-      } 
+      }
 
       if (paymentType !== 'Wallet'){
         if (result.data.error_code === 'DUPLICATE_CALLBACK_VIRTUAL_ACCOUNT_ERROR'){
@@ -118,7 +116,7 @@ class ModalPayment extends Component{
       if (paymentType === 'Wallet') {
         if (result.data.message === 'saldo tidak mencukupi'){
           this.checkResponse(
-            {warning: `saldo tidak mencukupi, saldo anda ${FormatRupiah(result.data.wallet)}`, 
+            {warning: `saldo tidak mencukupi, saldo anda ${FormatRupiah(result.data.wallet)}`,
               callback: this.setState({ disabledButton: true, bank: '', disabled: true})}
           )
         } else if (result.data.message === 'topup sukses'){
@@ -250,7 +248,7 @@ class ModalPayment extends Component{
   }
 
   render() {
-    console.log('props payment', this.props)
+    // console.log(this.props.text)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">

@@ -557,7 +557,7 @@ class User extends React.Component {
 			</div>
 		)
   }
-  
+
   showMobileDataUser() {
 		return (
 			<div className="user__show__container">

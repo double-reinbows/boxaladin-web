@@ -145,11 +145,7 @@ class Dompet extends React.Component {
 
   upWallet = (e, payload) => {
     e.preventDefault()
-    if (this.props.userInfo.emailVerified === false) {
-      this.setState({
-        notif3: "Email Belum Terferivikasi.",
-      })
-    } else if (this.state.wallet === 0 || this.state.wallet === '') {
+    if (this.state.wallet === 0 || this.state.wallet === '') {
       this.setState({
         notif3: "Silahkan Memilih Jumlah Saldo.",
       })
@@ -224,11 +220,7 @@ class Dompet extends React.Component {
 
   submitForm(e) {
     e.preventDefault()
-    if (this.props.userInfo.emailVerified === false) {
-      this.setState({
-        notif: "Email Belum Terferivikasi.",
-      })
-    } else if (this.state.idKeySelected === '') {
+    if (this.state.idKeySelected === '') {
       return this.setState({
         notif: "Silahkan Memilih Jumlah Kunci.",
       })
@@ -300,11 +292,7 @@ class Dompet extends React.Component {
       url: `${envChecker('api')}/users/checkuser`,
     })
     .then(data => {
-      if (data.data.message === 'not verified user') {
-				return this.setState({
-					notif2: "Email Belum Terferivikasi.",
-        })      
-      } else if (this.state.key > data.aladinKeys) {
+      if (this.state.key > data.aladinKeys) {
 				return this.setState({
 					notif2: "Aladin Key Tidak Cukup",
 				})

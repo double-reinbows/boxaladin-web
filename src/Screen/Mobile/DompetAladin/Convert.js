@@ -29,7 +29,7 @@ class convert extends Component {
   }
 
   convertButton = (e) => {
-    this.setState({ 
+    this.setState({
       key:  e.target.value,
       disabled: false
     })
@@ -49,12 +49,12 @@ class convert extends Component {
       if (data.data.message === 'not verified user') {
 				return this.setState({
 					notif: "Email Belum Terferivikasi.",
-        })      
+        })
       } else if (this.state.key > data.data.aladinKeys) {
 				return this.setState({
 					notif: "Aladin Key Tidak Cukup",
 				})
-      } 
+      }
       else {
 				// REQUEST UPDATE ALADIN KEY DAN COIN KE API
 				axios({
