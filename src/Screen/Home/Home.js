@@ -7,7 +7,7 @@ import {loginAction} from '../../actions/'
 
 import HomeContent from './HomeContent'
 import BannerHome from './BannerHome'
-import MobileHome from '../Mobile/Home/Home'
+import MobileHome from '../Mobile/Home/MobileHome'
 
 type State = {
 };

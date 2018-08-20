@@ -12,8 +12,9 @@ class ModalConfirm extends Component {
     super(props);
     this.state = {
     }
+    this.checkAladinkey = this.checkAladinkey.bind(this);
   }
-
+s
   checkAladinkey = async () => {
     const {priceOrProductId, userInfo} = this.props
     if ( !userInfo.id && !localStorage.getItem('token')){
@@ -22,15 +23,16 @@ class ModalConfirm extends Component {
       alert("Anda Tidak Memiliki Aladin Key")
     } else {
       if (priceOrProductId === 1) {
-        if (userInfo.wallet < 10500){
+        if (userInfo.wallet < 10000){
           return alert('Saldo Wallet Anda Kurang Dari Rp.10.500,00')
         } else {
           helperAxios('GET', 'users/checkuser')
           .then( async data => {
             if (data.data.message === 'not verified user') {
               alert("Silahkan Verifikasi Email Anda")
-            } else if (data.data.aladinKeys > 0 && data.data.wallet >= 10500) {
+            } else if (data.data.aladinKeys > 0 && data.data.wallet >= 10000) {
               await this.props.selectedPriceOrProductID(priceOrProductId)
+              console.log('modalconfirmstate', this.props)
               this.props.history.push('/bidding', {
                 displayPrice: this.props.displayPrice,
                 firebase: this.props.firebase,

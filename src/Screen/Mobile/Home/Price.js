@@ -14,12 +14,12 @@ class Price extends Component {
       displayPrice: 0
     }
   }
-  
+
   componentDidMount() {
     const { priceData, getPrices } = this.props
     if (priceData.length === 0){
       getPrices()
-    } 
+    }
   }
 
   toggleConfirm = (id, displayPrice) => {
@@ -56,17 +56,18 @@ class Price extends Component {
           <img alt='Indosat Icon' className='mobile-home-image' src="https://s3-ap-southeast-1.amazonaws.com/iconpulsa/Indosat.svg"/>
           <img alt='Tri Icon' className='mobile-home-image' src="https://s3-ap-southeast-1.amazonaws.com/iconpulsa/Tri.svg"/>
           <img alt='Smartfren Icon' className='mobile-home-image' src="https://s3-ap-southeast-1.amazonaws.com/iconpulsa/Smartfren.svg"/>
+          <img alt='Axis Icon' className='mobile-home-image' src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/Axis.png"/>
         </div>
         <h2 className="mobile__pulsa__label">Pilih Nominal Pulsa mu</h2>
         <div className="mobile__pulsa__content1">
           {this.price()}
         </div>
-        <ModalConfirm 
+        <ModalConfirm
           typeBuy='buy pulsa'
           firebase= {envChecker('price')}
-          displayPrice={this.state.displayPrice} 
-          open={this.state.openModal} 
-          toggle={this.toggleConfirm} 
+          displayPrice={this.state.displayPrice === undefined ? 0 : this.state.displayPrice}
+          open={this.state.openModal}
+          toggle={this.toggleConfirm}
           priceOrProductId={this.state.priceOrProductId}
         />
       </div>

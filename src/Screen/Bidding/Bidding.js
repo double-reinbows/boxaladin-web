@@ -139,7 +139,7 @@ class Bidding extends React.Component {
       </div>
     )
   }
-  
+
 
   render() {
     return (
@@ -203,7 +203,6 @@ class Bidding extends React.Component {
       method: 'PUT',
       url: `${envChecker('api')}/lognoinvoice/${this.props.selectedPriceOrProductID}`,
     })
-
     this.props.history.push('/insertphone', {
       aladinPrice: this.state.productUnlocked.aladinPrice,
       typeBuy: this.props.location.state.typeBuy,

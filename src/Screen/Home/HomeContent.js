@@ -13,6 +13,7 @@ class HomeContent extends Component {
       openModal: false,
       openModalBid: false,
       priceOrProductId: 0,
+      displayPrice: 0,
       price: '',
       tab: 1,
       tabActive1: 'tabactive',
@@ -150,7 +151,7 @@ renderModalBid() {
   }
 
   changeTab = (value) => {
-    this.setState({ 
+    this.setState({
       tab: value,
       tabActive1: this.state.tabActive2,
       tabActive2: this.state.tabActive1
@@ -186,12 +187,12 @@ renderModalBid() {
           </div>
         </div>
         <ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
-        <ModalConfirm 
+        <ModalConfirm
           typeBuy='buy pulsa'
           firebase= {envChecker('price')}
-          displayPrice={this.state.displayPrice} 
-          open={this.state.openModal} 
-          toggle={this.toggleConfirm} 
+          displayPrice={this.state.displayPrice}
+          open={this.state.openModal}
+          toggle={this.toggleConfirm}
           priceOrProductId={this.state.priceOrProductId}
         />
         {this.renderModalBid()}
