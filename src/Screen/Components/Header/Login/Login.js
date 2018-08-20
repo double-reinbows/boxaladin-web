@@ -15,7 +15,7 @@ class Login extends Component {
     super(props)
     this.state = {
       password: '',
-      email: '',
+      number: '',
       notif: ''
     }
   }
@@ -25,12 +25,12 @@ class Login extends Component {
     this.props.setIsLoading(true)
     axios({
       method: 'POST',
-      url: `${envChecker('api')}/signin`,
+      url: `${envChecker('api')}/v2/signin`,
 			headers: {
         key: process.env.REACT_APP_KEY
       },
       data: {
-        email: this.state.email,
+        number: this.state.number,
         password: this.state.password
       },
 		})
@@ -79,8 +79,8 @@ class Login extends Component {
         <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
 
           <div className="form-group Login__Form">
-            <label>Email : </label>
-            <input name="email" type="email" className="form-control inputz" aria-describedby="emailHelp" placeholder="Masukkan email kamu*" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
+            <label>Nomor HP : </label>
+            <input name="number" type="number" className="form-control inputz" aria-describedby="numberHelp" placeholder="Masukkan nomor handphone kamu*" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
           </div>
 
           <div className="form-group Login__Form">
