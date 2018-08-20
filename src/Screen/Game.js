@@ -256,10 +256,11 @@ class Game extends React.Component<Props, State> {
 			// // 	// console.log('UNVERIFIED');
 			// // 	this.setState({startButton: (<label className="game__textHeader">VERIFY NOMOR HAPE DAN EMAIL DAHULU UNTUK MAIN GAME</label>)});
 			// // }
-			this.setState({
-				startButton:(<button className="game__slotButton__start" onClick={ () => this.start() }>START</button>),
-			});
+
 			this.setState({...data});
+		});
+		this.setState({
+			startButton:(<button className="game__slotButton__start" onClick={ () => this.start() }>START</button>),
 		});
 	}
 
