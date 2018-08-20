@@ -2,12 +2,15 @@ import React,{Component} from 'react';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import MediaQuery from 'react-responsive';
+import { withRouter } from 'react-router-dom'
 
 import ModalConfirm from '../../Home/Modal/ModalConfirm';
 import { selectedPriceOrProductID } from '../../../actions/productAction';
 import priceProduct from '../../../utils/splitPrice'
 import productName from '../../../utils/splitProduct'
 import envChecker from '../../../utils/envChecker'
+import helperAxios from '../../../utils/axios'
 
 class ModalCheck extends Component {
 
@@ -70,6 +73,23 @@ class ModalCheck extends Component {
     }
   }
 
+  mobileChoicePulsa = () => {
+    const {paketData} = this.state
+    if (paketData.length === 0){
+      return(
+        <label>Produk Sedang Tidak Tersedia</label>
+      )
+    } else {
+        return paketData.map((dataMap, i) => {
+          return(
+            <button onClick={(e) => this.mobilePulsa(dataMap.id, dataMap)} className="mobile-modalBid__button" key ={i}>
+              {dataMap.displayPrice.toLocaleString(['ban', 'id'])}
+            </button>
+          )
+        })
+    }
+  }
+
   toggle = () => {
     this.setState({
       productName: '',
@@ -80,6 +100,16 @@ class ModalCheck extends Component {
   }
 
   pulsa = async (id, data) => {
+    await this.setState({
+      priceOrProductId: id,
+      productPrice: data.displayPrice,
+      productName: data.productName,
+      disabled: false,
+    })
+  }
+
+  mobilePulsa = async (id, data) => {
+    await this.props.selectedPriceOrProductID(id)
     await this.setState({
       priceOrProductId: id,
       productPrice: data.displayPrice,
@@ -124,9 +154,7 @@ class ModalCheck extends Component {
     }
   }
 
-
-  render() {
-    console.log('props', this.props)
+  renderModalBid = () => {
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__pulsa">
         <div className="modal__pulsa__container">
@@ -177,6 +205,64 @@ class ModalCheck extends Component {
       </Modal>
     )
   }
+
+
+  renderMobileModalBid = () => {
+    return (
+      <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="mobile-modalBid">
+        <div className="mobile-modalBid__container">
+        {this.imageProps()}
+          <div className="mobile-modalBid__content">
+            {this.mobileChoicePulsa()}
+          </div>
+          <label style={{marginTop : '3%'}}>1x intip = 1 kunci aladin</label>
+          <br/>
+          <label>Lanjutkan ?</label>
+          <div className="mobile-modalBid__button__container">
+            <button className="mobile-modalBid__button__next" onClick={this.checkAladinkey}>Ya</button>
+            <button style={{color:'red'}} className="mobile-modalBid__button__next" onClick={this.toggle}>Tidak</button>
+          </div>
+        </div>
+      </Modal>
+    )
+  }
+
+  checkAladinkey = () => {
+    const {priceOrProductId, userInfo} = this.props
+    if ( !userInfo.id && !localStorage.getItem('token')){
+      alert ('Anda Belum Masuk')
+    } else if (userInfo.aladinKeys <= 0 ){
+      alert("Anda Tidak Memiliki Aladin Key")
+    } else {
+      helperAxios('GET', 'users/checkuser')
+      .then( data => {
+        if (data.data.aladinKeys > 0) {
+          this.props.history.push('/bidding', {
+            displayPrice: this.state.productPrice,
+            firebase: this.props.firebase,
+            typeBuy: this.props.typeBuy
+          })
+          helperAxios('PUT', 'logopen', {priceId: priceOrProductId})
+        } else {
+          alert("Anda Tidak Memiliki Aladin Key")
+        }
+      })
+    }
+  }
+
+  render() {
+    console.log(this.props)
+    return (
+      <div>
+        <MediaQuery query="(max-device-width: 720px)">
+          {this.renderMobileModalBid()}
+        </MediaQuery>
+        <MediaQuery query="(min-device-width: 721px)">
+          {this.renderModalBid()}
+        </MediaQuery>
+      </div>
+      )
+  }
 }
 
 const mapStateToProps = (state) => {
@@ -194,4 +280,4 @@ const mapDispatchToProps = (dispatch) => {
 
 const connectComponent = connect(mapStateToProps, mapDispatchToProps)(ModalCheck)
 
-export default connectComponent
+export default withRouter(connectComponent)

@@ -36,7 +36,7 @@ class PaketData extends Component {
       return (
         <ModalBid
           typeBuy ='buy paket data'
-          firebase='productsdummy'
+          firebase={envChecker('firebase')}
           isOpen={this.state.openModal}
           toggle={this.toggleBid}
           brandName={this.state.brandName}

@@ -36,7 +36,7 @@ class ModalConfirm extends Component {
                 firebase: this.props.firebase,
                 typeBuy: this.props.typeBuy
               })
-              helperAxios('PUT', 'logopen',  {productId: priceOrProductId})
+              helperAxios('PUT', 'logopen',  {priceId: priceOrProductId})
             } else {
               alert("Anda Tidak Memiliki Aladin Key")
             }
@@ -101,7 +101,6 @@ class ModalConfirm extends Component {
   }
 
   render() {
-    console.log('props --->', this.props)
     return (
       <Modal isOpen={this.props.open} className="modal__confirm">
         <MediaQuery query="(max-device-width: 720px)">

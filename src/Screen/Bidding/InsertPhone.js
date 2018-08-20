@@ -96,9 +96,9 @@ class InsertPhone extends React.Component {
           <ModalPayment 
             typeBuy='buy pulsa'
             id={this.props.location.state.id}
-            fixedendpoint='virtualaccountv2'
-            retailendpoint='paymentv2'
-            walletendpoint='walletpulsav2'
+            fixedendpoint='v2/virtualaccount'
+            retailendpoint='v2/payment'
+            walletendpoint='v2/walletpulsa'
             isOpen={this.state.modalPayment} 
             amount={this.props.location.state.aladinPrice} 
             phone={SplitPhone(this.state.phone)}
@@ -117,7 +117,7 @@ class InsertPhone extends React.Component {
             retailendpoint='payment'
             walletendpoint='walletpulsa'
             isOpen={this.state.modalPayment} 
-            amount={this.props.location.state.aladinPrice} 
+            amount={this.props.location.state.aladinPrice}
             phone={SplitPhone(this.state.phone)}
             toggle={this.togglePayment} 
             push={'payment'}
@@ -195,8 +195,6 @@ class InsertPhone extends React.Component {
   }
 
   render() {
-    console.log('props insertphone', this.props)
-    console.log(this.state)
     return (
       <div>
         <MediaQuery query="(max-device-width: 720px)">

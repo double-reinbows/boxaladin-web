@@ -445,7 +445,6 @@ class Game extends React.Component<Props, State> {
 			});
 
 		gameResult.then((data) => {
-			console.log(data);
 			if (data.data.message === 'Cannot Play') {
 				this.setState({startButton: (<label className="game__textHeader">ANDA TIDAK MEMILIKI COIN</label>)});
 			} else if (data.data.message === 'User not found') {

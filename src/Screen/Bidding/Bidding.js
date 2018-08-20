@@ -15,8 +15,8 @@ class Bidding extends React.Component {
     super(props)
     this.state = {
       productUnlocked: {},
-			count: 9999,
-      initCount: 9999,
+			count: 15,
+      initCount: 15,
       open: false,
       priceComp : true,
     }
@@ -94,7 +94,7 @@ class Bidding extends React.Component {
         </div>
         </div>
       </div>
-      <ModalText text="Waktu lelang telah habis! Anda akan kembali pada halaman utama." color={'red'} background={'#ff083'} isOpen={this.state.open} toggle={this.toggle}/>
+      <ModalText text="Waktu lelang telah habis! Anda akan kembali pada halaman utama." color={'red'} background={'#FFF0B3'} isOpen={this.state.open} toggle={this.toggle}/>
     </div>
     )
   }
@@ -135,14 +135,13 @@ class Bidding extends React.Component {
             <button className="mobile-bidding__button" onClick={() => this.buy()}>Beli Sekarang</button>
             <button className="mobile-bidding__button batal" style={{color:'red'}} onClick={() => this.cancel()}>Batal</button>
           </div>
-          <ModalText text="Waktu lelang telah habis! Anda akan kembali pada halaman utama." color={'red'} background={'lightyellow'} isOpen={this.state.open} toggle={this.toggle}/>
+          <ModalText text="Waktu lelang telah habis! Anda akan kembali pada halaman utama." color={'red'} background={'#FFF0B3'} isOpen={this.state.open} toggle={this.toggle}/>
       </div>
     )
   }
   
 
   render() {
-    console.log(this.props)
     return (
     <div>
       <MediaQuery query="(max-device-width: 720px)">
@@ -267,7 +266,8 @@ class Bidding extends React.Component {
         method: 'POST',
         url: `${envChecker('api')}/watching`,
         data: {
-          priceId: selectedPriceOrProductID,
+          id: selectedPriceOrProductID,
+          firebase: this.props.location.state.firebase
         }
       })
       productRef.on('value',async snap => {

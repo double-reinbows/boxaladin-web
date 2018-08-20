@@ -89,7 +89,7 @@
   &-container{
     margin-top: 40%;
     border: 1px solid grey;
-    background-color: lightgray;
+    background-color:#F2F2F2;
     padding: 3%;
     font-size: 16px;
   }
@@ -149,4 +149,43 @@
 .tabactive{
   background-color: black;
   color: white
+}
+
+.mobile-modalBid{
+  margin: 1.75rem auto;
+  &__container{
+    margin: auto;
+    text-align: center;
+    margin-top: 40%;
+    border: 1px solid grey;
+    background-color:#F2F2F2;
+    padding: 3%;
+    font-size: 16px;
+    max-width: 70%
+  }
+  &__content{
+    display: flex;
+    flex-direction: column;
+  }
+  &__button{
+    width: 50%;
+    margin: auto;
+    border: 1px solid gray;
+    margin-top: 5%;
+    &:focus{
+      outline: none;
+      border: 2px solid;
+      background-color: #FFE680;
+    }
+    &__container{
+      display: flex;
+      justify-content: space-around;
+    }
+    &__next{
+      width: 40%;
+      background-color:#FFCD05;
+      border-radius: 5px;
+      border: none;
+    }
+  }
 }

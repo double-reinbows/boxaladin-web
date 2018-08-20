@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ModalConfirm from '../../Home/Modal/ModalConfirm'
 import { getPrices } from '../../../actions/priceAction'
+import envChecker from '../../../utils/envChecker'
 
 class Price extends Component {
   constructor(props) {
@@ -62,7 +63,7 @@ class Price extends Component {
         </div>
         <ModalConfirm 
           typeBuy='buy pulsa'
-          firebase='pricedummy'
+          firebase= {envChecker('price')}
           displayPrice={this.state.displayPrice} 
           open={this.state.openModal} 
           toggle={this.toggleConfirm} 

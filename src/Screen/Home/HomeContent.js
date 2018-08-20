@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import envChecker from '../../utils/envChecker'
 import ProviderModal from './Modal/ProviderModal';
 import ModalConfirm from './Modal/ModalConfirm'
+import ModalBid from '../Components/Modal/ModalBid'
 
 class HomeContent extends Component {
   constructor(props) {
@@ -11,13 +12,21 @@ class HomeContent extends Component {
     this.state = {
       providerModal: false,
       openModal: false,
+      openModalBid: false,
       priceOrProductId: 0,
       price: '',
+      tab: 1,
+      tabActive1: 'tabactive',
+      tabActive2: '',
+      brand: '',
+      brandName: '',
+      brandId: 0
     }
   }
 
   componentDidMount() {
     this.getPrice()
+    this.getBrand()
   }
 
   toggle = () =>  {
@@ -33,6 +42,34 @@ class HomeContent extends Component {
     })
   }
 
+  toggleBid = async (brandName, id, logo) => {
+    await this.setState({
+    brandName: brandName,
+    brandId: id,
+    logo: logo
+  })
+  await this.setState({
+    openModalBid: !this.state.openModalBid,
+  })
+}
+
+renderModalBid() {
+  if (this.state.openModalBid) {
+    return (
+      <ModalBid
+        typeBuy ='buy paket data'
+        firebase={envChecker('firebase')}
+        isOpen={this.state.openModalBid}
+        toggle={this.toggleBid}
+        brandName={this.state.brandName}
+        priceOrProductId={this.state.brandId}
+        logo={this.state.logo}
+      />
+    )
+  }
+  return null;
+}
+
   price() {
     const { price } = this.state
     if (!price) {
@@ -43,8 +80,33 @@ class HomeContent extends Component {
       return(
         price.map((data, index) => {
           return(
-            <button key={index} onClick={() => this.toggleConfirm(data.id)} className="homecontent__bottom__pulsa__button">{data.displayPrice}</button>
+            <button key={index} onClick={() => this.toggleConfirm(data.id)} className="homecontent__bottom__pulsa__button baBackground">{data.displayPrice}</button>
           )
+        })
+      )
+    }
+  }
+
+  paketData() {
+    if (!this.state.brand) {
+      return (
+        <h1>Loading</h1>
+      )
+    } else {
+      return(
+        this.state.brand.filter(data => {
+          return data.brandName === 'Telkomsel' || data.brandName === 'XL' || data.brandName === 'Indosat' || data.brandName === 'Tri' || data.brandName === 'Smartfren'
+        })
+        .map((data, i) => {
+          const pulsaItems = [
+            {onClick: () => this.toggleBid(`${data.brandName}`, data.id, data.brandLogo), img: data.brandLogo, alt:`Logo ${data.brandName}`, name: data.brandName},
+          ]
+          return pulsaItems.map(data => (
+            <button key={i} onClick={data.onClick} className="homecontent__bottom__pulsa__button">
+              <img className="homecontent__bottom__pulsa__button__image" src={data.img} alt={data.alt}/>
+            </button>
+          )
+        )
         })
       )
     }
@@ -61,6 +123,39 @@ class HomeContent extends Component {
       })
     })
     .catch(err => console.log('error'))
+  }
+
+  getBrand = () => {
+    axios({
+      method: 'GET',
+      url: `${envChecker('api')}/api/brand`,
+    })
+    .then(response => {
+      this.setState({
+        brand: response.data
+      })
+    })
+    .catch(err => console.log('error'))
+  }
+
+  renderTab = () => {
+    const {tab} = this.state
+    switch (tab) {
+      case 1:
+        return this.price()
+      case 2:
+        return this.paketData()
+      default:
+        return tab
+    }
+  }
+
+  changeTab = (value) => {
+    this.setState({ 
+      tab: value,
+      tabActive1: this.state.tabActive2,
+      tabActive2: this.state.tabActive1
+    });
   }
 
   render() {
@@ -80,9 +175,13 @@ class HomeContent extends Component {
           </div>
         </div>
         <div className="homecontent__bottom">
-          <div className="homecontent__bottom__pulsa">
-          {this.price()}
-          </div>
+        <div className='home-tab-container'>
+          <button className={`${this.state.tabActive1} home-tab`} onClick={() => this.changeTab(1)}>PULSA</button>
+          <button className={`${this.state.tabActive2} home-tab`} onClick={() => this.changeTab(2)}>PAKET DATA</button>
+        </div>
+        <div className="homecontent__bottom__pulsa">
+          {this.renderTab()}
+        </div>
           <div className="homecontent__bottom__check">
             <button onClick={this.toggle} className="homecontent__bottom__check__button">CEK PROVIDER-MU</button>
           </div>
@@ -90,12 +189,13 @@ class HomeContent extends Component {
         <ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
         <ModalConfirm 
           typeBuy='buy pulsa'
-          firebase='pricedummy'
+          firebase= {envChecker('price')}
           displayPrice={this.state.displayPrice} 
           open={this.state.openModal} 
           toggle={this.toggleConfirm} 
           priceOrProductId={this.state.priceOrProductId}
         />
+        {this.renderModalBid()}
       </div>
     )
   }
