@@ -5,7 +5,6 @@ import envChecker from '../../utils/envChecker'
 import ProviderModal from './Modal/ProviderModal';
 import ModalConfirm from './Modal/ModalConfirm'
 import ModalBid from '../Components/Modal/ModalBid'
-
 class HomeContent extends Component {
   constructor(props) {
     super(props);
@@ -80,7 +79,7 @@ renderModalBid() {
       return(
         price.map((data, index) => {
           return(
-            <button key={index} onClick={() => this.toggleConfirm(data.id)} className="homecontent__bottom__pulsa__button baBackground">{data.displayPrice}</button>
+            <button key={index} onClick={() => this.toggleConfirm(data.id)} className="homecontent__bottom__pulsa__button baBackground">{data.displayPrice.toLocaleString(['ban', 'id'])}</button>
           )
         })
       )
@@ -95,7 +94,7 @@ renderModalBid() {
     } else {
       return(
         this.state.brand.filter(data => {
-          return data.brandName === 'Telkomsel' || data.brandName === 'XL' || data.brandName === 'Indosat' || data.brandName === 'Tri' || data.brandName === 'Smartfren'
+          return data.brandName === 'Telkomsel' || data.brandName === 'XL' || data.brandName === 'Indosat' || data.brandName === 'Tri'
         })
         .map((data, i) => {
           const pulsaItems = [

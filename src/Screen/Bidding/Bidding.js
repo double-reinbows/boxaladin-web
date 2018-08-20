@@ -270,7 +270,7 @@ class Bidding extends React.Component {
           firebase: this.props.location.state.firebase
         }
       })
-      productRef.on('value',async snap => {
+      await productRef.on('value',async snap => {
         const productValue = {
           aladinPrice: snap.val().aladinPrice,
           watching: snap.val().watching
@@ -281,7 +281,7 @@ class Bidding extends React.Component {
       })
 
       this.runTimer()
-      this.props.setIsLoading(false)
+      await this.props.setIsLoading(false)
     } else if (localStorage.getItem('token') !== null) {
       this.props.setIsLoading(true)
       const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)

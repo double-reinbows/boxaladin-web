@@ -53,9 +53,12 @@
         font-size: 40px;
         &:hover {
           cursor: pointer;
-          background-color: #ffe680;
         }
         &:focus{
+          outline: none;
+          background-color: #ffe680;
+        }
+        &:active{
           outline: none;
           background-color: #ffe680;
         }
