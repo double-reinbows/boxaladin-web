@@ -198,7 +198,6 @@ class InsertPhone extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <MediaQuery query="(max-device-width: 720px)">

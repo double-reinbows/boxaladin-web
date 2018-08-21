@@ -253,7 +253,6 @@ class ModalCheck extends Component {
   }
 
   render() {
-    console.log('modaBid ====>',this.props)
     return (
       <div>
         <MediaQuery query="(max-device-width: 720px)">
