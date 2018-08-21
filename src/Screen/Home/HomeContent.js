@@ -158,7 +158,7 @@ renderModalBid() {
       case 2:
         return (
           <div>
-            <h2 className="homecontent__bottom__pulsa__label">Pilih Paket Datamu</h2>
+            <h2 className="homecontent__bottom__pulsa__label">Pilih Provider Datamu</h2>
             <div className="homecontent__bottom__pulsa">
               {this.paketData()}
             </div>

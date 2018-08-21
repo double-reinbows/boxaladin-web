@@ -215,7 +215,7 @@ class ModalPayment extends Component{
         bank = [
           {value:'Wallet', onClick: this.handleChangeBank , disabled: false }
         ]
-      } else if (typeBuy === 'buy pulsa' || typeBuy === 'buy key' || typeBuy === 'buy paket data'){
+      } else {
         bank = [
           ...listBank,
           {value:'Wallet', onClick: this.handleChangeBank , disabled: this.state.disabledButton }
