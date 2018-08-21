@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Button } from 'reactstrap'
 import MediaQuery from 'react-responsive';
 import ModalPayment from '../Components/Modal/ModalPayment'
 import ProviderModal from '../Home/Modal/ProviderModal';
@@ -12,7 +11,7 @@ class InsertPhone extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      phone: '',
+      phone: '08',
       providerModal: false,
       disabled: true,
       modalPayment: false,
@@ -47,24 +46,28 @@ class InsertPhone extends React.Component {
 		)
 	}
 
-	percentagePrice() {
-		if (this.props.location.state.aladinPrice === 'undefined' && this.props.location.state.displayPrice === 'undefined') {
-			return null
-		} else {
-			return (percentagePrice(this.props.location.state.aladinPrice, this.props.location.state.displayPrice))
-		}
-	}
-
 	cancel() {
 		// this.stopWatchProductPrice(this.props.selectedPriceID)
 		this.props.history.push('/home')
 	}
 
   handleChangePhone(e) {
-    this.setState({
-      phone: e.target.value,
-      disabled: false
-    })
+
+    let num = e.target.value.split('');
+    if (num.length < 2) {
+      this.setState({notif: 'Nomor Anda harus mulai dengan 08.', disabled: true});
+    } else if(num[0] !== '0' || num[1] !== '8') {
+      this.setState({phone: '08', disabled: true});
+    } else if (num.length > 13) {
+      this.setState({notif: 'Nomor Anda telah mencapai panjang maksimal.', disabled: true});
+    } else {
+      if (num.length >= 11) { //number long enough so enable submit button
+        this.setState({phone: num.join(''), notif: '', disabled: false});
+      } else { //number NOT long enough so disable submit button
+        this.setState({phone: num.join(''), notif: '', disabled: true});
+      }
+    }
+
   }
 
   handleBack() {
@@ -83,7 +86,7 @@ class InsertPhone extends React.Component {
       })
       this.togglePayment()
     } else if ( provider === 'Unknown Provider'){
-      this.setState({ 
+      this.setState({
         notif: "Nomor yang kamu masukkan tidak terdaftar. Mohon periksa kembali"
       });
     }
@@ -93,16 +96,16 @@ class InsertPhone extends React.Component {
     if (this.state.modalPayment) {
       if (this.props.location.state.typeBuy === 'buy pulsa'){
         return (
-          <ModalPayment 
+          <ModalPayment
             typeBuy='buy pulsa'
             id={this.props.location.state.id}
             fixedendpoint='v2/virtualaccount'
             retailendpoint='v2/payment'
             walletendpoint='v2/walletpulsa'
-            isOpen={this.state.modalPayment} 
-            amount={this.props.location.state.aladinPrice} 
+            isOpen={this.state.modalPayment}
+            amount={this.props.location.state.aladinPrice}
             phone={SplitPhone(this.state.phone)}
-            toggle={this.togglePayment} 
+            toggle={this.togglePayment}
             push={'payment'}
             brand={this.state.brand}
             brandId={this.state.brandId}
@@ -110,16 +113,16 @@ class InsertPhone extends React.Component {
         )
       } else if (this.props.location.state.typeBuy === 'buy paket data'){
         return (
-          <ModalPayment 
+          <ModalPayment
             typeBuy = 'buy paket data'
             id={this.props.location.state.id}
             fixedendpoint='virtualaccount'
             retailendpoint='payment'
             walletendpoint='walletpulsa'
-            isOpen={this.state.modalPayment} 
+            isOpen={this.state.modalPayment}
             amount={this.props.location.state.aladinPrice}
             phone={SplitPhone(this.state.phone)}
-            toggle={this.togglePayment} 
+            toggle={this.togglePayment}
             push={'payment'}
             brand={this.state.brand}
         />
@@ -152,13 +155,13 @@ class InsertPhone extends React.Component {
           <div className="InsertPhone__contentContainer__priceDistance">
             <label className="InsertPhone__contentContainer__label">Terjual dengan harga:</label>
             <label className="InsertPhone__contentContainer__price">{this.formatRupiah()}</label>
-            <label className="InsertPhone__contentContainer__labelPercentage" >Kamu menghemat {this.percentagePrice()}</label>
+            <label className="InsertPhone__contentContainer__labelPercentage" >Kamu menghemat {percentagePrice(this.props.location.state.aladinPrice, this.props.location.state.displayPrice)}</label>
           </div>
         </div>
         <label className="alert__game">{this.state.notif}</label>
         <div className="InsertPhone__buttonContainer">
-          <Button type="submit" className = "InsertPhone__buttonContainer__buttonBatal" onClick={() => this.cancel()}>Batal</Button>
-          <Button type="submit" disabled={this.state.disabled} className = "InsertPhone__buttonContainer__buttonLanjut" onClick={(e) => this.submitTransaction(e)} >Lanjut</Button>
+          <button type="submit" disabled={this.state.disabled} className = "InsertPhone__buttonContainer__button" onClick={(e) => this.submitTransaction(e)} >Lanjut</button>
+          <button type="submit" className = "InsertPhone__buttonContainer__button" onClick={() => this.cancel()}>Batal</button>
         </div>
         <ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
         {this.renderModalPayment()}
@@ -175,7 +178,7 @@ class InsertPhone extends React.Component {
             {this.displayPrice()}
             <div className="mobile-InsertPhone__content__priceDistance">
               <label className="mobile-InsertPhone__content__price">{this.formatRupiah()}</label>
-              <label className="mobile-InsertPhone__content__labelPercentage" >Kamu menghemat {this.percentagePrice()}</label>
+              <label className="mobile-InsertPhone__content__labelPercentage" >Kamu menghemat {percentagePrice(this.props.location.state.aladinPrice, this.props.location.state.displayPrice)}</label>
             </div>
           </div>
           <label className="alert__otp">{this.state.notif}</label>
@@ -195,6 +198,7 @@ class InsertPhone extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <MediaQuery query="(max-device-width: 720px)">

@@ -99,9 +99,11 @@ class Signup extends Component {
 	handlePhoneNum(e) {
     var num = e.target.value.split('');
     if (num.length < 2) {
-      this.setState({notif: 'Nomor Handphone harus mulai dengan 08.'});
+      this.setState({notif: 'Nomor Anda harus mulai dengan 08.'});
     } else if(num[0] !== '0' || num[1] !== '8') {
       this.setState({phonenumber: '08'});
+    } else if (num.length > 13) {
+      this.setState({notif: 'Nomor Anda telah mencapai panjang maksimal.'});
     } else {//(num[0] === '0') {
       this.setState({phonenumber: num.join(''), notif: ''});
 		}

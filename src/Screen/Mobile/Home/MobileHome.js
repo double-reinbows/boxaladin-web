@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Price from './Price'
 import PaketData from './PaketData'
-class Home extends Component {
+
+export default class MobileHome extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +25,7 @@ class Home extends Component {
   }
 
   changeTab = (value) => {
-    this.setState({ 
+    this.setState({
       tab: value,
       tabActive1: this.state.tabActive2,
       tabActive2: this.state.tabActive1
@@ -45,5 +46,3 @@ class Home extends Component {
     );
   }
 }
-
-export default Home;

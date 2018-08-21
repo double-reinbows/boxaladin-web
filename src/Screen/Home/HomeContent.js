@@ -13,6 +13,7 @@ class HomeContent extends Component {
       openModal: false,
       openModalBid: false,
       priceOrProductId: 0,
+      displayPrice: 0,
       price: '',
       tab: 1,
       tabActive1: 'tabactive',
@@ -34,10 +35,11 @@ class HomeContent extends Component {
     })
   }
 
-  toggleConfirm = (id) => {
+  toggleConfirm = (id, displayPrice) => {
     this.setState({
       openModal: !this.state.openModal,
-      priceOrProductId: id
+      priceOrProductId: id,
+      displayPrice
     })
   }
 
@@ -79,7 +81,7 @@ renderModalBid() {
       return(
         price.map((data, index) => {
           return(
-            <button key={index} onClick={() => this.toggleConfirm(data.id)} className="homecontent__bottom__pulsa__button baBackground">{data.displayPrice.toLocaleString(['ban', 'id'])}</button>
+            <button key={index} onClick={() => this.toggleConfirm(data.id, data.displayPrice)} className="homecontent__bottom__pulsa__button baBackground">{data.displayPrice.toLocaleString(['ban', 'id'])}</button>
           )
         })
       )
@@ -150,7 +152,7 @@ renderModalBid() {
   }
 
   changeTab = (value) => {
-    this.setState({ 
+    this.setState({
       tab: value,
       tabActive1: this.state.tabActive2,
       tabActive2: this.state.tabActive1
@@ -186,12 +188,12 @@ renderModalBid() {
           </div>
         </div>
         <ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
-        <ModalConfirm 
+        <ModalConfirm
           typeBuy='buy pulsa'
           firebase= {envChecker('price')}
-          displayPrice={this.state.displayPrice} 
-          open={this.state.openModal} 
-          toggle={this.toggleConfirm} 
+          displayPrice={this.state.displayPrice}
+          open={this.state.openModal}
+          toggle={this.toggleConfirm}
           priceOrProductId={this.state.priceOrProductId}
         />
         {this.renderModalBid()}

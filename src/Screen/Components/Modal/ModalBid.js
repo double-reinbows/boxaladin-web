@@ -193,11 +193,11 @@ class ModalCheck extends Component {
               </button>
             </div>
           </div>
-          <ModalConfirm 
-            typeBuy={this.props.typeBuy} 
-            displayPrice={this.state.productPrice} 
+          <ModalConfirm
+            typeBuy={this.props.typeBuy}
+            displayPrice={this.state.productPrice}
             firebase={this.props.firebase}
-            open={this.state.modalConfirm} 
+            open={this.state.modalConfirm}
             toggle={this.toggleConfirm}
             priceOrProductId={this.state.priceOrProductId}
             />
@@ -251,7 +251,6 @@ class ModalCheck extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <MediaQuery query="(max-device-width: 720px)">

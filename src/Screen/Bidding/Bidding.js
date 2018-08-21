@@ -15,8 +15,8 @@ class Bidding extends React.Component {
     super(props)
     this.state = {
       productUnlocked: {},
-			count: 15,
-      initCount: 15,
+			count: 9999,
+      initCount: 9999,
       open: false,
       priceComp : true,
     }
@@ -139,7 +139,7 @@ class Bidding extends React.Component {
       </div>
     )
   }
-  
+
 
   render() {
     return (
@@ -203,7 +203,6 @@ class Bidding extends React.Component {
       method: 'PUT',
       url: `${envChecker('api')}/lognoinvoice/${this.props.selectedPriceID}`,
     })
-
     this.props.history.push('/insertphone', {
       aladinPrice: this.state.productUnlocked.aladinPrice,
       typeBuy: this.props.location.state.typeBuy,
