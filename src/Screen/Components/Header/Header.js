@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Collapse,
   Navbar,
@@ -10,13 +10,14 @@ import {
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import {logoutAction} from '../../../actions'
+import {getUser} from '../../../actions/userAction'
 
 import DropdownUser from './Dropdown/DropdownUser'
 
 import ModalLogin from './Login/ModalLogin'
 import ModalSignup from './Signup/ModalSignup'
 
-class NavBar extends React.Component {
+class NavBar extends Component {
   constructor(props) {
     super(props);
 
@@ -25,11 +26,46 @@ class NavBar extends React.Component {
       isOpen: false
     };
   }
+
+  componentDidMount() {
+    const { userInfo, getUser } = this.props
+    if (!userInfo.id && localStorage.getItem('token')) {
+      getUser()
+    }
+  }
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
+
+  showRightButton() {
+    if (localStorage.getItem('token') !== null) {
+      return (
+        <Nav navbar className="HeaderTop__Right" style={{  width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
+          <NavItem>
+            <DropdownUser isResetText={this.state._isResetText} onResetCalback={()=>this.setState({_isResetText: false})}/>
+          </NavItem>
+
+        </Nav>
+      )
+    } else {
+      return (
+        <Nav navbar className="HeaderTop__Right" >
+            <ModalLogin />
+            <ModalSignup />
+        </Nav>
+      )
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('token')
+    this.props.logoutAction()
+    window.location.reload()
+  }
+
   render() {
     return (
       <div>
@@ -58,44 +94,19 @@ class NavBar extends React.Component {
       </div>
     );
   }
-  showRightButton() {
-    if (localStorage.getItem('token') !== null) {
-      return (
-        <Nav navbar className="HeaderTop__Right" style={{  width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
-          <NavItem>
-            <DropdownUser isResetText={this.state._isResetText} onResetCalback={()=>this.setState({_isResetText: false})}/>
-          </NavItem>
-
-        </Nav>
-      )
-    } else {
-      return (
-        <Nav navbar className="HeaderTop__Right" >
-            <ModalLogin />
-            <ModalSignup />
-        </Nav>
-      )
-    }
-  }
-
-  logout() {
-    localStorage.removeItem('token')
-    this.props.logoutAction()
-    window.location.reload()
-  }
-
 }
 
 const mapStateToProps = state => {
   return {
-    isLogin: state.userReducer.isLogin
-    // dataUser: state.userReducer.dataUser
+    isLogin: state.userReducer.isLogin,
+    userInfo: state.userReducer.userInfo,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    logoutAction: () => dispatch(logoutAction())
+    logoutAction: () => dispatch(logoutAction()),
+    getUser: () => dispatch(getUser()),
   }
 }
 

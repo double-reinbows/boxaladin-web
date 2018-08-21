@@ -1,32 +1,34 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { getUser } from '../../actions/userAction'
 import envChecker from '../../utils/envChecker'
 import ProviderModal from './Modal/ProviderModal';
+import ModalConfirm from './Modal/ModalConfirm'
 import ModalBid from '../Components/Modal/ModalBid'
-
 class HomeContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       providerModal: false,
       openModal: false,
-      brandName: '',
-      logo: '',
-      defaultId: 0,
+      openModalBid: false,
+      priceId: 0,
+      displayPrice: 0,
+      price: '',
+      tab: 1,
+      tabActive1: 'tabactive',
+      tabActive2: '',
       brand: '',
+      brandName: '',
+      brandId: 0,
+      type: ''
     }
-    this.toggleBid = this.toggleBid.bind(this);
   }
 
   componentDidMount() {
+    this.getPrice()
     this.getBrand()
-    if (!this.props.userInfo.id && localStorage.getItem('token')) {
-      this.props.getUser()
-    }
   }
-
 
   toggle = () =>  {
     this.setState({
@@ -34,33 +36,63 @@ class HomeContent extends Component {
     })
   }
 
-  async toggleBid(brandName, id, logo) {
-      await this.setState({
-        brandName: brandName,
-      defaultId: id,
-      logo: logo
-    })
-    await this.setState({
+  toggleConfirm = (id, displayPrice) => {
+    this.setState({
       openModal: !this.state.openModal,
+      priceId: id,
+      displayPrice,
+      type: 'price'
     })
   }
 
-  renderModalBid() {
-    if (this.state.openModal) {
+  toggleBid = async (brandName, id, logo) => {
+    await this.setState({
+    brandName: brandName,
+    brandId: id,
+    logo: logo,
+    type: 'product'
+  })
+  await this.setState({
+    openModalBid: !this.state.openModalBid,
+  })
+}
+
+renderModalBid() {
+  if (this.state.openModalBid) {
+    return (
+      <ModalBid
+        typeBuy ='buy paket data'
+        firebase={envChecker('firebase')}
+        isOpen={this.state.openModalBid}
+        toggle={this.toggleBid}
+        brandName={this.state.brandName}
+        priceId={this.state.brandId}
+        logo={this.state.logo}
+        type={this.state.type}
+      />
+    )
+  }
+  return null;
+}
+
+  price() {
+    const { price } = this.state
+    if (!price) {
       return (
-        <ModalBid
-          isOpen={this.state.openModal}
-          toggle={this.toggleBid}
-          brandName={this.state.brandName}
-          defaultId={this.state.defaultId}
-          logo={this.state.logo}
-        />
+        <h1>Loading</h1>
+      )
+    } else {
+      return(
+        price.map((data, index) => {
+          return(
+            <button key={index} onClick={() => this.toggleConfirm(data.id, data.displayPrice)} className="homecontent__bottom__pulsa__button baBackground">{data.displayPrice.toLocaleString(['ban', 'id'])}</button>
+          )
+        })
       )
     }
-    return null;
   }
 
-  pulsaItem() {
+  paketData() {
     if (!this.state.brand) {
       return (
         <h1>Loading</h1>
@@ -68,7 +100,7 @@ class HomeContent extends Component {
     } else {
       return(
         this.state.brand.filter(data => {
-          return data.brandName === 'Telkomsel' || data.brandName === 'XL' || data.brandName === 'Indosat' || data.brandName === 'Tri' || data.brandName === 'Smartfren'
+          return data.brandName === 'Telkomsel' || data.brandName === 'XL' || data.brandName === 'Indosat' || data.brandName === 'Tri'
         })
         .map((data, i) => {
           const pulsaItems = [
@@ -85,6 +117,19 @@ class HomeContent extends Component {
     }
   }
 
+  getPrice = () => {
+    axios({
+      method: 'GET',
+      url: `${envChecker('api')}/api/price`,
+    })
+    .then(response => {
+      this.setState({
+        price: response.data
+      })
+    })
+    .catch(err => console.log('error'))
+  }
+
   getBrand = () => {
     axios({
       method: 'GET',
@@ -96,6 +141,26 @@ class HomeContent extends Component {
       })
     })
     .catch(err => console.log('error'))
+  }
+
+  renderTab = () => {
+    const {tab} = this.state
+    switch (tab) {
+      case 1:
+        return this.price()
+      case 2:
+        return this.paketData()
+      default:
+        return tab
+    }
+  }
+
+  changeTab = (value) => {
+    this.setState({
+      tab: value,
+      tabActive1: this.state.tabActive2,
+      tabActive2: this.state.tabActive1
+    });
   }
 
   render() {
@@ -111,21 +176,32 @@ class HomeContent extends Component {
             </div>
           </div>
           <div className="homecontent__top__youtube">
-          <iframe title="boxaladin intro" width="100%" height="100%" src="https://www.youtube.com/embed/DR0bccmd3b0" ></iframe>
+          <iframe title="boxaladin intro" width="100%" height="100%" src="https://www.youtube.com/embed/videoseries?list=PLBVbVVQLrYxQHfTYfWf0xlrbAYQjajJ8e" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
         </div>
         <div className="homecontent__bottom">
-          <div className="homecontent__bottom__pulsa">
-          {this.pulsaItem()}
-          </div>
+        <div className='home-tab-container'>
+          <button className={`${this.state.tabActive1} home-tab`} onClick={() => this.changeTab(1)}>PULSA</button>
+          <button className={`${this.state.tabActive2} home-tab`} onClick={() => this.changeTab(2)}>PAKET DATA</button>
+        </div>
+        <div className="homecontent__bottom__pulsa">
+          {this.renderTab()}
+        </div>
           <div className="homecontent__bottom__check">
             <button onClick={this.toggle} className="homecontent__bottom__check__button">CEK PROVIDER-MU</button>
           </div>
         </div>
         <ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
-        {
-          this.renderModalBid()
-        }
+        <ModalConfirm
+          typeBuy='buy pulsa'
+          firebase= {envChecker('price')}
+          displayPrice={this.state.displayPrice}
+          open={this.state.openModal}
+          toggle={this.toggleConfirm}
+          priceId={this.state.priceId}
+          type={this.state.type}
+        />
+        {this.renderModalBid()}
       </div>
     )
   }
@@ -139,11 +215,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUser: () => dispatch(getUser())
   }
 }
 
 const connectComponent = connect(mapStateToProps, mapDispatchToProps)(HomeContent)
 
 export default connectComponent
-

@@ -85,7 +85,7 @@ class ModalOtpUser extends Component {
             notifOtp: 'otp Tidak Terkirim, Silahkan Kirim Ulang'
           })
         } else {
-          console.log('otp sent')
+          // console.log('otp sent')
         }
       })
     }

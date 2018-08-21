@@ -44,9 +44,9 @@ class ResetPasswordForm extends React.Component<Props, State> {
         passwordFeedback: (<FormFeedback>Form ini wajib diisi.</FormFeedback>),
         passwordInvalid: true,
       });
-    } else if (password.length < 8) {
+    } else if (password.length < 6) {
       this.setState({
-        passwordFeedback: (<FormFeedback>Mohon pakai password dengan kepanjangan minimum 8 karakter</FormFeedback>),
+        passwordFeedback: (<FormFeedback>Mohon pakai password dengan kepanjangan minimum 6 karakter</FormFeedback>),
         passwordInvalid: true,
       });
     } else {

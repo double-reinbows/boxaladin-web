@@ -11,6 +11,12 @@ const envChecker = function (status) {
     return process.env.REACT_APP_FIREBASE_PRODUCT_TEST
   } else if (process.env.REACT_APP_ENV === 'prod' && status === 'firebase') {
     return process.env.REACT_APP_FIREBASE_PRODUCT_PRODUCTION
+  } else if (process.env.REACT_APP_ENV === 'dev' && status === 'price') {
+    return process.env.REACT_APP_FIREBASE_PRICE_DEVELOPMENT
+  } else if (process.env.REACT_APP_ENV === 'test' && status === 'price') {
+    return process.env.REACT_APP_FIREBASE_PRICE_TEST
+  } else if (process.env.REACT_APP_ENV === 'prod' && status === 'price') {
+    return process.env.REACT_APP_FIREBASE_PRICE_PRODUCTION
   } else if (process.env.REACT_APP_ENV === 'dev' && status === 'api') {
     return process.env.REACT_APP_API_HOST_DEVELOPMENT
   } else if (process.env.REACT_APP_ENV === 'test' && status === 'api') {

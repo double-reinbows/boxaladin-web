@@ -1,29 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Input, Button } from 'reactstrap'
-import { getPhoneNumbers } from '../../actions/'
+import MediaQuery from 'react-responsive';
 import ModalPayment from '../Components/Modal/ModalPayment'
-import { validateProvider, detectProvider } from '../../utils/phone'
 import ProviderModal from '../Home/Modal/ProviderModal';
-import  priceProduct  from '../../utils/splitPrice'
-import  productName from '../../utils/splitProduct'
 import FormatRupiah from '../../utils/formatRupiah'
 import percentagePrice from '../../utils/percentagePrice'
-
-let aladinPrice = 0
+import SplitPhone from '../../utils/splitPhone'
+import CheckProvider from '../../utils/checkProvider'
 class InsertPhone extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      phone: '',
-      productUnlocked: {},
+      phone: '08',
       providerModal: false,
       disabled: true,
       modalPayment: false,
+      brandId: 0,
+      brand: '',
+      notif: ''
     }
     this.handleBack()
   }
-  
 
 	toggle = () =>  {
 		this.setState({
@@ -33,143 +30,44 @@ class InsertPhone extends React.Component {
 
   togglePayment = () => {
     this.setState({
-      modalPayment: !this.state.modalPayment
+      modalPayment: !this.state.modalPayment,
     })
   }
 
-  renderModalPayment() {
-    if (this.state.modalPayment) {
-      if (this.props.location.state.id === 36 || this.props.location.state.id === 37 || this.props.location.state.id === 38 || this.props.location.state.id === 39 || this.props.location.state.id === 40){
-        return (
-          <ModalPayment 
-            text='buy pulsa 10k'
-            fixedendpoint='virtualaccount'
-            retailendpoint='payment'
-            walletendpoint='walletpulsa'
-            isOpen={this.state.modalPayment} 
-            amount={aladinPrice} 
-            phone={this.state.phone}
-            productId={this.state.productUnlocked}
-            toggle={this.togglePayment} 
-            push={'payment'}
-        />
-        )
-      } else {
-        return (
-          <ModalPayment 
-            text='buy pulsa'
-            fixedendpoint='virtualaccount'
-            retailendpoint='payment'
-            walletendpoint='walletpulsa'
-            isOpen={this.state.modalPayment} 
-            amount={aladinPrice} 
-            phone={this.state.phone}
-            productId={this.state.productUnlocked}
-            toggle={this.togglePayment} 
-            push={'payment'}
-        />
-        )
-      }
-    }
-    return null;
-  }
-
-  render() {
-    return (
-		<div>
-		<div className="InsertPhone__textHead">
-			<h1 className="InsertPhone__textHead__font">LELANG KAMU BERHASIL</h1>
-		</div>
-		<div className="InsertPhone__inputNumber">
-			<div className="InsertPhone__inputHead">
-				<h4 className="InsertPhone__inputHead__text">Masukkan nomor hape kamu</h4>
-				<div className="InsertPhone__inputHead__checkBox">
-					<Input className="InsertPhone__inputHead__inputBox" value={ this.state.phone } type="number"
-					onChange={ (e) => this.handleChangePhone(e) } />
-					<div className="homecontent__bottom__check" style= {{ alignSelf: "center", paddingLeft: "20px"}}>
-						<button onClick={this.toggle} className="homecontent__bottom__check__button" style = {{ fontSize: "15px"}}>CEK PROVIDER-MU</button>
-					</div>
-				</div>
-				<label className="InsertPhone__inputHead__label">Ex: 08x-xxx-xxx-xxx</label>
-			</div>
-		</div>
-
-		<div className="InsertPhone__contentContainer">
-		  {this.logoPhone()}
-			<div className="InsertPhone__contentContainer__textDistance">
-				<h2 className="InsertPhone__contentContainer__text">{this.productName()}</h2>
-				<h2 className="InsertPhone__contentContainer__text">{this.priceProduct()}</h2>
-				<label className="InsertPhone__contentContainer__label">Terjual dengan harga:</label>
-			</div>
-			<div className="InsertPhone__contentContainer__priceDistance">
-				<label className="InsertPhone__contentContainer__price">{this.formatRupiah()}</label>
-				<label className="InsertPhone__contentContainer__labelPercentage" >Kamu menghemat {this.percentagePrice()}</label>
-			</div>
-		</div>
-
-		<div className="InsertPhone__buttonContainer">
-				<Button type="submit" className = "InsertPhone__buttonContainer__buttonBatal" onClick={() => this.cancel()}>Batal</Button>
-				<Button type="submit" disabled={this.state.disabled} className = "InsertPhone__buttonContainer__buttonLanjut" onClick={(e) => this.submitTransaction(e)} >Lanjut</Button>
-
-		</div>
-
-			<ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
-      {this.renderModalPayment()}
-		</div>
+  displayPrice = () => {
+    return this.props.location.state.displayPrice && (
+      <label className="mobile-bidding__displayPrice">{this.props.location.state.displayPrice.toLocaleString(['ban', 'id'])}</label>
     )
   }
 
-	logoPhone() {
-		return this.state.productUnlocked.productName && (
-			<img src={this.state.productUnlocked.brandLogo} className="InsertPhone__contentContainer__logo" alt="Logo pulsa"/>
-		)
-	}
-
-	priceProduct() {
-		return this.state.productUnlocked.productName && (
-			priceProduct(this.state.productUnlocked.productName)
-		)
-	}
-
-	productName() {
-		return this.state.productUnlocked.productName && (
-			productName(this.state.productUnlocked.productName)
-		)
-	}
-
 	formatRupiah() {
-		return aladinPrice && (
-			FormatRupiah(aladinPrice)
+		return this.props.location.state.aladinPrice && (
+			FormatRupiah(this.props.location.state.aladinPrice)
 		)
-	}
-
-	percentagePrice() {
-		if (aladinPrice === 'undefined' && this.state.productUnlocked.price === 'undefined') {
-			return null
-		} else {
-			return (percentagePrice(aladinPrice, this.state.productUnlocked.price))
-		}
 	}
 
 	cancel() {
-		// this.stopWatchProductPrice(this.props.selectedProductID)
+		// this.stopWatchProductPrice(this.props.selectedPriceID)
 		this.props.history.push('/home')
 	}
 
-  componentDidMount() {
-    this.props.getPhoneNumbers()
-    aladinPrice = this.props.location.state.aladinPrice
-    this.setState({
-      productUnlocked: this.props.location.state.productUnlocked,
-      phone: this.props.location.state.phoneNumbers[0] ? '' : ''
-    })
-  }
-
   handleChangePhone(e) {
-    this.setState({
-      phone: e.target.value,
-      disabled: false
-    })
+
+    let num = e.target.value.split('');
+    if (num.length < 2) {
+      this.setState({notif: 'Nomor Anda harus mulai dengan 08.', disabled: true});
+    } else if(num[0] !== '0' || num[1] !== '8') {
+      this.setState({phone: '08', disabled: true});
+    } else if (num.length > 13) {
+      this.setState({notif: 'Nomor Anda telah mencapai panjang maksimal.', disabled: true});
+    } else {
+      if (num.length >= 11) { //number long enough so enable submit button
+        this.setState({phone: num.join(''), notif: '', disabled: false});
+      } else { //number NOT long enough so disable submit button
+        this.setState({phone: num.join(''), notif: '', disabled: true});
+      }
+    }
+
   }
 
   handleBack() {
@@ -178,54 +76,151 @@ class InsertPhone extends React.Component {
     }
   }
 
-  submitTransaction(e) {
+  submitTransaction = async (e) => {
     e.preventDefault()
+    const provider = CheckProvider(this.state.phone)
+    if (provider !== 'Unknown Provider'){
+      await this.setState({
+        brand: provider.provider,
+        brandId: provider.id
+      })
+      this.togglePayment()
+    } else if ( provider === 'Unknown Provider'){
+      this.setState({
+        notif: "Nomor yang kamu masukkan tidak terdaftar. Mohon periksa kembali"
+      });
+    }
+  }
 
-    if (validateProvider(detectProvider(this.state.phone), this.state.productUnlocked.brand) === false) {
-      return alert('Nomor HP tidak sesuai dengan Provider.')
-    } else {
-      var num = this.state.phone.split('')
-      if (num[0] === '0') {
-        num.splice(0, 1, '0')
-        this.setState({
-          phone: num.join('')
-        },
-        () => {this.togglePayment()})
-      } else if (num[0] + num[1] + num[2] === '+62') {
-        num.splice(0, 3, '0')
-        this.setState({
-          phone: num.join('')
-        },
-        () => {this.togglePayment()})
-      } else if (num[0] + num[1] === '62') {
-        num.splice(0, 2, '0')
-        this.setState({
-          phone: num.join('')
-        },
-        () => {this.togglePayment()})
-      } else if (num[0] === '8') {
-        num.splice(0, 0, '0')
-        this.setState({
-          phone: num.join('')
-        },
-        () => {this.togglePayment()})
+  renderModalPayment() {
+    if (this.state.modalPayment) {
+      if (this.props.location.state.typeBuy === 'buy pulsa'){
+        return (
+          <ModalPayment
+            typeBuy='buy pulsa'
+            id={this.props.location.state.id}
+            fixedendpoint='v2/virtualaccount'
+            retailendpoint='v2/payment'
+            walletendpoint='v2/walletpulsa'
+            isOpen={this.state.modalPayment}
+            amount={this.props.location.state.aladinPrice}
+            phone={SplitPhone(this.state.phone)}
+            toggle={this.togglePayment}
+            push={'payment'}
+            brand={this.state.brand}
+            brandId={this.state.brandId}
+        />
+        )
+      } else if (this.props.location.state.typeBuy === 'buy paket data'){
+        return (
+          <ModalPayment
+            typeBuy = 'buy paket data'
+            id={this.props.location.state.id}
+            fixedendpoint='virtualaccount'
+            retailendpoint='payment'
+            walletendpoint='walletpulsa'
+            isOpen={this.state.modalPayment}
+            amount={this.props.location.state.aladinPrice}
+            phone={SplitPhone(this.state.phone)}
+            toggle={this.togglePayment}
+            push={'payment'}
+            brand={this.state.brand}
+        />
+        )
       }
     }
+    return null;
+  }
+
+  renderInsertPhone = () => {
+    return (
+      <div>
+        <div className="InsertPhone__textHead">
+          <h1 className="InsertPhone__textHead__font">LELANG KAMU BERHASIL</h1>
+        </div>
+        <div className="InsertPhone__inputNumber">
+          <div className="InsertPhone__inputHead">
+            <h4 className="InsertPhone__inputHead__text">Masukkan nomor hape kamu</h4>
+            <div className="InsertPhone__inputHead__checkBox">
+              <input className="InsertPhone__inputHead__inputBox" value={ this.state.phone } type="number"
+              onChange={ (e) => this.handleChangePhone(e) } />
+              <div className="homecontent__bottom__check" style= {{ alignSelf: "center", paddingLeft: "20px"}}>
+                <button onClick={this.toggle} className="homecontent__bottom__check__button" style = {{ fontSize: "15px"}}>CEK PROVIDER-MU</button>
+              </div>
+            </div>
+            <label className="InsertPhone__inputHead__label">Ex: 08x-xxx-xxx-xxx</label>
+          </div>
+        </div>
+        <div className="InsertPhone__contentContainer">
+          <div className="InsertPhone__contentContainer__priceDistance">
+            <label className="InsertPhone__contentContainer__label">Terjual dengan harga:</label>
+            <label className="InsertPhone__contentContainer__price">{this.formatRupiah()}</label>
+            <label className="InsertPhone__contentContainer__labelPercentage" >Kamu menghemat {percentagePrice(this.props.location.state.aladinPrice, this.props.location.state.displayPrice)}</label>
+          </div>
+        </div>
+        <label className="alert__game">{this.state.notif}</label>
+        <div className="InsertPhone__buttonContainer">
+          <button type="submit" disabled={this.state.disabled} className = "InsertPhone__buttonContainer__button" onClick={(e) => this.submitTransaction(e)} >Lanjut</button>
+          <button type="submit" className = "InsertPhone__buttonContainer__button" onClick={() => this.cancel()}>Batal</button>
+        </div>
+        <ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
+        {this.renderModalPayment()}
+      </div>
+    )
+  }
+
+  renderMobileInsertPhone = () => {
+    return (
+      <div>
+        <h1 className="mobile-InsertPhone__title">LELANG BERHASIL</h1>
+        <div className="mobile-InsertPhone__container">
+          <div className="mobile-InsertPhone__content__container">
+            {this.displayPrice()}
+            <div className="mobile-InsertPhone__content__priceDistance">
+              <label className="mobile-InsertPhone__content__price">{this.formatRupiah()}</label>
+              <label className="mobile-InsertPhone__content__labelPercentage" >Kamu menghemat {percentagePrice(this.props.location.state.aladinPrice, this.props.location.state.displayPrice)}</label>
+            </div>
+          </div>
+          <label className="alert__otp">{this.state.notif}</label>
+          <div className="mobile-InsertPhone__input">
+            <input className="mobile-InsertPhone__input__inputBox" value={ this.state.phone } type="number"
+            onChange={ (e) => this.handleChangePhone(e) } />
+          </div>
+          <label>Ex: 08x-xxx-xxx-xxx</label>
+        </div>
+        <div className="mobile-InsertPhone__button__container">
+          <button type="submit" disabled={this.state.disabled} className = "mobile-InsertPhone__button" onClick={(e) => this.submitTransaction(e)} >Beli Sekarang</button>
+          <button type="submit" style={{color:'red'}} className = "mobile-InsertPhone__button" onClick={() => this.cancel()}>Batal</button>
+        </div>
+        {this.renderModalPayment()}
+      </div>
+    )
+  }
+
+  render() {
+    return (
+      <div>
+        <MediaQuery query="(max-device-width: 720px)">
+          {this.renderMobileInsertPhone()}
+        </MediaQuery>
+        <MediaQuery query="(min-device-width: 721px)">
+          {this.renderInsertPhone()}
+        </MediaQuery>
+      </div>
+    )
   }
 
 }
 
 const mapStateToProps = (state) => {
   return {
-		phoneNumbers: state.userReducer.phoneNumbers,
-    selectedProductID: state.productReducer.selectedProductID,
+    userInfo: state.userReducer.userInfo,
+    selectedPriceID: state.productReducer.selectedPriceID,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getPhoneNumbers: () => dispatch(getPhoneNumbers()),
-
   }
 }
 

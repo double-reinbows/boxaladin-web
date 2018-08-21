@@ -164,8 +164,6 @@ class ModalOtp extends Component {
             <div className="modal__otp__content">
               <h1>Verify Nomor Anda Untuk Dapat 5 AladinKey Gratis!</h1>
               <h2>Akan ada panggilan masuk ke hape anda.</h2>
-              <h1><b>Panggilan Wajib Diangkat</b></h1>
-              <h1><b>dan Tunggu Sampai Panggilan Berakhir</b></h1>
               <label>{text}</label>
             <div className="form-group Signup__Form">
               {otpFormJSX}

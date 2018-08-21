@@ -103,58 +103,17 @@
   }
 
   &__buttonContainer{
-
+    font-size: 25px;
+    display: flex;
+    justify-content: space-around;
     width: 45%;
     margin: auto;
-    display: flex;
-    flex-direction: row-reverse;
-    padding-top: 4%;
-    justify-content: space-around;
-
-    &__buttonDistance{
+    &__button{
+      border-radius: 10px;
       width: 30%;
-      display: flex;
-      justify-content: space-between;
-      flex-direction: row-reverse;
-    }
-
-    &__buttonBatal{
-      background: white;
-      border-color: #FFCD06;
-      border-style: solid;
-      border-width: 2px;
-      color: black;
-      font-size: 25px;
-      border-radius: 10px;
-      padding-left: 7%;
-      padding-right: 7%;
-      &:active{
-        background-color: white;
-        color:black;
-      }
+      border: 2px solid #FFCD06;
       &:hover{
-        background-color: white;
-        color:black;
-      }
-    }
-
-    &__buttonLanjut{
-      background: white;
-      border-color: #FFCD06;
-      border-style: solid;
-      border-width: 2px;
-      color: black;
-      font-size: 25px;
-      border-radius: 10px;
-      padding-left: 7%;
-      padding-right: 7%;
-      &:active{
-        background-color: white;
-        color: black;
-      }
-      &:hover{
-        background-color: white;
-        color: black;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
       }
     }
   }

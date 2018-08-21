@@ -1,101 +1,115 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import Modal from 'react-modal'
 import {withRouter} from 'react-router-dom'
 import { connect } from 'react-redux';
+import MediaQuery from 'react-responsive';
 
-import { selectProductID } from '../../../actions/productAction';
-import { getUser } from '../../../actions/userAction';
-import envChecker from '../../../utils/envChecker'
+import { selectedPriceID } from '../../../actions/productAction';
+import helperAxios from '../../../utils/axios'
 
 class ModalConfirm extends Component {
   constructor(props) {
     super(props);
     this.state = {
     }
+    this.checkAladinkey = this.checkAladinkey.bind(this);
   }
-
-  componentDidMount() {
-    if (!this.props.userInfo.id && localStorage.getItem('token')) {
-      this.props.getUser()
-    }
-  }
-
-  checkAladinkey = () => {
-    const {selectedProductID} = this.props
-    if (selectedProductID === 36 || selectedProductID === 37 || selectedProductID === 38 || selectedProductID === 39 || selectedProductID === 40) {
-      if (this.props.userInfo.wallet < 10500){
-        return alert('Saldo Wallet Anda Kurang Dari Rp.10.500,00')
+s
+  checkAladinkey = async () => {
+    const {priceId, userInfo, type} = this.props
+    if ( !userInfo.id && !localStorage.getItem('token')){
+      alert ('Anda Belum Masuk')
+    } else if (userInfo.aladinKeys <= 0 ){
+      alert("Anda Tidak Memiliki Aladin Key")
+    } else {
+      if (priceId === 1) {
+        if (userInfo.wallet < 10000){
+          return alert('Saldo Wallet Anda Kurang Dari Rp.10.000,00')
+        } else {
+          helperAxios('GET', 'users/checkuser')
+          .then( async data => {
+            if (data.data.aladinKeys > 0 && data.data.wallet >= 10000) {
+              await this.props.selectedPriceID(priceId)
+              this.props.history.push('/bidding', {
+                displayPrice: this.props.displayPrice,
+                firebase: this.props.firebase,
+                typeBuy: this.props.typeBuy,
+                type: this.props.type
+              })
+              helperAxios('PUT', 'logopen',  {priceId, type})
+            } else {
+              alert("Anda Tidak Memiliki Aladin Key")
+            }
+          })
+        }
       } else {
-        axios({
-          method: 'GET',
-          headers: {
-            token: localStorage.getItem('token'),
-          },
-          url: `${envChecker('api')}/users/checkuser`,
-        })
-        .then(data => {
+        helperAxios('GET', 'users/checkuser')
+        .then( async data => {
           if (data.data.message === 'not verified user') {
             alert("Silahkan Verifikasi Email Anda")
-          } else if (data.data.aladinKeys > 0 && data.data.wallet >= 10500) {
-            this.props.history.push('/bidding')
-            axios({
-              method: 'PUT',
-              headers: {
-                token: localStorage.getItem('token'),
-              },
-              url: `${envChecker('api')}/logopen`,
-              data: {
-                productId: selectedProductID
-              },
+          } else if (data.data.aladinKeys > 0) {
+            await this.props.selectedPriceID(priceId)
+            this.props.history.push('/bidding', {
+              displayPrice: this.props.displayPrice,
+              firebase: this.props.firebase,
+              typeBuy: this.props.typeBuy,
+              type: this.props.type
             })
+            helperAxios('PUT', 'logopen', {priceId, type})
           } else {
             alert("Anda Tidak Memiliki Aladin Key")
           }
         })
       }
-    } else {
-      axios({
-        method: 'GET',
-        headers: {
-          token: localStorage.getItem('token'),
-				},
-				url: `${envChecker('api')}/users/checkuser`,
-			})
-			.then(data => {
-        if (data.data.message === 'not verified user') {
-          alert("Silahkan Verifikasi Email Anda")
-        } else if (data.data.aladinKeys > 0) {
-          this.props.history.push('/bidding')
-          axios({
-            method: 'PUT',
-            headers: {
-              token: localStorage.getItem('token'),
-            },
-            url: `${envChecker('api')}/logopen`,
-            data: {
-              productId: selectedProductID
-            },
-          })
-        } else {
-          alert("Anda Tidak Memiliki Aladin Key")
-        }
-      })
     }
+  }
+
+  renderContent = () => {
+    return (
+      <div className="modal__confirm__container">
+        <div className="modal__confirm__label">
+          <label><b>1x intip = 1 kunci aladin. Lanjutkan ?</b></label>
+        </div>
+        <div className="modal__confirm__button">
+          <button className="modal__confirm__button__yes" onClick={this.checkAladinkey}>YA</button>
+          <button className="modal__confirm__button__no" onClick={this.props.toggle}>TIDAK</button>
+        </div>
+      </div>
+    )
+  }
+
+  renderMobilePrice = () => {
+    return this.props.displayPrice && (
+      <label><b>Nominal {this.props.displayPrice.toLocaleString(['ban', 'id'])}</b></label>
+    )
+  }
+
+  renderMobile = () => {
+    return (
+      <div className="mobile-modal-confirm-container">
+      {this.renderMobilePrice()}
+        <div className="mobile-modal-confirm-label">
+          <label><b>1x intip = 1 kunci aladin.</b></label>
+          <br/>
+          <label><b>Lanjutkan ?</b></label>
+        </div>
+        <div className="mobile-modal-confirm-button-container">
+          <button className="mobile-modal-confirm-button" onClick={this.checkAladinkey}>YA</button>
+          <button className="mobile-modal-confirm-button" onClick={this.props.toggle}>TIDAK</button>
+        </div>
+      </div>
+    )
   }
 
   render() {
     return (
       <Modal isOpen={this.props.open} className="modal__confirm">
-        <div className="modal__confirm__container">
-          <div className="modal__confirm__label">
-            <label><b>1x intip = 1 kunci aladin. Lanjutkan ?</b></label>
-          </div>
-          <div className="modal__confirm__button">
-            <button className="modal__confirm__button__yes" onClick={this.checkAladinkey}>YA</button>
-            <button className="modal__confirm__button__no" onClick={this.props.toggle}>TIDAK</button>
-          </div>
-        </div>
+        <MediaQuery query="(max-device-width: 720px)">
+          {this.renderMobile()}
+        </MediaQuery>
+        <MediaQuery query="(min-device-width: 721px)">
+          {this.renderContent()}
+        </MediaQuery>
       </Modal>
     )
   }
@@ -104,14 +118,13 @@ class ModalConfirm extends Component {
 const mapStateToProps = (state) => {
   return {
     userInfo: state.userReducer.userInfo,
-    selectedProductID: state.productReducer.selectedProductID
+    selectedPriceID: state.productReducer.selectedPriceID
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectProductID: (id) => dispatch(selectProductID(id)),
-    getUser: () => dispatch(getUser())
+    selectedPriceID: (id) => dispatch(selectedPriceID(id)),
   }
 }
 

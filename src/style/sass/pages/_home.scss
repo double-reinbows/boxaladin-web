@@ -50,11 +50,17 @@
         border-radius: 10px;
         background-color: white;
         border: 7px solid var(--color-yellow-1);
+        font-size: 40px;
         &:hover {
           cursor: pointer;
         }
         &:focus{
           outline: none;
+          background-color: #ffe680;
+        }
+        &:active{
+          outline: none;
+          background-color: #ffe680;
         }
         &__image{
           width: 75%;
@@ -170,6 +176,7 @@
       border-radius: 10px;
       margin: 2px;
       background-color: white;
+      font-size: 25px;
       &__image{
         display: flex;
         width: 100%
@@ -233,4 +240,31 @@
   width: 30%;
   display: flex;
   justify-content: center;
+}
+
+
+.home{
+  &-tab{
+    width: 100%;
+    border-radius: 9px;
+    color: black;
+    border: white;
+    background-color:#d8d8d8;
+    &:focus{
+      outline: none;
+    }
+    &-container{
+      border-radius: 10px;
+      text-align: center;
+      border: 1px solid;
+      width: 60%;
+      display: flex;
+      justify-content: space-around;
+      margin: auto;
+      margin-top: -1%;
+      margin-bottom: 8%;
+      background-color: lightgrey;
+      font-size: 15px;
+    }
+  }
 }
