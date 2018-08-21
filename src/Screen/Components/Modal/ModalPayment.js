@@ -47,7 +47,7 @@ class ModalPayment extends Component{
     }
   }
 
-  createObj() {
+  createObj = () => {
     const { typeBuy, data, brandId, amount, phone, selectedPriceID } = this.props
     const { bank } = this.state
     if (typeBuy === 'buy wallet') {
