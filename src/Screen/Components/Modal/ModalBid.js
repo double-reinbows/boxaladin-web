@@ -6,7 +6,7 @@ import MediaQuery from 'react-responsive';
 import { withRouter } from 'react-router-dom'
 
 import ModalConfirm from '../../Home/Modal/ModalConfirm';
-import { selectedPriceOrProductID } from '../../../actions/productAction';
+import { selectedPriceID } from '../../../actions/productAction';
 import priceProduct from '../../../utils/splitPrice'
 import productName from '../../../utils/splitProduct'
 import envChecker from '../../../utils/envChecker'
@@ -109,7 +109,7 @@ class ModalCheck extends Component {
   }
 
   mobilePulsa = async (id, data) => {
-    await this.props.selectedPriceOrProductID(id)
+    await this.props.selectedPriceID(id)
     await this.setState({
       priceOrProductId: id,
       productPrice: data.displayPrice,
@@ -268,13 +268,13 @@ class ModalCheck extends Component {
 const mapStateToProps = (state) => {
   return {
     userInfo: state.userReducer.userInfo,
-    selectedPriceOrProductID: state.productReducer.selectedPriceOrProductID
+    selectedPriceID: state.productReducer.selectedPriceID
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectedPriceOrProductID: (id) => dispatch(selectedPriceOrProductID(id))
+    selectedPriceID: (id) => dispatch(selectedPriceID(id))
   }
 }
 

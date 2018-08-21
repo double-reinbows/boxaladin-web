@@ -56,7 +56,7 @@ class InsertPhone extends React.Component {
 	}
 
 	cancel() {
-		// this.stopWatchProductPrice(this.props.selectedPriceOrProductID)
+		// this.stopWatchProductPrice(this.props.selectedPriceID)
 		this.props.history.push('/home')
 	}
 
@@ -212,7 +212,7 @@ class InsertPhone extends React.Component {
 const mapStateToProps = (state) => {
   return {
     userInfo: state.userReducer.userInfo,
-    selectedPriceOrProductID: state.productReducer.selectedPriceOrProductID,
+    selectedPriceID: state.productReducer.selectedPriceID,
   }
 }
 

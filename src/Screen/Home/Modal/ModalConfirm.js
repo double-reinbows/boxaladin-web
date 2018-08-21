@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom'
 import { connect } from 'react-redux';
 import MediaQuery from 'react-responsive';
 
-import { selectedPriceOrProductID } from '../../../actions/productAction';
+import { selectedPriceID } from '../../../actions/productAction';
 import helperAxios from '../../../utils/axios'
 
 class ModalConfirm extends Component {
@@ -30,7 +30,7 @@ class ModalConfirm extends Component {
             if (data.data.message === 'not verified user') {
               alert("Silahkan Verifikasi Email Anda")
             } else if (data.data.aladinKeys > 0 && data.data.wallet >= 10500) {
-              await this.props.selectedPriceOrProductID(priceOrProductId)
+              await this.props.selectedPriceID(priceOrProductId)
               this.props.history.push('/bidding', {
                 displayPrice: this.props.displayPrice,
                 firebase: this.props.firebase,
@@ -48,7 +48,7 @@ class ModalConfirm extends Component {
           if (data.data.message === 'not verified user') {
             alert("Silahkan Verifikasi Email Anda")
           } else if (data.data.aladinKeys > 0) {
-            await this.props.selectedPriceOrProductID(priceOrProductId)
+            await this.props.selectedPriceID(priceOrProductId)
             this.props.history.push('/bidding', {
               displayPrice: this.props.displayPrice,
               firebase: this.props.firebase,
@@ -117,13 +117,13 @@ class ModalConfirm extends Component {
 const mapStateToProps = (state) => {
   return {
     userInfo: state.userReducer.userInfo,
-    selectedPriceOrProductID: state.productReducer.selectedPriceOrProductID
+    selectedPriceID: state.productReducer.selectedPriceID
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectedPriceOrProductID: (id) => dispatch(selectedPriceOrProductID(id)),
+    selectedPriceID: (id) => dispatch(selectedPriceID(id)),
   }
 }
 

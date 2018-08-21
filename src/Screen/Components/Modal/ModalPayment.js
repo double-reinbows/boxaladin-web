@@ -48,7 +48,7 @@ class ModalPayment extends Component{
   }
 
   createObj() {
-    const { typeBuy, data, brandId, amount, phone, selectedPriceOrProductID } = this.props
+    const { typeBuy, data, brandId, amount, phone, selectedPriceID } = this.props
     const { bank } = this.state
     if (typeBuy === 'buy wallet') {
       return {
@@ -63,7 +63,7 @@ class ModalPayment extends Component{
     } else if (typeBuy === 'buy pulsa'){
       return {
         // priceid & brandid used for find product
-        priceId: selectedPriceOrProductID,
+        priceId: selectedPriceID,
         brandId: brandId,
         phoneNumber: phone,
         bankCode: bank,
@@ -71,7 +71,7 @@ class ModalPayment extends Component{
       }
     } else if (typeBuy === 'buy paket data'){
       return {
-        productId: selectedPriceOrProductID,
+        productId: selectedPriceID,
         phoneNumber: phone,
         bankCode: bank,
         amount: amount
@@ -270,7 +270,7 @@ const mapStateToProps = (state) => {
   return {
     isLoading: state.loadingReducer.isLoading,
     TimerLoading: state.loadingTimeReducer,
-    selectedPriceOrProductID: state.productReducer.selectedPriceOrProductID
+    selectedPriceID: state.productReducer.selectedPriceID
   }
 }
 
