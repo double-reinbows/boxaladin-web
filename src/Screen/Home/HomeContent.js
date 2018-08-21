@@ -147,9 +147,23 @@ renderModalBid() {
     const {tab} = this.state
     switch (tab) {
       case 1:
-        return this.price()
+        return (
+          <div >
+            <h2 className="homecontent__bottom__pulsa__label">Pilih Nominal Pulsamu</h2>
+            <div className="homecontent__bottom__pulsa">
+              {this.price()}
+            </div>
+          </div>
+        )
       case 2:
-        return this.paketData()
+        return (
+          <div>
+            <h2 className="homecontent__bottom__pulsa__label">Pilih Paket Datamu</h2>
+            <div className="homecontent__bottom__pulsa">
+              {this.paketData()}
+            </div>
+          </div>
+          )
       default:
         return tab
     }
@@ -184,9 +198,7 @@ renderModalBid() {
           <button className={`${this.state.tabActive1} home-tab`} onClick={() => this.changeTab(1)}>PULSA</button>
           <button className={`${this.state.tabActive2} home-tab`} onClick={() => this.changeTab(2)}>PAKET DATA</button>
         </div>
-        <div className="homecontent__bottom__pulsa">
           {this.renderTab()}
-        </div>
           <div className="homecontent__bottom__check">
             <button onClick={this.toggle} className="homecontent__bottom__check__button">CEK PROVIDER-MU</button>
           </div>

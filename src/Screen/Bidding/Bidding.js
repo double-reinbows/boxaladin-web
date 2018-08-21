@@ -14,7 +14,7 @@ class Bidding extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      productUnlocked: {},
+      productUnlocked: '',
 			count: 15,
       initCount: 15,
       open: false,
@@ -142,6 +142,7 @@ class Bidding extends React.Component {
 
 
   render() {
+    console.log('state productunlock --->', this.state.productUnlocked)
     return (
     <div>
       <MediaQuery query="(max-device-width: 720px)">
@@ -173,6 +174,10 @@ class Bidding extends React.Component {
 
   componentDidMount() {
     this.watchProductPrice(this.props.selectedPriceID)
+    setTimeout(() => {
+      console.log('interval')
+      this.setState({count: this.state.count >= 0 ? this.state.count-1 : 0})
+    }, 1000)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -283,7 +288,9 @@ class Bidding extends React.Component {
         })
       })
 
-      this.runTimer()
+      if (this.state.productUnlocked.aladinPrice){
+        this.runTimer()
+      }
       await this.props.setIsLoading(false)
     } else if (localStorage.getItem('token') !== null) {
       this.props.setIsLoading(true)
@@ -334,7 +341,7 @@ class Bidding extends React.Component {
           firebase: this.props.location.state.firebase
         }
       })
-      productRef.on('value', async snap => {
+      await productRef.on('value', async snap => {
         const productValue = {
           aladinPrice: snap.val().aladinPrice,
           watching: snap.val().watching
@@ -343,16 +350,17 @@ class Bidding extends React.Component {
           productUnlocked: productValue,
         })
       })
-
-    await this.runTimer()
+    if (this.state.productUnlocked.aladinPrice){
+      this.runTimer()
+    }
     this.props.setIsLoading(false)
   }
 }
 
   runTimer() {
-		setTimeout(() => {
-			this.setState({count: this.state.count >= 0 ? this.state.count-1 : 0})
-		}, 1000)
+    setTimeout(() => {
+      this.setState({count: this.state.count >= 0 ? this.state.count-1 : 0})
+    }, 1000)
   }
 
   checkTimer(prevCount) {
@@ -362,7 +370,7 @@ class Bidding extends React.Component {
 		} else if (this.state.count <= 0 && this.state.count !== prevCount) {
       this.setState({
         open: true,
-        productUnlocked : {},
+        productUnlocked : '',
         priceComp: false,
       })
     }

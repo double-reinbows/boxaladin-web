@@ -44,6 +44,11 @@
       font-size: 50px;
       margin-bottom: 5%;
       margin-top: -4%;
+      &__label{
+        margin-bottom: 5%;
+        text-align: center;
+        font-size: 30px;
+      }
       &__button{
         width: 200px;
         height: 200px;
@@ -182,6 +187,9 @@
         width: 100%
       }
     }
+    &__label{
+      font-size: 20px;
+    }
   }
 }
 
@@ -262,7 +270,7 @@
       justify-content: space-around;
       margin: auto;
       margin-top: -1%;
-      margin-bottom: 8%;
+      margin-bottom: 3%;
       background-color: lightgrey;
       font-size: 15px;
     }
