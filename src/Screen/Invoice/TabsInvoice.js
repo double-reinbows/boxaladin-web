@@ -39,7 +39,7 @@ class TabsInvoice extends React.Component {
               className={classnames({ active: this.state.activeTab === '1' })}
               onClick={() => { this.toggle('1'); }}
             >
-              <a className="invoice__active">Invoice Pulsa</a>
+              <a className="invoice__active">Invoice Pulsa/Data</a>
             </NavLink>
           </NavItem>
           <NavItem className="invoice__tab">
@@ -55,7 +55,7 @@ class TabsInvoice extends React.Component {
               className={classnames({ active: this.state.activeTab === '3' })}
               onClick={() => { this.toggle('3'); }}
             >
-              Invoice Saldo
+              Invoice Uang
             </NavLink>
           </NavItem>
         </Nav>

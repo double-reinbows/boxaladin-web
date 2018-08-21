@@ -190,7 +190,7 @@ renderModalBid() {
             </div>
           </div>
           <div className="homecontent__top__youtube">
-          <iframe title="boxaladin intro" width="100%" height="100%" src="https://www.youtube.com/embed/DR0bccmd3b0" ></iframe>
+          <iframe title="boxaladin intro" width="100%" height="100%" src="https://www.youtube.com/embed/videoseries?list=PLBVbVVQLrYxQHfTYfWf0xlrbAYQjajJ8e" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
         </div>
         <div className="homecontent__bottom">
