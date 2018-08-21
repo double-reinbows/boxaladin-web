@@ -16,26 +16,27 @@ class ModalConfirm extends Component {
   }
 s
   checkAladinkey = async () => {
-    const {priceOrProductId, userInfo} = this.props
+    const {priceId, userInfo, type} = this.props
     if ( !userInfo.id && !localStorage.getItem('token')){
       alert ('Anda Belum Masuk')
     } else if (userInfo.aladinKeys <= 0 ){
       alert("Anda Tidak Memiliki Aladin Key")
     } else {
-      if (priceOrProductId === 1) {
+      if (priceId === 1) {
         if (userInfo.wallet < 10000){
           return alert('Saldo Wallet Anda Kurang Dari Rp.10.000,00')
         } else {
           helperAxios('GET', 'users/checkuser')
           .then( async data => {
             if (data.data.aladinKeys > 0 && data.data.wallet >= 10000) {
-              await this.props.selectedPriceID(priceOrProductId)
+              await this.props.selectedPriceID(priceId)
               this.props.history.push('/bidding', {
                 displayPrice: this.props.displayPrice,
                 firebase: this.props.firebase,
-                typeBuy: this.props.typeBuy
+                typeBuy: this.props.typeBuy,
+                type: this.props.type
               })
-              helperAxios('PUT', 'logopen',  {priceId: priceOrProductId})
+              helperAxios('PUT', 'logopen',  {priceId, type})
             } else {
               alert("Anda Tidak Memiliki Aladin Key")
             }
@@ -47,13 +48,14 @@ s
           if (data.data.message === 'not verified user') {
             alert("Silahkan Verifikasi Email Anda")
           } else if (data.data.aladinKeys > 0) {
-            await this.props.selectedPriceID(priceOrProductId)
+            await this.props.selectedPriceID(priceId)
             this.props.history.push('/bidding', {
               displayPrice: this.props.displayPrice,
               firebase: this.props.firebase,
-              typeBuy: this.props.typeBuy
+              typeBuy: this.props.typeBuy,
+              type: this.props.type
             })
-            helperAxios('PUT', 'logopen', {priceId: priceOrProductId})
+            helperAxios('PUT', 'logopen', {priceId, type})
           } else {
             alert("Anda Tidak Memiliki Aladin Key")
           }
@@ -100,7 +102,7 @@ s
   }
 
   render() {
-    console.log(this.props)
+    console.log('modalConfirm ---->', this.props)
     return (
       <Modal isOpen={this.props.open} className="modal__confirm">
         <MediaQuery query="(max-device-width: 720px)">

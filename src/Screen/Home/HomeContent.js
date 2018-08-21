@@ -12,7 +12,7 @@ class HomeContent extends Component {
       providerModal: false,
       openModal: false,
       openModalBid: false,
-      priceOrProductId: 0,
+      priceId: 0,
       displayPrice: 0,
       price: '',
       tab: 1,
@@ -20,7 +20,8 @@ class HomeContent extends Component {
       tabActive2: '',
       brand: '',
       brandName: '',
-      brandId: 0
+      brandId: 0,
+      type: ''
     }
   }
 
@@ -38,8 +39,9 @@ class HomeContent extends Component {
   toggleConfirm = (id, displayPrice) => {
     this.setState({
       openModal: !this.state.openModal,
-      priceOrProductId: id,
-      displayPrice
+      priceId: id,
+      displayPrice,
+      type: 'price'
     })
   }
 
@@ -47,7 +49,8 @@ class HomeContent extends Component {
     await this.setState({
     brandName: brandName,
     brandId: id,
-    logo: logo
+    logo: logo,
+    type: 'product'
   })
   await this.setState({
     openModalBid: !this.state.openModalBid,
@@ -63,8 +66,9 @@ renderModalBid() {
         isOpen={this.state.openModalBid}
         toggle={this.toggleBid}
         brandName={this.state.brandName}
-        priceOrProductId={this.state.brandId}
+        priceId={this.state.brandId}
         logo={this.state.logo}
+        type={this.state.type}
       />
     )
   }
@@ -194,7 +198,8 @@ renderModalBid() {
           displayPrice={this.state.displayPrice}
           open={this.state.openModal}
           toggle={this.toggleConfirm}
-          priceOrProductId={this.state.priceOrProductId}
+          priceId={this.state.priceId}
+          type={this.state.type}
         />
         {this.renderModalBid()}
       </div>

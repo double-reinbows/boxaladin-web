@@ -9,9 +9,10 @@ class Price extends Component {
     super(props);
     this.state = {
       openModal: false,
-      priceOrProductId: 0,
+      priceId: 0,
       price: '',
-      displayPrice: 0
+      displayPrice: 0,
+      type: ''
     }
   }
 
@@ -25,8 +26,9 @@ class Price extends Component {
   toggleConfirm = (id, displayPrice) => {
     this.setState({
       openModal: !this.state.openModal,
-      priceOrProductId: id,
-      displayPrice
+      priceId: id,
+      displayPrice,
+      type: 'price'
     })
   }
 
@@ -68,7 +70,8 @@ class Price extends Component {
           displayPrice={this.state.displayPrice === undefined ? 0 : this.state.displayPrice}
           open={this.state.openModal}
           toggle={this.toggleConfirm}
-          priceOrProductId={this.state.priceOrProductId}
+          priceId={this.state.priceId}
+          type={this.state.type}
         />
       </div>
     );

@@ -211,7 +211,7 @@ class ModalPayment extends Component{
         bank = [
           ...listBank
         ]
-      } else if (this.props.id === 1){
+      } else if (this.props.selectedPriceID === 1){
         bank = [
           {value:'Wallet', onClick: this.handleChangeBank , disabled: false }
         ]

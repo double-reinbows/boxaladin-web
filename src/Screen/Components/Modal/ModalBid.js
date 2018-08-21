@@ -21,7 +21,7 @@ class ModalCheck extends Component {
       productName: '',
       modalConfirm : false,
       disabled: false,
-      priceOrProductId: 0,
+      priceId: 0,
       defaultName: '',
       defaultPrice: '',
       paketData: []
@@ -40,13 +40,13 @@ class ModalCheck extends Component {
   getProduct = () => {
     axios({
       method: 'GET',
-      url: `${envChecker('api')}/api/product/${this.props.priceOrProductId}`,
+      url: `${envChecker('api')}/api/product/${this.props.priceId}`,
     })
     .then(response => {
       this.setState({
         paketData: response.data.paketData,
         defaultName: response.data.paketData[0].productName,
-        priceOrProductId: response.data.paketData[0].id,
+        priceId: response.data.paketData[0].id,
         defaultPrice: response.data.paketData[0].displayPrice
       })
     })
@@ -101,7 +101,7 @@ class ModalCheck extends Component {
 
   pulsa = async (id, data) => {
     await this.setState({
-      priceOrProductId: id,
+      priceId: id,
       productPrice: data.displayPrice,
       productName: data.productName,
       disabled: false,
@@ -111,7 +111,7 @@ class ModalCheck extends Component {
   mobilePulsa = async (id, data) => {
     await this.props.selectedPriceID(id)
     await this.setState({
-      priceOrProductId: id,
+      priceId: id,
       productPrice: data.displayPrice,
       productName: data.productName,
       disabled: false,
@@ -187,7 +187,7 @@ class ModalCheck extends Component {
                       priceProduct(this.state.productName)}</label>
             </div>
             <div >
-              <button value={this.state.priceOrProductId} onClick={() => this.handleNotLogin()} disabled={this.state.disabled} type="button" className="modal__pulsa__content__3__button__price">
+              <button value={this.state.priceId} onClick={() => this.handleNotLogin()} disabled={this.state.disabled} type="button" className="modal__pulsa__content__3__button__price">
                 Intip Harga
                 <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/lock.png' alt="LockIcon" className="modal__pulsa__content__3__button__price__image"/>
               </button>
@@ -199,7 +199,8 @@ class ModalCheck extends Component {
             firebase={this.props.firebase}
             open={this.state.modalConfirm}
             toggle={this.toggleConfirm}
-            priceOrProductId={this.state.priceOrProductId}
+            priceId={this.state.priceId}
+            type={this.props.type}
             />
         </div>
       </Modal>
@@ -228,7 +229,7 @@ class ModalCheck extends Component {
   }
 
   checkAladinkey = () => {
-    const {priceOrProductId, userInfo} = this.props
+    const {priceId, userInfo, type} = this.props
     if ( !userInfo.id && !localStorage.getItem('token')){
       alert ('Anda Belum Masuk')
     } else if (userInfo.aladinKeys <= 0 ){
@@ -240,9 +241,10 @@ class ModalCheck extends Component {
           this.props.history.push('/bidding', {
             displayPrice: this.state.productPrice,
             firebase: this.props.firebase,
-            typeBuy: this.props.typeBuy
+            typeBuy: this.props.typeBuy,
+            type
           })
-          helperAxios('PUT', 'logopen', {priceId: priceOrProductId})
+          helperAxios('PUT', 'logopen', {priceId: priceId, type})
         } else {
           alert("Anda Tidak Memiliki Aladin Key")
         }
@@ -251,6 +253,7 @@ class ModalCheck extends Component {
   }
 
   render() {
+    console.log('modaBid ====>',this.props)
     return (
       <div>
         <MediaQuery query="(max-device-width: 720px)">

@@ -201,7 +201,11 @@ class Bidding extends React.Component {
 
     axios({
       method: 'PUT',
-      url: `${envChecker('api')}/lognoinvoice/${this.props.selectedPriceID}`,
+      url: `${envChecker('api')}/lognoinvoice`,
+      data: {
+        id: this.props.selectedPriceID,
+        type: this.props.location.state.type
+      }
     })
     this.props.history.push('/insertphone', {
       aladinPrice: this.state.productUnlocked.aladinPrice,
