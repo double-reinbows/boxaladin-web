@@ -41,7 +41,7 @@ export default class MobileHome extends Component {
         </div>
         {this.renderTab()}
         <h2 className="mobile__pulsa__label">Cara Kerja</h2>
-        <img alt="how it works" className='mobile__pulsa__image'src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Home/Carakerja.svg"/>
+        <img alt="how it works" className='mobile__pulsa__image'src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/Cara+Kerja/carKerjaMobile.svg"/>
       </div>
     );
   }

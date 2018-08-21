@@ -20,6 +20,7 @@
     font-size: 20px;
   }
   &__displayPrice{
+    font-size: 20px;
     display: flex;
     justify-content: flex-end;
     text-decoration-line: line-through;
@@ -54,7 +55,7 @@
       text-align: center;
 
       &__text{
-      	font-size: 25px;
+      	font-size: 30px;
       	font-weight: 800;
       	line-height: 42px;
       }
