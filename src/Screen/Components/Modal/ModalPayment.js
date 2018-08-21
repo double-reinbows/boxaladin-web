@@ -47,7 +47,7 @@ class ModalPayment extends Component{
     }
   }
 
-  createObj() {
+  createObj = () => {
     const { typeBuy, data, brandId, amount, phone, selectedPriceID } = this.props
     const { bank } = this.state
     if (typeBuy === 'buy wallet') {
@@ -215,7 +215,7 @@ class ModalPayment extends Component{
         bank = [
           {value:'Wallet', onClick: this.handleChangeBank , disabled: false }
         ]
-      } else if (typeBuy === 'buy pulsa' || typeBuy === 'buy key' || typeBuy === 'buy paket data'){
+      } else {
         bank = [
           ...listBank,
           {value:'Wallet', onClick: this.handleChangeBank , disabled: this.state.disabledButton }

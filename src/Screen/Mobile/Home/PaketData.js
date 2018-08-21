@@ -16,7 +16,7 @@ class PaketData extends Component {
       type: ''
     }
   }
-  
+
   componentDidMount() {
     this.getBrand()
   }
@@ -92,7 +92,7 @@ class PaketData extends Component {
   render() {
     return (
       <div>
-        <h2 className="mobile__pulsa__label">Pilih Paket Data mu</h2>
+        <h2 className="mobile__pulsa__label">Pilih Provider Data mu</h2>
         <div className="mobile__pulsa__content1">
           {this.pulsaItem()}
         </div>
