@@ -266,7 +266,7 @@ const Guide = (props) => {
                 Konfirmasi transaksi (pastikan nama rekening tercatat sebagai BOX ALADIN ASIAPACIFIC PT), kemudian tekan “Benar”
               </li>
               <li>
-                Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis (memakan waktu kurang lebih 5 menit)
+                Setelah transaksi pembayaran Anda selesai, silahkan konfirmasi pembayaran melalui LINE boxaladin di <b style = {{ color: "#32CD32"}}>@boxaladin</b>
               </li>
             </ol>
           </div>
@@ -299,7 +299,7 @@ const Guide = (props) => {
                 Konfirmasi transaksi, masukkan angka dari token, lalu klik “Kirim”
               </li>
               <li>
-                Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis (memakan waktu kurang lebih 5 menit)
+                Setelah transaksi pembayaran Anda selesai, silahkan konfirmasi pembayaran melalui LINE boxaladin di <b style = {{ color: "#32CD32"}}>@boxaladin</b>
               </li>
             </ol>
           </div>
@@ -329,7 +329,7 @@ const Guide = (props) => {
                 Konfirmasi transaksi dan masukkan PIN m-BCA, lalu “OK”
               </li>
               <li>
-                Setelah transaksi pembayaran Anda selesai, invoice ini akan diperbarui secara otomatis (memakan waktu kurang lebih 5 menit)
+                Setelah transaksi pembayaran Anda selesai, silahkan konfirmasi pembayaran melalui LINE boxaladin di <b style = {{ color: "#32CD32"}}>@boxaladin</b>
               </li>
             </ol>
           </div>

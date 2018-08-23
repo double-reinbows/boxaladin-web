@@ -24,7 +24,8 @@ class ModalCheck extends Component {
       priceId: 0,
       defaultName: '',
       defaultPrice: '',
-      paketData: []
+      paketData: [],
+      disabledMobile: true
     }
   }
 
@@ -114,7 +115,7 @@ class ModalCheck extends Component {
       priceId: id,
       productPrice: data.displayPrice,
       productName: data.productName,
-      disabled: false,
+      disabledMobile: false,
     })
   }
 
@@ -216,11 +217,12 @@ class ModalCheck extends Component {
           <div className="mobile-modalBid__content">
             {this.mobileChoicePulsa()}
           </div>
+          <label style={{marginTop : '3%'}}>{this.state.productName}</label>
           <label style={{marginTop : '3%'}}>1x intip = 1 kunci aladin</label>
           <br/>
           <label>Lanjutkan ?</label>
           <div className="mobile-modalBid__button__container">
-            <button className="mobile-modalBid__button__next" onClick={this.checkAladinkey}>Ya</button>
+            <button className="mobile-modalBid__button__next" onClick={this.checkAladinkey} disabled={this.state.disabledMobile}>Ya</button>
             <button style={{color:'red'}} className="mobile-modalBid__button__next" onClick={this.toggle}>Tidak</button>
           </div>
         </div>

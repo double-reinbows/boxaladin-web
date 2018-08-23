@@ -25,7 +25,13 @@ class TopupPayment extends React.Component {
   handleRetail(){
     if (!this.state.invoice){
       return null
-    } else if (this.state.invoice.payment.availableretail !== 'null'){
+    } else if (this.state.invoice.payment.availableretail === 'BCA') {
+      return (
+        <div>
+        <Guide activeTab= {'4'} invoice={this.state.invoice} />
+      </div>
+      )
+    } else if (this.state.invoice.payment.availableretail !== 'null') {
       return (
         <div>
         <Guide activeTab= {'5'} invoice={this.state.invoice} />
@@ -55,12 +61,6 @@ class TopupPayment extends React.Component {
         <Guide activeTab= {'3'} invoice={this.state.invoice} />
       </div>
       )
-    } else if (this.state.invoice.virtualAccount.bankCode === 'BCA') {
-      return (
-        <div>
-        <Guide activeTab= {'4'} invoice={this.state.invoice} />
-      </div>
-      )
     } else {
       return null
     }
@@ -73,6 +73,7 @@ class TopupPayment extends React.Component {
   }
 
   render() {
+    console.log(this.state.invoice)
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">

@@ -37,8 +37,10 @@ class ModalPayment extends Component{
 
   axiosTransaction = () => {
     const { bank } = this.state
-    const { fixedendpoint, retailendpoint, walletendpoint } = this.props
-      if ( bank === 'Alfamart') {
+    const { bcaendpoint, fixedendpoint, retailendpoint, walletendpoint } = this.props
+    if ( bank === 'BCA') {
+      this.getTransaction(bcaendpoint, '')
+    } else if ( bank === 'Alfamart') {
       this.getTransaction(retailendpoint, 'Alfamart')
     } else if ( bank === 'Wallet') {
       this.getTransaction(walletendpoint, 'Wallet')
@@ -201,6 +203,7 @@ class ModalPayment extends Component{
   bankChoice = () => {
     const {typeBuy} = this.props
     const listBank = [
+      {value:'BCA', onClick: this.handleChangeBank},
       {value:'BNI', onClick: this.handleChangeBank},
       {value:'BRI', onClick: this.handleChangeBank},
       {value:'MANDIRI', onClick: this.handleChangeBank},

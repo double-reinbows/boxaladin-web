@@ -102,6 +102,7 @@ class InsertPhone extends React.Component {
             fixedendpoint='v2/virtualaccount'
             retailendpoint='v2/payment'
             walletendpoint='v2/walletpulsa'
+            bcaendpoint='bca/pulsa'
             isOpen={this.state.modalPayment}
             amount={this.props.location.state.aladinPrice}
             phone={SplitPhone(this.state.phone)}
@@ -119,6 +120,7 @@ class InsertPhone extends React.Component {
             fixedendpoint='virtualaccount'
             retailendpoint='payment'
             walletendpoint='walletpulsa'
+            bcaendpoint='bca/pulsa'
             isOpen={this.state.modalPayment}
             amount={this.props.location.state.aladinPrice}
             phone={SplitPhone(this.state.phone)}

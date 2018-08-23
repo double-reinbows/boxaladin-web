@@ -63,6 +63,12 @@ class InvoiceDetail extends React.Component {
   handleRetail(){
     if (!this.state.invoice){
       return null
+    } else if (this.state.invoice.payment.availableretail === 'BCA') {
+      return (
+        <div>
+        <Guide activeTab= {'4'} invoice={this.state.invoice} />
+      </div>
+      )
     } else if (this.state.invoice.payment.availableretail !== 'null') {
       return (
         <div>
@@ -93,16 +99,11 @@ class InvoiceDetail extends React.Component {
         <Guide activeTab= {'3'} invoice={this.state.invoice} />
       </div>
       )
-    } else if (this.state.invoice.virtualAccount.bankCode === 'BCA') {
-      return (
-        <div>
-        <Guide activeTab= {'4'} invoice={this.state.invoice} />
-      </div>
-      )
     } else {
       return null
     }
   }
+  
   getExpired = () => {
     return this.state.invoice.payment.expiredAt && (
       <h2 className="pembayaran__title__infoTime">Selesaikan Pembayaran Sebelum {moment(this.state.invoice.payment.expiredAt, moment.ISO_8601).add(12, 'hours').format('D MMMM YYYY, h:mm:ss a')}</h2>
