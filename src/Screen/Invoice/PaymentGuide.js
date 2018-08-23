@@ -260,13 +260,13 @@ const Guide = (props) => {
                 Pilih Ke Rek BCA dan masukkan Nominal sebesar Rp <b style = {{ color: "red"}}>{props.invoice.payment.amount.toLocaleString(['ban', 'id'])},-</b>, dan pilih “YA” (Nominal yang berbeda tidak dapat diproses)
               </li>
               <li>
-                Silakan memasukkan {props.invoice.payment.availableBanks} pada nomor rekening yang dituju, dan pilih “Benar”
+                Silakan memasukkan 7140322355 pada nomor rekening yang dituju, dan pilih “Benar”
               </li>
               <li>
                 Konfirmasi transaksi (pastikan nama rekening tercatat sebagai BOX ALADIN ASIAPACIFIC PT), kemudian tekan “Benar”
               </li>
               <li>
-                Setelah transaksi pembayaran Anda selesai, silahkan konfirmasi pembayaran melalui LINE boxaladin di <b style = {{ color: "#32CD32"}}>@boxaladin</b>
+                Setelah transaksi pembayaran Anda selesai, silahkan konfirmasi pembayaran dengan menyertakan bukti pembayaran beserta kode pembayaran melalui LINE boxaladin di <b style = {{ color: "#32CD32"}}>@boxaladin</b>
               </li>
             </ol>
           </div>
@@ -284,7 +284,7 @@ const Guide = (props) => {
                 Pilih “Daftar Rekening Tujuan”, dan “Rekening BCA” pada Jenis Rekening Tujuan
               </li>
               <li>
-                Masukkan {props.invoice.payment.availableBanks} pada No. Rekening Tujuan, lalu ikuti petunjuk pada layar (jika nomor rekening sudah terdaftar, abaikan langkah nomor 3 dan 4)
+                Masukkan 7140322355 pada No. Rekening Tujuan, lalu ikuti petunjuk pada layar (jika nomor rekening sudah terdaftar, abaikan langkah nomor 3 dan 4)
               </li>
               <li>
                 Kembali pada halaman “Transfer Dana”, pilih “Transfer ke Rek. BCA”
@@ -299,7 +299,7 @@ const Guide = (props) => {
                 Konfirmasi transaksi, masukkan angka dari token, lalu klik “Kirim”
               </li>
               <li>
-                Setelah transaksi pembayaran Anda selesai, silahkan konfirmasi pembayaran melalui LINE boxaladin di <b style = {{ color: "#32CD32"}}>@boxaladin</b>
+                Setelah transaksi pembayaran Anda selesai, silahkan konfirmasi pembayaran dengan menyertakan bukti pembayaran beserta kode pembayaran melalui LINE boxaladin di <b style = {{ color: "#32CD32"}}>@boxaladin</b>
               </li>
             </ol>
           </div>
@@ -317,7 +317,7 @@ const Guide = (props) => {
                 Pilih “Antar Rekening” pada “Daftar Transfer” untuk menambahkan nomor rekening baru
               </li>
               <li>
-                Masukkan {props.invoice.payment.availableBanks} pada Rekening 1, lalu klik “Send”. Nomor rekening akan tercatat sebagai BOX ALADIN ASIAPACIFIC PT
+                Masukkan 7140322355 pada Rekening 1, lalu klik “Send”. Nomor rekening akan tercatat sebagai BOX ALADIN ASIAPACIFIC PT
               </li>
               <li>
                 Setelah nomor rekening terdaftar, pilih “Antar Rekening” pada “Transfer”
@@ -329,7 +329,7 @@ const Guide = (props) => {
                 Konfirmasi transaksi dan masukkan PIN m-BCA, lalu “OK”
               </li>
               <li>
-                Setelah transaksi pembayaran Anda selesai, silahkan konfirmasi pembayaran melalui LINE boxaladin di <b style = {{ color: "#32CD32"}}>@boxaladin</b>
+                Setelah transaksi pembayaran Anda selesai, silahkan konfirmasi pembayaran dengan menyertakan bukti pembayaran beserta kode pembayaran melalui LINE boxaladin di <b style = {{ color: "#32CD32"}}>@boxaladin</b>
               </li>
             </ol>
           </div>

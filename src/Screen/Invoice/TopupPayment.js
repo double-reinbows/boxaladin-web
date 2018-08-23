@@ -28,7 +28,7 @@ class TopupPayment extends React.Component {
     } else if (this.state.invoice.payment.availableretail === 'BCA') {
       return (
         <div>
-        <Guide activeTab= {'4'} invoice={this.state.invoice} />
+        <Guide activeTab= {'4'} invoice={this.state.invoice} amount={this.state.invoice.payment.amount}/>
       </div>
       )
     } else if (this.state.invoice.payment.availableretail !== 'null') {
@@ -77,7 +77,7 @@ class TopupPayment extends React.Component {
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
-        <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice.virtualAccount ? (this.state.invoice.virtualAccount.bankCode) : null}</h1>
+        <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice.virtualAccount ? (this.state.invoice.virtualAccount.bankCode) : (this.state.invoice.xenditId)}</h1>
           {this.state.invoice ? (
               <div>
               <div className="pembayaran__content__textDistance">

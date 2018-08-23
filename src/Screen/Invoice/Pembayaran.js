@@ -66,7 +66,7 @@ class InvoiceDetail extends React.Component {
     } else if (this.state.invoice.payment.availableretail === 'BCA') {
       return (
         <div>
-        <Guide activeTab= {'4'} invoice={this.state.invoice} />
+        <Guide activeTab= {'4'} invoice={this.state.invoice} amount={this.state.invoice.payment.amount}/>
       </div>
       )
     } else if (this.state.invoice.payment.availableretail !== 'null') {
@@ -103,7 +103,7 @@ class InvoiceDetail extends React.Component {
       return null
     }
   }
-  
+
   getExpired = () => {
     return this.state.invoice.payment.expiredAt && (
       <h2 className="pembayaran__title__infoTime">Selesaikan Pembayaran Sebelum {moment(this.state.invoice.payment.expiredAt, moment.ISO_8601).add(12, 'hours').format('D MMMM YYYY, h:mm:ss a')}</h2>
@@ -111,10 +111,11 @@ class InvoiceDetail extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
-          <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice.virtualAccount ? (this.state.invoice.virtualAccount.bankCode) : null}</h1>
+          <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice.virtualAccount ? (this.state.invoice.virtualAccount.bankCode) : (this.state.invoice.pulsaId)}</h1>
           {this.state.invoice ? (
               <div>
                 <div className="pembayaran__content__textDistance">

@@ -26,7 +26,7 @@ class InvoiceDetail extends React.Component<state> {
     } else if (this.state.invoice.payment.availableretail === 'BCA') {
       return (
         <div>
-        <Guide activeTab= {'4'} invoice={this.state.invoice} />
+        <Guide activeTab= {'4'} invoice={this.state.invoice} amount={this.state.invoice.payment.amount}/>
       </div>
       )
     } else if (this.state.invoice.payment.availableretail !== 'null') {
@@ -117,12 +117,28 @@ class InvoiceDetail extends React.Component<state> {
     )
   }
 
+  checkBank = () => {
+  const { invoice } = this.state
+    if (invoice.virtualAccount) {
+      return (
+        invoice.virtualAccount.bankCode
+      )
+    } else if (invoice.payment) {
+      return (
+        invoice.payment.xenditId
+      )
+    } else {
+      return null
+    }
+  }
+
 
   render() {
+    console.log(this.state.invoice)
   return (
     <div className="pembayaran">
       <div className="pembayaran__container">
-        <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice.virtualAccount ? (this.state.invoice.virtualAccount.bankCode) : null}</h1>
+        <h1 className="pembayaran__title__header">Pembayaran {this.checkBank()}</h1>
         {this.state.invoice ? (
             <div>
               <div className="pembayaran__content__textDistance">
