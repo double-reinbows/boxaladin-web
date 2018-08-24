@@ -24,7 +24,7 @@ class Login extends Component {
     e.preventDefault()
     this.props.setIsLoading(true)
     const regex = /(@)/gm
-    const isExisting = regex.test(this.state.number)
+    const isExisting = regex.test(this.state.numberAndEmail)
     if (isExisting === true) {
       axios({
         method: 'POST',
