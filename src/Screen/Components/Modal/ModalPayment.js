@@ -203,11 +203,11 @@ class ModalPayment extends Component{
   bankChoice = () => {
     const {typeBuy} = this.props
     const listBank = [
-      {value:'BCA', onClick: this.handleChangeBank},
-      {value:'BNI', onClick: this.handleChangeBank},
-      {value:'BRI', onClick: this.handleChangeBank},
-      {value:'MANDIRI', onClick: this.handleChangeBank},
-      {value:'Alfamart', onClick: this.handleChangeBank}
+      {value:'BCA', onClick: this.handleChangeBank, paymentType: 'BCA'},
+      {value:'BNI', onClick: this.handleChangeBank, paymentType: 'BNI'},
+      {value:'BRI', onClick: this.handleChangeBank, paymentType: 'BRI'},
+      {value:'MANDIRI', onClick: this.handleChangeBank, paymentType: 'MANDIRI'},
+      {value:'Alfamart', onClick: this.handleChangeBank, paymentType: 'Alfamart'}
     ]
     let bank = []
       if (typeBuy === 'buy wallet'){
@@ -216,12 +216,12 @@ class ModalPayment extends Component{
         ]
       } else if (this.props.selectedPriceID === 1){
         bank = [
-          {value:'Uang Aladin', onClick: this.handleChangeBank , disabled: false }
+          {value:'Wallet', onClick: this.handleChangeBank , disabled: false , paymentType: 'Uang Aladin'}
         ]
       } else {
         bank = [
           ...listBank,
-          {value:'Uang Aladin', onClick: this.handleChangeBank , disabled: this.state.disabledButton }
+          {value:'Wallet', onClick: this.handleChangeBank , disabled: this.state.disabledButton , paymentType: 'Uang Aladin' }
         ]
       }
 
@@ -232,7 +232,8 @@ class ModalPayment extends Component{
         <div className="modal__method__content__container">
           <ButtonGroup className="modal__method__ButtonGroup" vertical>
             {bank.map((data, idx) => (
-            <Button key={idx} disabled={data.disabled} value={data.value} className="modal__method__Button" onClick={data.onClick}>{data.value}</Button>
+              // console.log('map', data)
+            <Button key={idx} disabled={data.disabled} value={data.value} className="modal__method__Button" onClick={data.onClick}>{data.paymentType}</Button>
             ))
             }
           </ButtonGroup>
@@ -251,6 +252,8 @@ class ModalPayment extends Component{
   }
 
   render() {
+    console.log(this.props)
+    console.log(this.state)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">
