@@ -46,9 +46,10 @@ class Topup extends Component<State> {
           {this.showButton()}
         </div>
           <ModalPayment
-            text='buy wallet'
+            typeBuy='buy wallet'
             fixedendpoint='fixedwallet'
             retailendpoint='alfawallet'
+            bcaendpoint='bca/wallet'
             push='walletinvoice'
             isOpen={this.state.modalPayment}
             data={this.state.wallet}

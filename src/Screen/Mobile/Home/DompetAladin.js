@@ -2,20 +2,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
-// import { getUser } from '../../../actions/userAction'
 
 type Props = {
-  // getUser: Function,
   userInfo: object
 }
 class Dompet extends Component <Props> {
-
-  // componentDidMount() {
-  //   if (!this.props.userInfo.id && localStorage.getItem('token')) {
-  //     this.props.getUser()
-  //   }
-  // }
-
   render() {
     return (
       <div className="dompetHome__container">
@@ -56,7 +47,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // getUser: () => dispatch(getUser())
   }
 }
 

@@ -37,8 +37,10 @@ class ModalPayment extends Component{
 
   axiosTransaction = () => {
     const { bank } = this.state
-    const { fixedendpoint, retailendpoint, walletendpoint } = this.props
-      if ( bank === 'Alfamart') {
+    const { bcaendpoint, fixedendpoint, retailendpoint, walletendpoint } = this.props
+    if ( bank === 'BCA') {
+      this.getTransaction(bcaendpoint, '')
+    } else if ( bank === 'Alfamart') {
       this.getTransaction(retailendpoint, 'Alfamart')
     } else if ( bank === 'Wallet') {
       this.getTransaction(walletendpoint, 'Wallet')
@@ -47,24 +49,31 @@ class ModalPayment extends Component{
     }
   }
 
-  createObj() {
-    const { text, data, location, brandId, amount, phone } = this.props
+  createObj = () => {
+    const { typeBuy, data, brandId, amount, phone, selectedPriceID } = this.props
     const { bank } = this.state
-    if (text === 'buy wallet') {
+    if (typeBuy === 'buy wallet') {
       return {
         amount: parseInt(data, 10),
         bankCode: bank
       }
-    } else if (text === 'buy key'){
+    } else if (typeBuy === 'buy key'){
       return {
         keyId: parseInt(data, 10),
         bankCode: bank
       }
-    } else if (text === 'buy pulsa' || text === 'buy pulsa 10k'){
+    } else if (typeBuy === 'buy pulsa'){
       return {
         // priceid & brandid used for find product
-        priceId: location.state.id,
+        priceId: selectedPriceID,
         brandId: brandId,
+        phoneNumber: phone,
+        bankCode: bank,
+        amount: amount
+      }
+    } else if (typeBuy === 'buy paket data'){
+      return {
+        productId: selectedPriceID,
         phoneNumber: phone,
         bankCode: bank,
         amount: amount
@@ -192,25 +201,27 @@ class ModalPayment extends Component{
   }
 
   bankChoice = () => {
+    const {typeBuy} = this.props
     const listBank = [
+      {value:'BCA', onClick: this.handleChangeBank},
       {value:'BNI', onClick: this.handleChangeBank},
       {value:'BRI', onClick: this.handleChangeBank},
       {value:'MANDIRI', onClick: this.handleChangeBank},
       {value:'Alfamart', onClick: this.handleChangeBank}
     ]
     let bank = []
-      if (this.props.text === 'buy wallet'){
+      if (typeBuy === 'buy wallet'){
         bank = [
           ...listBank
         ]
-      } else if (this.props.text === 'buy pulsa' || this.props.text === 'buy key'){
+      } else if (this.props.selectedPriceID === 1){
+        bank = [
+          {value:'Uang Aladin', onClick: this.handleChangeBank , disabled: false }
+        ]
+      } else {
         bank = [
           ...listBank,
-          {value:'Wallet', onClick: this.handleChangeBank , disabled: this.state.disabledButton }
-        ]
-      } else if (this.props.text === 'buy pulsa 10k'){
-        bank = [
-          {value:'Wallet', onClick: this.handleChangeBank , disabled: false }
+          {value:'Uang Aladin', onClick: this.handleChangeBank , disabled: this.state.disabledButton }
         ]
       }
 
@@ -231,16 +242,15 @@ class ModalPayment extends Component{
   }
 
   showProvider = () => {
-    const { text, brand } = this.props
-    if (text === 'buy pulsa' || text === 'buy pulsa 10k' ){
+    const { typeBuy, brand, phone } = this.props
+    if (typeBuy === 'buy pulsa' || typeBuy === 'buy paket data' ){
       return brand && (
-        <label>{brand}</label>
+        <label>{brand} <b>{phone}</b></label>
       )
     }
   }
 
   render() {
-    // console.log(this.props.text)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">
@@ -251,7 +261,7 @@ class ModalPayment extends Component{
             <div>
               <label className="alert__invoice"><b>{this.notifDuplicate()}</b></label>
             </div>
-            <button disabled={this.state.disabled} className="modal__method__content__button" onClick={this.axiosTransaction}>Submit</button>
+            <button disabled={this.state.disabled} className="modal__method__content__button" onClick={this.axiosTransaction}>OK</button>
             <Loading isLoading={ this.props.isLoading } />
           </div>
       </Modal>
@@ -262,7 +272,8 @@ class ModalPayment extends Component{
 const mapStateToProps = (state) => {
   return {
     isLoading: state.loadingReducer.isLoading,
-    TimerLoading: state.loadingTimeReducer
+    TimerLoading: state.loadingTimeReducer,
+    selectedPriceID: state.productReducer.selectedPriceID
   }
 }
 

@@ -97,7 +97,7 @@ export const getFilteredProductsAction = (payload) => ({
 // 	payload
 // })
 
-export const selectPriceID = (payload) => ({
+export const selectedPriceID = (payload) => ({
 	type: 'SELECT_PRICE_ID',
 	payload
 })

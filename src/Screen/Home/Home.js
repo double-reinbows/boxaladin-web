@@ -7,7 +7,7 @@ import {loginAction} from '../../actions/'
 
 import HomeContent from './HomeContent'
 import BannerHome from './BannerHome'
-import MobileHome from '../Mobile/Home/Home'
+import MobileHome from '../Mobile/Home/MobileHome'
 
 type State = {
 };
@@ -22,7 +22,6 @@ class Home extends Component<Props, State> {
           <HomeContent/>
           <BannerHome />
         </MediaQuery>
-
       </div>
     )
   }

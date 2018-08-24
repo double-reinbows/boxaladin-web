@@ -48,10 +48,11 @@ class aladinKeys extends Component <State, Props> {
         </div>
         <h2 className="mobile__pulsa__label">1 = Rp 1.000,-</h2>
         <ModalPayment
-          text='buy key'
+          typeBuy='buy key'
           fixedendpoint='topupva'
           retailendpoint='topupKey'
           walletendpoint='walletkey'
+          bcaendpoint='bca/key'
           push='topupinvoice'
           isOpen={this.state.modalPayment}
           data={this.state.idKey}

@@ -445,7 +445,6 @@ class Game extends React.Component<Props, State> {
 			});
 
 		gameResult.then((data) => {
-			console.log(data);
 			if (data.data.message === 'Cannot Play') {
 				this.setState({startButton: (<label className="game__textHeader">ANDA TIDAK MEMILIKI COIN</label>)});
 			} else if (data.data.message === 'User not found') {
@@ -483,7 +482,6 @@ class Game extends React.Component<Props, State> {
 				this.stop2();
 				this.stop3();
 				if (this.accidentalWin() === 0) { //User didn't win accidentally
-					// console.log("BITCH");
 					this.setState({
 						startButton:(<button className="game__slotButton__start" onClick={ () => this.start() }>START</button>),
 						stopButton: null,
@@ -514,7 +512,6 @@ class Game extends React.Component<Props, State> {
 			this.setState({slot2: 0});
 			return 5;
 		} else {
-			// console.log('RETURN 0 BITCH');
 			return 0;
 		}
 }

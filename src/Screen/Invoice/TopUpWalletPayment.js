@@ -23,11 +23,17 @@ class InvoiceDetail extends React.Component<state> {
   handleRetail(){
     if (!this.state.invoice){
       return null
-    } else if (this.state.invoice.payment.availableretail !== 'null'){
+    } else if (this.state.invoice.payment.availableretail === 'BCA') {
       return (
         <div>
-          <Guide activeTab= {'5'} invoice={this.state.invoice} />
-        </div>
+        <Guide activeTab= {'4'} invoice={this.state.invoice} amount={this.state.invoice.payment.amount}/>
+      </div>
+      )
+    } else if (this.state.invoice.payment.availableretail !== 'null') {
+      return (
+        <div>
+        <Guide activeTab= {'5'} invoice={this.state.invoice} />
+      </div>
       )
     } else if (this.state.invoice.payment.availableretail === 'wallet'){
       return (
@@ -51,12 +57,6 @@ class InvoiceDetail extends React.Component<state> {
       return (
         <div>
         <Guide activeTab= {'3'} invoice={this.state.invoice} />
-      </div>
-      )
-    } else if (this.state.invoice.virtualAccount.bankCode === 'BCA') {
-      return (
-        <div>
-        <Guide activeTab= {'4'} invoice={this.state.invoice} />
       </div>
       )
     } else {
@@ -117,12 +117,27 @@ class InvoiceDetail extends React.Component<state> {
     )
   }
 
+  checkBank = () => {
+  const { invoice } = this.state
+    if (invoice.virtualAccount) {
+      return (
+        invoice.virtualAccount.bankCode
+      )
+    } else if (invoice.payment) {
+      return (
+        invoice.payment.xenditId
+      )
+    } else {
+      return null
+    }
+  }
+
 
   render() {
   return (
     <div className="pembayaran">
       <div className="pembayaran__container">
-        <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice.virtualAccount ? (this.state.invoice.virtualAccount.bankCode) : null}</h1>
+        <h1 className="pembayaran__title__header">Pembayaran {this.checkBank()}</h1>
         {this.state.invoice ? (
             <div>
               <div className="pembayaran__content__textDistance">

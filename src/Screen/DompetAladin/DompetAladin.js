@@ -131,9 +131,10 @@ class Dompet extends React.Component {
       <label className="alert__dompetAladin">{this.state.notif3}</label>
     </div>
     <ModalPayment
-      text='buy wallet'
+      typeBuy='buy wallet'
       fixedendpoint='fixedwallet'
       retailendpoint='alfawallet'
+      bcaendpoint='bca/wallet'
       push='walletinvoice'
       isOpen={this.state.modalPayment1}
       data={this.state.wallet}
@@ -205,10 +206,11 @@ class Dompet extends React.Component {
           </Form>
       </div>
       <ModalPayment
-        text='buy key'
+        typeBuy='buy key'
         fixedendpoint='topupva'
         retailendpoint='topupKey'
         walletendpoint='walletkey'
+        bcaendpoint='bca/key'
         push='topupinvoice'
         isOpen={this.state.modalPayment2}
         data={this.state.idKeySelected}

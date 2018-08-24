@@ -99,9 +99,11 @@ class Signup extends Component {
 	handlePhoneNum(e) {
     var num = e.target.value.split('');
     if (num.length < 2) {
-      this.setState({notif: 'Nomor Handphone harus mulai dengan 08.'});
+      this.setState({notif: 'Nomor Anda harus mulai dengan 08.'});
     } else if(num[0] !== '0' || num[1] !== '8') {
       this.setState({phonenumber: '08'});
+    } else if (num.length > 13) {
+      this.setState({notif: 'Nomor Anda telah mencapai panjang maksimal.'});
     } else {//(num[0] === '0') {
       this.setState({phonenumber: num.join(''), notif: ''});
 		}
@@ -122,14 +124,14 @@ class Signup extends Component {
         password: '',
         confirm_password: '',
       });
-    } else if (!/^[A-Za-z0-9!@#$%^&*()_]{8,20}$/.test(this.state.password)) {
+    } else if (!/^[A-Za-z0-9!@#$%^&*()_]{6,20}$/.test(this.state.password)) {
       this.setState({
         _vPassword: false,
-        notif : "Password Harus Terdiri Dari 8 Huruf/Angka atau Lebih",
+        notif : "Password Minimal Terdiri Dari 6 Huruf/Angka atau Lebih",
         password: '',
         confirm_password: '',
       })
-    } else if (/^[A-Za-z0-9!@#$%^&*()_]{8,20}$/.test(this.state.password)) {
+    } else if (/^[A-Za-z0-9!@#$%^&*()_]{6,20}$/.test(this.state.password)) {
       this.setState({_vPassword: true});
     }
   }
