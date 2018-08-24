@@ -7,7 +7,7 @@ import {
 } from 'reactstrap'
 import {withRouter} from 'react-router-dom'
 import moment from 'moment'
-import { getUserPendingTopupTransactions, getUserTopupTransactions } from '../../actions/topupAction'
+import { getUserTopupTransactions } from '../../actions/topupAction'
 
 type Props = {
   userTopupTransactions: Array,
@@ -26,7 +26,6 @@ class TopupInvoice extends React.Component <Props> {
   }
 
   componentDidMount() {
-    this.props.getUserPendingTopupTransactions()
     this.props.getUserTopupTransactions()
   }
 
@@ -77,20 +76,20 @@ class TopupInvoice extends React.Component <Props> {
   }
 
   showMetodePembayaran(id) {
-    this.props.history.push(`/topupinvoice/${id}`)
-  }
+    this.props.history.push('/invoice', {
+      id,
+      endpoint: 'topup'
+    })  }
 }
 
 const mapStateToProps = (state) => {
   return {
-    userPendingTopupTransactions: state.topupReducer.userPendingTopupTransactions,
     userTopupTransactions: state.topupReducer.userTopupTransactions
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUserPendingTopupTransactions: () => dispatch(getUserPendingTopupTransactions()),
     getUserTopupTransactions: () => dispatch(getUserTopupTransactions())
   }
 }

@@ -86,7 +86,10 @@ class TopupInvoice extends Component<State, Props> {
   }
 
   showMetodePembayaran(id) {
-    this.props.history.push(`/walletinvoice/${id}`)
+    this.props.history.push('/invoice', {
+      id,
+      endpoint: 'walletstatus'
+    })
   }
 
   render() {

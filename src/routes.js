@@ -22,9 +22,7 @@ import User from './Screen/User/Users';
 import TabsInvoice from './Screen/Invoice/TabsInvoice';
 import Pembayaran from './Screen/Invoice/Pembayaran';
 import TopupInvoice from './Screen/Invoice/TopupInvoice';
-import TopupPayment from './Screen/Invoice/TopupPayment';
 import WalletInvoice from './Screen/Invoice/TopupWalletInvoice'
-import WalletPayment from './Screen/Invoice/TopUpWalletPayment'
 
 import Bidding from './Screen/Bidding/Bidding'
 import InsertPhone from './Screen/Bidding/InsertPhone'
@@ -79,11 +77,9 @@ class RouteList extends Component {
                 <Route exact path='/layanan' component={Layanan} />
                 <PrivateRoute exact path="/me" component={User} />
                 <PrivateRoute exact path="/tabsinvoice" component={TabsInvoice} />
-                <PrivateRoute exact path="/payment/:id" component={Pembayaran} />
+                <PrivateRoute exact path="/invoice" component={Pembayaran} />
                 <PrivateRoute exact path="/topupinvoice" component={TopupInvoice} />
-                <PrivateRoute exact path="/topupinvoice/:id" component={TopupPayment} />
                 <PrivateRoute exact path="/walletinvoice" component={WalletInvoice} />
-                <PrivateRoute exact path="/walletinvoice/:id" component={WalletPayment} />
                 <PrivateRoute exact path="/bidding" component={Bidding} />
                 <PrivateRoute exact path="/insertphone" component={InsertPhone} />
                 <PrivateRoute exact path="/game" component={ Game } />

@@ -135,10 +135,10 @@ class Dompet extends React.Component {
       fixedendpoint='fixedwallet'
       retailendpoint='alfawallet'
       bcaendpoint='bca/wallet'
-      push='walletinvoice'
       isOpen={this.state.modalPayment1}
       data={this.state.wallet}
       toggle={this.togglePayment1}
+      endpoint='walletstatus'
       />
   </div>
     )
@@ -211,10 +211,10 @@ class Dompet extends React.Component {
         retailendpoint='topupKey'
         walletendpoint='walletkey'
         bcaendpoint='bca/key'
-        push='topupinvoice'
         isOpen={this.state.modalPayment2}
         data={this.state.idKeySelected}
         toggle={this.togglePayment2}
+        endpoint='topup'
         />
       </div>
     )
