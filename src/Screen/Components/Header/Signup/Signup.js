@@ -84,14 +84,7 @@ class Signup extends Component {
 
   vEmail() {
     let patt = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-    if (!this.state.email) {
-      this.setState({email: undefined, _vEmail: false});
-    } else if (!patt.test(this.state.email)) {
-      this.setState({email: undefined, _vEmail: false});
-      this.setState({
-        notif: "Format Email Yang Anda Masukkan Salah",
-      });
-    } else if (patt.test(this.state.email)) {
+    if (patt.test(this.state.email) || !this.state.email) {
       this.setState({_vEmail: true});
     }
   }
@@ -196,7 +189,7 @@ class Signup extends Component {
               this.setState({
                 notif: "Nomor atau email sudah digunakan",
               })
-            } 
+            }
           }  else if (data.hasOwnProperty('phoneIsUsed')) {
             this.setState({
               notif: "No Hp sudah digunakan",
@@ -266,7 +259,7 @@ class Signup extends Component {
 
           <div className="form-group Signup__Form">
             <label>Alamat Email :</label>
-            <input name="typedEmail" required
+            <input name="typedEmail"
               className="form-control inputz"
               value={typedEmail}
               type="email"
