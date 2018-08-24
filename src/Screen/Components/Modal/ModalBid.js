@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom'
 
 import ModalConfirm from '../../Home/Modal/ModalConfirm';
 import { selectedPriceID } from '../../../actions/productAction';
+import {getUser} from '../../../actions/userAction'
 import priceProduct from '../../../utils/splitPrice'
 import productName from '../../../utils/splitProduct'
 import envChecker from '../../../utils/envChecker'
@@ -238,7 +239,7 @@ class ModalCheck extends Component {
       alert("Anda Tidak Memiliki Aladin Key")
     } else {
       helperAxios('GET', 'users/checkuser')
-      .then( data => {
+      .then( async data => {
         if (data.data.aladinKeys > 0) {
           this.props.history.push('/bidding', {
             displayPrice: this.state.productPrice,
@@ -246,7 +247,8 @@ class ModalCheck extends Component {
             typeBuy: this.props.typeBuy,
             type
           })
-          helperAxios('PUT', 'logopen', {priceId: priceId, type})
+          await helperAxios('PUT', 'logopen', {priceId: priceId, type})
+          this.props.getUser()
         } else {
           alert("Anda Tidak Memiliki Aladin Key")
         }
@@ -277,7 +279,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectedPriceID: (id) => dispatch(selectedPriceID(id))
+    selectedPriceID: (id) => dispatch(selectedPriceID(id)),
+    getUser: () => dispatch(getUser()),
   }
 }
 

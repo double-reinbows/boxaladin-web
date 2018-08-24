@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import MediaQuery from 'react-responsive';
 
 import { selectedPriceID } from '../../../actions/productAction';
+import {getUser} from '../../../actions/userAction'
 import helperAxios from '../../../utils/axios'
 
 class ModalConfirm extends Component {
@@ -36,7 +37,8 @@ s
                 typeBuy: this.props.typeBuy,
                 type: this.props.type
               })
-              helperAxios('PUT', 'logopen',  {priceId, type})
+              await helperAxios('PUT', 'logopen',  {priceId, type})
+              this.props.getUser()
             } else {
               alert("Anda Tidak Memiliki Aladin Key")
             }
@@ -55,7 +57,8 @@ s
               typeBuy: this.props.typeBuy,
               type: this.props.type
             })
-            helperAxios('PUT', 'logopen', {priceId, type})
+            await helperAxios('PUT', 'logopen', {priceId, type})
+            this.props.getUser()
           } else {
             alert("Anda Tidak Memiliki Aladin Key")
           }
@@ -125,6 +128,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     selectedPriceID: (id) => dispatch(selectedPriceID(id)),
+    getUser: () => dispatch(getUser()),
   }
 }
 

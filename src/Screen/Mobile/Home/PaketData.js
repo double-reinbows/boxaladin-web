@@ -16,7 +16,7 @@ class PaketData extends Component {
       type: ''
     }
   }
-
+  
   componentDidMount() {
     this.getBrand()
   }
