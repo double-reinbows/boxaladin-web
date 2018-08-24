@@ -239,7 +239,7 @@ class ModalCheck extends Component {
       alert("Anda Tidak Memiliki Aladin Key")
     } else {
       helperAxios('GET', 'users/checkuser')
-      .then( data => {
+      .then( async data => {
         if (data.data.aladinKeys > 0) {
           this.props.history.push('/bidding', {
             displayPrice: this.state.productPrice,
@@ -247,7 +247,7 @@ class ModalCheck extends Component {
             typeBuy: this.props.typeBuy,
             type
           })
-          helperAxios('PUT', 'logopen', {priceId: priceId, type})
+          await helperAxios('PUT', 'logopen', {priceId: priceId, type})
           this.props.getUser()
         } else {
           alert("Anda Tidak Memiliki Aladin Key")

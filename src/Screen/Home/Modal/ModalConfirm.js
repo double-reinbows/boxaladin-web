@@ -37,7 +37,7 @@ s
                 typeBuy: this.props.typeBuy,
                 type: this.props.type
               })
-              helperAxios('PUT', 'logopen',  {priceId, type})
+              await helperAxios('PUT', 'logopen',  {priceId, type})
               this.props.getUser()
             } else {
               alert("Anda Tidak Memiliki Aladin Key")
@@ -57,7 +57,7 @@ s
               typeBuy: this.props.typeBuy,
               type: this.props.type
             })
-            helperAxios('PUT', 'logopen', {priceId, type})
+            await helperAxios('PUT', 'logopen', {priceId, type})
             this.props.getUser()
           } else {
             alert("Anda Tidak Memiliki Aladin Key")
