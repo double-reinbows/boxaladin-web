@@ -120,7 +120,7 @@ class InsertPhone extends React.Component {
             fixedendpoint='virtualaccount'
             retailendpoint='payment'
             walletendpoint='walletpulsa'
-            bcaendpoint='bca/pulsa'
+            bcaendpoint='bca/paketdata'
             isOpen={this.state.modalPayment}
             amount={this.props.location.state.aladinPrice}
             phone={SplitPhone(this.state.phone)}
@@ -200,6 +200,7 @@ class InsertPhone extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <MediaQuery query="(max-device-width: 720px)">

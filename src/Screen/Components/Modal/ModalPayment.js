@@ -242,10 +242,10 @@ class ModalPayment extends Component{
   }
 
   showProvider = () => {
-    const { typeBuy, brand } = this.props
+    const { typeBuy, brand, phone } = this.props
     if (typeBuy === 'buy pulsa' || typeBuy === 'buy paket data' ){
       return brand && (
-        <label>{brand}</label>
+        <label>{brand} <b>{phone}</b></label>
       )
     }
   }
@@ -261,7 +261,7 @@ class ModalPayment extends Component{
             <div>
               <label className="alert__invoice"><b>{this.notifDuplicate()}</b></label>
             </div>
-            <button disabled={this.state.disabled} className="modal__method__content__button" onClick={this.axiosTransaction}>Submit</button>
+            <button disabled={this.state.disabled} className="modal__method__content__button" onClick={this.axiosTransaction}>OK</button>
             <Loading isLoading={ this.props.isLoading } />
           </div>
       </Modal>
