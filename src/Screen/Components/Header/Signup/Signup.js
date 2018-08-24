@@ -182,7 +182,7 @@ class Signup extends Component {
       }
       axios({
         method: 'POST',
-        url: `${envChecker('api')}/signup`,
+        url: `${envChecker('api')}/v2/signup`,
         headers: {
           key: process.env.REACT_APP_KEY,
         },
@@ -190,20 +190,16 @@ class Signup extends Component {
       })
         .then(({data}) => {
           if (data.hasOwnProperty('isUsed')) {
-            if (data.isUsed.username) {
+            if (data.isUsed.phonenumber) {
               this.setState({
-                notif: "Email sudah digunakan",
+                notif: "Nomor atau email sudah digunakan",
               })
-            } else if (data.isUsed.email) {
-              this.setState({
-              notif: "Email sudah digunakan",
-              })
-            }
+            } 
           }  else if (data.hasOwnProperty('phoneIsUsed')) {
             this.setState({
               notif: "No Hp sudah digunakan",
             })
-          }   else {
+          }  else {
 
             if (data.errors) {
               this.setState({

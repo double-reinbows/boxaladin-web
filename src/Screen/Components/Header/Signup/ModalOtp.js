@@ -53,7 +53,7 @@ class ModalOtp extends Component {
     } else {
       axios({
         method: 'POST',
-        url: `${envChecker('api')}/signupverification`,
+        url: `${envChecker('api')}/v2/signupverification`,
         headers: {
           key: process.env.REACT_APP_KEY
         },
@@ -70,6 +70,10 @@ class ModalOtp extends Component {
         }	else if ( dataOtp.data.message === 'incorrect otp') {
           this.setState({
             notifOtp: "OTP Salah",
+          });
+        } else if ( dataOtp.data.message === 'Hp pernah diverifikasi') {
+          this.setState({
+            notifOtp: "Hp pernah diverifikasi",
           });
         }
       //.catch(err => console.log(err));
