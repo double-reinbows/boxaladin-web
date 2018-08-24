@@ -73,7 +73,6 @@ class TopupPayment extends React.Component {
   }
 
   render() {
-    console.log(this.state.invoice)
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
