@@ -15,7 +15,7 @@ class Login extends Component {
     super(props)
     this.state = {
       password: '',
-      numberAndEmail: '',
+      numberEmail: '',
       notif: ''
     }
   }
@@ -24,8 +24,10 @@ class Login extends Component {
     e.preventDefault()
     this.props.setIsLoading(true)
     const regex = /(@)/gm
-    const isExisting = regex.test(this.state.numberAndEmail)
+    const isExisting = regex.test(this.state.numberEmail)
+    console.log(isExisting);
     if (isExisting === true) {
+      console.log('masuk email');
       axios({
         method: 'POST',
         url: `${envChecker('api')}/signin`,
@@ -33,7 +35,7 @@ class Login extends Component {
           key: process.env.REACT_APP_KEY
         },
         data: {
-          numberAndEmail: this.state.numberAndEmail,
+          numberEmail: this.state.numberEmail,
           password: this.state.password
         },
       })
@@ -61,6 +63,8 @@ class Login extends Component {
         }
       })
     } else {
+      console.log('masuk number');
+      console.log(this.state);
       axios({
         method: 'POST',
         url: `${envChecker('api')}/v2/signin`,
@@ -68,7 +72,7 @@ class Login extends Component {
           key: process.env.REACT_APP_KEY
         },
         data: {
-          numberAndEmail: this.state.numberAndEmail,
+          numberEmail: this.state.numberEmail,
           password: this.state.password
         },
       })
@@ -116,7 +120,7 @@ class Login extends Component {
 
           <div className="form-group Login__Form">
             <label>Nomor HP atau Email : </label>
-            <input name="number" className="form-control inputz" aria-describedby="numberHelp" placeholder="Masukkan nomor handphone atau email kamu*" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
+            <input name="numberEmail" className="form-control inputz" aria-describedby="numberHelp" placeholder="Masukkan nomor handphone atau email kamu*" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
           </div>
 
           <div className="form-group Login__Form">
