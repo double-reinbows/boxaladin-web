@@ -15,6 +15,7 @@ import loadingReducer from './loadingReducer'
 import modalReducer from './modalReducer'
 import loadingTimeReducer from './loadingTimeReducer'
 import priceReducer from './priceReducer'
+import walletReducer from './walletReducer'
 
 var Reducer = combineReducers({
   userReducer,
@@ -30,7 +31,8 @@ var Reducer = combineReducers({
   loadingReducer,
   modalReducer,
   loadingTimeReducer,
-  priceReducer
+  priceReducer,
+  walletReducer
 })
 
 export default Reducer

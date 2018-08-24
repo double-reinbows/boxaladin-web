@@ -1,46 +1,14 @@
 //@flow
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import {
   Table,
   Button
 } from 'reactstrap'
 import {withRouter} from 'react-router-dom'
-import envChecker from '../../utils/envChecker'
 import moment from 'moment'
-import Axios from 'axios'
-
-type State = {
-  invoice: Array,
-}
 
 class TopupInvoice extends Component<State, Props> {
-  constructor(props) {
-    super(props)
-    this.state = {
-      invoice: []
-    }
-  }
-
-  componentDidMount() {
-    this.getWallet()
-  }
-
-  getWallet = () => {
-    Axios({
-      method: 'GET',
-      url: `${envChecker('api')}/walletstatus`,
-      headers: {
-        token: localStorage.getItem('token')
-      }
-    })
-    .then(response => {
-      this.setState({
-        invoice : response.data
-      })
-    })
-    .catch(err => console.log(err))
-  }
-
 	showInvoice() {
     return (
       <Table>
@@ -54,7 +22,7 @@ class TopupInvoice extends Component<State, Props> {
           </tr>
         </thead>
         <tbody>
-          {this.state.invoice.map((data, idx) => {
+          {this.props.userWalletTransactions.map((data, idx) => {
             if (!data.createdAt || !data.createdAt || !data.payment || data.payment.invoiceId === 'null'){
               return null
             } else {
@@ -103,6 +71,17 @@ class TopupInvoice extends Component<State, Props> {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    userWalletTransactions: state.walletReducer.userWalletTransactions
+  }
+}
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+  }
+}
 
-export default withRouter(TopupInvoice)
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(withRouter(TopupInvoice))
+
+export default connectComponent
