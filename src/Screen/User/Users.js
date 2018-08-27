@@ -8,6 +8,7 @@ import { getPhoneNumbers } from '../../actions/'
 // import { getUser } from '../../actions/userAction'
 
 import ModalPrimaryPhone from './ModalPrimary'
+import AddPrimaryNumberModal from './AddPrimaryNumberModal'
 import ModalDelete from './ModalDelete'
 import ModalText from '../Components/Modal/ModalText'
 import envChecker from '../../utils/envChecker'
@@ -29,10 +30,11 @@ class User extends React.Component {
 			notif: '',
 			oldUserModal: false,
 			openModalDelete: false,
-			modalCheck: false
+			modalCheck: false,
+			showAddPrimaryNumberModal: false,
 		}
 		this.toggle = this.toggle.bind(this);
-
+		this.toggleAddPrimary = this.toggleAddPrimary.bind(this);
 	}
 
 	render() {
@@ -63,6 +65,7 @@ class User extends React.Component {
 
 					{ this.showChangePrimaryPhoneOTP() }
 					<ModalPrimaryPhone open={this.state.oldUserModal} buttonToggle={this.toggle} emailUser={this.props.userInfo.email}/>
+					<AddPrimaryNumberModal open={this.state.showAddPrimaryNumberModal} buttonToggle={this.toggleAddPrimary} />
 				</div>
 			</div>
 		)
@@ -332,6 +335,13 @@ class User extends React.Component {
     })
 	}
 
+	toggleAddPrimary() {
+		this.setState({
+			showAddPrimaryNumberModal: !this.state.showAddPrimaryNumberModal,
+			notif: '',
+		})
+	}
+
 	addPhone = () => {
 		this.setState({
 			addPhoneModal: !this.state.addPhoneModal
@@ -339,6 +349,7 @@ class User extends React.Component {
 	}
 
 	showPhoneNumbers() {
+		console.log('dick',this.props.phoneNumbers.length);
 		return <div className="user__phone">
         <div className="user__phone__row1">
 					<div className="user__phone__row1__phoneNumber">
@@ -361,7 +372,7 @@ class User extends React.Component {
 									</div>
 								)
 							}) :
-							<button className="user__show__button" onClick={() => this.toggle()}> Verifikasi Nomor </button>}
+							<button className="verified__profile" onClick={this.toggleAddPrimary}> Nambah Nomor Primary </button>}
 						</div>
 						</div>
 							{ this.props.phoneNumbers.length !== 0 ?
