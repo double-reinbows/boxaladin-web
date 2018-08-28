@@ -65,6 +65,10 @@ class AddPrimaryNumberModal extends Component {
       } else if (data.data.message === 'data added'){
         // this.props.buttonToggle();
         window.location.reload();
+      } else if (data.data.message === 'User adding duplicate primary') {
+        this.setState({
+          notif: 'Nomor ini sudah terdaftar',
+        })
       } else {
         this.setState({
           notif: 'Uh oh! Hubungi LINE kami @boxaladin',

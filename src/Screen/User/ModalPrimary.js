@@ -96,7 +96,7 @@ class ModalPrimaryPhone extends Component {
         <Modal isOpen={this.props.open} className="modalPrimary__phone">
           <form className="modalPrimary__phone__content" onSubmit={(e) => this.submitOldUserPhone(e)}>
             <div className="modal__check__container__header">
-              <button className="modal__check__button" onClick={this.props.buttonToggle}>X</button>
+              <button className="modal__check__button" onClick={this.closeModal}>X</button>
             </div>
             <label><b>Masukan Nomor Hape:</b></label>
             <div className="modalPrimary__phone__content__form">
