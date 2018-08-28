@@ -44,9 +44,9 @@ class RequestResetPassword<State> extends React.Component {
         console.log('response forgot password', data)
         if (data.msg === 'email sent') {
           this.checkResponse(false, true, 'Email reset password ulang terkirim!')
-          {setTimeout(() => {
+          setTimeout(() => {
             this.props.history.push('/');
-        }, 3000)}
+        }, 3000)
         } else if (data === 'user not found') {
           this.checkResponse(true, false, 'Email Atau No Hp tidak terdaftar, mohon dicek kembali')
         } else if (data.msg === 'email atau nomor hp tidak ada') {
@@ -111,9 +111,9 @@ class RequestResetPassword<State> extends React.Component {
         this.checkResponse(true, false , 'Email Sudah Digunakan')
       } else {
         this.checkResponse(false, true, 'Email reset password ulang terkirim!')
-        {setTimeout(() => {
+        setTimeout(() => {
           this.props.history.push('/');
-      }, 3000)}
+      }, 3000)
       }
     })
     .catch(err => console.log(err))
