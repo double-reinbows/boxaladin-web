@@ -1,11 +1,11 @@
-// @flow
-import React from 'react';
+import React, {Fragment} from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { setModalLogin } from '../actions/';
 import { Form, FormGroup, Input, FormFeedback } from 'reactstrap';
 import formatEmail from '../utils/formatEmail';
 import envChecker from '../utils/envChecker'
+import helperaxios from '../utils/axios'
 
 // type State = {
 //   email: string,
@@ -17,9 +17,13 @@ import envChecker from '../utils/envChecker'
 class RequestResetPassword<State> extends React.Component {
   state: State = {
     email: '',
+    newEmail: '',
     valid: false,
     invalid: false,
     feedback: null,
+    feedback2: null,
+    emailNotFound: false,
+    disabled: false
   }
 
   sendLink(e: SyntheticInputEvent<HTMLInputElement>): void {
@@ -37,21 +41,24 @@ class RequestResetPassword<State> extends React.Component {
         }
       })
       .then(({data}) => {
+        console.log('response forgot password', data)
         if (data.msg === 'email sent') {
+          this.checkResponse(false, true, 'Email reset password ulang terkirim!')
+          {setTimeout(() => {
+            this.props.history.push('/');
+        }, 3000)}
+        } else if (data === 'user not found') {
+          this.checkResponse(true, false, 'Email Atau No Hp tidak terdaftar, mohon dicek kembali')
+        } else if (data.msg === 'email atau nomor hp tidak ada') {
+          this.checkResponse(true, false, 'Email Atau No Hp tidak terdaftar, mohon dicek kembali')
+        } else if (data.msg === 'nomor hp tidak ada') {
+          this.checkResponse(false, true, 'No Hp tidak terdaftar, mohon daftar dahulu')
+        } else if (data.msg === 'email tidak ada') {
+          this.checkResponse(false, true, 'Email tidak terdaftar, mohon daftar dahulu.')
           this.setState({
-            invalid: false,
-            valid: true,
-            feedback: (<FormFeedback valid>Email reset password ulang terkirim!</FormFeedback>),
-          }, () => {setTimeout(() => {
-                this.props.history.push('/');
-            }, 3000)}
-          );
-        } else {
-          this.setState({
-            invalid: true,
-            valid: false,
-            feedback: (<FormFeedback>Email tidak terdaftar, mohon daftar dahulu.</FormFeedback>),
-          });
+            emailNotFound: true,
+            disabled: true
+          })
         }
       })
       .catch(err => {
@@ -66,19 +73,60 @@ class RequestResetPassword<State> extends React.Component {
         }
       });
       //whilst waiting for backend response, change button text
-      this.setState({
-        true: false,
-        invalid: false,
-        feedback: (<FormFeedback>Email sedang di kirim...</FormFeedback>),
-      });
+      this.checkResponse(true, false , 'Email sedang di kirim...')
     } else {
-      this.setState({
-        feedback: (<FormFeedback>Email wajib di isi</FormFeedback>),
-        true: false,
-        invalid: true,
-      })
+      this.checkResponse(true, false , 'Email wajib di isi')
     }
   }
+
+  inputNewEmail = () => {
+    const {emailNotFound, valid, invalid, feedback2} = this.state
+    return emailNotFound && (
+      <Fragment>
+      <Form className="RequestReset__form"
+        onSubmit={ (e: SyntheticInputEvent<HTMLInputElement>) => this.sendEmailToken(e) }>
+        <FormGroup>
+          <Input className="RequestReset__input"
+            onChange={(e: SyntheticInputEvent<HTMLInputElement>) => this.setState({newEmail: e.target.value}) }
+            placeholder="Masukkan Email Anda"
+            type="email"
+            name="text"
+            bsSize="lg"
+            valid={valid}
+            invalid={invalid}
+          />
+          {feedback2}
+        </FormGroup>
+      </Form>
+      </Fragment>
+    )
+  }
+
+  sendEmailToken = (e) => {
+    const {email, newEmail} = this.state
+    e.preventDefault();
+    helperaxios('POST', 'emailforgotPassword', {email: newEmail, phonenumber: email})
+    .then(response => {
+      if (response.data === 'email is already taken') {
+        this.checkResponse(true, false , 'Email Sudah Digunakan')
+      } else {
+        this.checkResponse(false, true, 'Email reset password ulang terkirim!')
+        {setTimeout(() => {
+          this.props.history.push('/');
+      }, 3000)}
+      }
+    })
+    .catch(err => console.log(err))
+  }
+
+  checkResponse = (bool1, bool2, text) => {
+    this.setState({
+      invalid: bool1,
+      valid: bool2,
+      feedback: (<FormFeedback>{text}</FormFeedback>),
+    });
+  }
+
   openLoginModal() {
     this.props.setModalLogin(!this.props.modalLogin)
   }
@@ -89,24 +137,28 @@ class RequestResetPassword<State> extends React.Component {
       <div className="RequestReset">
         <div className="RequestReset__box">
           <h1 className="RequestReset__text">Lupa Password?</h1>
-          <h2 className="RequestReset__text">Tolong masukkan email kamu di kolom bawah ini. Kami akan mengirimkan link ke
+          <h2 className="RequestReset__text">Tolong masukkan email atau no Hp kamu di kolom bawah ini. Kami akan mengirimkan link ke
             email tersebut untuk meng-reset password kamu.</h2>
           <div className="RequestReset__formBox">
             <Form className="RequestReset__form"
               onSubmit={ (e: SyntheticInputEvent<HTMLInputElement>) => this.sendLink(e) }>
               <FormGroup>
                 <Input className="RequestReset__input"
-                 onChange={(e: SyntheticInputEvent<HTMLInputElement>) => this.setState({email: e.target.value}) }
-                 type="email"
-                 name="email"
-                 id="email"
-                 bsSize="lg"
-                 valid={valid}
-                 invalid={invalid}
+                  onChange={(e: SyntheticInputEvent<HTMLInputElement>) => this.setState({email: e.target.value}) }
+                  disabled={this.state.disabled}
+                  type="text"
+                  name="text"
+                  id="text"
+                  bsSize="lg"
+                  valid={valid}
+                  invalid={invalid}
                 />
                 {feedback}
               </FormGroup>
             </Form>
+          </div>
+          <div className="RequestReset__formBox">
+            {this.inputNewEmail()}
           </div>
             <h2 className="RequestReset__text" onClick={()=>this.openLoginModal()}>atau kembali ke login</h2>
         </div>
