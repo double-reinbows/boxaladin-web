@@ -15,7 +15,7 @@ class Login extends Component {
     super(props)
     this.state = {
       password: '',
-      email: '',
+      numberEmail: '',
       notif: ''
     }
   }
@@ -23,43 +23,83 @@ class Login extends Component {
   logIn(e) {
     e.preventDefault()
     this.props.setIsLoading(true)
-    axios({
-      method: 'POST',
-      url: `${envChecker('api')}/signin`,
-			headers: {
-        key: process.env.REACT_APP_KEY
-      },
-      data: {
-        email: this.state.email,
-        password: this.state.password
-      },
-		})
-    .then(({data}) => {
-      this.props.setIsLoading(false)
-      if (data.message === 'username or email not found') {
-        this.setState({
-          notif: "Email Tidak Terdaftar, Silakan Register Jika Belum Memiliki Akun",
-        })
-      } else if (data.message === 'password incorrect') {
-        this.setState({
-          notif: "Password Yang Anda Masukkan Salah",
-        })
-      } else if (data.message === 'login success') {
-        localStorage.setItem('token', data.token)
+    const regex = /(@)/gm
+    const isExisting = regex.test(this.state.numberEmail)
+    console.log(isExisting);
+    if (isExisting === true) {
+      console.log('masuk email');
+      axios({
+        method: 'POST',
+        url: `${envChecker('api')}/signin`,
+        headers: {
+          key: process.env.REACT_APP_KEY
+        },
+        data: {
+          numberEmail: this.state.numberEmail,
+          password: this.state.password
+        },
+      })
+      .then(({data}) => {
+        this.props.setIsLoading(false)
+        if (data.message === 'email not found') {
+          this.setState({
+            notif: "Nomor HP Atau Email Tidak Terdaftar, Silakan Register Jika Belum Memiliki Akun",
+          })
+        } else if (data.message === 'password incorrect') {
+          this.setState({
+            notif: "Password Yang Anda Masukkan Salah",
+          })
+        } else if (data.message === 'login success') {
+          localStorage.setItem('token', data.token)
 
-        // const decoded = jwt.verify(data.token, 'satekambing')
+          // const decoded = jwt.verify(data.token, 'satekambing')
 
-        this.props.loginAction()
-        this.props.getUser()
-        this.props.getPhoneNumbers()
-        this.props.setModalLogin(false)
-        this.props.setModalRegister(false)
-        this.props.history.push('/')
-      }
-    })
-    .catch(e => {
-      console.log(e)
-    })
+          this.props.loginAction()
+          this.props.getUser()
+          this.props.getPhoneNumbers()
+          this.props.setModalLogin(false)
+          this.props.setModalRegister(false)
+          this.props.history.push('/')
+        }
+      })
+    } else {
+      console.log('masuk number');
+      console.log(this.state);
+      axios({
+        method: 'POST',
+        url: `${envChecker('api')}/v2/signin`,
+        headers: {
+          key: process.env.REACT_APP_KEY
+        },
+        data: {
+          numberEmail: this.state.numberEmail,
+          password: this.state.password
+        },
+      })
+      .then(({data}) => {
+        this.props.setIsLoading(false)
+        if (data.message === 'phone number not found') {
+          this.setState({
+            notif: "Nomor HP Atau Email Tidak Terdaftar, Silakan Register Jika Belum Memiliki Akun",
+          })
+        } else if (data.message === 'password incorrect') {
+          this.setState({
+            notif: "Password Yang Anda Masukkan Salah",
+          })
+        } else if (data.message === 'login success') {
+          localStorage.setItem('token', data.token)
+
+          // const decoded = jwt.verify(data.token, 'satekambing')
+
+          this.props.loginAction()
+          this.props.getUser()
+          this.props.getPhoneNumbers()
+          this.props.setModalLogin(false)
+          this.props.setModalRegister(false)
+          this.props.history.push('/')
+        }
+      })
+    }
   }
 
   logInInputHandler(e) {
@@ -79,8 +119,8 @@ class Login extends Component {
         <form className="form-horizontal" onSubmit={ (e) => this.logIn(e)}>
 
           <div className="form-group Login__Form">
-            <label>Email : </label>
-            <input name="email" type="email" className="form-control inputz" aria-describedby="emailHelp" placeholder="Masukkan email kamu*" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
+            <label>Nomor HP atau Email : </label>
+            <input name="numberEmail" className="form-control inputz" aria-describedby="numberHelp" placeholder="Masukkan nomor handphone atau email kamu*" onChange={ (e) => this.logInInputToLowerHandler(e) }/>
           </div>
 
           <div className="form-group Login__Form">

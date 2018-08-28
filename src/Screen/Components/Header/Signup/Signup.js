@@ -13,7 +13,7 @@ class Signup extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      _formIsValid: false,
+      // _formIsValid: false,
       phonenumber: '08',
       notif: '',
       dataUser: {},
@@ -82,19 +82,12 @@ class Signup extends Component {
     }
   }
 
-  vEmail() {
-    let patt = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-    if (!this.state.email) {
-      this.setState({email: undefined, _vEmail: false});
-    } else if (!patt.test(this.state.email)) {
-      this.setState({email: undefined, _vEmail: false});
-      this.setState({
-        notif: "Format Email Yang Anda Masukkan Salah",
-      });
-    } else if (patt.test(this.state.email)) {
-      this.setState({_vEmail: true});
-    }
-  }
+  // vEmail() {
+  //   let patt = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+  //   if (patt.test(this.state.email) || !this.state.email) {
+  //     this.setState({_vEmail: true});
+  //   }
+  // }
 
 	handlePhoneNum(e) {
     var num = e.target.value.split('');
@@ -109,54 +102,54 @@ class Signup extends Component {
 		}
 	}
 
-  vPassword() {
-    /**
-     * Password harus 8 karakter atau lebih, alphanumeric, special characters.
-     * Spasi ga termasuk.
-     * Tapi pola di sini ga nge-cek apakah password yang dimasukin sudah kombinasi upper-lower case atau belum,
-     * sudah include special char atau belum, dst.
-     * Yang divalidasi simply jumlah karakter dan karakter yang boleh masuk.
-     */
-    if (this.state.password === '' || this.state.password === undefined) {
-      this.setState({
-        _vPassword: false,
-        notif: "Password Harus diisi",
-        password: '',
-        confirm_password: '',
-      });
-    } else if (!/^[A-Za-z0-9!@#$%^&*()_]{6,20}$/.test(this.state.password)) {
-      this.setState({
-        _vPassword: false,
-        notif : "Password Minimal Terdiri Dari 6 Huruf/Angka atau Lebih",
-        password: '',
-        confirm_password: '',
-      })
-    } else if (/^[A-Za-z0-9!@#$%^&*()_]{6,20}$/.test(this.state.password)) {
-      this.setState({_vPassword: true});
-    }
-  }
+  // vPassword() {
+  //   /**
+  //    * Password harus 8 karakter atau lebih, alphanumeric, special characters.
+  //    * Spasi ga termasuk.
+  //    * Tapi pola di sini ga nge-cek apakah password yang dimasukin sudah kombinasi upper-lower case atau belum,
+  //    * sudah include special char atau belum, dst.
+  //    * Yang divalidasi simply jumlah karakter dan karakter yang boleh masuk.
+  //    */
+  //   if (this.state.password === '' || this.state.password === undefined) {
+  //     this.setState({
+  //       _vPassword: false,
+  //       notif: "Password Harus diisi",
+  //       password: '',
+  //       confirm_password: '',
+  //     });
+  //   } else if (!/^[A-Za-z0-9!@#$%^&*()_]{6,20}$/.test(this.state.password)) {
+  //     this.setState({
+  //       _vPassword: false,
+  //       notif : "Password Minimal Terdiri Dari 6 Huruf/Angka atau Lebih",
+  //       password: '',
+  //       confirm_password: '',
+  //     })
+  //   } else if (/^[A-Za-z0-9!@#$%^&*()_]{6,20}$/.test(this.state.password)) {
+  //     this.setState({_vPassword: true});
+  //   }
+  // }
 
 
   /**
    * Valid atau tidaknya form (keseluruhan)
    * dievaluasi di sini
    */
-  async formIsValid() {
-    await this.vPassword()
-    await this.vEmail()
-    if (
-      this.state._vPassword &&
-      this.state._vEmail
-    ) {
-      this.setState({_formIsValid: true});
-    } else {
-      this.setState({_formIsValid: false});
-    }
-  }
+  // async formIsValid() {
+  //   await this.vPassword()
+  //   await this.vEmail()
+  //   if (
+  //     this.state._vPassword &&
+  //     this.state._vEmail
+  //   ) {
+  //     this.setState({_formIsValid: true});
+  //   } else {
+  //     this.setState({_formIsValid: false});
+  //   }
+  // }
 
   async signUp(e) {
     e.preventDefault()
-    let {password, confirm_password, _formIsValid, email, phonenumber, typedEmail} = this.state;
+    let {password, confirm_password, email, phonenumber, typedEmail} = this.state;
 
     let {setIsLoading} = this.props;
     setTimeout(() => {
@@ -174,8 +167,8 @@ class Signup extends Component {
 
     setIsLoading(true);
 
-    await this.formIsValid();
-    if (_formIsValid) {
+    //await this.formIsValid();
+    // if (_formIsValid) {
       let payload = {
         email: email,
         phonenumber: phonenumber,
@@ -184,7 +177,7 @@ class Signup extends Component {
       }
       axios({
         method: 'POST',
-        url: `${envChecker('api')}/signup`,
+        url: `${envChecker('api')}/v2/signup`,
         headers: {
           key: process.env.REACT_APP_KEY,
         },
@@ -192,20 +185,22 @@ class Signup extends Component {
       })
         .then(({data}) => {
           if (data.hasOwnProperty('isUsed')) {
-            if (data.isUsed.username) {
+            if (data.isUsed.phonenumber) {
               this.setState({
-                notif: "Email sudah digunakan",
-              })
-            } else if (data.isUsed.email) {
-              this.setState({
-              notif: "Email sudah digunakan",
+                notif: "Nomor atau email sudah digunakan",
               })
             }
           }  else if (data.hasOwnProperty('phoneIsUsed')) {
             this.setState({
               notif: "No Hp sudah digunakan",
             })
-          }   else {
+          } else if (!/^[A-Za-z0-9!@#$%^&*()_]{6,20}$/.test(this.state.password)) {
+              this.setState({
+                notif : "Password Minimal Terdiri Dari 6 Huruf/Angka atau Lebih",
+                password: '',
+                confirm_password: '',
+              })
+          } else {
 
             if (data.errors) {
               this.setState({
@@ -227,9 +222,9 @@ class Signup extends Component {
           // console.log(e)
           return this.props.setIsLoading(false)
         })
-    } else {
-      return this.props.setIsLoading(false)
-    }
+    // } else {
+    //   return this.props.setIsLoading(false)
+    // }
   }
 
   signUpInputHandler(e) {
@@ -270,7 +265,7 @@ class Signup extends Component {
 
           <div className="form-group Signup__Form">
             <label>Alamat Email :</label>
-            <input name="typedEmail" required
+            <input name="typedEmail"
               className="form-control inputz"
               value={typedEmail}
               type="email"

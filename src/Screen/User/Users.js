@@ -349,7 +349,7 @@ class User extends React.Component {
 									<div>
 										{phone.primary === false ? null :
 											<div className="user__phone__row1__phoneInfo">
-												<label style={{ marginRight: '2%'}} >{phone.number}</label>
+												<label style={{ marginRight: '2%'}} >{this.props.userInfo.phoneNumber}</label>
 
 												{
 													phone.verified === false ? <div style={{ display:'flex'}}><label>(Unverified)</label> <button className="verified__profile" onClick={() => this.toggle()}> Verifikasi Nomor </button></div> :
