@@ -150,7 +150,6 @@ class Signup extends Component {
   async signUp(e) {
     e.preventDefault()
     let {password, confirm_password, email, phonenumber, typedEmail} = this.state;
-
     let {setIsLoading} = this.props;
     setTimeout(() => {
         this.setState({
@@ -163,12 +162,14 @@ class Signup extends Component {
       return this.setState({
         notif: "Password Tidak Sama",
       });
-    }
+    } else if (phonenumber.length < 9){
+      return this.setState({
+        notif: 'Format No HP salah'
+      })
+    } else {
 
-    setIsLoading(true);
-
-    //await this.formIsValid();
-    // if (_formIsValid) {
+      setIsLoading(true);
+    
       let payload = {
         email: email,
         phonenumber: phonenumber,
@@ -185,36 +186,22 @@ class Signup extends Component {
       })
         .then(({data}) => {
           if (data.hasOwnProperty('isUsed')) {
-            if (data.isUsed.phonenumber) {
-              this.setState({
-                notif: "Nomor atau email sudah digunakan",
-              })
-            }
-          }  else if (data.hasOwnProperty('phoneIsUsed')) {
             this.setState({
-              notif: "No Hp sudah digunakan",
+              notif: "Nomor atau email sudah digunakan",
             })
           } else if (!/^[A-Za-z0-9!@#$%^&*()_]{6,20}$/.test(this.state.password)) {
-              this.setState({
-                notif : "Password Minimal Terdiri Dari 6 Huruf/Angka atau Lebih",
-                password: '',
-                confirm_password: '',
-              })
-          } else {
-
-            if (data.errors) {
-              this.setState({
-                notif: "Email Sudah digunakan",
-              })
-            } else if (data.message === 'Signup Berhasil') {
-              localStorage.setItem('token', data.token);
-              this.setState({
-                dataUser: payload,
-                email: payload.email,
-                modalOtp: !this.state.modalOtp,
-              });
-            }
-
+            this.setState({
+              notif : "Password Minimal Terdiri Dari 6 Huruf/Angka atau Lebih",
+              password: '',
+              confirm_password: '',
+            })
+          } else if (data.message === 'Signup Berhasil'){
+            localStorage.setItem('token', data.token);
+            this.setState({
+              dataUser: payload,
+              email: payload.email,
+              modalOtp: !this.state.modalOtp,
+            });
           }
           return this.props.setIsLoading(false)
         })
@@ -222,9 +209,7 @@ class Signup extends Component {
           // console.log(e)
           return this.props.setIsLoading(false)
         })
-    // } else {
-    //   return this.props.setIsLoading(false)
-    // }
+    }
   }
 
   signUpInputHandler(e) {
@@ -247,9 +232,10 @@ class Signup extends Component {
   }
 
   signUpInputToLowerHandler(e) {
-    var email = e.target.value;
-    var formatted = formatEmail(e.target.value);
-      this.setState({ email : formatted, typedEmail: email });
+    this.setState({ 
+      email : formatEmail(e.target.value),
+      typedEmail: e.target.value 
+    });
   }
 
   render() {
@@ -270,7 +256,7 @@ class Signup extends Component {
               value={typedEmail}
               type="email"
               aria-describedby="emailHelp"
-              placeholder="Masukkan Email Kamu*"
+              placeholder="Masukkan Email Kamu"
               onChange={e => this.signUpInputToLowerHandler(e)}
             />
           </div>

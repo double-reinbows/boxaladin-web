@@ -1,6 +1,6 @@
 export default function signUpInputToLowerHandler(email) {
-  var user = email.split('@')[0]
-  var provider = email.split('@')[1]
+  const user = email.split('@')[0]
+  const provider = email.split('@')[1]
 
   if (provider === 'gmail.com') {
     let userWithoutDot = user.split('.').join('')

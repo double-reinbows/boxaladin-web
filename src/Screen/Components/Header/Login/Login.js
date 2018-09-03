@@ -64,7 +64,6 @@ class Login extends Component {
       })
     } else {
       console.log('masuk number');
-      console.log(this.state);
       axios({
         method: 'POST',
         url: `${envChecker('api')}/v2/signin`,

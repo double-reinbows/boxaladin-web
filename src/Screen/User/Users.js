@@ -531,13 +531,13 @@ class User extends React.Component {
 				<div className="user__show">
 					<img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mail.png' className="user__show__logo" alt="Logo"/>
 					<div className="user__show__email">
-						{this.props.userInfo.typedEmail !== null ? this.props.userInfo.typedEmail : this.props.userInfo.email}
-						<div style= {{ width:"16%" }}>
+						{this.props.userInfo.typedEmail !== null ? this.props.userInfo.typedEmail : 'Anda Tidak Memasukkan email'}
+						{/* <div style= {{ width:"16%" }}>
 							{this.props.userInfo !== null ? (this.props.userInfo.emailVerified ? <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/checked.png' className="user__show__logo__verified" alt="Logo"/>
 								:
 								(<button  className="user__show__button" onClick={() => this.resendEmailVerification()}> Verifikasi </button>)) : null
 							}
-						</div>
+						</div> */}
 
 					</div>
 

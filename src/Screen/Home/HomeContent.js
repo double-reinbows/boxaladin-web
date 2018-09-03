@@ -178,6 +178,7 @@ renderModalBid() {
   }
 
   render() {
+    console.log(this.props.userInfo)
     return (
       <div className="homecontent__container">
         <div className="homecontent__top">
