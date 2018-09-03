@@ -25,7 +25,6 @@ class Login extends Component {
     this.props.setIsLoading(true)
     const regex = /(@)/gm
     const isExisting = regex.test(this.state.numberEmail)
-    console.log(isExisting);
     if (isExisting === true) {
       console.log('masuk email');
       axios({
