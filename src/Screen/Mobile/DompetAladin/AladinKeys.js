@@ -27,7 +27,10 @@ class aladinKeys extends Component <State, Props> {
   }
 
   showButton = () => {
-    return this.props.keys.map((data, i) => (
+    return this.props.keys.filter (dataFilter => {
+      return dataFilter.keyAmount !== 0
+    })
+    .map((data, i) => (
         <button key={i} onClick={() => this.keyButton(data.id.toString())} className="mobile__topup__button">{data.keyAmount}</button>
     ))
   }
