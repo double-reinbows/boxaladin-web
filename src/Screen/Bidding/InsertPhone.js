@@ -107,9 +107,9 @@ class InsertPhone extends React.Component {
             amount={this.props.location.state.aladinPrice}
             phone={SplitPhone(this.state.phone)}
             toggle={this.togglePayment}
-            push={'payment'}
             brand={this.state.brand}
             brandId={this.state.brandId}
+            endpoint='transaction'
         />
         )
       } else if (this.props.location.state.typeBuy === 'buy paket data'){
@@ -125,8 +125,8 @@ class InsertPhone extends React.Component {
             amount={this.props.location.state.aladinPrice}
             phone={SplitPhone(this.state.phone)}
             toggle={this.togglePayment}
-            push={'payment'}
             brand={this.state.brand}
+            endpoint='transaction'
         />
         )
       }

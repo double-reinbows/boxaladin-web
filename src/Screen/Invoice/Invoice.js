@@ -2,11 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Table, Button } from 'reactstrap';
 import {withRouter} from 'react-router-dom'
-
-
 import moment from 'moment'
-
-import { getUserPendingTransactions, getUserTransactions } from '../../actions/transactionAction'
 class Invoice extends React.Component {
   constructor(props) {
     super(props)
@@ -22,21 +18,6 @@ class Invoice extends React.Component {
         activeTab: tab
       });
     }
-  }
-
-  render() {
-    return (
-    <div className="invoice">
-      <div className="invoice__container">
-        {this.showInvoice()}
-      </div>
-    </div>
-    )
-  }
-
-  componentDidMount() {
-    this.props.getUserPendingTransactions()
-    this.props.getUserTransactions()
   }
 
   showInvoice() {
@@ -91,7 +72,21 @@ class Invoice extends React.Component {
   }
 
   showMetodePembayaran(id) {
-      this.props.history.push(`/payment/${id}`)
+    this.props.history.push('/invoice', {
+      id,
+      endpoint: 'transaction'
+    })
+  }
+
+  render() {
+    console.log('props ---->', this.props)
+    return (
+    <div className="invoice">
+      <div className="invoice__container">
+        {this.showInvoice()}
+      </div>
+    </div>
+    )
   }
 
 
@@ -99,15 +94,12 @@ class Invoice extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    userPendingTransactions: state.transactionReducer.userPendingTransactions,
     userTransactions: state.transactionReducer.userTransactions
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUserPendingTransactions: () => dispatch(getUserPendingTransactions()),
-    getUserTransactions: () => dispatch(getUserTransactions())
   }
 }
 const enhance = connect(mapStateToProps, mapDispatchToProps);

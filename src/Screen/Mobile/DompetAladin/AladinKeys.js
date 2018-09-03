@@ -56,10 +56,10 @@ class aladinKeys extends Component <State, Props> {
           retailendpoint='topupKey'
           walletendpoint='walletkey'
           bcaendpoint='bca/key'
-          push='topupinvoice'
           isOpen={this.state.modalPayment}
           data={this.state.idKey}
           toggle={this.keyButton}
+          endpoint='topup'
           />
       </div>
     );

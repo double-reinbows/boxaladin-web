@@ -1,11 +1,15 @@
 import React from 'react'
-
+import { connect } from 'react-redux'
+import {withRouter} from 'react-router-dom'
 import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import classnames from 'classnames';
 
 import Invoice from './Invoice'
 import TopUpInvoice from './TopupInvoice'
 import WalletInvoice from'./TopupWalletInvoice'
+import { getUserTransactions } from '../../actions/transactionAction'
+import { getUserTopupTransactions } from '../../actions/topupAction'
+import { getUserWalletTransactions } from '../../actions/walletTransactionAction'
 
 class TabsInvoice extends React.Component {
   constructor(props) {
@@ -23,10 +27,17 @@ class TabsInvoice extends React.Component {
       });
     }
   }
+
+
+  componentDidMount() {
+    const {getUserTopupTransactions, getUserTransactions, getUserWalletTransactions } = this.props
+    getUserTransactions()
+    getUserTopupTransactions()
+    getUserWalletTransactions()
+  }
+
   render() {
-
     return (
-
       <div>
         <Nav tabs>
           <NavItem className="invoice__tab">
@@ -75,4 +86,22 @@ class TabsInvoice extends React.Component {
   }
 }
 
-export default TabsInvoice
+const mapStateToProps = (state) => {
+  return {
+    userTransactions: state.transactionReducer.userTransactions,
+    userTopupTransactions: state.topupReducer.userTopupTransactions,
+    userWalletTransactions: state.walletReducer.userWalletTransactions
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getUserTransactions: () => dispatch(getUserTransactions()),
+    getUserTopupTransactions: () => dispatch(getUserTopupTransactions()),
+    getUserWalletTransactions: () => dispatch(getUserWalletTransactions())
+  }
+}
+const enhance = connect(mapStateToProps, mapDispatchToProps);
+const connectComponent = enhance(withRouter(TabsInvoice))
+
+export default connectComponent

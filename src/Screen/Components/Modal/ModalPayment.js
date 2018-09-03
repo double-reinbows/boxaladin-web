@@ -93,7 +93,7 @@ class ModalPayment extends Component{
 
   getTransaction = async (axiosUrl, paymentType) => {
     const dataValue = this.createObj();
-    const { push, refreshToken, setIsLoading, history} = this.props
+    const { refreshToken, setIsLoading, history, endpoint} = this.props
     setIsLoading(true)
     HelperAxios('POST', axiosUrl, dataValue)
     .then(async result => {
@@ -111,7 +111,10 @@ class ModalPayment extends Component{
         if (result.data.error_code === 'DUPLICATE_CALLBACK_VIRTUAL_ACCOUNT_ERROR'){
           this.checkResponse({callback: this.setState({notif: true})})
         } else if (result.data.status === 200) {
-          this.props.history.push(`/${push}/${result.data.dataFinal.id}`)
+          this.props.history.push('/invoice', {
+            id: result.data.dataFinal.id,
+            endpoint
+          })
         }
       }
 

@@ -50,10 +50,10 @@ class Topup extends Component<State> {
             fixedendpoint='fixedwallet'
             retailendpoint='alfawallet'
             bcaendpoint='bca/wallet'
-            push='walletinvoice'
             isOpen={this.state.modalPayment}
             data={this.state.wallet}
             toggle={this.walletButton}
+            endpoint='walletstatus'
           />
         </div>
     );
