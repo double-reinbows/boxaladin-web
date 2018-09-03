@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import Modal from 'react-modal'
 import axios from 'axios'
 import { Modal } from 'reactstrap'
-import ModalOtpUser from './ModalOtpUser'
+// import ModalOtpUser from './ModalOtpUser'
 import envChecker from '../../utils/envChecker'
 
 class AddPrimaryNumberModal extends Component {

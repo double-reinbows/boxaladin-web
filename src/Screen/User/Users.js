@@ -349,7 +349,7 @@ class User extends React.Component {
 	}
 
 	showPhoneNumbers() {
-		let verifyButtonImg = <button className="verified__profile_img" onClick={() => this.toggle()}><img src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/otp.png" /></button>
+		let verifyButtonImg = <button className="verified__profile_img" onClick={() => this.toggle()}><img src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/otp.png" alt="otp icon"/></button>
 		let verifyNoButton =  <button className="verified__profile" onClick={() => this.toggle()}> Verifikasi Nomor </button>
 		return <div className="user__phone">
         <div className="user__phone__row1">
