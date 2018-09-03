@@ -5,7 +5,7 @@ import { Modal } from 'reactstrap'
 import ModalOtpUser from './ModalOtpUser'
 import envChecker from '../../utils/envChecker'
 
-class ModalPrimaryPhone extends Component {
+class AddPrimaryNumberModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +20,7 @@ class ModalPrimaryPhone extends Component {
     })
   }
 
-  submitOldUserPhone(e){
+  submitPrimaryNumber(e){
     e.preventDefault()
 
     var num = this.state.phone.split('')
@@ -47,72 +47,59 @@ class ModalPrimaryPhone extends Component {
     }
     axios({
       method: 'POST',
-      url: `${envChecker('api')}/olduserotp`,
+      url: `${envChecker('api')}/phonenumber/primary`,
       headers: {
         key: process.env.REACT_APP_KEY,
         token: localStorage.getItem('token')
       },
       data: {
         phonenumber: this.state.phone,
-        email: this.props.emailUser
       }
     })
     .then((data) => {
-      if (data.data === 'ada no hp verified/primary'){
+      console.log("data", data.data.message);
+      if (data.data.message === 'Hp pernah diverifikasi'){
         this.setState({
           notif: 'Maaf tapi nomor ini sudah terdaftar dengan akun orang lain. Silakan hubungi Customer Service di LINE @boxaladin',
         })
-      } else if ( data.data === 'phone created'){
+      } else if (data.data.message === 'data added'){
+        // this.props.buttonToggle();
+        window.location.reload();
+      } else if (data.data.message === 'User adding duplicate primary') {
         this.setState({
-          notif: '',
-          oldUserModal: true
+          notif: 'Nomor ini sudah terdaftar',
         })
       } else {
         this.setState({
-          notif: 'Nomor yang di input wajib sama dengan nomor primary yang sudah terdaftar.',
+          notif: 'Uh oh! Hubungi LINE kami @boxaladin',
         })
       }
     })
     .catch(err => console.log(err))
   }
 
-  closeModal = () => {
-    this.setState({
-      phone: ''
-    },
-    () => this.props.buttonToggle()
-    )
-  }
-
-  closeOtpModal = () => {
-    this.setState({
-      oldUserModal: !this.state.oldUserModal
-    })
-  }
-
   render() {
     return (
       <div>
         <Modal isOpen={this.props.open} className="modalPrimary__phone">
-          <form className="modalPrimary__phone__content" onSubmit={(e) => this.submitOldUserPhone(e)}>
+          <form className="modalPrimary__phone__content" onSubmit={(e) => this.submitPrimaryNumber(e)}>
             <div className="modal__check__container__header">
-              <button className="modal__check__button" onClick={this.closeModal}>X</button>
+              <button className="modal__check__button" onClick={this.props.buttonToggle}>X</button>
             </div>
-            <label><b>Masukan Nomor Hape:</b></label>
+            <label><b>Masukkan Nomor Hape Primary:</b></label>
             <div className="modalPrimary__phone__content__form">
               <input name="numberToSend" required autoFocus type="text" maxLength={14} className="modalPrimary__phone__input" placeholder="Phone Number" value={this.state.phone} onChange={(e) => this.handleOldUserPhone(e)} />
             </div>
             <label className="modalPrimary__phone__alert">{this.state.notif}</label>
             <div className="modalPrimary__phone__content__buttonContainer">
               <button className="modalPrimary__phone__button" type="submit" color="primary">Setuju</button>
-              <button className="modalPrimary__phone__button" type="button" color="danger" onClick={this.closeModal}>Batal</button>
+              <button className="modalPrimary__phone__button" type="button" color="danger" onClick={this.props.buttonToggle}>Batal</button>
             </div>
           </form>
         </Modal>
-        <ModalOtpUser buttonToggle={this.closeOtpModal} openOtpUser={this.state.oldUserModal} userEmail={this.props.emailUser} userPhone={this.state.phone}/>
       </div>
     )
   }
 }
 
-export default ModalPrimaryPhone;
+export default AddPrimaryNumberModal;

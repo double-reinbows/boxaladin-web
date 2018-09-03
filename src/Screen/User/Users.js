@@ -7,7 +7,8 @@ import MediaQuery from 'react-responsive';
 import { getPhoneNumbers } from '../../actions/'
 // import { getUser } from '../../actions/userAction'
 
-import ModalPrimaryPhone from './ModalPrimary'
+import ModalPrimary from './ModalPrimary'
+import AddPrimaryNumberModal from './AddPrimaryNumberModal'
 import ModalDelete from './ModalDelete'
 import ModalText from '../Components/Modal/ModalText'
 import envChecker from '../../utils/envChecker'
@@ -29,10 +30,11 @@ class User extends React.Component {
 			notif: '',
 			oldUserModal: false,
 			openModalDelete: false,
-			modalCheck: false
+			modalCheck: false,
+			showAddPrimaryNumberModal: false,
 		}
 		this.toggle = this.toggle.bind(this);
-
+		this.toggleAddPrimary = this.toggleAddPrimary.bind(this);
 	}
 
 	render() {
@@ -62,7 +64,8 @@ class User extends React.Component {
 					{ this.showChangePrimaryPhone() }
 
 					{ this.showChangePrimaryPhoneOTP() }
-					<ModalPrimaryPhone open={this.state.oldUserModal} buttonToggle={this.toggle} emailUser={this.props.userInfo.email}/>
+					<ModalPrimary open={this.state.oldUserModal} buttonToggle={this.toggle} emailUser={this.props.userInfo.email}/>
+					<AddPrimaryNumberModal open={this.state.showAddPrimaryNumberModal} buttonToggle={this.toggleAddPrimary} />
 				</div>
 			</div>
 		)
@@ -332,6 +335,13 @@ class User extends React.Component {
     })
 	}
 
+	toggleAddPrimary() {
+		this.setState({
+			showAddPrimaryNumberModal: !this.state.showAddPrimaryNumberModal,
+			notif: '',
+		})
+	}
+
 	addPhone = () => {
 		this.setState({
 			addPhoneModal: !this.state.addPhoneModal
@@ -339,6 +349,8 @@ class User extends React.Component {
 	}
 
 	showPhoneNumbers() {
+		let verifyButtonImg = <button className="verified__profile_img" onClick={() => this.toggle()}><img src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/otp.png" /></button>
+		let verifyNoButton =  <button className="verified__profile" onClick={() => this.toggle()}> Verifikasi Nomor </button>
 		return <div className="user__phone">
         <div className="user__phone__row1">
 					<div className="user__phone__row1__phoneNumber">
@@ -352,7 +364,8 @@ class User extends React.Component {
 												<label style={{ marginRight: '2%'}} >{this.props.userInfo.phoneNumber}</label>
 
 												{
-													phone.verified === false ? <div style={{ display:'flex'}}><label>(Unverified)</label> <button className="verified__profile" onClick={() => this.toggle()}> Verifikasi Nomor </button></div> :
+													phone.verified === false ? <div style={{ display:'flex'}}><label>(Unverified)</label>{verifyNoButton}{verifyButtonImg}
+													<button className="user__phone__row2__unverify__2__button2" onClick={() => this.changePhone(phone)}>Ubah</button></div> :
 													<label>(Verified)</label>
 												}
 
@@ -361,7 +374,7 @@ class User extends React.Component {
 									</div>
 								)
 							}) :
-							<button className="user__show__button" onClick={() => this.toggle()}> Verifikasi Nomor </button>}
+							<button className="verified__profile" onClick={this.toggleAddPrimary}> Nambah Nomor Primary </button>}
 						</div>
 						</div>
 							{ this.props.phoneNumbers.length !== 0 ?
@@ -463,46 +476,33 @@ class User extends React.Component {
 
 	submitChangePhone(e) {
 		e.preventDefault()
-		// console.log('Submit change phone!');
-
-		// if (this.state.numberToSend[0] + this.state.numberToSend[1] !== '62') {
-		// 	this.setState({
-    //     notif: "Format No Hp Salah",
-    //   })
-		// } else {
-			axios({
-				method: 'PUT',
-				url: `${envChecker('api')}/phone/${this.state.idPhoneToChange}`,
-				data: {
-					phonenumber: this.state.numberToSend
-				},
-				headers: {
-					token: localStorage.getItem('token'),
-					key: process.env.REACT_APP_KEY
-				}
-			})
-			.then(response => {
-				if (response.data.message === 'data changed') {
-					this.setState({
-						changePhoneModal: false,
-						numberToSend: null,
-						idPhoneToChange: null
-					},
-					this.props.getPhoneNumbers()
-
-				)
-				} else if (response.data.message === 'duplicate number') {
-					this.setState({
-						notif: response.data.message,
-					})
-				} else if (response.data.message === 'already use') {
-					this.setState({
-						notif: response.data.message,
-					})
-				}
-			})
-			.catch(err => console.log(err))
-		// }
+		axios({
+			method: 'PUT',
+			url: `${envChecker('api')}/phone/${this.state.idPhoneToChange}`,
+			data: {
+				phonenumber: this.state.numberToSend
+			},
+			headers: {
+				token: localStorage.getItem('token'),
+				key: process.env.REACT_APP_KEY
+			}
+		})
+		.then(response => {
+			if (response.data.message === 'data changed') {
+				window.location.reload();
+			} else if (response.data.message === 'duplicate number') {
+				this.setState({
+					notif: 'Nomor Sudah Terdaftar',
+					changePhoneModal: false,
+				})
+			} else if (response.data.message === 'Someone else has taken this number') {
+				this.setState({
+					notif: 'Nomor Sudah Di Pakai Akun Lain',
+					changePhoneModal: false,
+				})
+			}
+		})
+		.catch(err => console.log(err))
 	}
 
 	toggleRemove = (phone) => {
