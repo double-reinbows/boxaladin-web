@@ -54,9 +54,6 @@ class ModalOtp extends Component {
       axios({
         method: 'POST',
         url: `${envChecker('api')}/v2/signupverification`,
-        headers: {
-          key: process.env.REACT_APP_KEY
-        },
         data: {
           phonenumber: phone,
           otp : otp,
@@ -94,9 +91,6 @@ class ModalOtp extends Component {
       axios({
         method: 'POST',
         url: `${envChecker('api')}/otp`,
-        headers: {
-          key: process.env.REACT_APP_KEY
-        },
         data: {
           phonenumber: phone,
         }
