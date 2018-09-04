@@ -117,7 +117,7 @@ class Dompet extends React.Component {
       <div>
         <Form onSubmit={this.upWallet}>
           <FormGroup>
-            <Input className="dompet__content__key__topup__dropdown" type="number" id="upcoin" name="aladinConvert" placeholder="Minimal Rp. 200.000,00" value={this.state.wallet} onChange={this.handleInputWallet}/>
+            <Input className="dompet__content__key__topup__dropdown" type="number" id="upcoin" name="aladinConvert" placeholder="Minimal Rp. 50.000,00" value={this.state.wallet} onChange={this.handleInputWallet}/>
           </FormGroup>
           <label style = {{fontSize: "18px"}}>Uang tidak boleh melebihi Rp 2.000.000</label>
           <FormGroup>

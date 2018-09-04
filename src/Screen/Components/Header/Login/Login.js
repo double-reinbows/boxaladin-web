@@ -34,7 +34,7 @@ class Login extends Component {
           key: process.env.REACT_APP_KEY
         },
         data: {
-          numberEmail: this.state.numberEmail,
+          email: this.state.numberEmail,
           password: this.state.password
         },
       })
