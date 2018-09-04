@@ -9,6 +9,7 @@ class SuccessModalOtp extends Component {
     const {loginAction, setModalRegister} = this.props;
     loginAction();
     setModalRegister(false);
+    window.location.reload()
   }
 
   render() {

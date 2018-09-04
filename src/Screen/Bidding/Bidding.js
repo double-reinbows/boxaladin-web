@@ -19,6 +19,7 @@ class Bidding extends React.Component {
       initCount: 15,
       open: false,
       priceComp : true,
+      text: ''
     }
 
     this.handleBack()
@@ -94,7 +95,7 @@ class Bidding extends React.Component {
         </div>
         </div>
       </div>
-      <ModalText text="Waktu lelang telah habis! Anda akan kembali pada halaman utama." color={'red'} background={'#FFF0B3'} isOpen={this.state.open} toggle={this.toggle}/>
+      <ModalText text={this.state.text} color={'red'} background={'#FFF0B3'} isOpen={this.state.open} toggle={this.toggle}/>
     </div>
     )
   }
@@ -135,7 +136,7 @@ class Bidding extends React.Component {
             <button className="mobile-bidding__button" onClick={() => this.buy()}>Beli Sekarang</button>
             <button className="mobile-bidding__button batal" style={{color:'red'}} onClick={() => this.cancel()}>Batal</button>
           </div>
-          <ModalText text="Waktu lelang telah habis! Anda akan kembali pada halaman utama." color={'red'} background={'#FFF0B3'} isOpen={this.state.open} toggle={this.toggle}/>
+          <ModalText text={this.state.text} color={'red'} background={'#FFF0B3'} isOpen={this.state.open} toggle={this.toggle}/>
       </div>
     )
   }
@@ -177,6 +178,7 @@ class Bidding extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
 		this.checkTimer(prevState.count)
+		this.afterResetPrice(prevState.productUnlocked.aladinPrice)
   }
 
   componentWillUnmount() {
@@ -363,13 +365,19 @@ class Bidding extends React.Component {
         open: true,
         productUnlocked : '',
         priceComp: false,
+        text: 'Waktu lelang telah habis! Anda akan kembali pada halaman utama.'
       })
     }
   }
 
   afterResetPrice(prevPrice) {
 		if (prevPrice !== undefined && this.state.productUnlocked.aladinPrice > prevPrice) {
-      alert('Maaf, produk ini sudah terbeli orang lain! Silahkan melakukan bidding lagi.')
+      this.setState({
+        open: true,
+        productUnlocked : '',
+        priceComp: false,
+        text: 'Maaf, produk ini sudah terbeli orang lain! Silahkan melakukan bidding lagi.'
+      })
       this.props.history.push('/home')
 		}
   }
