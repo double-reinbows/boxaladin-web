@@ -45,7 +45,7 @@ class ModalOtp extends Component {
   sendOtp(e){
     e.preventDefault();
     let {otp} = this.state;
-    let {phone, emailUser, toggleSuccessOtp} = this.props;
+    let {phone, toggleSuccessOtp} = this.props;
     if (otp === '') {
       this.setState({
         notifOtp: 'OTP Tidak Boleh Kosong',
@@ -60,7 +60,6 @@ class ModalOtp extends Component {
         data: {
           phonenumber: phone,
           otp : otp,
-          email : emailUser
         }
       })
       //--------------------- ask about difference between 'phone verified' and 'phone Terverifikasi'
@@ -83,7 +82,7 @@ class ModalOtp extends Component {
 
   resendOtp() {
     let {count, time} = this.state;
-    let {phone, emailUser, buttonToggle, loginAction, setModalRegister} = this.props;
+    let {phone, buttonToggle, loginAction, setModalRegister} = this.props;
     let notifyResendOtp = this.props.resendOtp;
     notifyResendOtp();
     this.setState({
@@ -100,7 +99,6 @@ class ModalOtp extends Component {
         },
         data: {
           phonenumber: phone,
-          email: emailUser
         }
       })
       .then((dataOtp) => {
