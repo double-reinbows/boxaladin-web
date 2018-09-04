@@ -378,7 +378,6 @@ class Bidding extends React.Component {
         priceComp: false,
         text: 'Maaf, produk ini sudah terbeli orang lain! Silahkan melakukan bidding lagi.'
       })
-      this.props.history.push('/home')
 		}
   }
 }
