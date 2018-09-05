@@ -10,20 +10,19 @@ class ModalPrimaryPhone extends Component {
     super(props);
     this.state = {
       phone:'',
-      oldUserModal: false
+      modalOtp: false
     }
   }
 
-  handleOldUserPhone(e) {
+  handleOldUserPhone = (e) => {
     this.setState({
       phone: e.target.value
     })
   }
 
-  submitOldUserPhone(e){
+  submitOldUserPhone = (e) => {
     e.preventDefault()
-
-    var num = this.state.phone.split('')
+    let num = this.state.phone.split('')
     if (num[0] === '0') {
       num.splice(0, 1, '0')
       this.setState({
@@ -49,12 +48,10 @@ class ModalPrimaryPhone extends Component {
       method: 'POST',
       url: `${envChecker('api')}/olduserotp`,
       headers: {
-        key: process.env.REACT_APP_KEY,
         token: localStorage.getItem('token')
       },
       data: {
         phonenumber: this.state.phone,
-        email: this.props.emailUser
       }
     })
     .then((data) => {
@@ -65,11 +62,11 @@ class ModalPrimaryPhone extends Component {
       } else if ( data.data === 'phone created'){
         this.setState({
           notif: '',
-          oldUserModal: true
+          modalOtp: true
         })
       } else {
         this.setState({
-          notif: 'Nomor yang di input wajib sama dengan nomor primary yang sudah terdaftar.',
+          notif: 'Terjadi Kesalahan, Silahkan Hubungi CS Boxaladin di LINE @boxaladin',
         })
       }
     })
@@ -80,27 +77,27 @@ class ModalPrimaryPhone extends Component {
     this.setState({
       phone: ''
     },
-    () => this.props.buttonToggle()
+    () => this.props.toggle()
     )
   }
 
   closeOtpModal = () => {
     this.setState({
-      oldUserModal: !this.state.oldUserModal
+      modalOtp: !this.state.modalOtp
     })
   }
 
   render() {
     return (
       <div>
-        <Modal isOpen={this.props.open} className="modalPrimary__phone">
-          <form className="modalPrimary__phone__content" onSubmit={(e) => this.submitOldUserPhone(e)}>
+        <Modal isOpen={this.props.isOpen} className="modalPrimary__phone">
+          <form className="modalPrimary__phone__content" onSubmit={this.submitOldUserPhone}>
             <div className="modal__check__container__header">
               <button className="modal__check__button" onClick={this.closeModal}>X</button>
             </div>
             <label><b>Masukan Nomor Hape:</b></label>
             <div className="modalPrimary__phone__content__form">
-              <input name="numberToSend" required autoFocus type="text" maxLength={14} className="modalPrimary__phone__input" placeholder="Phone Number" value={this.state.phone} onChange={(e) => this.handleOldUserPhone(e)} />
+              <input name="numberToSend" required autoFocus type="number" maxLength={14} className="modalPrimary__phone__input" placeholder="Phone Number" onChange={this.handleOldUserPhone}/>
             </div>
             <label className="modalPrimary__phone__alert">{this.state.notif}</label>
             <div className="modalPrimary__phone__content__buttonContainer">
@@ -109,7 +106,7 @@ class ModalPrimaryPhone extends Component {
             </div>
           </form>
         </Modal>
-        <ModalOtpUser buttonToggle={this.closeOtpModal} openOtpUser={this.state.oldUserModal} userEmail={this.props.emailUser} userPhone={this.state.phone}/>
+        <ModalOtpUser isOpen={this.state.modalOtp} toggle={this.closeOtpModal}  phone={this.state.phone}/>
       </div>
     )
   }

@@ -62,3 +62,17 @@ input::-webkit-inner-spin-button {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.baButton{
+  &:hover{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+  }
+  &:active{
+    box-shadow: 0 2px rgba(0,0,0,0.2);
+    transform: translateY(4px);
+  }
+  &:focus{
+    outline: none;
+  }
+}

@@ -1,8 +1,6 @@
 import React,{Component} from 'react';
-// import PropTypes from 'prop-types';
 import { Modal, ModalFooter} from 'reactstrap'
-import axios from 'axios'
-import envChecker from '../../utils/envChecker'
+import helperAxios from '../../utils/axios'
 
 class ModalOtpUser extends Component {
   constructor(props) {
@@ -16,13 +14,13 @@ class ModalOtpUser extends Component {
       disabled: false,
     }
   }
-  handleOtpUser(e){
+  handleOtpUser = (e) => {
     this.setState({
       otpUser: e.target.value
     })
   }
 
-  sendOtp(e){
+  sendOtp = (e) => {
     e.preventDefault()
 
     if (this.state.otpUser === '') {
@@ -30,62 +28,40 @@ class ModalOtpUser extends Component {
         notifOtp: 'OTP Tidak Boleh Kosong'
       })
     } else {
-    axios({
-      method: 'POST',
-      url: `${envChecker('api')}/olduserverification`,
-      headers: {
-        key: process.env.REACT_APP_KEY
-      },
-      data: {
-        phonenumber: this.props.userPhone,
-        otp : this.state.otpUser,
-        email : this.props.userEmail
+      helperAxios('POST', 'olduserverification', {phonenumber: this.props.phone, otp : parseInt(this.state.otpUser, 10)})
+      .then(response => {
+        console.log('response', response)
+        if (response.data.message === 'Phone Terverifikasi') {
+          alert('No Hp Pernah Diverifikasi')
+        }	else if ( response.data.message === 'incorrect otp') {
+          this.setState({
+            notifOtp: "OTP Salah"
+          })
+        } else if ( response.data.message === 'phone verified'){
+          window.location.reload();
+        }
+      })
+      .catch(err => console.log(err))
       }
-    })
-    .then((dataOtp) => {
-      if (dataOtp.data.message === 'Phone Terverifikasi') {
-        alert('No Hp Telah Diverifikasi')
-      }	else if ( dataOtp.data.message === 'incorrect otp') {
-        this.setState({
-          notifOtp: "OTP Salah"
-        })
-      } else if ( dataOtp.data.message === 'phone verified'){
-        window.location.reload();
-      }
-    })
-    .catch(err => console.log(err))
-    }
   }
 
-  resendOtp(){
+  resendOtp = () => {
     this.setState({
       count : this.state.count - 1,
     })
     if (this.state.count > 0 ){
-      axios({
-        method: 'POST',
-        url: `${envChecker('api')}/otp`,
-        headers: {
-          key: process.env.REACT_APP_KEY
-        },
-        data: {
-          phonenumber: this.props.userPhone,
-          email: this.props.userEmail,
-        }
-      })
-      .then((dataOtp) => {
-        if (dataOtp.data === 'error'){
+      helperAxios('POST', 'otp', {phonenumber: this.props.phone})
+      .then(response => {
+        if (response.data === 'error'){
           alert("Terjadi Kesalahan di Sistem Kami, Silahkan Hubungi Customer Service Untuk Menverifikasi No Anda")
           this.setState({
             show: 'hidden'
           })
           window.location.reload();
-        } else if (dataOtp.data === 'retry'){
+        } else if (response.data === 'retry'){
           this.setState({
             notifOtp: 'otp Tidak Terkirim, Silahkan Kirim Ulang'
           })
-        } else {
-          // console.log('otp sent')
         }
       })
     }
@@ -108,31 +84,30 @@ class ModalOtpUser extends Component {
 
   render() {
     return (
-      <Modal ariaHideApp={false} isOpen={this.props.openOtpUser} className="modalOtpUser">
-        <form onSubmit={e => this.sendOtp(e)}>
+      <Modal isOpen={this.props.isOpen} className="modalOtpUser">
+        <form onSubmit={this.sendOtp}>
           <div className="modalOtpUser__container">
           <div className="modal__check__container__header">
-            <button className="modal__check__button" onClick={this.props.buttonToggle}>X</button>
+            <button className="modal__check__button" onClick={this.props.toggle}>X</button>
           </div>
             <div>
               <label className="modalOtpUser__label">Anda Akan di Missed Call Oleh Sistem Kami</label>
               <label className="modalOtpUser__label">Masukkan 4 Angka Terakhir Dari no yang Menelpon Anda</label>
             </div>
-            <input type="text" maxLength={4} className="modalOtpUser__input" placeholder="OTP" value={this.state.otpUser} onChange={(e) => this.handleOtpUser(e)} />
+            <input type="text" maxLength={4} className="modalOtpUser__input" placeholder="OTP" value={this.state.otpUser} onChange={this.handleOtpUser} />
             <div>
               <div>
-                <label className="modalPrimary__phone__alert">{this.state.notifOtp}</label>
+                <label className="alert__user">{this.state.notifOtp}</label>
               </div>
               <div>
                 <label className="modalPrimary__phone__alert">{this.state.notifCount}</label>
               </div>
             </div>
-
             <div>
-              <button className="modalOtpUser__button" color="primary" type="submit" >Submit</button>{' '}
+              <button className='baButton user-dataPhone-button-verify' color="primary" type="submit" >Submit</button>
             </div>
             <ModalFooter>
-              <button style ={{visibility:this.state.show}} disabled={this.state.disabled} onClick={() => this.resendOtp()} className="modal-body__otp__resend">Kirim Ulang OTP</button>
+              <button style ={{visibility:this.state.show}} disabled={this.state.disabled} onClick={this.resendOtp} className="modal-body__otp__resend">Kirim Ulang OTP</button>
             </ModalFooter>
           </div>
         </form>

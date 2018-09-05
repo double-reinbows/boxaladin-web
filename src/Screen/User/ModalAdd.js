@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Modal } from 'reactstrap'
-import { connect } from 'react-redux'
 
-import { getPhoneNumbers } from '../../actions/'
 import envChecker from '../../utils/envChecker'
 
 class ModalAdd extends Component {
@@ -11,22 +9,26 @@ class ModalAdd extends Component {
     super(props);
     this.submitPhone = this.submitPhone.bind(this)
     this.state = {
-      numberToSend: '',
+      phonenumber: '',
       notif: ''
     }
   }
 
 	submitPhone(e){
-		e.preventDefault()
+    e.preventDefault()
+    if (this.state.phonenumber.length < 10){
+      return this.setState({
+        notif: 'Format No Hp Salah'
+      })
+    }
 		axios({
 			method: 'POST',
 			url: `${envChecker('api')}/phonenumber`,
 			data: {
-				phonenumber: this.state.numberToSend
+				phonenumber: this.state.phonenumber
 			},
 			headers: {
 				token: localStorage.getItem('token'),
-				key: process.env.REACT_APP_KEY
 			}
 		})
 		.then(response => {
@@ -36,57 +38,31 @@ class ModalAdd extends Component {
 				this.setState({
 					notif: 'No Hp Sudah Ada',
 				})
-			} else if (response.data.message === 'already use') {
-				this.setState({
-					notif: "No Hp Sudah Digunakan",
-				})
 			}
 		})
 		.catch(err => console.log(err))
   }
 
-  handlePhoneNum = (e) => {
-
-    // this.setState({
-    //   numberToSend: e.target.value
-    // })
-
-    var num = e.target.value.split('')
-    if (num[0] === '0') {
-      num.splice(0, 1, '0')
-      this.setState({numberToSend: num.join('')})
-    } else if (num[0] + num[1] + num[2] === '+62') {
-      num.splice(0, 3, '0')
-      this.setState({numberToSend: num.join('')})
-    } else if (num[0] + num[1] === '62') {
-      num.splice(0, 2, '0')
-      this.setState({numberToSend: num.join('')})
-    } else if (num[0] === '8') {
-      num.splice(0, 0, '0')
-      this.setState({numberToSend: num.join('')})
-    } else if (num.length === 0) {
-      this.setState({numberToSend: num.join('')})
-    } else if (e.target.value === '') {
-      this.setState({notif: 'Format No Hp Salah'})
-    } else {
-			this.setState({notif: 'Format No Hp Salah'})
-		}
-	}
+  handleChangeNumber = (e) => {
+    this.setState({
+      phonenumber: e.target.value
+    })
+  }
 
   render() {
     return (
-		<Modal isOpen={this.props.openModalAdd} className="modal__check">
+		<Modal isOpen={this.props.isOpen} className="modal__check">
     <div className="modal__check__container">
         <div className="modal__check__delete__content">
           <label className="modal__check__delete__label"><b>Masukan Nomor Hape:</b></label>
         </div>
         <div className="modal__check__add">
-          <input name="numberToSend" maxLength={14} className="modal__check__add__input" placeholder="Phone Number" onChange={this.handlePhoneNum} />
+          <input name="numberToSend" maxLength={14} className="modal__check__add__input" placeholder="Phone Number" onChange={this.handleChangeNumber} />
         </div>
         <label className="alert__user">{this.state.notif}</label>
         <div className="modal__check__delete">
           <button className="modal__check__delete__button" onClick={(e) => this.submitPhone(e)} color="primary">Setuju</button>
-          <button className="modal__check__delete__button" onClick={this.props.buttonToggle}>Batal</button>
+          <button className="modal__check__delete__button" onClick={this.props.toggle}>Batal</button>
         </div>
     </div>
 		</Modal>
@@ -94,18 +70,4 @@ class ModalAdd extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-	return {
-		phoneNumbers: state.userReducer.phoneNumbers
-	}
-}
-
-const mapDispatchToProps = (dispatch) => {
-	return {
-		getPhoneNumbers: () => dispatch(getPhoneNumbers()),
-	}
-}
-
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(ModalAdd)
-
-export default connectComponent
+export default ModalAdd
