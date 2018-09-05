@@ -24,15 +24,12 @@ class SuccessModalOtp extends Component {
               <div className="resetPassword__img">
                 <img src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Home/checked.svg" alt="Check Icon"/>
               </div>
-              <div className="resetPassword__wrapper__about">
-                <div className="resetPassword__textWarning">
-                  <h1>INGAT PULSA ? INGAT</h1>
-                </div>
-                <div className="resetPassword__image">
-                  <img className="resetPassword__logo" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Logo/logoTextOnly.png" alt="Boxaladin"/>
-                </div>
+              <br/>
+              <div>
+                <h1>INGAT PULSA ? INGAT</h1>
+                <img src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Logo/logoTextOnly.png" alt="Boxaladin"/>
               </div>
-
+              <br/>
             </div>
           </div>
       </Modal>

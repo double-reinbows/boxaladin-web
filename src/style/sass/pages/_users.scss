@@ -77,3 +77,22 @@
     }
   }
 }
+
+@media (min-width: 200px ) and (max-width:720px ) {
+  .user{
+    &-container{
+      font-size: 15px;
+    }
+    &-dataUser-image{
+      width: 10%;
+    }
+    &-dataPhone-button{
+      &-verify{
+        font-size: 10px;
+      }
+      &-change{
+        font-size: 10px;
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
-// import MediaQuery from 'react-responsive';
+import MediaQuery from 'react-responsive';
 import helperAxios from '../../utils/axios' 
 import ListPhone from './ListPhone'
 import ModalPrimary from './ModalPrimary'
@@ -44,6 +44,25 @@ class User extends Component {
       {value: userInfo.typedEmail, image:'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mail.png', alt:'Logo email'},
       {value: userInfo.aladinKeys, image:'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/key.png', alt:'Logo key'},
       {value: userInfo.coin, image:'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/coin.png', alt:'Logo coin'}
+    ]
+    return (
+      <div className='user-dataUser'>
+        {info.map((data, index) => {
+          return(
+            <div className='user-dataUser-info' key={index}>
+              <img className='user-dataUser-image' src={data.image} alt={data.alt}/>
+              <label>{data.value}</label>
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
+
+  mobileShowUser = () => {
+    const {userInfo} = this.props
+    const info = [
+      {value: userInfo.typedEmail, image:'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mail.png', alt:'Logo email'},
     ]
     return (
       <div className='user-dataUser'>
@@ -116,7 +135,13 @@ class User extends Component {
     return ( 
       <div className='user-container baBackground'>
         <h1 className='user-container-title'>Profile Saya</h1>
-        {this.showUser()}
+        <MediaQuery query="(max-device-width: 720px)">
+          {this.mobileShowUser()}
+        </MediaQuery>
+        <MediaQuery query="(min-device-width: 721px)">
+          {this.showUser()}
+        </MediaQuery>
+        
         {this.phone()}
         <ListPhone/>
         <ModalPrimary isOpen={this.state.modalPrimary} toggle={this.togglePrimary} userId={this.props.userInfo.id}/>

@@ -3,13 +3,16 @@ import Modal from 'react-modal'
 import { ModalHeader } from 'reactstrap';
 import Signup from './Signup'
 import { connect } from 'react-redux'
+import Succesmodal from './SuccessModalOtp'
 
 import { setModalLogin, setModalRegister } from '../../../../actions/'
 
 class ModalSignup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      otp: false
+    }
     this.toggle = this.toggle.bind(this);
   }
 
@@ -20,6 +23,12 @@ class ModalSignup extends React.Component {
   openRegisterModal() {
     this.props.setModalLogin(!this.props.modalLogin)
     this.props.setModalRegister(!this.props.modalRegister)
+  }
+
+  tes = () => {
+    this.setState({
+      otp: !this.state.otp
+    })
   }
 
 
@@ -52,11 +61,13 @@ class ModalSignup extends React.Component {
             <div>
             <Signup />
             </div>
+            <button onClick={this.tes}>asdasdas</button>
             <div className="modal__login__footer">
               <button onClick={() => this.openRegisterModal()} className="modal__login__footer__button">Sudah Terdaftar ?</button>
             </div>
           </div>
         </Modal>
+        <Succesmodal open={this.state.otp} toggle={this.tes}/>
       </div>
     );
   }
