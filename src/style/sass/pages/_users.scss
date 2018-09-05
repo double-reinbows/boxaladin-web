@@ -81,7 +81,7 @@
 @media (min-width: 200px ) and (max-width:720px ) {
   .user{
     &-container{
-      font-size: 15px;
+      font-size: 14px;
     }
     &-dataUser-image{
       width: 10%;
@@ -93,6 +93,14 @@
       &-change{
         font-size: 10px;
       }
+    }
+  }
+}
+
+@media (min-width: 500px ) and (max-width:720px ) {
+  .user{
+    &-container{
+      font-size: 20px;
     }
   }
 }

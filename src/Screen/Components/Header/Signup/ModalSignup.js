@@ -11,7 +11,6 @@ class ModalSignup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      otp: false
     }
     this.toggle = this.toggle.bind(this);
   }
@@ -24,13 +23,6 @@ class ModalSignup extends React.Component {
     this.props.setModalLogin(!this.props.modalLogin)
     this.props.setModalRegister(!this.props.modalRegister)
   }
-
-  tes = () => {
-    this.setState({
-      otp: !this.state.otp
-    })
-  }
-
 
   render() {
     return (
@@ -61,13 +53,11 @@ class ModalSignup extends React.Component {
             <div>
             <Signup />
             </div>
-            <button onClick={this.tes}>asdasdas</button>
             <div className="modal__login__footer">
               <button onClick={() => this.openRegisterModal()} className="modal__login__footer__button">Sudah Terdaftar ?</button>
             </div>
           </div>
         </Modal>
-        <Succesmodal open={this.state.otp} toggle={this.tes}/>
       </div>
     );
   }

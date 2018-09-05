@@ -41,12 +41,15 @@ class User extends Component {
   showUser = () => {
     const {userInfo} = this.props
     const info = [
-      {value: userInfo.typedEmail, image:'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mail.png', alt:'Logo email'},
       {value: userInfo.aladinKeys, image:'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/key.png', alt:'Logo key'},
       {value: userInfo.coin, image:'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/coin.png', alt:'Logo coin'}
     ]
     return (
       <div className='user-dataUser'>
+        <div className='user-dataUser-info'>
+          <img className='user-dataUser-image' src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mail.png' alt='Logo Email'/>
+          <label>{userInfo.email ? (userInfo.email) : ('Anda Tidak Memasukkan Email')}</label>
+        </div>
         {info.map((data, index) => {
           return(
             <div className='user-dataUser-info' key={index}>
@@ -61,19 +64,12 @@ class User extends Component {
 
   mobileShowUser = () => {
     const {userInfo} = this.props
-    const info = [
-      {value: userInfo.typedEmail, image:'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mail.png', alt:'Logo email'},
-    ]
     return (
       <div className='user-dataUser'>
-        {info.map((data, index) => {
-          return(
-            <div className='user-dataUser-info' key={index}>
-              <img className='user-dataUser-image' src={data.image} alt={data.alt}/>
-              <label>{data.value}</label>
-            </div>
-          )
-        })}
+        <div className='user-dataUser-info'>
+          <img className='user-dataUser-image' src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mail.png' alt='Logo Email'/>
+          <label>{userInfo.email ? (userInfo.email) : ('Anda Tidak Memasukkan Email')}</label>
+        </div>
       </div>
     )
   }
