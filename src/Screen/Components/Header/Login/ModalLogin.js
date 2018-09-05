@@ -53,8 +53,8 @@ class ModalLogin extends React.Component {
               <Login />
             </div>
             <div className="modal__login__footer">
-              <text className="modal__login__footer__text" ><a className="lupapass"style={{ textDecoration: "none"}} href="/requestresetpassword"><button className="modal__login__footer__button">Lupa Password</button></a></text>
-              <text onClick={() => this.openRegisterModal()} ><button className="modal__login__footer__button">Buat Akun Baru</button></text>
+              <label className="modal__login__footer__text" ><a className="lupapass"style={{ textDecoration: "none"}} href="/requestresetpassword"><button className="modal__login__footer__button">Lupa Password</button></a></label>
+              <button onClick={() => this.openRegisterModal()} className="modal__login__footer__button">Buat Akun Baru</button>
             </div>
           </div>
         </Modal>

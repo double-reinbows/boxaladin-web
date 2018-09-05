@@ -15,7 +15,7 @@ class ModalOtp extends Component {
     loginAction: PropTypes.func,
     setModalRegister: PropTypes.func,
     text: PropTypes.string,
-    submit: PropTypes.JSX,
+    submit: PropTypes.func,
     otpForm: PropTypes.bool,
     resendOtp: PropTypes.func,
   }

@@ -15,7 +15,7 @@ class SuccessModalOtp extends Component {
   render() {
   let {open} = this.props;
     return (
-      <Modal ariaHideApp="false" isOpen={open} toggle={() => this._toggle()} className='modal__otp' >
+      <Modal ariaHideApp={false} isOpen={open} toggle={() => this._toggle()} className='modal__otp' >
           <div className="modal__otp__container">
           <ModalHeader toggle={() => this._toggle()} className="modal__otp__header"></ModalHeader>
             <div className="modal__otp__content">

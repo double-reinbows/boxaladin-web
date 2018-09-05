@@ -183,27 +183,27 @@ class Game extends React.Component<Props, State> {
 					<div className="game__prize__row">
 						<div className="game__prize__container">
 							<img className="game__prize__img" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Game/win1.png' alt="coin" />
-							<text>{prize1}</text>
+							<label>{prize1}</label>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Game/win2.png' alt="coin" />
-							<text>{prize2}</text>
+							<label>{prize2}</label>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Game/win3.png' alt="coin" />
-							<text>{prize3}</text>
+							<label>{prize3}</label>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Game/win4.png' alt="coin" />
-							<text>{prize4}</text>
+							<label>{prize4}</label>
 						</div>
 
 						<div className="game__prize__container">
 							<img className="game__prize__img" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Game/win5.png' alt="coin" />
-							<text>{prize5}</text>
+							<label>{prize5}</label>
 						</div>
 					</div>
 

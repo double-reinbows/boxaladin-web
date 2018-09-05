@@ -53,7 +53,7 @@ class ModalSignup extends React.Component {
             <Signup />
             </div>
             <div className="modal__login__footer">
-              <text onClick={() => this.openRegisterModal()} ><button className="modal__login__footer__button">Sudah Terdaftar ?</button></text>
+              <button onClick={() => this.openRegisterModal()} className="modal__login__footer__button">Sudah Terdaftar ?</button>
             </div>
           </div>
         </Modal>

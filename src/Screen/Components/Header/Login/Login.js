@@ -50,9 +50,6 @@ class Login extends Component {
           })
         } else if (data.message === 'login success') {
           localStorage.setItem('token', data.token)
-
-          // const decoded = jwt.verify(data.token, 'satekambing')
-
           this.props.loginAction()
           this.props.getUser()
           this.props.getPhoneNumbers()
@@ -86,9 +83,6 @@ class Login extends Component {
           })
         } else if (data.message === 'login success') {
           localStorage.setItem('token', data.token)
-
-          // const decoded = jwt.verify(data.token, 'satekambing')
-
           this.props.loginAction()
           this.props.getUser()
           this.props.getPhoneNumbers()
