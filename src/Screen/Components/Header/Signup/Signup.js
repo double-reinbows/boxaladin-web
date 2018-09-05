@@ -262,7 +262,7 @@ class Signup extends Component {
           </div>
 
           <div className="form-group Signup__Form">
-            <label>Nomor Handphone :</label>
+            <label>Nomor Handphone<label style={{color:'red'}}>*</label> :</label>
             <input name="phonenumber" required
               className="form-control inputz"
               value={phonenumber}
@@ -274,28 +274,28 @@ class Signup extends Component {
           </div>
 
           <div className="form-group Signup__Form">
-            <label>Password :</label>
+            <label>Password<label style={{color:'red'}}>*</label> :</label>
             <input name="password" required
               className="form-control inputz"
               value={password}
               type="password"
               aria-describedby="passwordHelp"
-              placeholder="Masukkan Password Kamu*"
+              placeholder="Masukkan Password Kamu"
               onChange={e => this.signUpInputHandler(e)}
             />
           </div>
           <div className="form-group Signup__Form">
-            <label>Ketik Ulang Password :</label>
+            <label>Ketik Ulang Password<label style={{color:'red'}}>*</label> :</label>
             <input name="confirm_password" required
               className="form-control inputz"
               value={confirm_password}
               type="password"
               aria-describedby="passwordHelp"
-              placeholder="Ketik Ulang Password Kamu*"
+              placeholder="Ketik Ulang Password Kamu"
               onChange={e => this.signUpInputHandler(e)}
             />
             <div className="labelSignUp">
-              <label className= "labelFont">(*)wajib diisi</label>
+              <label className= "labelFont">(<label style={{color:'red'}}>*</label>)wajib diisi</label>
             </div>
           </div>
 
