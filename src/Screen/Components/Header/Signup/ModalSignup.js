@@ -3,7 +3,6 @@ import Modal from 'react-modal'
 import { ModalHeader } from 'reactstrap';
 import Signup from './Signup'
 import { connect } from 'react-redux'
-import Succesmodal from './SuccessModalOtp'
 
 import { setModalLogin, setModalRegister } from '../../../../actions/'
 
