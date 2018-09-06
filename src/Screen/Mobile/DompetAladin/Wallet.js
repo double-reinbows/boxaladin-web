@@ -18,8 +18,8 @@ class Topup extends Component<State> {
 
   showButton = () => {
     const buttonPrice = [
-      {price1: '50000', price2: '300000'},
-      {price1: '500000', price2: '750000'},
+      {price1: '50000', price2: '100000'},
+      {price1: '300000', price2: '750000'},
       {price1: '1000000', price2: '2000000'},
     ]
 
