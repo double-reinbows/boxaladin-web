@@ -113,11 +113,24 @@ class InvoiceDetail extends React.Component {
     .catch(err => console.log(err))
   }
 
+  renderPembayaran = () => {
+    if (!this.state.invoice){
+      return (
+        <h1 className="pembayaran__title__header">Pembayaran</h1>
+      )
+    } else {
+      return (
+        <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice.virtualAccount ? (this.state.invoice.virtualAccount.bankCode) : (this.state.invoice.payment.xenditId)}</h1>
+      )
+    }
+  }
+
   render() {
+    console.log('aaa', this.state.invoice)
     return (
       <div className="pembayaran">
         <div className="pembayaran__container">
-          <h1 className="pembayaran__title__header">Pembayaran {this.state.invoice.virtualAccount ? (this.state.invoice.virtualAccount.bankCode) : (this.state.invoice.pulsaId)}</h1>
+          {this.renderPembayaran()}
           {this.state.invoice ? (
               <div>
                 <div className="pembayaran__content__textDistance">
