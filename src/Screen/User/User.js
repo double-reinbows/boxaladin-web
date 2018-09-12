@@ -5,7 +5,8 @@ import helperAxios from '../../utils/axios'
 import ListPhone from './ListPhone'
 import ModalPrimary from './ModalPrimary'
 import ModalChange from './ModalChange'
-import ModalOtpUser from './ModalOtpUser'
+import ModalOtpUser from '../Components/Modal/OTP/ModalOtpInput'
+import ModalOtpImage from '../Components/Modal/OTP/ModalOtpImage'
 
 class User extends Component {
   constructor(props) {
@@ -14,8 +15,10 @@ class User extends Component {
       modalPrimary: false,
       modalChange: false,
       modalOtp: false,
+      modalOtpImage: false,
       phoneId: '',
-      phone: ''
+      phone: '',
+      missPhone: ''
     }
   }
 
@@ -48,7 +51,7 @@ class User extends Component {
       <div className='user-dataUser'>
         <div className='user-dataUser-info'>
           <img className='user-dataUser-image' src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mail.png' alt='Logo Email'/>
-          <label>{userInfo.email ? (userInfo.email) : ('Anda Tidak Memasukkan Email')}</label>
+          <label>{userInfo.typedEmail ? (userInfo.typedEmail) : ('Anda Tidak Memasukkan Email')}</label>
         </div>
         {info.map((data, index) => {
           return(
@@ -68,7 +71,7 @@ class User extends Component {
       <div className='user-dataUser'>
         <div className='user-dataUser-info'>
           <img className='user-dataUser-image' src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mail.png' alt='Logo Email'/>
-          <label>{userInfo.email ? (userInfo.email) : ('Anda Tidak Memasukkan Email')}</label>
+          <label>{userInfo.typedEmail ? (userInfo.typedEmail) : ('Anda Tidak Memasukkan Email')}</label>
         </div>
       </div>
     )
@@ -120,10 +123,17 @@ class User extends Component {
   }
 
   sendVerification = (phone) => {
-    helperAxios('POST', 'otp', {phonenumber : phone})
     this.setState({
-      modalOtp: true,
-      phone
+      modalOtpImage: true
+    })
+    helperAxios('POST', 'otp', {phonenumber : phone})
+    .then(response => {
+      this.setState({
+        modalOtpImage: false,
+        modalOtp: true,
+        phone,
+        missPhone: response.data
+      })
     })
   }
 
@@ -142,7 +152,8 @@ class User extends Component {
         <ListPhone/>
         <ModalPrimary isOpen={this.state.modalPrimary} toggle={this.togglePrimary} userId={this.props.userInfo.id}/>
         <ModalChange isOpen={this.state.modalChange} toggle={this.toggleChange} phoneId={this.state.phoneId}/>
-        <ModalOtpUser isOpen={this.state.modalOtp} toggle={this.toggleOtp}  phone={this.state.phone}/>
+        <ModalOtpUser isOpen={this.state.modalOtp} endpoint={'olduserverification'} phone={this.state.phone} missPhone={this.state.missPhone}/>
+        <ModalOtpImage isOpen={this.state.modalOtpImage}/>
       </div>
     );
   }

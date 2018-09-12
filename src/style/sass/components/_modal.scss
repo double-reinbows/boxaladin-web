@@ -124,6 +124,61 @@
       font-size: 12px;
       border: none;
     }
+
+    &__image{
+      margin: 1.75rem auto;
+      margin-top: 10%;
+      border-radius: 2px;
+      max-width: 35%;
+      &__container{
+        text-align: center;
+        background-color: white;
+        border: 1px solid grey;
+      }
+      &__content{
+        width: 90%;
+      }
+    }
+
+    &__input{
+      margin: 1.75rem auto;
+      margin-top: 10%;
+      border-radius: 2px;
+      max-width: 35%;
+      font-size: 15px;
+      &__title{
+        margin-top: 2%;
+      }
+      &__image{
+        margin: 5%;
+      }
+      &__container{
+        text-align: center;
+        background-color: white;
+        border: 1px solid grey;
+      }
+      &__content{
+        margin: 2%;
+        &__button{
+          display: flex;
+          justify-content: flex-end;
+          margin: 3%;
+        }
+        &-input{
+          text-align: center;
+          padding: 1%;
+          border-radius: 5px;
+          border: 2px solid #FFCD05;
+          width: 25%;
+        }
+        &-button{
+          background-color: white;
+          border: 2px solid #FFCD05;
+          border-radius: 5px;
+          width: 15%;
+        }
+      }
+    }
   }
 }
 
@@ -247,6 +302,17 @@
   }
   .modal__pulsa{
     font-size: 10px;
+  }
+}
+
+@media (min-width: 200px ) and (max-width:600px ) {
+  .modal__otp__image{
+    max-width: 75%;
+  }
+
+  .modal__otp__input{
+    font-size: 12px;
+    max-width: 75%;
   }
 }
 

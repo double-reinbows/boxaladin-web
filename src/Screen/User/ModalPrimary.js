@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 // import Modal from 'react-modal'
 import axios from 'axios'
 import { Modal } from 'reactstrap'
-import ModalOtpUser from './ModalOtpUser'
 import envChecker from '../../utils/envChecker'
-
+import ModalOtpUser from '../Components/Modal/OTP/ModalOtpInput'
+import ModalOtpImage from '../Components/Modal/OTP/ModalOtpImage'
 class ModalPrimaryPhone extends Component {
   constructor(props) {
     super(props);
     this.state = {
       phone:'',
-      modalOtp: false
+      modalOtp: false,
+      missPhone: '',
+      modalOtpImage: false
     }
   }
 
@@ -21,6 +23,10 @@ class ModalPrimaryPhone extends Component {
   }
 
   submitOldUserPhone = (e) => {
+    this.props.toggle()
+    this.setState({
+      modalOtpImage: !this.state.modalOtpImage
+    })
     e.preventDefault()
     let num = this.state.phone.split('')
     if (num[0] === '0') {
@@ -54,19 +60,18 @@ class ModalPrimaryPhone extends Component {
         phonenumber: this.state.phone,
       }
     })
-    .then((data) => {
-      if (data.data === 'ada no hp verified/primary'){
+    .then(response => {
+      if (response.data === 'ada no hp verified/primary'){
         this.setState({
-          notif: 'Maaf tapi nomor ini sudah terdaftar dengan akun orang lain. Silakan hubungi Customer Service di LINE @boxaladin',
+          modalOtpImage: false
         })
-      } else if ( data.data === 'phone created'){
-        this.setState({
-          notif: '',
-          modalOtp: true
-        })
+        alert('Maaf tapi nomor ini sudah terdaftar dengan akun orang lain. Silakan hubungi Customer Service di LINE @boxaladin')
       } else {
         this.setState({
-          notif: 'Terjadi Kesalahan, Silahkan Hubungi CS Boxaladin di LINE @boxaladin',
+          modalOtpImage: false,
+          modalOtp: true,
+          notif: '',
+          missPhone: response.data
         })
       }
     })
@@ -81,13 +86,8 @@ class ModalPrimaryPhone extends Component {
     )
   }
 
-  closeOtpModal = () => {
-    this.setState({
-      modalOtp: !this.state.modalOtp
-    })
-  }
-
   render() {
+    console.log(this.state.phone)
     return (
       <div>
         <Modal isOpen={this.props.isOpen} className="modalPrimary__phone">
@@ -106,7 +106,8 @@ class ModalPrimaryPhone extends Component {
             </div>
           </form>
         </Modal>
-        <ModalOtpUser isOpen={this.state.modalOtp} toggle={this.closeOtpModal}  phone={this.state.phone}/>
+        <ModalOtpUser isOpen={this.state.modalOtp} endpoint={'olduserverification'} phone={this.state.phone} missPhone={this.state.missPhone}/>
+        <ModalOtpImage isOpen={this.state.modalOtpImage}/>
       </div>
     )
   }

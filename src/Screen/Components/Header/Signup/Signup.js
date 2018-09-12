@@ -3,12 +3,11 @@ import {connect} from 'react-redux';
 import { setModalLogin, setModalRegister, setIsLoading, loginAction } from '../../../../actions/';
 import axios from 'axios';
 import Loading from '../../Loading/';
-import ModalOtp from './ModalOtp';
-import SuccessModalOtp from './SuccessModalOtp';
 import {Button} from 'reactstrap';
 import formatEmail from '../../../../utils/formatEmail';
 import envChecker from '../../../../utils/envChecker'
-
+import ModalOtpImage from '../../Modal/OTP/ModalOtpImage'
+import ModalOtpInput from '../../Modal/OTP/ModalOtpInput'
 class Signup extends Component {
   constructor(props) {
     super(props)
@@ -27,6 +26,8 @@ class Signup extends Component {
       confirm_password: '',
       otpForm: false,
       modalSuccessOtp: false,
+      modalImage: false,
+      missPhone: ''
     }
     this.signUpInputHandler = this.signUpInputHandler.bind(this)
     this.toggle = this.toggle.bind(this);
@@ -169,8 +170,10 @@ class Signup extends Component {
     } else {
 
       setIsLoading(true);
-    
-      let payload = {
+      this.setState({
+        modalImage: !this.state.modalImage
+      })
+      const payload = {
         email: email,
         phonenumber: phonenumber,
         password: password,
@@ -185,19 +188,24 @@ class Signup extends Component {
         data: payload
       })
         .then(({data}) => {
+          console.log('dataaaa', data)
           if (data.hasOwnProperty('isUsed')) {
             this.setState({
               notif: "Nomor atau email sudah digunakan",
+              modalImage: false
             })
           } else if (!/^[A-Za-z0-9!@#$%^&*()_]{6,20}$/.test(this.state.password)) {
             this.setState({
               notif : "Password Minimal Terdiri Dari 6 Huruf/Angka atau Lebih",
               password: '',
               confirm_password: '',
+              modalImage: false
             })
           } else if (data.message === 'Signup Berhasil'){
             localStorage.setItem('token', data.token);
             this.setState({
+              missPhone: data.missPhone,
+              modalImage: false,
               dataUser: payload,
               email: payload.email,
               modalOtp: !this.state.modalOtp,
@@ -238,10 +246,15 @@ class Signup extends Component {
     });
   }
 
+  tesOtp = () => {
+    this.setState({
+      modalImage: !this.state.modalImage
+    })
+  }
+
   render() {
     let {isLoading} = this.props;
-    let {notif, phonenumber, email, submit, text, modalOtp, password,
-      confirm_password, typedEmail, otpForm, modalSuccessOtp} = this.state;
+    let {notif, phonenumber, password, confirm_password, typedEmail} = this.state;
     return (
       <div className="Signup">
 
@@ -308,22 +321,11 @@ class Signup extends Component {
             <button type="submit" className="Signup__ButtonLogin">Daftar</button>
           </div>
 
+          <button onClick={this.tesOtp}>tes otp</button>
+
         </form>
-        <ModalOtp
-          open={modalOtp}
-          buttonToggle={this.toggleOtp}
-          phone={phonenumber}
-          emailUser={email}
-          text={text}
-          submit={submit}
-          otpForm={otpForm}
-          resendOtp={this.resendOtp}
-          toggleSuccessOtp={this.toggleSuccessOtp}
-        />
-        <SuccessModalOtp
-          open={modalSuccessOtp}
-          buttonToggle={this.toggleSuccessOtp}
-        />
+        <ModalOtpInput endpoint={'v2/signupverification'} isOpen={this.state.modalOtp} missPhone={this.state.missPhone} phone={this.state.phonenumber}/>
+        <ModalOtpImage isOpen={this.state.modalImage}/>
       </div>
     )
   }

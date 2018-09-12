@@ -26,12 +26,6 @@ class ModalSignup extends React.Component {
   render() {
     return (
       <div className="header-margin">
-      { /**   <Button className="ButtonHeader" onClick={this.toggle}>
-            <div className="ButtonHeader__big">
-              {this.props.buttonLabel}
-              Register
-            </div>
-        </Button> **/ }
         <div>
         <button style= {{
         backgroundColor: 'Transparent',
