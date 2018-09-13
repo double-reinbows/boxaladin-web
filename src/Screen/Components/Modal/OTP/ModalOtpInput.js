@@ -60,6 +60,12 @@ class ModalOtpInput extends Component {
           })
         }
       })
+    } else {
+      alert('Pengiriman OTP Sudah Melewati Batas')
+      this.setState({
+        modalImage: false,
+      })
+      window.location.reload()
     }
     this.timer = setInterval(() => {
       this.setState({
@@ -143,6 +149,7 @@ class ModalOtpInput extends Component {
             <button style={{marginTop:"2%"}} onClick={this.submit} disabled={this.state.disabled}className="modal__otp__input__content-button baButton">Submit</button>
             <br/>
             <label className="alert__otp">{this.state.notifOtp}</label>
+            <br/>
             <label className="alert__otp">{this.state.notifCount}</label>
           </div>
           <div className="modal__otp__input__content__button">

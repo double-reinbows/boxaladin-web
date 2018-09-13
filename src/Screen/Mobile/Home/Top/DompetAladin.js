@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
+import Carousel from './Carousel'
 
 type Props = {
   userInfo: object
@@ -32,6 +33,9 @@ class Dompet extends Component <Props> {
             <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/uang.png' className="dompetHome__bodyContent__logo" alt="Logo Uang"/>
             <label>: {this.props.userInfo.wallet ? this.props.userInfo.wallet.toLocaleString(['ban','id']) : 0}</label>
           </div>
+        </div>
+        <div className="dompetHome__carousel">
+          <Carousel/>
         </div>
       </div>
 

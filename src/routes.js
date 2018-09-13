@@ -37,7 +37,7 @@ import ClaimFreePulsa from './Screen/ClaimFreePulsa';
 import About from './Screen/About/About';
 
 //mobile
-import MobileMenuDompetAladin from './Screen/Mobile/Home/DompetAladin'
+import MobileMenuDompetAladin from './Screen/Mobile/Home/Top/DompetAladin'
 import MobileKey from './Screen/Mobile/DompetAladin/AladinKeys'
 import MobileConvert from './Screen/Mobile/DompetAladin/Convert'
 import MobileWallet from './Screen/Mobile/DompetAladin/Wallet'
