@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { setModalLogin } from '../actions/';
-import { Form, FormGroup, Input, FormFeedback } from 'reactstrap';
+import { Form, FormGroup, Input, FormFeedback, Button } from 'reactstrap';
 import formatEmail from '../utils/formatEmail';
 import envChecker from '../utils/envChecker'
 import helperaxios from '../utils/axios'
@@ -14,6 +14,14 @@ import helperaxios from '../utils/axios'
 // type Props = {
 //   history: Array,
 // };
+
+const button  = {
+  marginTop: '3%',
+  marginBottom: '-2%',
+  backgroundColor: '#FFCD06',
+  color: 'black'
+}
+
 class RequestResetPassword<State> extends React.Component {
   state: State = {
     email: '',
@@ -82,23 +90,24 @@ class RequestResetPassword<State> extends React.Component {
   inputNewEmail = () => {
     const {emailNotFound, valid, invalid, feedback2} = this.state
     return emailNotFound && (
-      <Fragment>
-      <Form className="RequestReset__form"
-        onSubmit={ (e: SyntheticInputEvent<HTMLInputElement>) => this.sendEmailToken(e) }>
-        <FormGroup>
-          <Input className="RequestReset__input"
-            onChange={(e: SyntheticInputEvent<HTMLInputElement>) => this.setState({newEmail: e.target.value}) }
-            placeholder="Masukkan Email Anda"
-            type="email"
-            name="text"
-            bsSize="lg"
-            valid={valid}
-            invalid={invalid}
-          />
-          {feedback2}
-        </FormGroup>
-      </Form>
-      </Fragment>
+      <h1>email tidak ada</h1>
+      // <Fragment>
+      // <Form className="RequestReset__form"
+      //   onSubmit={ (e: SyntheticInputEvent<HTMLInputElement>) => this.sendEmailToken(e) }>
+      //   <FormGroup>
+      //     <Input className="RequestReset__input"
+      //       onChange={(e: SyntheticInputEvent<HTMLInputElement>) => this.setState({newEmail: e.target.value}) }
+      //       placeholder="Masukkan Email Anda"
+      //       type="email"
+      //       name="text"
+      //       bsSize="lg"
+      //       valid={valid}
+      //       invalid={invalid}
+      //     />
+      //     {feedback2}
+      //   </FormGroup>
+      // </Form>
+      // </Fragment>
     )
   }
 
@@ -107,6 +116,7 @@ class RequestResetPassword<State> extends React.Component {
     e.preventDefault();
     helperaxios('POST', 'emailforgotPassword', {email: newEmail, phonenumber: email})
     .then(response => {
+      console.log('masukkan');
       if (response.data === 'email is already taken') {
         this.checkResponse(true, false , 'Email Sudah Digunakan')
       } else {
@@ -137,7 +147,7 @@ class RequestResetPassword<State> extends React.Component {
       <div className="RequestReset">
         <div className="RequestReset__box">
           <h1 className="RequestReset__text">Lupa Password?</h1>
-          <h2 className="RequestReset__text">Tolong masukkan email atau no Hp kamu di kolom bawah ini. Kami akan mengirimkan link ke
+          <h2 className="RequestReset__text">Tolong masukkan email kamu di kolom bawah ini. Kami akan mengirimkan link ke
             email tersebut untuk meng-reset password kamu.</h2>
           <div className="RequestReset__formBox">
             <Form className="RequestReset__form"
@@ -146,6 +156,7 @@ class RequestResetPassword<State> extends React.Component {
                 <Input className="RequestReset__input"
                   onChange={(e: SyntheticInputEvent<HTMLInputElement>) => this.setState({email: e.target.value}) }
                   disabled={this.state.disabled}
+                  placeholder='Masukkan Email Kamu'
                   type="text"
                   name="text"
                   id="text"
@@ -154,6 +165,7 @@ class RequestResetPassword<State> extends React.Component {
                   invalid={invalid}
                 />
                 {feedback}
+                <Button style={button} onClick={ (e: SyntheticInputEvent<HTMLInputElement>) => this.sendLink(e) }>Kirim Email</Button>
               </FormGroup>
             </Form>
           </div>
