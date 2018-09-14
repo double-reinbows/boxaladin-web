@@ -90,23 +90,24 @@ class RequestResetPassword<State> extends React.Component {
   inputNewEmail = () => {
     const {emailNotFound, valid, invalid, feedback2} = this.state
     return emailNotFound && (
-      <Fragment>
-      <Form className="RequestReset__form"
-        onSubmit={ (e: SyntheticInputEvent<HTMLInputElement>) => this.sendEmailToken(e) }>
-        <FormGroup>
-          <Input className="RequestReset__input"
-            onChange={(e: SyntheticInputEvent<HTMLInputElement>) => this.setState({newEmail: e.target.value}) }
-            placeholder="Masukkan Email Anda"
-            type="email"
-            name="text"
-            bsSize="lg"
-            valid={valid}
-            invalid={invalid}
-          />
-          {feedback2}
-        </FormGroup>
-      </Form>
-      </Fragment>
+      <h1>email tidak ada</h1>
+      // <Fragment>
+      // <Form className="RequestReset__form"
+      //   onSubmit={ (e: SyntheticInputEvent<HTMLInputElement>) => this.sendEmailToken(e) }>
+      //   <FormGroup>
+      //     <Input className="RequestReset__input"
+      //       onChange={(e: SyntheticInputEvent<HTMLInputElement>) => this.setState({newEmail: e.target.value}) }
+      //       placeholder="Masukkan Email Anda"
+      //       type="email"
+      //       name="text"
+      //       bsSize="lg"
+      //       valid={valid}
+      //       invalid={invalid}
+      //     />
+      //     {feedback2}
+      //   </FormGroup>
+      // </Form>
+      // </Fragment>
     )
   }
 
@@ -115,6 +116,7 @@ class RequestResetPassword<State> extends React.Component {
     e.preventDefault();
     helperaxios('POST', 'emailforgotPassword', {email: newEmail, phonenumber: email})
     .then(response => {
+      console.log('masukkan');
       if (response.data === 'email is already taken') {
         this.checkResponse(true, false , 'Email Sudah Digunakan')
       } else {
