@@ -5,24 +5,13 @@ import {
 } from 'reactstrap'
 import moment from 'moment'
 
-import { getUserWins } from '../actions/winAction'
+import { getUserWins } from '../../actions/winAction'
+import FormatRupiah from '../../utils/formatRupiah'
 
 class GameResult extends React.Component {
   constructor(props) {
     super(props)
     this.state = {}
-  }
-
-  render() {
-
-    return (
-      <div className="invoice">
-        <div className="invoice__container">
-          <h1 className="invoice__text">Hasil Game</h1>
-          {this.showWin()}
-        </div>
-      </div>
-    )
   }
 
   componentDidMount() {
@@ -35,18 +24,20 @@ class GameResult extends React.Component {
         <thead>
           <tr>
             <th>No.</th>
-            {/* <th>Star</th> */}
             <th>Pulsa</th>
+            <th>Status</th>
             <th>Tanggal</th>
           </tr>
         </thead>
         <tbody>
           {this.props.userWins.map((data, idx) => {
+            const price = data.description.split(' ')
+            const newPrice = FormatRupiah(price[1])
             return (
               <tr key={idx}>
                 <th scope="row">{idx+1}</th>
-                {/* <td>{data.gamerule.star}</td> */}
-                <td>{data.gamerule.pulsaAmount.toLocaleString(['ban', 'id'])}</td>
+                <td>Pulsa {price[0]} {newPrice}</td>
+                <td>{data.status}</td>
                 <td>{moment(data.createdAt, moment.ISO_8601).format('MMMM Do YYYY, h:mm:ss a')}</td>
               </tr>
             )
@@ -56,6 +47,17 @@ class GameResult extends React.Component {
     )
   }
 
+  render() {
+    console.log(this.props.userWins)
+    return (
+      <div className="invoice">
+        <div className="invoice__container">
+          <h1 className="invoice__text">Hasil Game</h1>
+          {this.showWin()}
+        </div>
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = (state) => {

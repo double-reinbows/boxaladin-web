@@ -152,13 +152,13 @@ class Signup extends Component {
     e.preventDefault()
     let {password, confirm_password, email, phonenumber, typedEmail} = this.state;
     let {setIsLoading} = this.props;
-    setTimeout(() => {
-        this.setState({
-          text: 'Silahkan masukkan 4 angka terakhir dari nomor panggilan tersebut.',
-          submit: (<Button className="modal-body__otp__button" color="primary" type="submit" >Submit</Button>),
-          otpForm: true,
-        });
-    }, 20000);
+    // setTimeout(() => {
+    //     this.setState({
+    //       text: 'Silahkan masukkan 4 angka terakhir dari nomor panggilan tersebut.',
+    //       submit: (<Button className="modal-body__otp__button" color="primary" type="submit" >Submit</Button>),
+    //       otpForm: true,
+    //     });
+    // }, 20000);
     if (password !== confirm_password) {
       return this.setState({
         notif: "Password Tidak Sama",
@@ -167,8 +167,14 @@ class Signup extends Component {
       return this.setState({
         notif: 'Format No HP salah'
       })
+    } else if (!/^[A-Za-z0-9!@#$%^&*()_]{6,20}$/.test(this.state.password)) {
+      this.setState({
+        notif : "Password Minimal Terdiri Dari 6 Huruf/Angka atau Lebih",
+        password: '',
+        confirm_password: '',
+        modalImage: false
+      })
     } else {
-
       setIsLoading(true);
       this.setState({
         modalImage: !this.state.modalImage
@@ -188,17 +194,9 @@ class Signup extends Component {
         data: payload
       })
         .then(({data}) => {
-          console.log('dataaaa', data)
           if (data.hasOwnProperty('isUsed')) {
             this.setState({
               notif: "Nomor atau email sudah digunakan",
-              modalImage: false
-            })
-          } else if (!/^[A-Za-z0-9!@#$%^&*()_]{6,20}$/.test(this.state.password)) {
-            this.setState({
-              notif : "Password Minimal Terdiri Dari 6 Huruf/Angka atau Lebih",
-              password: '',
-              confirm_password: '',
               modalImage: false
             })
           } else if (data.message === 'Signup Berhasil'){

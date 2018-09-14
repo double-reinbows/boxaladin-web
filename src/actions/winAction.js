@@ -13,7 +13,6 @@ export const getUserWins = () => {
       url: `${envChecker('api')}/win/user`,
       headers: {
         token: localStorage.getItem('token'),
-        key: process.env.REACT_APP_KEY
       }
     })
     .then(({data}) => {

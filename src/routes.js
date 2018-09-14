@@ -30,7 +30,7 @@ import InsertPhone from './Screen/Bidding/InsertPhone'
 
 import DompetAladin from './Screen/DompetAladin/DompetAladin';
 import Game from './Screen/Game';
-import GameResult from './Screen/GameResult';
+import GameResult from './Screen/Invoice/GameResult';
 import RequestResetPassword from './Screen/RequestResetPassword';
 import ResetPassword from './Screen/ResetPassword';
 import ClaimFreePulsa from './Screen/ClaimFreePulsa';
