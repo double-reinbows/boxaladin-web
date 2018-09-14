@@ -1,11 +1,24 @@
 //@flow
 import React from 'react'
+import { withRouter } from 'react-router-dom';
 
 type Props = {
 }
 type State = {
 }
-export default class PasswordChanged extends React.Component<Props, State> {
+
+class PasswordChanged extends React.Component<Props, State> {
+
+  componentDidMount() {
+    this.Home()
+  }
+
+  Home() {
+    setTimeout(() => {
+      this.props.history.push('/');
+    }, 3000)
+  }
+
   render() {
     return (
       <div className="resetPassword">
@@ -28,3 +41,6 @@ export default class PasswordChanged extends React.Component<Props, State> {
   }
 
 }
+
+
+export default withRouter(PasswordChanged)
