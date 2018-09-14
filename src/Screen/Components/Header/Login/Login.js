@@ -26,7 +26,6 @@ class Login extends Component {
     const regex = /(@)/gm
     const isExisting = regex.test(this.state.numberEmail)
     if (isExisting === true) {
-      console.log('masuk email');
       axios({
         method: 'POST',
         url: `${envChecker('api')}/signin`,
@@ -59,7 +58,6 @@ class Login extends Component {
         }
       })
     } else {
-      console.log('masuk number');
       axios({
         method: 'POST',
         url: `${envChecker('api')}/v2/signin`,

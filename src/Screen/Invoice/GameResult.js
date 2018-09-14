@@ -48,7 +48,6 @@ class GameResult extends React.Component {
   }
 
   render() {
-    console.log(this.props.userWins)
     return (
       <div className="invoice">
         <div className="invoice__container">

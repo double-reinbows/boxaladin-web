@@ -49,7 +49,6 @@ class RequestResetPassword<State> extends React.Component {
         }
       })
       .then(({data}) => {
-        console.log('response forgot password', data)
         if (data.msg === 'email sent') {
           this.checkResponse(false, true, 'Email reset password ulang terkirim!')
           setTimeout(() => {
@@ -116,7 +115,6 @@ class RequestResetPassword<State> extends React.Component {
     e.preventDefault();
     helperaxios('POST', 'emailforgotPassword', {email: newEmail, phonenumber: email})
     .then(response => {
-      console.log('masukkan');
       if (response.data === 'email is already taken') {
         this.checkResponse(true, false , 'Email Sudah Digunakan')
       } else {

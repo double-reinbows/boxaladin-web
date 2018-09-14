@@ -87,7 +87,6 @@ class ModalPrimaryPhone extends Component {
   }
 
   render() {
-    console.log(this.state.phone)
     return (
       <div>
         <Modal isOpen={this.props.isOpen} className="modalPrimary__phone">

@@ -16,7 +16,6 @@ class ModalChange extends Component {
     e.preventDefault()
     helperAxios('PUT', (`phone/${this.props.phoneId}`), {phonenumber: this.state.phone})
 		.then(response => {
-      console.log(response)
 			if (response.data.message === 'data changed') {
 				window.location.reload();
 			} else if (response.data.message === 'duplicate number') {

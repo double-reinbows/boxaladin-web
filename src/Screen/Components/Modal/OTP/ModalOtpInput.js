@@ -94,7 +94,6 @@ class ModalOtpInput extends Component {
     } else {
       HelperAxios('POST', `${endpoint}`, {phonenumber:phone, otp: parseInt(otp, 10)})
       .then(response => {
-        console.log(response)
         if (response.data.message === 'phone verified') {
           this.setState({
             modalSuccess: true
@@ -134,7 +133,6 @@ class ModalOtpInput extends Component {
   }
 
   render() { 
-    console.log(this.state.time)
     return (  
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__otp__input">
         <div className="modal__otp__input__container">
