@@ -27,11 +27,8 @@ class CarouselMobile extends Component {
 
   render() { 
     return (  
-      <div style={{marginTop:"2%"}}>
-        <UncontrolledCarousel items={this.state.items} />
-      </div>
+      <UncontrolledCarousel items={this.state.items} />
     );
   }
 }
-
 export default CarouselMobile;

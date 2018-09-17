@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { setModalLogin } from '../actions/';
@@ -87,7 +87,7 @@ class RequestResetPassword<State> extends React.Component {
   }
 
   inputNewEmail = () => {
-    const {emailNotFound, valid, invalid, feedback2} = this.state
+    const {emailNotFound} = this.state
     return emailNotFound && (
       <h1>email tidak ada</h1>
       // <Fragment>
