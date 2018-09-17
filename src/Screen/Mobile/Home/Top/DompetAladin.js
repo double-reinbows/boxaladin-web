@@ -7,6 +7,10 @@ import Carousel from './Carousel'
 type Props = {
   userInfo: object
 }
+
+const Margin = {
+  marginTop:'2%'
+}
 class Dompet extends Component <Props> {
   render() {
     return (
@@ -34,7 +38,7 @@ class Dompet extends Component <Props> {
             <label>: {this.props.userInfo.wallet ? this.props.userInfo.wallet.toLocaleString(['ban','id']) : 0}</label>
           </div>
         </div>
-        <div className="dompetHome__carousel">
+        <div style={Margin}>
           <Carousel/>
         </div>
       </div>
