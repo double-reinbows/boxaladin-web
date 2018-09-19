@@ -33,6 +33,11 @@ class ModalPayment extends Component{
 
   componentDidMount() {
     this.props.refreshToken()
+    this.setLoading()
+  }
+
+  setLoading = () => {
+    this.props.setIsLoading(false)
   }
 
   axiosTransaction = () => {
