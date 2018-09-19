@@ -76,3 +76,7 @@ input::-webkit-inner-spin-button {
     outline: none;
   }
 }
+
+.ReactModal__Overlay--after-open{
+  z-index: 20;
+}
