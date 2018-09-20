@@ -244,12 +244,6 @@ class Signup extends Component {
     });
   }
 
-  tesOtp = () => {
-    this.setState({
-      modalImage: !this.state.modalImage
-    })
-  }
-
   render() {
     let {isLoading} = this.props;
     let {notif, phonenumber, password, confirm_password, typedEmail} = this.state;
@@ -318,8 +312,6 @@ class Signup extends Component {
           <div className="form-group">
             <button type="submit" className="Signup__ButtonLogin">Daftar</button>
           </div>
-
-          <button onClick={this.tesOtp}>tes otp</button>
 
         </form>
         <ModalOtpInput endpoint={'v2/signupverification'} isOpen={this.state.modalOtp} missPhone={this.state.missPhone} phone={this.state.phonenumber}/>
