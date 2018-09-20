@@ -9,9 +9,9 @@ import {
 } from 'reactstrap';
 import axios from 'axios';
 
-import { getProducts } from '../actions/productAction';
-import { detectProvider } from '../utils/phone'
-import envChecker from '../utils/envChecker'
+import { getProducts } from '../../actions/productAction';
+import { detectProvider } from '../../utils/phone'
+import envChecker from '../../utils/envChecker'
 
 class ClaimFreePulsa extends React.Component<Props, State> {
 

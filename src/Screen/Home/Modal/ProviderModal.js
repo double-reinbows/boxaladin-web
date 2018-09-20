@@ -21,7 +21,7 @@ class ProviderModal extends Component {
                 <img className="modal__provider__logo__image" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/XL.svg' alt="Logo XL"/>
               </div>
               <div className="modal__provider__list">
-                <ul>
+                <ul style={{listStyle:'none'}}>
                   <li>0817</li>
                   <li>0818</li>
                   <li>0819</li>
@@ -36,7 +36,7 @@ class ProviderModal extends Component {
                 <img className="modal__provider__logo__image" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/Telkomsel.svg' alt="Logo Telkomsel"/>
               </div>
               <div className="modal__provider__list">
-                <ul>
+                <ul style={{listStyle:'none'}}>
                   <li>0811</li>
                   <li>0812</li>
                   <li>0813</li>
@@ -54,7 +54,7 @@ class ProviderModal extends Component {
                 <img className="modal__provider__logo__image" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/Smartfren.svg' alt="Logo Smart"/>
               </div>
               <div className="modal__provider__list">
-                <ul>
+                <ul style={{listStyle:'none'}}>
                 <li>0881</li>
                 <li>0882</li>
                 <li>0883</li>
@@ -72,7 +72,7 @@ class ProviderModal extends Component {
                 <img className="modal__provider__logo__image" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/Indosat.svg' alt="Logo Indosat"/>
               </div>
               <div className="modal__provider__list">
-                <ul>
+                <ul style={{listStyle:'none'}}>
                   <li>0814</li>
                   <li>0815</li>
                   <li>0816</li>
@@ -88,7 +88,7 @@ class ProviderModal extends Component {
                 <img className="modal__provider__logo__image" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/Tri.svg' alt="Logo Tri"/>
               </div>
               <div className="modal__provider__list">
-                <ul>
+                <ul style={{listStyle:'none'}}>
                   <li>0895</li>
                   <li>0896</li>
                   <li>0897</li>

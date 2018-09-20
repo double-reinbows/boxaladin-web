@@ -1,7 +1,7 @@
 //@flow
 import React from 'react';
-import ResetPasswordForm from './Components/ResetPassword/ResetPasswordForm';
-import PasswordChanged from './Components/ResetPassword/PasswordChanged'
+import ResetPasswordForm from './ResetPasswordForm';
+import PasswordChanged from './PasswordChanged'
 
 type Props = {
   location: {

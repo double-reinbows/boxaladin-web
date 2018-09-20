@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
-import MediaQuery from 'react-responsive';
 import helperAxios from '../../utils/axios' 
 import ListPhone from './ListPhone'
 import ModalPrimary from './ModalPrimary'
@@ -45,6 +44,7 @@ class User extends Component {
     const {userInfo} = this.props
     const info = [
       {value: userInfo.aladinKeys, image:'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/key.png', alt:'Logo key'},
+      {value: userInfo.wallet, image:'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/uang.png', alt:'Logo wallet'},
       {value: userInfo.coin, image:'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/coin.png', alt:'Logo coin'}
     ]
     return (
@@ -61,18 +61,6 @@ class User extends Component {
             </div>
           )
         })}
-      </div>
-    )
-  }
-
-  mobileShowUser = () => {
-    const {userInfo} = this.props
-    return (
-      <div className='user-dataUser'>
-        <div className='user-dataUser-info'>
-          <img className='user-dataUser-image' src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mail.png' alt='Logo Email'/>
-          <label>{userInfo.typedEmail ? (userInfo.typedEmail) : ('Anda Tidak Memasukkan Email')}</label>
-        </div>
       </div>
     )
   }
@@ -141,13 +129,7 @@ class User extends Component {
     return ( 
       <div className='user-container baBackground'>
         <h1 className='user-container-title'>Profile Saya</h1>
-        <MediaQuery query="(max-device-width: 720px)">
-          {this.mobileShowUser()}
-        </MediaQuery>
-        <MediaQuery query="(min-device-width: 721px)">
-          {this.showUser()}
-        </MediaQuery>
-        
+        {this.showUser()}        
         {this.phone()}
         <ListPhone/>
         <ModalPrimary isOpen={this.state.modalPrimary} toggle={this.togglePrimary} userId={this.props.userInfo.id}/>

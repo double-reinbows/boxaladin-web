@@ -3,9 +3,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Modal, ModalHeader, Form, FormGroup, Input } from 'reactstrap';
 import axios from 'axios';
-import { getUser } from '../actions/userAction';
-import { getUserWins } from '../actions/winAction';
-import envChecker from '../utils/envChecker'
+import { getUser } from '../../actions/userAction';
+import { getUserWins } from '../../actions/winAction';
+import envChecker from '../../utils/envChecker'
 
 type State = {
 	si1: null | number,

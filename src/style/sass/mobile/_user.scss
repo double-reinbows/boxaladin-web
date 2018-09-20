@@ -1,0 +1,63 @@
+.mobileUser{
+  &-container{
+
+  }
+  &-dataUser{
+    display: flex;
+    flex-direction: column;
+    &-image{
+      width: 6%;
+      margin-right: 5%;
+      &-profile{
+        width: 20%;
+      }
+    }
+  }
+  &-dataPhone{
+    padding: 1%;
+    &-button{
+      &-primary{
+        border: 2px solid var(--color-yellow-1);
+        background-color: white;
+        border-radius: 5px;
+        margin-left: 2%;
+        padding-left: 2%;
+        padding-right: 2%;
+      }
+      &-verify{
+        font-size: 20px;
+        border: 2px solid var(--color-yellow-1);
+        background-color: white;
+        border-radius: 5px;
+        width: 15%;
+        margin-left: 2%;
+      }
+      &-change{
+        font-size: 20px;
+        border: 2px solid var(--color-yellow-1);
+        background-color: white;
+        border-radius: 5px;
+        width: 35%;
+      }
+    }
+    &-label{
+      &-verified{
+        margin-left: 2%;
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media (min-width: 200px ) and (max-width:720px ) {
+  .mobileUser{
+    &-dataUser-image{
+      width: 5%;
+    }
+    &-dataPhone-button{
+      &-verify{
+        font-size: 10px;
+      }
+    }
+  }
+}

@@ -1,11 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { setModalLogin } from '../actions/';
+import { setModalLogin } from '../../actions';
 import { Form, FormGroup, Input, FormFeedback, Button } from 'reactstrap';
-import formatEmail from '../utils/formatEmail';
-import envChecker from '../utils/envChecker'
-import helperaxios from '../utils/axios'
+import formatEmail from '../../utils/formatEmail';
+import envChecker from '../../utils/envChecker'
+import helperaxios from '../../utils/axios'
 
 // type State = {
 //   email: string,

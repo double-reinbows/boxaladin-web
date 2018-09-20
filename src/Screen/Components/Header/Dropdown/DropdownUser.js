@@ -60,11 +60,29 @@ class DropdownUser extends React.Component {
             </DropdownItem>
           </LinkContainer>
 
-          <LinkContainer className="DropdownUser__inside__link" onClick={(e) => this.changeText('Profile')} to="/me">
+          <MediaQuery query="(max-device-width: 721px)">
+            <LinkContainer className="DropdownUser__inside__link" onClick={(e) => this.changeText('Profile')} to="/mme">
+              <DropdownItem className="DropdownUser__inside">
+                Profile
+              </DropdownItem>
+            </LinkContainer>
+          </MediaQuery>
+
+          <MediaQuery query="(min-device-width: 721px)">
+            <LinkContainer className="DropdownUser__inside__link" onClick={(e) => this.changeText('Profile')} to="/me">
+              <DropdownItem className="DropdownUser__inside">
+                Profile
+              </DropdownItem>
+            </LinkContainer>
+          </MediaQuery>
+
+        <MediaQuery query="(max-device-width: 721px)">
+          <LinkContainer className="DropdownUser__inside__link" onClick={(e) => this.changeText('Reward')} to="/reward">
             <DropdownItem className="DropdownUser__inside">
-              Profile
+              Reward
             </DropdownItem>
           </LinkContainer>
+        </MediaQuery>
 
         <MediaQuery query="(min-device-width: 721px)">
           <LinkContainer className="DropdownUser__inside__link" onClick={(e) => this.changeText('Dompet')} to="/dompetaladin">
@@ -97,10 +115,6 @@ class DropdownUser extends React.Component {
               FAQ
             </DropdownItem>
           </LinkContainer>
-
-          {/* <DropdownItem className="DropdownUser__inside">
-            <Link className="DropdownUser__inside__link" to="/claimreward">Claim Reward</Link>
-          </DropdownItem> */}
 
           <DropdownItem divider />
 
