@@ -16,8 +16,6 @@ class HomeContent extends Component {
       displayPrice: 0,
       price: '',
       tab: 1,
-      tabActive1: 'tabactive',
-      tabActive2: '',
       brand: '',
       brandName: '',
       brandId: 0,
@@ -172,9 +170,14 @@ renderModalBid() {
   changeTab = (value) => {
     this.setState({
       tab: value,
-      tabActive1: this.state.tabActive2,
-      tabActive2: this.state.tabActive1
     });
+  }
+
+  checkActive = (value) => {
+    const { tab } = this.state
+    if (value === tab) {
+      return 'tabactive'
+    }
   }
 
   render() {
@@ -195,8 +198,8 @@ renderModalBid() {
         </div>
         <div className="homecontent__bottom">
         <div className='home-tab-container'>
-          <button className={`${this.state.tabActive1} home-tab`} onClick={() => this.changeTab(1)}>PULSA</button>
-          <button className={`${this.state.tabActive2} home-tab`} onClick={() => this.changeTab(2)}>PAKET DATA</button>
+          <button className={`${this.checkActive(1)} home-tab`} onClick={() => this.changeTab(1)}>PULSA</button>
+          <button className={`${this.checkActive(2)} home-tab`} onClick={() => this.changeTab(2)}>PAKET DATA</button>
         </div>
           {this.renderTab()}
           <div className="homecontent__bottom__check">
