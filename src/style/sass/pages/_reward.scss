@@ -1,6 +1,9 @@
 .tab-list {
+  margin-top: 5%;
   border-bottom: 1px solid #ccc;
   padding-left: 0;
+  display: flex;
+  background-color: #ccc;
   &-item{
     display: inline-block;
     list-style: none;
@@ -17,8 +20,50 @@
 .reward{
   color: grey;
   font-size: 15px;
-
+  &-container{
+    max-width: 80%;
+    margin: auto;
+  }
+  &-footer-container{
+    max-width: 80%;
+    margin: auto;
+  }
+  &-tab{
+    display: flex;
+    &-icon{
+      width: 80%;
+      margin-left: 10%;
+    }
+  }
+  &-content{
+    width: 70%;
+    margin-left: 5%;
+  }
+  &-title{
+    margin-top: 10%;
+  }
   &-label{
     color: #FFCD05;
+    margin-bottom: 10%;
+    margin-left: 10%;
+  }
+  &-image{
+    width: 50%;
+    height: 10%;
+    margin-top: 10%;
+  }
+  &-spacing{
+    margin-bottom: 5%;
+  }
+}
+
+@media (max-width: 375px ){
+  .reward{
+    &-image{
+      width: 36%;
+    }
+    &-footer-container{
+      margin-top: 10%;
+    }
   }
 }

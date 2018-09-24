@@ -74,9 +74,9 @@ class MobileUser extends Component {
   }
 
   showUserIcon = () => {
-    const title = this.checkTitle()
+    // const title = this.checkTitle()
     return (
-      <img className='mobileUser-dataUser-image-profile' src={`https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/${title}.png`} alt="Icon User"/>
+      <img className='mobileUser-dataUser-image-profile' src={`https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/${this.checkTitle()}.png`} alt="Icon User"/>
     ) 
   }
 

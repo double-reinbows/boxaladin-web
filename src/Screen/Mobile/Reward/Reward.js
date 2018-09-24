@@ -6,30 +6,74 @@ class Reward extends Component {
     return (  
       <div className="reward">
         <Tabs>
-          <div src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/cart-of-ecommerce.png' alt="Icon User">
-            <div>
+          <div src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/orok.png' alt="Icon User">
+            <div className="reward-container">
               <h3 className="reward-title">OROK REWARDS :</h3>
               <p className="reward-label">Selamat datang di boxaladin rewards! Dengan setiap transaksi, kamu akan mendapatkan poin di dalam rewards.Dengan tingkatan baru, anda akan membuka keuntungan dan keuntungan baru!</p>
             </div>
           </div>
-          <div src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Bidding/timer.svg' alt="Icon User">
-            <div>
-              <h3 className="reward-title">ZOMBIE REWARDS :</h3>
-              <label className="reward-label">Xiaomi Redmi Note 5A</label>
-            </div>
-            <div>
-              <h3>Syarat dan Ketentuan</h3>
-              <ul className="reward-label">
-                <li>300 transaksi</li>
-                <li>50 Nomor Handphone</li>
-              </ul>
+          <div src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/zombie.png' alt="Icon User">
+            <div className="reward-tab">
+              <div className="reward-content">
+                <h3 className="reward-title">ZOMBIE REWARDS :</h3>
+                <label className="reward-label">Xiaomi Redmi Note 5A</label>
+                <div className="reward-spacing"></div>
+                <h3>Syarat dan Ketentuan</h3>
+                <ul className="reward-label">
+                  <li>300 transaksi</li>
+                  <li>50 Nomor Handphone</li>
+                </ul>
+              </div>
+              <img className="reward-image" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/Redmi+Note+5A.png' alt="Reward Hp"/>
             </div>
           </div>
-          <div src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/Key.png' alt="Icon User">
-            Nothing to see here, this tab is <em>extinct</em>!
+          <div src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/warrior.png' alt="Icon User">
+          <div className="reward-tab">
+              <div className="reward-content">
+                <h3 className="reward-title">WARRIOR REWARDS :</h3>
+                <label className="reward-label">Oppo A3s</label>
+                <div className="reward-spacing"></div>
+                <h3>Syarat dan Ketentuan</h3>
+                <ul className="reward-label">
+                  <li>600 transaksi</li>
+                  <li>100 Nomor Handphone</li>
+                </ul>
+              </div>
+              <img className="reward-image" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/Oppo+A3s.png' alt="Reward Hp"/>
+            </div>
+          </div>
+          <div src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/viking.png' alt="Icon User">
+            <div className="reward-tab">
+              <div className="reward-content">
+                <h3 className="reward-title">VIKING REWARDS :</h3>
+                <label className="reward-label">Oppo F3 Plus</label>
+                <div className="reward-spacing"></div>
+                <h3>Syarat dan Ketentuan</h3>
+                <ul className="reward-label">
+                  <li>900 transaksi</li>
+                  <li>150 Nomor Handphone</li>
+                </ul>
+              </div>
+              <img className="reward-image" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/oppo+f3+plus.png' alt="Reward Hp"/>
+            </div>
+          </div>
+          <div src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/zeus.png' alt="Icon User">
+            <div className="reward-tab">
+              <div className="reward-content">
+                <h3 className="reward-title">ZEUS REWARDS :</h3>
+                <label className="reward-label">Vivo V9</label>
+                <div className="reward-spacing"></div>
+                <h3>Syarat dan Ketentuan</h3>
+                <ul className="reward-label">
+                  <li>1200 transaksi</li>
+                  <li>200 Nomor Handphone</li>
+                </ul>
+              </div>
+              <img className="reward-image" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/Vivo+V9.png' alt="Reward Hp"/>
+            </div>
           </div>
         </Tabs>
-        <div>
+        <div className="reward-footer-container">
           <h3>Periode :</h3>
           <label className="reward-label">November 2018</label>
         </div>

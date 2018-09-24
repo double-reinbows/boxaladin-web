@@ -35,7 +35,7 @@ class Tab extends Component {
         className={className}
         onClick={onClick}
       >
-        <img src={image} alt={alt}/>
+        <img className="reward-tab-icon"  src={image} alt={alt}/>
       </li>
     );
   }
