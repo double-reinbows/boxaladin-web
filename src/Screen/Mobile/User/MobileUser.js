@@ -59,6 +59,7 @@ class MobileUser extends Component {
         <div className='mobileUser-dataUser-info'>
           <img className='mobileUser-dataUser-image' src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mail.png' alt='Logo Email'/>
           <label>{userInfo.typedEmail ? (userInfo.typedEmail) : ('Anda Tidak Memasukkan Email')}</label>
+          {this.checkEmailVerified()}
         </div>
         {this.phone()}
         {info.map((data, index) => {
@@ -72,9 +73,16 @@ class MobileUser extends Component {
       </div>
     )
   }
+  
+  checkEmailVerified = () => {
+    if (this.props.userInfo.emailVerified === true){
+      return (
+        <img className='baButton mobileUser-dataPhone-primary-icon' src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mobile+checklist.png' alt='checklist icon'/>
+      )
+    }
+  }
 
   showUserIcon = () => {
-    // const title = this.checkTitle()
     return (
       <img className='mobileUser-dataUser-image-profile' src={`https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/${this.checkTitle()}.png`} alt="Icon User"/>
     ) 
