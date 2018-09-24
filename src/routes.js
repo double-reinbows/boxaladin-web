@@ -37,8 +37,8 @@ import MobileMenuDompetAladin from './Screen/Mobile/Home/Top/DompetAladin'
 import MobileKey from './Screen/Mobile/DompetAladin/AladinKeys'
 import MobileConvert from './Screen/Mobile/DompetAladin/Convert'
 import MobileWallet from './Screen/Mobile/DompetAladin/Wallet'
-import Reward from './Screen/Reward/Reward'
-import MobileProfile from './Screen/User/MobileUser'
+import Reward from './Screen/Mobile/Reward/Reward'
+import MobileProfile from './Screen/Mobile/User/MobileUser'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route

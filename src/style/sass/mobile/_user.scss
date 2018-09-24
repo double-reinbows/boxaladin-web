@@ -1,20 +1,53 @@
 .mobileUser{
   &-container{
-
+    display: flex;
+    justify-content: center;
+    margin: 3%;
+  }
+  &-transaction-content{
+    display: flex;
+    justify-content: space-around;
+    margin: 3%;
   }
   &-dataUser{
-    display: flex;
-    flex-direction: column;
+    width: 50%;
+    font-size: 13px;
     &-image{
       width: 6%;
       margin-right: 5%;
       &-profile{
         width: 20%;
+        height: 30%;
+        margin-right: 5%;
+      }
+    }
+    &-title{
+      display: flex;
+      &-header{
+        color: var(--color-yellow-1);
+        font-style: oblique;
+        font-weight: bolder;
+        margin-right: 5%;
+      }
+      &-button{
+        cursor: pointer;
+        border: none;
+        background-color: #928f8f;
+        border-radius: 3px;
+        font-size: 11px;
+        height: 20px;
       }
     }
   }
   &-dataPhone{
     padding: 1%;
+    &-primary{
+      &-icon{
+        width: 6%;
+        margin-left: 2%;
+        margin-bottom: 2%;
+      }
+    }
     &-button{
       &-primary{
         border: 2px solid var(--color-yellow-1);
@@ -47,17 +80,72 @@
       }
     }
   }
+  &-succes-transaction{
+    border: 1px solid var(--color-yellow-1);
+    background-color: var(--color-yellow-1);
+    width: 40%;
+    text-align: center;
+    &-icon{
+      width: 40%;
+      margin-bottom: 10%;
+      margin-top: 2%;
+    }
+  }
+
+  &-phone-transaction{
+    border: 1px solid grey;
+    background-color: #928f8f;
+    width: 40%;
+    text-align: center;
+    &-icon{
+      width: 20%;
+      margin-bottom: 10%;
+      margin-top: 2%;
+    }
+  }
 }
 
 @media (min-width: 200px ) and (max-width:720px ) {
   .mobileUser{
     &-dataUser-image{
-      width: 5%;
+      width: 7%;
     }
     &-dataPhone-button{
       &-verify{
         font-size: 10px;
       }
+    }
+  }
+}
+@media (min-width: 491px ){
+  .mobileUser{
+    &-dataUser{
+      width: 52%;
+      font-size: 15px;
+    }
+  }
+}
+
+@media (min-width: 381px ) and (max-width:490px ) {
+  .mobileUser{
+    &-dataUser{
+      width: 58%;
+    }
+  }
+}
+
+@media (max-width: 380px ){
+  .mobileUser{
+    &-dataUser{
+      width: 70%;
+    }
+  }
+}
+
+@media (max-width: 319px ){
+  .mobileUser{
+    &-dataUser{
+      font-size: 11px;
     }
   }
 }
