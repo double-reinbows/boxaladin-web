@@ -10,12 +10,12 @@ class Tabs extends Component {
     super(props);
 
     this.state = {
-      activeTab: this.props.children[0].props.src,
+      activeTab: this.props.children[0].props.tab,
     };
   }
 
-  onClickTabItem = (tab) => {
-    this.setState({ activeTab: tab });
+  onClickTabItem = (value) => {
+    this.setState({ activeTab: value });
   }
 
   render() {
@@ -28,27 +28,27 @@ class Tabs extends Component {
         activeTab,
       }
     } = this;
-    console.log('children', children)
     return (
       <div className="tabs">
         <ol className="tab-list">
           {children.map((child, index) => {
-            const { src, alt } = child.props;
+            const { alt, src, tab } = child.props;
 
             return (
               <Tab
                 activeTab={activeTab}
                 key={index}
-                image={src}
+                src={src}
                 onClick={onClickTabItem}
                 alt={alt}
+                tab={tab}
               />
             );
           })}
         </ol>
         <div className="tab-content">
           {children.map((child) => {
-            if (child.props.src !== activeTab) return undefined;
+            if (child.props.tab !== activeTab) return undefined;
             return child.props.children;
           })}
         </div>

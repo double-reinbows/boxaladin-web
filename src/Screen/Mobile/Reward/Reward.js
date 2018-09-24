@@ -6,13 +6,13 @@ class Reward extends Component {
     return (  
       <div className="reward">
         <Tabs>
-          <div src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/orok.png' alt="Icon User">
+          <div tab='1' src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/orok.png' alt="Icon User">
             <div className="reward-container">
               <h3 className="reward-title">OROK REWARDS :</h3>
               <p className="reward-label">Selamat datang di boxaladin rewards! Dengan setiap transaksi, kamu akan mendapatkan poin di dalam rewards.Dengan tingkatan baru, anda akan membuka keuntungan dan keuntungan baru!</p>
             </div>
           </div>
-          <div src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/zombie.png' alt="Icon User">
+          <div tab='2' src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/zombie.png' alt="Icon User">
             <div className="reward-tab">
               <div className="reward-content">
                 <h3 className="reward-title">ZOMBIE REWARDS :</h3>
@@ -27,7 +27,7 @@ class Reward extends Component {
               <img className="reward-image" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/Redmi+Note+5A.png' alt="Reward Hp"/>
             </div>
           </div>
-          <div src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/warrior.png' alt="Icon User">
+          <div tab='3' src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/warrior.png' alt="Icon User">
           <div className="reward-tab">
               <div className="reward-content">
                 <h3 className="reward-title">WARRIOR REWARDS :</h3>
@@ -42,7 +42,7 @@ class Reward extends Component {
               <img className="reward-image" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/Oppo+A3s.png' alt="Reward Hp"/>
             </div>
           </div>
-          <div src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/viking.png' alt="Icon User">
+          <div tab='4' src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/viking.png' alt="Icon User">
             <div className="reward-tab">
               <div className="reward-content">
                 <h3 className="reward-title">VIKING REWARDS :</h3>
@@ -57,7 +57,7 @@ class Reward extends Component {
               <img className="reward-image" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/oppo+f3+plus.png' alt="Reward Hp"/>
             </div>
           </div>
-          <div src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/zeus.png' alt="Icon User">
+          <div tab='5' src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Reward/zeus.png' alt="Icon User">
             <div className="reward-tab">
               <div className="reward-content">
                 <h3 className="reward-title">ZEUS REWARDS :</h3>

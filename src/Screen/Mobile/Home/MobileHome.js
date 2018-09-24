@@ -6,12 +6,9 @@ export default class MobileHome extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab: 1,
-      tabActive1: 'tabactive',
-      tabActive2: '',
+      tab: 1
     }
   }
-
   renderTab = () => {
     const {tab} = this.state
     switch (tab) {
@@ -26,18 +23,23 @@ export default class MobileHome extends Component {
 
   changeTab = (value) => {
     this.setState({
-      tab: value,
-      tabActive1: this.state.tabActive2,
-      tabActive2: this.state.tabActive1
+      tab: value
     });
+  }
+
+  checkActive = (value) => {
+    const { tab } = this.state
+    if (value === tab) {
+      return 'tabactive'
+    }
   }
 
   render() {
     return (
       <div>
         <div className='mobile-home-tab-container'>
-          <button className={`${this.state.tabActive1} mobile-home-tab`} onClick={() => this.changeTab(1)}>PULSA</button>
-          <button className={`${this.state.tabActive2} mobile-home-tab`} onClick={() => this.changeTab(2)}>PAKET DATA</button>
+          <button className={`${this.checkActive(1)} mobile-home-tab`} onClick={() => this.changeTab(1)}>PULSA</button>
+          <button className={`${this.checkActive(2)} mobile-home-tab`} onClick={() => this.changeTab(2)}>PAKET DATA</button>
         </div>
         {this.renderTab()}
         <h2 className="mobile__pulsa__label">Cara Kerja</h2>

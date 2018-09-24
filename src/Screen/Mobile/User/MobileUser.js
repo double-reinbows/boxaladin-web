@@ -54,7 +54,7 @@ class MobileUser extends Component {
       <div className='mobileUser-dataUser'>
         <div className='mobileUser-dataUser-title'>
           <h2 className='mobileUser-dataUser-title-header'>{this.checkTitle().toUpperCase()}</h2>
-          <button className='mobileUser-dataUser-title-button baButton'><Link style={{color:'white'}} to="/reward">Lihat Reward</Link></button>
+          <button className='mobileUser-dataUser-title-button baButton'><Link style={{color:'white', padding:'2px'}} to="/reward">Lihat Reward</Link></button>
         </div>
         <div className='mobileUser-dataUser-info'>
           <img className='mobileUser-dataUser-image' src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mail.png' alt='Logo Email'/>

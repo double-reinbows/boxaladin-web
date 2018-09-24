@@ -4,14 +4,15 @@ import PropTypes from 'prop-types';
 class Tab extends Component {
   static propTypes = {
     activeTab: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    tab: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
     alt: PropTypes.string.isRequired
   };
 
   onClick = () => {
-    const {image, onClick } = this.props;
-    onClick(image);
+    const {tab, onClick } = this.props;
+    onClick(tab);
   }
 
   render() {
@@ -19,14 +20,15 @@ class Tab extends Component {
       onClick,
       props: {
         activeTab,
-        image,
-        alt
+        src,
+        alt,
+        tab
       },
     } = this;
 
     let className = 'tab-list-item';
 
-    if (activeTab === image) {
+    if (activeTab === tab) {
       className += ' tab-list-active';
     }
 
@@ -35,7 +37,7 @@ class Tab extends Component {
         className={className}
         onClick={onClick}
       >
-        <img className="reward-tab-icon"  src={image} alt={alt}/>
+        <img className="reward-tab-icon"  src={src} alt={alt}/>
       </li>
     );
   }
