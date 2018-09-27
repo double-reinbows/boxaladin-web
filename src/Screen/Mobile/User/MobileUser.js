@@ -191,7 +191,7 @@ class MobileUser extends Component {
     helperAxios('GET', 'countphonetransactions')
     .then(response => {
       this.setState({
-        phoneTransaction: response.data.count
+        phoneTransaction: response.data[0].count
       })
     })
     .catch(err => console.log(err))
@@ -199,7 +199,7 @@ class MobileUser extends Component {
     helperAxios('GET', 'countsuccesstransactions')
     .then(response => {
       this.setState({
-        successTransaction: response.data.response
+        successTransaction: response.data.count
       })
     })
     .catch(err => console.log(err))

@@ -61,7 +61,7 @@ class InsertPhone extends React.Component {
     } else if (num.length > 13) {
       this.setState({notif: 'Nomor Anda telah mencapai panjang maksimal.', disabled: true});
     } else {
-      if (num.length >= 11) { //number long enough so enable submit button
+      if (num.length >= 8) { //number long enough so enable submit button
         this.setState({phone: num.join(''), notif: '', disabled: false});
       } else { //number NOT long enough so disable submit button
         this.setState({phone: num.join(''), notif: '', disabled: true});
