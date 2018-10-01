@@ -77,7 +77,7 @@ class DropdownUser extends React.Component {
           </MediaQuery>
 
         <MediaQuery query="(max-device-width: 721px)">
-          <LinkContainer className="DropdownUser__inside__link" onClick={(e) => this.changeText('Reward')} to="/reward">
+          <LinkContainer className="DropdownUser__inside__link" onClick={(e) => this.changeText('Hadiah')} to="/reward">
             <DropdownItem className="DropdownUser__inside">
               Hadiah
             </DropdownItem>
