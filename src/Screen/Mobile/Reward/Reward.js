@@ -75,7 +75,7 @@ class Reward extends Component {
         </Tabs>
         <div className="reward-footer-container">
           <h3>Periode :</h3>
-          <label className="reward-label">November 2018</label>
+          <label className="reward-label">1 Oktober 2018 - 31 Oktober 2018</label>
         </div>
       </div>
     );

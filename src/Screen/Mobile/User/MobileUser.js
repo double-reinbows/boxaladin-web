@@ -21,7 +21,7 @@ class MobileUser extends Component {
   }
 
   componentDidMount() {
-    this.getCount()
+    // this.getCount()
   }
 
   togglePrimary = () => {
