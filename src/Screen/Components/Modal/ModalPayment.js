@@ -245,6 +245,7 @@ class ModalPayment extends Component{
             ))
             }
           </ButtonGroup>
+          <label className="modal__method__content__label">(*)Pembayaran Menggunakan BNI, BRI, MANDIRI dan ALFAMART Akan Dikenakan Biaya Payment Gateway Sebesar Rp 2.000</label>
         </div>
       </Fragment>
     )
