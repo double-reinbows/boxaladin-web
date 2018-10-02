@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Moment from 'moment'
 import helperAxios from '../../../utils/axios' 
 import ModalPrimary from '../../User/ModalPrimary'
 import ModalChange from '../../User/ModalChange'
@@ -22,7 +23,7 @@ class MobileUser extends Component {
   }
 
   componentDidMount() {
-    // this.getCount()
+    this.getCount()
   }
 
   togglePrimary = () => {
@@ -210,19 +211,28 @@ class MobileUser extends Component {
   }
 
   getCount = () => {
+    const now = ((Moment().month()) + 1).toString()
     helperAxios('GET', 'countphonetransactions')
     .then(response => {
-      this.setState({
-        phoneTransaction: response.data[0].count
-      })
+      if (response.data[0].to_char !== now) {
+        return console.log('zero')
+      } else {
+        this.setState({
+          phoneTransaction: response.data[0].count
+        })
+      }
     })
     .catch(err => console.log(err))
 
     helperAxios('GET', 'countsuccesstransactions')
     .then(response => {
-      this.setState({
-        successTransaction: response.data.count
-      })
+      if (response.data.to_char !== now) {
+        return console.log('zero')
+      } else {
+        this.setState({
+          successTransaction: response.data.count
+        })
+      }
     })
     .catch(err => console.log(err))
   }
