@@ -6,6 +6,7 @@ import ModalPrimary from '../../User/ModalPrimary'
 import ModalChange from '../../User/ModalChange'
 import ModalOtpUser from '../../Components/Modal/OTP/ModalOtpInput'
 import ModalOtpImage from '../../Components/Modal/OTP/ModalOtpImage'
+import FormatRupiah from '../../../utils/formatRupiah'
 
 class MobileUser extends Component {
   constructor(props) {
@@ -48,7 +49,6 @@ class MobileUser extends Component {
     const info = [
       {value: userInfo.aladinKeys, image:'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/key.png', alt:'Logo key'},
       {value: userInfo.coin, image:'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/koin-v2.png', alt:'Logo coin'},
-      {value: userInfo.wallet, image:'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/uang.png', alt:'Logo wallet'}
     ]
     return (
       <div className='mobileUser-dataUser'>
@@ -58,7 +58,7 @@ class MobileUser extends Component {
         </div>
         <div className='mobileUser-dataUser-info'>
           <img className='mobileUser-dataUser-image' src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mail.png' alt='Logo Email'/>
-          <label>{userInfo.typedEmail ? (userInfo.typedEmail) : ('Anda Tidak Memasukkan Email')}</label>
+          <label>{this.showEmail()}</label>
           {this.checkEmailVerified()}
         </div>
         {this.phone()}
@@ -70,8 +70,23 @@ class MobileUser extends Component {
             </div>
           )
         })}
+        <div className='mobileUser-dataUser-info'>
+          <img className='mobileUser-dataUser-image' src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/uang.png" alt='Logo wallet'/>
+          <label>{userInfo.wallet === undefined ? null : (FormatRupiah(userInfo.wallet))}</label>
+        </div>
       </div>
     )
+  }
+
+  showEmail = () => {
+    const {typedEmail, email} = this.props.userInfo
+    if (typedEmail) {
+      return typedEmail
+    } else if (email) {
+      return email
+    } else {
+      return "Anda Tidak Memasukkan Email"
+    }
   }
   
   checkEmailVerified = () => {
@@ -136,6 +151,13 @@ class MobileUser extends Component {
         <div className='mobileUser-dataUser-info'>
           <img className='mobileUser-dataUser-image' src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/phone.png' alt="Logo Phone" />
           <button onClick={this.togglePrimary} className='baButton user-dataPhone-button-primary'>Tambah Nomor Primary</button>
+        </div>
+      )
+    } else if (phonenumber[0].primary !== true) { 
+      return (
+        <div className='mobileUser-dataUser-info'>
+          <img className='mobileUser-dataUser-image' src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/phone.png' alt="Logo Phone" />
+          <label>{phonenumber[0].number}</label>
         </div>
       )
     } else {
