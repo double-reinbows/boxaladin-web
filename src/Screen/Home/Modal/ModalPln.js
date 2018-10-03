@@ -12,69 +12,51 @@ class ModalConfirm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      pln: '',
+      dataPln: {},
+      valid: false
     }
-    this.checkAladinkey = this.checkAladinkey.bind(this);
   }
 
-  checkAladinkey = async () => {
-    const {priceId, userInfo, type} = this.props
-    if ( !userInfo.id && !localStorage.getItem('token')){
-      alert ('Anda Belum Masuk')
-    } else if (userInfo.aladinKeys <= 0 ){
-      alert("Anda Tidak Memiliki Aladin Key")
+  checkValid = () => {
+    const {valid} = this.state
+    if (valid) {
+      return 'inputValid'
     } else {
-      if (priceId === 1) {
-        if (userInfo.wallet < 10000){
-          return alert('Saldo Wallet Anda Kurang Dari Rp.10.000,00')
-        } else {
-          helperAxios('GET', 'users/checkuser')
-          .then( async data => {
-            if (data.data.aladinKeys > 0 && data.data.wallet >= 10000) {
-              await this.props.selectedPriceID(priceId)
-              this.props.history.push('/bidding', {
-                displayPrice: this.props.displayPrice,
-                firebase: this.props.firebase,
-                typeBuy: this.props.typeBuy,
-                type: this.props.type
-              })
-              await helperAxios('PUT', 'logopen',  {priceId, type})
-              this.props.getUser()
-            } else {
-              alert("Anda Tidak Memiliki Aladin Key")
-            }
-          })
-        }
-      } else {
-        helperAxios('GET', 'users/checkuser')
-        .then( async data => {
-          if (data.data.message === 'not verified user') {
-            alert("Silahkan Verifikasi Email Anda")
-          } else if (data.data.aladinKeys > 0) {
-            await this.props.selectedPriceID(priceId)
-            this.props.history.push('/bidding', {
-              displayPrice: this.props.displayPrice,
-              firebase: this.props.firebase,
-              typeBuy: this.props.typeBuy,
-              type: this.props.type
-            })
-            await helperAxios('PUT', 'logopen', {priceId, type})
-            this.props.getUser()
-          } else {
-            alert("Anda Tidak Memiliki Aladin Key")
-          }
-        })
-      }
+      return null
     }
+  }
+
+  checkPln = async () => {
+    const {pln} = this.state
+    helperAxios('POST', 'checkuserpln', {tokenNumber: pln})
+    .then(response => {
+      if (response.data.rc._text === '14') {
+        return alert('salah no')
+      }
+      this.setState({
+        valid: true,
+        dataPln: response.data
+      })
+    })
+    .catch(err => console.log(err))
+  }
+
+  handleChangePln = (e) => {
+    this.setState({
+      pln: e.target.value
+    })
   }
 
   renderContent = () => {
     return (
       <div className="modal__confirm__container">
         <div className="modal__confirm__label">
-          <label><b>1x intip = 1 kunci aladin. Lanjutkan ?</b></label>
+          <label><b>Cek Token Anda</b></label>
+          <input className={`${this.checkValid()} tes`} type="number" value={this.state.pln} onChange={this.handleChangePln} placeholder="Masukkan No PLN Anda"/>
         </div>
         <div className="modal__confirm__button">
-          <button className="modal__confirm__button__yes" onClick={this.checkAladinkey}>YA</button>
+          <button className="modal__confirm__button__yes" onClick={this.checkPln}>Cek</button>
           <button className="modal__confirm__button__no" onClick={this.props.toggle}>TIDAK</button>
         </div>
       </div>
