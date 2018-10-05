@@ -76,3 +76,16 @@ input::-webkit-inner-spin-button {
 .ReactModal__Overlay--after-open{
   z-index: 20;
 }
+
+.activeTab {
+  font-size: 100px;
+}
+
+.success{
+  border: 1px solid green;
+}
+
+.failed{
+  border: 1px solid red;;
+}
+

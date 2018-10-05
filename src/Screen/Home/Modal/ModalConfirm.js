@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Modal from 'react-modal'
 import {withRouter} from 'react-router-dom'
 import { connect } from 'react-redux';
 import MediaQuery from 'react-responsive';
+import axios from 'axios'
+import envChecker from '../../../utils/envChecker'
+
 
 import { selectedPriceID } from '../../../actions/productAction';
 import {getUser} from '../../../actions/userAction'
@@ -12,11 +15,14 @@ class ModalConfirm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      tab: 1,
+      inputPln: "",
+      success: false,
+      button: true
     }
-    this.checkAladinkey = this.checkAladinkey.bind(this);
   }
-s
-  checkAladinkey = async () => {
+
+  checkAladinkey = () => {
     const {priceId, userInfo, type} = this.props
     if ( !userInfo.id && !localStorage.getItem('token')){
       alert ('Anda Belum Masuk')
@@ -70,6 +76,54 @@ s
   renderContent = () => {
     return (
       <div className="modal__confirm__container">
+        {this.tabModal()}
+        {this.renderTab()}
+      </div>
+    )
+  }
+
+  tabModal = () => {
+    return (
+      <div>
+        <button className={`${this.checkActive(1)}`} onClick={() => this.changeTab(1)}>pulsa</button>
+        <button className={`${this.checkActive(2)}`} onClick={() => this.changeTab(2)}>PLN</button>
+      </div>
+    )
+  }
+
+  checkActive = (value) => {
+    const {tab} = this.state
+    if (tab === value) {
+      return 'tabactive'
+    } else {
+      return null
+    }
+  }
+
+  changeTab = (value) => {
+    this.setState({
+      tab: value,
+    })
+  }
+
+  checkPlnNumber = (e) => {
+    this.setState({
+      inputPln: e.target.value,
+    })
+  }
+
+  renderTab = () => {
+    const { tab } = this.state
+    if (tab === 1) {
+      return (this.renderPulsa())
+    } else if (tab === 2){
+      return (this.renderPln())
+    }
+  }
+
+  renderPulsa = () => {
+    return (
+      <Fragment>
         <div className="modal__confirm__label">
           <label><b>1x intip = 1 kunci aladin. Lanjutkan ?</b></label>
         </div>
@@ -77,9 +131,58 @@ s
           <button className="modal__confirm__button__yes" onClick={this.checkAladinkey}>YA</button>
           <button className="modal__confirm__button__no" onClick={this.props.toggle}>TIDAK</button>
         </div>
-      </div>
+      </Fragment>
     )
   }
+
+  renderPln = () => {
+    return (
+      <Fragment>
+        <div className="modal__confirm__label">
+          <label><b>PLN</b></label>
+        </div>
+        <div>
+          <input className={`${this.checkSuccess()}`} value={this.state.inputPln} onChange={this.checkPlnNumber}/>
+          <button onClick={this.submitPlnNumber}>Check Number</button>
+        </div>
+        <div className="modal__confirm__button">
+          <button disabled={this.state.button} className="modal__confirm__button__yes" onClick={this.checkAladinkey}>YA</button>
+          <button className="modal__confirm__button__no" onClick={this.props.toggle}>TIDAK</button>
+        </div>
+
+      </Fragment>
+    )
+  }
+
+  checkSuccess = ()  => {
+    const { success } = this.state
+    if (success) {
+      return ("success")
+    } else {
+      return ("failed")
+    }
+
+  }
+
+  submitPlnNumber = () =>{
+    axios({
+      method: 'POST',
+      url: `${envChecker('api')}/checkuserpln`,
+      data: {
+        tokenNumber : this.state.inputPln
+      }
+    })
+    .then(response=> {
+      console.log('response', response.data)
+      if (response.data.message._text === "SUCCESS"){
+        this.setState({
+          success:true,
+          button:false 
+        })
+      }
+    })
+  }
+
 
   renderMobilePrice = () => {
     return this.props.displayPrice && (
@@ -105,6 +208,7 @@ s
   }
 
   render() {
+    console.log(this.state)
     return (
       <Modal isOpen={this.props.open} className="modal__confirm">
         <MediaQuery query="(max-device-width: 720px)">
