@@ -15,8 +15,8 @@ class Bidding extends React.Component {
     super(props)
     this.state = {
       productUnlocked: '',
-			count: 15,
-      initCount: 15,
+			count: 999,
+      initCount: 999,
       open: false,
       priceComp : true,
       text: ''
@@ -143,6 +143,7 @@ class Bidding extends React.Component {
 
 
   render() {
+    console.log('props bidding', this.props.location.state.pln)
     return (
     <div>
       <MediaQuery query="(max-device-width: 720px)">
@@ -209,11 +210,20 @@ class Bidding extends React.Component {
         type: this.props.location.state.type
       }
     })
-    this.props.history.push('/insertphone', {
-      aladinPrice: this.state.productUnlocked.aladinPrice,
-      typeBuy: this.props.location.state.typeBuy,
-      displayPrice: this.props.location.state.displayPrice
-    })
+    if (this.props.location.state.typeBuy === 'buy pln') {
+      this.props.history.push('/insertpln', {
+        aladinPrice: this.state.productUnlocked.aladinPrice,
+        typeBuy: this.props.location.state.typeBuy,
+        displayPrice: this.props.location.state.displayPrice,
+        pln: this.props.location.state.pln
+      })
+    } else {
+      this.props.history.push('/insertphone', {
+        aladinPrice: this.state.productUnlocked.aladinPrice,
+        typeBuy: this.props.location.state.typeBuy,
+        displayPrice: this.props.location.state.displayPrice
+      })
+    }
   }
 
   cancel() {

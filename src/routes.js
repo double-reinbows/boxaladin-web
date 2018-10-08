@@ -23,6 +23,7 @@ import WalletInvoice from './Screen/Invoice/TopupWalletInvoice'
 
 import Bidding from './Screen/Bidding/Bidding'
 import InsertPhone from './Screen/Bidding/InsertPhone'
+import InsertPln from './Screen/Bidding/InsertPln'
 
 import DompetAladin from './Screen/DompetAladin/DompetAladin';
 import Game from './Screen/Game/Game';
@@ -79,6 +80,7 @@ class RouteList extends Component {
                 <PrivateRoute exact path="/walletinvoice" component={WalletInvoice} />
                 <PrivateRoute exact path="/bidding" component={Bidding} />
                 <PrivateRoute exact path="/insertphone" component={InsertPhone} />
+                <PrivateRoute exact path="/insertpln" component={InsertPln} />
                 <PrivateRoute exact path="/game" component={ Game } />
                 <PrivateRoute exact path="/dompetaladin" component={DompetAladin} />
                 <PrivateRoute exact path="/gameresult" component={ GameResult } />

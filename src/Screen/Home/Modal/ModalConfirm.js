@@ -18,7 +18,8 @@ class ModalConfirm extends Component {
       tab: 1,
       inputPln: "",
       success: false,
-      button: true
+      button: true,
+      typeBuy: 'buy pulsa'
     }
   }
 
@@ -40,7 +41,7 @@ class ModalConfirm extends Component {
               this.props.history.push('/bidding', {
                 displayPrice: this.props.displayPrice,
                 firebase: this.props.firebase,
-                typeBuy: this.props.typeBuy,
+                typeBuy: this.state.typeBuy,
                 type: this.props.type
               })
               await helperAxios('PUT', 'logopen',  {priceId, type})
@@ -60,8 +61,9 @@ class ModalConfirm extends Component {
             this.props.history.push('/bidding', {
               displayPrice: this.props.displayPrice,
               firebase: this.props.firebase,
-              typeBuy: this.props.typeBuy,
-              type: this.props.type
+              typeBuy: this.state.typeBuy,
+              type: this.props.type,
+              pln: this.state.inputPln
             })
             await helperAxios('PUT', 'logopen', {priceId, type})
             this.props.getUser()
@@ -85,8 +87,8 @@ class ModalConfirm extends Component {
   tabModal = () => {
     return (
       <div>
-        <button className={`${this.checkActive(1)}`} onClick={() => this.changeTab(1)}>pulsa</button>
-        <button className={`${this.checkActive(2)}`} onClick={() => this.changeTab(2)}>PLN</button>
+        <button className={`${this.checkActive(1)}`} onClick={() => this.changeTab(1, 'buy pulsa')}>pulsa</button>
+        <button className={`${this.checkActive(2)}`} onClick={() => this.changeTab(2, 'buy pln')}>PLN</button>
       </div>
     )
   }
@@ -100,9 +102,10 @@ class ModalConfirm extends Component {
     }
   }
 
-  changeTab = (value) => {
+  changeTab = (value, typeBuy) => {
     this.setState({
       tab: value,
+      typeBuy
     })
   }
 
@@ -208,7 +211,6 @@ class ModalConfirm extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <Modal isOpen={this.props.open} className="modal__confirm">
         <MediaQuery query="(max-device-width: 720px)">
