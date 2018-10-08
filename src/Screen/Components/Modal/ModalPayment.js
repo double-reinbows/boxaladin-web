@@ -83,6 +83,14 @@ class ModalPayment extends Component{
         bankCode: bank,
         amount: amount
       }
+    } else if (typeBuy === 'buy pln'){
+      return {
+        priceId: selectedPriceID,
+        // brandId: brandId,
+        // phoneNumber: phone,
+        bankCode: bank,
+        amount: amount
+      }
     }
   }
 
@@ -261,6 +269,7 @@ class ModalPayment extends Component{
   }
 
   render() {
+    console.log('props payment', this.props)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">

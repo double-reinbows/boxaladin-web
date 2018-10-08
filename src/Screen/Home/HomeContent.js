@@ -182,6 +182,22 @@ renderModalBid() {
     }
   }
 
+  renderModalConfirm() {
+    if (this.state.openModal) {
+      return (
+        <ModalConfirm
+          firebase= {envChecker('price')}
+          displayPrice={this.state.displayPrice}
+          open={this.state.openModal}
+          toggle={this.toggleConfirm}
+          priceId={this.state.priceId}
+          type={this.state.type}
+        />
+      )
+    }
+    return null;
+  }
+
   render() {
     return (
       <div className="homecontent__container">
@@ -209,15 +225,7 @@ renderModalBid() {
           </div>
         </div>
         <ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
-        <ModalConfirm
-          typeBuy='buy pulsa'
-          firebase= {envChecker('price')}
-          displayPrice={this.state.displayPrice}
-          open={this.state.openModal}
-          toggle={this.toggleConfirm}
-          priceId={this.state.priceId}
-          type={this.state.type}
-        />
+        {this.renderModalConfirm()}
         {this.renderModalBid()}
       </div>
     )

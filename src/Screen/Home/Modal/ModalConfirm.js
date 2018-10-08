@@ -20,8 +20,25 @@ class ModalConfirm extends Component {
       success: false,
       button: true,
       disabledCheck:true,
-      notif: ''
+      notif: '',
+      typeBuy: 'buy pulsa'
     }
+  }
+
+  componentWillUnmount() {
+    this.resetState()
+  }
+  
+  resetState = () => {
+    this.setState({
+      tab: 1,
+      inputPln: "",
+      success: false,
+      button: true,
+      disabledCheck:true,
+      notif: '',
+      typeBuy: 'buy pulsa'
+    })
   }
 
   checkAladinkey = () => {
@@ -42,7 +59,7 @@ class ModalConfirm extends Component {
               this.props.history.push('/bidding', {
                 displayPrice: this.props.displayPrice,
                 firebase: this.props.firebase,
-                typeBuy: this.props.typeBuy,
+                typeBuy: this.state.typeBuy,
                 type: this.props.type
               })
               await helperAxios('PUT', 'logopen',  {priceId, type})
@@ -62,8 +79,9 @@ class ModalConfirm extends Component {
             this.props.history.push('/bidding', {
               displayPrice: this.props.displayPrice,
               firebase: this.props.firebase,
-              typeBuy: this.props.typeBuy,
-              type: this.props.type
+              typeBuy: this.state.typeBuy,
+              type: this.props.type,
+              pln: this.state.inputPln
             })
             await helperAxios('PUT', 'logopen', {priceId, type})
             this.props.getUser()
@@ -76,19 +94,28 @@ class ModalConfirm extends Component {
   }
 
   renderContent = () => {
-    return (
+    const { priceId, typeBuy} = this.props
+    if (typeBuy === 'buy paket data' || priceId === 1) {
+      return (
       <div className="modal__confirm__container">
-        {this.tabModal()}
         {this.renderTab()}
       </div>
-    )
+      )
+    } else {
+      return (
+        <div className="modal__confirm__container">
+          {this.tabModal()}
+          {this.renderTab()}
+        </div>
+      )
+    }
   }
 
   tabModal = () => {
     return (
       <div className="modal__confirm__tab">
-        <button className={`modal__confirm__tab__button ${this.checkActive(1)}`} onClick={() => this.changeTab(1)}>PULSA</button>
-        <button className={`modal__confirm__tab__button ${this.checkActive(2)}`} onClick={() => this.changeTab(2)}>PLN</button>
+        <button className={`modal__confirm__tab__button ${this.checkActive(1)}`} onClick={() => this.changeTab(1, 'buy pulsa')}>PULSA</button>
+        <button className={`modal__confirm__tab__button ${this.checkActive(2)}`} onClick={() => this.changeTab(2, 'buy pln')}>PLN</button>
       </div>
     )
   }
@@ -102,9 +129,10 @@ class ModalConfirm extends Component {
     }
   }
 
-  changeTab = (value) => {
+  changeTab = (value, typeBuy) => {
     this.setState({
       tab: value,
+      typeBuy
     })
   }
 
@@ -214,6 +242,7 @@ class ModalConfirm extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <Modal isOpen={this.props.open} className="modal__confirm">
         <MediaQuery query="(max-device-width: 720px)">
