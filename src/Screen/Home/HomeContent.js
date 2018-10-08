@@ -5,7 +5,6 @@ import envChecker from '../../utils/envChecker'
 import ProviderModal from './Modal/ProviderModal';
 import ModalConfirm from './Modal/ModalConfirm'
 import ModalBid from '../Components/Modal/ModalBid'
-import ModalPln from './Modal/ModalPln'
 class HomeContent extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +12,6 @@ class HomeContent extends Component {
       providerModal: false,
       openModal: false,
       openModalBid: false,
-      openModalPln: false,
       priceId: 0,
       displayPrice: 0,
       price: '',
@@ -39,15 +37,6 @@ class HomeContent extends Component {
   toggleConfirm = (id, displayPrice) => {
     this.setState({
       openModal: !this.state.openModal,
-      priceId: id,
-      displayPrice,
-      type: 'price'
-    })
-  }
-
-  togglePln = (id, displayPrice) => {
-    this.setState({
-      openModalPln: !this.state.openModalPln,
       priceId: id,
       displayPrice,
       type: 'price'
@@ -126,23 +115,6 @@ renderModalBid() {
     }
   }
 
-  pln() {
-    const { price } = this.state
-    if (!price) {
-      return (
-        <h1>Loading</h1>
-      )
-    } else {
-      return(
-        price.map((data, index) => {
-          return(
-            <button key={index} onClick={() => this.togglePln(data.id, data.displayPrice)} className="homecontent__bottom__pulsa__button baBackground">{data.displayPrice.toLocaleString(['ban', 'id'])}</button>
-          )
-        })
-      )
-    }
-  }
-
   getPrice = () => {
     axios({
       method: 'GET',
@@ -190,15 +162,6 @@ renderModalBid() {
             </div>
           </div>
           )
-      case 3:
-      return (
-        <div>
-          <h2 className="homecontent__bottom__pulsa__label">Pilih Nominal Tokenmu</h2>
-          <div className="homecontent__bottom__pulsa">
-            {this.pln()}
-          </div>
-        </div>
-        )
       default:
         return tab
     }
@@ -239,7 +202,6 @@ renderModalBid() {
         <div className='home-tab-container'>
           <button className={`${this.checkActive(1)} home-tab`} onClick={() => this.changeTab(1)}>PULSA</button>
           <button className={`${this.checkActive(2)} home-tab`} onClick={() => this.changeTab(2)}>PAKET DATA</button>
-          <button className={`${this.checkActive(3)} home-tab`} onClick={() => this.changeTab(3)}>TOKEN LISTRIK</button>
         </div>
           {this.renderTab()}
           <div className="homecontent__bottom__check">
@@ -253,15 +215,6 @@ renderModalBid() {
           displayPrice={this.state.displayPrice}
           open={this.state.openModal}
           toggle={this.toggleConfirm}
-          priceId={this.state.priceId}
-          type={this.state.type}
-        />
-        <ModalPln
-          typeBuy='buy pulsa'
-          firebase= {envChecker('price')}
-          displayPrice={this.state.displayPrice}
-          open={this.state.openModalPln}
-          toggle={this.togglePln}
           priceId={this.state.priceId}
           type={this.state.type}
         />

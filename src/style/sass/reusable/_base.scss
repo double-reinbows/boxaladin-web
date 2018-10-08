@@ -76,3 +76,22 @@ input::-webkit-inner-spin-button {
 .ReactModal__Overlay--after-open{
   z-index: 20;
 }
+
+.tabactive{
+  background-color: black;
+  color: white;
+  &-ba{
+    background-color: #FFCD05;
+    color: white;
+  }
+}
+
+.isValid{
+  border: 1px solid green;
+}
+
+.isInvalid{
+  border: 1px solid red;;
+}
+
+
