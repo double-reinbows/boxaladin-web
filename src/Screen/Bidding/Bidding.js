@@ -141,20 +141,6 @@ class Bidding extends React.Component {
     )
   }
 
-
-  render() {
-    return (
-    <div>
-      <MediaQuery query="(max-device-width: 720px)">
-        {this.renderMobileBid()}
-      </MediaQuery>
-      <MediaQuery query="(min-device-width: 721px)">
-        {this.renderBid()}
-      </MediaQuery>
-    </div>
-    )
-  }
-
   toggle = () => {
     this.props.history.push('/home')
   }
@@ -388,6 +374,20 @@ class Bidding extends React.Component {
         text: 'Maaf, produk ini sudah terbeli orang lain! Silahkan melakukan bidding lagi.'
       })
 		}
+  }
+
+  render() {
+    console.log('props bidding', this.props)
+    return (
+    <div>
+      <MediaQuery query="(max-device-width: 720px)">
+        {this.renderMobileBid()}
+      </MediaQuery>
+      <MediaQuery query="(min-device-width: 721px)">
+        {this.renderBid()}
+      </MediaQuery>
+    </div>
+    )
   }
 }
 
