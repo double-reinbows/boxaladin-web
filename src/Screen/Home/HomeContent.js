@@ -89,7 +89,9 @@ renderModalBid() {
       )
     } else {
       return(
-        price.map((data, index) => {
+        price.filter(dataFilter => {
+          return dataFilter.id !== 6
+        }).map((data, index) => {
           return(
             <button key={index} onClick={() => this.toggleConfirm(data.id, data.displayPrice, 'buy pulsa')} className="homecontent__bottom__pulsa__button baBackground">{data.displayPrice.toLocaleString(['ban', 'id'])}</button>
           )
@@ -246,7 +248,9 @@ renderModalBid() {
       <Fragment>
         <h2 className="homecontent__bottom__pulsa__label">Pilih Token Listrikmu</h2>
         <div className="homecontent__bottom__pulsa">
-          {price.map((data, index) => {
+          {price.filter(dataFilter => {
+            return dataFilter.id !== 1 && dataFilter.id !== 2 && dataFilter.id !== 5
+          }).map((data, index) => {
           return(
             <button key={index} onClick={() => this.toggleConfirm(data.id, data.displayPrice, 'buy pln')} className="homecontent__bottom__pulsa__button baBackground">{data.displayPrice.toLocaleString(['ban', 'id'])}</button>
           )

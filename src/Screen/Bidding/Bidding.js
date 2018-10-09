@@ -220,7 +220,7 @@ class Bidding extends React.Component {
       return null
     }
 
-		if (selectedPriceID === 1) {
+		if (selectedPriceID === 1 || selectedPriceID === 5) {
       this.props.setIsLoading(true)
       const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
       const productRef = productsRef.child(selectedPriceID)
