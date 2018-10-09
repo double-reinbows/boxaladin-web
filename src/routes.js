@@ -32,6 +32,10 @@ import ResetPassword from './Screen/ResetPassword/ResetPassword';
 import ClaimFreePulsa from './Screen/Game/ClaimFreePulsa';
 import About from './Screen/About/About';
 
+
+//page non login
+import Mlogin from './Screen/Mobile/OpenPage/Login';
+import Mregister from './Screen/Mobile/OpenPage/Register'
 //mobile
 import MobileMenuDompetAladin from './Screen/Mobile/Home/Top/DompetAladin'
 import MobileKey from './Screen/Mobile/DompetAladin/AladinKeys'
@@ -71,6 +75,7 @@ class RouteList extends Component {
               <div className = "bodyContainer">
                 <Route exact path="/" component={Home} />
                 <Route exact path="/home" component={Home} />
+
                 <Route exact path='/layanan' component={Layanan} />
                 <PrivateRoute exact path="/me" component={User} />
                 <PrivateRoute exact path="/tabsinvoice" component={TabsInvoice} />
@@ -88,6 +93,8 @@ class RouteList extends Component {
                 <Route exact path="/requestresetpassword" component={RequestResetPassword } />
                 <Route exact path="/resetpassword/:email/:email_token" component={ResetPassword}/>
 
+                <Route exact path="/mlogin" component={Mlogin} />
+                <Route exact path="/mregister" component={Mregister} />
                 <PrivateRoute exact path="/mme" component={MobileProfile} />
                 <PrivateRoute exact path="/mdompetwallet" component={ MobileWallet } />
                 <PrivateRoute exact path="/mdompetkey" component={ MobileKey } />
