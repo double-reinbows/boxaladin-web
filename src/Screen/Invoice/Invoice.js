@@ -1,27 +1,36 @@
-import React from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Table, Button } from 'reactstrap';
 import {withRouter} from 'react-router-dom'
 import moment from 'moment'
-class Invoice extends React.Component {
+import axios from 'axios'
+import HelperAxios from '../../utils/axios'
+import envChecker from '../../utils/envChecker'
+class Invoice extends Component {
   constructor(props) {
     super(props)
-    this.toggle = this.toggle.bind(this);
     this.state = {
-      activeTab: '1'
+      activeTab: '1',
+      transaction: [],
+      pages: [],
+      pageCount: 0,
+      pageNumber: 1
     };
   }
 
-  toggle(tab) {
-    if (this.state.activeTab !== tab) {
-      this.setState({
-        activeTab: tab
-      });
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.transaction.length === 0) {
+      const {userTransactions} = this.props
+      return this.setState({
+        transaction: userTransactions.transaction,
+        pages: userTransactions.pages,
+        pageCount: userTransactions.pageCount,
+      })
     }
   }
 
   showInvoice() {
-    let transactions = this.props.userTransactions.filter(data => data.description !== 'FREE')
+    const {transaction} = this.state
     return (
       <Table>
         <thead>
@@ -36,7 +45,7 @@ class Invoice extends React.Component {
           </tr>
         </thead>
         <tbody>
-        {transactions.map((data, idx) => {
+        {transaction.map((data, idx) => {
             if (!data.createdAt || !data.payment || data.payment.invoiceId === 'null'){
               return null
             } else {
@@ -71,6 +80,67 @@ class Invoice extends React.Component {
     )
   }
 
+  pagination = () => {
+    const { pages, pageCount} = this.state
+    if (pages.length <= 50) {
+      return null
+    }
+    return (
+      <div className="pagination-container">
+        <button className="pagination-button" onClick={() => this.firstOrLast(1)}>First</button>
+        {pages.map((data, index) => {
+          return (
+            <button 
+            className={`pagination-button ${this.checkActive(data.number)}`} 
+            onClick={() => this.changePage(data.url, data.number)}
+            key={index} 
+            >
+            {data.number}
+            </button>
+          )
+        })}
+        <button className="pagination-button" onClick={() => this.firstOrLast(pageCount)}>Last</button>
+      </div>
+    )
+  }
+
+  checkActive = (value) => {
+    const { pageNumber } = this.state
+    if (value === pageNumber) {
+      return 'pagination-active'
+    }
+  }
+
+  changePage = (url, pageNumber) => {
+    axios({
+      method: 'GET',
+      url: `${envChecker('api')}${url}`,
+      headers: {
+        token: localStorage.getItem('token'),
+      }
+		})
+    .then(({data}) => {
+      this.setState({
+        pageNumber: pageNumber,
+        transaction: data.transaction,
+        pages: data.pages
+      })
+    })
+    .catch(err => console.log(err))
+  }
+
+  firstOrLast = (page) => {
+    HelperAxios('GET', `transaction/user?page=${page}&limit=50`)
+    .then(({data}) => {
+      this.setState({
+        transaction: data.transaction,
+        pages: data.pages,
+        pageNumber: page
+      })
+    })
+    .catch(err => console.log(err))
+  }
+
   showMetodePembayaran(id) {
     this.props.history.push('/invoice', {
       id,
@@ -83,12 +153,11 @@ class Invoice extends React.Component {
     <div className="invoice">
       <div className="invoice__container">
         {this.showInvoice()}
+        {this.pagination()}
       </div>
     </div>
     )
   }
-
-
 }
 
 const mapStateToProps = (state) => {

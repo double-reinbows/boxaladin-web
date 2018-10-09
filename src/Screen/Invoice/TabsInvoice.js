@@ -27,7 +27,7 @@ class TabsInvoice extends React.Component {
       });
     }
   }
-
+  
 
   componentDidMount() {
     const {getUserTopupTransactions, getUserTransactions, getUserWalletTransactions } = this.props
@@ -42,15 +42,10 @@ class TabsInvoice extends React.Component {
         <Nav tabs>
           <NavItem className="invoice__tab">
             <NavLink
-            activeStyle={{
-              fontWeight: 'bold',
-              backgroundColor: 'yellow',
-              border:"10px"
-            }}
               className={classnames({ active: this.state.activeTab === '1' })}
               onClick={() => { this.toggle('1'); }}
             >
-              <a className="invoice__active">Invoice Pulsa/Data</a>
+              Invoice Pulsa/Data
             </NavLink>
           </NavItem>
           <NavItem className="invoice__tab">
@@ -99,7 +94,7 @@ const mapDispatchToProps = (dispatch) => {
     getUserTransactions: () => dispatch(getUserTransactions()),
     getUserTopupTransactions: () => dispatch(getUserTopupTransactions()),
     getUserWalletTransactions: () => dispatch(getUserWalletTransactions())
-  }
+    }
 }
 const enhance = connect(mapStateToProps, mapDispatchToProps);
 const connectComponent = enhance(withRouter(TabsInvoice))
