@@ -72,6 +72,19 @@
         }
       }
     }
+    &__pln{
+      font-size: 20px;
+      width: 50%;
+      text-align: center;
+      &__input{
+        margin-right: 2%;
+        padding: 2px;
+      }
+      &__button{
+        border-radius: 5px;
+        background-color: #FFCD05;
+      }
+    }
     &__check{
       text-align: right;
       padding-right: 4%;

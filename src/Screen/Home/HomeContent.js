@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import envChecker from '../../utils/envChecker'
 import ProviderModal from './Modal/ProviderModal';
 import ModalConfirm from './Modal/ModalConfirm'
 import ModalBid from '../Components/Modal/ModalBid'
+import { setIsLoading } from '../../actions';
+import Loading from '../Components/Loading';
+// import ModalPln from './Modal/ModalPln'
 class HomeContent extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +22,11 @@ class HomeContent extends Component {
       brand: '',
       brandName: '',
       brandId: 0,
-      type: ''
+      type: '',
+      typeBuy: '',
+      inputPln: "",
+      success: false,
+      notif: '',
     }
   }
 
@@ -34,12 +41,13 @@ class HomeContent extends Component {
     })
   }
 
-  toggleConfirm = (id, displayPrice) => {
+  toggleConfirm = (id, displayPrice, typeBuy) => {
     this.setState({
       openModal: !this.state.openModal,
       priceId: id,
       displayPrice,
-      type: 'price'
+      type: 'price',
+      typeBuy
     })
   }
 
@@ -83,7 +91,7 @@ renderModalBid() {
       return(
         price.map((data, index) => {
           return(
-            <button key={index} onClick={() => this.toggleConfirm(data.id, data.displayPrice)} className="homecontent__bottom__pulsa__button baBackground">{data.displayPrice.toLocaleString(['ban', 'id'])}</button>
+            <button key={index} onClick={() => this.toggleConfirm(data.id, data.displayPrice, 'buy pulsa')} className="homecontent__bottom__pulsa__button baBackground">{data.displayPrice.toLocaleString(['ban', 'id'])}</button>
           )
         })
       )
@@ -113,6 +121,64 @@ renderModalBid() {
         })
       )
     }
+  }
+
+  renderPln = () => {
+    return (
+      <Fragment>
+        <h2 className="homecontent__bottom__pulsa__label">Masukkan No PLN Anda</h2>
+        <div className="homecontent__bottom__pulsa">
+          <div className="homecontent__bottom__pln">
+            <input className={`homecontent__bottom__pln__input ${this.checkSuccess()}`} value={this.state.inputPln} onChange={this.checkPlnNumber}/>
+            <button disabled={this.state.disabledCheck} className="homecontent__bottom__pln__button baButton" onClick={this.submitPlnNumber}>Lanjut</button>
+            <br/>
+            <label>{this.state.notif}</label>
+          </div>
+        </div>
+      </Fragment>
+    )
+  }
+
+  checkSuccess = ()  => {
+    const { success } = this.state
+    if (success) {
+      return ("isValid")
+    } else {
+      return ("isInvalid")
+    }
+  }
+
+  checkPlnNumber = (e) => {
+    this.setState({
+      inputPln: e.target.value,
+      disabledCheck: false
+    })
+  }
+
+  submitPlnNumber = () =>{
+    this.props.setIsLoading(true)
+    axios({
+      method: 'POST',
+      url: `${envChecker('api')}/checkuserpln`,
+      data: {
+        tokenNumber : this.state.inputPln
+      }
+    })
+    .then(response=> {
+      console.log('response', response)
+      this.props.setIsLoading(false)
+      if (response.data.message._text === "SUCCESS"){
+        this.setState({
+          success:true,
+          button:false
+        })
+      } else {
+        this.setState({
+          notif: 'No Yang Anda Masukkan Salah',
+          success: false
+        })
+      }
+    })
   }
 
   getPrice = () => {
@@ -162,8 +228,36 @@ renderModalBid() {
             </div>
           </div>
           )
+      case 3:
+      return (
+        <div>
+          {this.plnSuccess()}
+        </div>
+        )
       default:
         return tab
+    }
+  }
+
+  plnSuccess = () => {
+    const {price, success} = this.state
+    if (success) {
+      return(
+      <Fragment>
+        <h2 className="homecontent__bottom__pulsa__label">Pilih Token Listrikmu</h2>
+        <div className="homecontent__bottom__pulsa">
+          {price.map((data, index) => {
+          return(
+            <button key={index} onClick={() => this.toggleConfirm(data.id, data.displayPrice, 'buy pln')} className="homecontent__bottom__pulsa__button baBackground">{data.displayPrice.toLocaleString(['ban', 'id'])}</button>
+          )
+          })}
+        </div>
+      </Fragment>
+      )
+    } else {
+      return (
+        this.renderPln()
+      )
     }
   }
 
@@ -186,12 +280,14 @@ renderModalBid() {
     if (this.state.openModal) {
       return (
         <ModalConfirm
+          typeBuy ={this.state.typeBuy}
           firebase= {envChecker('price')}
           displayPrice={this.state.displayPrice}
           open={this.state.openModal}
           toggle={this.toggleConfirm}
           priceId={this.state.priceId}
           type={this.state.type}
+          pln={this.state.inputPln}
         />
       )
     }
@@ -218,6 +314,7 @@ renderModalBid() {
         <div className='home-tab-container'>
           <button className={`${this.checkActive(1)} home-tab`} onClick={() => this.changeTab(1)}>PULSA</button>
           <button className={`${this.checkActive(2)} home-tab`} onClick={() => this.changeTab(2)}>PAKET DATA</button>
+          <button className={`${this.checkActive(3)} home-tab`} onClick={() => this.changeTab(3)}>TOKEN LISTRIK</button>
         </div>
           {this.renderTab()}
           <div className="homecontent__bottom__check">
@@ -227,6 +324,7 @@ renderModalBid() {
         <ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
         {this.renderModalConfirm()}
         {this.renderModalBid()}
+        <Loading isLoading={ this.props.isLoading } />
       </div>
     )
   }
@@ -235,11 +333,13 @@ renderModalBid() {
 const mapStateToProps = (state) => {
   return {
     userInfo: state.userReducer.userInfo,
+    isLoading: state.loadingReducer.isLoading
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    setIsLoading: (bool) => dispatch(setIsLoading(bool))
   }
 }
 

@@ -12,6 +12,13 @@ class InsertPln extends Component {
     this.state = {  
       modalPayment: false
     }
+    this.handleBack()
+  }
+
+  handleBack = () => {
+    if (this.props.history.action === 'POP') {
+      this.props.history.replace('/')
+    }
   }
 
   InsertPln = () => {
@@ -62,7 +69,6 @@ class InsertPln extends Component {
         return (
           <ModalPayment
             typeBuy='buy pln'
-            // id={this.props.location.state.id}
             fixedendpoint='v2/virtualaccount'
             retailendpoint='v2/payment'
             walletendpoint='v2/walletpulsa'
@@ -70,9 +76,10 @@ class InsertPln extends Component {
             isOpen={this.state.modalPayment}
             amount={this.props.location.state.aladinPrice}
             toggle={this.togglePayment}
-            // brand={this.state.brand}
-            // brandId={this.state.brandId}
+            brand='Pln'
+            brandId={12}
             endpoint='transaction'
+            pln={this.props.location.state.pln}
         />
         )
       }
