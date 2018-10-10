@@ -43,7 +43,7 @@ export default class MobileHome extends Component {
         <div className='mobile-home-tab-container'>
           <button className={`${this.checkActive(1)} mobile-home-tab`} onClick={() => this.changeTab(1)}>PULSA</button>
           <button className={`${this.checkActive(2)} mobile-home-tab`} onClick={() => this.changeTab(2)}>PAKET DATA</button>
-          <button className={`${this.checkActive(3)} mobile-home-tab`} onClick={() => this.changeTab(3)}>TOKEN LISTRIK</button>
+          <button className={`${this.checkActive(3)} mobile-home-tab`} onClick={() => this.changeTab(3)}>TOKEN PLN</button>
         </div>
         {this.renderTab()}
         <h2 className="mobile__pulsa__label">Cara Kerja</h2>

@@ -12,12 +12,13 @@ class Price extends Component {
       openModal: false,
       inputPln: "",
       success: false,
-      button:true,
+      disabledBtn:true,
       disabledCheck:true,
       priceId: 0,
       price: '',
       displayPrice: 0,
       notif: '',
+      notif2: '',
       type: ''
     }
   }
@@ -37,6 +38,13 @@ class Price extends Component {
       type: 'price'
     })
   }
+
+  NextBtn = () => {
+    this.setState({
+      success: true
+    })
+  }
+
   submitPlnNumber = () =>{
     // this.props.setIsLoading(true)
     axios({
@@ -51,12 +59,13 @@ class Price extends Component {
     //   this.props.setIsLoading(false)
       if (response.data.message._text === "SUCCESS"){
         this.setState({
-          success:true,
-          button:false 
+          // success:true,
+          disabledBtn:false 
         })
       } else {
         this.setState({
-          notif: 'No Yang Anda Masukkan Salah'
+          notif: 'No Yang Anda Masukkan Salah',
+          success: false
         })
       }
     })
@@ -86,17 +95,29 @@ class Price extends Component {
         <h1>Loading</h1>
       )
     } else {
-      return(
-        <Fragment>
-        <label>No PLN Kamu : {this.state.inputPln}</label>
-        <br/>
-        {priceData.map((data, index) => {
-          return(
+      return (
+        this.props.priceData.filter(data => {
+          return data.id !== 1 && data.id !== 3
+        })
+        .map ((data, index) => {
+          console.log('tes', data)
+          return (
             <button key={index} onClick={() => this.toggleConfirm(data.id, data.displayPrice)} className="mobile__pulsa__button background">{data.displayPrice.toLocaleString(['ban', 'id'])}</button>
           )
-        })}
-      </Fragment>
-      )
+          })
+        )
+
+      // return(
+      //   <Fragment>
+      //   <label>No PLN Kamu : {this.state.inputPln}</label>
+      //   <br/>
+      //   {priceData.map((data, index) => {
+      //     return(
+      //       <button key={index} onClick={() => this.toggleConfirm(data.id, data.displayPrice)} className="mobile__pulsa__button background">{data.displayPrice.toLocaleString(['ban', 'id'])}</button>
+      //     )
+      //   })}
+      // </Fragment>
+      // )
     }
   }
 
@@ -118,27 +139,35 @@ class Price extends Component {
     return (
       <div className="mobile__pulsa__pln">
         <input className={`modal__confirm__pln__input ${this.checkSuccess()}`} value={this.state.inputPln} onChange={this.checkPlnNumber}/>
-          <button disabled={this.state.disabledCheck} className="mobile__pulsa__pln__button" onClick={this.submitPlnNumber}>Check Number</button>
+        <button disabled={this.state.disabledCheck} className="mobile__pulsa__pln__button" onClick={this.submitPlnNumber}>Check No ID</button>
+          <br/>
+          <br/>
+          <button disabled={this.state.disabledBtn} className="mobile__pulsa__pln__button" onClick={this.NextBtn}>Lanjut</button>
+        <br/>
+        <label>{this.state.notif}</label>
+        <label>{this.state.alert}</label>
       </div>
     )
   }
 
   render() {
+    console.log('props tokenpln', this.props.priceData)
     return (
       <div>
         <div className='mobile-home-image-container'>
           <img alt='Telkomsel Icon' className='mobile-home-image' src="https://s3-ap-southeast-1.amazonaws.com/iconpulsa/Telkomsel.svg"/>
        </div>
-        <h2 className="mobile__pulsa__label">Pilih Nominal Token mu</h2>
+        <h2 className="mobile__pulsa__label">Masukan Nomor ID Listrik mu</h2>
         {this.changeComponentPln()}
         <ModalConfirm
-          typeBuy='buy pulsa'
+          typeBuy='buy pln'
           firebase= {envChecker('price')}
           displayPrice={this.state.displayPrice === undefined ? 0 : this.state.displayPrice}
           open={this.state.openModal}
           toggle={this.toggleConfirm}
           priceId={this.state.priceId}
           type={this.state.type}
+          pln={this.state.inputPln}
         />
       </div>
     );
