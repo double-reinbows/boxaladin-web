@@ -7,7 +7,7 @@ import classnames from 'classnames';
 import Invoice from './Invoice'
 import TopUpInvoice from './TopupInvoice'
 import WalletInvoice from'./TopupWalletInvoice'
-import PlnInvoice from'./PlnInvoice'
+// import PlnInvoice from'./PlnInvoice'
 // import { getUserTransactions } from '../../actions/transactionAction'
 // import { getUserTopupTransactions } from '../../actions/topupAction'
 // import { getUserWalletTransactions } from '../../actions/walletTransactionAction'
@@ -65,14 +65,14 @@ class TabsInvoice extends React.Component {
               Invoice Uang
             </NavLink>
           </NavItem>
-          <NavItem className="invoice__tab">
+          {/* <NavItem className="invoice__tab">
             <NavLink
               className={classnames({ active: this.state.activeTab === '4' })}
               onClick={() => { this.toggle('4'); }}
             >
               Invoice PLN
             </NavLink>
-          </NavItem>
+          </NavItem> */}
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
           <TabPane tabId="1">
@@ -84,9 +84,9 @@ class TabsInvoice extends React.Component {
           <TabPane tabId="3">
             <WalletInvoice/>
           </TabPane>
-          <TabPane tabId="4">
+          {/* <TabPane tabId="4">
             <PlnInvoice/>
-          </TabPane>
+          </TabPane> */}
         </TabContent>
       </div>
     )
