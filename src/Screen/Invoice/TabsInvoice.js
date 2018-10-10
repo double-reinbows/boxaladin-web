@@ -29,12 +29,12 @@ class TabsInvoice extends React.Component {
   }
   
 
-  componentDidMount() {
-    const {getUserTopupTransactions, getUserTransactions, getUserWalletTransactions } = this.props
-    getUserTransactions()
-    getUserTopupTransactions()
-    getUserWalletTransactions()
-  }
+  // componentDidMount() {
+  //   const {getUserTopupTransactions, getUserTransactions, getUserWalletTransactions } = this.props
+  //   getUserTransactions()
+  //   getUserTopupTransactions()
+  //   getUserWalletTransactions()
+  // }
 
   render() {
     return (

@@ -18,18 +18,23 @@ class Invoice extends Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.transaction.length === 0) {
-      const {userTransactions} = this.props
-      return this.setState({
-        transaction: userTransactions.transaction,
-        pages: userTransactions.pages,
-        pageCount: userTransactions.pageCount,
-      })
-    }
+  componentDidMount() {
+    this.getUserInvoice()
   }
 
-  showInvoice() {
+  getUserInvoice = () => {
+    HelperAxios('GET', 'transaction/user')
+    .then(response => {
+      this.setState({
+        transaction: response.data.transaction,
+        pages: response.data.pages,
+        pageCount: response.data.pageCount
+      })
+    })
+    .catch(err => console.log(err))
+  }
+
+  showInvoice = () => {
     const {transaction} = this.state
     return (
       <Table>
@@ -82,7 +87,7 @@ class Invoice extends Component {
 
   pagination = () => {
     const { pages, pageCount} = this.state
-    if (pages.length <= 50) {
+    if (pageCount <= 1) {
       return null
     }
     return (
@@ -114,7 +119,7 @@ class Invoice extends Component {
   changePage = (url, pageNumber) => {
     axios({
       method: 'GET',
-      url: `${envChecker('api')}${url}`,
+      url: `${envChecker('api')}/transaction/user?page=${pageNumber}&limit=20`,
       headers: {
         token: localStorage.getItem('token'),
       }
@@ -130,7 +135,7 @@ class Invoice extends Component {
   }
 
   firstOrLast = (page) => {
-    HelperAxios('GET', `transaction/user?page=${page}&limit=50`)
+    HelperAxios('GET', `transaction/user?page=${page}&limit=20`)
     .then(({data}) => {
       this.setState({
         transaction: data.transaction,
@@ -149,6 +154,7 @@ class Invoice extends Component {
   }
 
   render() {
+    console.log(this.state.transaction)
     return (
     <div className="invoice">
       <div className="invoice__container">
