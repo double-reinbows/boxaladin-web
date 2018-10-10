@@ -23,7 +23,7 @@ class Invoice extends Component {
   }
 
   getUserInvoice = () => {
-    HelperAxios('GET', 'pln/user')
+    HelperAxios('GET', 'transaction/user')
     .then(response => {
       this.setState({
         transaction: response.data.transaction,
