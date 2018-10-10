@@ -7,9 +7,10 @@ import classnames from 'classnames';
 import Invoice from './Invoice'
 import TopUpInvoice from './TopupInvoice'
 import WalletInvoice from'./TopupWalletInvoice'
-import { getUserTransactions } from '../../actions/transactionAction'
-import { getUserTopupTransactions } from '../../actions/topupAction'
-import { getUserWalletTransactions } from '../../actions/walletTransactionAction'
+import PlnInvoice from'./PlnInvoice'
+// import { getUserTransactions } from '../../actions/transactionAction'
+// import { getUserTopupTransactions } from '../../actions/topupAction'
+// import { getUserWalletTransactions } from '../../actions/walletTransactionAction'
 
 class TabsInvoice extends React.Component {
   constructor(props) {
@@ -64,6 +65,14 @@ class TabsInvoice extends React.Component {
               Invoice Uang
             </NavLink>
           </NavItem>
+          <NavItem className="invoice__tab">
+            <NavLink
+              className={classnames({ active: this.state.activeTab === '4' })}
+              onClick={() => { this.toggle('4'); }}
+            >
+              Invoice PLN
+            </NavLink>
+          </NavItem>
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
           <TabPane tabId="1">
@@ -75,6 +84,9 @@ class TabsInvoice extends React.Component {
           <TabPane tabId="3">
             <WalletInvoice/>
           </TabPane>
+          <TabPane tabId="4">
+            <PlnInvoice/>
+          </TabPane>
         </TabContent>
       </div>
     )
@@ -83,17 +95,17 @@ class TabsInvoice extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    userTransactions: state.transactionReducer.userTransactions,
-    userTopupTransactions: state.topupReducer.userTopupTransactions,
-    userWalletTransactions: state.walletReducer.userWalletTransactions
+    // userTransactions: state.transactionReducer.userTransactions,
+    // userTopupTransactions: state.topupReducer.userTopupTransactions,
+    // userWalletTransactions: state.walletReducer.userWalletTransactions
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUserTransactions: () => dispatch(getUserTransactions()),
-    getUserTopupTransactions: () => dispatch(getUserTopupTransactions()),
-    getUserWalletTransactions: () => dispatch(getUserWalletTransactions())
+    // getUserTransactions: () => dispatch(getUserTransactions()),
+    // getUserTopupTransactions: () => dispatch(getUserTopupTransactions()),
+    // getUserWalletTransactions: () => dispatch(getUserWalletTransactions())
     }
 }
 const enhance = connect(mapStateToProps, mapDispatchToProps);

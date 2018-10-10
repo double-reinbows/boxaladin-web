@@ -17,6 +17,7 @@ payment: [],
 */
 
 const Guide = (props) => {
+  console.log('props guide', props)
   return (
     <TabContent activeTab={props.activeTab}>
       <TabPane tabId="1">
@@ -351,6 +352,28 @@ const Guide = (props) => {
           </li>
           <li>
             Kode pembayaran tersebut adalah {props.invoice.payment.availableretail}
+          </li>
+          <li>
+            Detail pembayaran akan keluar di sistem alfamart dan pembayaran sudah bisa dilakukan
+          </li>
+        </ol>
+      </div>
+      </TabPane>
+      <TabPane tabId="6">
+      <center><h1 style = { { padding: '10px'} }><b>PLN</b></h1></center>
+      <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
+        <ol>
+          <li>
+            Konfirmasi ke kasir alfamart untuk melalukan pembayaran ke "XENDIT"
+          </li>
+          <li>
+            Staff kasir alfamart akan mencarikan penerima pembayaran yaitu "XENDIT" di sistem alfamart
+          </li>
+          <li>
+            Setelah penerima pembayaran di temukan oleh sistem alfamart, staff kasih akan menanyakan code pembayaran yang harus di input ke sistem alfamart.
+          </li>
+          <li>
+            Kode pembayaran tersebut adalah {props.invoice.tokenPln}
           </li>
           <li>
             Detail pembayaran akan keluar di sistem alfamart dan pembayaran sudah bisa dilakukan

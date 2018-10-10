@@ -1,22 +1,17 @@
-//@flow
-import React from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {
-  Table,
-  Button
-} from 'reactstrap'
+import { Table, Button } from 'reactstrap';
 import {withRouter} from 'react-router-dom'
 import moment from 'moment'
 import axios from 'axios'
-import envChecker from '../../utils/envChecker'
 import HelperAxios from '../../utils/axios'
-
-class TopupInvoice extends React.Component <Props> {
+import envChecker from '../../utils/envChecker'
+class Invoice extends Component {
   constructor(props) {
     super(props)
     this.state = {
       activeTab: '1',
-      topup: [],
+      transaction: [],
       pages: [],
       pageCount: 0,
       pageNumber: 1
@@ -28,33 +23,35 @@ class TopupInvoice extends React.Component <Props> {
   }
 
   getUserInvoice = () => {
-    HelperAxios('GET', 'topup/user')
+    HelperAxios('GET', 'pln/user')
     .then(response => {
       this.setState({
-        topup: response.data.transaction,
+        transaction: response.data.transaction,
         pages: response.data.pages,
-        pageCount: response.data.pageCount,
+        pageCount: response.data.pageCount
       })
     })
     .catch(err => console.log(err))
   }
 
-	showInvoice() {
-    const {topup} = this.state
+  showInvoice = () => {
+    const {transaction} = this.state
     return (
       <Table>
         <thead>
-          <tr>
+        <tr>
             <th>No.</th>
-            <th>Key</th>
+            <th>Tanggal</th>
+            <th>Barang</th>
             <th>Nominal Transfer</th>
+            <th>No PLN</th>
             <th>Status</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          {topup.map((data, idx) => {
-            if (!data.createdAt || !data.createdAt || !data.payment || data.payment.invoiceId === 'null'){
+        {transaction.map((data, idx) => {
+            if (!data.createdAt || !data.payment || data.payment.invoiceId === 'null'){
               return null
             } else {
               const time = moment().toISOString()
@@ -62,20 +59,22 @@ class TopupInvoice extends React.Component <Props> {
               if (data.payment.status === 'CANCELLED'){
                 statusComponent = <td>{'CANCELLED'}</td>
               } else if (data.payment.status === 'PAID') {
-                statusComponent = <td>{'PAID'}</td>
+                statusComponent = <td><Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Lihat</Button></td>
+              } else if (data.payment.status !== 'PAID' && data.payment.status !== 'CANCELLED' && data.payment.status !== 'PENDING'){
+                statusComponent = <td>{data.payment.status}</td>
               } else if (time <= data.payment.expiredAt){
                 statusComponent = <td><Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button></td>
               } else if (time >= data.payment.expiredAt){
-                statusComponent = <td>Expired</td>
-              } else {
                 statusComponent = <td>Expired</td>
               }
 
               return(
                 <tr key={idx}>
                   <th scope="row">{idx+1}</th>
-                  <td>{data.key.keyAmount}</td>
+                  <td>{moment(data.createdAt, moment.ISO_8601).format('L, h:mm:ss a')}</td>
+                  <td>{data.description}</td>
                   <td>{`Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}`}</td>
+                  <td>{ data.number ? data.number : (<h3>Anda Tidak Memasukkan no Hp</h3>) }</td>
                   {statusComponent}
                 </tr>
               )
@@ -120,7 +119,7 @@ class TopupInvoice extends React.Component <Props> {
   changePage = (url, pageNumber) => {
     axios({
       method: 'GET',
-      url: `${envChecker('api')}/topup/user?page=${pageNumber}&limit=20`,
+      url: `${envChecker('api')}/transaction/user?page=${pageNumber}&limit=20`,
       headers: {
         token: localStorage.getItem('token'),
       }
@@ -128,7 +127,7 @@ class TopupInvoice extends React.Component <Props> {
     .then(({data}) => {
       this.setState({
         pageNumber: pageNumber,
-        topup: data.transaction,
+        transaction: data.transaction,
         pages: data.pages
       })
     })
@@ -136,10 +135,10 @@ class TopupInvoice extends React.Component <Props> {
   }
 
   firstOrLast = (page) => {
-    HelperAxios('GET', `topup/user?page=${page}&limit=20`)
+    HelperAxios('GET', `transaction/user?page=${page}&limit=20`)
     .then(({data}) => {
       this.setState({
-        topup: data.transaction,
+        transaction: data.transaction,
         pages: data.pages,
         pageNumber: page
       })
@@ -150,25 +149,25 @@ class TopupInvoice extends React.Component <Props> {
   showMetodePembayaran(id) {
     this.props.history.push('/invoice', {
       id,
-      endpoint: 'topup'
+      endpoint: 'transaction'
     })
   }
 
   render() {
     return (
-      <div className="invoice">
-        <div className="invoice__container">
-          { this.showInvoice() }
-          {this.pagination()}
-        </div>
+    <div className="invoice">
+      <div className="invoice__container">
+        {this.showInvoice()}
+        {this.pagination()}
       </div>
+    </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    // userTopupTransactions: state.topupReducer.userTopupTransactions
+    userTransactions: state.transactionReducer.userTransactions
   }
 }
 
@@ -176,7 +175,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
   }
 }
-
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(withRouter(TopupInvoice))
+const enhance = connect(mapStateToProps, mapDispatchToProps);
+const connectComponent = enhance(withRouter(Invoice))
 
 export default connectComponent

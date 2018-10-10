@@ -72,7 +72,7 @@ class Invoice extends Component {
                 <tr key={idx}>
                   <th scope="row">{idx+1}</th>
                   <td>{moment(data.createdAt, moment.ISO_8601).format('L, h:mm:ss a')}</td>
-                  <td>{data.product.productName}</td>
+                  <td>{data.description}</td>
                   <td>{`Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}`}</td>
                   <td>{ data.number ? data.number : (<h3>Anda Tidak Memasukkan no Hp</h3>) }</td>
                   {statusComponent}
@@ -154,7 +154,6 @@ class Invoice extends Component {
   }
 
   render() {
-    console.log(this.state.transaction)
     return (
     <div className="invoice">
       <div className="invoice__container">

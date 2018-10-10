@@ -91,6 +91,7 @@ class ModalPayment extends Component{
         bankCode: bank,
         amount: amount,
         phoneNumber: pln,
+        type: 'pln'
       }
     }
   }

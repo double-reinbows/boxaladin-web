@@ -31,6 +31,7 @@ class HomeContent extends Component {
   }
 
   componentDidMount() {
+    this.props.setIsLoading(false)
     this.getPrice()
     this.getBrand()
   }
