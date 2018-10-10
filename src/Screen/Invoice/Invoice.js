@@ -18,18 +18,23 @@ class Invoice extends Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.transaction.length === 0) {
-      const {userTransactions} = this.props
-      return this.setState({
-        transaction: userTransactions.transaction,
-        pages: userTransactions.pages,
-        pageCount: userTransactions.pageCount,
-      })
-    }
+  componentDidMount() {
+    this.getUserInvoice()
   }
 
-  showInvoice() {
+  getUserInvoice = () => {
+    HelperAxios('GET', 'pln/user')
+    .then(response => {
+      this.setState({
+        transaction: response.data.transaction,
+        pages: response.data.pages,
+        pageCount: response.data.pageCount
+      })
+    })
+    .catch(err => console.log(err))
+  }
+
+  showInvoice = () => {
     const {transaction} = this.state
     return (
       <Table>
@@ -39,7 +44,7 @@ class Invoice extends Component {
             <th>Tanggal</th>
             <th>Barang</th>
             <th>Nominal Transfer</th>
-            <th>No Tujuan</th>
+            <th>No PLN</th>
             <th>Status</th>
             <th></th>
           </tr>
@@ -54,7 +59,7 @@ class Invoice extends Component {
               if (data.payment.status === 'CANCELLED'){
                 statusComponent = <td>{'CANCELLED'}</td>
               } else if (data.payment.status === 'PAID') {
-                statusComponent = <td>{'SUKSES'}</td>
+                statusComponent = <td><Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Lihat</Button></td>
               } else if (data.payment.status !== 'PAID' && data.payment.status !== 'CANCELLED' && data.payment.status !== 'PENDING'){
                 statusComponent = <td>{data.payment.status}</td>
               } else if (time <= data.payment.expiredAt){
@@ -67,7 +72,7 @@ class Invoice extends Component {
                 <tr key={idx}>
                   <th scope="row">{idx+1}</th>
                   <td>{moment(data.createdAt, moment.ISO_8601).format('L, h:mm:ss a')}</td>
-                  <td>{data.product.productName}</td>
+                  <td>{data.description}</td>
                   <td>{`Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}`}</td>
                   <td>{ data.number ? data.number : (<h3>Anda Tidak Memasukkan no Hp</h3>) }</td>
                   {statusComponent}
@@ -82,7 +87,7 @@ class Invoice extends Component {
 
   pagination = () => {
     const { pages, pageCount} = this.state
-    if (pages.length <= 50) {
+    if (pageCount <= 1) {
       return null
     }
     return (
@@ -114,7 +119,7 @@ class Invoice extends Component {
   changePage = (url, pageNumber) => {
     axios({
       method: 'GET',
-      url: `${envChecker('api')}${url}`,
+      url: `${envChecker('api')}/transaction/user?page=${pageNumber}&limit=20`,
       headers: {
         token: localStorage.getItem('token'),
       }
@@ -130,7 +135,7 @@ class Invoice extends Component {
   }
 
   firstOrLast = (page) => {
-    HelperAxios('GET', `transaction/user?page=${page}&limit=50`)
+    HelperAxios('GET', `transaction/user?page=${page}&limit=20`)
     .then(({data}) => {
       this.setState({
         transaction: data.transaction,

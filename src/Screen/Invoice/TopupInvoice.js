@@ -23,15 +23,20 @@ class TopupInvoice extends React.Component <Props> {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.topup.length === 0) {
-      const {userTopupTransactions} = this.props
-      return this.setState({
-        topup: userTopupTransactions.transaction,
-        pages: userTopupTransactions.pages,
-        pageCount: userTopupTransactions.pageCount,
+  componentDidMount() {
+    this.getUserInvoice()
+  }
+
+  getUserInvoice = () => {
+    HelperAxios('GET', 'topup/user')
+    .then(response => {
+      this.setState({
+        topup: response.data.transaction,
+        pages: response.data.pages,
+        pageCount: response.data.pageCount,
       })
-    }
+    })
+    .catch(err => console.log(err))
   }
 
 	showInvoice() {
@@ -83,7 +88,7 @@ class TopupInvoice extends React.Component <Props> {
 
   pagination = () => {
     const { pages, pageCount} = this.state
-    if (pages.length <= 50) {
+    if (pageCount <= 1) {
       return null
     }
     return (
@@ -115,7 +120,7 @@ class TopupInvoice extends React.Component <Props> {
   changePage = (url, pageNumber) => {
     axios({
       method: 'GET',
-      url: `${envChecker('api')}${url}`,
+      url: `${envChecker('api')}/topup/user?page=${pageNumber}&limit=20`,
       headers: {
         token: localStorage.getItem('token'),
       }
@@ -131,7 +136,7 @@ class TopupInvoice extends React.Component <Props> {
   }
 
   firstOrLast = (page) => {
-    HelperAxios('GET', `topup/user?page=${page}&limit=50`)
+    HelperAxios('GET', `topup/user?page=${page}&limit=20`)
     .then(({data}) => {
       this.setState({
         topup: data.transaction,
@@ -163,7 +168,7 @@ class TopupInvoice extends React.Component <Props> {
 
 const mapStateToProps = (state) => {
   return {
-    userTopupTransactions: state.topupReducer.userTopupTransactions
+    // userTopupTransactions: state.topupReducer.userTopupTransactions
   }
 }
 

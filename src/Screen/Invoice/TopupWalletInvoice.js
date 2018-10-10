@@ -23,15 +23,20 @@ class TopupInvoice extends Component<State, Props> {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.wallet.length === 0) {
-      const {userWalletTransactions} = this.props
-      return this.setState({
-        wallet: userWalletTransactions.transaction,
-        pages: userWalletTransactions.pages,
-        pageCount: userWalletTransactions.pageCount,
+  componentDidMount() {
+    this.getUserInvoice()
+  }
+
+  getUserInvoice = () => {
+    HelperAxios('GET', 'walletstatus')
+    .then(response => {
+      this.setState({
+        wallet: response.data.transaction,
+        pages: response.data.pages,
+        pageCount: response.data.pageCount
       })
-    }
+    })
+    .catch(err => console.log(err))
   }
 
 	showInvoice() {
@@ -81,7 +86,7 @@ class TopupInvoice extends Component<State, Props> {
 
   pagination = () => {
     const { pages, pageCount} = this.state
-    if (pages.length <= 50) {
+    if (pageCount <= 1) {
       return null
     }
     return (
@@ -113,7 +118,7 @@ class TopupInvoice extends Component<State, Props> {
   changePage = (url, pageNumber) => {
     axios({
       method: 'GET',
-      url: `${envChecker('api')}${url}`,
+      url: `${envChecker('api')}/walletstatus?page=${pageNumber}&limit=20`,
       headers: {
         token: localStorage.getItem('token'),
       }
@@ -129,7 +134,7 @@ class TopupInvoice extends Component<State, Props> {
   }
 
   firstOrLast = (page) => {
-    HelperAxios('GET', `walletstatus?page=${page}&limit=50`)
+    HelperAxios('GET', `walletstatus?page=${page}&limit=20`)
     .then(({data}) => {
       this.setState({
         wallet: data.transaction,
@@ -161,7 +166,7 @@ class TopupInvoice extends Component<State, Props> {
 
 const mapStateToProps = (state) => {
   return {
-    userWalletTransactions: state.walletReducer.userWalletTransactions
+    // userWalletTransactions: state.walletReducer.userWalletTransactions
   }
 }
 
