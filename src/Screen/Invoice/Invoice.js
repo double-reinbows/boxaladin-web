@@ -59,7 +59,8 @@ class Invoice extends Component {
               if (data.payment.status === 'CANCELLED'){
                 statusComponent = <td>{'CANCELLED'}</td>
               } else if (data.payment.status === 'PAID') {
-                statusComponent = <td><Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Lihat</Button></td>
+                statusComponent = <td>{'PAID'}</td>
+                // statusComponent = <td><Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Lihat</Button></td>
               } else if (data.payment.status !== 'PAID' && data.payment.status !== 'CANCELLED' && data.payment.status !== 'PENDING'){
                 statusComponent = <td>{data.payment.status}</td>
               } else if (time <= data.payment.expiredAt){
