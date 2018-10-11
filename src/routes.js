@@ -97,7 +97,9 @@ class RouteList extends Component {
 
               </div>
               <div className="footer__container">
-                <Footer />
+                <MediaQuery query="(min-device-width: 720px)">
+                  <Footer />
+                </MediaQuery> 
                 <FooterBot/>
               </div>
           </div>
