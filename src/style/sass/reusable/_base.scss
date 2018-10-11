@@ -76,3 +76,7 @@ input::-webkit-inner-spin-button {
 .ReactModal__Overlay--after-open{
   z-index: 20;
 }
+
+.slick-arrow{
+  display: none !important;
+}
