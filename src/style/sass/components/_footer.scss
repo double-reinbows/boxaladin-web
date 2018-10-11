@@ -53,11 +53,20 @@
       }
     }
     &__logo{
-      width: 20%;
+      width: 30%;
       display: flex;
       justify-content: space-around;
+      &__container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
       &__content{
         cursor: pointer;
+        &__wa{
+          width: 50px;
+          cursor: pointer;
+        }
       }
     }
   }
@@ -72,7 +81,7 @@
       }
     }
     &__logo{
-      width: 40%;
+      width: 55%;
     }
   }
 }
@@ -81,32 +90,12 @@
   .footer__info{
     &__button{
       &__content{
-        width: 100%;
-        font-size: 14px;
+        width: 70%;
+        font-size: 12px;
       }
     }
     &__logo{
-      width: 50%;
+      width: 70%;
     }
   }
 }
-
-
-// .btn {
-//   border: 1px solid black;
-//   background-color: yellowgreen;
-
-//   &-small {
-//     height: 24px;
-//   }
-//   &-medium {
-//     height: 32px;
-//   }
-//   &-large {
-//     height: 40px;
-//   }
-
-//   &-block {
-//     width: 100%;
-//   }
-// }
