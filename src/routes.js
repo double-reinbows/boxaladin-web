@@ -68,9 +68,9 @@ class RouteList extends Component {
       <div className="mainContainer">
         <Router>
           <div>
-          <MediaQuery query="(min-device-width: 720px)">
+          {/* <MediaQuery query="(min-device-width: 720px)"> */}
             <Header />
-            </MediaQuery>
+            {/* </MediaQuery> */}
             <MediaQuery query="(max-device-width: 720px)">
               <MobileMenuDompetAladin/>
             </MediaQuery>

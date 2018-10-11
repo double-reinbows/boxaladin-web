@@ -6,7 +6,7 @@ import {
   Nav,
   NavItem
 } from 'reactstrap';
-
+import MediaQuery from 'react-responsive';
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import {logoutAction} from '../../../actions'
@@ -84,10 +84,12 @@ class NavBar extends Component {
 
         <Navbar light expand="md" className="HeaderTopM">
 
-
+          <MediaQuery query="(min-device-width: 720px)">
           <Link onClick={e=>this.setState({_isResetText: true})} to="/home" className="HeaderTopM__logo">
             <img src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Logo/LogoBig.svg' alt="logo" className="BoxAladinLogo-Big" href="/home" />
           </Link>
+          </MediaQuery>
+
             {this.showRightButton()}
         </Navbar>
 
