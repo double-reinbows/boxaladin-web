@@ -43,13 +43,13 @@ class NavBar extends Component {
   showRightButton() {
     if (localStorage.getItem('token') !== null) {
       return (
-        <MediaQuery query="(min-device-width: 720px)">
+        // <MediaQuery query="(min-device-width: 720px)">
         <Nav navbar className="HeaderTop__Right" style={{  width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
           <NavItem>
             <DropdownUser isResetText={this.state._isResetText} onResetCalback={()=>this.setState({_isResetText: false})}/>
           </NavItem>
         </Nav>
-        </MediaQuery>
+        // </MediaQuery>
       )
     } else {
       return (
