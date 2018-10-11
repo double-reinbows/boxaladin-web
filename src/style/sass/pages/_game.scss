@@ -65,7 +65,7 @@
 	&__prize{
 		margin-top: 5%;
 		text-align: center;
-		font-family: Helvetica;
+		font-family: 'Roboto', sans-serif;
 			&__textDistance{
 				display: flex;
 				flex-direction: column;
@@ -220,7 +220,7 @@
 		&__text{
 			margin: 2.5%;
 			text-align: center;
-			font-family: Helvetica;
+			font-family: 'Roboto', sans-serif;
 			// color: var(--color-yellow-1);
 			font-size: 20px;
 			font-weight: 500;
@@ -253,7 +253,7 @@
 	.gameModal__Container__text {
         margin: 2.5%;
         text-align: center;
-        font-family: Helvetica;
+        font-family: 'Roboto', sans-serif;
         font-size: 20px;
         font-weight: 500;
         line-height: 16px
@@ -268,7 +268,7 @@
 	.gameModal__Container__text {
 		margin: 2.5%;
 		text-align: center;
-		font-family: Helvetica;
+		font-family: 'Roboto', sans-serif;
 		font-size: 30px;
 		font-weight: 500;
 		line-height: 16px
