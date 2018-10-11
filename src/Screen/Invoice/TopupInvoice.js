@@ -7,19 +7,40 @@ import {
 } from 'reactstrap'
 import {withRouter} from 'react-router-dom'
 import moment from 'moment'
+import axios from 'axios'
+import envChecker from '../../utils/envChecker'
+import HelperAxios from '../../utils/axios'
 
 class TopupInvoice extends React.Component <Props> {
-  render() {
-    return (
-      <div className="invoice">
-        <div className="invoice__container">
-					{ this.showInvoice() }
-        </div>
-      </div>
-    )
+  constructor(props) {
+    super(props)
+    this.state = {
+      activeTab: '1',
+      topup: [],
+      pages: [],
+      pageCount: 0,
+      pageNumber: 1
+    };
+  }
+
+  componentDidMount() {
+    this.getUserInvoice()
+  }
+
+  getUserInvoice = () => {
+    HelperAxios('GET', 'topup/user')
+    .then(response => {
+      this.setState({
+        topup: response.data.transaction,
+        pages: response.data.pages,
+        pageCount: response.data.pageCount,
+      })
+    })
+    .catch(err => console.log(err))
   }
 
 	showInvoice() {
+    const {topup} = this.state
     return (
       <Table>
         <thead>
@@ -32,7 +53,7 @@ class TopupInvoice extends React.Component <Props> {
           </tr>
         </thead>
         <tbody>
-          {this.props.userTopupTransactions.map((data, idx) => {
+          {topup.map((data, idx) => {
             if (!data.createdAt || !data.createdAt || !data.payment || data.payment.invoiceId === 'null'){
               return null
             } else {
@@ -65,16 +86,89 @@ class TopupInvoice extends React.Component <Props> {
     )
   }
 
+  pagination = () => {
+    const { pages, pageCount} = this.state
+    if (pageCount <= 1) {
+      return null
+    }
+    return (
+      <div className="pagination-container">
+        <button className="pagination-button" onClick={() => this.firstOrLast(1)}>First</button>
+        {pages.map((data, index) => {
+          return (
+            <button 
+            className={`pagination-button ${this.checkActive(data.number)}`} 
+            onClick={() => this.changePage(data.url, data.number)}
+            key={index} 
+            >
+            {data.number}
+            </button>
+          )
+        })}
+        <button className="pagination-button" onClick={() => this.firstOrLast(pageCount)}>Last</button>
+      </div>
+    )
+  }
+
+  checkActive = (value) => {
+    const { pageNumber } = this.state
+    if (value === pageNumber) {
+      return 'pagination-active'
+    }
+  }
+
+  changePage = (url, pageNumber) => {
+    axios({
+      method: 'GET',
+      url: `${envChecker('api')}/topup/user?page=${pageNumber}&limit=20`,
+      headers: {
+        token: localStorage.getItem('token'),
+      }
+		})
+    .then(({data}) => {
+      this.setState({
+        pageNumber: pageNumber,
+        topup: data.transaction,
+        pages: data.pages
+      })
+    })
+    .catch(err => console.log(err))
+  }
+
+  firstOrLast = (page) => {
+    HelperAxios('GET', `topup/user?page=${page}&limit=20`)
+    .then(({data}) => {
+      this.setState({
+        topup: data.transaction,
+        pages: data.pages,
+        pageNumber: page
+      })
+    })
+    .catch(err => console.log(err))
+  }
+
   showMetodePembayaran(id) {
     this.props.history.push('/invoice', {
       id,
       endpoint: 'topup'
-    })  }
+    })
+  }
+
+  render() {
+    return (
+      <div className="invoice">
+        <div className="invoice__container">
+          { this.showInvoice() }
+          {this.pagination()}
+        </div>
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
   return {
-    userTopupTransactions: state.topupReducer.userTopupTransactions
+    // userTopupTransactions: state.topupReducer.userTopupTransactions
   }
 }
 
