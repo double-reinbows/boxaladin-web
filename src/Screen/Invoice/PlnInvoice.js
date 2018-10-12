@@ -6,6 +6,7 @@ import moment from 'moment'
 import axios from 'axios'
 import HelperAxios from '../../utils/axios'
 import envChecker from '../../utils/envChecker'
+import ModalText from '../Components/Modal/ModalText'
 class Invoice extends Component {
   constructor(props) {
     super(props)
@@ -14,7 +15,9 @@ class Invoice extends Component {
       transaction: [],
       pages: [],
       pageCount: 0,
-      pageNumber: 1
+      pageNumber: 1,
+      modalText: false,
+      tokenPLn: ''
     };
   }
 
@@ -39,7 +42,7 @@ class Invoice extends Component {
     return (
       <Table>
         <thead>
-        <tr>
+          <tr>
             <th>No.</th>
             <th>Tanggal</th>
             <th>Barang</th>
@@ -58,8 +61,8 @@ class Invoice extends Component {
               let statusComponent = ''
               if (data.payment.status === 'CANCELLED'){
                 statusComponent = <td>{'CANCELLED'}</td>
-              } else if (data.payment.status === 'PAID') {
-                statusComponent = <td><Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Lihat</Button></td>
+              } else if (data.status === 'SUCCESS') {
+                statusComponent = <td><Button className="pembayaran__button__invoice" color="success" onClick={() => this.toggleModalText(data.tokenPln)}>Lihat</Button></td>
               } else if (data.payment.status !== 'PAID' && data.payment.status !== 'CANCELLED' && data.payment.status !== 'PENDING'){
                 statusComponent = <td>{data.payment.status}</td>
               } else if (time <= data.payment.expiredAt){
@@ -83,6 +86,27 @@ class Invoice extends Component {
         </tbody>
       </Table>
     )
+  }
+
+  toggleModalText = (pln) => {
+    this.setState({
+      modalText: !this.state.modalText,
+      tokenPln: pln
+    })
+  }
+
+  renderModalText = () => {
+    const { modalText, tokenPln } = this.state
+    if (modalText) {
+      return (
+        <ModalText
+          isOpen= {this.state.modalText}
+          toggle = {this.toggleModalText}
+          text= {` No PLN anda : ${tokenPln}`}
+        />
+      )
+    } 
+    return null
   }
 
   pagination = () => {
@@ -160,6 +184,7 @@ class Invoice extends Component {
         {this.showInvoice()}
         {this.pagination()}
       </div>
+      {this.renderModalText()}
     </div>
     )
   }
