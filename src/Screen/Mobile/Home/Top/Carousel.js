@@ -6,6 +6,7 @@ import {
   CarouselIndicators,
   CarouselCaption
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import HelperAxios from '../../../../utils/axios'
 
 class CarouselMobile extends Component {
@@ -74,7 +75,9 @@ class CarouselMobile extends Component {
           onExited={this.onExited}
           key={item.src}
         >
+        <Link to={item.caption}>
           <img className="d-block img-fluid" src={item.src} alt={item.altText} />
+        </Link>
           <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
         </CarouselItem>
       );
