@@ -275,7 +275,6 @@ class ModalPayment extends Component{
   }
 
   render() {
-    console.log('props payment', this.props)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">

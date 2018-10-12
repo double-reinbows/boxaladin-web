@@ -66,7 +66,6 @@ class Price extends Component {
       }
     })
     .then(response=> {
-        console.log('responbackend', response)
       this.props.setIsLoading(false)
       if (response.data.message._text === "SUCCESS"){
         this.setState({
@@ -90,8 +89,8 @@ class Price extends Component {
   }
 
   checkSuccess = () => {
-    const {success} = this.state
-    if (success) {
+    const {disabledBtn} = this.state
+    if (disabledBtn === false) {
       return ("isValid")
     }else {
       return ("isInvalid")

@@ -49,7 +49,7 @@ class InsertPln extends Component {
   }
 
   renderMobileInsertPln = () => {
-    const {aladinPrice, displayPrice, pln} = this.props.location.state
+    const {pln} = this.props.location.state
     const {notif} = this.state
     return (
       <div>
@@ -126,7 +126,6 @@ class InsertPln extends Component {
   }
   
   render() {
-    console.log('props', this.props)
     return (  
       <div>
         <MediaQuery query="(max-device-width: 720px)">

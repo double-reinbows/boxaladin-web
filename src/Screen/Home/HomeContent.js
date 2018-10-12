@@ -168,7 +168,6 @@ renderModalBid() {
       }
     })
     .then(response=> {
-      console.log('response', response)
       this.props.setIsLoading(false)
       if (response.data.message._text === "SUCCESS"){
         this.setState({

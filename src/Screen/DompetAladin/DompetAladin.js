@@ -169,7 +169,6 @@ class Dompet extends React.Component {
   }
 
   formatRupiahSaldo() {
-    // console.log('render saldo', this.props.userInfo.wallet)
     return this.props.userInfo.wallet && (
       FormatRupiah(this.props.userInfo.wallet)
     )

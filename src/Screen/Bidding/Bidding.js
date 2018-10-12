@@ -379,7 +379,6 @@ class Bidding extends React.Component {
   }
 
   render() {
-    console.log('props bidding', this.props)
     return (
     <div>
       <MediaQuery query="(max-device-width: 720px)">
