@@ -45,6 +45,14 @@ class Price extends Component {
     })
   }
 
+  // PlnNtc = () => {
+  //   if (success){
+  //     this.state({
+
+  //     })
+  //   }
+  // }
+
   submitPlnNumber = () =>{
     // this.props.setIsLoading(true)
     axios({
@@ -60,11 +68,12 @@ class Price extends Component {
       if (response.data.message._text === "SUCCESS"){
         this.setState({
           // success:true,
-          disabledBtn:false 
+          notif: 'No ID PLN Benar',
+          disabledBtn:false
         })
       } else {
         this.setState({
-          notif: 'No Yang Anda Masukkan Salah',
+          notif: 'No ID PLN Salah',
           success: false
         })
       }
@@ -75,7 +84,7 @@ class Price extends Component {
     this.setState({
       inputPln: e.target.value,
       disabledCheck: false
-    })
+    })  
   }
 
   checkSuccess = () => {
@@ -96,7 +105,9 @@ class Price extends Component {
       )
     } else {
       return (
-        this.props.priceData.filter(data => {
+        <Fragment>
+        <h2 className="mobile__pulsa__label">Pilih Nominal Pulsa Listrik mu</h2>
+        {this.props.priceData.filter(data => {
           return data.id !== 1 && data.id !== 3
         })
         .map ((data, index) => {
@@ -104,9 +115,10 @@ class Price extends Component {
           return (
             <button key={index} onClick={() => this.toggleConfirm(data.id, data.displayPrice)} className="mobile__pulsa__button background">{data.displayPrice.toLocaleString(['ban', 'id'])}</button>
           )
-          })
+          })}
+          </Fragment>
         )
-
+        
       // return(
       //   <Fragment>
       //   <label>No PLN Kamu : {this.state.inputPln}</label>
@@ -138,6 +150,7 @@ class Price extends Component {
   inputPln = () => {
     return (
       <div className="mobile__pulsa__pln">
+      <h2 className="mobile__pulsa__label">Masukan Nomor ID PLN mu</h2>
         <input className={`modal__confirm__pln__input ${this.checkSuccess()}`} value={this.state.inputPln} onChange={this.checkPlnNumber}/>
         <button disabled={this.state.disabledCheck} className="mobile__pulsa__pln__button" onClick={this.submitPlnNumber}>Check No ID</button>
           <br/>
@@ -145,7 +158,6 @@ class Price extends Component {
           <button disabled={this.state.disabledBtn} className="mobile__pulsa__pln__button" onClick={this.NextBtn}>Lanjut</button>
         <br/>
         <label>{this.state.notif}</label>
-        <label>{this.state.alert}</label>
       </div>
     )
   }
@@ -157,7 +169,6 @@ class Price extends Component {
         <div className='mobile-home-image-container'>
           <img alt='Telkomsel Icon' className='mobile-home-image' src="https://s3-ap-southeast-1.amazonaws.com/iconpulsa/Telkomsel.svg"/>
        </div>
-        <h2 className="mobile__pulsa__label">Masukan Nomor ID Listrik mu</h2>
         {this.changeComponentPln()}
         <ModalConfirm
           typeBuy='buy pln'
