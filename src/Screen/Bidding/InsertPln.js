@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
 import { connect } from 'react-redux';
+import MediaQuery from 'react-responsive';
 
 import ModalPayment from '../Components/Modal/ModalPayment'
 import FormatRupiah from '../../utils/formatRupiah'
@@ -47,6 +48,43 @@ class InsertPln extends Component {
     )
   }
 
+  renderMobileInsertPln = () => {
+    const {aladinPrice, displayPrice, pln} = this.props.location.state
+    const {notif} = this.state
+    return (
+      <div>
+        <h1 className="mobile-InsertPhone__title">LELANG BERHASIL</h1>
+        <div className="mobile-InsertPhone__container">
+          <div className="mobile-InsertPhone-pln-header">
+            <img className="mobile-InsertPhone-pln-image" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/Logo_PLN.png" alt="icon pln"/>
+            <label className="mobile-InsertPhone-pln-label">SN: {pln}</label>
+          </div>
+          <div className="mobile-InsertPhone-pln-displayPrice">
+            <label className="mobile-InsertPhone-pln-label-bold"><strong>TOKEN LISTRIK</strong></label>
+            {this.displayPrice()}
+          </div>
+          <hr className="mobile-InsertPhone-pln-line"/>
+          <div className="mobile-InsertPhone-pln-displayPrice-final">
+            <label className="mobile-InsertPhone-pln-label-bold"><b>Harga Akhir</b></label>
+            <label className="mobile-InsertPhone-pln-label-center">{this.checkRupiah()}</label>
+          </div>
+          <label className="alert__otp">{notif}</label>
+        </div>
+        <div className="mobile-InsertPhone__button__container">
+          <button type="submit" disabled={this.state.disabled} className = "mobile-InsertPhone__button" onClick={this.togglePayment} >Beli Sekarang</button>
+          <button type="submit" style={{color:'red'}} className = "mobile-InsertPhone__button" onClick={this.cancel}>Batal</button>
+        </div>
+        {this.renderModalPayment()}
+      </div>
+    )
+  }
+
+  displayPrice = () => {
+    return this.props.location.state.displayPrice && (
+      <label className="mobile-InsertPhone-pln-displayPrice-line">{this.props.location.state.displayPrice.toLocaleString(['ban', 'id'])}</label>
+    )
+  }
+
   checkRupiah = () => {
     return this.props.location.state.aladinPrice && (
 			FormatRupiah(this.props.location.state.aladinPrice)
@@ -88,8 +126,16 @@ class InsertPln extends Component {
   }
   
   render() {
+    console.log('props', this.props)
     return (  
-      this.InsertPln()
+      <div>
+        <MediaQuery query="(max-device-width: 720px)">
+          {this.renderMobileInsertPln()}
+        </MediaQuery>
+        <MediaQuery query="(min-device-width: 721px)">
+          {this.InsertPln()}
+        </MediaQuery>
+      </div>
     );
   }
 }
