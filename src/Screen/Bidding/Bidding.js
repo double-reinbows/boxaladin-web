@@ -177,6 +177,8 @@ class Bidding extends React.Component {
     }
   }
 
+
+
   buy() {
     const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
     const productRef = productsRef.child(this.props.selectedPriceID)

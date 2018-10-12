@@ -29,6 +29,18 @@
       height: 80%;
     }
   }
+  &__pln{
+    text-align: center;
+
+    &__button {
+      background-color: #FFCD05;
+      border: none;
+      padding: 0.5%;
+      border-radius: 5px;
+      color: white;
+
+}
+  }
 }
 
 .background{

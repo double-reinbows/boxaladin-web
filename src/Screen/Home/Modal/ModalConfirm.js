@@ -104,6 +104,7 @@ class ModalConfirm extends Component {
     )
   }
 
+
   render() {
     console.log('props modal confirm', this.props)
     return (
