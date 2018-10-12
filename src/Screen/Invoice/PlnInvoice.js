@@ -102,7 +102,7 @@ class Invoice extends Component {
         <ModalText
           isOpen= {this.state.modalText}
           toggle = {this.toggleModalText}
-          text= {` No PLN anda : ${tokenPln}`}
+          text= {` Token PLN anda : ${tokenPln}`}
         />
       )
     } 

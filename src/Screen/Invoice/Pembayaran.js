@@ -32,12 +32,6 @@ class InvoiceDetail extends React.Component {
         <Guide activeTab= {'4'} invoice={invoice} amount={invoice.payment.amount}/>
       </div>
       )
-    } else if (invoice.tokenPln !== null) {
-      return (
-        <div>
-        <Guide activeTab= {'6'} invoice={invoice} />
-      </div>
-      )
     } else if (invoice.payment.availableretail !== 'null') {
       return (
         <div>
@@ -95,6 +89,27 @@ class InvoiceDetail extends React.Component {
       this.setState({
         invoice: data
       })
+      if (data.virtualAccount === null){
+        this.setState({
+          activeTab: '5'
+        })
+      } else if ( data.virtualAccount.bankCode === 'MANDIRI'){
+        this.setState({
+          activeTab: '1'
+        })
+      } else if (data.virtualAccount.bankCode === 'BNI'){
+        this.setState({
+          activeTab: '2'
+        })
+      } else if (data.virtualAccount.bankCode === 'BRI'){
+        this.setState({
+          activeTab: '3'
+        })
+      } else if (data.virtualAccount.bankCode === 'BCA'){
+        this.setState({
+          activeTab: '4'
+        })
+      }
     })
     .catch(err => console.log(err))
   }

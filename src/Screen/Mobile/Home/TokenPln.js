@@ -4,6 +4,8 @@ import axios from 'axios';
 import ModalConfirm from '../../Home/Modal/ModalConfirm'
 import { getPrices } from '../../../actions/priceAction'
 import envChecker from '../../../utils/envChecker'
+import Loading from '../../Components/Loading';
+import { setIsLoading } from '../../../actions';
 
 class Price extends Component {
   constructor(props) {
@@ -24,7 +26,8 @@ class Price extends Component {
   }
 
   componentDidMount() {
-    const { priceData, getPrices } = this.props
+    const { priceData, getPrices, setIsLoading } = this.props
+    setIsLoading(false)
     if (priceData.length === 0){
       getPrices()
     }
@@ -54,7 +57,7 @@ class Price extends Component {
   // }
 
   submitPlnNumber = () =>{
-    // this.props.setIsLoading(true)
+    this.props.setIsLoading(true)
     axios({
       method: 'POST',
       url: `${envChecker('api')}/checkuserpln`,
@@ -64,10 +67,9 @@ class Price extends Component {
     })
     .then(response=> {
         console.log('responbackend', response)
-    //   this.props.setIsLoading(false)
+      this.props.setIsLoading(false)
       if (response.data.message._text === "SUCCESS"){
         this.setState({
-          // success:true,
           notif: 'No ID PLN Benar',
           disabledBtn:false
         })
@@ -108,28 +110,15 @@ class Price extends Component {
         <Fragment>
         <h2 className="mobile__pulsa__label">Pilih Nominal Pulsa Listrik mu</h2>
         {this.props.priceData.filter(data => {
-          return data.id !== 1 && data.id !== 3
+          return data.id !== 1 && data.id !== 2 && data.id !== 5
         })
         .map ((data, index) => {
-          console.log('tes', data)
           return (
             <button key={index} onClick={() => this.toggleConfirm(data.id, data.displayPrice)} className="mobile__pulsa__button background">{data.displayPrice.toLocaleString(['ban', 'id'])}</button>
           )
           })}
           </Fragment>
         )
-        
-      // return(
-      //   <Fragment>
-      //   <label>No PLN Kamu : {this.state.inputPln}</label>
-      //   <br/>
-      //   {priceData.map((data, index) => {
-      //     return(
-      //       <button key={index} onClick={() => this.toggleConfirm(data.id, data.displayPrice)} className="mobile__pulsa__button background">{data.displayPrice.toLocaleString(['ban', 'id'])}</button>
-      //     )
-      //   })}
-      // </Fragment>
-      // )
     }
   }
 
@@ -163,12 +152,11 @@ class Price extends Component {
   }
 
   render() {
-    console.log('props tokenpln', this.props.priceData)
     return (
       <div>
         <div className='mobile-home-image-container'>
           <img alt='Telkomsel Icon' className='mobile-home-image' src="https://s3-ap-southeast-1.amazonaws.com/iconpulsa/Telkomsel.svg"/>
-       </div>
+        </div>
         {this.changeComponentPln()}
         <ModalConfirm
           typeBuy='buy pln'
@@ -180,6 +168,7 @@ class Price extends Component {
           type={this.state.type}
           pln={this.state.inputPln}
         />
+        <Loading isLoading={ this.props.isLoading } />
       </div>
     );
   }
@@ -188,12 +177,14 @@ class Price extends Component {
 const mapStateToProps = (state) => {
   return {
     priceData: state.priceReducer.priceData,
+    isLoading: state.loadingReducer.isLoading
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getPrices: () => dispatch(getPrices())
+    getPrices: () => dispatch(getPrices()),
+    setIsLoading: (bool) => dispatch(setIsLoading(bool))
   }
 }
 
