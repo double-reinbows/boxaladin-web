@@ -7,7 +7,7 @@
   padding: 2rem;
 
   &__Title{
-    font-family: Helvetica;
+    font-family: 'Roboto', sans-serif;
     font-size: 20px;
     font-weight: 500;
     line-height: 16px;
@@ -16,7 +16,7 @@
   }
 
   &__Title2{
-    font-family: Helvetica;
+    font-family: 'Roboto', sans-serif;
     font-size: 20px;
     font-weight: 900;
     line-height: 24px;
@@ -40,7 +40,7 @@
     background-color: var(--color-yellow-1);
     border-color: var(--color-yellow-1);
     width: 100%;
-    font-family: Helvetica;
+    font-family: 'Roboto', sans-serif;
     font-size: 20px;
     font-weight: bold;
     text-align: center;

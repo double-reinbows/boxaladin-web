@@ -16,13 +16,13 @@
     background-color: lightgrey;
     border-radius: 10px ;
     min-width: 205px;
-    font-family: Helvetica;
+    font-family: 'Roboto', sans-serif;
 
   }
   &__inside{
     background-color: lightgrey;
     height: 50px ;
-    font-family: Helvetica;
+    font-family: 'Roboto', sans-serif;
   	font-size: 22px;
     font-weight: 600;
     &:hover{
@@ -38,7 +38,7 @@
     &__link{
       display: flex;
       align-items: center;
-      font-family: Helvetica;
+      font-family: 'Roboto', sans-serif;
       font-size: 22px;
       font-weight: 600;
       color: black;
@@ -64,7 +64,7 @@
 .inputz{
   border: 2px solid var(--color-yellow-1);
   background: transparent;
-  font-family: Helvetica;
+  font-family: 'Roboto', sans-serif;
   font-style: italic;
   font-size: 17px;
   box-shadow: none ;
@@ -73,7 +73,7 @@
   &:focus{
     border: 2px solid var(--color-yellow-1);
     background: transparent;
-    font-family: Helvetica;
+    font-family: 'Roboto', sans-serif;
     font-style: italic;
     box-shadow: var(--color-grey-5);
     color: black;
@@ -82,18 +82,18 @@
   &:hover{
     border: 2px solid var(--color-yellow-1);
     background: transparent;
-    font-family: Helvetica;
+    font-family: 'Roboto', sans-serif;
     font-style: italic;
   }
   &::placeholder{
     background: transparent;
-    font-family: Helvetica;
+    font-family: 'Roboto', sans-serif;
     font-style: italic;
   }
   &:active{
     border: 2px solid var(--color-yellow-1);
     background: transparent;
-    font-family: Helvetica;
+    font-family: 'Roboto', sans-serif;
     font-style: italic;
   }
 }
