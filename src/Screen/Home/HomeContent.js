@@ -214,21 +214,31 @@ renderModalBid() {
     switch (tab) {
       case 1:
         return (
-          <div >
-            <h2 className="homecontent__bottom__pulsa__label">Pilih Nominal Pulsamu</h2>
-            <div className="homecontent__bottom__pulsa">
-              {this.price()}
+          <Fragment>
+            <div >
+              <h2 className="homecontent__bottom__pulsa__label">Pilih Nominal Pulsamu</h2>
+              <div className="homecontent__bottom__pulsa">
+                {this.price()}
+              </div>
             </div>
-          </div>
+            <div className="homecontent__bottom__check">
+              <button onClick={this.toggle} className="homecontent__bottom__check__button">CEK PROVIDER-MU</button>
+            </div>
+          </Fragment>
         )
       case 2:
         return (
-          <div>
-            <h2 className="homecontent__bottom__pulsa__label">Pilih Provider Datamu</h2>
-            <div className="homecontent__bottom__pulsa">
-              {this.paketData()}
+          <Fragment>
+            <div>
+              <h2 className="homecontent__bottom__pulsa__label">Pilih Provider Datamu</h2>
+              <div className="homecontent__bottom__pulsa">
+                {this.paketData()}
+              </div>
             </div>
-          </div>
+            <div className="homecontent__bottom__check">
+              <button onClick={this.toggle} className="homecontent__bottom__check__button">CEK PROVIDER-MU</button>
+            </div>
+          </Fragment>
           )
       case 3:
       return (
@@ -321,9 +331,6 @@ renderModalBid() {
           <button className={`${this.checkActive(3)} home-tab`} onClick={() => this.changeTab(3)}>TOKEN LISTRIK</button>
         </div>
           {this.renderTab()}
-          <div className="homecontent__bottom__check">
-            <button onClick={this.toggle} className="homecontent__bottom__check__button">CEK PROVIDER-MU</button>
-          </div>
         </div>
         <ProviderModal open={this.state.providerModal} buttonToggle={this.toggle}/>
         {this.renderModalConfirm()}

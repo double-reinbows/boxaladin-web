@@ -15,8 +15,8 @@ class Bidding extends React.Component {
     super(props)
     this.state = {
       productUnlocked: '',
-			count: 999,
-      initCount: 999,
+			count: 15,
+      initCount: 15,
       open: false,
       priceComp : true,
       text: ''

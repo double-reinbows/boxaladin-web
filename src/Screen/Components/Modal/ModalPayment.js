@@ -232,7 +232,7 @@ class ModalPayment extends Component{
         bank = [
           ...listBank
         ]
-      } else if (this.props.selectedPriceID === 1){
+      } else if (this.props.selectedPriceID === 1 || this.props.selectedPriceID === 5){
         bank = [
           {value:'Wallet', onClick: this.handleChangeBank , disabled: false , paymentType: 'Uang Aladin'}
         ]
