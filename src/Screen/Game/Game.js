@@ -132,10 +132,10 @@ class Game extends React.Component<Props, State> {
 					<label className="game__textHeader">ALADIN GAME</label>
 					<label>1 Koin = 1x Main</label>
 					<div>
-						<div className="game__convert">
+						{/* <div className="game__convert">
 								<label className="game__textKeytoCoin">Tukar Kunci Jadi Koin</label>
 								{this.dropdownConvert()}
-							</div>
+							</div> */}
 						<label className="alert__game">{this.state.notif}</label>
 							<div  className="game__slotCoin">
 								<img className="game__slotCoin__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Dompet+Aladin/Key.png' alt="coin"/>
