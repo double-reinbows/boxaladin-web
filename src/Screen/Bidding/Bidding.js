@@ -124,6 +124,10 @@ class Bidding extends Component {
           firebase: this.props.location.state.firebase
         }
       })
+      .then( () => {
+        this.runTimer()
+        this.props.setIsLoading(false)
+      })
       await productRef.on('value',async snap => {
         const productValue = {
           aladinPrice: snap.val().aladinPrice,
@@ -131,12 +135,11 @@ class Bidding extends Component {
         }
         await this.setState({
           productUnlocked: productValue,
-        }, () => {
-          this.props.setIsLoading(false)
-        })
+        }, () => this.props.setIsLoading(false)
+        )
       })
-
-      this.runTimer()
+      // this.props.setIsLoading(false)
+      // this.runTimer()
     } else if (localStorage.getItem('token') !== null) {
       this.props.setIsLoading(true)
       const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
@@ -186,6 +189,10 @@ class Bidding extends Component {
           firebase: this.props.location.state.firebase
         }
       })
+      .then( () => {
+        this.runTimer()
+      })
+
       await productRef.on('value', async snap => {
         const productValue = {
           aladinPrice: snap.val().aladinPrice,
@@ -193,11 +200,10 @@ class Bidding extends Component {
         }
         await this.setState({
           productUnlocked: productValue,
-        }, () => {
-          this.props.setIsLoading(false)
-        })
+        }, () => this.props.setIsLoading(false)
+        )
       })
-      this.runTimer()
+
   }
 }
 
