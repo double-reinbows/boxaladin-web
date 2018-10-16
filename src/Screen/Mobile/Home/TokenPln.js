@@ -154,7 +154,7 @@ class Price extends Component {
     return (
       <div>
         <div className='mobile-home-image-container'>
-          <img alt='Telkomsel Icon' className='mobile-home-image' src="https://s3-ap-southeast-1.amazonaws.com/iconpulsa/Telkomsel.svg"/>
+          <img alt='PLN Icon' className='mobile-home-image-pln' src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/Logo_PLN.png"/>
         </div>
         {this.changeComponentPln()}
         <ModalConfirm
