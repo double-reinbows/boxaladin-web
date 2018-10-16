@@ -3,7 +3,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: Helvetica;
+  font-family: 'Roboto', sans-serif;
 }
 
 *,
@@ -22,7 +22,7 @@ html {
 }
 
 body {
-    font-family: 'Helvetica', Helvetica;
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     line-height: 1.6;
     color: black;
@@ -60,6 +60,8 @@ input::-webkit-inner-spin-button {
 }
 
 .baButton{
+  border-radius: 5px;
+  background-color: #FFCD05;
   &:hover{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     cursor: pointer;
@@ -80,3 +82,21 @@ input::-webkit-inner-spin-button {
 .slick-arrow{
   display: none !important;
 }
+.tabactive{
+  background-color: black;
+  color: white;
+  &-ba{
+    background-color: #FFCD05;
+    color: white;
+  }
+}
+
+.isValid{
+  border: 1px solid green;
+}
+
+.isInvalid{
+  border: 1px solid red;;
+}
+
+

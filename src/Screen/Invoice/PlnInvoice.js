@@ -1,25 +1,23 @@
-//@flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {
-  Table,
-  Button
-} from 'reactstrap'
+import { Table, Button } from 'reactstrap';
 import {withRouter} from 'react-router-dom'
 import moment from 'moment'
 import axios from 'axios'
-import envChecker from '../../utils/envChecker'
 import HelperAxios from '../../utils/axios'
-
-class TopupInvoice extends Component<State, Props> {
+import envChecker from '../../utils/envChecker'
+import ModalText from '../Components/Modal/ModalText'
+class Invoice extends Component {
   constructor(props) {
     super(props)
     this.state = {
       activeTab: '1',
-      wallet: [],
+      transaction: [],
       pages: [],
       pageCount: 0,
-      pageNumber: 1
+      pageNumber: 1,
+      modalText: false,
+      tokenPLn: ''
     };
   }
 
@@ -28,10 +26,10 @@ class TopupInvoice extends Component<State, Props> {
   }
 
   getUserInvoice = () => {
-    HelperAxios('GET', 'walletstatus')
+    HelperAxios('GET', 'pln/user')
     .then(response => {
       this.setState({
-        wallet: response.data.transaction,
+        transaction: response.data.transaction,
         pages: response.data.pages,
         pageCount: response.data.pageCount
       })
@@ -39,30 +37,34 @@ class TopupInvoice extends Component<State, Props> {
     .catch(err => console.log(err))
   }
 
-	showInvoice() {
-    const { wallet } = this.state
+  showInvoice = () => {
+    const {transaction} = this.state
     return (
       <Table>
         <thead>
           <tr>
             <th>No.</th>
             <th>Tanggal</th>
-            <th>Saldo</th>
+            <th>Barang</th>
+            <th>Nominal Transfer</th>
+            <th>No PLN</th>
             <th>Status</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          {wallet.map((data, idx) => {
-            if (!data.createdAt || !data.createdAt || !data.payment || data.payment.invoiceId === 'null'){
+        {transaction.map((data, idx) => {
+            if (!data.createdAt || !data.payment || data.payment.invoiceId === 'null'){
               return null
             } else {
               const time = moment().toISOString()
               let statusComponent = ''
               if (data.payment.status === 'CANCELLED'){
                 statusComponent = <td>{'CANCELLED'}</td>
-              } else if (data.payment.status === 'PAID') {
-                statusComponent = <td>{'SUKSES'}</td>
+              } else if (data.status === 'SUCCESS') {
+                statusComponent = <td><Button className="pembayaran__button__invoice" color="success" onClick={() => this.toggleModalText(data.tokenPln)}>Lihat</Button></td>
+              } else if (data.payment.status !== 'PAID' && data.payment.status !== 'CANCELLED' && data.payment.status !== 'PENDING'){
+                statusComponent = <td>{data.payment.status}</td>
               } else if (time <= data.payment.expiredAt){
                 statusComponent = <td><Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button></td>
               } else if (time >= data.payment.expiredAt){
@@ -73,7 +75,9 @@ class TopupInvoice extends Component<State, Props> {
                 <tr key={idx}>
                   <th scope="row">{idx+1}</th>
                   <td>{moment(data.createdAt, moment.ISO_8601).format('L, h:mm:ss a')}</td>
-                  <td>{`Rp.${data.amount.toLocaleString(['ban', 'id'])}`}</td>
+                  <td>{data.description}</td>
+                  <td>{`Rp.${data.payment.amount.toLocaleString(['ban', 'id'])}`}</td>
+                  <td>{ data.number ? data.number : (<h3>Anda Tidak Memasukkan no Hp</h3>) }</td>
                   {statusComponent}
                 </tr>
               )
@@ -82,6 +86,27 @@ class TopupInvoice extends Component<State, Props> {
         </tbody>
       </Table>
     )
+  }
+
+  toggleModalText = (pln) => {
+    this.setState({
+      modalText: !this.state.modalText,
+      tokenPln: pln
+    })
+  }
+
+  renderModalText = () => {
+    const { modalText, tokenPln } = this.state
+    if (modalText) {
+      return (
+        <ModalText
+          isOpen= {this.state.modalText}
+          toggle = {this.toggleModalText}
+          text= {` Token PLN anda : ${tokenPln}`}
+        />
+      )
+    } 
+    return null
   }
 
   pagination = () => {
@@ -118,7 +143,7 @@ class TopupInvoice extends Component<State, Props> {
   changePage = (url, pageNumber) => {
     axios({
       method: 'GET',
-      url: `${envChecker('api')}/walletstatus?page=${pageNumber}&limit=20`,
+      url: `${envChecker('api')}/transaction/user?page=${pageNumber}&limit=20`,
       headers: {
         token: localStorage.getItem('token'),
       }
@@ -126,7 +151,7 @@ class TopupInvoice extends Component<State, Props> {
     .then(({data}) => {
       this.setState({
         pageNumber: pageNumber,
-        wallet: data.transaction,
+        transaction: data.transaction,
         pages: data.pages
       })
     })
@@ -134,10 +159,10 @@ class TopupInvoice extends Component<State, Props> {
   }
 
   firstOrLast = (page) => {
-    HelperAxios('GET', `walletstatus?page=${page}&limit=20`)
+    HelperAxios('GET', `transaction/user?page=${page}&limit=20`)
     .then(({data}) => {
       this.setState({
-        wallet: data.transaction,
+        transaction: data.transaction,
         pages: data.pages,
         pageNumber: page
       })
@@ -148,25 +173,26 @@ class TopupInvoice extends Component<State, Props> {
   showMetodePembayaran(id) {
     this.props.history.push('/invoice', {
       id,
-      endpoint: 'walletstatus'
+      endpoint: 'transaction'
     })
   }
 
   render() {
     return (
-      <div className="invoice">
-        <div className="invoice__container">
-          { this.showInvoice() }
-          {this.pagination()}
-        </div>
+    <div className="invoice">
+      <div className="invoice__container">
+        {this.showInvoice()}
+        {this.pagination()}
       </div>
+      {this.renderModalText()}
+    </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    // userWalletTransactions: state.walletReducer.userWalletTransactions
+    userTransactions: state.transactionReducer.userTransactions
   }
 }
 
@@ -174,7 +200,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
   }
 }
-
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(withRouter(TopupInvoice))
+const enhance = connect(mapStateToProps, mapDispatchToProps);
+const connectComponent = enhance(withRouter(Invoice))
 
 export default connectComponent

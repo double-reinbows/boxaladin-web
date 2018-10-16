@@ -98,7 +98,7 @@ class InsertPhone extends React.Component {
         return (
           <ModalPayment
             typeBuy='buy pulsa'
-            id={this.props.location.state.id}
+            // id={this.props.location.state.id}
             fixedendpoint='v2/virtualaccount'
             retailendpoint='v2/payment'
             walletendpoint='v2/walletpulsa'
@@ -116,7 +116,7 @@ class InsertPhone extends React.Component {
         return (
           <ModalPayment
             typeBuy = 'buy paket data'
-            id={this.props.location.state.id}
+            // id={this.props.location.state.id}
             fixedendpoint='virtualaccount'
             retailendpoint='payment'
             walletendpoint='walletpulsa'

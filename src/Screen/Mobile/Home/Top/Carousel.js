@@ -28,7 +28,7 @@ export default class CarouselMobile extends Component {
     renderImage = () => {
       const settings = {
         infinite: true,
-        speed: 500,
+        speed: 450,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,

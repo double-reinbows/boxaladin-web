@@ -425,19 +425,40 @@
   max-width: 60%;
   font-size: 15px;
   margin: 1.75rem auto;
+  &__pln{
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+    &__input{
+      width: 50%;
+      margin-right: 2%;
+    }
+    &__button{
+      border-radius: 3px;
+    }
+  }
   &__container{
     border: 1px solid grey;
     margin-top: 40%;
     background-color: rgb(175, 193, 203);
-    padding: 3%;
-    display: flex
+  }
+  &__tab{
+    display: flex;
+    justify-content: center;
+    &__button{
+      width: 50%;
+      border: none;
+    }
   }
   &__label{
     width: 100%;
-    margin-right: 40px;
+    // margin-right: 40px;
+    margin-top: 2%;
+    text-align: center;
   }
   &__button{
     width: 90%;
+    margin: 3%;
     display: flex;
     justify-content: space-around;
 
@@ -452,7 +473,6 @@
       border-radius: 5px;
       border: solid 2px #FFCD05;
       background-color: white;
-
     }
   }
 }

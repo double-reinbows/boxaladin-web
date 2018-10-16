@@ -40,11 +40,15 @@ class Price extends Component {
       )
     } else {
       return(
-        priceData.map((data, index) => {
+        priceData.filter(dataFilter => {
+          return dataFilter.id !== 6
+        })
+        .map((data, index) => {
           return(
             <button key={index} onClick={() => this.toggleConfirm(data.id, data.displayPrice)} className="mobile__pulsa__button background">{data.displayPrice.toLocaleString(['ban', 'id'])}</button>
           )
         })
+
       )
     }
   }

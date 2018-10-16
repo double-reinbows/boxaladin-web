@@ -71,10 +71,10 @@ class Dompet extends React.Component {
               <label className="alert__dompetAladin">{this.state.notif}</label>
             </div>
 
-            <div>
+            {/* <div>
               <label className="dompet__content__key__label">Tukar Kunci Jadi Koin</label>
               {this.dropdownConvert()}
-            </div>
+            </div> */}
 
             <div style={{ paddingTop: '14%' }}>
               <label className="dompet__content__key__label">Top Up Uang</label>
@@ -169,7 +169,6 @@ class Dompet extends React.Component {
   }
 
   formatRupiahSaldo() {
-    // console.log('render saldo', this.props.userInfo.wallet)
     return this.props.userInfo.wallet && (
       FormatRupiah(this.props.userInfo.wallet)
     )

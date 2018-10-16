@@ -62,7 +62,7 @@ class TopupInvoice extends React.Component <Props> {
               if (data.payment.status === 'CANCELLED'){
                 statusComponent = <td>{'CANCELLED'}</td>
               } else if (data.payment.status === 'PAID') {
-                statusComponent = <td>{'PAID'}</td>
+                statusComponent = <td>{'SUKSES'}</td>
               } else if (time <= data.payment.expiredAt){
                 statusComponent = <td><Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button></td>
               } else if (time >= data.payment.expiredAt){

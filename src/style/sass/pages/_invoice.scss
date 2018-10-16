@@ -5,6 +5,7 @@
     color: black;
     padding: 2.5%;
     text-align: center;
+    font-size: 15px;
   }
   &__text{
     text-align: center;
@@ -12,7 +13,7 @@
     font-size: 30px;
   }
   &__tab{
-    width: 33.33%;
+    width: 25%;
     font-size: 25px;
     text-align: center;
     &:active{
@@ -27,21 +28,17 @@
   }
 }
 
-tr{
-  font-size: 20px;
-}
-td{
-  font-size: 15px;
-}
-
 @media (min-width: 200px ) and (max-width:680px ) {
   .invoice{
     overflow: hidden;
+    &__tab{
+      font-size: 13px;
+    }
     &__container{
       overflow: scroll;
+      font-size: 12px;
     }
   }
-
 }
 
 .nav-tabs .nav-link.active {

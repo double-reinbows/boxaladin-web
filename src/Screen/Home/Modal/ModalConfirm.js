@@ -13,10 +13,9 @@ class ModalConfirm extends Component {
     super(props);
     this.state = {
     }
-    this.checkAladinkey = this.checkAladinkey.bind(this);
   }
-s
-  checkAladinkey = async () => {
+
+  checkAladinkey = () => {
     const {priceId, userInfo, type} = this.props
     if ( !userInfo.id && !localStorage.getItem('token')){
       alert ('Anda Belum Masuk')
@@ -44,6 +43,27 @@ s
             }
           })
         }
+      } else if (priceId === 5) {
+        if (userInfo.wallet < 5000){
+          return alert('Saldo Wallet Anda Kurang Dari Rp.5.000,00')
+        } else {
+          helperAxios('GET', 'users/checkuser')
+          .then( async data => {
+            if (data.data.aladinKeys > 0 && data.data.wallet >= 5000) {
+              await this.props.selectedPriceID(priceId)
+              this.props.history.push('/bidding', {
+                displayPrice: this.props.displayPrice,
+                firebase: this.props.firebase,
+                typeBuy: this.props.typeBuy,
+                type: this.props.type
+              })
+              await helperAxios('PUT', 'logopen',  {priceId, type})
+              this.props.getUser()
+            } else {
+              alert("Anda Tidak Memiliki Aladin Key")
+            }
+          })
+        }
       } else {
         helperAxios('GET', 'users/checkuser')
         .then( async data => {
@@ -55,7 +75,8 @@ s
               displayPrice: this.props.displayPrice,
               firebase: this.props.firebase,
               typeBuy: this.props.typeBuy,
-              type: this.props.type
+              type: this.props.type,
+              pln: this.props.pln
             })
             await helperAxios('PUT', 'logopen', {priceId, type})
             this.props.getUser()
@@ -103,6 +124,7 @@ s
       </div>
     )
   }
+
 
   render() {
     return (

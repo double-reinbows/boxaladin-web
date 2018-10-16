@@ -55,7 +55,7 @@ class ModalPayment extends Component{
   }
 
   createObj = () => {
-    const { typeBuy, data, brandId, amount, phone, selectedPriceID } = this.props
+    const { typeBuy, data, brand, brandId, amount, phone, pln, selectedPriceID } = this.props
     const { bank } = this.state
     if (typeBuy === 'buy wallet') {
       return {
@@ -82,6 +82,16 @@ class ModalPayment extends Component{
         phoneNumber: phone,
         bankCode: bank,
         amount: amount
+      }
+    } else if (typeBuy === 'buy pln'){
+      return {
+        priceId: selectedPriceID,
+        brand,
+        brandId,
+        bankCode: bank,
+        amount: amount,
+        phoneNumber: pln,
+        type: 'pln'
       }
     }
   }
@@ -222,7 +232,7 @@ class ModalPayment extends Component{
         bank = [
           ...listBank
         ]
-      } else if (this.props.selectedPriceID === 1){
+      } else if (this.props.selectedPriceID === 1 || this.props.selectedPriceID === 5){
         bank = [
           {value:'Wallet', onClick: this.handleChangeBank , disabled: false , paymentType: 'Uang Aladin'}
         ]
@@ -252,10 +262,14 @@ class ModalPayment extends Component{
   }
 
   showProvider = () => {
-    const { typeBuy, brand, phone } = this.props
+    const { typeBuy, brand, phone, pln } = this.props
     if (typeBuy === 'buy pulsa' || typeBuy === 'buy paket data' ){
       return brand && (
         <label>{brand} <b>{phone}</b></label>
+      )
+    } else if (typeBuy === 'buy pln'){
+      return brand && (
+        <label>{brand} <b>{pln}</b></label>
       )
     }
   }

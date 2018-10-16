@@ -35,7 +35,7 @@ export default function ModalLineInfo(props) {
           </ModalHeader>
           <ModalBody>
             <Container className="text-center">
-              <h1>+62-8xxxx-xxxx</h1>
+              <h1>+62-877-8697-2843</h1>
             </Container>
           </ModalBody>
         </div>

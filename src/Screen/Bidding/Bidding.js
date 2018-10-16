@@ -141,20 +141,6 @@ class Bidding extends React.Component {
     )
   }
 
-
-  render() {
-    return (
-    <div>
-      <MediaQuery query="(max-device-width: 720px)">
-        {this.renderMobileBid()}
-      </MediaQuery>
-      <MediaQuery query="(min-device-width: 721px)">
-        {this.renderBid()}
-      </MediaQuery>
-    </div>
-    )
-  }
-
   toggle = () => {
     this.props.history.push('/home')
   }
@@ -191,6 +177,8 @@ class Bidding extends React.Component {
     }
   }
 
+
+
   buy() {
     const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
     const productRef = productsRef.child(this.props.selectedPriceID)
@@ -209,11 +197,20 @@ class Bidding extends React.Component {
         type: this.props.location.state.type
       }
     })
-    this.props.history.push('/insertphone', {
-      aladinPrice: this.state.productUnlocked.aladinPrice,
-      typeBuy: this.props.location.state.typeBuy,
-      displayPrice: this.props.location.state.displayPrice
-    })
+    if (this.props.location.state.typeBuy === 'buy pln') {
+      this.props.history.push('/insertpln', {
+        aladinPrice: this.state.productUnlocked.aladinPrice,
+        typeBuy: this.props.location.state.typeBuy,
+        displayPrice: this.props.location.state.displayPrice,
+        pln: this.props.location.state.pln
+      })
+    } else {
+      this.props.history.push('/insertphone', {
+        aladinPrice: this.state.productUnlocked.aladinPrice,
+        typeBuy: this.props.location.state.typeBuy,
+        displayPrice: this.props.location.state.displayPrice
+      })
+    }
   }
 
   cancel() {
@@ -225,7 +222,7 @@ class Bidding extends React.Component {
       return null
     }
 
-		if (selectedPriceID === 1) {
+		if (selectedPriceID === 1 || selectedPriceID === 5) {
       this.props.setIsLoading(true)
       const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
       const productRef = productsRef.child(selectedPriceID)
@@ -379,6 +376,19 @@ class Bidding extends React.Component {
         text: 'Maaf, produk ini sudah terbeli orang lain! Silahkan melakukan bidding lagi.'
       })
 		}
+  }
+
+  render() {
+    return (
+    <div>
+      <MediaQuery query="(max-device-width: 720px)">
+        {this.renderMobileBid()}
+      </MediaQuery>
+      <MediaQuery query="(min-device-width: 721px)">
+        {this.renderBid()}
+      </MediaQuery>
+    </div>
+    )
   }
 }
 

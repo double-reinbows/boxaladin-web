@@ -23,42 +23,43 @@ class InvoiceDetail extends React.Component {
   }
 
   handleRetail(){
-    if (!this.state.invoice){
+    const {invoice} = this.state
+    if (!invoice){
       return null
-    } else if (this.state.invoice.payment.availableretail === 'BCA') {
+    } else if (invoice.payment.availableretail === 'BCA') {
       return (
         <div>
-        <Guide activeTab= {'4'} invoice={this.state.invoice} amount={this.state.invoice.payment.amount}/>
+        <Guide activeTab= {'4'} invoice={invoice} amount={invoice.payment.amount}/>
       </div>
       )
-    } else if (this.state.invoice.payment.availableretail !== 'null') {
+    } else if (invoice.payment.availableretail !== 'null') {
       return (
         <div>
-        <Guide activeTab= {'5'} invoice={this.state.invoice} />
+        <Guide activeTab= {'5'} invoice={invoice} />
       </div>
       )
-    } else if (this.state.invoice.payment.availableretail === 'wallet'){
+    } else if (invoice.payment.availableretail === 'wallet'){
       return (
         <div>
-          <Guide activeTab= {'5'} invoice={this.state.invoice} />
+          <Guide activeTab= {'5'} invoice={invoice} />
         </div>
       )
-    } else if (this.state.invoice.virtualAccount.bankCode === 'MANDIRI') {
+    } else if (invoice.virtualAccount.bankCode === 'MANDIRI') {
       return (
         <div>
-        <Guide activeTab= {'1'} invoice={this.state.invoice} />
+        <Guide activeTab= {'1'} invoice={invoice} />
       </div>
       )
-    } else if (this.state.invoice.virtualAccount.bankCode === 'BNI') {
+    } else if (invoice.virtualAccount.bankCode === 'BNI') {
       return (
         <div>
-        <Guide activeTab= {'2'} invoice={this.state.invoice} />
+        <Guide activeTab= {'2'} invoice={invoice} />
       </div>
       )
-    } else if (this.state.invoice.virtualAccount.bankCode === 'BRI') {
+    } else if (invoice.virtualAccount.bankCode === 'BRI') {
       return (
         <div>
-        <Guide activeTab= {'3'} invoice={this.state.invoice} />
+        <Guide activeTab= {'3'} invoice={invoice} />
       </div>
       )
     } else {
