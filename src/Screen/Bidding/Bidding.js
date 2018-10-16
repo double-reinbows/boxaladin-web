@@ -281,7 +281,6 @@ class Bidding extends Component {
     return (
     <div className="bidding">
       <div className="bidding__container">
-        <Loading isLoading={ this.props.isLoading } />
         <div className="bidding__3">
           <div className="bidding__3__col">
             <div>
@@ -334,7 +333,6 @@ class Bidding extends Component {
   renderMobileBid = () => {
     return (
       <div>
-        <Loading isLoading={ this.props.isLoading } />
         <h1 className="mobile-bidding__title">RUANG LELANG</h1>
         <div className="mobile-bidding__content">
           <div className="mobile-bidding__2">
@@ -375,6 +373,7 @@ class Bidding extends Component {
   render() { 
     return (  
     <div>
+      <Loading isLoading={ this.props.isLoading } />
       <MediaQuery query="(max-device-width: 720px)">
         {this.renderMobileBid()}
       </MediaQuery>
