@@ -34,11 +34,19 @@ class Bidding extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    this.checkDataFirebase(prevState.productUnlocked.aladinPrice, this.state.productUnlocked.aladinPrice)
     this.afterResetPrice(prevState.productUnlocked.aladinPrice)
+    
   }
 
   componentWillUnmount() {
     localStorage.removeItem('selectedPriceID')
+  }
+
+  checkDataFirebase = (prevPrice, nowPrice) => {
+    if (prevPrice !== undefined && nowPrice !== undefined){
+      this.props.setIsLoading(false)
+    }
   }
 
   afterResetPrice(prevPrice) {
@@ -70,7 +78,31 @@ class Bidding extends Component {
     }, 1000)
   }
 
-    watchProductPrice = async (selectedPriceID) => {
+  simplyWatchProductPrice = (priceId, priceBefore, priceAfter) => {
+    axios({
+      method: 'POST',
+      url: `${envChecker('api')}/logbid`,
+      headers: {
+        token: localStorage.getItem('token'),
+      },
+      data: {
+        priceId: priceId,
+        priceBefore: priceBefore,
+        priceAfter: priceAfter
+      }
+    })
+    axios({
+      method: 'POST',
+      url: `${envChecker('api')}/watching`,
+      data: {
+        id: priceId,
+        firebase: this.props.location.state.firebase
+      }
+    })
+    this.runTimer()
+  }
+
+  watchProductPrice = (selectedPriceID) => {
     if (selectedPriceID === '') {
       return null
     }
@@ -78,134 +110,61 @@ class Bidding extends Component {
       this.props.setIsLoading(true)
       const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
       const productRef = productsRef.child(selectedPriceID)
-      productRef.once('value', async snap => {
+      productRef.once('value', snap => {
         if ( snap.val().aladinPrice - snap.val().decreasePrice > 0){
-          await productRef.update({
+          productRef.update({
             watching: snap.val().watching + 1,
             aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
           })
-          axios({
-            method: 'POST',
-            url: `${envChecker('api')}/logbid`,
-            headers: {
-              token: localStorage.getItem('token'),
-            },
-            data: {
-              priceId: selectedPriceID,
-              priceBefore: snap.val().aladinPrice,
-              priceAfter: snap.val().aladinPrice - snap.val().decreasePrice
-            }
-          })
+          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice))
         }
         else if (snap.val().aladinPrice - snap.val().decreasePrice <= 0) {
           productRef.update({
             watching: snap.val().watching + 1,
             aladinPrice: 0
           })
-          axios({
-            method: 'POST',
-            url: `${envChecker('api')}/logbid`,
-            headers: {
-              token: localStorage.getItem('token'),
-            },
-            data: {
-              priceId: selectedPriceID,
-              priceBefore: snap.val().aladinPrice,
-              priceAfter: 0
-            }
-          })
+          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, 0 )
         }
       })
-      axios({
-        method: 'POST',
-        url: `${envChecker('api')}/watching`,
-        data: {
-          id: selectedPriceID,
-          firebase: this.props.location.state.firebase
-        }
-      })
-      .then( () => {
-        this.runTimer()
-        this.props.setIsLoading(false)
-      })
-      await productRef.on('value',async snap => {
+      productRef.on('value',snap => {
         const productValue = {
           aladinPrice: snap.val().aladinPrice,
           watching: snap.val().watching
         }
-        await this.setState({
+        this.setState({
           productUnlocked: productValue,
-        }, () => this.props.setIsLoading(false)
-        )
+        })
       })
-      // this.props.setIsLoading(false)
-      // this.runTimer()
-    } else if (localStorage.getItem('token') !== null) {
+    } else {
       this.props.setIsLoading(true)
       const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
       const productRef = productsRef.child(selectedPriceID)
-      productRef.once('value', async snap => {
+      productRef.once('value', snap => {
 
         if (snap.val().aladinPrice > 10000){
-          await productRef.update({
+          productRef.update({
             watching: snap.val().watching +1,
             aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
           })
-          axios({
-            method: 'POST',
-            url: `${envChecker('api')}/logbid`,
-            headers: {
-              token: localStorage.getItem('token'),
-            },
-            data: {
-              priceId: selectedPriceID,
-              priceBefore: snap.val().aladinPrice  ,
-              priceAfter: snap.val().aladinPrice - snap.val().decreasePrice
-            }
-          })
+          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice))
         } else if (snap.val().aladinPrice === 10000 || snap.val().aladinPrice <= 10000 ) {
           productRef.update({
             watching: snap.val().watching +1,
           })
-          axios({
-            method: 'POST',
-            url: `${envChecker('api')}/logbid`,
-            headers: {
-              token: localStorage.getItem('token'),
-            },
-            data: {
-              priceId: selectedPriceID,
-              priceBefore: snap.val().aladinPrice  ,
-              priceAfter: snap.val().aladinPrice
-            }
+          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, snap.val().aladinPrice )
+          }
+        })
+        productRef.on('value', snap => {
+          const productValue = {
+            aladinPrice: snap.val().aladinPrice,
+            watching: snap.val().watching
+          }
+          this.setState({
+            productUnlocked: productValue,
           })
-        }
-      })
-      axios({
-        method: 'POST',
-        url: `${envChecker('api')}/watching`,
-        data: {
-          id: selectedPriceID,
-          firebase: this.props.location.state.firebase
-        }
-      })
-      .then( () => {
-        this.runTimer()
-      })
-
-      await productRef.on('value', async snap => {
-        const productValue = {
-          aladinPrice: snap.val().aladinPrice,
-          watching: snap.val().watching
-        }
-        await this.setState({
-          productUnlocked: productValue,
-        }, () => this.props.setIsLoading(false)
-        )
-      })
-
+        })
+    }
   }
-}
 
     buy = () => {
       const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
