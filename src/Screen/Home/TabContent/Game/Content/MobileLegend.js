@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {connect} from 'react-redux'
+import MediaQuery from 'react-responsive'
 
 class MobileLegend extends Component {
   constructor(props) {
@@ -16,7 +17,14 @@ class MobileLegend extends Component {
     })
     .map((price, index) => {
       return (
-        <button key={index} onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game')} className="homecontent__bottom__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
+        <Fragment>
+          <MediaQuery query="(min-device-width: 721px)">
+            <button key={index} onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game')} className="homecontent__bottom__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
+          </MediaQuery>
+          <MediaQuery query="(max-device-width: 721px)">
+            <button key={index} onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game')} className="mobile__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
+          </MediaQuery>
+        </Fragment>
         )
       })
     
