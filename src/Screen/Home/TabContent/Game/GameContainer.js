@@ -38,6 +38,7 @@ class GameContainer extends Component {
       {onClick: () => this.changeContent(1), disabled: false, alt: "Mobile Legend", src: 'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/MOBILE+LEGENDS+LOGO.png'},
       {onClick: () => this.changeContent(2), disabled: true, alt: "PUBG", src: 'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/PUBG+COMING+SOON.png'},
       {onClick: () => this.changeContent(2), disabled: true, alt: "Gemscool", src: 'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/GEMSCOOL+COMING+SOON.png'},
+      {onClick: () => this.changeContent(2), disabled: true, alt: "Garena", src: 'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/GARENA+COMING+SOON.png'},
       {onClick: () => this.changeContent(2), disabled: true, alt: "Lyto", src: 'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/LYTO+COMING+SOON.png'},
       {onClick: () => this.changeContent(2), disabled: true, alt: "Steam", src: 'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/STEAM+WALLET+COMING+SOON.png'},
       {onClick: () => this.changeContent(2), disabled: true, alt: "Google Play", src: 'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/GOOGLE+PLAY+COMING+SOON.png'},
