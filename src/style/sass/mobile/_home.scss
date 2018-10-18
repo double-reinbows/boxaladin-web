@@ -43,6 +43,11 @@
   }
 }
 
+.mobile__game{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .background{
   background-image: url(https://s3-ap-southeast-1.amazonaws.com/iconpulsa/opacityLogo.svg);
   background-size: contain;

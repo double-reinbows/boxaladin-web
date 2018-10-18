@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import MobileLegend from './Content/MobileLegend'
-import MediaQuery from 'react-responsive'
+import {connect} from 'react-redux'
+
+import GameVc from './GameContent/GamesVc'
+
 
 class GameContainer extends Component {
   constructor(props) {
@@ -15,7 +17,7 @@ class GameContainer extends Component {
     switch (tab) {
       case 1:
         return (
-          <MobileLegend
+          <GameVc
             onClick={this.props.onClick}
           />
           )
@@ -55,21 +57,30 @@ class GameContainer extends Component {
 
   render() {
     return (  
-      <Fragment>
-        <MediaQuery query="(min-device-width: 721px)">
-          <div className="homecontent__game">
-            {this.gameTabButton()}
-          </div>
-        </MediaQuery>
-        <MediaQuery query="(max-device-width: 721px)">
-          <div className='mobile__game'>
-            {this.gameTabButton()}
-          </div>
-        </MediaQuery>
+    <Fragment>
+        <h2 className="mobile__pulsa__label">Pilih Voucher Games Favorit mu</h2>
+        <div className="mobile__pulsa__content1">
+        {this.gameTabButton()}
+        </div>
+        <div className="mobile__pulsa__content1">
         {this.renderContent()}
-      </Fragment>
+        </div>
+    </Fragment>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    priceData: state.priceReducer.priceData,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  }
+}
+
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)(GameVc)
 
 export default GameContainer;
