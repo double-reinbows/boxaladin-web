@@ -8,6 +8,8 @@ import ModalBid from '../Components/Modal/ModalBid'
 import { setIsLoading } from '../../actions';
 import Loading from '../Components/Loading';
 // import ModalPln from './Modal/ModalPln'
+import GameContainer from './TabContent/Game/GameContainer'
+
 class HomeContent extends Component {
   constructor(props) {
     super(props);
@@ -246,6 +248,14 @@ renderModalBid() {
           {this.plnSuccess()}
         </div>
         )
+      case 4:
+      return (
+        <div>
+          <GameContainer
+            onClick={this.toggleConfirm}
+          />
+        </div>
+        )
       default:
         return tab
     }
@@ -329,6 +339,7 @@ renderModalBid() {
           <button className={`${this.checkActive(1)} home-tab`} onClick={() => this.changeTab(1)}>PULSA</button>
           <button className={`${this.checkActive(2)} home-tab`} onClick={() => this.changeTab(2)}>PAKET DATA</button>
           <button className={`${this.checkActive(3)} home-tab`} onClick={() => this.changeTab(3)}>TOKEN LISTRIK</button>
+          <button className={`${this.checkActive(4)} home-tab`} onClick={() => this.changeTab(4)}>VOUCHER GAME</button>
         </div>
           {this.renderTab()}
         </div>

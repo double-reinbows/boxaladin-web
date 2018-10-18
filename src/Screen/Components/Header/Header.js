@@ -11,7 +11,7 @@ import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import {logoutAction} from '../../../actions'
 import {getUser} from '../../../actions/userAction'
-
+import { getPrices } from '../../../actions/priceAction'
 import DropdownUser from './Dropdown/DropdownUser'
 
 import ModalLogin from './Login/ModalLogin'
@@ -28,7 +28,10 @@ class NavBar extends Component {
   }
 
   componentDidMount() {
-    const { userInfo, getUser } = this.props
+    const { getUser, getPrices, priceData, userInfo } = this.props
+    if (!priceData.id){
+      getPrices()
+    }
     if (!userInfo.id && localStorage.getItem('token')) {
       getUser()
     }
@@ -103,6 +106,7 @@ const mapStateToProps = state => {
   return {
     isLogin: state.userReducer.isLogin,
     userInfo: state.userReducer.userInfo,
+    priceData: state.priceReducer.priceData,
   }
 }
 
@@ -110,6 +114,7 @@ const mapDispatchToProps = dispatch => {
   return {
     logoutAction: () => dispatch(logoutAction()),
     getUser: () => dispatch(getUser()),
+    getPrices: () => dispatch(getPrices())
   }
 }
 

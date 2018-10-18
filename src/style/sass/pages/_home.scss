@@ -37,6 +37,26 @@
     }
   }
 
+  &__game{
+    display: flex;
+    justify-content: center;
+    &__buttonTab{
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+      margin: 2px;
+      background-color: white;
+      font-size: 25px;
+    }
+    &__buttonGame{
+      display: flex;
+      justify-content: space-around;
+      font-size: 50px;
+      margin-bottom: 5%;
+      margin-top: 2%;
+    }
+  }
+
   &__bottom{
     &__pulsa{
       display: flex;
