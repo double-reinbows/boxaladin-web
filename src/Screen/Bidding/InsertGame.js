@@ -16,7 +16,7 @@ class InsertPhone extends React.Component {
       id1: '',
       id2: ''
     }
-    // this.handleBack()
+    this.handleBack()
   }
 
   togglePayment = () => {
