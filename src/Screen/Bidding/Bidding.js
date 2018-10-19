@@ -204,6 +204,12 @@ class Bidding extends React.Component {
         displayPrice: this.props.location.state.displayPrice,
         pln: this.props.location.state.pln
       })
+    } else if (this.props.location.state.typeBuy === 'buy game') {
+      this.props.history.push('/insertgame', {
+        aladinPrice: this.state.productUnlocked.aladinPrice,
+        typeBuy: this.props.location.state.typeBuy,
+        displayPrice: this.props.location.state.displayPrice,
+      })
     } else {
       this.props.history.push('/insertphone', {
         aladinPrice: this.state.productUnlocked.aladinPrice,

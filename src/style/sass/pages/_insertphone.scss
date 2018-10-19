@@ -118,6 +118,52 @@
     }
   }
 
+  &__game{
+    &__image{
+      display: flex;
+      margin: auto;
+      width: 15%;
+      &__id{
+        align-self: center;
+        margin-bottom: 2%;
+      }
+    }
+    &__inputHead{
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding-top: 3%;
+      &__container{
+        display: flex;
+        justify-content: center;
+      }
+      &__input1{
+        padding: 5px;
+        width: 20%;
+        border: none;
+        border-bottom: 1px solid #FFCD05;
+        &:focus{
+          outline: none;
+        }
+      }
+      &__input2{
+        padding: 5px;
+        width: 20%;
+        border: 1px solid black;
+        border-top: none;
+        border-bottom: 1px solid #FFCD05;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        &:focus{
+          outline: none;
+        }
+      }
+    }
+  }
+
 }
 
 @media (max-width: 720px) {
