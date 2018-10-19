@@ -21,7 +21,8 @@ class Price extends Component {
       displayPrice: 0,
       notif: '',
       notif2: '',
-      type: ''
+      type: '',
+      kwh: []
     }
   }
 
@@ -48,14 +49,6 @@ class Price extends Component {
     })
   }
 
-  // PlnNtc = () => {
-  //   if (success){
-  //     this.state({
-
-  //     })
-  //   }
-  // }
-
   submitPlnNumber = () =>{
     this.props.setIsLoading(true)
     axios({
@@ -67,10 +60,11 @@ class Price extends Component {
     })
     .then(response=> {
       this.props.setIsLoading(false)
-      if (response.data.message._text === "SUCCESS"){
+      if (response.data.data.message._text === "SUCCESS"){
         this.setState({
           notif: 'No ID PLN Benar',
-          disabledBtn:false
+          disabledBtn:false,
+          kwh: response.data.kwh
         })
       } else {
         this.setState({
@@ -166,6 +160,7 @@ class Price extends Component {
           priceId={this.state.priceId}
           type={this.state.type}
           pln={this.state.inputPln}
+          kwh={this.state.kwh}
         />
         <Loading isLoading={ this.props.isLoading } />
       </div>

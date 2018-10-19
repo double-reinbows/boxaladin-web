@@ -29,6 +29,7 @@ class HomeContent extends Component {
       inputPln: "",
       success: false,
       notif: '',
+      kwh: []
     }
   }
 
@@ -171,10 +172,11 @@ renderModalBid() {
     })
     .then(response=> {
       this.props.setIsLoading(false)
-      if (response.data.message._text === "SUCCESS"){
+      if (response.data.data.message._text === "SUCCESS"){
         this.setState({
           success:true,
-          button:false
+          button:false,
+          kwh: response.data.kwh
         })
       } else {
         this.setState({
@@ -262,7 +264,7 @@ renderModalBid() {
   }
 
   plnSuccess = () => {
-    const {price, success} = this.state
+    const { price, success} = this.state
     if (success) {
       return(
       <Fragment>
@@ -312,6 +314,7 @@ renderModalBid() {
           priceId={this.state.priceId}
           type={this.state.type}
           pln={this.state.inputPln}
+          kwh={this.state.kwh}
         />
       )
     }

@@ -55,7 +55,7 @@ class ModalPayment extends Component{
   }
 
   createObj = () => {
-    const { typeBuy, data, brand, brandId, amount, phone, pln, selectedPriceID } = this.props
+    const { typeBuy, data, brand, brandId, amount, phone, pln, selectedPriceID, idGame } = this.props
     const { bank } = this.state
     if (typeBuy === 'buy wallet') {
       return {
@@ -92,6 +92,16 @@ class ModalPayment extends Component{
         amount: amount,
         phoneNumber: pln,
         type: 'pln'
+      }
+    } else if (typeBuy === 'buy game'){
+      return {
+        priceId: selectedPriceID,
+        brand,
+        brandId,
+        bankCode: bank,
+        amount: amount,
+        phoneNumber: idGame,
+        type: 'game'
       }
     }
   }
@@ -275,6 +285,7 @@ class ModalPayment extends Component{
   }
 
   render() {
+    console.log(this.props)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">

@@ -61,6 +61,7 @@
     display: flex;
     width: 100%;
     justify-content: center;
+    margin-bottom: 3%;
 
     &__logo{
       width: 17%;
@@ -137,8 +138,10 @@
       &__container{
         display: flex;
         justify-content: center;
+        font-size: 15px;
       }
       &__input1{
+        text-align: center;
         padding: 5px;
         width: 20%;
         border: none;
@@ -148,6 +151,8 @@
         }
       }
       &__input2{
+        width: 11%;
+        text-align: center;
         padding: 5px;
         width: 20%;
         border: 1px solid black;
