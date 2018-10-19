@@ -3,12 +3,19 @@ import Price from './Price'
 import PaketData from './PaketData'
 import TokenListrik from './TokenPln'
 import GameContainer from '../../Home/TabContent/Game/GameContainer'
+import ModalConfirm from '../../Home/Modal/ModalConfirm'
+import envChecker from '../../../utils/envChecker'
 
 export default class MobileHome extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab: 1
+      tab: 1,
+      openModal : false,
+      priceId: 0,
+      displayPrice: 0,
+      type: '',
+      typeBuy: ''
     }
   }
   renderTab = () => {
@@ -21,10 +28,20 @@ export default class MobileHome extends Component {
       case 3:
         return <TokenListrik/>;
       case 4:
-        return <GameContainer/>
+        return <GameContainer onClick={this.toggleConfirm}/>
       default:
         return tab
     }
+  }
+
+  toggleConfirm = (id, displayPrice, typeBuy) => {
+    this.setState({
+      openModal: !this.state.openModal,
+        priceId: id,
+        displayPrice,
+        type: 'price',
+        typeBuy
+    })
   }
 
   changeTab = (value) => {
@@ -40,6 +57,23 @@ export default class MobileHome extends Component {
     }
   }
 
+  renderModalConfirm() {
+    if (this.state.openModal) {
+      return (
+        <ModalConfirm
+          typeBuy ={this.state.typeBuy}
+          firebase= {envChecker('price')}
+          displayPrice={this.state.displayPrice}
+          open={this.state.openModal}
+          toggle={this.toggleConfirm}
+          priceId={this.state.priceId}
+          type={this.state.type}
+        />
+      )
+    }
+    return null;
+  }
+
   render() {
     return (
       <div>
@@ -52,6 +86,8 @@ export default class MobileHome extends Component {
         {this.renderTab()}
         <h2 className="mobile__pulsa__label">Cara Kerja</h2>
         <img alt="how it works" className='mobile__pulsa__image'src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/Cara+Kerja/carKerjaMobile.svg"/>
+        {this.renderModalConfirm()}
+
       </div>
     );
   }

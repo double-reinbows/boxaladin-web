@@ -91,3 +91,102 @@
     }
   }
 }
+
+.mobile-InsertGame{
+  &-container{
+    border: 1px solid;
+    max-width: 70%;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 2%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: #dee2e8;
+  }
+  &-image{
+    display: flex;
+    margin: auto;
+    width: 45%;
+    &-imgbottom{
+      display: flex;
+      margin: auto;
+      width: 70%;
+    }
+    &-imgtext{
+      display: flex;
+      justify-content: center;
+      margin-top: 1%;
+      font-size: smaller;
+      font-style: oblique;
+      color: red;
+    }
+  }
+  &-labelprice{
+    display: flex;
+    justify-content: end;
+    margin-top: 3%;
+    &-bottom{
+      display: flex;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+  &-titletext{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 13px;
+    &-line{
+      border-top: 2px dashed gray;
+    }
+    &-midtext{
+      display: flex;
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 5%;
+    }
+    
+  }
+  &-inputid{
+    display: flex;
+    justify-content: center;
+    font-size: 10px;
+    &-inputone{
+      text-align: center;
+      padding: 5px;
+      background-color: #dee2e8;
+      width: 25%;
+      border: none;
+      border-bottom: 1px solid black;
+    }
+    &-inputtwo{
+      text-align: center;
+      padding: 5px;
+      background-color: #dee2e8;
+      width: 25%;
+      border: 1px solid black;
+      border-top: none;
+      border-bottom: 1px solid black;
+      border-radius:10px;
+      border-top: none;
+      }
+  }
+  &-alert{
+    display: flex;
+    justify-content: center;
+    
+  }
+  &-button{
+    width: 45%;
+    border-radius: 10px;
+    background-color: #FFCD06;
+    font-size: 15px;
+    &-container{
+      display: flex;
+      padding-top: 4%;
+      justify-content: space-around;
+    }
+  }
+}

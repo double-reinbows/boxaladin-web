@@ -1,10 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import {connect} from 'react-redux'
-<<<<<<< HEAD
 import MediaQuery from 'react-responsive'
-=======
 import { Collapse } from 'reactstrap';
->>>>>>> 69d66d18f231682552fe177d3d60cf0ffcebc90d
 
 class MobileLegend extends Component {
   constructor(props) {
@@ -16,24 +13,6 @@ class MobileLegend extends Component {
 
   renderMobileLegend = () => {
     const { priceData } = this.props
-<<<<<<< HEAD
-    return priceData.filter(dataFilter => {
-      return dataFilter.id !== 2 && dataFilter.id !== 3
-    })
-    .map((price, index) => {
-      return (
-        <Fragment>
-          <MediaQuery query="(min-device-width: 721px)">
-            <button key={index} onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game')} className="homecontent__bottom__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
-          </MediaQuery>
-          <MediaQuery query="(max-device-width: 721px)">
-            <button key={index} onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game')} className="mobile__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
-          </MediaQuery>
-        </Fragment>
-        )
-      })
-    
-=======
     return (
       <Fragment>
         <Collapse isOpen={this.props.isOpen}>
@@ -44,7 +23,14 @@ class MobileLegend extends Component {
         })
         .map((price, index) => {
           return (
+          <Fragment>
+          <MediaQuery query="(min-device-width: 721px)">
             <button key={index} onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game')} className="homecontent__bottom__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
+          </MediaQuery>
+          <MediaQuery query="(max-device-width: 721px)">
+            <button key={index} onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game')} className="mobile__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
+          </MediaQuery>
+          </Fragment>
             )
           })
         }
@@ -52,10 +38,10 @@ class MobileLegend extends Component {
         </Collapse>
       </Fragment>
     )
->>>>>>> 69d66d18f231682552fe177d3d60cf0ffcebc90d
   }
 
   render() {
+    console.log ('this.props', this.props)
     return (
       this.renderMobileLegend()
     );

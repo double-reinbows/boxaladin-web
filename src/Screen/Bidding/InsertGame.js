@@ -134,24 +134,32 @@ class InsertPhone extends React.Component {
 
   renderMobileInsertPhone = () => {
     return (
-      <div>
-        <h1 >LELANG BERHASIL</h1>
+      <div className="mobile-InsertGame-container">
+        <img alt="Mobile Legend" className="mobile-InsertGame-image" src = 'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/MOBILE+LEGENDS+LOGO.png'/>
         <div >
-          <div >
+          <label className="mobile-InsertGame-titletext ">Mobile Legends Voucher</label>
+          <div>
+            <div className="mobile-InsertGame-labelprice" >
             {this.displayPrice()}
+            </div>
+            <hr className="mobile-InsertGame-titletext-line"/>
             <div >
-              <label >{this.formatRupiah()}</label>
-              <label >Kamu menghemat {percentagePrice(this.props.location.state.aladinPrice, this.props.location.state.displayPrice)}</label>
+              <label className="mobile-InsertGame-titletext-midtext" >Harga Akhir</label>
+              <label className="mobile-InsertGame-labelprice-bottom" >{this.formatRupiah()}</label>
             </div>
           </div>
-          <label className="alert__otp">{this.state.notif}</label>
-          <div >
-            <input placeholder=" user id"  name="id1" value={this.state.id1} onChange={this.handleChangeId} type="number"/>
-            <input placeholder="user id 2" maxLength={6} name="id2" value={this.state.id2} onChange={this.handleChangeId} type="number"/>
+          <img src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Game/MobileLegendId.jpeg" alt="UserId" className="mobile-InsertGame-image-imgbottom" />
+          <label className="mobile-InsertGame-image-imgtext" >*Masukan No ID Mobile Legends Kamu</label>
+          <div className="mobile-InsertGame-inputid" >
+            <input placeholder=" user id"  name="id1" value={this.state.id1} onChange={this.handleChangeId} type="number" className="mobile-InsertGame-inputid-inputone" />
+            <input placeholder="user id 2" maxLength={6} name="id2" value={this.state.id2} onChange={this.handleChangeId} type="number" className="mobile-InsertGame-inputid-inputtwo" />
           </div>
+          <label className="mobile-InsertGame-alert alert__otp">{this.state.notif}</label>
         </div>
-          <button type="submit" disabled={this.state.disabled}  onClick={(e) => this.submitTransaction(e)} >Beli Sekarang</button>
-          <button type="submit" style={{color:'red'}} onClick={() => this.cancel()}>Batal</button>
+        <div className="mobile-InsertGame-button-container">
+          <button type="submit" disabled={this.state.disabled}  onClick={(e) => this.submitTransaction(e)} className="mobile-InsertGame-button" >Lanjut</button>
+          <button type="submit" style={{color:'red'}} onClick={() => this.cancel()} className="mobile-InsertGame-button" >Batal</button>
+        </div>
         {this.renderModalPayment()}
       </div>
     )
