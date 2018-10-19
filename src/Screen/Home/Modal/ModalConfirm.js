@@ -94,6 +94,7 @@ class ModalConfirm extends Component {
         <div className="modal__confirm__label">
           <label><b>1x intip = 1 kunci aladin. Lanjutkan ?</b></label>
         </div>
+        {this.renderKwh()}
         <div className="modal__confirm__button">
           <button className="modal__confirm__button__yes" onClick={this.checkAladinkey}>YA</button>
           <button className="modal__confirm__button__no" onClick={this.props.toggle}>TIDAK</button>
@@ -101,6 +102,25 @@ class ModalConfirm extends Component {
       </div>
     )
   }
+
+  renderKwh = () => {
+    const { kwh, priceId } = this.props
+    if (kwh) {
+      return kwh.filter(data => {
+        return data.id === priceId
+      })
+      .map((item, index) => {
+        return ( 
+          <div key={index} style={{textAlign:'center'}}>
+            <label><strong>Untuk Pembelian Rp.{item.price.toLocaleString(['ban', 'id'])} &plusmn; {item.kwh} Kwh</strong></label>   
+          </div>
+        )
+      })
+      
+    } else {
+      return null
+    }
+  } 
 
   renderMobilePrice = () => {
     return this.props.displayPrice && (
@@ -117,6 +137,7 @@ class ModalConfirm extends Component {
           <br/>
           <label><b>Lanjutkan ?</b></label>
         </div>
+        {this.renderKwh()}
         <div className="mobile-modal-confirm-button-container">
           <button className="mobile-modal-confirm-button" onClick={this.checkAladinkey}>YA</button>
           <button className="mobile-modal-confirm-button" onClick={this.props.toggle}>TIDAK</button>
@@ -127,6 +148,7 @@ class ModalConfirm extends Component {
 
 
   render() {
+    console.log('props kwh', this.props.kwh)
     return (
       <Modal isOpen={this.props.open} className="modal__confirm">
         <MediaQuery query="(max-device-width: 720px)">

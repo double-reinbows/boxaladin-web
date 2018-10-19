@@ -61,6 +61,7 @@
     display: flex;
     width: 100%;
     justify-content: center;
+    margin-bottom: 3%;
 
     &__logo{
       width: 17%;
@@ -114,6 +115,56 @@
       border: 2px solid #FFCD06;
       &:hover{
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      }
+    }
+  }
+
+  &__game{
+    &__image{
+      display: flex;
+      margin: auto;
+      width: 15%;
+      &__id{
+        align-self: center;
+        margin-bottom: 2%;
+      }
+    }
+    &__inputHead{
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding-top: 3%;
+      &__container{
+        display: flex;
+        justify-content: center;
+        font-size: 15px;
+      }
+      &__input1{
+        text-align: center;
+        padding: 5px;
+        width: 20%;
+        border: none;
+        border-bottom: 1px solid #FFCD05;
+        &:focus{
+          outline: none;
+        }
+      }
+      &__input2{
+        width: 11%;
+        text-align: center;
+        padding: 5px;
+        width: 20%;
+        border: 1px solid black;
+        border-top: none;
+        border-bottom: 1px solid #FFCD05;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        &:focus{
+          outline: none;
+        }
       }
     }
   }

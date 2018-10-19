@@ -44,6 +44,7 @@ class Invoice extends Component {
             <th>Tanggal</th>
             <th>Barang</th>
             <th>Nominal Transfer</th>
+            <th>No Tujuan</th>
             <th>Status</th>
             <th></th>
           </tr>
