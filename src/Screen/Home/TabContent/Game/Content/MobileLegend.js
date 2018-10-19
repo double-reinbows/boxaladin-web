@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {connect} from 'react-redux'
+import { Collapse } from 'reactstrap';
 
 class MobileLegend extends Component {
   constructor(props) {
@@ -11,22 +12,29 @@ class MobileLegend extends Component {
 
   renderMobileLegend = () => {
     const { priceData } = this.props
-    return priceData.filter(dataFilter => {
-      return dataFilter.id !== 2 && dataFilter.id !== 3
-    })
-    .map((price, index) => {
-      return (
-        <button key={index} onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game')} className="homecontent__bottom__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
-        )
-      })
-    
+    return (
+      <Fragment>
+        <Collapse isOpen={this.props.isOpen}>
+        <h2 style={{textAlign: 'center', marginTop:'2%'}}>Voucher Mobile Legend</h2>
+        <div className="homecontent__game__buttonGame">
+        {priceData.filter(dataFilter => {
+          return dataFilter.id !== 2 && dataFilter.id !== 3
+        })
+        .map((price, index) => {
+          return (
+            <button key={index} onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game')} className="homecontent__bottom__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
+            )
+          })
+        }
+        </div>
+        </Collapse>
+      </Fragment>
+    )
   }
 
   render() {
     return (
-      <div className="homecontent__game__buttonGame">
-        {this.renderMobileLegend()}
-      </div>
+      this.renderMobileLegend()
     );
   }
 }

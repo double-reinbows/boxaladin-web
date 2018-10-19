@@ -5,7 +5,8 @@ class GameContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {  
-      tab: 0
+      tab: 0,
+      collapse: false
     }
   }
 
@@ -16,6 +17,7 @@ class GameContainer extends Component {
         return (
           <MobileLegend
             onClick={this.props.onClick}
+            isOpen={this.state.collapse}
           />
           )
       case 2:
@@ -29,7 +31,8 @@ class GameContainer extends Component {
 
   changeContent = (value) => {
     this.setState({
-      tab: value
+      collapse: !this.state.collapse,
+      tab: value,
     })
   }
 
