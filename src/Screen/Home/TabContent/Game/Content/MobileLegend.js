@@ -24,12 +24,31 @@ class MobileLegend extends Component {
         .map((price, index) => {
           return (
           <Fragment>
-          <MediaQuery query="(min-device-width: 721px)">
             <button key={index} onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game')} className="homecontent__bottom__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
-          </MediaQuery>
-          <MediaQuery query="(max-device-width: 721px)">
+          </Fragment>
+            )
+          })
+        }
+        </div>
+        </Collapse>
+      </Fragment>
+    )
+  }
+
+  renderMobileMobileLegend = () => {
+    const { priceData } = this.props
+    return (
+      <Fragment>
+        <Collapse isOpen={this.props.isOpen}>
+        <h2 style={{textAlign: 'center', marginTop:'2%'}}>Voucher Mobile Legend</h2>
+        <div className="mobile__pulsa__content1">
+        {priceData.filter(dataFilter => {
+          return dataFilter.id !== 2 && dataFilter.id !== 3
+        })
+        .map((price, index) => {
+          return (
+          <Fragment>
             <button key={index} onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game')} className="mobile__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
-          </MediaQuery>
           </Fragment>
             )
           })
@@ -43,7 +62,14 @@ class MobileLegend extends Component {
   render() {
     console.log ('this.props', this.props)
     return (
-      this.renderMobileLegend()
+      <Fragment>
+        <MediaQuery query="(max-device-width: 721px)">
+          {this.renderMobileMobileLegend()}
+        </MediaQuery>
+        <MediaQuery query="(min-device-width: 721px)">
+          {this.renderMobileLegend()}
+        </MediaQuery>
+      </Fragment>
     );
   }
 }
