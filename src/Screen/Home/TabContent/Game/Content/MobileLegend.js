@@ -11,21 +11,38 @@ class MobileLegend extends Component {
     }
   }
 
-  renderMobileLegend = () => {
+  mergeDiamond = () => {
     const { priceData } = this.props
+    const diamond = [
+      {id:5, diamond: 19 },
+      {id:1, diamond: 36 },
+      {id:6, diamond: 74 },
+      {id:4, diamond: 366 }
+    ]
+    const mergeArray = (source, merge, by) => source.map(item => ({
+      ...item,
+      ...(merge.find(i => i[by] === item[by]) || {}),
+    }));
+    return (mergeArray(priceData, diamond, 'id'));
+  }
+
+  renderMobileLegend = () => {
+    const data = this.mergeDiamond()
+    console.log('data', data)
     return (
       <Fragment>
         <Collapse isOpen={this.props.isOpen}>
         <h2 style={{textAlign: 'center', marginTop:'2%'}}>Voucher Mobile Legend</h2>
         <div className="homecontent__game__buttonGame">
-        {priceData.filter(dataFilter => {
-          return dataFilter.id !== 2 && dataFilter.id !== 3
+        {data.filter(dataFilter => {
+          return dataFilter.id === 1 || dataFilter.id === 4 || dataFilter.id === 5 || dataFilter.id === 6
         })
         .map((price, index) => {
           return (
-          <Fragment>
-            <button key={index} onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game')} className="homecontent__bottom__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
-          </Fragment>
+          <div className="homecontent__game__ml__container">
+            <button key={index} onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game', price.diamond)} className="homecontent__bottom__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
+            <label className="homecontent__game__label">Mobile Legend {price.diamond}<img className="homecontent__game__ml__diamond" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Voucher+Game/Diamon-Mobile-legend.png" alt="diamond"/></label>
+          </div>
             )
           })
         }
@@ -36,20 +53,35 @@ class MobileLegend extends Component {
   }
 
   renderMobileMobileLegend = () => {
-    const { priceData } = this.props
+    const data = this.mergeDiamond()
     return (
       <Fragment>
         <Collapse isOpen={this.props.isOpen}>
         <h2 style={{textAlign: 'center', marginTop:'2%'}}>Voucher Mobile Legend</h2>
-        <div className="mobile__pulsa__content1">
-        {priceData.filter(dataFilter => {
-          return dataFilter.id !== 2 && dataFilter.id !== 3
+        <div className="mobile__game__container">
+        {data.filter(dataFilter => {
+          return dataFilter.id === 5 || dataFilter.id === 1
         })
         .map((price, index) => {
           return (
-          <Fragment>
+          <div className="mobile__game__content">
+            <button key={index} onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game', price.diamond)} className="mobile__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
+            <label className="mobile__game__label">Mobile Legend {price.diamond}<img className="homecontent__game__ml__diamond" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Voucher+Game/Diamon-Mobile-legend.png" alt="diamond"/></label>
+          </div>
+            )
+          })
+        }
+        </div>
+        <div className="mobile__game__container">
+        {data.filter(dataFilter => {
+          return dataFilter.id === 6 || dataFilter.id === 4
+        })
+        .map((price, index) => {
+          return (
+          <div className="mobile__game__content">
             <button key={index} onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game')} className="mobile__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
-          </Fragment>
+            <label className="mobile__game__label">Mobile Legend {price.diamond}<img className="homecontent__game__ml__diamond" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Voucher+Game/Diamon-Mobile-legend.png" alt="diamond"/></label>
+          </div>
             )
           })
         }
@@ -60,7 +92,6 @@ class MobileLegend extends Component {
   }
 
   render() {
-    console.log ('this.props', this.props)
     return (
       <Fragment>
         <MediaQuery query="(max-device-width: 721px)">

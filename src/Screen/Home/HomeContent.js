@@ -29,7 +29,8 @@ class HomeContent extends Component {
       inputPln: "",
       success: false,
       notif: '',
-      kwh: []
+      kwh: [],
+      diamondMl: 0
     }
   }
 
@@ -45,13 +46,15 @@ class HomeContent extends Component {
     })
   }
 
-  toggleConfirm = (id, displayPrice, typeBuy) => {
+  toggleConfirm = (id, displayPrice, typeBuy, diamondMl) => {
+    const diamond = diamondMl ? (diamondMl) : 0
     this.setState({
       openModal: !this.state.openModal,
       priceId: id,
       displayPrice,
       type: 'price',
-      typeBuy
+      typeBuy,
+      diamondMl: diamond
     })
   }
 
@@ -315,6 +318,7 @@ renderModalBid() {
           type={this.state.type}
           pln={this.state.inputPln}
           kwh={this.state.kwh}
+          diamondMl={this.state.diamondMl}
         />
       )
     }

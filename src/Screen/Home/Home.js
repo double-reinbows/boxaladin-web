@@ -1,9 +1,6 @@
 //@flow
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
 import MediaQuery from 'react-responsive';
-
-import {loginAction} from '../../actions/'
 
 import HomeContent from './HomeContent'
 import BannerHome from './BannerHome'
@@ -27,20 +24,4 @@ class Home extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isLogin: state.userReducer.isLogin,
-    dataUser: state.userReducer.dataUser,
-    phoneNumbers: state.userReducer.phoneNumbers
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    loginAction: () => dispatch(loginAction()),
-  }
-}
-
-const connectComponent = connect(mapStateToProps, mapDispatchToProps)(Home);
-
-export default connectComponent;
+export default Home;
