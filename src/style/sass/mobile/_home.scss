@@ -43,7 +43,10 @@
 }
 
 .mobile__game{
-  text-align: center;
+  // text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   &__container{
     display: flex;
     justify-content: center;
