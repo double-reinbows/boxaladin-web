@@ -107,7 +107,7 @@
   &-image{
     display: flex;
     margin: auto;
-    width: 45%;
+    width: -webkit-fill-available;
     &-imgbottom{
       display: flex;
       margin: auto;
