@@ -101,7 +101,7 @@ class ModalPayment extends Component{
         bankCode: bank,
         amount: amount,
         phoneNumber: idGame,
-        type: 'game'
+        type: 'gameml'
       }
     }
   }
