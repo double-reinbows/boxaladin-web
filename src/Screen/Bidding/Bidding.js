@@ -196,7 +196,8 @@ class Bidding extends Component {
           aladinPrice: this.state.productUnlocked.aladinPrice,
           typeBuy: this.props.location.state.typeBuy,
           displayPrice: this.props.location.state.displayPrice,
-          pln: this.props.location.state.pln
+          pln: this.props.location.state.pln,
+          diamond: this.props.location.state.diamond
         })
       } else {
         this.props.history.push('/insertphone', {

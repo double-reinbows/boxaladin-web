@@ -28,7 +28,6 @@ class MobileLegend extends Component {
 
   renderMobileLegend = () => {
     const data = this.mergeDiamond()
-    console.log('data', data)
     return (
       <Fragment>
         <Collapse isOpen={this.props.isOpen}>
@@ -39,8 +38,8 @@ class MobileLegend extends Component {
         })
         .map((price, index) => {
           return (
-          <div className="homecontent__game__ml__container">
-            <button key={index} onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game', price.diamond)} className="homecontent__bottom__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
+          <div key={index} className="homecontent__game__ml__container">
+            <button onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game', price.diamond)} className="homecontent__bottom__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
             <label className="homecontent__game__label">Mobile Legend {price.diamond}<img className="homecontent__game__ml__diamond" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Voucher+Game/Diamon-Mobile-legend.png" alt="diamond"/></label>
           </div>
             )
@@ -64,8 +63,8 @@ class MobileLegend extends Component {
         })
         .map((price, index) => {
           return (
-          <div className="mobile__game__content">
-            <button key={index} onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game', price.diamond)} className="mobile__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
+          <div key={index} className="mobile__game__content">
+            <button onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game', price.diamond)} className="mobile__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
             <label className="mobile__game__label">Mobile Legend {price.diamond}<img className="homecontent__game__ml__diamond" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Voucher+Game/Diamon-Mobile-legend.png" alt="diamond"/></label>
           </div>
             )
@@ -78,8 +77,8 @@ class MobileLegend extends Component {
         })
         .map((price, index) => {
           return (
-          <div className="mobile__game__content">
-            <button key={index} onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game')} className="mobile__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
+          <div key={index} className="mobile__game__content">
+            <button onClick={() => this.props.onClick(price.id, price.displayPrice, 'buy game', price.diamond)} className="mobile__pulsa__button baBackground">{price.displayPrice.toLocaleString(['ban', 'id'])}</button>
             <label className="mobile__game__label">Mobile Legend {price.diamond}<img className="homecontent__game__ml__diamond" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Voucher+Game/Diamon-Mobile-legend.png" alt="diamond"/></label>
           </div>
             )

@@ -15,7 +15,8 @@ export default class MobileHome extends Component {
       priceId: 0,
       displayPrice: 0,
       type: '',
-      typeBuy: ''
+      typeBuy: '',
+      diamondMl: 0
     }
   }
   renderTab = () => {
@@ -34,13 +35,15 @@ export default class MobileHome extends Component {
     }
   }
 
-  toggleConfirm = (id, displayPrice, typeBuy) => {
+  toggleConfirm = (id, displayPrice, typeBuy, diamondMl) => {
+    const diamond = diamondMl ? (diamondMl) : (0)
     this.setState({
       openModal: !this.state.openModal,
         priceId: id,
         displayPrice,
         type: 'price',
-        typeBuy
+        typeBuy,
+        diamondMl: diamond
     })
   }
 
@@ -68,6 +71,7 @@ export default class MobileHome extends Component {
           toggle={this.toggleConfirm}
           priceId={this.state.priceId}
           type={this.state.type}
+          diamond={this.state.diamondMl}
         />
       )
     }

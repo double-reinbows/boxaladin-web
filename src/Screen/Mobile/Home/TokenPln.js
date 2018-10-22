@@ -59,7 +59,6 @@ class Price extends Component {
       }
     })
     .then(response=> {
-      console.log('response', response)
       this.props.setIsLoading(false)
       if (response.data.data.message._text === "SUCCESS"){
         this.setState({

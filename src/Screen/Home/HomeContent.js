@@ -47,7 +47,7 @@ class HomeContent extends Component {
   }
 
   toggleConfirm = (id, displayPrice, typeBuy, diamondMl) => {
-    const diamond = diamondMl ? (diamondMl) : 0
+    const diamond = diamondMl ? (diamondMl) : (0)
     this.setState({
       openModal: !this.state.openModal,
       priceId: id,
@@ -318,7 +318,7 @@ renderModalBid() {
           type={this.state.type}
           pln={this.state.inputPln}
           kwh={this.state.kwh}
-          diamondMl={this.state.diamondMl}
+          diamond={this.state.diamondMl}
         />
       )
     }

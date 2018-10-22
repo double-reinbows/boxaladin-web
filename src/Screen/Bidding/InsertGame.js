@@ -104,6 +104,7 @@ class InsertPhone extends React.Component {
         <img className="InsertPhone__game__image" alt="Mobile Legend" src = 'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/MOBILE+LEGENDS+LOGO.png'/>
         <div className="InsertPhone__inputNumber">
           <div className="InsertPhone__game__inputHead">
+          <label className="mobile-InsertGame-titletext ">Mobile Legends Voucher {this.props.location.state.diamond}<img className="mobile-InsertGame-image-diamond" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Voucher+Game/Diamon-Mobile-legend.png" alt="diamond"/></label>
             <h4 className="InsertPhone__inputHead__text">Masukkan Id Mobile Legend</h4>
             <h5>Untuk mengetahui User ID Anda, Silakan Klik menu profile dibagian kiri atas pada menu utama game. Dan user ID akan terlihat dibagian bawah Nama Karakter Game Anda. Silakan masukan User ID Anda untuk menyelesaikan transaksi. Contoh : 12345678(1234).</h5>
             <div className="InsertPhone__game__image__id">
@@ -137,7 +138,7 @@ class InsertPhone extends React.Component {
       <div className="mobile-InsertGame-container">
         <img alt="Mobile Legend" className="mobile-InsertGame-image" src = 'https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Pulsa/MOBILE+LEGENDS+LOGO.png'/>
         <div >
-          <label className="mobile-InsertGame-titletext ">Mobile Legends Voucher</label>
+          <label className="mobile-InsertGame-titletext ">Mobile Legends Voucher {this.props.location.state.diamond}<img className="mobile-InsertGame-image-diamond" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Voucher+Game/Diamon-Mobile-legend.png" alt="diamond"/></label>
           <div>
             <div className="mobile-InsertGame-labelprice" >
             {this.displayPrice()}
@@ -166,9 +167,6 @@ class InsertPhone extends React.Component {
   }
 
   render() {
-    console.log('props game', this.props)
-    console.log('id1', this.state.id1)
-    console.log('id2', this.state.id2)
     return (
       <div>
         <MediaQuery query="(max-device-width: 720px)">

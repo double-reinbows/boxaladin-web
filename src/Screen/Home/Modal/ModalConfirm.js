@@ -34,7 +34,8 @@ class ModalConfirm extends Component {
                 displayPrice: this.props.displayPrice,
                 firebase: this.props.firebase,
                 typeBuy: this.props.typeBuy,
-                type: this.props.type
+                type: this.props.type,
+                diamond: this.props.diamond
               })
               await helperAxios('PUT', 'logopen',  {priceId, type})
               this.props.getUser()
@@ -55,7 +56,8 @@ class ModalConfirm extends Component {
                 displayPrice: this.props.displayPrice,
                 firebase: this.props.firebase,
                 typeBuy: this.props.typeBuy,
-                type: this.props.type
+                type: this.props.type,
+                diamond: this.props.diamond
               })
               await helperAxios('PUT', 'logopen',  {priceId, type})
               this.props.getUser()
@@ -76,7 +78,8 @@ class ModalConfirm extends Component {
               firebase: this.props.firebase,
               typeBuy: this.props.typeBuy,
               type: this.props.type,
-              pln: this.props.pln
+              pln: this.props.pln,
+              diamond: this.props.diamond
             })
             await helperAxios('PUT', 'logopen', {priceId, type})
             this.props.getUser()
@@ -148,7 +151,6 @@ class ModalConfirm extends Component {
 
 
   render() {
-    console.log('props kwh', this.props)
     return (
       <Modal isOpen={this.props.open} className="modal__confirm">
         <MediaQuery query="(max-device-width: 720px)">

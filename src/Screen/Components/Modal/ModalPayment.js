@@ -242,13 +242,15 @@ class ModalPayment extends Component{
         bank = [
           ...listBank
         ]
-      } else if (this.props.selectedPriceID === 1 || this.props.selectedPriceID === 5){
+      } 
+      // else if (this.props.selectedPriceID === 1 || this.props.selectedPriceID === 5){
+      //   bank = [
+      //     {value:'Wallet', onClick: this.handleChangeBank , disabled: false , paymentType: 'Uang Aladin'}
+      //   ]
+      // } 
+      else {
         bank = [
-          {value:'Wallet', onClick: this.handleChangeBank , disabled: false , paymentType: 'Uang Aladin'}
-        ]
-      } else {
-        bank = [
-          ...listBank,
+          // ...listBank,
           {value:'Wallet', onClick: this.handleChangeBank , disabled: this.state.disabledButton , paymentType: 'Uang Aladin' }
         ]
       }
@@ -285,7 +287,6 @@ class ModalPayment extends Component{
   }
 
   render() {
-    console.log(this.props)
     return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__method">
         <div className="modal__method__container">
