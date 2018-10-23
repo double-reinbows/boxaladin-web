@@ -71,7 +71,6 @@
       width: 20%
     }
   }
-
 }
 
 .bankz{
@@ -95,6 +94,12 @@
   .bankz{
     display: block;
     text-align: center
+  }
+}
+
+@media (max-width: 720px)  {
+  .pembayaran__icon__reload{
+    width: 40%;
   }
 }
 
