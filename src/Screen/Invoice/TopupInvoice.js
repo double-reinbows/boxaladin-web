@@ -61,8 +61,12 @@ class TopupInvoice extends React.Component <Props> {
               let statusComponent = ''
               if (data.payment.status === 'CANCELLED'){
                 statusComponent = <td>{'CANCELLED'}</td>
+              } else if (data.payment.status === 'FAILED') {
+                statusComponent = <td><img className="pembayaran__icon__reload" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/Failed.png" alt="failed"/></td>
               } else if (data.payment.status === 'PAID') {
-                statusComponent = <td>{'SUKSES'}</td>
+                statusComponent = <td><img className="pembayaran__icon__reload" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/checklist.png" alt="success"/></td>
+              } else if (data.payment.status === 'PROCESS') { 
+                statusComponent = <td className="pembayaran__icon" onClick={() => window.location.reload()}><img className="pembayaran__icon__reload" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/Refresh.png" alt="refresh"/></td>
               } else if (time <= data.payment.expiredAt){
                 statusComponent = <td><Button className="pembayaran__button__invoice" color="success" onClick={() => this.showMetodePembayaran(data.id)}>Bayar</Button></td>
               } else if (time >= data.payment.expiredAt){

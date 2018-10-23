@@ -65,6 +65,13 @@
     }
   }
 
+  &__icon{
+    cursor: pointer;
+    &__reload{
+      width: 20%
+    }
+  }
+
 }
 
 .bankz{

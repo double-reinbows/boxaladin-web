@@ -61,8 +61,12 @@ class Invoice extends Component {
               let statusComponent = ''
               if (data.payment.status === 'CANCELLED'){
                 statusComponent = <td>{'CANCELLED'}</td>
-              } else if (data.status === 'SUCCESS') {
-                statusComponent = <td><Button className="pembayaran__button__invoice" color="success" onClick={() => this.toggleModalText(data.tokenPln)}>Lihat</Button></td>
+              } else if (data.payment.status === 'FAILED') {
+                statusComponent = <td><img className="pembayaran__icon__reload" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/Failed.png" alt="failed"/></td>
+              } else if (data.payment.status === 'PROCESS') { 
+                statusComponent = <td className="pembayaran__icon" onClick={() => window.location.reload()}><img className="pembayaran__icon__reload" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/Refresh.png" alt="refresh"/></td>
+              }else if (data.status === 'SUCCESS') {
+                statusComponent = <td className="pembayaran__icon" onClick={() => this.toggleModalText(data.tokenPln)}><img className="pembayaran__icon__reload" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/Look.png" alt="look"/></td>
               } else if (data.payment.status !== 'PAID' && data.payment.status !== 'CANCELLED' && data.payment.status !== 'PENDING'){
                 statusComponent = <td>{data.payment.status}</td>
               } else if (time <= data.payment.expiredAt){
