@@ -6,6 +6,7 @@ import ModalPrimary from './ModalPrimary'
 import ModalChange from './ModalChange'
 import ModalOtpUser from '../Components/Modal/OTP/ModalOtpInput'
 import ModalOtpImage from '../Components/Modal/OTP/ModalOtpImage'
+import ModalText from '../Components/Modal/ModalText';
 
 class User extends Component {
   constructor(props) {
@@ -17,7 +18,9 @@ class User extends Component {
       modalOtpImage: false,
       phoneId: '',
       phone: '',
-      missPhone: ''
+      missPhone: '',
+      modaltext: false,
+      textModal: ''
     }
   }
 
@@ -116,12 +119,26 @@ class User extends Component {
     })
     helperAxios('POST', 'otp', {phonenumber : phone})
     .then(response => {
-      this.setState({
+      if (response.data.message === 'wrong phone number'){
+        return this.setState({
+            modalOtpImage: false,
+            modaltext: true,
+            textModal: "No Anda Tidak Terdaftar / Salah"
+          })
+      } else {
+        return this.setState({
         modalOtpImage: false,
         modalOtp: true,
         phone,
         missPhone: response.data
       })
+      }
+    })
+  }
+
+  toggleModalText = () => {
+    this.setState({
+      modaltext: false
     })
   }
 
@@ -136,6 +153,7 @@ class User extends Component {
         <ModalChange isOpen={this.state.modalChange} toggle={this.toggleChange} phoneId={this.state.phoneId}/>
         <ModalOtpUser isOpen={this.state.modalOtp} endpoint={'olduserverification'} phone={this.state.phone} missPhone={this.state.missPhone}/>
         <ModalOtpImage isOpen={this.state.modalOtpImage}/>
+        <ModalText isOpen={this.state.modaltext} text={this.state.textModal} toggle={this.toggleModalText} />
       </div>
     );
   }
