@@ -5,6 +5,7 @@ import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import classnames from 'classnames';
 
 import Invoice from './Invoice'
+import GameInvoice from './GameInvoice'
 import TopUpInvoice from './TopupInvoice'
 import WalletInvoice from'./TopupWalletInvoice'
 import PlnInvoice from'./PlnInvoice'
@@ -73,6 +74,14 @@ class TabsInvoice extends React.Component {
               Invoice PLN
             </NavLink>
           </NavItem>
+          <NavItem className="invoice__tab">
+            <NavLink
+              className={classnames({ active: this.state.activeTab === '5' })}
+              onClick={() => { this.toggle('5'); }}
+            >
+              Invoice Game
+            </NavLink>
+          </NavItem>
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
           <TabPane tabId="1">
@@ -86,6 +95,9 @@ class TabsInvoice extends React.Component {
           </TabPane>
           <TabPane tabId="4">
             <PlnInvoice/>
+          </TabPane>
+          <TabPane tabId="5">
+            <GameInvoice/>
           </TabPane>
         </TabContent>
       </div>
