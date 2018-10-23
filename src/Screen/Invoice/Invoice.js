@@ -60,7 +60,7 @@ class Invoice extends Component {
                 statusComponent = <td>{'CANCELLED'}</td>
               } else if (data.payment.status === 'FAILED') {
                 statusComponent = <td><img className="pembayaran__icon__reload" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/Failed.png" alt="failed"/></td>
-              } else if (data.payment.status === 'PAID') {
+              } else if (data.payment.status === 'PAID' || data.payment.status === 'SUCCESS') {
                 statusComponent = <td><img className="pembayaran__icon__reload" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/checklist.png" alt="success"/></td>
               } else if (data.payment.status === 'PROCESS') { 
                 statusComponent = <td className="pembayaran__icon" onClick={() => window.location.reload()}><img className="pembayaran__icon__reload" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/Refresh.png" alt="refresh"/></td>
@@ -158,7 +158,6 @@ class Invoice extends Component {
   }
 
   render() {
-    console.log('transaction', this.state)
     return (
     <div className="invoice">
       <div className="invoice__container">
