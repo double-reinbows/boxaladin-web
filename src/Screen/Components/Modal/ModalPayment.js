@@ -243,14 +243,14 @@ class ModalPayment extends Component{
           ...listBank
         ]
       } 
-      // else if (this.props.selectedPriceID === 1 || this.props.selectedPriceID === 5){
-      //   bank = [
-      //     {value:'Wallet', onClick: this.handleChangeBank , disabled: false , paymentType: 'Uang Aladin'}
-      //   ]
-      // } 
+      else if (this.props.selectedPriceID === 1 || this.props.selectedPriceID === 5){
+        bank = [
+          {value:'Wallet', onClick: this.handleChangeBank , disabled: false , paymentType: 'Uang Aladin'}
+        ]
+      } 
       else {
         bank = [
-          // ...listBank,
+          ...listBank,
           {value:'Wallet', onClick: this.handleChangeBank , disabled: this.state.disabledButton , paymentType: 'Uang Aladin' }
         ]
       }

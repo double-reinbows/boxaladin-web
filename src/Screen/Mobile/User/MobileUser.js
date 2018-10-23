@@ -215,7 +215,7 @@ class MobileUser extends Component {
     helperAxios('GET', 'countphonetransactions')
     .then(response => {
       if (response.data[0].to_char !== now) {
-        return console.log('zero')
+        return console.log('')
       } else {
         this.setState({
           phoneTransaction: response.data[0].count
@@ -227,7 +227,7 @@ class MobileUser extends Component {
     helperAxios('GET', 'countsuccesstransactions')
     .then(response => {
       if (response.data.to_char !== now) {
-        return console.log('zero')
+        return console.log('')
       } else {
         this.setState({
           successTransaction: response.data.count
