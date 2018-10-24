@@ -15,7 +15,19 @@ class ModalConfirm extends Component {
     }
   }
 
-  checkAladinkey = () => {
+  checkUser = (displayPrice) => {
+    const { priceId, type } = this.props
+    helperAxios('GET', 'users/checkuser')
+    .then( async data => {
+      if (data.data.aladinKeys > 0 && data.data.wallet >= displayPrice) {
+        console.log('tes')
+      } else {
+        return alert("Anda Tidak Memiliki Aladin Key")
+      }
+    })
+  }
+
+  checkAladinkey = async () => {
     const { displayPrice, priceId, type, userInfo } = this.props
     const limitWallet = displayPrice - 500
     if ( !userInfo.id && !localStorage.getItem('token')){
@@ -26,6 +38,7 @@ class ModalConfirm extends Component {
       alert(`Saldo Wallet Anda Kurang Dari Rp.${limitWallet.toLocaleString(['ban', 'id'])},00`)
       this.props.history.push('/dompetaladin')
     } else {
+      await this.checkUser(displayPrice)
       helperAxios('PUT', 'logopenv2', { priceId, type, price: limitWallet })
       .then(async response => {
         if (response.data.status === 401) {
@@ -34,6 +47,7 @@ class ModalConfirm extends Component {
         } else if (response.data.status !== 200){
           return alert(response.data.message)
         } else if (response.data.status === 200){
+          this.props.getUser()
           await this.props.selectedPriceID(priceId)
           this.props.history.push('/bidding', {
             displayPrice: this.props.displayPrice,
