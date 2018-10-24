@@ -16,78 +16,34 @@ class ModalConfirm extends Component {
   }
 
   checkAladinkey = () => {
-    const {priceId, userInfo, type} = this.props
+    const { displayPrice, priceId, type, userInfo } = this.props
+    const limitWallet = displayPrice - 500
     if ( !userInfo.id && !localStorage.getItem('token')){
-      alert ('Anda Belum Masuk')
+      return alert ('Anda Belum Masuk')
     } else if (userInfo.aladinKeys <= 0 ){
-      alert("Anda Tidak Memiliki Aladin Key")
+      return alert("Anda Tidak Memiliki Aladin Key")
+    } else if (userInfo.wallet < limitWallet) {
+      alert(`Saldo Wallet Anda Kurang Dari Rp.${limitWallet.toLocaleString(['ban', 'id'])},00`)
+      this.props.history.push('/dompetaladin')
     } else {
-      if (priceId === 1) {
-        if (userInfo.wallet < 10000){
-          return alert('Saldo Wallet Anda Kurang Dari Rp.10.000,00')
-        } else {
-          helperAxios('GET', 'users/checkuser')
-          .then( async data => {
-            if (data.data.aladinKeys > 0 && data.data.wallet >= 10000) {
-              await this.props.selectedPriceID(priceId)
-              this.props.history.push('/bidding', {
-                displayPrice: this.props.displayPrice,
-                firebase: this.props.firebase,
-                typeBuy: this.props.typeBuy,
-                type: this.props.type,
-                diamond: this.props.diamond
-              })
-              await helperAxios('PUT', 'logopen',  {priceId, type})
-              this.props.getUser()
-            } else {
-              alert("Anda Tidak Memiliki Aladin Key")
-            }
+      helperAxios('PUT', 'logopenv2', { priceId, type, price: limitWallet })
+      .then(async response => {
+        if (response.data.status === 401) {
+          alert(response.data.message)
+          this.props.history.push('/dompetaladin')
+        } else if (response.data.status !== 200){
+          return alert(response.data.message)
+        } else if (response.data.status === 200){
+          await this.props.selectedPriceID(priceId)
+          this.props.history.push('/bidding', {
+            displayPrice: this.props.displayPrice,
+            firebase: this.props.firebase,
+            typeBuy: this.props.typeBuy,
+            type: this.props.type,
+            diamond: this.props.diamond
           })
         }
-      } else if (priceId === 5) {
-        if (userInfo.wallet < 5000){
-          return alert('Saldo Wallet Anda Kurang Dari Rp.5.000,00')
-        } else {
-          helperAxios('GET', 'users/checkuser')
-          .then( async data => {
-            if (data.data.aladinKeys > 0 && data.data.wallet >= 5000) {
-              await this.props.selectedPriceID(priceId)
-              this.props.history.push('/bidding', {
-                displayPrice: this.props.displayPrice,
-                firebase: this.props.firebase,
-                typeBuy: this.props.typeBuy,
-                type: this.props.type,
-                diamond: this.props.diamond
-              })
-              await helperAxios('PUT', 'logopen',  {priceId, type})
-              this.props.getUser()
-            } else {
-              alert("Anda Tidak Memiliki Aladin Key")
-            }
-          })
-        }
-      } else {
-        helperAxios('GET', 'users/checkuser')
-        .then( async data => {
-          if (data.data.message === 'not verified user') {
-            alert("Silahkan Verifikasi Email Anda")
-          } else if (data.data.aladinKeys > 0) {
-            await this.props.selectedPriceID(priceId)
-            this.props.history.push('/bidding', {
-              displayPrice: this.props.displayPrice,
-              firebase: this.props.firebase,
-              typeBuy: this.props.typeBuy,
-              type: this.props.type,
-              pln: this.props.pln,
-              diamond: this.props.diamond
-            })
-            await helperAxios('PUT', 'logopen', {priceId, type})
-            this.props.getUser()
-          } else {
-            alert("Anda Tidak Memiliki Aladin Key")
-          }
-        })
-      }
+      })
     }
   }
 
@@ -151,6 +107,7 @@ class ModalConfirm extends Component {
 
 
   render() {
+    console.log('type', this.props)
     return (
       <Modal isOpen={this.props.open} className="modal__confirm">
         <MediaQuery query="(max-device-width: 720px)">

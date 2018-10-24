@@ -242,15 +242,8 @@ class ModalPayment extends Component{
         bank = [
           ...listBank
         ]
-      } 
-      else if (this.props.selectedPriceID === 1 || this.props.selectedPriceID === 5){
+      } else {
         bank = [
-          {value:'Wallet', onClick: this.handleChangeBank , disabled: false , paymentType: 'Uang Aladin'}
-        ]
-      } 
-      else {
-        bank = [
-          ...listBank,
           {value:'Wallet', onClick: this.handleChangeBank , disabled: this.state.disabledButton , paymentType: 'Uang Aladin' }
         ]
       }

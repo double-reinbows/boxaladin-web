@@ -47,7 +47,7 @@ class HomeContent extends Component {
   }
 
   toggleConfirm = (id, displayPrice, typeBuy, diamondMl) => {
-    const diamond = diamondMl ? (diamondMl) : (0)
+    const diamond = diamondMl || 0;
     this.setState({
       openModal: !this.state.openModal,
       priceId: id,
@@ -306,8 +306,7 @@ renderModalBid() {
   }
 
   renderModalConfirm() {
-    if (this.state.openModal) {
-      return (
+      return this.state.openModal && (
         <ModalConfirm
           typeBuy ={this.state.typeBuy}
           firebase= {envChecker('price')}
@@ -321,8 +320,6 @@ renderModalBid() {
           diamond={this.state.diamondMl}
         />
       )
-    }
-    return null;
   }
 
   render() {

@@ -26,6 +26,7 @@ public/css/style.comp.css
 style.comp.css
 public/css/style.css
 style.css
+.prettierrc
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

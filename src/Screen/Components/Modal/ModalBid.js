@@ -18,7 +18,7 @@ class ModalCheck extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productPrice : '',
+      productPrice : 0,
       productName: '',
       modalConfirm : false,
       disabled: false,
@@ -223,7 +223,7 @@ class ModalCheck extends Component {
           <br/>
           <label>Lanjutkan ?</label>
           <div className="mobile-modalBid__button__container">
-            <button className="mobile-modalBid__button__next" onClick={this.checkAladinkey} disabled={this.state.disabledMobile}>Ya</button>
+            <button className="mobile-modalBid__button__next" onClick={() => this.checkAladinkey(this.state.productPrice)} disabled={this.state.disabledMobile}>Ya</button>
             <button style={{color:'red'}} className="mobile-modalBid__button__next" onClick={this.toggle}>Tidak</button>
           </div>
         </div>
@@ -231,32 +231,40 @@ class ModalCheck extends Component {
     )
   }
 
-  checkAladinkey = () => {
-    const {priceId, userInfo, type} = this.props
+  checkAladinkey = (displayPrice) => {
+    const { priceId, type, userInfo } = this.props
+    const limitWallet = displayPrice - 500
     if ( !userInfo.id && !localStorage.getItem('token')){
-      alert ('Anda Belum Masuk')
+      return alert ('Anda Belum Masuk')
     } else if (userInfo.aladinKeys <= 0 ){
-      alert("Anda Tidak Memiliki Aladin Key")
+      return alert("Anda Tidak Memiliki Aladin Key")
+    } else if (userInfo.wallet < limitWallet) {
+      return alert(`Saldo Wallet Anda Kurang Dari Rp.${limitWallet.toLocaleString(['ban', 'id'])},00`)
+      this.props.history.push('/dompetaladin')
     } else {
-      helperAxios('GET', 'users/checkuser')
-      .then( async data => {
-        if (data.data.aladinKeys > 0) {
+      helperAxios('PUT', 'logopenv2', { priceId, type, price: limitWallet })
+      .then(async response => {
+        if (response.data.status === 401) {
+          return alert(response.data.message)
+          this.props.history.push('/dompetaladin')
+        } else if (response.data.status !== 200){
+          return alert(response.data.message)
+        } else if (response.data.status === 200){
+          await this.props.selectedPriceID(priceId)
           this.props.history.push('/bidding', {
-            displayPrice: this.state.productPrice,
+            displayPrice: this.props.displayPrice,
             firebase: this.props.firebase,
             typeBuy: this.props.typeBuy,
-            type
+            type: this.props.type,
+            diamond: this.props.diamond
           })
-          await helperAxios('PUT', 'logopen', {priceId: priceId, type})
-          this.props.getUser()
-        } else {
-          alert("Anda Tidak Memiliki Aladin Key")
         }
       })
     }
   }
 
   render() {
+    console.log('props modal bid', this.props)
     return (
       <div>
         <MediaQuery query="(max-device-width: 720px)">
