@@ -111,7 +111,6 @@ class ModalConfirm extends Component {
 
 
   render() {
-    console.log('type', this.props)
     return (
       <Modal isOpen={this.props.open} className="modal__confirm">
         <MediaQuery query="(max-device-width: 720px)">

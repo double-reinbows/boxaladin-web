@@ -84,7 +84,7 @@ class ModalCheck extends Component {
     } else {
         return paketData.map((dataMap, i) => {
           return(
-            <button onClick={(e) => this.mobilePulsa(dataMap.id, dataMap)} className="mobile-modalBid__button" key ={i}>
+            <button onClick={() => this.mobilePulsa(dataMap.id, dataMap)} className="mobile-modalBid__button" key ={i}>
               {dataMap.displayPrice.toLocaleString(['ban', 'id'])}
             </button>
           )
@@ -112,7 +112,7 @@ class ModalCheck extends Component {
 
   mobilePulsa = async (id, data) => {
     await this.props.selectedPriceID(id)
-    await this.setState({
+    this.setState({
       priceId: id,
       productPrice: data.displayPrice,
       productName: data.productName,
@@ -253,13 +253,12 @@ class ModalCheck extends Component {
           return alert(response.data.message)
         } else if (response.data.status === 200){
           this.props.getUser()
-          await this.props.selectedPriceID(priceId)
+          await this.props.selectedPriceID(this.state.priceId)
           this.props.history.push('/bidding', {
             displayPrice: this.props.displayPrice,
             firebase: this.props.firebase,
             typeBuy: this.props.typeBuy,
             type: this.props.type,
-            diamond: this.props.diamond
           })
         }
       })
@@ -267,7 +266,6 @@ class ModalCheck extends Component {
   }
 
   render() {
-    console.log('props modal bid', this.props)
     return (
       <div>
         <MediaQuery query="(max-device-width: 720px)">

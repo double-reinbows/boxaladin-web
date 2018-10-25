@@ -92,7 +92,6 @@ class Bidding extends Component {
       }
     })
     .then(response => {
-      console.log('response', response)
       if (response.data.message === 'not allowed'){
         clearInterval(this.timer);
         return this.setState({

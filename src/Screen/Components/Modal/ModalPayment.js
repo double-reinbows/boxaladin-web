@@ -147,7 +147,7 @@ class ModalPayment extends Component{
         if (result.data.message === 'saldo tidak mencukupi'){
           this.checkResponse(
             {warning: `saldo tidak mencukupi, saldo anda ${FormatRupiah(result.data.wallet)}`,
-              callback: this.setState({ disabledButton: true, bank: '', disabled: true})}
+              callback: this.props.history.push('/dompetaladin')}
           )
         } else if (result.data.message === 'topup sukses'){
           await refreshToken()
