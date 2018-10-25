@@ -16,7 +16,7 @@ class ModalConfirm extends Component {
   }
 
   checkAladinkey = async () => {
-    const { displayPrice, priceId, type, userInfo } = this.props
+    const {  priceId, type, userInfo } = this.props
     // const limitWallet = displayPrice - 500
     if ( !userInfo.id && !localStorage.getItem('token')){
       return alert ('Anda Belum Masuk')
