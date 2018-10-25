@@ -233,16 +233,18 @@ class ModalCheck extends Component {
 
   checkAladinkey = (displayPrice) => {
     const { priceId, type, userInfo } = this.props
-    const limitWallet = displayPrice - 500
+    // const limitWallet = displayPrice - 500
     if ( !userInfo.id && !localStorage.getItem('token')){
       return alert ('Anda Belum Masuk')
     } else if (userInfo.aladinKeys <= 0 ){
       return alert("Anda Tidak Memiliki Aladin Key")
-    } else if (userInfo.wallet < limitWallet) {
-      alert(`Saldo Wallet Anda Kurang Dari Rp.${limitWallet.toLocaleString(['ban', 'id'])},00`)
-      this.props.history.push('/dompetaladin')
-    } else {
-      helperAxios('PUT', 'logopenv2', { priceId, type, price: limitWallet })
+    } 
+    // else if (userInfo.wallet < limitWallet) {
+    //   alert(`Saldo Wallet Anda Kurang Dari Rp.${limitWallet.toLocaleString(['ban', 'id'])},00`)
+    //   this.props.history.push('/dompetaladin')
+    // } 
+    else {
+      helperAxios('PUT', 'logopenv2', { priceId, type, price: 0 })
       .then(async response => {
         if (response.data.status === 401) {
           alert(response.data.message)
