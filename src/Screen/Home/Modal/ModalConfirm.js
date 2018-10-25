@@ -43,7 +43,8 @@ class ModalConfirm extends Component {
             firebase: this.props.firebase,
             typeBuy: this.props.typeBuy,
             type: this.props.type,
-            diamond: this.props.diamond
+            diamond: this.props.diamond,
+            pln: this.props.pln,
           })
         }
       })
