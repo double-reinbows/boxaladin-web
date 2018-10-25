@@ -8,6 +8,7 @@ import formatEmail from '../../../../utils/formatEmail';
 import envChecker from '../../../../utils/envChecker'
 import ModalOtpImage from '../../Modal/OTP/ModalOtpImage'
 import ModalOtpInput from '../../Modal/OTP/ModalOtpInput'
+import ModalText from '../../Modal/ModalText';
 class Signup extends Component {
   constructor(props) {
     super(props)
@@ -27,7 +28,9 @@ class Signup extends Component {
       otpForm: false,
       modalSuccessOtp: false,
       modalImage: false,
-      missPhone: ''
+      missPhone: '',
+      modaltext: false,
+      textModal: ''
     }
     this.signUpInputHandler = this.signUpInputHandler.bind(this)
     this.toggle = this.toggle.bind(this);
@@ -199,7 +202,14 @@ class Signup extends Component {
               notif: "Nomor atau email sudah digunakan",
               modalImage: false
             })
-          } else if (data.message === 'Signup Berhasil'){
+          } else if (data.message === 'wrong phone number'){
+            // localStorage.setItem('token', data.token);
+            this.setState({
+              modalImage: false,
+              modaltext: true,
+              textModal: "No Yang Anda Masukkan Tidak Terdaftar / Salah"
+            });
+          }else if (data.message === 'Signup Berhasil'){
             localStorage.setItem('token', data.token);
             this.setState({
               missPhone: data.missPhone,
@@ -242,6 +252,12 @@ class Signup extends Component {
       email : formatEmail(e.target.value),
       typedEmail: e.target.value 
     });
+  }
+
+  toggleModalText = () => {
+    this.setState({
+      modaltext: false
+    })
   }
 
   render() {
@@ -316,6 +332,7 @@ class Signup extends Component {
         </form>
         <ModalOtpInput endpoint={'v2/signupverification'} isOpen={this.state.modalOtp} missPhone={this.state.missPhone} phone={this.state.phonenumber}/>
         <ModalOtpImage isOpen={this.state.modalImage}/>
+        <ModalText isOpen={this.state.modaltext} text={this.state.textModal} toggle={this.toggleModalText} />
       </div>
     )
   }
