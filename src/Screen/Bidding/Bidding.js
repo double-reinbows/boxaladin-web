@@ -113,7 +113,27 @@ class Bidding extends Component {
     this.runTimer()
   }
 
-  watchProductPrice = (selectedPriceID) => {
+  out = () => {
+    setInterval(() => {
+      const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
+      const productRef = productsRef.child(this.props.selectedPriceID)
+      productRef.once('value', snap => {
+        productRef.update({
+          watching: 0,
+          aladinPrice: snap.val().price
+        })
+      })
+      clearInterval(this.timer);
+      this.setState({
+        open: true,
+        productUnlocked : '',
+        priceComp: false,
+        text: 'Maaf, produk ini sudah terbeli orang lain! Silahkan melakukan bidding lagi.'
+      })
+    }, 1500)
+  }
+
+  watchProductPrice = async (selectedPriceID) => {
     if (selectedPriceID === '') {
       return null
     }
@@ -122,14 +142,20 @@ class Bidding extends Component {
       const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
       const productRef = productsRef.child(selectedPriceID)
       productRef.once('value', snap => {
-        if ( snap.val().aladinPrice - snap.val().decreasePrice > 0){
+        if (snap.val().aladinPrice - snap.val().decreasePrice <= 3000) {
+          productRef.update({
+            watching: snap.val().watching + 1,
+            aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
+          })
+          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice) )
+          this.out()
+        } else if ( snap.val().aladinPrice - snap.val().decreasePrice > 0){
           productRef.update({
             watching: snap.val().watching + 1,
             aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
           })
           this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice))
-        }
-        else if (snap.val().aladinPrice - snap.val().decreasePrice <= 0) {
+        } else if (snap.val().aladinPrice - snap.val().decreasePrice <= 0) {
           productRef.update({
             watching: snap.val().watching + 1,
             aladinPrice: 0
