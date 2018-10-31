@@ -119,6 +119,25 @@ class MobileUser extends Component {
     }
   }
 
+  checkWin = () => {
+    const title = this.checkTitle()
+    if (title === 'orok'){
+      return (
+        <h3 style={{textAlign:'center'}}>Maaf Transaksi Anda Tidak Mencukupi Syarat Memenangkan Hadiah Boxaladin</h3>
+      )
+    } else {
+      return (
+        <div style={{fontSize: '13px', width:'85%'}}>
+          <h3>Selamat!</h3>
+          <h3>Anda Berhasil memenuhi Syarat Kami Untuk Mendapatkan Hadiah</h3>
+          <label>Silahkan Screenshoot Halaman ini dan Hubungi Kami melalui</label>
+          <li>WhatsApp: +62-877-8697-2843</li>
+          <li>LINE: @boxaladin</li>
+        </div>
+      )
+    }
+  }
+
   showSuccessTransaction = () => {
     return(
       <div className="mobileUser-succes-transaction">
@@ -245,8 +264,9 @@ class MobileUser extends Component {
           {this.mobileShowUser()}
         </div>
         <div className="mobileUser-transaction-content">
-          {this.showSuccessTransaction()}
-          {this.showPhoneTransaction()}
+          {/* {this.showSuccessTransaction()}
+          {this.showPhoneTransaction()} */}
+          {this.checkWin()}
         </div>
         <ModalPrimary isOpen={this.state.modalPrimary} toggle={this.togglePrimary} userId={this.props.userInfo.id}/>
         <ModalChange isOpen={this.state.modalChange} toggle={this.toggleChange} phoneId={this.state.phoneId}/>

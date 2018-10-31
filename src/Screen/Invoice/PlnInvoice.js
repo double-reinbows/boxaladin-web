@@ -65,7 +65,7 @@ class Invoice extends Component {
                 statusComponent = <td><img className="pembayaran__icon__reload" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/Failed.png" alt="failed"/></td>
               } else if (data.payment.status === 'PROCESS') { 
                 statusComponent = <td className="pembayaran__icon" onClick={() => window.location.reload()}><img className="pembayaran__icon__reload" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/Refresh.png" alt="refresh"/></td>
-              }else if (data.status === 'SUCCESS') {
+              } else if (data.status === 'SUCCESS' || data.payment.status === 'PAID' || data.payment.status === 'SUCCESS') {
                 statusComponent = <td className="pembayaran__icon" onClick={() => this.toggleModalText(data.tokenPln)}><img className="pembayaran__icon__reload" src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/Look.png" alt="look"/></td>
               } else if (data.payment.status !== 'PAID' && data.payment.status !== 'CANCELLED' && data.payment.status !== 'PENDING'){
                 statusComponent = <td>{data.payment.status}</td>
