@@ -1,6 +1,6 @@
 .pembayaran{
   width: 100%;
-  padding: 5%;
+  padding: 2%;
   background-color: white;
 
   &__buttonDetail{
@@ -37,10 +37,22 @@
   &__title{
     text-align: center;
     padding-top: 1%;
+    font-size: 50px;
+    &__container{
+      display: flex;
+      align-items: center;
+    }
+    &__icon{
+      height: 8%;
+      width: 8%;
+      margin: auto;
+      // margin-right: 2%;
+      padding-left: 2%;
+    }
     &__infoTime{
       text-align: center;
       padding-top: 1%;
-      padding-bottom: 5%;
+      margin-bottom: 2%;
     }
 
     &__metodeBayar{
@@ -100,6 +112,19 @@
 @media (max-width: 720px)  {
   .pembayaran__icon__reload{
     width: 40%;
+  }
+  .pembayaran__title{
+    &__container{
+      display: block;
+      text-align: center;
+    }
+    &__icon{
+      height: 15%;
+      width: 15%;
+      display: flex;
+      margin: auto;
+      margin-top: 5%;
+    }
   }
 }
 

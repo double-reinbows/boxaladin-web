@@ -44,7 +44,7 @@ import MobileMenuDompetAladin from './Screen/Mobile/Home/Top/DompetAladin'
 import MobileKey from './Screen/Mobile/DompetAladin/AladinKeys'
 import MobileConvert from './Screen/Mobile/DompetAladin/Convert'
 import MobileWallet from './Screen/Mobile/DompetAladin/Wallet'
-import Reward from './Screen/Mobile/Reward/Reward'
+// import Reward from './Screen/Mobile/Reward/Reward'
 import MobileProfile from './Screen/Mobile/User/MobileUser'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -93,7 +93,7 @@ class RouteList extends Component {
                 <PrivateRoute exact path="/dompetaladin" component={DompetAladin} />
                 <PrivateRoute exact path="/gameresult" component={ GameResult } />
                 <PrivateRoute exact path="/claimfreepulsa" component={ ClaimFreePulsa } />
-                <PrivateRoute exact path="/reward" component={ Reward } />
+                {/* <PrivateRoute exact path="/reward" component={ Reward } /> */}
                 <PrivateRoute exact path="/logout" component={ Logout } />
                 <Route exact path="/About" component={About} />
                 <Route exact path="/requestresetpassword" component={RequestResetPassword } />

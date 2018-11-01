@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import Moment from 'moment'
 import helperAxios from '../../../utils/axios' 
 import ModalPrimary from '../../User/ModalPrimary'
@@ -23,7 +23,7 @@ class MobileUser extends Component {
   }
 
   componentDidMount() {
-    this.getCount()
+    // this.getCount()
   }
 
   togglePrimary = () => {
@@ -54,8 +54,8 @@ class MobileUser extends Component {
     return (
       <div className='mobileUser-dataUser'>
         <div className='mobileUser-dataUser-title'>
-          <h2 className='mobileUser-dataUser-title-header'>{this.checkTitle().toUpperCase()}</h2>
-          <button className='mobileUser-dataUser-title-button baButton'><Link style={{color:'white', padding:'2px'}} to="/reward">Lihat Hadiah</Link></button>
+          {/* <h2 className='mobileUser-dataUser-title-header'>{this.checkTitle().toUpperCase()}</h2> */}
+          {/* <button className='mobileUser-dataUser-title-button baButton'><Link style={{color:'white', padding:'2px'}} to="/reward">Lihat Hadiah</Link></button> */}
         </div>
         <div className='mobileUser-dataUser-info'>
           <img className='mobileUser-dataUser-image' src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/User/mail.png' alt='Logo Email'/>
@@ -260,13 +260,13 @@ class MobileUser extends Component {
     return (
       <Fragment>
         <div className="mobileUser-container">
-          {this.showUserIcon()}
+          {/* {this.showUserIcon()} */}
           {this.mobileShowUser()}
         </div>
         <div className="mobileUser-transaction-content">
           {/* {this.showSuccessTransaction()}
           {this.showPhoneTransaction()} */}
-          {this.checkWin()}
+          {/* {this.checkWin()} */}
         </div>
         <ModalPrimary isOpen={this.state.modalPrimary} toggle={this.togglePrimary} userId={this.props.userInfo.id}/>
         <ModalChange isOpen={this.state.modalChange} toggle={this.toggleChange} phoneId={this.state.phoneId}/>

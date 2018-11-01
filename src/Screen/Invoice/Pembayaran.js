@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import axios from 'axios'
 import moment from 'moment'
 
@@ -69,7 +69,15 @@ class InvoiceDetail extends React.Component {
 
   getExpired = () => {
     return this.state.invoice.payment.expiredAt && (
-      <h2 className="pembayaran__title__infoTime">Selesaikan Pembayaran Sebelum {moment(this.state.invoice.payment.expiredAt, moment.ISO_8601).add(12, 'hours').format('D MMMM YYYY, h:mm:ss a')}</h2>
+      <Fragment>
+        <div className="pembayaran__title__container">
+          <img className="pembayaran__title__icon" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Home/danger.png' alt="Danger Icon"/>
+          <br/>
+          <h2 style={{paddingLeft:'2%'}}>Harap melakukan pembayaran sesuai nominal diatas agar mempercepat proses pembayaran kami</h2>
+        </div>
+        <br/>
+        <h2 className="pembayaran__title__infoTime">Selesaikan Pembayaran Sebelum {moment(this.state.invoice.payment.expiredAt, moment.ISO_8601).add(12, 'hours').format('D MMMM YYYY, h:mm:ss a')}</h2>
+      </Fragment>
     )
   }
 
@@ -134,8 +142,8 @@ class InvoiceDetail extends React.Component {
           {this.state.invoice ? (
               <div>
                 <div className="pembayaran__content__textDistance">
-                  <h1 className="pembayaran__title"> Rp {this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}</h1>
-                  <button className="pembayaran__buttonDetail" onClick={this.toggleDetail}> Detail Tagihan </button>
+                  <label className="pembayaran__title"> Rp {this.state.invoice.payment.amount.toLocaleString(['ban', 'id'])}</label>
+                  {/* <button className="pembayaran__buttonDetail" onClick={this.toggleDetail}> Detail Tagihan </button> */}
                 </div>
                   {this.getExpired()}
                   {this.handleRetail()}

@@ -24,7 +24,7 @@ const Guide = (props) => {
           <Col sm="12">
             <center><h1 style = { { padding: '10px'} }><b>ATM</b></h1></center>
             <div>
-              <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%', width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
+              <div style = {{ fontSize: "15px", padding: '7%', width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
                 <ol>
                   <li>
                     Masukkan kartu ATM dan PIN
@@ -56,7 +56,7 @@ const Guide = (props) => {
 
             <center><h1 style = { { padding: '10px'} }><b>ONLINE</b></h1></center>
             <div>
-              <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
+              <div style = {{ fontSize: "15px", padding: '7%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
                 <ol>
                   <li>
                     Login Mandiri Online <a href="https://ib.bankmandiri.co.id/" target="_blank" rel="noopener noreferrer">https://ib.bankmandiri.co.id/</a> dengan memasukkan Username dan Password
@@ -93,7 +93,7 @@ const Guide = (props) => {
         <Row>
           <Col sm="12">
             <center><h1 style = { { padding: '10px'} }><b>ATM</b></h1></center>
-            <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
+            <div style = {{ fontSize: "15px", padding: '7%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
               <ol>
                 <li>
                   Masukkan kartu, pilih bahasa kemudian masukkan PIN Anda
@@ -118,7 +118,7 @@ const Guide = (props) => {
 
 
             <center><h1 style = { { padding: '10px'} }><b>ONLINE</b></h1></center>
-            <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
+            <div style = {{ fontSize: "15px", padding: '7%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
               <ol>
                 <li>
                   Login di <a href="https://ibank.bni.co.id" target="_blank" rel="noopener noreferrer">https://ibank.bni.co.id</a>, masukkan USER ID dan PASSWORD
@@ -148,7 +148,7 @@ const Guide = (props) => {
             </div>
 
             <center><h1 style = { { padding: '10px'} }><b>MBANKING</b></h1></center>
-            <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
+            <div style = {{ fontSize: "15px", padding: '7%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
               <ol>
                 <li>
                   Login ke BNI Mobile Banking, masukkan USER ID dan MPIN
@@ -178,7 +178,7 @@ const Guide = (props) => {
         <Row>
           <Col sm="12">
             <center><h1 style = { { padding: '10px'} }><b>ATM</b></h1></center>
-            <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
+            <div style = {{ fontSize: "15px", padding: '7%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
               <ol>
                 <li>
                   Masukkan kartu, pilih bahasa kemudian masukkan PIN Anda
@@ -202,7 +202,7 @@ const Guide = (props) => {
             </div>
 
             <center><h1 style = { { padding: '10px'} }><b>ONLINE</b></h1></center>
-            <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
+            <div style = {{ fontSize: "15px", padding: '7%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
               <ol>
                 <li>
                   Login di <a href="https://ib.bri.co.id/" target="_blank" rel="noopener noreferrer">https://ib.bri.co.id/</a> , masukkan USER ID dan PASSWORD
@@ -222,7 +222,7 @@ const Guide = (props) => {
               </ol>
             </div>
             <center><h1 style = { { padding: '10px'} }><b>MBANKING</b></h1></center>
-            <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
+            <div style = {{ fontSize: "15px", padding: '7%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
               <ol>
                 <li>
                   Login ke BRI Mobile Banking, masukkan USER ID dan PIN anda
@@ -248,7 +248,7 @@ const Guide = (props) => {
       <Row>
         <Col sm="12">
           <center><h1 style = { { padding: '10px'} }>ATM</h1></center>
-          <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
+          <div style = {{ fontSize: "15px", padding: '7%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
             <ol>
               <li>
                 Masukkan kartu dan PIN
@@ -272,7 +272,7 @@ const Guide = (props) => {
           </div>
 
           <center><h1 style = { { padding: '10px'} }><b>Online (klikBCA)</b></h1></center>
-          <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
+          <div style = {{ fontSize: "15px", padding: '7%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
             <ol>
               <li>
                 Login di <a href="https://ibank.klikbca.com/" target="_blank" rel="noopener noreferrer">https://ibank.klikbca.com/</a> , masukkan USER ID dan PIN Internet Banking Anda
@@ -305,7 +305,7 @@ const Guide = (props) => {
           </div>
 
           <center><h1 style = { { padding: '10px'} }><b>Mobile Banking</b></h1></center>
-          <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
+          <div style = {{ fontSize: "15px", padding: '7%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
             <ol>
               <li>
                 Akses BCA Mobile Banking dari handphone, kemudian masukkan Kode Akses
@@ -338,7 +338,7 @@ const Guide = (props) => {
       </TabPane>
       <TabPane tabId="5">
       <center><h1 style = { { padding: '10px'} }><b>Alfamart</b></h1></center>
-      <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
+      <div style = {{ fontSize: "15px", padding: '7%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
         <ol>
           <li>
             Konfirmasi ke kasir alfamart untuk melalukan pembayaran ke "XENDIT"
@@ -360,7 +360,7 @@ const Guide = (props) => {
       </TabPane>
       <TabPane tabId="6">
       <center><h1 style = { { padding: '10px'} }><b>PLN</b></h1></center>
-      <div style = {{ fontSize: "15px", padding: '20px', paddingLeft: '5%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
+      <div style = {{ fontSize: "15px", padding: '7%',  width: '95%', margin: 'auto', backgroundColor: 'lightgrey' }}>
         <ol>
           <li>
             Konfirmasi ke kasir alfamart untuk melalukan pembayaran ke "XENDIT"
