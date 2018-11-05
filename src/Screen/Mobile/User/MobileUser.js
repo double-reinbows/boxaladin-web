@@ -23,7 +23,7 @@ class MobileUser extends Component {
   }
 
   componentDidMount() {
-    // this.getCount()
+    this.getCount()
   }
 
   togglePrimary = () => {
@@ -264,8 +264,8 @@ class MobileUser extends Component {
           {this.mobileShowUser()}
         </div>
         <div className="mobileUser-transaction-content">
-          {/* {this.showSuccessTransaction()}
-          {this.showPhoneTransaction()} */}
+          {this.showSuccessTransaction()}
+          {this.showPhoneTransaction()}
           {/* {this.checkWin()} */}
         </div>
         <ModalPrimary isOpen={this.state.modalPrimary} toggle={this.togglePrimary} userId={this.props.userInfo.id}/>
