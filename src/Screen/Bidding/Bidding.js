@@ -91,17 +91,7 @@ class Bidding extends Component {
         priceAfter: priceAfter
       }
     })
-    .then(response => {
-      if (response.data.message === 'not allowed'){
-        clearInterval(this.timer);
-        return this.setState({
-          open: true,
-          productUnlocked : '',
-          priceComp: false,
-          text: 'Akun Anda Sedang Digunakan Dalam Ruang Lelang'
-        })
-      }
-    })
+
     axios({
       method: 'POST',
       url: `${envChecker('api')}/watching`,
