@@ -6,7 +6,7 @@ import { unregister } from './registerServiceWorker';
 import * as firebase from 'firebase';
 // import 'bootstrap/dist/css/bootstrap.css';
 
-import './style/css/style.css';
+import './style/css/new_style.css';
 
 require('dotenv').config()
 
