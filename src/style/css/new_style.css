@@ -128,18 +128,21 @@
     margin-right: 5%; } }
 
 .HeaderTopM {
-  background-color: white;
-  border-bottom: 4px solid white; }
+  background-color: #ffffff;
+    border-bottom: 0px solid #ddd;
+     }
   .HeaderTopM__logo {
     margin: 0px auto;
-    padding-right: 5%; }
+    padding-right: 5%;
+    display: none; }
   .HeaderTopM__Right {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     margin: 0rem;
-    padding: 0rem; }
+    padding: 0rem;
+    display: none; }
 
 @media (min-width: 768px) {
   .HeaderTopM {
@@ -317,27 +320,28 @@
       .modal__login__container__line {
         width: 100%; }
     .modal__login__header {
-      background-color: var(--color-white);
-      border-bottom-color: black;
-      border-bottom-width: 3px;
-      text-align: center; }
+      background-color: #ffffff;
+    background-color: #ffcc00;
+    border-bottom-color: #ddd;
+    border-bottom-width: 1px;
+    text-align: center;
+    color: #444; }
       .modal__login__header span {
         color: black; }
       .modal__login__header__title {
         width: 100%; }
     .modal__login__footer {
-      font-size: 15px;
-      display: flex;
-      justify-content: space-around;
-      background-color: lightgrey;
-      border-top: 1px;
-      border-top-style: solid;
-      height: 50px;
-      align-items: center; }
+      font-size: 14px;
+    display: flex;
+    justify-content: space-around;
+    background-color: #ddd;
+    border-top: 1px;
+    height: 50px;
+    align-items: center; }
       .modal__login__footer__text {
-        border: 2px;
+        border: 1px;
         border-right-style: solid;
-        border-width: 2px;
+        border-width: 1px;
         width: 38%; }
       .modal__login__footer__button {
         background-color: Transparent;
@@ -665,17 +669,20 @@
   border-radius: 2px;
   max-width: 60%; }
   .modal__check__container {
-    text-align: center;
+        text-align: center;
     background-color: lightgrey;
-    border: 1px solid grey; }
+    border: 1px solid grey;
+    border-radius: 10px;
+    font-size: 14px; }
     .modal__check__container__header {
       display: flex;
       justify-content: flex-end; }
   .modal__check__button {
-    cursor: pointer;
+    width: 5%;
     background-color: lightgrey;
-    border: 1px solid grey;
-    color: #FFCD05; }
+    border: 0px solid #fff;
+    color: #333333;
+    border-radius: 0px 10px 0px 10px; }
   .modal__check__label {
     font-size: 30px;
     margin-bottom: 3%; }
@@ -709,8 +716,9 @@
       border: 1px solid grey;
       color: #FFCD05; }
     .modal__check__label {
-      font-size: 20px;
-      margin-bottom: 3%; } }
+      font-size: 16px;
+    margin-bottom: 3%;
+    padding: 10px; } }
 
 .modal__pulsa {
   margin: 1.75rem auto; }
@@ -860,9 +868,12 @@
   .modal__method__Button {
     background-color: white;
     color: black;
-    padding-top: 4%;
-    padding-bottom: 4%;
-    font-size: 14px; }
+    padding: 8px;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd; }
     .modal__method__Button:hover {
       background-color: #FFCD05;
       color: black; }
@@ -876,7 +887,8 @@
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    color: #333; }
+    color: #333;
+    padding: 10px; }
   .modal__method__header {
     display: flex;
     justify-content: flex-end; }
@@ -897,13 +909,16 @@
       width: 20%;
       cursor: pointer; }
     .modal__method__content__button {
-      margin: 5%;
-      cursor: pointer;
-      width: 20%;
-      font-size: 15px;
-      background-color: #FFCD05;
-      border: 2px solid #FFCD05;
-      margin-top: 0; }
+          margin: 5%;
+    cursor: pointer;
+    width: 40%;
+    font-size: 15px;
+    background-color: #444444;
+    border: 2px solid #FFCD05;
+    margin-top: 0;
+    padding: 5px;
+    border-radius: 10px;
+    color: #fff; }
     .modal__method__content__label {
       margin-top: 2%;
       font-size: 12px; }
@@ -939,22 +954,26 @@
     text-align: center; }
   .Signup__Form {
     text-align: left;
-    font-size: 17px; }
+    font-size: 14px; }
   .Signup__Sex {
     border-radius: 5px;
     background-color: var(--color-grey-5);
     color: white;
     margin-left: 5px; }
   .Signup__ButtonLogin {
-    color: black;
+        color: black;
+    background-color: #FFCD05;
     background-color: var(--color-yellow-1);
+    border-color: #FFCD05;
     border-color: var(--color-yellow-1);
     width: 100%;
     font-family: 'Roboto', sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     text-align: center;
-    border-radius: 5px; }
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    padding: 8px; }
   .Signup__Condition {
     color: var(--white);
     margin: 1rem; }
@@ -992,19 +1011,23 @@
     line-height: 24px;
     text-align: center; }
   .Login__Form {
-    text-align: left; }
+    text-align: left;
+    font-size:14px;}
   .Login__LupaPassword {
     color: var(--color-yellow-1);
     font-style: italic; }
   .Login__ButtonLogin {
     color: var(--color-black-5);
+    background-color: #FFCD05;
     background-color: var(--color-yellow-1);
+    border-color: #FFCD05;
     border-color: var(--color-yellow-1);
     width: 100%;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     font-weight: bold;
-    text-align: center; }
+    text-align: center;
+    border-radius: 50px; }
     .Login__ButtonLogin:active {
       background-color: var(--color-yellow-1) !important;
       color: var(--color-black-3); }
@@ -1568,9 +1591,13 @@
     text-align: center; } }
 
 .pembayaran {
-  width: 100%;
-  padding: 2%;
-  background-color: white; }
+  width: 90%;
+    background-color: white;
+    margin: auto;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 30px; }
   .pembayaran__buttonDetail {
     background-color: Transparent;
     background-repeat: no-repeat;
@@ -1588,14 +1615,17 @@
     margin: auto;
     max-width: 720px;
     width: 100%;
+    background-color: #ffffff;
     background-color: var(--color-white);
-    border: 2px grey solid; }
+    border: 1px solid #ddd;
+    border-radius: 10px; }
     .pembayaran__container a.nav-link {
       padding: 1rem 4.565rem; }
   .pembayaran__title {
-    text-align: center;
+        text-align: center;
     padding-top: 1%;
-    font-size: 50px; }
+    font-size: 30px;
+    font-weight: bold; }
     .pembayaran__title__container {
       display: flex;
       align-items: center; }
@@ -1613,10 +1643,12 @@
       font-size: 19px; }
     .pembayaran__title__header {
       padding-top: 3%;
-      padding-bottom: 3%;
-      background-color: var(--color-yellow-1);
-      padding-left: 2%;
-      font-size: 21px; }
+    padding-bottom: 3%;
+    background-color: #FFCD05;
+    background-color: var(--color-yellow-1);
+    padding-left: 2%;
+    font-size: 21px;
+    border-radius: 10px 10px 0px 0px; }
   .pembayaran__button {
     display: flex;
     height: 100%; }
@@ -2205,7 +2237,7 @@
   .invoice {
     overflow: hidden; }
     .invoice__tab {
-      font-size: 13px; }
+      font-size: 11px; }
     .invoice__container {
       overflow: scroll;
       font-size: 11px; } }
@@ -2542,7 +2574,7 @@ textarea {
     width: 90%;
     border-top: 0px solid #ddd;
     padding-bottom: 4%;
-    padding-top: 4%; }
+    padding-top: 0%; }
   .dompetHome__content {
     border: 1px solid #ffcd05;
     border-radius: 10px 10px 0px 0px;
@@ -2605,12 +2637,13 @@ textarea {
 
 .mobile__pulsa__button {
   font-size: 18px;
+    font-size: 16px;
     width: 41%;
     height: 45px;
-    font-weight: bold;
+    font-weight: 600;
     margin: 10px;
     color: #555555;
-    border: 1px solid #ffcc00;
+    border: 0px solid #ddd;
     background-color: #ffcd05;
     border-radius: 10px; }
   .mobile__pulsa__button:active {
@@ -2814,13 +2847,14 @@ textarea {
     text-decoration-line: line-through;
     text-decoration-color: red; }
   .mobile-bidding__content {
-    border: 1px solid;
-    max-width: 70%;
+        border: 1px solid #ddd;
+    max-width: 90%;
     margin: auto;
     margin-top: 5%;
     margin-bottom: 5%;
     padding: 2%;
-    background-color: #dee2e8; }
+    background-color: #ccc;
+    border-radius: 10px; }
   .mobile-bidding__2 {
     width: 100%;
     text-align: center; }
@@ -2849,28 +2883,31 @@ textarea {
         padding: 10px; }
 
 .mobile-InsertPhone__title {
-  text-align: center;
-  padding: 2%;
-  width: 90%;
-  margin: auto;
-  border-bottom: 1px solid; }
+      text-align: center;
+    padding: 5%;
+    width: 90%;
+    margin: auto;
+    border-bottom: 1px solid #ddd;
+    font-size: 20px; }
 
 .mobile-InsertPhone__container {
-  border: 1px solid;
-  max-width: 70%;
-  margin: auto;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  padding: 2%;
-  padding-top: 5%;
-  padding-bottom: 5%;
-  background-color: #dee2e8; }
+  border: 1px solid #ddd;
+    max-width: 90%;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 2%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: #dee2e8;
+    border-radius: 10px; }
 
 .mobile-InsertPhone__input__inputBox {
-  border: 1px solid darkgrey;
-  width: 100%;
-  padding: 2%;
-  font-size: 15px; }
+  border: 1px solid #ddd;
+    width: 100%;
+    padding: 3%;
+    font-size: 15px;
+    border-radius: 10px; }
 
 .mobile-InsertPhone__content__price {
   display: flex;
@@ -2884,10 +2921,14 @@ textarea {
   color: darkgrey; }
 
 .mobile-InsertPhone__button {
-  width: 45%;
-  border-radius: 10px;
-  background-color: #FFCD06;
-  font-size: 20px; }
+  width: 40%;
+    border-radius: 50px;
+    background-color: #FFCD06;
+    font-size: 14px;
+    height: 45px;
+    text-transform: uppercase;
+    color: #555555;
+    border: 0px solid #ddd; }
   .mobile-InsertPhone__button__container {
     display: flex;
     padding-top: 4%;
@@ -3018,7 +3059,7 @@ textarea {
   display: flex;
     justify-content: left;
     margin: 6%;
-    background-color: #f8f8f8;
+    background-color: #eaeaea;
     padding: 10px;
     border-radius: 10px; }
 
@@ -3258,14 +3299,15 @@ input::-webkit-inner-spin-button {
   font-size: 20px; }
 
 .inputz {
-  border: 2px solid var(--color-yellow-1);
-  background: transparent;
-  font-family: 'Roboto', sans-serif;
-  font-style: italic;
-  font-size: 17px;
-  box-shadow: none;
-  color: black;
-  border-radius: 8px; }
+      border: 2px solid #FFCD05;
+    border: 2px solid var(--color-yellow-1);
+    background: transparent;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    box-shadow: none;
+    color: black;
+    border-radius: 8px; }
   .inputz:focus {
     border: 2px solid var(--color-yellow-1);
     background: transparent;
@@ -3274,10 +3316,10 @@ input::-webkit-inner-spin-button {
     box-shadow: var(--color-grey-5);
     color: black; }
   .inputz:hover {
-    border: 2px solid var(--color-yellow-1);
+    border: 1px solid var(--color-yellow-1);
     background: transparent;
     font-family: 'Roboto', sans-serif;
-    font-style: italic; }
+    font-style: normal; }
   .inputz::placeholder {
     background: transparent;
     font-family: 'Roboto', sans-serif;
