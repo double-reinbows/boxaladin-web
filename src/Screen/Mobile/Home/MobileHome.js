@@ -88,10 +88,9 @@ export default class MobileHome extends Component {
           <button className={`${this.checkActive(4)} mobile-home-tab`} onClick={() => this.changeTab(4)}>VC GAMES</button>
         </div>
         {this.renderTab()}
-        <h2 className="mobile__pulsa__label">Cara Kerja</h2>
-        <img alt="how it works" className='mobile__pulsa__image'src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/Cara+Kerja/carKerjaMobile.svg"/>
+        <h2 className="mobile__pulsa__label" hidden>Cara Kerja</h2>
+        <img hidden alt="how it works" className='mobile__pulsa__image'src="https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/Cara+Kerja/carKerjaMobile.svg"/>
         {this.renderModalConfirm()}
-
       </div>
     );
   }
