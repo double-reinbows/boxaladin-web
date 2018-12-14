@@ -128,126 +128,8 @@ class Bidding extends Component {
     if (selectedPriceID === '') {
       return null
     }
-    if (selectedPriceID === 1) {
-      console.log("sepuluh ribuan");
-      //if selectedPriceID === 10000
-      this.props.setIsLoading(true)
-      const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
-      const productRef = productsRef.child(selectedPriceID)
-
-      productRef.once('value', snap => {
-        if (snap.val().aladinPrice - snap.val().decreasePrice <= 6000) {
-          productRef.update({
-            watching: snap.val().watching + 1,
-            aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
-          })
-          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice) )
-          this.out()
-        } else if ( snap.val().aladinPrice - snap.val().decreasePrice > 0){
-          productRef.update({
-            watching: snap.val().watching + 1,
-            aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
-          })
-          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice))
-        } else if (snap.val().aladinPrice - snap.val().decreasePrice <= 0) {
-          productRef.update({
-            watching: snap.val().watching + 1,
-            aladinPrice: 0
-          })
-          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, 0 )
-        }
-      })
-      productRef.on('value',snap => {
-        const productValue = {
-          aladinPrice: snap.val().aladinPrice,
-          watching: snap.val().watching
-        }
-        this.setState({
-          productUnlocked: productValue,
-        })
-      })
-    }
-    if (selectedPriceID===2) {
-      //if selectedPriceID === 250000
-
-      this.props.setIsLoading(true)
-      const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
-      const productRef = productsRef.child(selectedPriceID)
-
-      productRef.once('value', snap => {
-        if (snap.val().aladinPrice - snap.val().decreasePrice <= 15500) {
-          productRef.update({
-            watching: snap.val().watching + 1,
-            aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
-          })
-          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice) )
-          this.out()
-        } else if ( snap.val().aladinPrice - snap.val().decreasePrice > 0){
-          productRef.update({
-            watching: snap.val().watching + 1,
-            aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
-          })
-          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice))
-        } else if (snap.val().aladinPrice - snap.val().decreasePrice <= 0) {
-          productRef.update({
-            watching: snap.val().watching + 1,
-            aladinPrice: 0
-          })
-          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, 0 )
-        }
-      })
-      productRef.on('value',snap => {
-        const productValue = {
-          aladinPrice: snap.val().aladinPrice,
-          watching: snap.val().watching
-        }
-        this.setState({
-          productUnlocked: productValue,
-        })
-      })
-    }
-    if (selectedPriceID === 3) {
-      //alert("berapa hayo")
-      //if selectedPriceID === 50000
-      this.props.setIsLoading(true)
-      const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
-      const productRef = productsRef.child(selectedPriceID)
-
-      productRef.once('value', snap => {
-        if (snap.val().aladinPrice - snap.val().decreasePrice <= 35500) {
-          productRef.update({
-            watching: snap.val().watching + 1,
-            aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
-          })
-          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice) )
-          this.out()
-        } else if ( snap.val().aladinPrice - snap.val().decreasePrice > 0){
-          productRef.update({
-            watching: snap.val().watching + 1,
-            aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
-          })
-          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice))
-        } else if (snap.val().aladinPrice - snap.val().decreasePrice <= 0) {
-          productRef.update({
-            watching: snap.val().watching + 1,
-            aladinPrice: 0
-          })
-          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, 0 )
-        }
-      })
-      productRef.on('value',snap => {
-        const productValue = {
-          aladinPrice: snap.val().aladinPrice,
-          watching: snap.val().watching
-        }
-        this.setState({
-          productUnlocked: productValue,
-        })
-      })
-    }
     if (selectedPriceID === 4) {
-      //alert("berapa hayo")
-      //if selectedPriceID === 100000
+      //if selectedPriceID ===100000
       this.props.setIsLoading(true)
       const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
       const productRef = productsRef.child(selectedPriceID)
@@ -284,64 +166,36 @@ class Bidding extends Component {
         })
       })
     }
-		if (selectedPriceID === 5) {
-      //if selectedPriceID ===5000
-      this.props.setIsLoading(true)
-      const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
-      const productRef = productsRef.child(selectedPriceID)
-
-      productRef.once('value', snap => {
-        if (snap.val().aladinPrice - snap.val().decreasePrice <= 3000) {
-          productRef.update({
-            watching: snap.val().watching + 1,
-            aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
-          })
-          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice) )
-          this.out()
-        } else if ( snap.val().aladinPrice - snap.val().decreasePrice > 0){
-          productRef.update({
-            watching: snap.val().watching + 1,
-            aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
-          })
-          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice))
-        } else if (snap.val().aladinPrice - snap.val().decreasePrice <= 0) {
-          productRef.update({
-            watching: snap.val().watching + 1,
-            aladinPrice: 0
-          })
-          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, 0 )
-        }
-      })
-      productRef.on('value',snap => {
-        const productValue = {
-          aladinPrice: snap.val().aladinPrice,
-          watching: snap.val().watching
-        }
-        this.setState({
-          productUnlocked: productValue,
-        })
-      })
-    }
     else {
-      this.props.setIsLoading(true)
-      const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
-      const productRef = productsRef.child(selectedPriceID)
-      productRef.once('value', snap => {
+      if (selectedPriceID === 5) {
+        //if selectedPriceID ===5000
+        this.props.setIsLoading(true)
+        const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
+        const productRef = productsRef.child(selectedPriceID)
 
-        if (snap.val().aladinPrice > 10000){
-          productRef.update({
-            watching: snap.val().watching +1,
-            aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
-          })
-          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice))
-        } else if (snap.val().aladinPrice === 10000 || snap.val().aladinPrice <= 10000 ) {
-          productRef.update({
-            watching: snap.val().watching +1,
-          })
-          this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, snap.val().aladinPrice )
+        productRef.once('value', snap => {
+          if (snap.val().aladinPrice - snap.val().decreasePrice <= 3000) {
+            productRef.update({
+              watching: snap.val().watching + 1,
+              aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
+            })
+            this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice) )
+            this.out()
+          } else if ( snap.val().aladinPrice - snap.val().decreasePrice > 0){
+            productRef.update({
+              watching: snap.val().watching + 1,
+              aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
+            })
+            this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice))
+          } else if (snap.val().aladinPrice - snap.val().decreasePrice <= 0) {
+            productRef.update({
+              watching: snap.val().watching + 1,
+              aladinPrice: 0
+            })
+            this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, 0 )
           }
         })
-        productRef.on('value', snap => {
+        productRef.on('value',snap => {
           const productValue = {
             aladinPrice: snap.val().aladinPrice,
             watching: snap.val().watching
@@ -350,6 +204,151 @@ class Bidding extends Component {
             productUnlocked: productValue,
           })
         })
+      }
+      else if (selectedPriceID === 1) {
+        //if selectedPriceID ===10000
+        this.props.setIsLoading(true)
+        const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
+        const productRef = productsRef.child(selectedPriceID)
+
+        productRef.once('value', snap => {
+          if (snap.val().aladinPrice - snap.val().decreasePrice <= 6000) {
+            productRef.update({
+              watching: snap.val().watching + 1,
+              aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
+            })
+            this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice) )
+            this.out()
+          } else if ( snap.val().aladinPrice - snap.val().decreasePrice > 0){
+            productRef.update({
+              watching: snap.val().watching + 1,
+              aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
+            })
+            this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice))
+          } else if (snap.val().aladinPrice - snap.val().decreasePrice <= 0) {
+            productRef.update({
+              watching: snap.val().watching + 1,
+              aladinPrice: 0
+            })
+            this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, 0 )
+          }
+        })
+        productRef.on('value',snap => {
+          const productValue = {
+            aladinPrice: snap.val().aladinPrice,
+            watching: snap.val().watching
+          }
+          this.setState({
+            productUnlocked: productValue,
+          })
+        })
+      }
+      else if (selectedPriceID === 2) {
+        //if selectedPriceID ===25000
+        this.props.setIsLoading(true)
+        const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
+        const productRef = productsRef.child(selectedPriceID)
+
+        productRef.once('value', snap => {
+          if (snap.val().aladinPrice - snap.val().decreasePrice <= 15500) {
+            productRef.update({
+              watching: snap.val().watching + 1,
+              aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
+            })
+            this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice) )
+            this.out()
+          } else if ( snap.val().aladinPrice - snap.val().decreasePrice > 0){
+            productRef.update({
+              watching: snap.val().watching + 1,
+              aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
+            })
+            this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice))
+          } else if (snap.val().aladinPrice - snap.val().decreasePrice <= 0) {
+            productRef.update({
+              watching: snap.val().watching + 1,
+              aladinPrice: 0
+            })
+            this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, 0 )
+          }
+        })
+        productRef.on('value',snap => {
+          const productValue = {
+            aladinPrice: snap.val().aladinPrice,
+            watching: snap.val().watching
+          }
+          this.setState({
+            productUnlocked: productValue,
+          })
+        })
+      }
+      else if (selectedPriceID === 3) {
+        //if selectedPriceID ===50000
+        this.props.setIsLoading(true)
+        const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
+        const productRef = productsRef.child(selectedPriceID)
+
+        productRef.once('value', snap => {
+          if (snap.val().aladinPrice - snap.val().decreasePrice <= 35500) {
+            productRef.update({
+              watching: snap.val().watching + 1,
+              aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
+            })
+            this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice) )
+            this.out()
+          } else if ( snap.val().aladinPrice - snap.val().decreasePrice > 0){
+            productRef.update({
+              watching: snap.val().watching + 1,
+              aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
+            })
+            this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice))
+          } else if (snap.val().aladinPrice - snap.val().decreasePrice <= 0) {
+            productRef.update({
+              watching: snap.val().watching + 1,
+              aladinPrice: 0
+            })
+            this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, 0 )
+          }
+        })
+        productRef.on('value',snap => {
+          const productValue = {
+            aladinPrice: snap.val().aladinPrice,
+            watching: snap.val().watching
+          }
+          this.setState({
+            productUnlocked: productValue,
+          })
+        })
+      }
+      //
+      else {
+        this.props.setIsLoading(true)
+        const productsRef = firebase.database().ref().child(`${this.props.location.state.firebase}`)
+        const productRef = productsRef.child(selectedPriceID)
+        productRef.once('value', snap => {
+
+          if (snap.val().aladinPrice > 10000){
+            productRef.update({
+              watching: snap.val().watching +1,
+              aladinPrice: snap.val().aladinPrice - snap.val().decreasePrice
+            })
+            this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, (snap.val().aladinPrice - snap.val().decreasePrice))
+          } else if (snap.val().aladinPrice === 10000 || snap.val().aladinPrice <= 10000 ) {
+            productRef.update({
+              watching: snap.val().watching +1,
+            })
+            this.simplyWatchProductPrice(selectedPriceID, snap.val().aladinPrice, snap.val().aladinPrice )
+            }
+          })
+          productRef.on('value', snap => {
+            const productValue = {
+              aladinPrice: snap.val().aladinPrice,
+              watching: snap.val().watching
+            }
+            this.setState({
+              productUnlocked: productValue,
+            })
+          })
+      }
     }
   }
 
