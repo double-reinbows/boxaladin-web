@@ -205,7 +205,7 @@
   width: 200px;
     height: 44px;
     padding: 0;
-    margin-right: -26px;
+    margin-right: 0px;
     border-radius: 10px;
     background-color: #fff;
     border: 3px solid #ffcd06; }
@@ -2578,11 +2578,12 @@ textarea {
   .dompetHome__content {
     border: 1px solid #ffcd05;
     border-radius: 10px 10px 0px 0px;
-    background-color: #ffcd05;
+    background-image: linear-gradient(to right, #ffcc00 , #F6AF35);
     margin-bottom: 0px;
     padding: 10px;
     font-size: 10px;
-    color: #444444; }
+    color: #444444;
+    /*background-color: #ffcd05;*/ }
   .dompetHome__headContent {
     display: flex;
     justify-content: space-between; }
@@ -2591,25 +2592,30 @@ textarea {
       margin-left: 5%; }
     .dompetHome__headContent__text {
       margin-bottom: 0;
-      font-weight: bold; }
+    font-weight: bold;
+    padding-top: 5px; }
     .dompetHome__headContent__plus {
       font-weight: bold;
-      font-size: 15px;
-      color: black;
-      text-decoration: none;
-      margin-right: 5%; }
+    font-size: 15px;
+    color: black;
+    text-decoration: none;
+    margin-right: 1%;
+    background-color: #f8f8f8;
+    border-radius: 50px;
+    padding: 1px 9px 1px 9px; }
       .dompetHome__headContent__plus:hover {
         color: black;
         text-decoration: none; } }
 
 .mobile__menu__button {
-  height: 55px;
-    border-radius: 10px;
+      height: 45px;
+    border-radius: 50px;
     font-size: 15px;
     margin: 5%;
-    font-weight: bold;
+    font-weight: 500;
     color: #555555;
     display: flex;
+    background-image: linear-gradient(to right, #ffcc00 , #F6AF35);
     width: 90% !important;
     justify-content: center;
     align-items: center; }
@@ -2639,12 +2645,13 @@ textarea {
   font-size: 18px;
     font-size: 16px;
     width: 41%;
+    background-image: linear-gradient(to right, #eaeaea , #dddddd);
     height: 45px;
-    font-weight: 600;
+    font-weight: 500;
     margin: 10px;
     color: #555555;
-    border: 0px solid #ddd;
-    background-color: #ffcd05;
+    border: 2px solid #ffcc00;
+    /* background-color: #eaeaea; */
     border-radius: 10px; }
   .mobile__pulsa__button:active {
     background-color: #ffe680; }
@@ -2684,7 +2691,7 @@ textarea {
     font-size: 13px; }
 
 .background {
-  background-image: url(https://s3-ap-southeast-1.amazonaws.com/iconpulsa/opacityLogo.svg);
+  /*background-image: url(https://s3-ap-southeast-1.amazonaws.com/iconpulsa/opacityLogo.svg);*/
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center; }
@@ -2765,17 +2772,18 @@ textarea {
     text-align: center;
     border: 0px solid;
     width: 90%;
-    padding:3px;
+    padding: 3px;
     display: flex;
     justify-content: space-around;
     margin: auto;
     margin-top: 2%;
     margin-bottom: 5%;
-    background-color: lightgrey;
+    background-color: #eaeaea;
     font-size: 15px; }
 
 .mobile-home-image {
-  width: 15%; }
+  width: 15%;
+    padding: 3px; }
   .mobile-home-image-container {
     text-align: center;
     border: 1px solid #ccc;
@@ -3201,7 +3209,7 @@ body {
   margin: 2rem; }
 
 .bodyContainer {
-  min-height: calc(100vh - 90px);
+  min-height: calc(100vh - 200px);
 }
 
 .col-sm-6 {
@@ -3235,8 +3243,8 @@ input::-webkit-inner-spin-button {
   display: none !important; }
 
 .tabactive {
-  background-color: #777;
-  color: white; }
+  color: #444;
+    background-image: linear-gradient(to right, #ffcc00 , #F6AF35); }
   .tabactive-ba {
     background-color: #FFCD05;
     color: white; }
