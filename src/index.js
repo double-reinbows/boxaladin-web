@@ -21,17 +21,17 @@ var config = {
 };
 firebase.initializeApp(config);
 
-class App2 extends React.Component {
-    constructor() {
-        super();
-    }
-    render() {
-        return (
-          <meta http-equiv="refresh" content="0; URL='http://boxaladin.asia/maintenance'" />
-        );
-    }
-}
+// class App2 extends React.Component {
+//     constructor() {
+//         super();
+//     }
+//     render() {
+//         return (
+//           <meta http-equiv="refresh" content="0; URL='http://boxaladin.asia/maintenance'" />
+//         );
+//     }
+// }
 
-ReactDOM.render(<App2 />, document.getElementById('root'));
-//ReactDOM.render(<App />, document.getElementById('root'));
+//ReactDOM.render(<App2 />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 unregister();
