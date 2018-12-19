@@ -260,7 +260,8 @@ class ModalPayment extends Component{
             ))
             }
           </ButtonGroup>
-          <label className="modal__method__content__label">(*)Pembayaran Menggunakan BNI, BRI, MANDIRI dan ALFAMART Akan Dikenakan Biaya Payment Gateway Sebesar Rp 2.000</label>
+          <label className="modal__method__content__label">(*)Pembayaran Menggunakan BNI, BRI, MANDIRI dan ALFAMART Akan Dikenakan Biaya Payment Gateway Sebesar Rp 2.000 </label>
+          <label className="modal__method__content__label">(*) Pembayaran Menggunakan Transfer BCA (Manual) Setelah Jam 20.00 WIB Akan Diproses Keesokan Harinya</label>
         </div>
       </Fragment>
     )
