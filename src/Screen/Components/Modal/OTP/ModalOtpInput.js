@@ -24,7 +24,9 @@ class ModalOtpInput extends Component {
       count: 5,
       time: 60,
       modalSuccess: false,
-      newMissPhone: ''
+      newMissPhone: '',
+      countfalse : 4,
+      disabledSubmitotp : false
     }
   }
 
@@ -73,7 +75,7 @@ class ModalOtpInput extends Component {
         disabledRetry: true,
         notifCount: `${this.state.count} OTP Sisa Yang Dapat Dikirim`
       })
-  
+
       if(this.state.time <= 0) {
         clearInterval(this.timer);
         this.setState({
@@ -84,8 +86,10 @@ class ModalOtpInput extends Component {
     }, 1000)
   }
 
+
   submit = () => {
     const {otp} = this.state;
+    const {countfalse} = this.state;
     const {endpoint, phone} = this.props;
     if (otp === 0) {
       this.setState({
@@ -94,6 +98,7 @@ class ModalOtpInput extends Component {
     } else {
       HelperAxios('POST', `${endpoint}`, {phonenumber:phone, otp: parseInt(otp, 10)})
       .then(response => {
+        console.log(this.state);
         if (response.data.message === 'phone verified') {
           this.setState({
             modalSuccess: true
@@ -103,8 +108,15 @@ class ModalOtpInput extends Component {
         }, 3000)
         }	else if ( response.data.message === 'incorrect otp') {
           this.setState({
-            notifOtp: "OTP Salah",
+            notifOtp: `OTP Salah ${this.state.countfalse}`,
+            countfalse: countfalse - 1
           });
+          if (countfalse <= 0) {
+            this.setState({
+              disabledSubmitotp: true,
+              notifOtp: "kode OTP terblokir, sudah 4 kali salah",
+            });
+          }
         } else if ( response.data.message === 'Hp pernah diverifikasi') {
           this.setState({
             notifOtp: "Hp pernah diverifikasi",
@@ -132,11 +144,11 @@ class ModalOtpInput extends Component {
     }
   }
 
-  render() { 
-    return (  
+  render() {
+    return (
       <Modal ariaHideApp={false} isOpen={this.props.isOpen} className="modal__otp__input">
         <div className="modal__otp__input__container">
-        <h2 className="modal__otp__input__title">Verifikasi Nomor Untuk Mendapat 5 Key Gratis</h2>
+        <h2 className="modal__otp__input__title">Verifikasi Nomor Untuk Mendapat 2 Key Gratis</h2>
         <img className="modal__otp__input__image" src='https://s3-ap-southeast-1.amazonaws.com/boxaladin-assets-v2/icon/Home/handphone.png' alt="phone"/>
           <br/>
           <label>Anda Akan di Misscall di Nomor {this.props.phone}</label>
@@ -144,7 +156,7 @@ class ModalOtpInput extends Component {
           <div className="modal__otp__input__content">
             <input maxLength={4} type="number" className="modal__otp__input__content-input" onChange={this.handleInput} placeholder="OTP"/>
             <br/>
-            <button style={{marginTop:"2%"}} onClick={this.submit} disabled={this.state.disabled}className="modal__otp__input__content-button baButton">Submit</button>
+            <button style={{marginTop:"2%"}} onClick={this.submit} disabled={this.state.disabledSubmitotp}className="modal__otp__input__content-button baButton">Submit</button>
             <br/>
             <label className="alert__otp">{this.state.notifOtp}</label>
             <br/>
